@@ -237,6 +237,31 @@ for the curve. For `x < x_range_from` for the given version the `f(x) = nan`.
 
 In Mesh **rating curve attributes** contain a set of rating curve versions.
 
+## Object path
+
+Every object in Mesh have a unique path and a unique GUID. The path have
+a virtual root node with one of the following names:
+
+- Repository
+- Model
+- Resource
+- Quantity
+
+Examples:
+
+- Repository/EnergySystem/Area
+- Repository/EnergySystem/Area/Description
+- Model/MyModel/Mesh.EnergySystemVersion
+- Model/MyModel/Mesh.To_Areas/Norge.Description
+- Resource/MyModel/Mesh/Norway/Measurements/AreaNorth/WaterLevel_historical
+- Quantity/volume/million cubic meter
+
+A model object path includes the name of the relation leading to the next hierarchical level.
+This is needed to make the path unique as there might be child objects of the relation
+having the same name. The relation name is the part starting with a dot, for instance `To_Areas`
+from the path substring `Mesh.To_Areas`.
+
+Each part of the path, except the virtual root, is associated with a Mesh object type.
 
 ## Extended metadata
 
