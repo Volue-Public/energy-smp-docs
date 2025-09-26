@@ -21,6 +21,9 @@ nav:
                       - Rating curve: mesh/concepts/modelling/rating-curves.md
                       - Relations: mesh/concepts/modelling/relations.md
                       - XY-sets: mesh/concepts/modelling/xy-sets.md
+                - Search language: mesh/concepts/search-language.md
+                - Sessions: mesh/concepts/sessions.md
+                - Time series: mesh/concepts/time-series.md
           - Installation: mesh/installation/MeshServiceInstallationGuide.md
           - Calculations:
                 - General: mesh/calculations/calculations.md
