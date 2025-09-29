@@ -1,8 +1,8 @@
 # XY-sets
 
 An XY-set is a set of two-dimensional curves. Mesh supports storing XY-sets in
-XY-set attributes, which can be versioned or unversioned. This document will
-explain what XY-curves and XY-sets are, and how Mesh XY-set attributes are
+XY-set attributes, which can be versioned or unversioned. This document 
+explains what XY-curves and XY-sets are, and how Mesh XY-set attributes are
 structured.
 
 ## XY curves
