@@ -1,10 +1,9 @@
 # XY-sets
 
 An XY-set is a set of two-dimensional curves. Mesh supports storing XY-sets in
-XY-set XY-set attributes, which can be versioned or unversioned. This document
-will explain what XY-curves and XY-sets are, how Mesh XY-set attributes are
-structured, and how you can use the Mesh Python SDK to access the XY-sets in
-those attributes.
+XY-set attributes, which can be versioned or unversioned. This document 
+explains what XY-curves and XY-sets are, and how Mesh XY-set attributes are
+structured.
 
 ## XY curves
 
