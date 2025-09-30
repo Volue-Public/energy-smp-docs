@@ -405,7 +405,7 @@ The Time Series Volumes Web Service export can be configured in the `TsVolumesWe
 }
 ```
 
-If the export receiver is found in `ParticipantAddresses`, then it's corresponding address is used as the export target. Otherwise the `DefaultAddress` is used.
+If the export receiver is found in `ParticipantAddresses`, its corresponding address is used as the export target. Otherwise, the `DefaultAddress` is used.
 
 ## Recommended Kerberos authorization settings
 
