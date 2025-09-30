@@ -1,8 +1,8 @@
 ## Configuration
-### Common configuration items
-#### Logging
 
-Logging functionality of all Data Transfer services is provided by Serilog library.
+### Logging
+
+Logging functionality in Data Transfer is provided by the Serilog library.
 
 ```json
  "Serilog": {
@@ -15,18 +15,18 @@ Logging functionality of all Data Transfer services is provided by Serilog libra
 ```
 `MinimumLevel` options sets the minimum severity level of messages that will be put in the log.
 Serilog supports 5 different logging levels: `Verbose`, `Debug`, `Information`, `Warning`, `Error` and `Fatal`. 
-This option can be changes at the runtime and will take effect immediately.
+This option can be changed at the runtime and will take effect immediately.
 
 ```json
     },
     "Enrich": [ "WithMachineName", "WithProcessName", "WithThreadId" ],
 ```
-`Enrich` specifies additional information that will be added to all log entries. For more information refer to enrichers [documentation](https://github.com/serilog/serilog/wiki/Enrichment)
+`Enrich` specifies additional information that will be added to all log entries. For more information refer to enrichers [documentation](https://github.com/serilog/serilog/wiki/Enrichment).
 
 ```json
     "WriteTo": [
 ```
-`WriteTo` section specifies list of all destination that logs will be saved to. By default only destination is `File`. Other possible and useful option could be `Console.
+`WriteTo` section specifies list of all destination that logs will be saved to. By default the only destination is `File`. Other possible and useful option could be `Console`.
 
 ```json
       {
@@ -38,17 +38,17 @@ This option can be changes at the runtime and will take effect immediately.
 `path` defines location and name of the log file.
 `formatter` defines the way of storing log data. By default logs are stored as a json file. For more options refer to formatters [documentation](https://github.com/serilog/serilog/wiki/Formatting-Output).
 Other useful options in `Args` section are:
-- `rollOnFileSizeLimit` - enables log rotation when `fileSizeLimitBytes` is reached (bool, default is false).
-- `fileSizeLimitBytes` - specifies maximum size of log file in bytes (default is 1 GB).
-- `retainedFileCountLimit` - specifies how many log files will be kept. Default value is 31. Use `null` to disable the limit.
-- `rollingInterval` - enables log rotation when specific interval elapses (e.g. `Day`, `Month`, `Year`)
+- `rollOnFileSizeLimit` - enables log rotation when `fileSizeLimitBytes` is reached (bool, default is false),
+- `fileSizeLimitBytes` - specifies maximum size of log file in bytes (default is 1 GB),
+- `retainedFileCountLimit` - specifies how many log files will be kept (default value is 31, use `null` to disable the limit),
+- `rollingInterval` - enables log rotation when specific interval elapses (e.g. `Day`, `Month`, `Year`).
 
 More information can be found in serilog file sink [documentation](https://github.com/serilog/serilog-sinks-file).
 
-#### Brokers Configuration
+### Brokers Configuration
 
-ImportExport services operate on AMQP entities. AMQP broker is a piece of software capable of relaying messages from one service to another.
-`BrokersConfiguration` configuration item allows the user to specify broker connection strings - we allow to specify more than one connection string.
+Mesh Data Transfer service operates on AMQP entities. AMQP broker is a piece of software capable of relaying messages from one service to another.
+`BrokersConfiguration` configuration item allows the user to specify broker connection strings - more than one connection string is allowed.
 In case of connection failure, the service will choose the next connection string from the list and will try to establish a new connection.
 
 ```json
@@ -86,37 +86,46 @@ We support RabbitMQ Virtual Host feature (see [RabbitMQ docs](https://www.rabbit
   },
 ```
 
-#### Queues Configuration
+### Queues Configuration
 
-`Trigger Relay` and `Mesh Amqp Relay` allow configuration of queues that can be later assigned to various components.
-Each json object in `Queues Configuration` describes single queue. It can have any name that is unique within `Queues Configuration`.
+Mesh Data Transfer allows a configuration of queues that can be later assigned to various components.
+Each json object in `Queues Configuration` describes a single queue. It can have any name that is unique within `Queues Configuration`.
 
 ```json
 "QueuesConfiguration": {
     "Queue1": {
       "Broker": "B1",
 ```
+
 `Broker` is a reference to one of the broker names defined in the `BrokersConfiguration`, for example `B1`.
 
 ```json
       "QueueName": "exportQueue",
 ```
-`QueueName` specifies a queue to connect to on the broker.
+
+`QueueName` specifies a queue to connect to on the broker. In case of Azure Service Bus, it can be both the name of the queue or the topic (see the description of `Subscription` parameter below).
+
 ```json
       "Role": "Sender",
 ```
+
 `Role` specifies whether this queue will be used to send to or receive from. Valid values are: `Sender`, `Receiver`, `Failure`, `Confirmation` and `ReimportSender`.
 
 ```json
       "Priority": 0
 ```
 
-`Priority` is an integer used for indicating import queue priority. Based on this number (the lower the number, the more important given queue is) MAR will process messages
-placed in the queues with higher priority before messages placed in the queues with lower priorities. If the queue doesn't have the `Priority` parameter specified, its default priority is 50. Example: there are 3 import queues defined with following priorities: 0, 1 and for the last queue the `Priority` parameter is missing (it results to priority 50). Messages in the queue with priority 0 will be handled first, then messages in the queue with priority 1 and at the end the messages in the queue with priority 50.
+`Priority` is an integer used for indicating import queue priority. The lower the number, the more important given queue is. Mesh Data Transfer processes messages placed in the queues with higher priority before messages placed in the queues with lower priorities. Default `Priority` is 50.
 
-#### Kestrel Configuration
+```json
+      "Subscription": "Sub1"
+```
 
-`Kestrel` is an http server used by `Trigger Relay`, `Export Data Store` and `Database Gateway` in order to expose endpoints for receiving orders data and for health endpoints.
+`Subscription` enables the use of Azure Service Bus Topics feature. When `Subscription` is provided, the `QueueName` parameters serves as the topic name. `Subscription` is only valid for queues with the `Receive` role. For the `Sender` role, `QueueName` can serve both as the queue name and the topic name.
+
+### Kestrel Configuration
+
+`Kestrel` is an HTTP server used by Mesh Data Transfer in order to expose the endpoint for receiving the orders and for the health endpoint.
 
 ```json
 "Kestrel": {
@@ -124,31 +133,24 @@ placed in the queues with higher priority before messages placed in the queues w
       "Http": {
         "Url": "http://localhost:7000"
 ```
-`Url` specifies address and port that should be used when accessing the service. For most cases it is reasonable to replace `localhost` with machine `hostname`.
+`Url` specifies address and port that should be used when accessing the service. The `Url` specification may influence the ability to listen for exports coming from external machines. For most cases it is reasonable to replace `localhost` with machine `hostname`.
 
-#### HttpEndpoints configuration 
+### Mesh connection configuration 
 
 ```json
 "HttpEndpoints": {
   "Mesh": {
-    "Uri": "https://localhost:20000/mesh",
+    "Uri": "https://localhost:50001/mesh",
     "ServerPrincipal": "HOST/server.mydomain.com",
     "TokenRefreshIntervalMinutes": 30,
     "RequestTimeout": 60,
-    "MaxReceiveMessageSizeInBytes": 16777216
-  },
-  "ExportDataStore": {
-    "Uri": "http://localhost:17000/"
-  },
-  "DatabaseGateway": {
-    "Uri": "http://localhost:7137"
+    "MaxReceiveMessageSizeInBytes": 16777216,
+    "MaxRetryAttempts": 5
   }
 },
 ```
 
-This part applies to `Trigger Relay` or `Mesh Amqp Relay`, depending on which export flow is in use.
-
-`HttpEndpoints:Mesh:Uri` contains address of `Mesh` server endpoint that will be used for all exports and imports of data.
+`HttpEndpoints:Mesh:Uri` contains the address of `Mesh` server endpoint that is used for all the exports and imports of data.
 Use `https` in the `Uri` to enable Transport Layer Security (TLS) and communicate with Mesh over secure channel.
 
 `HttpEndpoints:Mesh:ServerPrincipal` field should be set if the user wants to enable Kerberos authentication.
@@ -157,69 +159,72 @@ The value should be set to Kerberos server principal of the Mesh server.
 
 `HttpEndpoints:Mesh:MaxReceiveMessageSizeInBytes` is an optional size limit for the messages received from Mesh (e.g. time series export response). Defaults to 4 MB (4194304 bytes) when not provided. The example extends the received message size limit to 16 MB.
 
-`HttpEndpoints:ExportDataStore`  is an address of `Export Data Store` endpoint (formerly `ExportWorker:ExportServiceAddress`). This is the address that will be used to send all timeseries export data, received from `Mesh`, in order to store it and create `Message Log` entries.
+`HttpEndpoints:Mesh:MaxRetryAttempts` is an optional retry count for messages that fail to reach Mesh due to transient errors (when Mesh is not accessible). Defaults to 5 attempts.
 
-`HttpEndpoints:DatabaseGateway` is the address of `DatabaseGateway` service endpoint.
+`HttpEndpoints:Mesh` can specify an optional `RequestTimeout` attribute (defaults to `60`).
 
-All of the endpoints above can specify an optional `RequestTimeout` attribute (defaults to `60`).
+Additionally, `MeshMonitor` contains the address of `Mesh` server health endpoint. It is used to establish whether `Mesh` is in suitable condition to perform exports and imports.
 
-#### Database Configuration
+```json
+  "MeshMonitor": {
+    "MeshHealthEndpoint": "http://localhost:20000/meshHealth/health",
+    "CheckInterval": 5000
+  }
+```
 
-The `Database Gateway` service requires direct database access. Currently data required to access the database is stored in the configuration file.
+### Database Configuration
 
+The Mesh Data Transfer service requires direct database access. Currently data required to access the database is stored in the configuration file.
 
 ```json
 "Database": {
     "User": "dbuser",
     "Password": "dbpass",
     "DataSource": "dbserver",
-    "OpunKeyMode": "SHORNAME" // legal values: SHORNAME/BANKACC/POSTACC/ESETT_ID, SHORNAME is default if not specified
+    "OpunKeyMode": "SHORNAME", // legal values: SHORNAME/BANKACC/POSTACC/ESETT_ID, SHORNAME is default if not specified
+    "ReadOnly": false // optional parameter that disables database modifications when true, default value is false; NOTE: it does not impose read only mode in Mesh! 
   }
 ```
 
-### Trigger Relay Specific Configuration:
+### Import and export common configuration
+
+`FailedMessages` section defines how the errors are handled when import requests are processed. Internal errors are the ones that originated from the inside of Mesh Data Transfer (for example `XML`/`JSON` parsing problem). 
+External errors come from `Mesh`. If set to true the problematic message is sent to the failure queue.
+Otherwise the application tries to put the message back on the queue to process it again later.
+
 ```json
-{
-  "AmqpSender": {
-    "Queues": [
-      "ExportQueue"
-    ]
+  "FailedMessages": {
+    "UseFailureQueueOnInternalError": true,
+    "UseFailureQueueOnExternalError": false
   },
 ```
-`AmqpSender` is used to send export orders to the AMQP queues. `Queues` is expected to contains single `Sender` queue name defined in `QueuesConfiguration` configuration item.
+
+The `ServiceBus` node is used to configure the behaviour of Service Bus communication.
+- The `PrefetchCount` parameter adjusts the number of messages prefetched and cached before the actual message is requested. Default number is 0, meaning no prefetch.
+- `MaxRetries` defines how many times the service should retry an operation on transient network issues.
+- `MaxRetryDelay` controls the maximum delay (in milliseconds) between retry attempts when transient network issues happen. Default is 10 seconds (10000 ms).
+
+
 ```json
-  "AdditionalPvplanPrefix": {
-    "Separator": ";"
-  },
-```
-`AdditionalPvplanPrefix` separator is a character used in Participant application export definition. It separates External Reference from prefix string being added to the PVPLAN data file names.
-```json
-  "ContentCode": {
-    "Separator":  ";"
-  },
+"ServiceBus": {
+  "PrefetchCount": 3,
+  "MaxRetries": 3,
+  "MaxRetryDelay": 10000
 }
-```
-`ContentCode` separator is a character used in Participant application export definition. It separates Product Code from exact protocol name ('APOR' or 'APOT') in case of APOR/APOT export.
 
-```json
-"HttpEndpoints": {
-  "DatabaseGateway": {
-    "Uri": "http://localhost:7137"
-  }
-}
 ```
 
-`HttpEndpoints:DatabaseGateway` specifies the endpoint of `Database Gateway` service. It accepts an optional `RequestTimeout` attribute (defaults to `60`).
+The `Amqp:FrameTracingEnabled` flag can be used to debug low level communication issues with AMQP brokers.
 
 ```json
-"ParticipantSettings": {
-  "DefaultSender": 26
+"Amqp": {
+  "FrameTracingEnabled": false
 }
 ```
 
-`ParticipantSettings:DefaultSender` specifies the default sender to be used when exporting time series or availability data. The `DefaultSender` participant key is used as a fallback when the sender is not defined in the time series export definition or in the export request.
+### Import specific configuration 
 
-### Mesh Amqp Relay Specific Configuration:
+`ImportWorker` is used to handle import requests. 
 
 ```json
   "ImportWorker": {
@@ -230,46 +235,67 @@ The `Database Gateway` service requires direct database access. Currently data r
     ],
     "ICC_TRANSLOG_DIR": "C:\\ICC_TRANSLOG_DIR\\",
     "ReimportEnabled": false,
-    "PartialImportSuccess": false
+    "PartialImportSuccess": false,
+    "Delay": 100,
+    "DisableImportReply": false,
+    "ReceiveTimeout": 1000
   },
 ```
-`ImportWorker` is used to handle import requests. In order to work properly it needs `Queues` to contain a list of queues from `QueuesConfiguration`. One of the queues needs to be a `Receiver` queue which will be used to receive import orders. Second queues needs to be a `Sender` queue, it will be used for sending import status data.
+
+In order to work properly it needs `Queues` to contain a list of queues from `QueuesConfiguration`. One of the queues needs to be a `Receiver` queue which will be used to receive import orders. Another queue needs to be a `Sender` queue, used for sending import status data.
 The third, optional queue, needs to be a `Failure` queue. Its use depends on `FailedMessages` node below.
 If `ReimportEnabled` flag is set to `true`, `ICC_TRANSLOG_DIR` is a directory where received import requests are kept for potential reimports.
 `PartialImportSuccess` is an optional flag that makes Mesh Data Transfer include `<ImportSuccess>true</ImportSuccess>` in the time series import reply when the import was partially successful. The default value is `false`, which means `ImportSuccess` is `true` only when all of the requested time series were imported correctly.
+The `Delay` parameter is used to control the timeout between the import requests.
+`DisableImportReply` is an optional flag used to disable the confirmation reply when the import request was processed successfully and an error reply when the import request had invalid syntax and could not be deserialized. It doesn't affect failure queue replies. Defaults to false.
+The ReceiveTimeout parameter controls the timeout of a message receive call. The unit is milliseconds. Default value is 100 milliseconds.
+
+`AmqpSender` is used to send reimport requests and availability confirmation messages to the queues. 
 
 ```json
-  "ExportWorker": {
-    "Queues": [
-      "Q1",
-      "FailureQ"
-    ]
+"AmqpSender": {
+  "Queues": [
+    "ExportQueue"
+  ]
+},
+```
+
+The `Queues` array is expected to contain the names of the queues defined in `QueuesConfiguration` section with `Sender` role.
+
+### Export specific configuration
+
+```json
+"AdditionalPvplanPrefix": {
+  "Separator": ";"
+},
+```
+
+`AdditionalPvplanPrefix:Separator` is a character used in the Participant application export definition. It separates the External Reference from prefix string being added to the PVPLAN data file names.
+
+```json
+"ContentCode": {
+  "Separator":  ";"
+},
+```
+
+`ContentCode:Separator` is a character used in the Participant application export definition. It separates the Product Code from exact protocol name ('APOR' or 'APOT') in case of APOR/APOT exports.
+
+```json
+"ParticipantSettings": {
+  "DefaultSender": 26,
+  "EDI_DEFAULT_IDORG": "9::14::UNOC:3:",
+  "EDI_COUNTRY_IDORG": {
+    "SE": "260:SVK:ZZ::UNOC:3:"
   },
-```
-`ExportWorker` is used to handle export requests. In order to work properly it needs `Queues` to contain a list of two queues from `QueuesConfiguration`. One of the queues needs to be a `Receiver` queue which will be used to receive export orders. Second queues needs to be a `Sender` queue, it will be used for sending export data. The `Sender` queue will be used only for timeseries exports that are defined as a `StdExport` and all `Availability` exports. More information about export types can be found in the `Export Protocols` section.
-
-```json
-  "MeshMonitor": {
-    "MeshHealthEndpoint": "http://localhost:20000/meshHealth/health",
-    "CheckInterval": 5000
-  }
-```
-`MeshMonitor` contains address of `Mesh` server health endpoint. It will be used to establish whether `Mesh` is in suitable condition to perform exports and imports.
-
-```json
-  "FailedMessages": {
-    "UseFailureQueueOnInternalError": true,
-    "UseFailureQueueOnExternalError": false
-  },
+  "EDI_CODELIST_RESPONSIBLE": "91"
+}
 ```
 
-Internal errors are the ones that originated from inside `Mesh AMQP Relay` (for example `XML`/`JSON` parsing problem). 
-External errors come from `Mesh` and `EDS` (like an `Oracle` issue). If set to true the problematic message will be sent to failure queue.
-Otherwise the application will try to put it back on the queue process it again.
+`ParticipantSettings:DefaultSender` specifies the default sender to be used when exporting time series or availability data. The `DefaultSender` participant key is used as a fallback when the sender is not defined in the time series export definition or in the export request.
 
-### Export Data Store Specific Configuration:
+`ParticipantSettins:EDI_DEFAULT_IDORG`, `ParticipantSettings:EDI_COUNTRY_IDORG` and `ParticipantSettings:EDI_CODELIST_RESPONSIBLE` are relevant for EDIEL DELFOR and MSCONS time series exports. `EDI_DEFAULT_IDORG` stores the default string used to specify values in the UNB segment and the NAD segment in the EDIFACT message. `EDI_COUNTRY_IDORG` is a dictionary that maps a country key to a custom `IDORG` value. `EDI_CODELIST_RESPONSIBLE` is the value for code list responsible used when exported time series external reference is not an EAN number and the receiver has no code list responsible defined.
 
-'MercatoMapping' is used only for Bidding Strategy export protocol. It associates numbers with user-defined strings.
+`MercatoMapping` is used only for Bidding Strategy export protocol. It associates numbers with user-defined strings.
 They are used later in the Bidding Strategy export file to map timeseries values to strings.
 
 ```json
@@ -312,80 +338,81 @@ Another parameter for `StoragePerProtocol` nodes is `DefaultDecimals`. It define
 Please make sure that these directories are created.
 `AvailabilityExportQueue` is a reference to one of the queues defined in `QueuesConfiguration` item.
 ```json
-  "Storage": {
-    "StoragePerProtocol": {
-      "PVPLAN": {
-        "StorageKinds": [ "Queue" ],
-        "DestinationQueues": {
-          "1": [ "exportReplyQueue" ],
-          "13": [ "exportReplyQueue", "someOtherQueue" ]
-        },
-        "DefaultQueues": [ "exportReplyQueue" ]
+"Storage": {
+  "StoragePerProtocol": {
+    "PVPLAN": {
+      "StorageKinds": [ "Queue" ],
+      "DestinationQueues": {
+        "1": [ "exportReplyQueue" ],
+        "13": [ "exportReplyQueue", "someOtherQueue" ]
       },
-      "PVPLAN2023": {
-        "StorageKinds": [ "File" ],
-        "StorePath": "C:\\files\\"
-      },
-      "StdExport": {
-        "StorageKinds": [ "Queue" ],
-        "DestinationQueues": {
-          "1": [ "exportReplyQueue" ],
-          "13": [ "exportReplyQueue", "someOtherQueue" ]
-        },
-        "DefaultQueues": [ "exportReplyQueue" ]
-      },
-      "APORAPOTExport": {
-        "StorageKinds": [ "Queue" ],
-        "DestinationQueues": {
-          "1": [ "exportReplyQueue" ],
-          "2": [ "exportReplyQueue", "someOtherQueue" ]
-        },
-        "DefaultQueues": [ "exportReplyQueue" ]
-      },
-      "BiddingTool": {
-        "StorageKinds": [ "File" ],
-        "StorePath": "C:\\files\\"
-      },
-      "GS2": {
-        "StorageKinds": [ "File" ],
-        "StorePath": "C:\\files\\",
-        "DefaultDecimals": 3 // optional, used when the time series export definition does not define the decimals parameter; for GS2 the default value is null (number of decimals not specified)
-      },
-      "EdielDelfor": {
-        "StorageKinds": [ "File" ],
-        "StorePath": "C:\\files\\",
-        "DefaultDecimals": 2 // optional, used when the time series export definition does not define the decimals parameter; for EDIEL DELFOR the default value is 3
-      },
-      "ExcelCSV": {
-        "StorageKinds": [ "File" ],
-        "StorePath": "C:\\files\\"
-        "DefaultDecimals": 2, // optional, used when the time series export definition does not define the decimals parameter; for Excel CSV the default value is 6
-      }
+      "DefaultQueues": [ "exportReplyQueue" ]
     },
-    "ICC_TRANSLOG_DIR": "C:\\ICC_TRANSLOG_DIR\\",
-    "AvailabilityExportQueue": "Q",
-    "PvPlan2023": false
-  },
-
-  "QueuesConfiguration": {
-    "exportReplyQueue": {
-      "Broker": "B1",
-      "QueueName": "exportReplyQueue",
-      "Role": "Sender"
+    "PVPLAN2023": {
+      "StorageKinds": [ "File" ],
+      "StorePath": "C:\\files\\"
     },
-    "someOtherQueue": {
-      "Broker": "B1",
-      "QueueName": "someOtherQueue",
-      "Role": "Sender"
+    "StdExport": {
+      "StorageKinds": [ "Queue" ],
+      "DestinationQueues": {
+        "1": [ "exportReplyQueue" ],
+        "13": [ "exportReplyQueue", "someOtherQueue" ]
+      },
+      "DefaultQueues": [ "exportReplyQueue" ]
+    },
+    "APORAPOTExport": {
+      "StorageKinds": [ "Queue" ],
+      "DestinationQueues": {
+        "1": [ "exportReplyQueue" ],
+        "2": [ "exportReplyQueue", "someOtherQueue" ]
+      },
+      "DefaultQueues": [ "exportReplyQueue" ]
+    },
+    "BiddingTool": {
+      "StorageKinds": [ "File" ],
+      "StorePath": "C:\\files\\"
+    },
+    "GS2": {
+      "StorageKinds": [ "File" ],
+      "StorePath": "C:\\files\\",
+      "DefaultDecimals": 3 // optional, used when the time series export definition does not define the decimals parameter; for GS2 the default value is null (number of decimals not specified)
+    },
+    "EdielDelfor": {
+      "StorageKinds": [ "File" ],
+      "StorePath": "C:\\files\\",
+      "DefaultDecimals": 2 // optional, used when the time series export definition does not define the decimals parameter; for EDIEL DELFOR the default value is 3
+    },
+    "ExcelCSV": {
+      "StorageKinds": [ "File" ],
+      "StorePath": "C:\\files\\"
+      "DefaultDecimals": 2, // optional, used when the time series export definition does not define the decimals parameter; for Excel CSV the default value is 6
     }
   },
+  "ICC_TRANSLOG_DIR": "C:\\ICC_TRANSLOG_DIR\\",
+  "AvailabilityExportQueue": "Q",
+  "PvPlan2023": false
+}
 ```
 
-`HttpEndpoints:DatabaseGateway` specifies the endpoint of `Database Gateway` service. It accepts an optional `RequestTimeout` attribute (defaults to `60`).
+The Time Series Volumes Web Service export can be configured in the `TsVolumesWebServiceExport` section:
+
 ```json
-"HttpEndpoints": {
-  "DatabaseGateway": {
-    "Uri": "http://localhost:7137"
+"TsVolumesWebServiceExport": {
+  "DefaultAddress": "http://localhost:8181/TSVolumesWS",
+  "ParticipantAddresses": {
+    "13": "http://localhost:8182/TSVolumesWS"
   }
 }
 ```
+
+If the export receiver is found in `ParticipantAddresses`, then it's corresponding address is used as the export target. Otherwise the `DefaultAddress` is used.
+
+## Recommended Kerberos authorization settings
+
+There are two main approaches to configure data-transfer services:
+* Install data-transfer to run as the `LocalSystem` account (when Mesh and data-tranfer are on the same server)
+* Install data-transfer to run as a dedicated account (same server/separate servers configurations)
+
+Then, it is required to set the authorization scopes in the Mesh groups file (defined in the `GroupsFile` authorization setting of Mesh).
+When data-transfer is running as `LocalSystem`, use the group name `System`.
+Otherwise, use the dedicated group name.
