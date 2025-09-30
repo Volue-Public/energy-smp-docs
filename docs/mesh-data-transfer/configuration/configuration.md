@@ -413,6 +413,6 @@ There are two main approaches to configure data-transfer services:
 * Install data-transfer to run as the `LocalSystem` account (when Mesh and data-transfer are on the same server)
 * Install data-transfer to run as a dedicated account (same server/separate servers configurations)
 
-Then, it is required to set the authorization scopes in the Mesh groups file (defined in the `GroupsFile` authorization setting of Mesh).
+Then, it is required to set the authorisation scopes in the Mesh groups file (defined in the `GroupsFile` authorisation setting of Mesh).
 When data-transfer is running as `LocalSystem`, use the group name `System`.
 Otherwise, use the dedicated group name.
