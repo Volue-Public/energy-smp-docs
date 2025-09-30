@@ -16,17 +16,17 @@ search), otherwise they are all objects (object search).
 
 ### Traversal
 
-A traversal describes a set of relative paths in the Mesh object structure. It takes a set of objects as an input (the start points) and produces a set of objects as an output (the result) by following the paths from each start point and collecting endpoints. The start point is used to form a set and input into the traversal. The attribute access is applied to the output of the traversal. Some of the traversals are parametrized on criteria (e.g.: `[Criteria]` or `\*[Criteria]`). For example, the traversal `..` will output the parent, if it exists, for each input object. Traversals can be combined with operators to form new traversals.
+A traversal describes a set of relative paths in the Mesh object structure. It takes a set of objects as an input (the start points) and produces a set of objects as an output (the result) by following the paths from each start point and collecting endpoints. The start point is used to form a set and input into the traversal. The attribute access is applied to the output of the traversal. Some of the traversals are parametrised on criteria (e.g. `[Criteria]` or `\*[Criteria]`). For example, the traversal `..` will output the parent, if it exists, for each input object. Traversals can be combined with operators to form new traversals.
 
 ![Mesh search traversal](./assets/images/search-1.png)
 
 ### Criteria
 
-Some traversals are parametrized on criteria (see predicated child walk and child step). The criteria controls which objects the traversal will accept as output, and will either accept an object by outputting true or reject it by outputting false. You can combine criteria with operators to form new criteria (see AND, OR). For example, the traversal ‘[.Name=N]’ will for each input object, output the set of child objects whose name equals ‘N’. The traversal ‘\*[.Name=N]’ will for each input object output the set of closest descendant objects whose name is ‘N’.
+Some traversals are parametrised on criteria (see predicated child walk and child step). The criteria control which objects the traversal will accept as output, and will either accept an object by outputting true or reject it by outputting false. You can combine criteria with operators to form new criteria (see AND, OR). For example, the traversal ‘[.Name=N]’ will for each input object, output the set of child objects whose name equals ‘N’. The traversal ‘\*[.Name=N]’ will for each input object output the set of closest descendant objects whose name is ‘N’.
 
 Criteria are always enclosed in square brackets, [].
 
-You may specify options for the criteria within suffix curly brackets {}, for example to ignore case insensitivity on text based comparison. {i} means the search is case insensitive.
+You may specify options for the criteria within suffix curly brackets {}, for example to ignore case sensitivity on text based comparison. {i} means the search is case insensitive.
 
 ![Mesh search criteria](./assets/images/search-2.png)
 

@@ -24,7 +24,7 @@ repetition frequency from physical value period found on source series.
 ## Syntax
 - PROFILE(t,s)
 
-**D**escription
+**Description**
 
 | # | Type | Definition |
 |---|---|---|

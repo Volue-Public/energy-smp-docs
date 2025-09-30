@@ -70,7 +70,7 @@ Each attribute definition has:
 * ID
 * name
 * description
-* value type, e.g.: double attribute or time series attribute
+* value type, e.g. double attribute or time series attribute
 * minimum and maximum cardinality, useful for definitions of an array type
   (e.g. array of boolean), for singular definitions they are always set to 1
 
@@ -196,7 +196,7 @@ There are the following types of attributes:
 * **Time series attributes** - they can be a:
 
     - reference to a physical time series: it has actual data (timestamps,
-    values and flags) and meta data (e.g.: curve type, resolution, etc.).
+    values and flags) and meta data (e.g. curve type, resolution, etc.).
 
     - reference to a virtual time series: it has defined an expression to
     calculate time series data (similar to calculation time series).
@@ -265,8 +265,8 @@ There are the following types of attributes:
     Refer to [relations](./relations.md) for more information.
 
 ## Resource
-  * Resource - Container storing data (e.g.: time series), used by [model](#model).
-  * Physical time series - Time series data (timestamps, values and flags) and meta data (e.g.: curve type, resolution, etc.).
+  * Resource - Container storing data (e.g. time series), used by [model](#model).
+  * Physical time series - Time series data (timestamps, values and flags) and meta data (e.g. curve type, resolution, etc.).
   * Virtual time series - Has defined an expression to calculate time series data (similar to calculation time series) but is stored in resources.
   * Catalog - Used for grouping and filtering purposes. Catalog typically contains physical time series, virtual time series or other catalogs. Similar to [namespaces](#namespace) in [model definition](#model-definition).
 
