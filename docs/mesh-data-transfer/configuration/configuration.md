@@ -407,7 +407,7 @@ The Time Series Volumes Web Service export can be configured in the `TsVolumesWe
 
 If the export receiver is found in `ParticipantAddresses`, its corresponding address is used as the export target. Otherwise, the `DefaultAddress` is used.
 
-## Recommended Kerberos authorization settings
+## Recommended Kerberos authorisation settings
 
 There are two main approaches to configure data-transfer services:
 * Install data-transfer to run as the `LocalSystem` account (when Mesh and data-tranfer are on the same server)
