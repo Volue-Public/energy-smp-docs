@@ -381,14 +381,6 @@
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">General</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#trigger-relay">Trigger Relay</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#mesh-amqp-relay">Mesh Amqp Relay</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#export-data-store">Export Data Store</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#database-gateway">Database Gateway</a>
-    </li>
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../configuration/configuration/">Configuration</a>
@@ -419,19 +411,11 @@
             <div class="section" itemprop="articleBody">
               
                 <h2 id="general-info">General info</h2>
-<p><code>Mesh Data Transfer</code> solution enables users to perform time series and availability data exports and imports from a <code>Mesh</code> server. It uses AMQP protocol as an external communication method to guarantee high level of reliability and versatility. 
-<code>Mesh Data Transfer</code> consists of four services - <code>Trigger Relay</code>, <code>Mesh Amqp Relay</code>, <code>Export Data Store</code> and <code>Database Gateway</code>. These services are provided as a separate installer/zip package.</p>
-<h3 id="trigger-relay">Trigger Relay</h3>
-<p><code>Trigger Relay</code> is an entry point for export orders sent from certain Volue products (eg. Participant, Nimbus). It offers HTTP endpoints for creating both availability and time series export orders.</p>
-<h3 id="mesh-amqp-relay">Mesh Amqp Relay</h3>
-<p><code>Mesh Amqp Relay</code> receives export and import orders from configured queues. It is responsible for communicating with <code>Mesh</code> server and then sending outcome of that communication to AMQP reply queues and/or <code>Export Data Store</code>.</p>
-<h3 id="export-data-store">Export Data Store</h3>
-<p><code>Export Data Store</code> stores data received from <code>Mesh Amqp Relay</code>/<code>Trigger Relay</code> via HTTP endpoint. This data can be stored either as a file on a configured disk location or sent to the AMQP queue. This service is also responsible for saving export status to the <code>Message Log</code> and determining final outcome of the export operation. </p>
-<h3 id="database-gateway">Database Gateway</h3>
-<p><code>Database Gateway</code> is responsible for database communication. It provides HTTP endpoints for other services to invoke predefined SQL queries. For more details see the <a href="./src/DatabaseGateway/README.md">DatabaseGateway README</a>.</p>
+<p>The <em>Mesh Data Transfer</em> service enables users to perform time series and availability data exports and imports from a <code>Mesh</code> server. It uses the AMQP protocol as an external communication method to guarantee high level of reliability and versatility.</p>
+<p>Mesh Data Transfer offers HTTP endpoints for creating both availability and time series export orders (used by certain Volue products, e.g. Participant, Nimbus). Imports are requested via queues (AMQP 1.0 or Azure Service Bus) and the outcomes of the import operations are sent to AMQP reply queues. The export results are stored as files or sent to an AMQP queue, depending on the configuration. Mesh Data Transfer is also responsible for saving export status to the <code>Message Log</code> (in the case of imports it is done by Mesh).</p>
 <h2 id="usage">Usage</h2>
 <h3 id="time-series-export">Time series export</h3>
-<p>To invoke a Mesh time series export one has to post a HTTP request to <code>Trigger Relay</code>'s <code>Order</code> service. Minimal working example:</p>
+<p>To invoke a Mesh time series export one has to post a HTTP request to Mesh Data Transfer's <code>Order</code> service. Minimal working example:</p>
 <pre><code class="language-powershell">curl.exe -s http://localhost:7000/Order -H &quot;Content-Type: application/json&quot; -d '[{&quot;Date&quot;:&quot;2024-10-11T17:10:37&quot;,&quot;Receiver&quot;:&quot;DemoBase&quot;,&quot;Keytab&quot;:1,&quot;ValuesFrom&quot;:&quot;2024-05-09T00:00:00&quot;,&quot;ValuesTo&quot;:&quot;2024-05-11T00:00:00&quot;,&quot;Protocol&quot;:126}]'.replace('&quot;', '\&quot;')
 </code></pre>
 <p>A prerequisite of a successful time series export is a pre-filled <code>keytab9</code> database table with references to the time series we want to export. The <code>keytab</code> parameter refers to the taret <code>keytab9</code> row. <code>keytab9</code> is normally filled by the client application like Participant or Nimbus.</p>
@@ -472,11 +456,19 @@
 <td>137</td>
 <td>Excel CSV</td>
 </tr>
+<tr>
+<td>138</td>
+<td>TS Volumes Web Service export</td>
+</tr>
+<tr>
+<td>139</td>
+<td>MSCONS</td>
+</tr>
 </tbody>
 </table>
 <p><code>Receiver</code> can be either the name or the integer key (<code>opun_key</code>) of the receiver participant.</p>
 <h4 id="export-sender">Export sender</h4>
-<p>The sender defined in the time series export definition (a "sender host") is used by Mesh Data Transfer to specify the sender of the time series data (the sender is then referenced in the Message Log or directly in case of some of the export types, like Standard export or GS2; moreover all the output is grouped by the senders (see below)). If the sender is not defined in the time series export definition, a default sender is selected (which is defined by <code>ParticipantSettings/ICC_SENDER</code> parameter in <code>Trigger Relay</code> configuration).</p>
+<p>The sender defined in the time series export definition (a "sender host") is used by Mesh Data Transfer to specify the sender of the time series data (the sender is then referenced in the Message Log or directly in case of some of the export types, like Standard export or GS2; moreover all the output is grouped by the senders (see below)). If the sender is not defined in the time series export definition, a default sender is selected (which is defined by <code>ParticipantSettings/ICC_SENDER</code> parameter in the configuration file).</p>
 <p>There is also an option to specify the sender in the time series export request:</p>
 <pre><code class="language-powershell">curl.exe -s http://localhost:7000/Order -H &quot;Content-Type: application/json&quot; -d '[{&quot;Date&quot;:&quot;2024-10-11T17:10:37&quot;,&quot;Receiver&quot;:&quot;DemoBase&quot;,&quot;Sender&quot;:&quot;Mesh&quot;,Keytab&quot;:1,&quot;ValuesFrom&quot;:&quot;2024-05-09T00:00:00&quot;,&quot;ValuesTo&quot;:&quot;2024-05-11T00:00:00&quot;,&quot;Protocol&quot;:126}]'.replace('&quot;', '\&quot;')
 </code></pre>
@@ -489,12 +481,9 @@
 <p><img alt="Import Order Flow" src="../docs/data-import.svg" title="Import Order Flow" /></p>
 <p>Message flow when <em>exporting</em> data from <code>Mesh</code>:</p>
 <p><img alt="Export Order Flow" src="../docs/data-export.svg" title="Export Order Flow" /></p>
-<p><code>Trigger Relay</code> provides request tracking capability. A request ID is included in the response to the export request. It can be used to check the request status by sending <code>HTTP</code> <code>GET</code> to the <code>Trigger Relay</code>'s <code>exportstatus/&lt;ID&gt;</code> endpoint. Example:</p>
+<p>Mesh Data Transfer provides request tracking capability. A request ID is included in the response to the export request. It can be used to check the request status by sending <code>HTTP</code> <code>GET</code> to the <code>exportstatus/&lt;ID&gt;</code> endpoint. Example:</p>
 <pre><code class="language-powershell">curl.exe -s http://localhost:7000/exportstatus/4bb1306d-5259-411a-8e28-2c41107d48c9
 </code></pre>
-<p>The Data Transfer services still support a legacy export flow, which involves <code>Mesh AMQP Relay</code> service and depends on an <code>AMQP</code> broker. In the legacy export flow, the request tracking capability is <strong>not</strong> present.
-Message flow when <em>exporting</em> data from <code>Mesh</code> with legacy export flow enabled:</p>
-<p><img alt="Legacy Export Order Flow" src="../docs/data-export-legacy.svg" title="Legacy Export Order Flow" /></p>
               
             </div>
           </div><footer>
