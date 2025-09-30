@@ -52,13 +52,37 @@
               </ul>
               <p class="caption"><span class="caption-text">Mesh</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../../mesh/glossary/MeshGlossary/">Mesh Glossary</a>
+                  <li class="toctree-l1"><a class="reference internal" >Concepts</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/concepts/availability/">Availability</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/calculations/calculations/">Calculations</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Modelling</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/modelling/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/modelling/rating-curves/">Rating curve</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/modelling/relations/">Relations</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/modelling/xy-sets/">XY-sets</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/concepts/search-language/">Search language</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/concepts/sessions/">Sessions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/concepts/time-series/">Time series</a>
+                </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../mesh/installation/MeshServiceInstallationGuide/">Installation</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" >Calculations</a>
     <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/calculations/calculations/">General</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/calculations/calculations/">Calculations</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" >Functions</a>
     <ul>
@@ -348,8 +372,6 @@
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../../mesh/availability/availability/">Availability</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../mesh/model-maintenance/ModelMaintenanceConcepts/">Model maintenance</a>
                   </li>
               </ul>
@@ -390,14 +412,151 @@
               
                 <h1 id="change-log">Change Log</h1>
 <p>All notable changes to this project will be documented in this file.</p>
-<h1 id="version-217">Version 2.17</h1>
+<h1 id="version-219">Version 2.19</h1>
+<h2 id="features">Features</h2>
+<ul>
+<li><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/667">We have added support for the <code>DisableImportReply</code> toggle in the <code>ImportWorker</code> settings that allows disabling the import replies.</a></li>
+</ul>
+<h1 id="version-2181">Version 2.18.1</h1>
+<h2 id="features_1">Features</h2>
+<ul>
+<li><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/600">We have added support to Service Bus Topics and Subscriptions.</a>
+A new <code>Subscription</code> parameter was added to the queue configuration. When <code>Subscription</code> is provided, <code>QueueName</code> becomes the name of the topic.</li>
+</ul>
 <h2 id="fixes">Fixes</h2>
 <ul>
-<li><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/504">When exporting revision availability events, the category attribute will now contain a string "Revision".</a>
-  Previously the category was an empty string for the revision events.</li>
+<li><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/665">We have fixed an issue where intermittent delays were observed when receiving messages from Service Bus queues.</a>
+Fixing the issue requires configuration changes.</li>
+<li>The <code>ImportWorker:ReceiveTimeout</code> parameter controls the timeout of a message receive call, with a default value of 100 ms. Increasing the timeout might help to fix the issue.</li>
+<li>
+<p>The <code>ServiceBus:PrefetchCount</code> parameter specifies the number of messages prefetched and cached before the actual message is requested. Default number is 0, meaning no prefetch. Increasing the value of <code>PrefetchCount</code> might help to fix the issue.</p>
+</li>
+<li>
+<p><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/664">We have fixed an issue where the import requests could not be identified in the debug logs.</a></p>
+</li>
+</ul>
+<h1 id="version-218">Version 2.18</h1>
+<h2 id="breaking-changes">Breaking changes</h2>
+<ul>
+<li><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/375">We have merged the Database Gateway, Export Data Store, Mesh AMQP Relay and Trigger Relay services into a single Mesh Data Transfer service.</a></li>
+</ul>
+<p>The configuration file of the Trigger Relay service should be used as the base for the configuration of the new Mesh Data Transfer service.</p>
+<p>The database configuration from the Database Gateway service needs to be applied to the Mesh Data Transfer settings file. The <code>HttpEndpoints:DatabaseGateway</code> node should be removed from Mesh Data Transfer configuration. The <code>Kestrel</code> configuration from the Database Gateway service should be dropped.</p>
+<p>The configuration from Export Data Store settings file needs to be applied to Mesh Data Transfer settings file. Specifically:</p>
+<ul>
+<li>the <code>Storage</code>, node should be moved to Mesh Data Transfer settings,</li>
+<li>if present, the <code>MercatoMapping</code>, <code>UnitScheduleMapping</code> and <code>TsVolumesWebServiceExport</code> nodes should be moved to Mesh Data Transfer settings,</li>
+<li>the export queue should be added to the <code>QueuesConfiguration</code> section,</li>
+<li>the contents of <code>ParticipantSettings</code> node should be merged (previously the node existed in the configuration files of both services),</li>
+<li>the <code>HttpEndpoints:ExportDataStore</code> node should be removed from Mesh Data Transfer configuration.</li>
+</ul>
+<p>The <code>Kestrel</code> configuration from the Export Data Store service should be dropped.</p>
+<p>The configuration from Mesh AMQP Relay settings file needs to be applied to Mesh Data Transfer settings file. Specifically:</p>
+<ul>
+<li><code>ImportWorker</code> and <code>FailedMessages</code> nodes should be applied to Mesh Data Transfer settings,</li>
+<li><code>QueuesConfiguration</code> in Mesh Data Transfer should be updated with the queues used for the imports (the import, import reply and failure queues),</li>
+<li><code>ImportExportCommonSettings:Delay</code> configuration parameter in Mesh AMQP Relay configuration is now moved to <code>ImportWorker:Delay</code> in Mesh Data Transfer configuration,</li>
+<li><code>ExportWorker</code> settings were removed and should not be applied in Mesh Data Transfer configuration file.</li>
+</ul>
+<p>Additionally, the export related queues should be removed from <code>AmqpSender:Queues</code>, as they were used to forward export requests to Mesh AMQP Relay and are not relevant anymore.</p>
+<h2 id="fixes_1">Fixes</h2>
+<ul>
+<li>
+<p><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/649">We have fixed an issue where the <code>Date Created</code> column in the <code>MessageLog</code> application would not be filled properly for Bidding Strategy exports.</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/475">We have fixed an issue where the <code>Date Created</code> column in the <code>MessageLog</code> application would not be filled properly for availability exports and availability imports.</a></p>
+</li>
+</ul>
+<h1 id="version-2173">Version 2.17.3</h1>
+<h2 id="breaking-changes_1">Breaking changes</h2>
+<ul>
+<li><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/638">We have removed the "equal sign" characters from GS2, EDIEL DELFOR, MSCONS and Excel CSV export file names.</a></li>
+</ul>
+<h2 id="fixes_2">Fixes</h2>
+<ul>
+<li><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/639">We have fixed an issue where using invalid/outdated authentication token to communicate with the Mesh server would be treated as actual message handling error.</a> </li>
+</ul>
+<h1 id="version-2172">Version 2.17.2</h1>
+<h2 id="fixes_3">Fixes</h2>
+<ul>
+<li><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/622">We have fixed an issue where transient authentication errors were treated as actual message handling errors.</a></li>
+</ul>
+<h1 id="version-2163">Version 2.16.3</h1>
+<h2 id="fixes_4">Fixes</h2>
+<ul>
+<li><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/622">We have fixed an issue where transient authentication errors were treated as actual message handling errors.</a></li>
+</ul>
+<h1 id="version-2156">Version 2.15.6</h1>
+<h2 id="fixes_5">Fixes</h2>
+<ul>
+<li><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/622">We have fixed an issue where transient authentication errors were treated as actual message handling errors.</a></li>
+</ul>
+<h1 id="version-2162">Version 2.16.2</h1>
+<h2 id="fixes_6">Fixes</h2>
+<ul>
+<li>
+<p><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/604">We have fixed an issue where the Message Log entries would not be created when exporting time series with the Time Series Volumes Web Service export protocol.</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/594">We have fixed an issue where transient errors in Mesh communication were treated as actual message handling errors.</a></p>
+</li>
+</ul>
+<h1 id="version-2155">Version 2.15.5</h1>
+<h2 id="fixes_7">Fixes</h2>
+<ul>
+<li><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/594">We have fixed an issue where transient errors in Mesh communication were treated as actual message handling errors.</a></li>
+</ul>
+<h1 id="version-2171">Version 2.17.1</h1>
+<h2 id="fixes_8">Fixes</h2>
+<ul>
+<li>
+<p><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/604">We have fixed an issue where the Message Log entries would not be created when exporting time series with the Time Series Volumes Web Service export protocol.</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/594">We have fixed an issue where transient errors in Mesh communication were treated as actual message handling errors.</a></p>
+</li>
+</ul>
+<h1 id="version-217">Version 2.17</h1>
+<h2 id="breaking-changes_2">Breaking changes</h2>
+<ul>
+<li>
+<p><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/512">We have replaced malfunctioning counter with a set of randomly-generated characters in GS2 export filenames to ensure the filenames are unique.</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/504">When exporting revision availability events, the category attribute will now contain a string "Revision".</a>
+  Previously the category was an empty string for the revision events.</p>
+</li>
+</ul>
+<h2 id="features_2">Features</h2>
+<ul>
+<li>
+<p><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/534">We have added support for the MSCONS export</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/590">We have updated reading empty time series to align with changes in Mesh 2.17 changes.</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/546">We have added a new <code>ReadOnly</code> parameter to the DatabaseGateway service that prevents the service from modifying the database.</a>
+  Note: it does not prevent Mesh from database modifications. The read only mode in Mesh needs to be set separately in the Mesh configuration file.</p>
+</li>
+</ul>
+<h2 id="fixes_9">Fixes</h2>
+<ul>
+<li><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/584">We have fixed an issue where timestamps in CSV export would not take UTC offset into account.</a></li>
+</ul>
+<h1 id="version-2161">Version 2.16.1</h1>
+<h2 id="features_3">Features</h2>
+<ul>
+<li><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/482">We have added support for Time Series Volumes Web Service time series exports.</a>
+  The settings for the new protocol are placed in <code>TsVolumesWebServiceExport</code> node in Export Data Store configuration file.</li>
+</ul>
+<h2 id="fixes_10">Fixes</h2>
+<ul>
+<li><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/563">We have fixed an issue where exporting a large number of time series data using the standard export protocol would fail.</a></li>
 </ul>
 <h1 id="version-216">Version 2.16</h1>
-<h2 id="features">Features</h2>
+<h2 id="features_4">Features</h2>
 <ul>
 <li>
 <p><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/458">We have added support for Excel CSV time series export.</a></p>
@@ -411,7 +570,7 @@
   The message lock time will be set to 5 minutes, other settings will remain default.</p>
 </li>
 </ul>
-<h2 id="fixes_1">Fixes</h2>
+<h2 id="fixes_11">Fixes</h2>
 <ul>
 <li>
 <p><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/535">We have fixed an issue where the time series results would be grouped incorrectly when the sender host feature is used for the CSV export.</a></p>
@@ -421,27 +580,27 @@
 </li>
 </ul>
 <h1 id="version-2154">Version 2.15.4</h1>
-<h2 id="features_1">Features</h2>
+<h2 id="features_5">Features</h2>
 <ul>
 <li><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/571">We have added an option to choose between <code>ora</code> and <code>periodo</code> nodes in Bidding export protocol.</a>
   A new <code>UsePeriodo</code> flag in the Bidding export protocol section in EDS configuration is used to switch between the nodes.</li>
 </ul>
-<h2 id="fixes_2">Fixes</h2>
+<h2 id="fixes_12">Fixes</h2>
 <ul>
 <li><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/563">We have fixed an issue where exporting a large number of time series data using the standard export protocol would fail.</a></li>
 </ul>
 <h1 id="version-2153">Version 2.15.3</h1>
-<h2 id="features_2">Features</h2>
+<h2 id="features_6">Features</h2>
 <ul>
 <li><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/547">We have added an option to report <code>ImportSuccess = true</code> for partially successful time series import requests.</a>
   The feature is toggled with an optional <code>PartialImportSuccess</code> parameter in the <code>ImportWorker</code> section of Mesh AMQP Relay configuration file.</li>
 </ul>
-<h2 id="fixes_3">Fixes</h2>
+<h2 id="fixes_13">Fixes</h2>
 <ul>
 <li><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/549">We have fixed an issue where debug logs could leak <code>AMQP</code>/<code>ServiceBus</code> connection strings.</a></li>
 </ul>
 <h1 id="version-2152">Version 2.15.2</h1>
-<h2 id="breaking-changes">Breaking changes</h2>
+<h2 id="breaking-changes_3">Breaking changes</h2>
 <ul>
 <li>
 <p><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/514">We have added support for the Decimals export attribute in GS2 time series export.</a>
@@ -452,12 +611,12 @@
   The standard time is used when custom UTC offset is not provided.</p>
 </li>
 </ul>
-<h2 id="features_3">Features</h2>
+<h2 id="features_7">Features</h2>
 <ul>
 <li><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/514">We have added a new optional parameter named DefaultDecimals that can be applied per export protocol in the Export Data Store configuration.</a>
   The DefaultDecimals parameter is supported for the EDIEL DELFOR and GS2 export types only.</li>
 </ul>
-<h2 id="fixes_4">Fixes</h2>
+<h2 id="fixes_14">Fixes</h2>
 <ul>
 <li>
 <p><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/535">We have fixed an issue where the time series results would be grouped incorrectly when the sender host feature is used for the EDIEL DELFOR export.</a></p>
@@ -476,14 +635,14 @@
 </li>
 </ul>
 <h1 id="version-2151">Version 2.15.1</h1>
-<h2 id="breaking-changes_1">Breaking changes</h2>
+<h2 id="breaking-changes_4">Breaking changes</h2>
 <ul>
 <li><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/485">We have changed the behaviour of the time series export when different export senders are used.</a>
 The export results are now <strong>grouped per sender</strong>.
 If no sender is defined as the export request parameter, then the time series sender is either the sender host from the export definition or the default sender when the sender host is not defined.
 If the sender is defined as the export request parameter, the time series export definitions with a defined <strong>sender host that doesn't match the request sender are ignored</strong> during the export; the sender of all the time series is the request sender.</li>
 </ul>
-<h2 id="fixes_5">Fixes</h2>
+<h2 id="fixes_15">Fixes</h2>
 <ul>
 <li>
 <p><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/499">We have fixed an issue where a failure of a single time series export in the Export Data Store would cause a failure of the whole time series export request.</a></p>
@@ -502,7 +661,7 @@ If the sender is defined as the export request parameter, the time series export
 </li>
 </ul>
 <h1 id="version-215">Version 2.15</h1>
-<h2 id="breaking-changes_2">Breaking changes</h2>
+<h2 id="breaking-changes_5">Breaking changes</h2>
 <ul>
 <li>We have added a new mandatory configuration parameter for TriggerRelay: <code>ParticipantSettings:DefaultSender</code>. It was done as a part of <a href="https://github.com/Volue/energy-mesh-data-transfer/issues/283">#283</a> and <a href="https://github.com/Volue/energy-mesh-data-transfer/issues/316">#316</a>.
 The <code>DefaultSender</code> parameter is a number that denotes a participant key to be used by default when exporting data from Mesh.
@@ -515,7 +674,7 @@ Example configuration:</li>
 <ul>
 <li><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/309">We have removed the support for the Mesh XML interface.</a></li>
 </ul>
-<h2 id="features_4">Features</h2>
+<h2 id="features_8">Features</h2>
 <ul>
 <li>
 <p><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/425">We have added support for Bidding Strategy export with a 15-minute time series resolution.</a></p>
@@ -543,7 +702,7 @@ If the target export resolution is not defined, the <code>Id</code> will still c
 <p><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/283">We have added support for EDIEL DELFOR time series exports.</a></p>
 </li>
 </ul>
-<h2 id="fixes_6">Fixes</h2>
+<h2 id="fixes_16">Fixes</h2>
 <ul>
 <li>
 <p><a href="https://github.com/Volue/energy-mesh-data-transfer/issues/399">We have changed the type of the attribute <code>UnitOfMeasurement</code> in <code>TimeseriesPoints</code> type from <code>UUID</code> to <code>xsd:string</code>.

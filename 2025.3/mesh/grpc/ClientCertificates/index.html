@@ -52,13 +52,37 @@
               </ul>
               <p class="caption"><span class="caption-text">Mesh</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../../glossary/MeshGlossary/">Mesh Glossary</a>
+                  <li class="toctree-l1"><a class="reference internal" >Concepts</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/availability/">Availability</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../calculations/calculations/">Calculations</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Modelling</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/rating-curves/">Rating curve</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/relations/">Relations</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/xy-sets/">XY-sets</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/search-language/">Search language</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/sessions/">Sessions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/time-series/">Time series</a>
+                </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../installation/MeshServiceInstallationGuide/">Installation</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" >Calculations</a>
     <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../../calculations/calculations/">General</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../calculations/calculations/">Calculations</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" >Functions</a>
     <ul>
@@ -360,8 +384,6 @@
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../availability/availability/">Availability</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../model-maintenance/ModelMaintenanceConcepts/">Model maintenance</a>
                   </li>
               </ul>
@@ -430,7 +452,7 @@ server gRPC interface is <em>trusted</em>.</p>
 <h3 id="self-signed-certificates">Self-signed certificates</h3>
 <p>For self-signed certificates, not issued by publicly trusted CAs we <strong>must</strong>
 always provide the certificate in PEM format to the gRPC client. The
-certificate <strong>must</strong> be accessible by the gRPC client, e.g.: no password
+certificate <strong>must</strong> be accessible by the gRPC client, e.g. no password
 protection, etc.</p>
 <p>However, there is option to add such self-signed certificate to operating
 system trusted roots. In such case, please refer to the next section. Adding

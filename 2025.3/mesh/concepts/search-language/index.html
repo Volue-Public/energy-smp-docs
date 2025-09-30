@@ -15,8 +15,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Mesh Glossary";
-        var mkdocs_page_input_path = "mesh\\glossary\\MeshGlossary.md";
+        var mkdocs_page_name = "Search language";
+        var mkdocs_page_input_path = "mesh\\concepts\\search-language.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -52,39 +52,49 @@
               </ul>
               <p class="caption"><span class="caption-text">Mesh</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Mesh Glossary</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Concepts</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#model-definition">Model definition</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#model">Model</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#resource">Resource</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#time-series-attributes">Time series attributes</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#relation-attributes">Relation attributes</a>
+                <li class="toctree-l2"><a class="reference internal" href="../availability/">Availability</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../calculations/calculations/">Calculations</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Modelling</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../modelling/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../modelling/rating-curves/">Rating curve</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../modelling/relations/">Relations</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../modelling/xy-sets/">XY-sets</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Search language</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#query-syntax">Query syntax</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#ownership-relation">Ownership relation</a>
+    <li class="toctree-l4"><a class="reference internal" href="#traversal">Traversal</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#link-relation">Link relation</a>
+    <li class="toctree-l4"><a class="reference internal" href="#criteria">Criteria</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#xy-curves">XY curves</a>
+    <li class="toctree-l3"><a class="reference internal" href="#combining-multiple-search-operations">Combining multiple search operations</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#rating-curves">Rating curves</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#extended-metadata">Extended metadata</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#mapping">Mapping</a>
-    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../sessions/">Sessions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../time-series/">Time series</a>
+                </li>
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../installation/MeshServiceInstallationGuide/">Installation</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" >Calculations</a>
     <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../../calculations/calculations/">General</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../calculations/calculations/">Calculations</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" >Functions</a>
     <ul>
@@ -374,8 +384,6 @@
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../availability/availability/">Availability</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../model-maintenance/ModelMaintenanceConcepts/">Model maintenance</a>
                   </li>
               </ul>
@@ -403,7 +411,8 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">Mesh</li>
-      <li class="breadcrumb-item active">Mesh Glossary</li>
+          <li class="breadcrumb-item">Concepts</li>
+      <li class="breadcrumb-item active">Search language</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -412,439 +421,53 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="mesh-glossary">Mesh glossary</h1>
-<h2 id="model-definition">Model definition</h2>
+                <h1 id="mesh-search-language">Mesh search language</h1>
+<p>The Mesh search language can be used to find Mesh objects.</p>
+<p>To be able to search for a Mesh object you need to specify which model to
+search in, where in the model the search should start and the query matching
+the criteria of the Mesh object you are searching for.</p>
+<h2 id="query-syntax">Query syntax</h2>
+<p>A search consists of a traversal, optionally followed by an <a href="../modelling/general/#attribute">attribute</a>
+access (".AttributeName"). A search takes an object (the start point) as input
+and produces a set of objects or attributes as output (the result). If the
+attribute access is specified, the result objects are all attributes (attribute
+search), otherwise they are all objects (object search).</p>
+<h3 id="traversal">Traversal</h3>
+<p>A traversal describes a set of relative paths in the Mesh object structure. It takes a set of objects as an input (the start points) and produces a set of objects as an output (the result) by following the paths from each start point and collecting end points. The start point is used to form a set and input into the traversal. The attribute access is applied to the output of the traversal. Some of the traversals are parametrised on criteria (e.g. <code>[Criteria]</code> or <code>\*[Criteria]</code>). For example, the traversal <code>..</code> will output the parent, if it exists, for each input object. Traversals can be combined with operators to form new traversals.</p>
+<p><img alt="Mesh search traversal" src="../assets/images/search-1.png" /></p>
+<h3 id="criteria">Criteria</h3>
+<p>Some traversals are parametrised on criteria (see predicated child walk and child step). The criteria control which objects the traversal will accept as output, and will either accept an object by outputting true or reject it by outputting false. You can combine criteria with operators to form new criteria (see AND, OR). For example, the traversal ‘[.Name=N]’ will for each input object, output the set of child objects whose name equals ‘N’. The traversal ‘*[.Name=N]’ will for each input object output the set of closest descendant objects whose name is ‘N’.</p>
+<p>Criteria are always enclosed in square brackets, [].</p>
+<p>You may specify options for the criteria within suffix curly brackets {}, for example to ignore case sensitivity on text based comparison. {i} means the search is case insensitive.</p>
+<p><img alt="Mesh search criteria" src="../assets/images/search-2.png" /></p>
+<h2 id="combining-multiple-search-operations">Combining multiple search operations</h2>
+<p>You can combine search operations with the following operators:</p>
 <ul>
-<li>Model definition - Consists of object definitions, attribute types and namespaces. The model definition is also a top-level namespace.</li>
-<li>Object definition - Consists of attribute definitions. You can compare it to a C++ class.</li>
-<li>
-<p>Attribute definition - You can compare it to a C++ class member. May be
-    based on an <code>attribute type</code> (for more details refer to <code>attribute type</code>).
-    Attribute definitions may be singular or an array of one of the following
-    types:</p>
-<ul>
-<li>String, boolean, int, double or UTC time. These are known as 
-  <em>simple types</em>.</li>
-<li>XY set, enumeration, rating curve or <code>time series attribute</code> (time series
-  can be a calculation or a reference to a <code>physical time series</code> or
-  <code>virtual time series</code> from resource). These are known as <em>complex types</em>.</li>
-<li>Ownership or link relation to an object definition. Refer to
-  <code>relation attributes</code> paragraph for more information.</li>
+<li><strong>INTERSECTION, &amp;</strong>:<ul>
+<li>The result is the intersection between each result set.</li>
+<li>Syntax: <em>Search1&amp;Search2</em></li>
 </ul>
-<p>Additionally, depending on the attribute type, the attribute definitions
-specify parameters like default value, accepted value ranges, etc.</p>
-<p>Changing the name of an attribute definition will also change the names of
-all already existing attributes in the model to the new value.</p>
+</li>
+<li><strong>UNION, |</strong>:<ul>
+<li>The result is the union between each result set.</li>
+<li>Syntax: <em>Search1|Search2</em></li>
+</ul>
 </li>
 <li>
-<p>Attribute type - Used for creating <em>re-usable</em> <code>attribute definitions</code>.
-    Once defined could be used by different <code>object definitions</code> for creating
-    an <code>attribute definition</code> based on it.</p>
-<p>Every <code>attribute definition</code> that is based on an attribute type will
-inherit name, description and unit of measurement (if applicable) of that
-attribute type. For enumeration attribute types the definitions will also
-inherit default value if not provided explicitly when creating the
-attribute definition.</p>
-<p>Updates of all above mentioned properties (name, description and unit of
-measurement) can be done on attribute definition level. In such case the
-attribute type and attribute definition may have different property values.
-However, there is a special way of handling changes to name and unit of
-measurement done on attribute type level. Updating an attribute type name
-or unit of measurement will update also names and unit of measurements in
-all attribute definitions that were created based on the given attribute
-type. Other properties like description will change just the property on
-the attribute type level. See examples below:</p>
-<p><img alt="Attribute type properties propagation" src="../AttributeTypePropagation.png" /></p>
+<p><strong>COMPOSITION, /</strong>:</p>
+<ul>
+<li>Uses the output from Search1 as input to Search2.</li>
+<li>Syntax: <em>Search1/Search2</em></li>
+</ul>
+<p>When using INTERSECTION and UNION between searches, you only use a single character, &amp; or |, respectively. Inside an object criteria, you use double character to specify a logic AND, &amp;&amp;, or logic OR, ||, respectively</p>
 </li>
-<li>
-<p>Namespace - Used for grouping and filtering purposes in
-    a <code>model definition</code>. You can compare it to a C++ namespace. Namespace may
-    contain:</p>
-<ul>
-<li>object definitions</li>
-<li>attribute types</li>
-<li>other (nested) namespaces</li>
-</ul>
-</li>
-<li>Template calculation definition - Defines calculation expression that could be used by <code>time series attributes</code>.</li>
-<li>Tags - special enumeration values that can be attached to attribute types
-    and object definitions. Similar to namespaces they are used for grouping
-    and filtering purposes.</li>
-</ul>
-<p><img alt="Figure 1" src="../MM-WhoPointsToWho-1_new.png" /></p>
-<h2 id="model">Model</h2>
-<ul>
-<li>Model - <code>Model definition</code> instance.</li>
-<li>Object - <code>Object definition</code> instance.</li>
-<li>Attribute - <code>Attribute definition</code> instance. Name of the attribute is
-    inherited from attribute definition.</li>
-</ul>
-<h2 id="resource">Resource</h2>
-<ul>
-<li>Resource - Container storing data (e.g.: time series), used by <code>Model(s)</code>.</li>
-<li>Physical time series - Time series data (timestamps, values and flags) and meta data (e.g.: curve type, resolution, etc.).</li>
-<li>Virtual time series - Has defined an expression to calculate time series data (similar to <code>calculation time series</code>) but is stored in resources.</li>
-<li>Catalog - Used for grouping and filtering purposes. <code>Catalog</code> typically contains <code>physical time series</code>, <code>virtual time series</code> or other <code>catalogs</code>. Similar to <code>namespaces</code> in <code>model definition</code>.</li>
-</ul>
-<h2 id="time-series-attributes">Time series attributes</h2>
-<ul>
-<li><code>Time series attribute</code> - can be a:<ul>
-<li>reference to a <code>physical time series</code> or <code>virtual time series</code> from resource</li>
-<li><code>calculation time series</code>, where the expression is defined on the following levels:</li>
-<li><code>local expression</code> - defined on <code>model</code> level</li>
-<li><code>template expression</code> - defined on <code>model definition</code> level in <code>template calculation</code></li>
-</ul>
-</li>
-</ul>
-<h2 id="relation-attributes">Relation attributes</h2>
-<p>Objects in Mesh model can relate to each other. Relation between objects is
-done using relation attributes. The relation attribute defines type of the
-relation, target object type and other parameters.</p>
-<p><img alt="Relation attributes" src="../Relations1.png" /></p>
-<p>There are two groups of relations between objects in Mesh model.</p>
-<h3 id="ownership-relation">Ownership relation</h3>
-<p>Each object is owned by some other object (owner). It is called ownership
-relation.</p>
-<p>Ownership relations can be:
-* one-to-one
-* one-to-many (collection): where value of <em>many</em> is in range defined by
-  <em>minimum</em> and <em>maximum cardinality</em> on relation <code>attribute definition</code> level.</p>
-<p>By convention ownership relation attribute names start with 'has_...', e.g.:
-<em>has_PowerPlant</em>. Removing an object will remove recursively all of its owned
-objects as well, if there were any.</p>
-<h3 id="link-relation">Link relation</h3>
-<p>Link relation is a relation where one object may point to another object, but
-does not own it. There is also a versioned link relation, which is a link
-relation where the target object can change over time. It consists of a list of
-pairs:
-* Target object identifier.
-* Timestamp which indicates start of the period where the target object is
-  active (linked to), the target object is active until the next target object
-  in the list, if any, becomes active.</p>
-<p><img alt="Versioned link relation" src="../VersionedLinkRelation.png" /></p>
-<p>There are four types of link relation attributes:
-* one-to-one
-* one-to-many (collection)
-* versioned one-to-one
-* versioned one-to-many (collection)</p>
-<p>Similar to <code>ownership relation</code> the value of <em>many</em> is in range defined by
-<em>minimum</em> and <em>maximum cardinality</em> on relation <code>attribute definition</code> level.</p>
-<p><img alt="Versioned link relation collection" src="../VersionedLinkRelationCollection.png" /></p>
-<p>By convention link relation attribute names start with 'to_...', e.g.:
-'to_EnergyMarket'. Removing an object that had link relations to other objects
-will NOT remove the linked objects.</p>
-<p><img alt="Relations" src="../Relations2.png" /></p>
-<h2 id="xy-curves">XY curves</h2>
-<p>An <strong>XY curve</strong> is a set of <code>(x, y)</code> pairs where <code>x</code> and <code>y</code> are 64 bit
-floating point values.</p>
-<table>
-<thead>
-<tr>
-<th>x</th>
-<th>y</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>2</td>
-</tr>
-<tr>
-<td>2</td>
-<td>1.5</td>
-</tr>
-<tr>
-<td>3</td>
-<td>0.5</td>
-</tr>
-<tr>
-<td>10</td>
-<td>-1</td>
-</tr>
-</tbody>
-</table>
-<p>An <strong>XY set</strong> is a set of XY curves, each curve indexed by a 64 bit floating
-point reference value. These reference values are sometimes called Z. We often
-visualize <strong>XY sets</strong> like so:</p>
-<table>
-<thead>
-<tr>
-<th>x</th>
-<th>z<br/>y</th>
-<th>z<br/>y</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td><strong>0</strong></td>
-<td><strong>180</strong></td>
-</tr>
-<tr>
-<td>2</td>
-<td>1.5</td>
-<td>0.3</td>
-</tr>
-<tr>
-<td>3</td>
-<td>0.5</td>
-<td>1</td>
-</tr>
-<tr>
-<td>10</td>
-<td>-1</td>
-<td>9</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>The first non-header row contains the reference/Z values for that column.</li>
-<li>Usually the headers will have actual names, see further below.</li>
-</ul>
-<p>A <strong>versioned XY set</strong> is a versioned list of XY sets. Each XY set in the list
-has a timestamp which indicates the start of the active period for that XY set,
-and the XY set is active until the next time-sorted XY set in the versioned XY
-set becomes active.</p>
-<p>Mesh has attribute types for <strong>XY sets</strong> (<code>XYSetAttribute</code>) and <strong>versioned XY
-sets</strong> (<code>XYZSeriesAttribute</code>). In the attribute definitions of those attributes
-we store a description and a unit of measurement for each of X, Y, and Z. For
-example if we have the following axis definitions...</p>
-<table>
-<thead>
-<tr>
-<th>Axis</th>
-<th>Description</th>
-<th>Unit of measurement</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>X</td>
-<td>Wind speed</td>
-<td>m/s</td>
-</tr>
-<tr>
-<td>Y</td>
-<td>Production</td>
-<td>MW</td>
-</tr>
-<tr>
-<td>Z</td>
-<td>Wind direction</td>
-<td>degrees</td>
-</tr>
-</tbody>
-</table>
-<p>...Nimbus will visualize the above XY set as:</p>
-<table>
-<thead>
-<tr>
-<th>Wind speed <script type="math/tex; mode=display">m/s</script>
-</th>
-<th>Wind direction <script type="math/tex; mode=display">degrees</script><br/>Production <script type="math/tex; mode=display">MW</script>
-</th>
-<th>Wind direction <script type="math/tex; mode=display">degrees</script><br/>Production <script type="math/tex; mode=display">MW</script>
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td><strong>0</strong></td>
-<td><strong>180</strong></td>
-</tr>
-<tr>
-<td>2</td>
-<td>1.5</td>
-<td>0.3</td>
-</tr>
-<tr>
-<td>3</td>
-<td>0.5</td>
-<td>1</td>
-</tr>
-<tr>
-<td>10</td>
-<td>-1</td>
-<td>9</td>
-</tr>
-</tbody>
-</table>
-<h2 id="rating-curves">Rating curves</h2>
-<p>A <strong>rating curve</strong> is used to convert water level in river measurements <script type="math/tex">x</script> in
-a watercourse to discharge. In Mesh we use the <script type="math/tex">f(x) = a * (x + b)^c</script> formula
-to approximate discharge, and we store rating curves as a set of segments where
-each segment contains values for the 64 bit floating point factors <script type="math/tex">a</script>, <script type="math/tex">b</script>,
-and <script type="math/tex">c</script>. Additionally each segment <script type="math/tex">i</script> stores a 64 bit floating point
-<code>x_range_until</code> value and is valid for a range of <script type="math/tex">x</script> values
-<code>[x_range_until[i-1], x_range_until[i])</code>.</p>
-<p>For example, with a segment...</p>
-<table>
-<thead>
-<tr>
-<th>x_range_until</th>
-<th>a</th>
-<th>b</th>
-<th>c</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>10</td>
-<td>1.24</td>
-<td>13.7</td>
-<td>11.1</td>
-</tr>
-<tr>
-<td>50</td>
-<td>11.2</td>
-<td>1.0</td>
-<td>6.65</td>
-</tr>
-<tr>
-<td>100</td>
-<td>4.27</td>
-<td>1.55</td>
-<td>0.87</td>
-</tr>
-</tbody>
-</table>
-<p>...we'd have the following rating curve function:</p>
-<p>
-<script type="math/tex; mode=display">
-f(x) =
-\begin{cases}
-    1.24 * (x + 13.7)^{11.1} & \text{if } 0 \leq x \lt 10\\
-    11.2 * (x + 1.0)^{6.65} & \text{if } 10 \leq x \lt 50\\
-    4.27 * (x + 1.55)^{0.87} & \text{if } 50 \leq x \lt 100\\
-    \text{nan} & \text{otherwise}
-\end{cases}
-</script>
-</p>
-<p>Rating curves can change over time because of for example changes in a river
-due to erosion and sedimentation. Such changes affect the discharge function
-and the function equation factors need to be adjusted. To reflect that the
-rating curve segments in Mesh are grouped into <strong>rating curve versions</strong>. Each
-version is timestamped with the time at which the version becomes active, and
-the version is active until the next version, if any, becomes active.</p>
-<table>
-<thead>
-<tr>
-<th>version</th>
-<th>x_range_until</th>
-<th>a</th>
-<th>b</th>
-<th>c</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2019</td>
-<td>10</td>
-<td>1.24</td>
-<td>13.7</td>
-<td>11.1</td>
-</tr>
-<tr>
-<td>2019</td>
-<td>50</td>
-<td>11.2</td>
-<td>1.0</td>
-<td>6.65</td>
-</tr>
-<tr>
-<td>2019</td>
-<td>100</td>
-<td>4.27</td>
-<td>1.55</td>
-<td>0.87</td>
-</tr>
-<tr>
-<td>2020</td>
-<td>10</td>
-<td>3.31</td>
-<td>11.7</td>
-<td>12.1</td>
-</tr>
-<tr>
-<td>2020</td>
-<td>50</td>
-<td>10.1</td>
-<td>1.5</td>
-<td>5.45</td>
-</tr>
-<tr>
-<td>2020</td>
-<td>100</td>
-<td>5.00</td>
-<td>1.32</td>
-<td>0.96</td>
-</tr>
-<tr>
-<td>2021</td>
-<td>10</td>
-<td>2.22</td>
-<td>12.7</td>
-<td>10.1</td>
-</tr>
-<tr>
-<td>2021</td>
-<td>50</td>
-<td>11.1</td>
-<td>1.3</td>
-<td>5.65</td>
-</tr>
-<tr>
-<td>2021</td>
-<td>100</td>
-<td>3.27</td>
-<td>2.55</td>
-<td>0.37</td>
-</tr>
-</tbody>
-</table>
-<p>In addition each version has an <code>x_range_from</code> field, with the minimal $x$ value
-for the curve. For <code>x &lt; x_range_from</code> for the given version the <code>f(x) = nan</code>.</p>
-<p>In Mesh <strong>rating curve attributes</strong> contain a set of rating curve versions.</p>
-<h2 id="extended-metadata">Extended metadata</h2>
-<p>Extended metadata is an additional and optional information that can be set on:
-- Namespaces and model definition (which is also a namespace)
-- Attribute definitions
-- Object definitions</p>
-<p>It is a list of key-value pairs: category name and a JSON object.
-Maximum size of the JSON object serialized to a string is 4000 characters.</p>
-<p>If a given attribute definition, object definition or namespace has more
-than one extended metadata, then the category names must be unique.</p>
-<p>For example, an object definition may have 2 extended metadata entries:
-* Category name <code>MyCategory1</code> with associated JSON object:</p>
-<pre><code class="language-json">{
-    &quot;Labels&quot; : [&quot;Label A&quot;,&quot;Label B&quot;],
-    &quot;Something&quot; : {&quot;MaxValue&quot;:100}
-}
-</code></pre>
-<ul>
-<li>Category name <code>MyCategory2</code> with associated JSON object:</li>
-</ul>
-<pre><code class="language-json">{
-    &quot;Active&quot;: true
-}
-</code></pre>
-<h2 id="mapping">Mapping</h2>
-<p>From now on it is strongly advised to use new definitions, but some of them were already known under different names:</p>
-<ul>
-<li>Model definition - object model, meta model, repository (in Mesh Explorer)</li>
-<li>Object definition - element type, object type (in Mesh Configurator)</li>
-<li>Model - physical model</li>
-<li>Object - physical object</li>
-<li>Attribute - property</li>
-<li>Versioned XY set - <code>XYZSeries</code></li>
 </ul>
               
             </div>
           </div><footer>
       <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-          <a href="../../.." class="btn btn--outline btn--success float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-          <a href="../../installation/MeshServiceInstallationGuide/" class="btn btn--outline btn--success float-right" title="Installation">Next <span class="icon icon-circle-arrow-right"></span></a>
+          <a href="../modelling/xy-sets/" class="btn btn--outline btn--success float-left" title="XY-sets"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+          <a href="../sessions/" class="btn btn--outline btn--success float-right" title="Sessions">Next <span class="icon icon-circle-arrow-right"></span></a>
       </div>
   
     <hr/>
@@ -867,10 +490,10 @@ than one extended metadata, then the category names must be unique.</p>
     <span class="rst-current-version" data-toggle="rst-current-version is-active">
       
       
-        <span><a href="../../.." style="color: #fcfcfc">&laquo; Previous</a></span>
+        <span><a href="../modelling/xy-sets/" style="color: #fcfcfc">&laquo; Previous</a></span>
       
       
-        <span><a href="../../installation/MeshServiceInstallationGuide/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span><a href="../sessions/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
   </div>

@@ -52,7 +52,31 @@
               </ul>
               <p class="caption"><span class="caption-text">Mesh</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../../glossary/MeshGlossary/">Mesh Glossary</a>
+                  <li class="toctree-l1"><a class="reference internal" >Concepts</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/availability/">Availability</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../calculations/calculations/">Calculations</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Modelling</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/rating-curves/">Rating curve</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/relations/">Relations</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/xy-sets/">XY-sets</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/search-language/">Search language</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/sessions/">Sessions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/time-series/">Time series</a>
+                </li>
+    </ul>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Installation</a>
     <ul class="current">
@@ -154,7 +178,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" >Calculations</a>
     <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../../calculations/calculations/">General</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../calculations/calculations/">Calculations</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" >Functions</a>
     <ul>
@@ -444,8 +468,6 @@
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../availability/availability/">Availability</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../model-maintenance/ModelMaintenanceConcepts/">Model maintenance</a>
                   </li>
               </ul>
@@ -513,7 +535,7 @@
 <li><a href="#kerberos">Kerberos</a></li>
 <li><a href="#oauth-20-access-tokens">OAuth 2.0 access tokens</a><ul>
 <li><a href="#access-token-types">Access token types</a></li>
-<li><a href="#configuration-1">Configuration</a></li>
+<li><a href="#oauth-configuration">Configuration</a></li>
 </ul>
 </li>
 <li><a href="#authorisation">Authorisation</a></li>
@@ -903,7 +925,7 @@ or <code>HOST/f.q.d.n@DOMAIN.COM</code> but it might be different in your enviro
 <li><code>Application-only access tokens</code> - Application-only access tokens are acquired using client credentials flow. They are used in server-to-server interactions, where the client applications are referred to as <em>daemons</em> or <em>service accounts</em>. In this flow the client application is called confidential client. Contrary to user access tokens the application-only access tokens in Microsoft Entra do not contain scope (<code>scp</code> or <code>scope</code>) and <code>name</code> claims.</li>
 </ul>
 <p>Application-only access tokens have the same values of <code>sub</code> and <code>oid</code> claims. The client application must use authorisation based on <em>application permissions (app roles)</em>. With this approach the <code>roles</code> claim will be part of the access token.</p>
-<h5 id="configuration_1">Configuration</h5>
+<h5 id="oauth-configuration">OAuth configuration</h5>
 <p>To use it:</p>
 <ul>
 <li>An OAuth 2.0 JWT compatible access token must be signed using RSA algorithm.</li>
@@ -1201,8 +1223,8 @@ This ensures that sensitive data, including credentials and queries, is protecte
             </div>
           </div><footer>
       <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-          <a href="../../glossary/MeshGlossary/" class="btn btn--outline btn--success float-left" title="Mesh Glossary"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-          <a href="../../calculations/calculations/" class="btn btn--outline btn--success float-right" title="General">Next <span class="icon icon-circle-arrow-right"></span></a>
+          <a href="../../concepts/time-series/" class="btn btn--outline btn--success float-left" title="Time series"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+          <a href="../../calculations/calculations/" class="btn btn--outline btn--success float-right" title="Calculations">Next <span class="icon icon-circle-arrow-right"></span></a>
       </div>
   
     <hr/>
@@ -1225,7 +1247,7 @@ This ensures that sensitive data, including credentials and queries, is protecte
     <span class="rst-current-version" data-toggle="rst-current-version is-active">
       
       
-        <span><a href="../../glossary/MeshGlossary/" style="color: #fcfcfc">&laquo; Previous</a></span>
+        <span><a href="../../concepts/time-series/" style="color: #fcfcfc">&laquo; Previous</a></span>
       
       
         <span><a href="../../calculations/calculations/" style="color: #fcfcfc">Next &raquo;</a></span>

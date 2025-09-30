@@ -52,13 +52,37 @@
               </ul>
               <p class="caption"><span class="caption-text">Mesh</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../../glossary/MeshGlossary/">Mesh Glossary</a>
+                  <li class="toctree-l1"><a class="reference internal" >Concepts</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/availability/">Availability</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../calculations/calculations/">Calculations</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Modelling</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/rating-curves/">Rating curve</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/relations/">Relations</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/xy-sets/">XY-sets</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/search-language/">Search language</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/sessions/">Sessions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/time-series/">Time series</a>
+                </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../installation/MeshServiceInstallationGuide/">Installation</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" >Calculations</a>
     <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../../calculations/calculations/">General</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../calculations/calculations/">Calculations</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" >Functions</a>
     <ul>
@@ -348,8 +372,6 @@
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../availability/availability/">Availability</a>
-                  </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Model maintenance</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#model-definition-vs-model">"Model definition" vs "model"</a>
@@ -408,7 +430,7 @@
 <h2 id="model-definition-vs-model">"Model definition" vs "model"</h2>
 <p>A model definition is a description of a domain with respect to object types, attributes, and
 relations. It defines what information is available through Mesh for this domain. An instance of
-a model definition is simply called a "model". See also the <a href="../../glossary/MeshGlossary/">Mesh Glossary</a>.</p>
+a model definition is simply called a "model". See also the <a href="../../concepts/modelling/general/">Modelling</a>.</p>
 <h2 id="the-energysystem-model-definition">The <code>EnergySystem</code> model definition</h2>
 <p>This is the Mesh model definition made by Volue to cover the information needed by the Mesh
 connected modules. It defines the basic types to describe a hydro/thermal/wind system,
@@ -444,7 +466,7 @@ saving the <em>target</em> binary file as a Mesh resource, located in a folder c
 The resource's name will consist of the name of the model definition and a timestamp. This storage
 is actively used to retrieve the base for delta-based updates.</p>
 <p>In practice, model definition updates are done by using a script called <code>ModelUpdate.ps1</code> which is
-distributed alongside release packages. However, this document dwelves deeper into the underlying
+distributed alongside release packages. However, this document delves deeper into the underlying
 process for updating, and indicates some of the problems that may arise along the way.</p>
 <p>Throughout this document (and other literature) we'll use the term "model update" to refer to an
 update of the model definition (as well as its derived models).</p>
@@ -495,7 +517,7 @@ the <code>-w ImportOnlyMissingElementTypesAndDefinitions</code> option to the <c
 missing validations and accepting operations that should not be allowed/authorized.
 Another reason could be a wrong understanding of the latest installed master model definition
 (<code>Base</code>) when doing version comparison.</p>
-<p>An <a href="#assign-based-on-top-update">"on-top" update</a> can probably also lead to a situation like this,
+<p>An <a href="#assign-based-on-top-updates">"on-top" update</a> can probably also lead to a situation like this,
 for instance because parts that should be removed from the model definition are still not removed. </p>
 <p>There exist some other problems as well:</p>
 <ul>
@@ -563,7 +585,7 @@ usually recommended because it can cause further problems later on.</p>
             </div>
           </div><footer>
       <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-          <a href="../../availability/availability/" class="btn btn--outline btn--success float-left" title="Availability"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+          <a href="../../grpc/APISpecification/" class="btn btn--outline btn--success float-left" title="API Specification"><span class="icon icon-circle-arrow-left"></span> Previous</a>
           <a href="../../../mesh-data-transfer/changelog/CHANGELOG/" class="btn btn--outline btn--success float-right" title="Changelog">Next <span class="icon icon-circle-arrow-right"></span></a>
       </div>
   
@@ -587,7 +609,7 @@ usually recommended because it can cause further problems later on.</p>
     <span class="rst-current-version" data-toggle="rst-current-version is-active">
       
       
-        <span><a href="../../availability/availability/" style="color: #fcfcfc">&laquo; Previous</a></span>
+        <span><a href="../../grpc/APISpecification/" style="color: #fcfcfc">&laquo; Previous</a></span>
       
       
         <span><a href="../../../mesh-data-transfer/changelog/CHANGELOG/" style="color: #fcfcfc">Next &raquo;</a></span>

@@ -52,13 +52,37 @@
               </ul>
               <p class="caption"><span class="caption-text">Mesh</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../../glossary/MeshGlossary/">Mesh Glossary</a>
+                  <li class="toctree-l1"><a class="reference internal" >Concepts</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/availability/">Availability</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../calculations/calculations/">Calculations</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Modelling</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/rating-curves/">Rating curve</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/relations/">Relations</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/xy-sets/">XY-sets</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/search-language/">Search language</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/sessions/">Sessions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/time-series/">Time series</a>
+                </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../installation/MeshServiceInstallationGuide/">Installation</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" >Calculations</a>
     <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../../calculations/calculations/">General</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../calculations/calculations/">Calculations</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" >Functions</a>
     <ul>
@@ -350,8 +374,6 @@
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../availability/availability/">Availability</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../model-maintenance/ModelMaintenanceConcepts/">Model maintenance</a>
                   </li>
               </ul>
@@ -437,7 +459,7 @@ For this I'm using Postman, but you can use also curl or other software.</p>
   client_secret: YOUR_CLIENT_SECRET_FROM_STEP_3
 </code></pre>
 <p>You will get a response message with access token. You can check the access
-token's content in e.g.: <a href="https://jwt.io">jwt.io</a>. The access token could now be
+token's content in e.g. <a href="https://jwt.io">jwt.io</a>. The access token could now be
 used to call e.g. Mesh gRPC server. For gRPC the token needs to be send in the
  <code>Authorization</code> header when making a call to the API, like:</p>
 <pre><code>Authorization: Bearer &lt;token&gt;
@@ -472,11 +494,11 @@ For this I'm using Postman, but you can use also curl or other software.</p>
 <pre><code>  URL: https://login.microsoftonline.com/YOUR_DOMAIN.onmicrosoft.com/oauth2/v2.0/token
   grant_type: client_credentials
   client_id: YOUR_CLIENT_ID (the deamon app ID)
-  scope: PROTECTED_API_APPLICATION_ID_URI + '/.default' (e.g.: api://94f6c3d3-e061-436f-89a5-c740279df24d/.default)
+  scope: PROTECTED_API_APPLICATION_ID_URI + '/.default' (e.g. api://94f6c3d3-e061-436f-89a5-c740279df24d/.default)
   client_secret: YOUR_CLIENT_SECRET_FROM_STEP_3
 </code></pre>
 <p>You will get a response message with access token. You can check the access
-token's content in e.g.: <a href="https://jwt.io">jwt.io</a>. The access token could now be
+token's content in e.g. <a href="https://jwt.io">jwt.io</a>. The access token could now be
 used to call e.g. Mesh gRPC server. For gRPC the token needs to be send in the
  <code>Authorization</code> header when making a call to the API, like:</p>
 <pre><code>Authorization: Bearer &lt;token&gt;
@@ -484,7 +506,7 @@ used to call e.g. Mesh gRPC server. For gRPC the token needs to be send in the
 <h3 id="python-sdk">Python SDK</h3>
 <p>To test the access token you can also use one of the Python SDK's
 <a href="https://github.com/Volue-Public/energy-mesh-python/blob/master/src/volue/mesh/examples/connect_using_external_access_token.py">example scripts</a>.</p>
-<p>You can also extend the example script with e.g.: MSAL library to acquire the
+<p>You can also extend the example script with e.g. MSAL library to acquire the
 access token in the background.</p>
 <p>See documentation on how to connect and authorize using Mesh Python SDK to
 a Mesh server that is using OAuth authorization:
