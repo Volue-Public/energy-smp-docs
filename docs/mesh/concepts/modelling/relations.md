@@ -19,7 +19,7 @@ Ownership relations can be:
 * one-to-many (collection): where value of *many* is in range defined by
   *minimum* and *maximum cardinality* on relation [attribute definition](./general.md#attribute-definition) level.
 
-By convention ownership relation attribute names start with 'has_...', e.g.:
+By convention ownership relation attribute names start with 'has_...', e.g.
 *has_PowerPlant*. Removing an object will remove recursively all of its owned
 objects as well, if there were any.
 
@@ -49,7 +49,7 @@ Similar to ownership relation the value of *many* is in range defined by
 
 ![Versioned link relation collection](../assets/images/versioned-link-relation-collection.png)
 
-By convention link relation attribute names start with 'to_...', e.g.:
+By convention link relation attribute names start with 'to_...', e.g.
 'to_EnergyMarket'. Removing an object that had link relations to other objects
 will NOT remove the linked objects.
 

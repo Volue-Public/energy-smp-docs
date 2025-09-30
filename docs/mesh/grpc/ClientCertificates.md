@@ -36,7 +36,7 @@ server gRPC interface is *trusted*.
 
 For self-signed certificates, not issued by publicly trusted CAs we **must**
 always provide the certificate in PEM format to the gRPC client. The
-certificate **must** be accessible by the gRPC client, e.g.: no password
+certificate **must** be accessible by the gRPC client, e.g. no password
 protection, etc.
 
 However, there is option to add such self-signed certificate to operating
