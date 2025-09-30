@@ -133,7 +133,7 @@ Each json object in `Queues Configuration` describes a single queue. It can have
       "Http": {
         "Url": "http://localhost:7000"
 ```
-`Url` specifies address and port that should be used when accessing the service. The `Url` specification may influence the ability to listen for exports coming from external machines. For most cases it is reasonable to replace `localhost` with machine `hostname`.
+`Url` specifies address and port that should be used when accessing the service. The `Url` specification may influence the ability to listen for exports coming from external machines. For most cases it is reasonable to replace `localhost` with server `hostname`.
 
 ### Mesh connection configuration 
 
