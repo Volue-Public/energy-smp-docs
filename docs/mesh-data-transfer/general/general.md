@@ -1,6 +1,6 @@
 ## General info
 
-The _Mesh Data Transfer_ service enables users to perform time series and availability data exports and imports from a `Mesh` server. It uses AMQP protocol as an external communication method to guarantee high level of reliability and versatility.
+The _Mesh Data Transfer_ service enables users to perform time series and availability data exports and imports from a `Mesh` server. It uses the AMQP protocol as an external communication method to guarantee high level of reliability and versatility.
 
 Mesh Data Transfer offers HTTP endpoints for creating both availability and time series export orders (used by certain Volue products, eg. Participant, Nimbus). Imports are requested via queues (AMQP 1.0 or Azure Service Bus) and the outcomes of the import operations are sent to AMQP reply queues. The export results are stored as files or sent to an AMQP queue, depending on the configuration. Mesh Data Transfer is also responsible for saving export status to the `Message Log` (in the case of imports it is done by Mesh).
 
