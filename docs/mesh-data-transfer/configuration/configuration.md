@@ -2,7 +2,7 @@
 
 ### Logging
 
-Logging functionality in Data Transfer is provided by the Serilog library.
+The logging functionality in Mesh Data Transfer is provided by the Serilog library.
 
 ```json
  "Serilog": {
