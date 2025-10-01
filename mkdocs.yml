@@ -18,7 +18,7 @@ nav:
                 - Calculations: mesh/calculations/calculations.md
                 - Modelling:
                       - General: mesh/concepts/modelling/general.md
-                      - Rating curve: mesh/concepts/modelling/rating-curves.md
+                      - Rating curves: mesh/concepts/modelling/rating-curves.md
                       - Relations: mesh/concepts/modelling/relations.md
                       - XY-sets: mesh/concepts/modelling/xy-sets.md
                 - Search language: mesh/concepts/search-language.md
