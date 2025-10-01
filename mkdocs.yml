@@ -5,6 +5,7 @@ theme:
     logo: logo.png
 extra_css:
     - wave/wave.css
+    - stylesheets/extra.css
 extra_javascript:
     - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 markdown_extensions:
