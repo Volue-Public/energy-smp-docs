@@ -62,7 +62,7 @@ For this I'm using Postman, but you can use also curl or other software.
 ```
 
 You will get a response message with access token. You can check the access
-token's content in e.g.: [jwt.io](https://jwt.io). The access token could now be
+token's content in e.g. [jwt.io](https://jwt.io). The access token could now be
 used to call e.g. Mesh gRPC server. For gRPC the token needs to be send in the
  `Authorization` header when making a call to the API, like:
 ```
@@ -103,12 +103,12 @@ For this I'm using Postman, but you can use also curl or other software.
   URL: https://login.microsoftonline.com/YOUR_DOMAIN.onmicrosoft.com/oauth2/v2.0/token
   grant_type: client_credentials
   client_id: YOUR_CLIENT_ID (the deamon app ID)
-  scope: PROTECTED_API_APPLICATION_ID_URI + '/.default' (e.g.: api://94f6c3d3-e061-436f-89a5-c740279df24d/.default)
+  scope: PROTECTED_API_APPLICATION_ID_URI + '/.default' (e.g. api://94f6c3d3-e061-436f-89a5-c740279df24d/.default)
   client_secret: YOUR_CLIENT_SECRET_FROM_STEP_3
 ```
 
 You will get a response message with access token. You can check the access
-token's content in e.g.: [jwt.io](https://jwt.io). The access token could now be
+token's content in e.g. [jwt.io](https://jwt.io). The access token could now be
 used to call e.g. Mesh gRPC server. For gRPC the token needs to be send in the
  `Authorization` header when making a call to the API, like:
 ```
@@ -120,7 +120,7 @@ Authorization: Bearer <token>
 To test the access token you can also use one of the Python SDK's
 [example scripts](https://github.com/Volue-Public/energy-mesh-python/blob/master/src/volue/mesh/examples/connect_using_external_access_token.py).
 
-You can also extend the example script with e.g.: MSAL library to acquire the
+You can also extend the example script with e.g. MSAL library to acquire the
 access token in the background.
 
 See documentation on how to connect and authorize using Mesh Python SDK to

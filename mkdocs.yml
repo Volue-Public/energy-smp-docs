@@ -1,154 +1,163 @@
 site_name: Smart Power Documentation
 theme:
-  name: readthedocs
-  custom_dir: custom-theme/
-  logo: logo.png
+    name: readthedocs
+    custom_dir: custom-theme/
+    logo: logo.png
 extra_css:
-  - wave/wave.css
+    - wave/wave.css
 extra_javascript:
-  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+    - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 markdown_extensions:
-  - mdx_math
-  - footnotes
+    - mdx_math
+    - footnotes
 nav:
-- Home: index.md
-- Mesh:
-    - Mesh Glossary: mesh/glossary/MeshGlossary.md
-    - Installation: mesh/installation/MeshServiceInstallationGuide.md
-    - Calculations: 
-      - General: mesh/calculations/calculations.md
-      - Functions:
-        - Introduction: mesh/calculations/functions/introduction.md
-        - General:
-            - Allocate_Reserves: mesh/calculations/functions/allocate_reserves.md
-            - AT: mesh/calculations/functions/at.md
-            - ColorARGB: mesh/calculations/functions/color.md
-            - Compare: mesh/calculations/functions/compare.md
-            - Concatenate: mesh/calculations/functions/concatenate.md
-            - CopyTs: mesh/calculations/functions/copy_ts.md
-            - Delta: mesh/calculations/functions/delta.md
-            - DisableCache: mesh/calculations/functions/disable_cache.md
-            - GET_Y_FX: mesh/calculations/functions/getyfx.md
-            - IsValid: mesh/calculations/functions/isvalid.md
-            - Linear: mesh/calculations/functions/linear.md
-            - MAX: mesh/calculations/functions/max.md
-            - MeshId: mesh/calculations/functions/meshid.md
-            - MIN: mesh/calculations/functions/min.md
-            - Parameter: mesh/calculations/functions/parameter.md
-            - PDLOG: mesh/calculations/functions/pdlog.md
-            - Reference Lookup: mesh/calculations/functions/reference_lookup.md
-            - Restriction: mesh/calculations/functions/restriction.md
-            - Revision: mesh/calculations/functions/revision.md
-            - Set_Ts_Valunit: mesh/calculations/functions/set_ts_val_unit.md
-            - Size: mesh/calculations/functions/size.md
-            - Time_Mask: mesh/calculations/functions/time_mask.md
-            - ToString: mesh/calculations/functions/tostring.md
-            - Trace: mesh/calculations/functions/trace.md
-            - TS: mesh/calculations/functions/ts.md
-            - Unit Codes for Set_Ts_Valunit: mesh/calculations/functions/unit_codes_for_set_ts_val_unit.md
-            - Valid: mesh/calculations/functions/valid.md
-        - Forecast:
-          - GetBestForecast: mesh/calculations/functions/get_best_forecast.md
-          - GetAllForecasts: mesh/calculations/functions/get_all_forecasts.md
-          - GetForecast: mesh/calculations/functions/get_forecast.md
-          - GetMergedForecasts: mesh/calculations/functions/get_merged_forecast.md
-        - History:
-          - About: mesh/calculations/functions/history.md
-          - GetTsAsOfTime: mesh/calculations/functions/get_ts_as_of_time.md
-          - GetTsHistoricalVersions: mesh/calculations/functions/get_ts_historical_versions.md
-          - GetTsAuditTimes: mesh/calculations/functions/get_ts_audit_times.md
-        - Logical:
-          - Bool: mesh/calculations/functions/bool.md
-          - Inside: mesh/calculations/functions/inside.md
-          - Negative: mesh/calculations/functions/negative.md
-          - Not: mesh/calculations/functions/not.md
-          - Outside: mesh/calculations/functions/outside.md
-          - Positive: mesh/calculations/functions/positive.md
-        - Math:
-          - TS_GLIDING_AVERAGE: mesh/calculations/functions/ts_gliding_average.md
-          - TS_GLIDING_GAUSS: mesh/calculations/functions/ts_gliding_gauss.md
-          - TS_GLIDING_MEDIAN: mesh/calculations/functions/ts_gliding_median.md
-          - TS_GLIDING_MEDIAN_GAUSS: mesh/calculations/functions/ts_gliding_median_gauss.md
-          - GLIDING_TREND_AVERAGE: mesh/calculations/functions/gliding_trend_average.md
-          - TS_ACC_FROM: mesh/calculations/functions/ts_acc_from.md
-          - POWER: mesh/calculations/functions/power.md
-          - ABS: mesh/calculations/functions/abs.md
-          - CEIL: mesh/calculations/functions/ceil.md
-          - FLOOR: mesh/calculations/functions/floor.md
-          - INTEGER: mesh/calculations/functions/integer.md
-          - LOG: mesh/calculations/functions/log.md
-          - LN: mesh/calculations/functions/ln.md
-          - ROUND: mesh/calculations/functions/round.md
-          - ROUND_INTEGER: mesh/calculations/functions/round_integer.md
-          - ACOS: mesh/calculations/functions/acos.md
-          - ASIN: mesh/calculations/functions/asin.md
-          - ATAN: mesh/calculations/functions/atan.md
-          - COS: mesh/calculations/functions/cos.md
-          - SIN: mesh/calculations/functions/sin.md
-          - TAN: mesh/calculations/functions/tan.md
-        - Mix:
-          - MIX: mesh/calculations/functions/mix.md
-          - MIX by selecting from time series array: mesh/calculations/functions/mix_by_selecting_from_time_series_array.md
-          - MIX0: mesh/calculations/functions/mix0.md
-          - TS_IQ-FILL: mesh/calculations/functions/tsiqfill.md
-        - Sim:
-          - CONVERT_VOLUME: mesh/calculations/functions/convert_volume.md
-          - RatingCurve: mesh/calculations/functions/rating_curve.md
-          - TimeDelayed: mesh/calculations/functions/time_delayed.md
-          - XY: mesh/calculations/functions/xy.md
-          - YX: mesh/calculations/functions/yx.md
-          - ZX_Y: mesh/calculations/functions/zxy.md
-          - ZY_X: mesh/calculations/functions/zyx.md
-        - Statistical:
-          - MEAN: mesh/calculations/functions/mean.md
-          - Normal: mesh/calculations/functions/normal.md
-          - PERCENTILE: mesh/calculations/functions/percentile.md
-          - SUM: mesh/calculations/functions/sum.md
-        - Status:
-          - About: mesh/calculations/functions/status.md
-          - RESET_STATUS: mesh/calculations/functions/reset_status.md
-          - STATUS_MASK: mesh/calculations/functions/status_mask.md
-          - STATUS_COUNT: mesh/calculations/functions/status_count.md
-        - Time:
-          - IsResolution: mesh/calculations/functions/is_resolution.md
-          - IsTimeValid: mesh/calculations/functions/is_time_valid.md
-          - PushExtPeriod: mesh/calculations/functions/push_ext_period.md
-          - PopExtPeriod: mesh/calculations/functions/pop_ext_period.md
-          - Time: mesh/calculations/functions/time.md
-          - Resolution: mesh/calculations/functions/resolution.md
-          - TimeSpan: mesh/calculations/functions/timespan.md
-          - TimeToString: mesh/calculations/functions/time_to_string.md
-          - Time Examples: mesh/calculations/functions/time_examples.md
-          - Time Point Information: mesh/calculations/functions/time_point_information.md
-        - Transform:
-          - Which function can be used when: mesh/calculations/functions/transform_what_when.md
-          - Terms used in the functions: mesh/calculations/functions/transform_terms.md
-          - TRANSFORM: mesh/calculations/functions/transform.md
-          - TS_EXPAND: mesh/calculations/functions/ts_expand.md
-          - TS_OFFSET: mesh/calculations/functions/ts_offset.md
-          - ValuesFromYear: mesh/calculations/functions/values_from_year.md
-          - DISTRIBUTE: mesh/calculations/functions/distribute.md
-          - TRANS_PROFILE: mesh/calculations/functions/trans_profile.md
-          - PROFILE: mesh/calculations/functions/profile.md
-          - PROFILE with explicit frequency: mesh/calculations/functions/profile_with_explicit_frequency.md
-          - ACCUMULATE: mesh/calculations/functions/accumulate.md
-        - VEE:
-          - ValidateAbsLimit: mesh/calculations/functions/validate_abs_limit.md
-          - ValidateDeltaLimit: mesh/calculations/functions/validate_delta_limit.md
-          - ValidateDeltaLimitExtreme: mesh/calculations/functions/validate_delta_limit_extreme.md
-          - ValidateRepeatValue: mesh/calculations/functions/validate_repeat_value.md
-          - CorrectAverageValue: mesh/calculations/functions/correct_average_value.md
-          - CorrectConstantValue: mesh/calculations/functions/correct_constant_value.md
-          - CorrectCopyValue: mesh/calculations/functions/correct_copy_value.md
-          - CorrectExtrapolate: mesh/calculations/functions/correct_extrapolate.md
-          - CorrectInterpolate: mesh/calculations/functions/correct_interpolate.md
-    - 'gRPC':
-      - 'Client certificates': mesh/grpc/ClientCertificates.md
-      - 'Authorization': mesh/grpc/Authorization.md
-      - 'API Specification': mesh/grpc/APISpecification.md
-    - 'Availability': mesh/availability/availability.md
-    - Model maintenance: mesh/model-maintenance/ModelMaintenanceConcepts.md
-- Mesh Data Transfer:
-  - Changelog: mesh-data-transfer/changelog/CHANGELOG.md
-  - General: mesh-data-transfer/general/general.md
-  - Configuration: mesh-data-transfer/configuration/configuration.md
+    - Home: index.md
+    - Mesh:
+          - Concepts:
+                - Availability: mesh/concepts/availability.md
+                - Calculations: mesh/calculations/calculations.md
+                - Modelling:
+                      - General: mesh/concepts/modelling/general.md
+                      - Rating curves: mesh/concepts/modelling/rating-curves.md
+                      - Relations: mesh/concepts/modelling/relations.md
+                      - XY-sets: mesh/concepts/modelling/xy-sets.md
+                - Search language: mesh/concepts/search-language.md
+                - Sessions: mesh/concepts/sessions.md
+                - Time series: mesh/concepts/time-series.md
+          - Installation: mesh/installation/MeshServiceInstallationGuide.md
+          - Calculations:
+                - General: mesh/calculations/calculations.md
+                - Functions:
+                      - Introduction: mesh/calculations/functions/introduction.md
+                      - General:
+                            - Allocate_Reserves: mesh/calculations/functions/allocate_reserves.md
+                            - AT: mesh/calculations/functions/at.md
+                            - ColorARGB: mesh/calculations/functions/color.md
+                            - Compare: mesh/calculations/functions/compare.md
+                            - Concatenate: mesh/calculations/functions/concatenate.md
+                            - CopyTs: mesh/calculations/functions/copy_ts.md
+                            - Delta: mesh/calculations/functions/delta.md
+                            - DisableCache: mesh/calculations/functions/disable_cache.md
+                            - GET_Y_FX: mesh/calculations/functions/getyfx.md
+                            - IsValid: mesh/calculations/functions/isvalid.md
+                            - Linear: mesh/calculations/functions/linear.md
+                            - MAX: mesh/calculations/functions/max.md
+                            - MeshId: mesh/calculations/functions/meshid.md
+                            - MIN: mesh/calculations/functions/min.md
+                            - Parameter: mesh/calculations/functions/parameter.md
+                            - PDLOG: mesh/calculations/functions/pdlog.md
+                            - Reference Lookup: mesh/calculations/functions/reference_lookup.md
+                            - Restriction: mesh/calculations/functions/restriction.md
+                            - Revision: mesh/calculations/functions/revision.md
+                            - Set_Ts_Valunit: mesh/calculations/functions/set_ts_val_unit.md
+                            - Size: mesh/calculations/functions/size.md
+                            - Time_Mask: mesh/calculations/functions/time_mask.md
+                            - ToString: mesh/calculations/functions/tostring.md
+                            - Trace: mesh/calculations/functions/trace.md
+                            - TS: mesh/calculations/functions/ts.md
+                            - Unit Codes for Set_Ts_Valunit: mesh/calculations/functions/unit_codes_for_set_ts_val_unit.md
+                            - Valid: mesh/calculations/functions/valid.md
+                      - Forecast:
+                            - GetBestForecast: mesh/calculations/functions/get_best_forecast.md
+                            - GetAllForecasts: mesh/calculations/functions/get_all_forecasts.md
+                            - GetForecast: mesh/calculations/functions/get_forecast.md
+                            - GetMergedForecasts: mesh/calculations/functions/get_merged_forecast.md
+                      - History:
+                            - About: mesh/calculations/functions/history.md
+                            - GetTsAsOfTime: mesh/calculations/functions/get_ts_as_of_time.md
+                            - GetTsHistoricalVersions: mesh/calculations/functions/get_ts_historical_versions.md
+                            - GetTsAuditTimes: mesh/calculations/functions/get_ts_audit_times.md
+                      - Logical:
+                            - Bool: mesh/calculations/functions/bool.md
+                            - Inside: mesh/calculations/functions/inside.md
+                            - Negative: mesh/calculations/functions/negative.md
+                            - Not: mesh/calculations/functions/not.md
+                            - Outside: mesh/calculations/functions/outside.md
+                            - Positive: mesh/calculations/functions/positive.md
+                      - Math:
+                            - TS_GLIDING_AVERAGE: mesh/calculations/functions/ts_gliding_average.md
+                            - TS_GLIDING_GAUSS: mesh/calculations/functions/ts_gliding_gauss.md
+                            - TS_GLIDING_MEDIAN: mesh/calculations/functions/ts_gliding_median.md
+                            - TS_GLIDING_MEDIAN_GAUSS: mesh/calculations/functions/ts_gliding_median_gauss.md
+                            - GLIDING_TREND_AVERAGE: mesh/calculations/functions/gliding_trend_average.md
+                            - TS_ACC_FROM: mesh/calculations/functions/ts_acc_from.md
+                            - POWER: mesh/calculations/functions/power.md
+                            - ABS: mesh/calculations/functions/abs.md
+                            - CEIL: mesh/calculations/functions/ceil.md
+                            - FLOOR: mesh/calculations/functions/floor.md
+                            - INTEGER: mesh/calculations/functions/integer.md
+                            - LOG: mesh/calculations/functions/log.md
+                            - LN: mesh/calculations/functions/ln.md
+                            - ROUND: mesh/calculations/functions/round.md
+                            - ROUND_INTEGER: mesh/calculations/functions/round_integer.md
+                            - ACOS: mesh/calculations/functions/acos.md
+                            - ASIN: mesh/calculations/functions/asin.md
+                            - ATAN: mesh/calculations/functions/atan.md
+                            - COS: mesh/calculations/functions/cos.md
+                            - SIN: mesh/calculations/functions/sin.md
+                            - TAN: mesh/calculations/functions/tan.md
+                      - Mix:
+                            - MIX: mesh/calculations/functions/mix.md
+                            - MIX by selecting from time series array: mesh/calculations/functions/mix_by_selecting_from_time_series_array.md
+                            - MIX0: mesh/calculations/functions/mix0.md
+                            - TS_IQ-FILL: mesh/calculations/functions/tsiqfill.md
+                      - Sim:
+                            - CONVERT_VOLUME: mesh/calculations/functions/convert_volume.md
+                            - RatingCurve: mesh/calculations/functions/rating_curve.md
+                            - TimeDelayed: mesh/calculations/functions/time_delayed.md
+                            - XY: mesh/calculations/functions/xy.md
+                            - YX: mesh/calculations/functions/yx.md
+                            - ZX_Y: mesh/calculations/functions/zxy.md
+                            - ZY_X: mesh/calculations/functions/zyx.md
+                      - Statistical:
+                            - MEAN: mesh/calculations/functions/mean.md
+                            - Normal: mesh/calculations/functions/normal.md
+                            - PERCENTILE: mesh/calculations/functions/percentile.md
+                            - SUM: mesh/calculations/functions/sum.md
+                      - Status:
+                            - About: mesh/calculations/functions/status.md
+                            - RESET_STATUS: mesh/calculations/functions/reset_status.md
+                            - STATUS_MASK: mesh/calculations/functions/status_mask.md
+                            - STATUS_COUNT: mesh/calculations/functions/status_count.md
+                      - Time:
+                            - IsResolution: mesh/calculations/functions/is_resolution.md
+                            - IsTimeValid: mesh/calculations/functions/is_time_valid.md
+                            - PushExtPeriod: mesh/calculations/functions/push_ext_period.md
+                            - PopExtPeriod: mesh/calculations/functions/pop_ext_period.md
+                            - Time: mesh/calculations/functions/time.md
+                            - Resolution: mesh/calculations/functions/resolution.md
+                            - TimeSpan: mesh/calculations/functions/timespan.md
+                            - TimeToString: mesh/calculations/functions/time_to_string.md
+                            - Time Examples: mesh/calculations/functions/time_examples.md
+                            - Time Point Information: mesh/calculations/functions/time_point_information.md
+                      - Transform:
+                            - Which function can be used when: mesh/calculations/functions/transform_what_when.md
+                            - Terms used in the functions: mesh/calculations/functions/transform_terms.md
+                            - TRANSFORM: mesh/calculations/functions/transform.md
+                            - TS_EXPAND: mesh/calculations/functions/ts_expand.md
+                            - TS_OFFSET: mesh/calculations/functions/ts_offset.md
+                            - ValuesFromYear: mesh/calculations/functions/values_from_year.md
+                            - DISTRIBUTE: mesh/calculations/functions/distribute.md
+                            - TRANS_PROFILE: mesh/calculations/functions/trans_profile.md
+                            - PROFILE: mesh/calculations/functions/profile.md
+                            - PROFILE with explicit frequency: mesh/calculations/functions/profile_with_explicit_frequency.md
+                            - ACCUMULATE: mesh/calculations/functions/accumulate.md
+                      - VEE:
+                            - ValidateAbsLimit: mesh/calculations/functions/validate_abs_limit.md
+                            - ValidateDeltaLimit: mesh/calculations/functions/validate_delta_limit.md
+                            - ValidateDeltaLimitExtreme: mesh/calculations/functions/validate_delta_limit_extreme.md
+                            - ValidateRepeatValue: mesh/calculations/functions/validate_repeat_value.md
+                            - CorrectAverageValue: mesh/calculations/functions/correct_average_value.md
+                            - CorrectConstantValue: mesh/calculations/functions/correct_constant_value.md
+                            - CorrectCopyValue: mesh/calculations/functions/correct_copy_value.md
+                            - CorrectExtrapolate: mesh/calculations/functions/correct_extrapolate.md
+                            - CorrectInterpolate: mesh/calculations/functions/correct_interpolate.md
+          - "gRPC":
+                - "Client certificates": mesh/grpc/ClientCertificates.md
+                - "Authorization": mesh/grpc/Authorization.md
+                - "API Specification": mesh/grpc/APISpecification.md
+          - Model maintenance: mesh/model-maintenance/ModelMaintenanceConcepts.md
+    - Mesh Data Transfer:
+          - Changelog: mesh-data-transfer/changelog/CHANGELOG.md
+          - General: mesh-data-transfer/general/general.md
+          - Configuration: mesh-data-transfer/configuration/configuration.md

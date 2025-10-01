@@ -1,14 +1,207 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-Version 2.17
+Version 2.19
+======================
+
+Features
+--------
+
+- [We have added support for the `DisableImportReply` toggle in the `ImportWorker` settings that allows disabling the import replies.][#667]
+
+[#667]: https://github.com/Volue/energy-mesh-data-transfer/issues/667
+
+Version 2.18.1
+======================
+
+Features
+--------
+
+- [We have added support to Service Bus Topics and Subscriptions.][#600]
+A new `Subscription` parameter was added to the queue configuration. When `Subscription` is provided, `QueueName` becomes the name of the topic.
+
+[#600]: https://github.com/Volue/energy-mesh-data-transfer/issues/600
+
+Fixes
+-----
+
+- [We have fixed an issue where intermittent delays were observed when receiving messages from Service Bus queues.][#665]
+Fixing the issue requires configuration changes.
+- The `ImportWorker:ReceiveTimeout` parameter controls the timeout of a message receive call, with a default value of 100 ms. Increasing the timeout might help to fix the issue.
+- The `ServiceBus:PrefetchCount` parameter specifies the number of messages prefetched and cached before the actual message is requested. Default number is 0, meaning no prefetch. Increasing the value of `PrefetchCount` might help to fix the issue.
+
+- [We have fixed an issue where the import requests could not be identified in the debug logs.][#664]
+
+[#665]: https://github.com/Volue/energy-mesh-data-transfer/issues/665
+[#664]: https://github.com/Volue/energy-mesh-data-transfer/issues/664
+
+Version 2.18
+======================
+
+Breaking changes
+----------------
+
+- [We have merged the Database Gateway, Export Data Store, Mesh AMQP Relay and Trigger Relay services into a single Mesh Data Transfer service.][#375]
+
+The configuration file of the Trigger Relay service should be used as the base for the configuration of the new Mesh Data Transfer service.
+
+The database configuration from the Database Gateway service needs to be applied to the Mesh Data Transfer settings file. The `HttpEndpoints:DatabaseGateway` node should be removed from Mesh Data Transfer configuration. The `Kestrel` configuration from the Database Gateway service should be dropped.
+
+The configuration from Export Data Store settings file needs to be applied to Mesh Data Transfer settings file. Specifically:
+
+- the `Storage`, node should be moved to Mesh Data Transfer settings,
+- if present, the `MercatoMapping`, `UnitScheduleMapping` and `TsVolumesWebServiceExport` nodes should be moved to Mesh Data Transfer settings,
+- the export queue should be added to the `QueuesConfiguration` section,
+- the contents of `ParticipantSettings` node should be merged (previously the node existed in the configuration files of both services),
+- the `HttpEndpoints:ExportDataStore` node should be removed from Mesh Data Transfer configuration.
+
+The `Kestrel` configuration from the Export Data Store service should be dropped.
+
+The configuration from Mesh AMQP Relay settings file needs to be applied to Mesh Data Transfer settings file. Specifically:
+
+- `ImportWorker` and `FailedMessages` nodes should be applied to Mesh Data Transfer settings,
+- `QueuesConfiguration` in Mesh Data Transfer should be updated with the queues used for the imports (the import, import reply and failure queues),
+- `ImportExportCommonSettings:Delay` configuration parameter in Mesh AMQP Relay configuration is now moved to `ImportWorker:Delay` in Mesh Data Transfer configuration,
+- `ExportWorker` settings were removed and should not be applied in Mesh Data Transfer configuration file.
+
+Additionally, the export related queues should be removed from `AmqpSender:Queues`, as they were used to forward export requests to Mesh AMQP Relay and are not relevant anymore.
+
+[#375]: https://github.com/Volue/energy-mesh-data-transfer/issues/375
+
+Fixes
+-----
+
+- [We have fixed an issue where the `Date Created` column in the `MessageLog` application would not be filled properly for Bidding Strategy exports.][#649]
+
+- [We have fixed an issue where the `Date Created` column in the `MessageLog` application would not be filled properly for availability exports and availability imports.][#475]
+
+[#649]: https://github.com/Volue/energy-mesh-data-transfer/issues/649
+[#475]: https://github.com/Volue/energy-mesh-data-transfer/issues/475
+
+Version 2.17.3
+======================
+
+Breaking changes
+----------------
+
+- [We have removed the "equal sign" characters from GS2, EDIEL DELFOR, MSCONS and Excel CSV export file names.][#638]
+
+[#638]: https://github.com/Volue/energy-mesh-data-transfer/issues/638
+
+Fixes
+-----
+
+- [We have fixed an issue where using invalid/outdated authentication token to communicate with the Mesh server would be treated as actual message handling error.][#639] 
+
+ [#639]: https://github.com/Volue/energy-mesh-data-transfer/issues/639
+
+Version 2.17.2
 ======================
 
 Fixes
 -----
 
+- [We have fixed an issue where transient authentication errors were treated as actual message handling errors.][#622]
+
+Version 2.16.3
+======================
+
+Fixes
+-----
+
+- [We have fixed an issue where transient authentication errors were treated as actual message handling errors.][#622]
+
+
+Version 2.15.6
+======================
+
+Fixes
+-----
+
+- [We have fixed an issue where transient authentication errors were treated as actual message handling errors.][#622]
+
+[#622]: https://github.com/Volue/energy-mesh-data-transfer/issues/622
+
+Version 2.16.2
+======================
+
+Fixes
+-----
+
+- [We have fixed an issue where the Message Log entries would not be created when exporting time series with the Time Series Volumes Web Service export protocol.][#604]
+
+- [We have fixed an issue where transient errors in Mesh communication were treated as actual message handling errors.][#594]
+
+Version 2.15.5
+======================
+
+Fixes
+-----
+
+- [We have fixed an issue where transient errors in Mesh communication were treated as actual message handling errors.][#594]
+
+Version 2.17.1
+======================
+
+Fixes
+-----
+
+- [We have fixed an issue where the Message Log entries would not be created when exporting time series with the Time Series Volumes Web Service export protocol.][#604]
+
+- [We have fixed an issue where transient errors in Mesh communication were treated as actual message handling errors.][#594]
+
+[#604]: https://github.com/Volue/energy-mesh-data-transfer/issues/604
+[#594]: https://github.com/Volue/energy-mesh-data-transfer/issues/594
+
+Version 2.17
+======================
+
+Breaking changes
+----------------
+
+- [We have replaced malfunctioning counter with a set of randomly-generated characters in GS2 export filenames to ensure the filenames are unique.][#512]
+
 - [When exporting revision availability events, the category attribute will now contain a string "Revision".][#504]
   Previously the category was an empty string for the revision events.
+
+[#512]: https://github.com/Volue/energy-mesh-data-transfer/issues/512
+
+Features
+--------
+
+- [We have added support for the MSCONS export][#534]
+
+- [We have updated reading empty time series to align with changes in Mesh 2.17 changes.][#590]
+
+- [We have added a new `ReadOnly` parameter to the DatabaseGateway service that prevents the service from modifying the database.][#546]
+  Note: it does not prevent Mesh from database modifications. The read only mode in Mesh needs to be set separately in the Mesh configuration file.
+
+[#534]: https://github.com/Volue/energy-mesh-data-transfer/issues/534
+[#546]: https://github.com/Volue/energy-mesh-data-transfer/issues/546
+[#590]: https://github.com/Volue/energy-mesh-data-transfer/issues/590
+
+Fixes
+-----
+
+- [We have fixed an issue where timestamps in CSV export would not take UTC offset into account.][#584]
+
+[#584]: https://github.com/Volue/energy-mesh-data-transfer/issues/584
+
+Version 2.16.1
+======================
+
+Features
+--------
+
+- [We have added support for Time Series Volumes Web Service time series exports.][#482]
+  The settings for the new protocol are placed in `TsVolumesWebServiceExport` node in Export Data Store configuration file.
+
+[#482]: https://github.com/Volue/energy-mesh-data-transfer/issues/482
+
+Fixes
+-----
+
+- [We have fixed an issue where exporting a large number of time series data using the standard export protocol would fail.][#563]
 
 Version 2.16
 ======================

@@ -54,6 +54,16 @@ This command:
 - creates the `X.Y` directory on the destination branch (`gh-pages` by default) and puts the docs inside
 - creates a commit
 
+If the new version is also the latest one, add an alias `latest`:
+```
+mike deploy X.Y latest
+```
+
+If the `latest` alias was already used for some older version you need also to provide `--update-aliases`:
+```
+mike deploy X.Y latest --update-aliases
+```
+
 Once deployed, you can browse through all the documentation versions using `mike serve` command.
 
 Pass the `--push` flag to the `deploy` command to push your changes to the remote and publish the documentation.

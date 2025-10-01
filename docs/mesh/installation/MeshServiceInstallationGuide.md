@@ -25,7 +25,7 @@
       - [Kerberos](#kerberos)
       - [OAuth 2.0 access tokens](#oauth-20-access-tokens)
         - [Access token types](#access-token-types)
-        - [Configuration](#configuration-1)
+        - [Configuration](#oauth-configuration)
     - [Authorisation](#authorisation)
     - [Limit time series cache usage](#limit-time-series-cache-usage)
   - [Verify the installation](#verify-the-installation)
@@ -455,7 +455,7 @@ We distinguish between user and application-only access tokens:
   
   Application-only access tokens have the same values of `sub` and `oid` claims. The client application must use authorisation based on *application permissions (app roles)*. With this approach the `roles` claim will be part of the access token.
 
-##### Configuration
+##### OAuth configuration
 
 To use it:
 
