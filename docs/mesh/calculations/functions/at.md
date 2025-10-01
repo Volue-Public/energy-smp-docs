@@ -1,35 +1,43 @@
 ﻿## AT
-## About the function
+
+### About the function
+
 Retrieves an element from an object. Relevant object types are array of time
 series, numbers or time series.
 
-## Syntax
+### Syntax
+
 - AT(T,d)
 - AT(D,d)
 - AT(t,s)
 
-## Description
+### Description
 
 | # | Type | Description |
 |---|---|---|
 | 1 | T | Array of time series. |
-| 1 | t | Time series. |
-| 1 | D | Array of floating-point numbers. |
-| 2 | s | Time argument. May be a macro expanded to time point. Examples: DAY+10h, UTC20141124 |
 | 2 | d | Lookup index, the first value has index 0. |
 
-The following variants exist:
+Returns a time series found at given index. If index is out of range, an empty breakpoint series is returned.
+Be aware that the array of time series attached to a time series collection attribute is not stable and cannot be 
+used as first argument to this function. 
 
-| Variant | Description |
-|---|---|
-| @AT(T,d) | Returns one of the time series in the input array, based on the lookup index in argument 2. Index 0, returns the first time series in the array, index 1 returns the second time series in the array, etc. |
-| @AT(D,d) | Returns a single number from the array in argument 1, based on the lookup index in argument 2. |
-| @AT(t,s) | Treats t as an array. Returns a single value (a double) from the time series, based on the lookup time in argument 2. The time argument may be a macro expanded to time point. |
+| # | Type | Description |
+|---|---|---|
+| 1 | D | Array of floating-point numbers. |
+| 2 | d | Lookup index, the first value has index 0. |
 
-Looking up an index outside [0,n-1], where n is the number of elements, returns
-NaN.
+Returns the number found at given index. If index is out of range, then the returned value is NaN
+
+| # | Type | Description |
+|---|---|---|
+| 1 | t | Time series. |
+| 2 | s | Time argument. May be a macro expanded to time point. <br>Examples: DAY+10h, UTC20141124 |
+
+Returns a value found on the time series at given time point. If time argument is not valid, then the returned value is NaN.
 
 ## Example
+
 DArray = {10,11,12,13,14}
 
 Res1 = @AT(DArray,0)

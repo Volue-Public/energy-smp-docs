@@ -1,29 +1,27 @@
-# TIME_MASK
-## About the function
+## TIME_MASK
+
+### About the function
 This function creates time series from its arguments, normally used as time
 masks (a series with 1 or 0 as value), but not limited to only this type.
 
-## Syntax
-  There two main variants of this function. The general variant:
+### Syntax
 
-- [TIME_MASK(s,S,D,s)](#time_maskssds-and-time_maskssd)
-- [TIME_MAS(s,S,D)](#time_maskssds-and-time_maskssd)
-- [TIME_MASK(S,D)](#time_masksd)
+There two main variants of this function. The recommended variants:
 
+- TIME_MASK(s,S,D,s)
+- TIME_MASK(s,S,D)
 
-  A special variant using a holiday file:
+And these deprecated variants:
 
-- [TIME_MASK(s)](#time_masks-and-time_maskss)
-- [TIME_MASK(s,s)](#time_masks-and-time_maskss)
+- TIME_MASK(S,D)
+- TIME_MASK(s)
+- TIME_MASK(s,s)
 
-
-## TIME_MASK(s,S,D,s) and TIME_MASK(s,S,D)
+### TIME_MASK(s,S,D,s) and TIME_MASK(s,S,D)
 The principle for the function is that you specify a repeat frequency, an array
 of time points and a corresponding array of function values. The time points are
 repeated at the frequency given as the first argument. The last argument allows
 you to specify the resolution for the result series.
-
-
 
 | # | Type | Description |
 |---|---|---|
@@ -32,30 +30,23 @@ you to specify the resolution for the result series.
 | 3 | D | Array of values which apply to the time points given in the preceding argument. |
 | 4 | s | Result series resolution. For values, see Resolution. |
 
-
-
-### Repeat frequency
+#### Repeat frequency
 This argument consists of a time span code in addition to some options. The time
 span code can be one of the following calendar codes:
-
-
 
 | Symbol | Definition |
 |---|---|
 | WEEKDAY | Weekdays at daytime. Gives the value 1 at time steps within 'workhours'. |
 | WEEKEND | Night and weekend - the opposite of WEEKDAY for all days except WEEKEND. |
 | HOLIDAY | Night, weekends and holidays - the opposite of 'NORMALDAY'. |
-| NORMALDAY | Weekday at daytime, except for holidays - same as 'WEEKDAY', but holidays are excluded ('holiday' and 'mholidays'). |
+| NORMALDAY | Weekday at daytime, except for holidays - same as 'WEEKDAY', <br>but holidays are excluded ('holiday' and 'mholidays'). |
 
-
-
-  The following frequency codes can be used:
-
-
+The following frequency codes can be used:
 
 | Symbol | Definition |
 |---|---|
 | MIN15 | Quarter of an hour |
+| MIN30 | Half an hour |
 | HOUR | Hour |
 | DAY | 24-hour period |
 | WEEK | Week |
@@ -63,29 +54,21 @@ span code can be one of the following calendar codes:
 | YEAR | Year |
 | NONE | Absolute time points, no repetition frequency |
 
-
-
-  The options to frequency code are defined in <> brackets.
-
-
+The options to frequency code are defined in <> brackets, for instance `HOUR<LT>`.
 
 | Symbol | Definition |
 |---|---|
-|   | The result series gets linear curve type. |
-|   | Local DST calendar used when moving time points with given frequency. |
-|   | Database configured calendar used when moving time points with given frequency. |
-|   | UTC calendar used when moving time points with given frequency. |
-
-
+| Linear  | The result series gets linear curve type. |
+| LT | Local DST calendar used when moving time points with given frequency. |
+| DB | Database configured calendar used when moving time points with given frequency. |
+| UTC | UTC calendar used when moving time points with given frequency. |
 
 Tip! You may incorporate calendar options into frequency codes as a prefix
 code. Valid calendar prefix codes are LOCAL, STANDARD, UTC and DB. For example
 frequency code LOCALDAY is the same as DAY
 
-### Time point description array
+###& Time point description array
   You can use the following special codes instead of a list of definitions.
-
-
 
 | Symbol | Definition |
 |---|---|
@@ -95,13 +78,10 @@ frequency code LOCALDAY is the same as DAY
 | HOURLY | Transformed to 24 time points representing, from hour 0 to 23 |
 | QUARTERLY | Transformed to 4 time points |
 
-
-
 If you use one of these codes, you must still supply the correct number of
 values in the next argument.
 
-### Resolution
-
+#### Resolution
 
 | Symbol | Definition |
 |---|---|
@@ -116,6 +96,7 @@ values in the next argument.
 
 
 ### Example
+
 Result time series = @TIME_MASK('DAY', {'DAY+07h', 'DAY+10h', 'DAY+14h',
 'DAY+18h'}, {1,2,3,4},'HOUR')
 
@@ -129,9 +110,7 @@ the time zone of the database.
 Note! If the same expressions are run for a day in summer time, the values
 are shifted to one hour later.
 
-  ![](Images/ex_TIME_MASK-nimbustable1.png)
-
-
+![](Images/ex_TIME_MASK-nimbustable1.png)
 
 Result time series = @TIME_MASK('DAY', {'DAY+07h', 'DAY+10h', 'DAY+14h',
 'DAY+18h'}, {1,2,3,4},'HOUR')
@@ -141,8 +120,6 @@ The presentation of data values is linear.
 
   ![](Images/ex_TIME_MASK-nimbustable2.png)
 
-
-
 Result time series = @TIME_MASK('DAY', {'DAY+07h', 'DAY+10h', 'DAY+14h',
 'DAY+18h'}, {1,2,3,4},'VARINT')
 
@@ -151,12 +128,14 @@ resolution. The presentation of data values is step wise.
 
   ![](Images/ex_TIME_MASK-nimbustable3.png)
 
-## TIME_MASK(S,D)
+### TIME_MASK(S,D)
+
 This syntax variant has no repeat frequency, the given points in time are
 absolute. Gives the same effect as using TIME_MASK(s,S,D) with repeat frequency
 'NONE'.
 
-## TIME_MASK(s) and TIME_MASK(s,s)
+### TIME_MASK(s) and TIME_MASK(s,s)
+
 These variants let you define a logical time series from criteria given in by
 parameters in a text file. TIME_MASK(s) references the default calendar file
 holidays.txt. TIME_MASK(s,s) uses a user-defined file. Several user-defined
@@ -168,9 +147,8 @@ As an example, the function can be used to find the power usage in specific
 periods of the day, for instance in connection with low load, peak load etc.
 
 ### Example
-  @TIME_MASK(s,s)
-
-
+  
+@TIME_MASK(s,s)
 
   The `MyHolidayfile.txt` is a user defined calendar file:
 ```
@@ -193,20 +171,14 @@ periods of the day, for instance in connection with low load, peak load etc.
   lseason 4/1 11/1
 ```
 
-
-
   The function returns the following according to the calendar file definition:
-
-
 
 | Expression | Result mask |
 |---|---|
-| @TIME_MASK('WEEKDAY',’MyHolidayfile.txt’) | 1 for all hours (or 15-minute periods) from 06:00 to 22:00 on all days except for weekends, i.e. Monday to Friday inclusive. 0 otherwise. |
-| @TIME_MASK('WEEKEND',’MyHolidayfile.txt’) | 1 for all hours (or 15-minute periods) from 22:00 to 06:00 from Monday to Friday, and 1 for the entire day on Saturday and Sunday. 0 otherwise. |
-| @TIME_MASK('HOLIDAY',’MyHolidayfile.txt’) | Same mask as for "WEEKEND", in addition to 1 for all fixed and moveable public holidays defined in the current file. See "holiday" and "mholidays". 0 otherwise. |
+| @TIME_MASK('WEEKDAY',’MyHolidayfile.txt’) | 1 for all hours (or 15-minute periods) from <br>06:00 to 22:00 on all days except for weekends, i.e. Monday to Friday inclusive. 0 otherwise. |
+| @TIME_MASK('WEEKEND',’MyHolidayfile.txt’) | 1 for all hours (or 15-minute periods) from <br>22:00 to 06:00 from Monday to Friday, and 1 for the entire day on Saturday and Sunday. 0 otherwise. |
+| @TIME_MASK('HOLIDAY',’MyHolidayfile.txt’) | Same mask as for "WEEKEND", in addition to 1 for <br>all fixed and moveable public holidays defined in the current file. See "holiday" and "mholidays". 0 otherwise. |
 | @TIME_MASK('NORMALDAY',’MyHolidayfile.txt’) | Opposite of WEEKDAY. |
-
-
 
 The result above can be illustrated in a figure showing the difference between
 the various masks:

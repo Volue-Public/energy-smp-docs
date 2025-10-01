@@ -29,11 +29,11 @@ cases where this series is missing get s value 1001 etc.
 
 | # | Type | Description |
 |---|---|---|
-| 1 | t | A fixed interval time series with the requested total value to distribute onto result series found on participating Mesh objects |
-| 2 | s | A search expression that defines the set of Mesh objects that participates in the distribution of total value from argument 1. The search expression should end up in a Mesh "node" object, not a time series or another attribute directly. If the search expression has the prefix "Model:" it means the search is applied from root level of current Mesh model (Model: is of course then removed from search definition). |
-| 3 | s | The name of the attribute on the participating Mesh object that contains a time series with priority values. Can be a time series of any resolution, normally a break point series. |
-| 4 | s | The name of the attribute on the participating Mesh object that contains a time series with capacity values. Can be a time series of any resolution. |
-| 5 | s | The name of the attribute on the participating Mesh object that contains a time series to receive the result values. The resolution of this time series must be the same as the one in first argument. |
+| 1 | t | A fixed interval time series with the requested total value to distribute onto result series <br>found on participating Mesh objects |
+| 2 | s | A search expression that defines the set of Mesh objects that participates in the <br>distribution of total value from argument 1. The search expression should end up in a Mesh "node" object, not a time series or another attribute directly. If the search expression <br>has the prefix "Model:" it means the search is applied from root level of current Mesh model <br>(Model: is of course then removed from search definition). |
+| 3 | s | The name of the attribute on the participating Mesh object that contains a time series with <br>priority values. Can be a time series of any resolution, normally a break point series. |
+| 4 | s | The name of the attribute on the participating Mesh object that contains a time series with <br>capacity values. Can be a time series of any resolution. |
+| 5 | s | The name of the attribute on the participating Mesh object that contains a time series to <br>receive the result values. The resolution of this time series must be <br>the same as the one in first argument. |
 
 The AllocateReserves function normally returns a time series which is equal to
 the requested series (first argument). In case the function is failing, it

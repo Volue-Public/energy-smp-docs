@@ -1,5 +1,6 @@
 ## GET_Y_FX
-  **About the function**
+
+### About the function
 
 The function looks up in an xy-relation, defined as argument to the function,
 with values from a time series that also is an argument to the function. The
@@ -8,27 +9,22 @@ information about how to handle [input values outside the provided
 range](#handle-input-values-outside-the-provided-range).
 
 ## Syntax
+
 - GET_Y_FX (t,D,D[,s])
 
 
 ## Description
 
-
-
 | # | Type | ## Description |
 |---|---|---|
-| 1 | t | Series containing x-values used to lookup in the xy-relation to find the result value for current point of time. |
+| 1 | t | Series containing x-values used to lookup in the xy-relation to find <br>the result value for current point of time. |
 | 2 | D | X-values, sorted increasingly. |
 | 3 | D | Y-values corresponding to the X-values given in the last argument. |
-| 4 | s | Can have the following values: INTERPOL - means that the y-value is interpolated, default is no interpolation NOHOLD - means that if you have a NaN on the X-series, the last calculated Y-value is not used. In default mode last calculated value is used. You may combine these two methods and separate them by using a comma. |
-
-
-
+| 4 | s | Can have the following values: <br>INTERPOL - means that the y-value is interpolated, default is no interpolation <br>NOHOLD - means that if you have a NaN on the X-series, the last calculated <br>Y-value is not used. In default mode last calculated value is used. <br>You may combine these two methods and separate them by using a comma. |
 
   GET_Y_FX (t,D,D,[s]) corresponds to y=f(x)
 
-## Example
-Example 1: GET_Y_FX (t,D,D,[s])
+## Example 1
 
 ```
 R1 = @GET_Y_FX(%'/X series',{-1,20,40}, {1,2,3} )
@@ -61,7 +57,7 @@ When an input is higher than the last value from the x range provided in the
 function call (40 in the example below) the last value from the y range will be
 returned (3 in the example below).
 
-**Example**
+## Example 2
 
 ```
 ##=@GET_Y_FX(@t('t'), {-1,20,40}, {1,2,3}, 'INTERPOL,NOHOLD')
