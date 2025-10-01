@@ -1,13 +1,16 @@
-﻿# Size
-## About the function
+﻿## Size
+
+### About the function
+
 This function returns the number of elements in the array given as argument.
 
-## Syntax
+### Syntax
+
 - Size(T)
 - Size(D)
 - Size(S)
 
-## Description
+### Description
 
 | Type | Description |
 |---|---|
