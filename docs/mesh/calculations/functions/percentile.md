@@ -95,7 +95,7 @@ Method BY_SUM:
 Method SCALED_MEAN_BY_SUM:
 
 - Calculates a starting point using the method BY_SUM to find the time series with the percentile index ≤ the required percentile in the function.
-- Calculates the mean value for each single time series included in the function (IndexTimeSeriesMean)
+- Calculates the mean value for each single time series included in the function (IndexTimeSeriesMean).
 - Calculates the mean of all the time series included in the function (SumMean).
 - The result equals to the time series found in the BY_SUM calculation multiplied by the factor SumMean/IndexTimeSeriesMean.
 
