@@ -26,8 +26,6 @@ The functions in this category are used to calculate time series with a differen
 | LAST | Last value in the accumulation period. For break point series this is the functional value at the end of the accumulation period, unless there exist an explicit value.<br/><br/>**Note!** For fixed interval series it is the last value not being NaN in the accumulation period. |
 | MIN | Smallest value in the accumulation period. |
 | MAX | Largest value in the accumulation period. |
-| GSUM | This transformation code requires that you use TRANSFORM version with resolution given as a break point series (version R2) and that the base series is fixed interval.<br/><br/>Same as SUM but with different period handling. In this case the period is not adjusted with regards to resolution. Here you can e.g. transform to week value based on Wednesday to Wednesday or inhomogeneous periods given by points of time on a given break point series. This transformation code requires that you use TRANSFORM version with resolution given as a break point series (version R2). |
-| GMEAN | See GSUM. Same properties, but here mean value for period is calculated. |
 
 Observe that in case the transformation method is integral based (for example ACCAVGI and ACCAVGI_NOW), the source series must have curvetype staircase start of step.
 
