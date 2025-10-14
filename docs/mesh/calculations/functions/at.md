@@ -27,7 +27,7 @@ used as first argument to this function.
 | 1 | D | Array of floating-point numbers. |
 | 2 | d | Lookup index, the first value has index 0. |
 
-Returns the number found at given index. If index is out of range, then the returned value is NaN
+Returns the number found at given index. If index is out of range, then the returned value is NaN.
 
 | # | Type | Description |
 |---|---|---|

@@ -6,7 +6,7 @@ masks (a series with 1 or 0 as value), but not limited to only this type.
 
 ### Syntax
 
-There two main variants of this function. The recommended variants:
+There are two main variants of this function. The recommended variants:
 
 - TIME_MASK(s,S,D,s)
 - TIME_MASK(s,S,D)
