@@ -24,5 +24,5 @@ Valid resolutions text symbols are:
 
 `Res = @Resolution(@t('.Ts1'))`
 
-In case Ts1 has hourly resolution the value of Res is 'HOUR'.
+In case Ts1 has hourly resolution, the value of Res is 'HOUR'.
 
