@@ -18,7 +18,7 @@ attributes.
 | 1 | s | First text argument |
 | 2 | s | Second text argument |
 
-In case there are multiple contributions to building the text, then this
+In case there are multiple contributions to building the text, this
 variant is recommended:
 
 | # | Type | Description |
