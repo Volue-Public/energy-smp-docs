@@ -412,15 +412,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="pdlog">PDLOG</h1>
-<p>About this function</p>
+                <h2 id="pdlog">PDLOG</h2>
+<h3 id="about-this-function">About this function</h3>
 <p>The PDLOG function is used to give messages to SmG Event Log based on events
 occurring in SmG Calculator.</p>
-<h2 id="syntax">Syntax</h2>
+<h3 id="syntax">Syntax</h3>
 <ul>
 <li>PDLOG(d,s[,t])</li>
 <li>PDLOG(d,s,t,d)</li>
 </ul>
+<p><strong>Description</strong></p>
 <table>
 <thead>
 <tr>
@@ -438,7 +439,7 @@ occurring in SmG Calculator.</p>
 <tr>
 <td>2</td>
 <td>s</td>
-<td>Message to be written to Event Log. The string may contain several macros to give the general message a more specific content. The macros are:<br/> <ul><li>$start: Start of calculation period. </li><li>$end: End of calculation period.</li><li>$nvalues: Number of values being TRUE (value = 1) in time series.</li><li>$first: Point of time for first value being TRUE in time series.</li><li>$last: Point of time for last value being TRUE in time series.</li><li>$path: Full object path.</li></ul></td>
+<td>Message to be written to Event Log. The string may contain several macros to give the general <br>message a more specific content. The macros have a prefix \$ and these are available:<br/> <strong>\$start</strong> : Start of calculation period. <br/><strong>\$end</strong> : End of calculation period.<br/><strong>\$nvalues</strong> : Number of values being TRUE (value = 1) in time series.<br/><strong>\$first</strong> : Point of time for first value being TRUE in time series.<br/><strong>\$last</strong> : Point of time for last value being TRUE in time series.<br/><strong>\$path</strong> : Full object path.</li></ul></td>
 </tr>
 <tr>
 <td>3</td>
@@ -452,7 +453,7 @@ occurring in SmG Calculator.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="example-1">Example 1</h2>
+<h3 id="example-1">Example 1</h3>
 <pre><code>Difference =@MEAN(@T('To_MetSensor.Temperature_operative'))-
 @MEAN(@T('To_NeighbourMetStation.Temperature_used'))
 Deviation = @ABS(Difference) &gt; 4
@@ -472,7 +473,7 @@ following result:</p>
 <p>It is also possible to verify the result by using the built-in filtering
 function in Mesh:</p>
 <p><img alt="" src="../assets/images/pdlog-4.png" /></p>
-<h2 id="example-2">Example 2</h2>
+<h3 id="example-2">Example 2</h3>
 <p>Compares an inflow accumulated time series with a historical version of the same
 time series. If the accumulated end value change exeeds 10% absolute value a
 message is created in SmG Event Log:</p>

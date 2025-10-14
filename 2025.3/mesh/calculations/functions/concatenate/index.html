@@ -444,14 +444,8 @@ attributes.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="example">Example</h2>
-<p><code>## = @t(@Concatenate(‘../..’, @s(‘.TargetTimeseries’))</code></p>
-<p>The argument to @t is calculated based on the local text attribute
-TargetTimeseries and a static movement <code>../..</code> . If the value of
-TargetTimeseries is MyTsAttribute, the result is the time series addressed like
-this, <code>../…MyTs</code>. This means go to the parent of the parent and get the time
-series on the MyTsAttribute attribute.</p>
-<p><strong>Description</strong></p>
+<p>In case there are multiple contributions to building the text, this
+variant is recommended:</p>
 <table>
 <thead>
 <tr>
@@ -468,7 +462,14 @@ series on the MyTsAttribute attribute.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="example_1">Example</h2>
+<h2 id="example-1">Example 1</h2>
+<p><code>## = @t(@Concatenate(‘../...’, @s(‘.TargetTimeseries’))</code></p>
+<p>The argument to @t is calculated based on the local text attribute
+<em>TargetTimeseries</em> and a static movement <code>../...</code> . If the value of
+<em>TargetTimeseries</em> is <code>MyTs</code>, the result is the time series addressed like
+this, <code>../...MyTs</code>. This means go to the parent of the parent and get the time
+series on the <em>MyTs</em> attribute.</p>
+<h2 id="example-2">Example 2</h2>
 <p><code>## = @t( @Concatenate( {'*[.Type=HydroPlant&amp;&amp;.Name=', @MeshID('NAME'),'].Production' })</code></p>
 <p>If the name of current object is 'PlantX' then the Concatenate function will
 return this string:</p>

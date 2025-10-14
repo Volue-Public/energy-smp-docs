@@ -412,14 +412,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="accumulate">ACCUMULATE</h2>
+                <h1 id="accumulate">ACCUMULATE</h1>
 <p>Accumulates values for some periods for a time series. When entering a new sub
 period, the accumulation buffer is reset.</p>
-<p>Syntax 1</p>
+<h2 id="syntax">Syntax</h2>
 <ul>
 <li>ACCUMULATE(d,s,t[,d,d])</li>
+<li>ACCUMULATE(t,[s],s)</li>
+<li>ACCUMULATE(t,s,d)</li>
 </ul>
-<p><strong>Description</strong></p>
+<p><strong>Description</strong> - syntax 1</p>
 <table>
 <thead>
 <tr>
@@ -437,7 +439,7 @@ period, the accumulation buffer is reset.</p>
 <tr>
 <td>2</td>
 <td>s</td>
-<td>Start time specification. May be a macro definition or a fully specified time point on the YYYYMMDDhhmmssxxx format. A calendar name may be used as prefix on this specification. Default is current standard time (utc+1 in Norwegian setup).</td>
+<td>Start time specification. May be a macro definition or a fully specified time point on the <br>YYYYMMDDhhmmssxxx format. <br>A calendar name may be used as prefix on this specification. <br>Default is current standard time (utc+1 in Norwegian setup).</td>
 </tr>
 <tr>
 <td>3</td>
@@ -456,11 +458,7 @@ period, the accumulation buffer is reset.</p>
 </tr>
 </tbody>
 </table>
-<p>Syntax 2</p>
-<ul>
-<li>ACCUMULATE(t,[s],s)</li>
-</ul>
-<p><strong>Description</strong></p>
+<p><strong>Description</strong> - syntax 2</p>
 <table>
 <thead>
 <tr>
@@ -478,97 +476,16 @@ period, the accumulation buffer is reset.</p>
 <tr>
 <td>2</td>
 <td>s</td>
-<td>Optional. Accumulation from start or end of the interval given in the next argument. ’&gt;’ means from the start of the interval and forward.</td>
+<td>Optional. Accumulation from start or end of the interval given in the next argument. <br>’&gt;’ means from the start of the interval and forward.</td>
 </tr>
 <tr>
 <td>3</td>
 <td>s</td>
-<td>Accumulation interval. Eg. ‘DAY’, ‘WEEK’, ‘MONTH, ‘YEAR’. You can set accumulation period to HYDYEAR, i.e. from 1. September until next 1. September (standard calendar). You can also use a prefix to overrule the standard time (utc+1 in Norwegian setup). Eg. ‘UTCWEEK’.</td>
+<td>Accumulation interval. Eg. ‘DAY’, ‘WEEK’, ‘MONTH, ‘YEAR’. <br>You can set accumulation period to HYDYEAR, i.e. from 1. September <br>until next 1. September (standard calendar). <br>You can also use a prefix to overrule the standard time (utc+1 in Norwegian setup). <br>Eg. ‘UTCWEEK’.</td>
 </tr>
 </tbody>
 </table>
-<p>Example 1 - accumulation syntax1</p>
-<p><code>@ACCUMULATE(0.0, 'UTC20140101', @t('TsAccInput'), 1.0, 0.0)</code></p>
-<p>The example starts accumulation at 1. January (UTC calendar) with initial value
-0.0 and value at next time point t is</p>
-<p>0.0 + 1.0 * TsAccInput[t] + 0.0</p>
-<p>or</p>
-<p>Result[t] = initialValue + Factor A * TsAccInput[t] + Factor B</p>
-<p>for the first value and</p>
-<p>Result[t] = Result[t-1] + Factor A * TsAccInput[t] + Factor B</p>
-<p>for the next values.</p>
-<p>Example 2 - accumulation syntax1</p>
-<p><code>@ACCUMULATE(0.0, 'YEAR+10d', @t('TsAccInput'))</code></p>
-<p>The example starts accumulation 10th of January (UTC calendar) with initial
-value 0.0. No multiplication or offset factors are used.</p>
-<p>Example 3 - accumulation syntax2</p>
-<p><code>## = @ACCUMULATE(@t('Precipitation_hour_operative'),'&gt;', 'HYDYEAR')</code></p>
-<p>Accumulates the precipitation for each hydrological year.</p>
-<p><img alt="" src="../Images/ex_accumulate.png" /></p>
-<p>Example 4 - accumulation syntax2</p>
-<p><code>## = @ACCUMULATE(@t('Precipitation_hour_operative'),'WEEK')</code></p>
-<p>Accumulates the precipitation for each week.</p>
-<p><img alt="" src="../Images/ex_accumulate2.png" /></p>
-<p>Example 5 - accumulation of bucket precipitation using explicit extended periods</p>
-<p>The following example is a general expression for a year's accumulation of
-precipitation combined with the <a href="../time/">Time</a> function and extended
-period functions:</p>
-<pre><code>  tstart = @Time('YEAR',@Time('SOP'))
-  viewEndTime = @Time('EOP')
-  @PushExtPeriod('x', tstart - @TimeSpan('HOUR'), viewEndTime)
-  Precip = @t('PrecipBucket') * 1.0
-  @PopExtPeriod('x')
-
-  @PushExtPeriod('y', tstart, @Time('EOP'))
-  Delta = @DELTA(Precip)
-  DeltaClipped = Delta &gt;= -2 ? Delta : 0
-  @PopExtPeriod('y')
-  ## = @ACCUMULATE(DeltaClipped, '&gt;','YEAR')
-</code></pre>
-<p>In the following example from Nimbus, the function has accumulated the
-precipitation from the turn of the year. The start value (tstart), &gt;0, is
-displayed in the blue curve:</p>
-<p><img alt="" src="../Images/ex_accumulate3.png" /></p>
-<p>In the following example from Nimbus, the presentation starts later in the year
-than in the previous example. The start value (tsstar) is displayed in the blue
-chart:</p>
-<p><img alt="" src="../Images/ex_accumulate4.png" /></p>
-<p>Description of the expressions in this example:</p>
-<table>
-<thead>
-<tr>
-<th>Expression</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>tstart = @Time('YEAR',@Time('SOP'))</td>
-<td>Finds the start time for the chart presentation. This example uses the YEAR macro (the start of the year), combined with a reference time indicating the report start. If the reference time is not included, the report displays the current year. See also description of the Time function.</td>
-</tr>
-<tr>
-<td>viewEndTime = @Time('EOP')</td>
-<td>The end time for the report.</td>
-</tr>
-<tr>
-<td>@PushExtPeriod('x', tstart - @TimeSpan('HOUR'), viewEndTime) Precip = @t('PrecipBucket') * 1.0 @PopExtPeriod('x')</td>
-<td>Extend relevant calculation period with one hour before the relevant start year. This example shows a linear time arithmetic by using tstart with the length of an hour in internal time format. This gives necessary data to the DELTA function in the next block. Note! This example only gives a dummy calculation (multiplied with 1), but in reality you would calculate with MIX, validate and correct functions.</td>
-</tr>
-<tr>
-<td>@PushExtPeriod('y', tstart, @Time('EOP')) Delta = @DELTA(Precip) DeltaClipped = Delta &gt;= -2 ? Delta : 0 @PopExtPeriod('y')</td>
-<td>Runs DELTA and removes large negative contributions on the required period.</td>
-</tr>
-<tr>
-<td>## = @ACCUMULATE(DeltaClipped,'&gt;', 'YEAR')</td>
-<td>Calculates the result.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Syntax 3</strong></p>
-<ul>
-<li>ACCUMULATE(t,s,d)</li>
-</ul>
-<h2 id="description">Description</h2>
+<p><strong>Description</strong> - syntax 3</p>
 <table>
 <thead>
 <tr>
@@ -583,7 +500,7 @@ chart:</p>
 </tr>
 <tr>
 <td>s</td>
-<td>Accumulation from start or end of the interval given in the next argument. ’&gt;’ means from the start of the interval and forward. ’&lt;’ means from the end of the interval and backwards.</td>
+<td>Accumulation from start or end of the interval given in the next argument. <br>’&gt;’ means from the start of the interval and forward. ’&lt;’ means from the end of <br>the interval and backwards.</td>
 </tr>
 <tr>
 <td>d</td>
@@ -591,6 +508,66 @@ chart:</p>
 </tr>
 </tbody>
 </table>
+<h2 id="example-1">Example 1</h2>
+<p>Accumulation syntax 1 with five arguments</p>
+<p><code>@ACCUMULATE(0.0, 'UTC20140101', @t('TsAccInput'), 10.0, 0.0)</code></p>
+<p>The example starts accumulation at 1. January (UTC calendar) with initial value
+0.0 and value at next time point t is</p>
+<p>0.0 + 10.0 * TsAccInput[t] + 0.0</p>
+<p>or</p>
+<p>Result[t] = initialValue + factor A * TsAccInput[t] + factor B</p>
+<p>for the first value and</p>
+<p>Result[t] = Result[t-1] + factor A * TsAccInput[t] + factor B</p>
+<p>for the next values.</p>
+<h2 id="example-2">Example 2</h2>
+<p>Accumulation syntax 1 with three arguments (uses default values for factor A and B (argument four and five))</p>
+<p><code>@ACCUMULATE(0.0, 'YEAR+10d', @t('TsAccInput'))</code></p>
+<p>The example starts accumulation 10th of January (UTC calendar) with initial
+value 0.0. No multiplication or offset factors are used.</p>
+<h2 id="example-3">Example 3</h2>
+<p>Accumulation syntax 2</p>
+<p><code>## = @ACCUMULATE(@t('Precipitation_hour_operative'),'&gt;', 'HYDYEAR')</code></p>
+<p>Accumulates the precipitation for each hydrological year.</p>
+<p><img alt="" src="../Images/ex_accumulate.png" /></p>
+<h2 id="example-4">Example 4</h2>
+<p>Accumulation syntax 2 with second argument omitted.</p>
+<p><code>## = @ACCUMULATE(@t('Precipitation_hour_operative'),'WEEK')</code></p>
+<p>Accumulates the precipitation for each week.</p>
+<p><img alt="" src="../Images/ex_accumulate2.png" /></p>
+<h2 id="example-5">Example 5</h2>
+<p>Accumulation of bucket precipitation using explicit extended periods</p>
+<p>The following example is a general expression for a year's accumulation of
+precipitation combined with the <a href="../time/">Time</a> function and extended
+period functions:</p>
+<pre><code> #
+ 1  tstart = @Time('YEAR',@Time('SOP'))
+ 2  viewEndTime = @Time('EOP')
+ 3  @PushExtPeriod('x', tstart - @TimeSpan('HOUR'), viewEndTime)
+ 4  Precip = @t('PrecipBucket') * 1.0
+ 5  @PopExtPeriod('x')
+ 6
+ 7  @PushExtPeriod('y', tstart, @Time('EOP'))
+ 8  Delta = @DELTA(Precip)
+ 9  DeltaClipped = Delta &gt;= -2 ? Delta : 0
+10  @PopExtPeriod('y')
+11  ## = @ACCUMULATE(DeltaClipped, '&gt;','YEAR')
+</code></pre>
+<p>Some comments to the expressions above (ref. line numbers #)</p>
+<ul>
+<li><em>#1</em> Finds the start time for the chart presentation. This example uses the YEAR macro (the start of the year), combined with a reference time indicating the report start. If the reference time is not included, the report displays the current year. See also description of the <a href="../time/">Time</a> function.</li>
+<li><em>#2</em>  The end time for the report.</li>
+<li><em>#3</em> Extend relevant calculation period with one hour before the relevant start year. This example shows a linear time arithmetic by using <code>tstart</code> with the length of an hour in the internal time format. This gives necessary data to the DELTA function in the next block.</li>
+<li><em>#4</em> This example gives only a dummy calculation (multiplied with 1), but in reality you would calculate with MIX, validate and correct functions.</li>
+<li><em>#9</em> Removes large negative contributions on the required period.</li>
+</ul>
+<p>In the following example from Nimbus, the function has accumulated the
+precipitation from the turn of the year. The start value (tstart), &gt;0, is
+displayed in the blue curve:</p>
+<p><img alt="" src="../Images/ex_accumulate3.png" /></p>
+<p>In the following example from Nimbus, the presentation starts later in the year
+than in the previous example. The start value (tsstar) is displayed in the blue
+chart:</p>
+<p><img alt="" src="../Images/ex_accumulate4.png" /></p>
               
             </div>
           </div><footer>

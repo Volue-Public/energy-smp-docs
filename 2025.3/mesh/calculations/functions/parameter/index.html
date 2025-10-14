@@ -412,64 +412,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="parameter">Parameter</h1>
-<h2 id="about-the-function">About the function</h2>
-<p>This allows you to change parameter values used in a function to analyse
-scenarios differently than the default parameter definition. You can change
-these default parameter values from Nimbus (see screen example below).</p>
-<p>The changes are done in memory in your Nimbus session. When you close the Nimbus
-session or reset the calculation parameters, the values return to the default
-parameter definition.</p>
-<h2 id="syntax">Syntax</h2>
-<ul>
-<li>Parameter(sd)</li>
-<li>Parameter(st)</li>
-<li>Parameter(ss)</li>
-</ul>
-<h2 id="description">Description</h2>
-<table>
-<thead>
-<tr>
-<th>#</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>s</td>
-<td>Parameter name.</td>
-</tr>
-<tr>
-<td>2</td>
-<td>d</td>
-<td>Default value. Double or integer.</td>
-</tr>
-<tr>
-<td>2</td>
-<td>t</td>
-<td>Default time series</td>
-</tr>
-<tr>
-<td>2</td>
-<td>s</td>
-<td>Default text string</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Note!</strong> References to attributes for objects do not work as default
-parameters.</p>
-<p>If the @Parameter calculation expression contains a time point or time macro,
-you need to convert the value as a text string in the calculator function.</p>
-<h2 id="example">Example</h2>
-<p><code>@TimeToString(@Time(@Parameter('Start time', '20150102')))</code></p>
-<p><code>@TimeToString(@Time(@Parameter('Start time', 'YEAR+1m')))</code></p>
-<p>In a time series template calculation expression, you can use the @Parameter
-function to define the parameters you want to expose for change in a Nimbus
-process. The use of the parameter function is generic and can be used in all
-functions and accessed from any Nimbus time series view.</p>
-<p><img alt="" src="../Images/Parameter-Ex.png" /></p>
+                <h2 id="parameter">Parameter</h2>
+<h3 id="about-the-function">About the function</h3>
+<p>This function is no longer available in Mesh.</p>
               
             </div>
           </div><footer>

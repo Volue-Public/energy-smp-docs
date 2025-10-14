@@ -413,21 +413,22 @@
             <div class="section" itemprop="articleBody">
               
                 <h2 id="max">MAX</h2>
-<p>About the functions</p>
+<h3 id="about-the-functions">About the functions</h3>
 <p>Finds the highest values in time series, numbers, arrays or combinations of
 these.</p>
-<p>The result series has the same resolution as the input time series.</p>
-<p><strong>Syntax</strong></p>
+<p>There are many variants of this function, some returns a single number as result
+but most of them returns a time series.</p>
+<p>The result series has the same resolution as the input time series. This also applies to cases where there are multiple time series involved and they all have the same resolution. If there are series with different resolutions, the result is a breakpoint series.</p>
+<h3 id="syntax">Syntax</h3>
 <ul>
 <li>MAX(T)</li>
-<li>MAX(d)</li>
-<li>MAX(D)</li>
-<li>MAX(t)</li>
+<li>MAX(D) -&gt; returns a number</li>
+<li>MAX(t) -&gt; returns a number</li>
 <li>MAX(t,t)</li>
 <li>MAX(T,t)</li>
 <li>MAX(t,T)</li>
 <li>MAX(t,d)</li>
-<li>MAX(d,d)</li>
+<li>MAX(d,d) -&gt; returns a number</li>
 <li>MAX(T,T)</li>
 </ul>
 <table>
@@ -442,18 +443,20 @@ these.</p>
 <tr>
 <td>1</td>
 <td>t T d D</td>
-<td>Time series. Array of time series. Number. Array of numbers.</td>
+<td>Time series, array of time series, number or array of numbers.</td>
 </tr>
 <tr>
 <td>2</td>
 <td>t d T</td>
-<td>Time series. Optional. Number. Optional. Array of time series. Optional.</td>
+<td>Optional. Time series, number or array of time series.</td>
 </tr>
 </tbody>
 </table>
-<h2 id="example">Example</h2>
+<h2 id="examples">Examples</h2>
+<p>In general, when there are two arguments and at least one of them are an array of time series, like (t,T), (T,t) and (T,T) then the function behaves like having one array. The function concatenate the time series arguments into one array
+before doing the operation.</p>
 <h3 id="example-1-maxt">Example 1: @MAX(t)</h3>
-<p>ResTs = @MAX(@t('Ts')</p>
+<p>ResTs = @MAX(@t('.Ts')</p>
 <p>Returns the highest value of the time series for the requested period. See
 similar example for the <a href="../min/">@MIN(t) function</a>.</p>
 <h3 id="example-2-maxtt">Example 2: @MAX(t,t)</h3>
@@ -472,7 +475,7 @@ similar example for the <a href="../min/">@MIN(t) function</a>.</p>
 <p>ResTs = @MAX({@t('Ts1'),@t('Ts2'),@t('Ts3')})</p>
 <p>{@t('Ts1'),@t('Ts2'),@t('Ts3')} is an array of time series.</p>
 <p>Returns the largest value of all the time series of the array for every time
-step.</p>
+step. The resolution is breakpoint in case there are different resolutions involved in the input series.</p>
               
             </div>
           </div><footer>

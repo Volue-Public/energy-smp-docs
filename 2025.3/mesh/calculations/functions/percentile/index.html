@@ -459,7 +459,7 @@ third argument.</p>
 <tr>
 <td>5</td>
 <td>s</td>
-<td>Optional parameter.<br/> Method specification.<br/>Possible values are BY_SUM, SCALED_MEAN_BY_SUM or SCALED_BY_SUM.<br/>See description below.</td>
+<td>Optional parameter.<br/> Method specification.<br/>Possible values are BY_SUM or SCALED_MEAN_BY_SUM.<br/><a href="#methods">See description below</a>.</td>
 <td></td>
 </tr>
 <tr>
@@ -470,26 +470,6 @@ third argument.</p>
 </tr>
 </tbody>
 </table>
-<p>Method BY_SUM:</p>
-<ul>
-<li>Sums each single time series included in the function and finds the percentile index based on the established sums. As a consequence, this method always returns a result equal to one of the series defined in the input data with percentile index ≤ the required percentile in the function.</li>
-<li>The percentile index is found by sorting the sum values from lowest to highest, giving the index (100/n-1) where n is number of input time series included in the function.</li>
-</ul>
-<p>Method SCALED_MEAN_BY_SUM:</p>
-<ul>
-<li>Calculates a starting point using the method BY_SUM to find the time series with the percentile index ≤ the required percentile in the function.</li>
-<li>Calculates the mean value for each single time series included in the function (IndexTimeSeriesMean)</li>
-<li>Calculates the mean of all the time series included in the function (SumMean).</li>
-<li>The result equals to the time series found in the BY_SUM calculation multiplied by the factor SumMean/IndexTimeSeriesMean.</li>
-</ul>
-<p>Method SCALED_BY_SUM:</p>
-<ul>
-<li>Calculates the percentile index by using the method BY_SUM.</li>
-<li>Calculates the sum for the required percentile in the function based on the percentile index sums using standard percentile method for each time step, i.e. the percentile sum may be interpolated (Sum1).</li>
-<li>Calculates the required percentile value for each time step using standard percentile method. i.e. the values may be interpolated.</li>
-<li>Calculates the sum for the percentile time series (Sum2).</li>
-<li>The percentile time series is a scaled with the factor (Sum1/Sum2).</li>
-</ul>
 <p>Example 1</p>
 <p><code>## = @PERCENTILE (@t('Temperature_hour_operative'),2000,2010,100)</code></p>
 <p>If the number of observations (time series) do not correspond to the required
@@ -529,7 +509,7 @@ for P70 and P80.</p>
 </tr>
 <tr>
 <td>s</td>
-<td>Optional parameter. Method specification. Possible values are BY_SUM, SCALED_MEAN_BY_SUM or SCALED_BY_SUM. See description below.</td>
+<td>Optional parameter. Method specification. Possible values are BY_SUM, SCALED_MEAN_BY_SUM or SCALED_BY_SUM. <a href="#methods">See description below</a>.</td>
 <td></td>
 </tr>
 <tr>
@@ -556,6 +536,27 @@ SumMean/IndexTimeSeriesMean.</p>
 factor. The factor is found by taking the sum for the time series with
 percentile index P100, divided by the sum for the max value time series.</p>
 <p><img alt="" src="../Images/ex_percentile4.png" /></p>
+<h3 id="methods">Methods</h3>
+<p>Method BY_SUM:</p>
+<ul>
+<li>Sums each single time series included in the function and finds the percentile index based on the established sums. As a consequence, this method always returns a result equal to one of the series defined in the input data with percentile index ≤ the required percentile in the function.</li>
+<li>The percentile index is found by sorting the sum values from lowest to highest, giving the index (100/n-1) where n is number of input time series included in the function.</li>
+</ul>
+<p>Method SCALED_MEAN_BY_SUM:</p>
+<ul>
+<li>Calculates a starting point using the method BY_SUM to find the time series with the percentile index ≤ the required percentile in the function.</li>
+<li>Calculates the mean value for each single time series included in the function (IndexTimeSeriesMean).</li>
+<li>Calculates the mean of all the time series included in the function (SumMean).</li>
+<li>The result equals to the time series found in the BY_SUM calculation multiplied by the factor SumMean/IndexTimeSeriesMean.</li>
+</ul>
+<p>Method SCALED_BY_SUM:</p>
+<ul>
+<li>Calculates the percentile index by using the method BY_SUM.</li>
+<li>Calculates the sum for the required percentile in the function based on the percentile index sums using standard percentile method for each time step, i.e. the percentile sum may be interpolated (Sum1).</li>
+<li>Calculates the required percentile value for each time step using standard percentile method. i.e. the values may be interpolated.</li>
+<li>Calculates the sum for the percentile time series (Sum2).</li>
+<li>The percentile time series is a scaled with the factor (Sum1/Sum2).</li>
+</ul>
               
             </div>
           </div><footer>

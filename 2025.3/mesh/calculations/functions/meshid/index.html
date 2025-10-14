@@ -412,12 +412,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="meshid">MeshID</h1>
+                <h2 id="meshid">MeshID</h2>
 <p>This function is used to get an identification of the Mesh object having a
 calculated time series where this function is used. It is also possible to get
 the identification from a related Mesh object by giving a search or navigation
 suffix to the function argument.</p>
-<h2 id="syntax">Syntax</h2>
+<h3 id="syntax">Syntax</h3>
 <ul>
 <li>MeshID(s)</li>
 </ul>
@@ -432,17 +432,17 @@ suffix to the function argument.</p>
 <tbody>
 <tr>
 <td>s</td>
-<td>What type of identification to get and if it contains two parts divided by a semicolon (;) it also defines where to get it from. Valid specification of what type of id to get can be one of: NAME, TYPE, GUID or WRAPPEDGUID. The second part (optional part coming after a semicolon) is a relative navigation or search definition. Relative to current Mesh object.</td>
+<td>What type of identification to get and if it contains two parts divided by a semicolon (;) <br>it also defines where to get it from. <br>Valid specification of what type of id to get is one of: <br>NAME, TYPE, GUID or WRAPPEDGUID. <br>The second part (optional part coming after a semicolon) is a relative navigation or <br>search definition. Relative to current Mesh object.</td>
 </tr>
 </tbody>
 </table>
 <p>The function returns a symbol (a string).</p>
-<p><strong>Note!</strong> The navigation strings are model dependent.</p>
 <h2 id="example">Example</h2>
 <p><code>Ident = @MeshID(‘NAME’)</code></p>
 <p>Returns the name of current object (the one owning this calculation)</p>
 <p><code>Ident = @MeshID(‘TYPE’)</code></p>
 <p>Returns name of the type that current object is an instance of</p>
+<p><strong>Note!</strong> The navigation strings are model dependent.</p>
 <p><code>Ident = @MeshID(‘NAME;to_PriceArea’)</code></p>
 <p>Returns the name of the object found on the other side of the navigation given
 by relation name to_PriceArea.</p>

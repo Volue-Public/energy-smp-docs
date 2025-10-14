@@ -413,16 +413,16 @@
             <div class="section" itemprop="articleBody">
               
                 <h2 id="at">AT</h2>
-<h2 id="about-the-function">About the function</h2>
+<h3 id="about-the-function">About the function</h3>
 <p>Retrieves an element from an object. Relevant object types are array of time
 series, numbers or time series.</p>
-<h2 id="syntax">Syntax</h2>
+<h3 id="syntax">Syntax</h3>
 <ul>
 <li>AT(T,d)</li>
 <li>AT(D,d)</li>
 <li>AT(t,s)</li>
 </ul>
-<h2 id="description">Description</h2>
+<h3 id="description">Description</h3>
 <table>
 <thead>
 <tr>
@@ -438,19 +438,28 @@ series, numbers or time series.</p>
 <td>Array of time series.</td>
 </tr>
 <tr>
-<td>1</td>
-<td>t</td>
-<td>Time series.</td>
+<td>2</td>
+<td>d</td>
+<td>Lookup index, the first value has index 0.</td>
 </tr>
+</tbody>
+</table>
+<p>Returns a time series found at given index. If index is out of range, an empty breakpoint series is returned.
+Be aware that the array of time series attached to a time series collection attribute is not stable and cannot be 
+used as first argument to this function. </p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>1</td>
 <td>D</td>
 <td>Array of floating-point numbers.</td>
-</tr>
-<tr>
-<td>2</td>
-<td>s</td>
-<td>Time argument. May be a macro expanded to time point. Examples: DAY+10h, UTC20141124</td>
 </tr>
 <tr>
 <td>2</td>
@@ -459,31 +468,29 @@ series, numbers or time series.</p>
 </tr>
 </tbody>
 </table>
-<p>The following variants exist:</p>
+<p>Returns the number found at given index. If index is out of range, then the returned value is NaN.</p>
 <table>
 <thead>
 <tr>
-<th>Variant</th>
+<th>#</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>@AT(T,d)</td>
-<td>Returns one of the time series in the input array, based on the lookup index in argument 2. Index 0, returns the first time series in the array, index 1 returns the second time series in the array, etc.</td>
+<td>1</td>
+<td>t</td>
+<td>Time series.</td>
 </tr>
 <tr>
-<td>@AT(D,d)</td>
-<td>Returns a single number from the array in argument 1, based on the lookup index in argument 2.</td>
-</tr>
-<tr>
-<td>@AT(t,s)</td>
-<td>Treats t as an array. Returns a single value (a double) from the time series, based on the lookup time in argument 2. The time argument may be a macro expanded to time point.</td>
+<td>2</td>
+<td>s</td>
+<td>Time argument. May be a macro expanded to time point. <br>Examples: DAY+10h, UTC20141124</td>
 </tr>
 </tbody>
 </table>
-<p>Looking up an index outside [0,n-1], where n is the number of elements, returns
-NaN.</p>
+<p>Returns a value found on the time series at given time point. If time argument is not valid, then the returned value is NaN.</p>
 <h2 id="example">Example</h2>
 <p>DArray = {10,11,12,13,14}</p>
 <p>Res1 = @AT(DArray,0)</p>

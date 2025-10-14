@@ -412,13 +412,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="isvalid">IsValid</h1>
+                <h2 id="isvalid">IsValid</h2>
 <h3 id="about-the-function">About the function</h3>
 <p>A time series reference specified by <strong>@t(‘TheReference’)</strong> may give no result.
 The reason for this may be one of the following:</p>
 <ul>
 <li><strong>TheReference</strong> does not exist.</li>
-<li>There is no connection to a physical time series from the current context.</li>
+<li>There is no connection to a physical time series from the current context and there is no calculation associated with this time series attribute.</li>
 </ul>
 <p>In these cases the system displays a warning message in the Nimbus Object
 Structure log. The warning message informs it could not resolve <strong>TheReference</strong>
@@ -429,7 +429,7 @@ for a given object.</p>
 <li>IsValid(t)</li>
 <li>IsValid(s,s)</li>
 </ul>
-<h3 id="description-isvalidt">Description IsValid(t)</h3>
+<p><strong>Description</strong></p>
 <table>
 <thead>
 <tr>
@@ -440,12 +440,12 @@ for a given object.</p>
 <tbody>
 <tr>
 <td>t</td>
-<td>&gt;Source time series that is normally the result of a <code>@t('TheReference')</code>.</td>
+<td>Source time series that is normally the result of a <code>@t('TheReference')</code>.</td>
 </tr>
 </tbody>
 </table>
 <p>The function returns 1 or 0 representing true or false.</p>
-<h3 id="description-isvalidss">Description IsValid(s,s)</h3>
+<p><strong>Description</strong></p>
 <table>
 <thead>
 <tr>
@@ -456,7 +456,7 @@ for a given object.</p>
 <tbody>
 <tr>
 <td>s</td>
-<td>Expected type of target, i.e. the entity found from the search/navigation defined in the next argument. Valid target codes are 't', 'd', 's', 'T', 'D' or 'S'. The codes represents time series, numeric, string, time series array, numeric array and string array respectively.</td>
+<td>Expected type of target, i.e. the entity found from the search/navigation defined <br>in the second argument. Valid target codes are 't', 'd', 's', 'T', 'D' or 'S'. <br>The codes represents time series, numeric, string, time series array, numeric array <br>and string array respectively.</td>
 </tr>
 <tr>
 <td>s</td>

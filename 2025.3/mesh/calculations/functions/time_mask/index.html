@@ -412,23 +412,23 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="time_mask">TIME_MASK</h1>
-<h2 id="about-the-function">About the function</h2>
+                <h2 id="time_mask">TIME_MASK</h2>
+<h3 id="about-the-function">About the function</h3>
 <p>This function creates time series from its arguments, normally used as time
 masks (a series with 1 or 0 as value), but not limited to only this type.</p>
-<h2 id="syntax">Syntax</h2>
-<p>There two main variants of this function. The general variant:</p>
+<h3 id="syntax">Syntax</h3>
+<p>There are two main variants of this function. The recommended variants:</p>
 <ul>
-<li><a href="#time_maskssds-and-time_maskssd">TIME_MASK(s,S,D,s)</a></li>
-<li><a href="#time_maskssds-and-time_maskssd">TIME_MAS(s,S,D)</a></li>
-<li><a href="#time_masksd">TIME_MASK(S,D)</a></li>
+<li>TIME_MASK(s,S,D,s)</li>
+<li>TIME_MASK(s,S,D)</li>
 </ul>
-<p>A special variant using a holiday file:</p>
+<p>And these deprecated variants:</p>
 <ul>
-<li><a href="#time_masks-and-time_maskss">TIME_MASK(s)</a></li>
-<li><a href="#time_masks-and-time_maskss">TIME_MASK(s,s)</a></li>
+<li>TIME_MASK(S,D)</li>
+<li>TIME_MASK(s)</li>
+<li>TIME_MASK(s,s)</li>
 </ul>
-<h2 id="time_maskssds-and-time_maskssd">TIME_MASK(s,S,D,s) and TIME_MASK(s,S,D)</h2>
+<h3 id="time_maskssds-and-time_maskssd">TIME_MASK(s,S,D,s) and TIME_MASK(s,S,D)</h3>
 <p>The principle for the function is that you specify a repeat frequency, an array
 of time points and a corresponding array of function values. The time points are
 repeated at the frequency given as the first argument. The last argument allows
@@ -464,7 +464,7 @@ you to specify the resolution for the result series.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="repeat-frequency">Repeat frequency</h3>
+<h4 id="repeat-frequency">Repeat frequency</h4>
 <p>This argument consists of a time span code in addition to some options. The time
 span code can be one of the following calendar codes:</p>
 <table>
@@ -489,7 +489,7 @@ span code can be one of the following calendar codes:</p>
 </tr>
 <tr>
 <td>NORMALDAY</td>
-<td>Weekday at daytime, except for holidays - same as 'WEEKDAY', but holidays are excluded ('holiday' and 'mholidays').</td>
+<td>Weekday at daytime, except for holidays - same as 'WEEKDAY', <br>but holidays are excluded ('holiday' and 'mholidays').</td>
 </tr>
 </tbody>
 </table>
@@ -505,6 +505,10 @@ span code can be one of the following calendar codes:</p>
 <tr>
 <td>MIN15</td>
 <td>Quarter of an hour</td>
+</tr>
+<tr>
+<td>MIN30</td>
+<td>Half an hour</td>
 </tr>
 <tr>
 <td>HOUR</td>
@@ -532,7 +536,7 @@ span code can be one of the following calendar codes:</p>
 </tr>
 </tbody>
 </table>
-<p>The options to frequency code are defined in &lt;&gt; brackets.</p>
+<p>The options to frequency code are defined in &lt;&gt; brackets, for instance <code>HOUR&lt;LT&gt;</code>.</p>
 <table>
 <thead>
 <tr>
@@ -542,19 +546,19 @@ span code can be one of the following calendar codes:</p>
 </thead>
 <tbody>
 <tr>
-<td></td>
+<td>Linear</td>
 <td>The result series gets linear curve type.</td>
 </tr>
 <tr>
-<td></td>
+<td>LT</td>
 <td>Local DST calendar used when moving time points with given frequency.</td>
 </tr>
 <tr>
-<td></td>
+<td>DB</td>
 <td>Database configured calendar used when moving time points with given frequency.</td>
 </tr>
 <tr>
-<td></td>
+<td>UTC</td>
 <td>UTC calendar used when moving time points with given frequency.</td>
 </tr>
 </tbody>
@@ -562,7 +566,7 @@ span code can be one of the following calendar codes:</p>
 <p>Tip! You may incorporate calendar options into frequency codes as a prefix
 code. Valid calendar prefix codes are LOCAL, STANDARD, UTC and DB. For example
 frequency code LOCALDAY is the same as DAY</p>
-<h3 id="time-point-description-array">Time point description array</h3>
+<h3 id="time-point-description-array">&amp; Time point description array</h3>
 <p>You can use the following special codes instead of a list of definitions.</p>
 <table>
 <thead>
@@ -596,7 +600,7 @@ frequency code LOCALDAY is the same as DAY</p>
 </table>
 <p>If you use one of these codes, you must still supply the correct number of
 values in the next argument.</p>
-<h3 id="resolution">Resolution</h3>
+<h4 id="resolution">Resolution</h4>
 <table>
 <thead>
 <tr>
@@ -656,11 +660,11 @@ The presentation of data values is linear.</p>
 <p>This gives a time series with daily repeat frequency and breakpoint time
 resolution. The presentation of data values is step wise.</p>
 <p><img alt="" src="../Images/ex_TIME_MASK-nimbustable3.png" /></p>
-<h2 id="time_masksd">TIME_MASK(S,D)</h2>
+<h3 id="time_masksd">TIME_MASK(S,D)</h3>
 <p>This syntax variant has no repeat frequency, the given points in time are
 absolute. Gives the same effect as using TIME_MASK(s,S,D) with repeat frequency
 'NONE'.</p>
-<h2 id="time_masks-and-time_maskss">TIME_MASK(s) and TIME_MASK(s,s)</h2>
+<h3 id="time_masks-and-time_maskss">TIME_MASK(s) and TIME_MASK(s,s)</h3>
 <p>These variants let you define a logical time series from criteria given in by
 parameters in a text file. TIME_MASK(s) references the default calendar file
 holidays.txt. TIME_MASK(s,s) uses a user-defined file. Several user-defined
@@ -701,15 +705,15 @@ periods of the day, for instance in connection with low load, peak load etc.</p>
 <tbody>
 <tr>
 <td>@TIME_MASK('WEEKDAY',’MyHolidayfile.txt’)</td>
-<td>1 for all hours (or 15-minute periods) from 06:00 to 22:00 on all days except for weekends, i.e. Monday to Friday inclusive. 0 otherwise.</td>
+<td>1 for all hours (or 15-minute periods) from <br>06:00 to 22:00 on all days except for weekends, i.e. Monday to Friday inclusive. 0 otherwise.</td>
 </tr>
 <tr>
 <td>@TIME_MASK('WEEKEND',’MyHolidayfile.txt’)</td>
-<td>1 for all hours (or 15-minute periods) from 22:00 to 06:00 from Monday to Friday, and 1 for the entire day on Saturday and Sunday. 0 otherwise.</td>
+<td>1 for all hours (or 15-minute periods) from <br>22:00 to 06:00 from Monday to Friday, and 1 for the entire day on Saturday and Sunday. 0 otherwise.</td>
 </tr>
 <tr>
 <td>@TIME_MASK('HOLIDAY',’MyHolidayfile.txt’)</td>
-<td>Same mask as for "WEEKEND", in addition to 1 for all fixed and moveable public holidays defined in the current file. See "holiday" and "mholidays". 0 otherwise.</td>
+<td>Same mask as for "WEEKEND", in addition to 1 for <br>all fixed and moveable public holidays defined in the current file. See "holiday" and "mholidays". 0 otherwise.</td>
 </tr>
 <tr>
 <td>@TIME_MASK('NORMALDAY',’MyHolidayfile.txt’)</td>

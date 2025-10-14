@@ -416,14 +416,32 @@
 <h2 id="about-the-function">About the function</h2>
 <p>The ColorARGB function converts a colour name into an ARGB value. It can be used
 to produce time series values referenced by the COLOR_VALUE attribute in Mesh
-template reports. </p>
+template reports.</p>
 <h2 id="syntax">Syntax</h2>
 <ul>
-<li>d = ColorARGB(s)</li>
+<li>ColorARGB(s)</li>
 </ul>
-<p>Returns an ARGB value.The argument (s) is a named colour according to <a href="https://www.w3schools.com/colors/colors_names.asp">this
-list</a>. The colour name is
-case insensitive and must not contain space characters.</p>
+<h3 id="description">Description</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>s</td>
+<td>A named colour</td>
+</tr>
+</tbody>
+</table>
+<p>Returns an ARGB value.</p>
+<p>Accepted colour names can be found in <a href="https://www.w3schools.com/colors/colors_names.asp">this
+list</a>. 
+The colour name is case insensitive and must not contain space characters.</p>
 <p>Not accepted:</p>
 <pre><code>Dark Green
 </code></pre>
@@ -432,17 +450,20 @@ case insensitive and must not contain space characters.</p>
 darkgreen
 </code></pre>
 <p>Each colour also has four different nuances, which can be specified by adding 1
-to 4 as a suffix to the colour name. For instance :</p>
+to 4 as a suffix to the colour name. For instance:</p>
 <pre><code>steelblue
 steelblue1
 steelblue2
 steelblue3
 steelblue4
 </code></pre>
-<h2 id="example">Example</h2>
+<h3 id="example">Example</h3>
 <p><code>## = @t('.Income') &gt; 1000 ? @ColorARGB('orange') : @ColorARGB('magenta')</code></p>
 <p>Returns the ARGB value for the colour named <code>orange</code> or the colour named
 <code>magenta</code>, depending on the value of the <code>income</code> time series.</p>
+<p>This function can be used as part of the value on a report attribute named<br />
+<code>COLOR_VALUE</code> like this:</p>
+<p><code>EXP:## = @t('.Something') &lt; 0 ? @ColorARGB('Red') : @ColorARGB('green')</code></p>
               
             </div>
           </div><footer>

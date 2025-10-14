@@ -414,6 +414,7 @@
               
                 <h1 id="resolution">Resolution</h1>
 <h2 id="about-the-function">About the function</h2>
+<p>Test the resolution of a time series.</p>
 <h2 id="syntax">Syntax</h2>
 <ul>
 <li>IsResolution (t,s)</li>
@@ -429,15 +430,18 @@
 <tbody>
 <tr>
 <td>t</td>
-<td></td>
+<td>The time series to check</td>
 </tr>
 <tr>
 <td>s</td>
-<td></td>
+<td>A resolution symbol like 'HOUR', 'DAY' etc</td>
 </tr>
 </tbody>
 </table>
+<p>Returns 1 (true) if the time series match the specified resolution.</p>
 <h2 id="example">Example</h2>
+<p><code>HourSeries = @IsResolution(@t('.Ts1'), 'HOUR')</code></p>
+<p>Result value is 1 if Ts1 has hourly resolution.</p>
               
             </div>
           </div><footer>

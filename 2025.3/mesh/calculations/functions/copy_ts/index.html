@@ -412,11 +412,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="copyts">CopyTs</h1>
+                <h2 id="copyts">CopyTs</h2>
 <p>This function copies values from a source location to a destination location
 within the Mesh model. This is a function where the "side effects" of the
 operation is the important part rather than the returned values.</p>
-<h2 id="syntax">Syntax</h2>
+<h3 id="syntax">Syntax</h3>
 <ul>
 <li>CopyTs(s,s,s)</li>
 </ul>
@@ -431,7 +431,7 @@ operation is the important part rather than the returned values.</p>
 <tbody>
 <tr>
 <td>s</td>
-<td>Attribute name that determines the match between source and target series. It is assumed to be available at the object where the source series is found and where the target series is found. The built-in attribute called Name can also be used to decide match.</td>
+<td>Attribute name that determines the match between source and target series. <br>It is assumed to be available at the object where the source series <br>is found and where the target series is found. <br>The built-in attribute called Name can also be used to decide match.</td>
 </tr>
 <tr>
 <td>s</td>
@@ -448,7 +448,7 @@ operation is the important part rather than the returned values.</p>
 object where the @CopyTs() calculation is found. It is possible to make the
 search expression relative to model root by adding a prefix "Model:" to the
 search expression. This part is removed before applying the search.</p>
-<h2 id="example">Example</h2>
+<h3 id="example">Example</h3>
 <p><code>## = @CopyTs('Ident', '*[.Type=TypeB].Ts1','Model:*[.Name=A1_3_New]/[.Type=TypeB].Ts1')</code></p>
 <p>The function uses the value on the attribute <code>Ident</code> as criterion for making
 source - target pairs. The second argument is defining a relative search

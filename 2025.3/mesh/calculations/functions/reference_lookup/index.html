@@ -433,51 +433,51 @@ imply use of a default value.</p>
 <tbody>
 <tr>
 <td>@t(s)</td>
-<td>Looks up a time series from search/navigate string given as argument. If the target is not found, a log message a log message informs that the system failed to resolve the target.</td>
+<td>Looks up a time series from search/navigate string given as argument. <br>If the target is not found, a log message a log message informs that the system <br/>failed to resolve the target.</td>
 </tr>
 <tr>
 <td>@t(s,t)</td>
-<td>Basically the same as @t(s), but in case the lookup fails it returns the default time series given as the second argument. The function remains silent even if the returned value comes from the default argument. Note! The default argument most likely is another @t function call.</td>
+<td>Basically the same as @t(s), but in case the lookup fails it returns the default <br/>time series given as the second argument. <br/>The function remains silent even if the returned value comes from the default argument. <br/>Note! The default argument most likely is another @t function call.</td>
 </tr>
 <tr>
 <td>@T(s)</td>
-<td>Looks up a time series array from search/navigate string given as argument. If the target is not found, a log message informs that the system failed to resolve the target.</td>
+<td>Looks up a time series array from search/navigate string given as argument. <br/>If the target is not found, a log message informs that the system failed to resolve the target.</td>
 </tr>
 <tr>
 <td>@T(s,T)</td>
-<td>Basically, this is the same as @T(s). However, in case the lookup fails, it returns the default time series array given as the second argument. The function remains silent even if the returned value comes from the default argument. Note! The default argument may be another @T function call or an expression like {@TS(‘VARINT’)} given an array of one breakpoint series with a NaN value.</td>
+<td>Basically, this is the same as @T(s). However, in case the lookup fails, it returns the default <br/>time series array given as the second argument. The function remains silent <br/>even if the returned value comes from the default argument. <br/>Note! The default argument may be another @T function call or an expression like <br/>{@TS(‘VARINT’)} given an array of one breakpoint series with a NaN value.</td>
 </tr>
 <tr>
 <td>@d(s)</td>
-<td>Looks up a numeric value from search/navigate string given as argument. If the target is not found, a log message informs that the system failed to resolve the target.</td>
+<td>Looks up a numeric value from search/navigate string given as argument. <br/>If the target is not found, a log message informs that the system failed to resolve the target.</td>
 </tr>
 <tr>
 <td>@d(s,d)</td>
-<td>Basically, this is the same as @d(s). However, in case the lookup fails, it returns the default time series given as the second argument. The function remains silent even if the returned value comes from the default argument. Note! The default argument may be a constant values or another @d function call.</td>
+<td>Basically, this is the same as @d(s). However, in case the lookup fails, it returns <br/>the default time series given as the second argument. The function remains <br/>silent even if the returned value comes from the default argument. <br/>Note! The default argument may be a constant values or another @d function call.</td>
 </tr>
 <tr>
 <td>@D(s)</td>
-<td>Looks up a numeric array from the search/navigate string given as argument. If the target is not found, a log message informs that the system failed to resolve the target.</td>
+<td>Looks up a numeric array from the search/navigate string given as argument. If the target <br/>is not found, a log message informs that the system failed to resolve the target.</td>
 </tr>
 <tr>
 <td>@D(s,D)</td>
-<td>Basically, this is the same as @D(s). However, in case the lookup fails, it returns the default numeric array given as the second argument. The function remains silent even if the returned value comes from the default argument. Note! The default argument may be an explicit array (like {1,2,3}), or another @D function call. The explicit version must have at least one member in the array.</td>
+<td>Basically, this is the same as @D(s). However, in case the lookup fails, it returns <br/>the default numeric array given as the second argument. The function remains <br/>silent even if the returned value comes from the default argument. <br/>Note! The default argument may be an explicit array (like {1,2,3}), or another <br/>@D function call. The explicit version must have at least one member in the array.</td>
 </tr>
 <tr>
 <td>@s(s)</td>
-<td>Looks up a string value from the search/navigate string given as argument. If the target is not found, a log message informs that the system failed to resolve target.</td>
+<td>Looks up a string value from the search/navigate string given as argument. If the target <br/>is not found, a log message informs that the system failed to resolve target.</td>
 </tr>
 <tr>
 <td>@s(s,s)</td>
-<td>Basically, this is the same as @s(s). However, in case the lookup fails, it returns the default time series given as the second argument. The function remains silent even if the returned value comes from the default argument. Note! The default argument may be a constant values or another @s function call.</td>
+<td>Basically, this is the same as @s(s). However, in case the lookup fails, it returns the <br/>default time series given as the second argument. The function remains <br/>silent even if the returned value comes from the default argument. <br/>Note! The default argument may be a constant values or another @s function call.</td>
 </tr>
 <tr>
 <td>@(S,s)</td>
-<td>Looks up a string array from the search/navigate string given as argument. If the target is not found, a log message informs that the system failed to resolve the target.</td>
+<td>Looks up a string array from the search/navigate string given as argument. If the target <br/>is not found, a log message informs that the system failed to resolve the target.</td>
 </tr>
 <tr>
 <td>@S(s,S)</td>
-<td>Basically, this is the same as @S(s). However, in case the lookup fails, it returns the default array of strings given as the second argument. The function remains silent even if the returned value comes from the default argument. Note! The default argument may be an explicit value (like {‘None’}) or another @S function call.</td>
+<td>Basically, this is the same as @S(s). However, in case the lookup fails, it returns the default <br/>array of strings given as the second argument. The function remains silent even if <br/>the returned value comes from the default argument. <br/>Note! The default argument may be an explicit value (like {‘None’}) or another <br/>@S function call.</td>
 </tr>
 </tbody>
 </table>
