@@ -110,7 +110,7 @@ period functions:
 
 Some comments to the expressions above (ref. line numbers #)
 
-- *#1* Finds the start time for the chart presentation. This example uses the YEAR macro (the start of the year), combined with a reference time indicating the report start. If the reference time is not included, the report displays the current year. See also description of the Time function.
+- *#1* Finds the start time for the chart presentation. This example uses the YEAR macro (the start of the year), combined with a reference time indicating the report start. If the reference time is not included, the report displays the current year. See also description of the [Time](../functions/time.md) function.
 - *#2*  The end time for the report.
 - *#3* Extend relevant calculation period with one hour before the relevant start year. This example shows a linear time arithmetic by using `tstart` with the length of an hour in the internal time format. This gives necessary data to the DELTA function in the next block.
 - *#4* This example gives only a dummy calculation (multiplied with 1), but in reality you would calculate with MIX, validate and correct functions.
