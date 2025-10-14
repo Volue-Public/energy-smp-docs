@@ -1,33 +1,41 @@
 ﻿## MAX
-About the functions
+
+### About the functions
 
 Finds the highest values in time series, numbers, arrays or combinations of
 these.
 
-The result series has the same resolution as the input time series.
+There are many variants of this function, some returns a single number as result
+but most of them returns a time series.
 
-**Syntax**
+The result series has the same resolution as the input time series. This also applies to cases where there are multiple time series involved and they all have the same resolution. If there are series with different resolutions, the result is a breakpoint series.
+
+### Syntax
 
 - MAX(T)
-- MAX(d)
-- MAX(D)
-- MAX(t)
+- MAX(D) -> returns a number
+- MAX(t) -> returns a number
 - MAX(t,t)
 - MAX(T,t)
 - MAX(t,T)
 - MAX(t,d)
-- MAX(d,d)
+- MAX(d,d) -> returns a number
 - MAX(T,T)
 
 | # | Type | Description |
 |---|---|---|
-| 1 | t T d D | Time series. Array of time series. Number. Array of numbers. |
-| 2 | t d T | Time series. Optional. Number. Optional. Array of time series. Optional. |
+| 1 | t T d D | Time series, array of time series, number or array of numbers. |
+| 2 | t d T | Optional. Time series, number or array of time series. |
 
-## Example
+## Examples
+
+In general, when there are two arguments and at least one of them are an array of time series, like (t,T), (T,t) and (T,T) then the function behaves like having one array. The function concatenate the time series arguments into one array
+before doing the operation.
+
+
 ### Example 1: @MAX(t)
 
-ResTs = @MAX(@t('Ts')
+ResTs = @MAX(@t('.Ts')
 
 Returns the highest value of the time series for the requested period. See
 similar example for the [@MIN(t) function](../functions/min.md).
@@ -63,4 +71,4 @@ ResTs = @MAX({@t('Ts1'),@t('Ts2'),@t('Ts3')})
 {@t('Ts1'),@t('Ts2'),@t('Ts3')} is an array of time series.
 
 Returns the largest value of all the time series of the array for every time
-step.
+step. The resolution is breakpoint in case there are different resolutions involved in the input series.

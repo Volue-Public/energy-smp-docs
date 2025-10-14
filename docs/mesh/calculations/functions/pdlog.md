@@ -1,26 +1,27 @@
-# PDLOG
-  About this function
+## PDLOG
+
+### About this function
 
 The PDLOG function is used to give messages to SmG Event Log based on events
 occurring in SmG Calculator.
 
-## Syntax
+### Syntax
+
 - PDLOG(d,s[,t])
 - PDLOG(d,s,t,d)
-
-
-
+  
+**Description**
 
 | # | Type | Description |
 |---|---|---|
 | 1 | d | Type of message to Event Log: 1010 = Information, 1011 = Warning, 1012 = Error. |
-| 2 | s | Message to be written to Event Log. The string may contain several macros to give the general message a more specific content. The macros are:<br/> <ul><li>$start: Start of calculation period. </li><li>$end: End of calculation period.</li><li>$nvalues: Number of values being TRUE (value = 1) in time series.</li><li>$first: Point of time for first value being TRUE in time series.</li><li>$last: Point of time for last value being TRUE in time series.</li><li>$path: Full object path.</li></ul> |
+| 2 | s | Message to be written to Event Log. The string may contain several macros to give the general <br>message a more specific content. The macros have a prefix \$ and these are available:<br/> **\$start** : Start of calculation period. <br/>**\$end** : End of calculation period.<br/>**\$nvalues** : Number of values being TRUE (value = 1) in time series.<br/>**\$first** : Point of time for first value being TRUE in time series.<br/>**\$last** : Point of time for last value being TRUE in time series.<br/>**\$path** : Full object path.</li></ul> |
 | 3 | t | Time series in the log message. |
 | 4 | d | Number of values to be written to Event Log from the time series. |
 
 
 
-## Example 1
+### Example 1
 ```
 Difference =@MEAN(@T('To_MetSensor.Temperature_operative'))-
 @MEAN(@T('To_NeighbourMetStation.Temperature_used'))
@@ -51,7 +52,7 @@ function in Mesh:
 
   ![](assets/images/pdlog-4.png)
 
-## Example 2
+### Example 2
 Compares an inflow accumulated time series with a historical version of the same
 time series. If the accumulated end value change exeeds 10% absolute value a
 message is created in SmG Event Log:

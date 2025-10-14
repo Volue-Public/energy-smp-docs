@@ -1,16 +1,18 @@
-﻿# CopyTs
+﻿## CopyTs
+
 This function copies values from a source location to a destination location
 within the Mesh model. This is a function where the "side effects" of the
 operation is the important part rather than the returned values.
 
-## Syntax
+### Syntax
+
 - CopyTs(s,s,s)
 
 **Description**
 
 | Type | Description |
 |---|---|
-| s | Attribute name that determines the match between source and target series. It is assumed to be available at the object where the source series is found and where the target series is found. The built-in attribute called Name can also be used to decide match. |
+| s | Attribute name that determines the match between source and target series. <br>It is assumed to be available at the object where the source series <br>is found and where the target series is found. <br>The built-in attribute called Name can also be used to decide match. |
 | s | Search expression for getting source time series. |
 | s | Search expression for getting target time series. |
 
@@ -21,7 +23,8 @@ object where the @CopyTs() calculation is found. It is possible to make the
 search expression relative to model root by adding a prefix "Model:" to the
 search expression. This part is removed before applying the search.
 
-## Example
+### Example
+
 `## = @CopyTs('Ident', '*[.Type=TypeB].Ts1','Model:*[.Name=A1_3_New]/[.Type=TypeB].Ts1')`
 
 The function uses the value on the attribute `Ident` as criterion for making

@@ -1,14 +1,16 @@
 ﻿## SET_TS_VALUNIT
-## About the function
+
+### About the function
 This function is used to change the unit of a time series. Especially calculated
 series may contain several multiplied time series and result in different unit
 than the input time series.
 
-## Syntax
+### Syntax
+
 - SET_TS_VALUNIT(t,d)
 - SET_TS_VALUNIT(t,s)
 
-## Description
+### Description
 
 | # | Type | Description |
 |---|---|---|
@@ -20,7 +22,8 @@ See [Unit codes for SET_TS_VALUNIT](../functions/unit_codes_for_set_ts_val_unit.
 Time series application search window. Look in the **Unit** drop down menu to
 check if you are using the correct language for the code.
 
-## Example
+### Example
+
 Example 1: @SET_TS_VALUNIT(t,d)
 
 To change the unit of a result series to meters/second, the unit code is 120:
