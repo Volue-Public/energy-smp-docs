@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+<title>Smart Power Documentation</title>
+
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../wave/wave.css" rel="stylesheet" />
+        <link href="../../../stylesheets/extra.css" rel="stylesheet" />
+        <link href="../../../css/version-select.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Import of availability events";
+        var mkdocs_page_input_path = "mesh-data-transfer/use-cases/import-of-availability-events-using-mdt.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav is-active">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search fill-neutral--contrast">
+      <a href="../../..">
+          <img src="../../../logo.png" class="logo" alt="Logo"/>
+        </a>
+
+        <!-- A trick to place the version selector where I want it to be. -->
+        <div class="icon-home" style="display: none;"></div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mesh</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" >Concepts</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/concepts/availability/">Availability</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/calculations/calculations/">Calculations</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Modelling</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/modelling/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/modelling/rating-curves/">Rating curves</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/modelling/relations/">Relations</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/modelling/xy-sets/">XY-sets</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/concepts/search-language/">Search language</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/concepts/sessions/">Sessions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/concepts/time-series/">Time series</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mesh/installation/MeshServiceInstallationGuide/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Calculations</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/calculations/calculations/">Calculations</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Functions</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/calculations/functions/introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >General</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/allocate_reserves/">Allocate_Reserves</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/at/">AT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/color/">ColorARGB</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/compare/">Compare</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/concatenate/">Concatenate</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/copy_ts/">CopyTs</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/delta/">Delta</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/disable_cache/">DisableCache</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/getyfx/">GET_Y_FX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/isvalid/">IsValid</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/linear/">Linear</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/max/">MAX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/meshid/">MeshId</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/min/">MIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/parameter/">Parameter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/pdlog/">PDLOG</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/reference_lookup/">Reference Lookup</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/restriction/">Restriction</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/revision/">Revision</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/set_ts_val_unit/">Set_Ts_Valunit</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/size/">Size</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/time_mask/">Time_Mask</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/tostring/">ToString</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/trace/">Trace</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts/">TS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/unit_codes_for_set_ts_val_unit/">Unit Codes for Set_Ts_Valunit</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/valid/">Valid</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Forecast</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_best_forecast/">GetBestForecast</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_all_forecasts/">GetAllForecasts</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_forecast/">GetForecast</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_merged_forecast/">GetMergedForecasts</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >History</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/history/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_ts_as_of_time/">GetTsAsOfTime</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_ts_historical_versions/">GetTsHistoricalVersions</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_ts_audit_times/">GetTsAuditTimes</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Logical</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/bool/">Bool</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/inside/">Inside</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/negative/">Negative</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/not/">Not</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/outside/">Outside</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/positive/">Positive</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Math</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_gliding_average/">TS_GLIDING_AVERAGE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_gliding_gauss/">TS_GLIDING_GAUSS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_gliding_median/">TS_GLIDING_MEDIAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_gliding_median_gauss/">TS_GLIDING_MEDIAN_GAUSS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/gliding_trend_average/">GLIDING_TREND_AVERAGE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_acc_from/">TS_ACC_FROM</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/power/">POWER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/abs/">ABS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ceil/">CEIL</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/floor/">FLOOR</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/integer/">INTEGER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/log/">LOG</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ln/">LN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/round/">ROUND</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/round_integer/">ROUND_INTEGER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/acos/">ACOS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/asin/">ASIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/atan/">ATAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/cos/">COS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/sin/">SIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/tan/">TAN</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Mix</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/mix/">MIX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/mix_by_selecting_from_time_series_array/">MIX by selecting from time series array</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/mix0/">MIX0</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/tsiqfill/">TS_IQ-FILL</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Sim</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/convert_volume/">CONVERT_VOLUME</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/rating_curve/">RatingCurve</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/time_delayed/">TimeDelayed</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/xy/">XY</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/yx/">YX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/zxy/">ZX_Y</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/zyx/">ZY_X</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Statistical</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/mean/">MEAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/normal/">Normal</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/percentile/">PERCENTILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/sum/">SUM</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Status</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/status/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/reset_status/">RESET_STATUS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/status_mask/">STATUS_MASK</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/status_count/">STATUS_COUNT</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Time</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/is_resolution/">IsResolution</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/is_time_valid/">IsTimeValid</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/push_ext_period/">PushExtPeriod</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/pop_ext_period/">PopExtPeriod</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/time/">Time</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/resolution/">Resolution</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/timespan/">TimeSpan</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/time_to_string/">TimeToString</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/time_examples/">Time Examples</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/time_point_information/">Time Point Information</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Transform</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/transform_what_when/">Which function can be used when</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/transform_terms/">Terms used in the functions</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/transform/">TRANSFORM</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_expand/">TS_EXPAND</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_offset/">TS_OFFSET</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/values_from_year/">ValuesFromYear</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/distribute/">DISTRIBUTE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/trans_profile/">TRANS_PROFILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/profile/">PROFILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/profile_with_explicit_frequency/">PROFILE with explicit frequency</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/accumulate/">ACCUMULATE</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >VEE</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/validate_abs_limit/">ValidateAbsLimit</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/validate_delta_limit/">ValidateDeltaLimit</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/validate_delta_limit_extreme/">ValidateDeltaLimitExtreme</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/validate_repeat_value/">ValidateRepeatValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/correct_average_value/">CorrectAverageValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/correct_constant_value/">CorrectConstantValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/correct_copy_value/">CorrectCopyValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/correct_extrapolate/">CorrectExtrapolate</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/correct_interpolate/">CorrectInterpolate</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >gRPC</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/grpc/ClientCertificates/">Client certificates</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/grpc/Authorization/">Authorization</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/grpc/APISpecification/">API Specification</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mesh/model-maintenance/ModelMaintenanceConcepts/">Model maintenance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mesh Data Transfer</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../changelog/CHANGELOG/">Changelog</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../general/general/">General</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration/configuration/">Configuration</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Use cases</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../import-of-time-series-values-using-mdt/">Import of time series values</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../export-of-time-series-values-using-mdt/">Export of time series values</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Import of availability events</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#different-event-types-handled">Different event types handled</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#different-message-types">Different message types</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#xml-input-message-structure">XML input message structure</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#revisionevent-revisioneventupdate">RevisionEvent &amp; RevisionEventUpdate</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#restrictionevent-restrictioneventupdate">RestrictionEvent &amp; RestrictionEventUpdate</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#availabilityeventremove">AvailabilityEventRemove</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#xml-response-message-structure">XML response message structure</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#create-a-revision-event">Create a revision event</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#update-a-revision-event">Update a revision event</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-a-revision-event">Delete a revision event</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-a-restriction-event">Create a restriction event</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#update-a-restriction-event">Update a restriction event</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-a-restriction-event">Delete a restriction event</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#acknowledgement-successful-import">Acknowledgement successful import</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#acknowledgement-non-successful-import">Acknowledgement non-successful import</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap is-active">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars is-active"></i>
+          <a href="../../..">Smart Power Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Mesh Data Transfer</li>
+          <li class="breadcrumb-item">Use cases</li>
+      <li class="breadcrumb-item active">Import of availability events</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="import-of-availability-events-using-mesh-data-transfer">Import of availability events using Mesh Data Transfer</h1>
+<p>This document describes how availability events can be imported into Mesh using Mesh Data Transfer and AMQP messages in the
+Mesh standard XML format.</p>
+<ul>
+<li><a href="#import-of-availability-events-using-mesh-data-transfer">Import of availability events using Mesh Data Transfer</a></li>
+<li><a href="#different-event-types-handled">Different event types handled</a></li>
+<li><a href="#different-message-types">Different message types</a></li>
+<li><a href="#xml-input-message-structure">XML input message structure</a><ul>
+<li><a href="#revisionevent--revisioneventupdate">RevisionEvent \&amp; RevisionEventUpdate</a></li>
+<li><a href="#restrictionevent--restrictioneventupdate">RestrictionEvent \&amp; RestrictionEventUpdate</a></li>
+<li><a href="#availabilityeventremove">AvailabilityEventRemove</a></li>
+</ul>
+</li>
+<li><a href="#xml-response-message-structure">XML response message structure</a></li>
+<li><a href="#examples">Examples</a><ul>
+<li><a href="#create-a-revision-event">Create a revision event</a></li>
+<li><a href="#update-a-revision-event">Update a revision event</a></li>
+<li><a href="#delete-a-revision-event">Delete a revision event</a></li>
+<li><a href="#create-a-restriction-event">Create a restriction event</a></li>
+<li><a href="#update-a-restriction-event">Update a restriction event</a></li>
+<li><a href="#delete-a-restriction-event">Delete a restriction event</a></li>
+<li><a href="#acknowledgement-successful-import">Acknowledgement successful import</a></li>
+<li><a href="#acknowledgement-non-successful-import">Acknowledgement non-successful import</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="different-event-types-handled">Different event types handled</h2>
+<p>The import of availability events using AMQP supports two different event types:</p>
+<ul>
+<li><code>Revision</code> - an event that makes an object 100% unavailable for the given time period. Examples of
+such events are operations due to maintenance of the physical object or a failure that suddenly
+happens on the object.</li>
+<li><code>Restriction</code> - an event that has the possibility to just reduce the available resource by a part (f.ex. 20
+%). Examples of such events are reduced max level of a resevoir due to maintenance on the dam or
+reduced max production due to reduced capacity in some parts of the system.</li>
+</ul>
+<h2 id="different-message-types">Different message types</h2>
+<p>The message types that are available to use are:</p>
+<ul>
+<li><code>RevisionEvent</code> - create a new revision event on an object in the Mesh model.</li>
+<li><code>RevisionEventUpdate</code> - update an existing revision event.</li>
+<li><code>RestrictionEvent</code> - create a new restriction event on an object in the Mesh model.</li>
+<li><code>RestrictionEventUpdate</code> - update an existing restriction event.</li>
+<li><code>AvailabilityEventRemove</code> - delete an existing revision or restriction event.</li>
+</ul>
+<h2 id="xml-input-message-structure">XML input message structure</h2>
+<p>This is an example of the structure of the XML message:</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;Request xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
+xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes&quot;&gt;
+  &lt;MessageId&gt;12345678-1234-1234-1234-123456789012&lt;/MessageId&gt;
+  &lt;MessageVersion&gt;1.0.0.0&lt;/MessageVersion&gt;
+  &lt;ForceAvailabilityEventCreation&gt;true&lt;/ForceAvailabilityEventCreation&gt;
+  &lt;Sender&gt;SenderName&lt;/Sender&gt;
+  &lt;Receiver&gt;Mesh&lt;/Receiver&gt;
+  &lt;CreationDate&gt;2021-01-01T01:00:00+01:00&lt;/CreationDate&gt;
+  &lt;Inputs&gt;
+    &lt;AvailabilityEvents&gt;
+... one or more events
+    &lt;/AvailabilityEvents&gt;
+  &lt;/Inputs&gt;
+&lt;/Request&gt;
+</code></pre>
+<p>Parameters:</p>
+<ul>
+<li><code>MessageId</code> - id of the message, used in the response message to signal success or failure.</li>
+<li><code>MessageVersion</code> - version of the message format, currently only 1.0.0.0 is supported.</li>
+<li><code>ForceAvailabilityEventCreation</code> - flag to force events to be created for update messages when
+they not already exists.</li>
+<li><code>Sender</code> - name of the sender (used in lookup for SmG Participant to use when saving information in
+SmG Message Log).</li>
+<li><code>Receiver</code> - name of the receiver (always Mesh).</li>
+<li><code>CreationDate</code> - time when the message was created.</li>
+<li><code>Inputs/AvailabilityEvents</code> - contains list of events to be created, updated, and/or deleted. The
+events will be handled in the same order as they are located in the list.</li>
+</ul>
+<h3 id="revisionevent-revisioneventupdate">RevisionEvent &amp; RevisionEventUpdate</h3>
+<pre><code class="language-xml">&lt;RevisionEvent Path=&quot;Model/Company/Mesh&quot; Search=&quot;*
+[.Type=Generator&amp;amp;&amp;amp;.Name=ADKOL.856]&quot; EventId=&quot;1234&quot;&gt;
+  &lt;SubEvent Status=&quot;Planned&quot; Description=&quot;&quot; Value=&quot;1&quot;&gt;
+    &lt;Frequency Start=&quot;2022-04-06T06:00:00Z&quot; End=&quot;2022-04-06T10:00:00Z&quot; /&gt;
+  &lt;/SubEvent&gt;
+&lt;/RevisionEvent&gt;
+</code></pre>
+<p>Parameters:</p>
+<ul>
+<li><code>Path</code> - starting point (object) to use when searching for objects using the Search parameter.</li>
+<li><code>Search</code> - a search from the starting point that must result in exactly one object in order to be
+successful. The found object is the object where the events are created below.</li>
+<li><code>EventId</code> - this is a text string that identifies the created event. This id is normally created within the
+external system that "owns" the event. When updating and delete an event, object and event id must
+match.</li>
+<li><code>SubEvent/Status</code> - text string that identifies the status of the event. Legal values for revision events
+are:</li>
+<li><code>Proposed</code> - suggestion from Maintenance Planner.</li>
+<li><code>Recommended</code> - suggestion from Production Planner.</li>
+<li><code>Planned</code> - final status, no application TSO/Market message needed.</li>
+<li><code>Unplanned</code> - direct status used whether it needs to be reported to TSO and Market or not.</li>
+<li><code>Suspended</code> - event cancelled.</li>
+<li><code>AppliedByTso</code> - used in process towards TSO.</li>
+<li><code>ApprovedByTso</code> - used in process towards TSO.</li>
+<li><code>RejectedByTso</code> - used in process towards TSO.</li>
+<li><code>SubEvent/Description</code> - (optional) text string that describes the event.</li>
+<li><code>SubEvent/Value</code> - size of the unavailability. Always "1" for revisions.</li>
+<li><code>SubEvent/Frequency</code> - the period when this event is unavailable.</li>
+<li><code>SubEvent/Frequency/Start</code> - start of the unavailability period.</li>
+<li><code>SubEvent/Frequency/End</code> - end of the unavailability period.</li>
+</ul>
+<h3 id="restrictionevent-restrictioneventupdate">RestrictionEvent &amp; RestrictionEventUpdate</h3>
+<pre><code class="language-xml">&lt;RestrictionEvent Path=&quot;Model/Company/Mesh&quot; Search=&quot;*
+[.Type=ForecastPoint&amp;amp;&amp;amp;.Name=ITH-1124-U1&amp;amp;&amp;amp;...Pump=0]&quot;
+EventId=&quot;254525&quot; Category=&quot;ProductionMax[MW]&quot;&gt;
+  &lt;SubEvent Status=&quot;SelfImposed&quot; Description=&quot;&quot; Value=&quot;0&quot;&gt;
+    &lt;Frequency Start=&quot;2021-02-23T10:00:00Z&quot; End=&quot;2021-02-23T10:10:00Z&quot; /&gt;
+  &lt;/SubEvent&gt;
+&lt;/RestrictionEvent&gt;
+</code></pre>
+<p>Parameters:</p>
+<ul>
+<li><code>Path</code> - starting point (object) to use when searching for objects using the Search parameter.</li>
+<li><code>Search</code> - a search from the starting point that must result in exactly one object in order to be
+successful. The found object is the object where the events are created below.</li>
+<li><code>EventId</code> - this is a text string that identifies the created event. This id is normally created within the
+external system that "owns" the event. When updating and delete an event, object and event id must
+match.</li>
+<li><code>Category</code> - text string describing the category of the restriction that the event is related to. Legal
+values are:</li>
+<li><code>DischargeMax [m3/s]</code></li>
+<li><code>DischargeMin [m3/s]</code></li>
+<li><code>DischargeMaxAverage [m3/s]</code></li>
+<li><code>DischargeMinAverage [m3/s]</code></li>
+<li><code>DischargeMaxVariationDown [m3/s]</code></li>
+<li><code>DischargeMaxVariationUp [m3/s]</code></li>
+<li><code>DischargeBlocFlow [m3/s]</code></li>
+<li><code>ProductionMax [MW]</code></li>
+<li><code>ProductionMin [MW]</code></li>
+<li><code>ProductionMaxRegulations</code></li>
+<li><code>ProductionRampingUp [MW]</code></li>
+<li><code>ProductionRampingDown [MW]</code></li>
+<li><code>ProductionBlockGeneration [MW]</code></li>
+<li><code>RampingFlag</code></li>
+<li><code>ReservoirLevelMax [m]</code></li>
+<li><code>ReservoirLevelMin [m]</code></li>
+<li><code>ReservoirLevelRampingDown [m]</code></li>
+<li><code>ReservoirLevelRampingUp [m]</code></li>
+<li><code>PumpHeightDownstreamReservoir [m]</code></li>
+<li><code>PumpHeightUpstreamReservoir [m]</code></li>
+<li><code>Priority</code></li>
+<li><code>ReservoirTacticalLevelMax [m]</code></li>
+<li><code>ReservoirTacticalLevelMin [m]</code></li>
+<li><code>SubEvent/Status</code> - text string that identifies the status of the event. Legal values for restriction events
+are:</li>
+<li><code>SelfImposed</code> - restriction is due to internal needs.</li>
+<li><code>Licensed</code> - restriction is due to external regulation/law/agreements.</li>
+<li><code>SubEvent/Description</code> - (optional) text string that describes the event.</li>
+<li><code>SubEvent/Value</code> - size of the availability. For restrictions "0" means that nothing is available.</li>
+<li><code>SubEvent/Frequency</code> - the period when this event is unavailable.</li>
+<li><code>SubEvent/Frequency/Start</code> - start of the unavailability period.</li>
+<li><code>SubEvent/Frequency/End</code> - end of the unavailability period.</li>
+</ul>
+<h3 id="availabilityeventremove">AvailabilityEventRemove</h3>
+<pre><code class="language-xml">&lt;AvailabilityEventRemove Path=&quot;Mode/Company/Mesh&quot; Search=&quot;*
+[.Type=Generator&amp;amp;&amp;amp;.Name=ADKOL.856]&quot; EventId=&quot;1234&quot; /&gt;
+</code></pre>
+<p>Parameters:</p>
+<ul>
+<li><code>Path</code> - starting point (object) to use when searching for objects using the Search parameter.</li>
+<li><code>Search</code> - a search from the starting point that must result in exactly one object in order to be
+successful. The found object is the object where the events are created below.</li>
+<li><code>EventId</code> - this is a text string that identifies the created event. This id is normally created within the
+external system that "owns" the event. When updating and delete an event, object and event id must
+match.</li>
+</ul>
+<h2 id="xml-response-message-structure">XML response message structure</h2>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;Reply xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
+xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes&quot;&gt;
+  &lt;RequestMessageId&gt;12345678-1234-1234-1234-123456789012&lt;/RequestMessageId&gt;
+  &lt;MessageVersion&gt;1.0.0.0&lt;/MessageVersion&gt;
+  &lt;ImportSuccess&gt;false&lt;/ImportSuccess&gt;
+  &lt;ImportError&gt;This is the error text from MESH&lt;/ImportError&gt;
+&lt;/Reply&gt;
+</code></pre>
+<p>Parameters:</p>
+<ul>
+<li><code>RequestMessageId</code> - the same id as used as MessageId in the input message that this is a response of.</li>
+<li><code>MessageVersion</code> - version of the message format, currently only 1.0.0.0 is supported.</li>
+<li><code>ImportSuccess</code> - flag to signal if import was successful (true) or not (false).</li>
+<li><code>ImportError</code> - (optional) error text if import failed.</li>
+</ul>
+<h2 id="examples">Examples</h2>
+<h3 id="create-a-revision-event">Create a revision event</h3>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;Request xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
+xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes&quot;&gt;
+  &lt;MessageId&gt;12345678-1234-1234-1234-123456789012&lt;/MessageId&gt;
+  &lt;MessageVersion&gt;1.0.0.0&lt;/MessageVersion&gt;
+  &lt;ForceAvailabilityEventCreation&gt;true&lt;/ForceAvailabilityEventCreation&gt;
+  &lt;Sender&gt;SenderName&lt;/Sender&gt;
+  &lt;Receiver&gt;Mesh&lt;/Receiver&gt;
+  &lt;CreationDate&gt;2021-01-01T01:00:00+01:00&lt;/CreationDate&gt;
+  &lt;Inputs&gt;
+    &lt;AvailabilityEvents&gt;
+      &lt;RevisionEvent Path=&quot;Mode/Company/Mesh&quot; Search=&quot;*
+[.Type=Generator&amp;amp;&amp;amp;.Name=ADKOL.856]&quot; EventId=&quot;1234&quot;&gt;
+        &lt;SubEvent Status=&quot;Planned&quot; Description=&quot;&quot; Value=&quot;1&quot;&gt;
+          &lt;Frequency Start=&quot;2022-04-06T06:00:00Z&quot; End=&quot;2022-04-06T10:00:00Z&quot; /&gt;
+        &lt;/SubEvent&gt;
+      &lt;/RevisionEvent&gt;
+    &lt;/AvailabilityEvents&gt;
+  &lt;/Inputs&gt;
+&lt;/Request&gt;
+</code></pre>
+<h3 id="update-a-revision-event">Update a revision event</h3>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;Request xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
+xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes&quot;&gt;
+  &lt;MessageId&gt;12345678-1234-1234-1234-123456789013&lt;/MessageId&gt;
+  &lt;MessageVersion&gt;1.0.0.0&lt;/MessageVersion&gt;
+  &lt;ForceAvailabilityEventCreation&gt;true&lt;/ForceAvailabilityEventCreation&gt;
+  &lt;Sender&gt;SenderName&lt;/Sender&gt;
+  &lt;Receiver&gt;Mesh&lt;/Receiver&gt;
+  &lt;CreationDate&gt;2021-01-02T01:00:00+01:00&lt;/CreationDate&gt;
+  &lt;Inputs&gt;
+    &lt;AvailabilityEvents&gt;
+      &lt;RevisionEvent Path=&quot;Mode/Company/Mesh&quot; Search=&quot;*
+[.Type=Generator&amp;amp;&amp;amp;.Name=ADKOL.856]&quot; EventId=&quot;1234&quot;&gt;
+        &lt;SubEvent Status=&quot;Planned&quot; Description=&quot;Updated with real dates&quot;
+Value=&quot;1&quot;&gt;
+          &lt;Frequency Start=&quot;2022-04-06T07:10:00Z&quot; End=&quot;2022-04-06T09:45:00Z&quot; /&gt;
+        &lt;/SubEvent&gt;
+      &lt;/RevisionEvent&gt;
+    &lt;/AvailabilityEvents&gt;
+  &lt;/Inputs&gt;
+&lt;/Request&gt;
+</code></pre>
+<h3 id="delete-a-revision-event">Delete a revision event</h3>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;Request xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
+xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes&quot;&gt;
+  &lt;MessageId&gt;12345678-1234-1234-1234-123456789014&lt;/MessageId&gt;
+  &lt;MessageVersion&gt;1.0.0.0&lt;/MessageVersion&gt;
+  &lt;ForceAvailabilityEventCreation&gt;true&lt;/ForceAvailabilityEventCreation&gt;
+  &lt;Sender&gt;SenderName&lt;/Sender&gt;
+  &lt;Receiver&gt;Mesh&lt;/Receiver&gt;
+  &lt;CreationDate&gt;2021-01-03T01:00:00+01:00&lt;/CreationDate&gt;
+  &lt;Inputs&gt;
+    &lt;AvailabilityEvents&gt;
+      &lt;AvailabilityEventRemove Path=&quot;Mode/Company/Mesh&quot; Search=&quot;*
+[.Type=Generator&amp;amp;&amp;amp;.Name=ADKOL.856]&quot; EventId=&quot;1234&quot; /&gt;
+    &lt;/AvailabilityEvents&gt;
+  &lt;/Inputs&gt;
+&lt;/Request&gt;
+</code></pre>
+<h3 id="create-a-restriction-event">Create a restriction event</h3>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;Request xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
+xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes&quot;&gt;
+  &lt;MessageId&gt;12345678-1234-1234-1234-123456789015&lt;/MessageId&gt;
+  &lt;MessageVersion&gt;1.0.0.0&lt;/MessageVersion&gt;
+  &lt;ForceAvailabilityEventCreation&gt;true&lt;/ForceAvailabilityEventCreation&gt;
+  &lt;Sender&gt;SenderName&lt;/Sender&gt;
+  &lt;Receiver&gt;Mesh&lt;/Receiver&gt;
+  &lt;CreationDate&gt;2021-02-01T01:00:00+01:00&lt;/CreationDate&gt;
+  &lt;Inputs&gt;
+    &lt;AvailabilityEvents&gt;
+      &lt;RestrictionEvent Path=&quot;Mode/Company/Mesh&quot; Search=&quot;*
+[.Type=Generator&amp;amp;&amp;amp;.Name=ADKOL.856]&quot; EventId=&quot;2345&quot;
+Category=&quot;PowerUnavailable[MW]&quot;&gt;
+        &lt;SubEvent Status=&quot;SelfImposed&quot; Description=&quot;&quot; Value=&quot;-1&quot;&gt;
+          &lt;Frequency Start=&quot;2022-04-06T06:00:00Z&quot; End=&quot;2022-04-06T10:00:00Z&quot; /&gt;
+        &lt;/SubEvent&gt;
+      &lt;/RestrictionEvent&gt;
+    &lt;/AvailabilityEvents&gt;
+  &lt;/Inputs&gt;
+&lt;/Request&gt;
+</code></pre>
+<h3 id="update-a-restriction-event">Update a restriction event</h3>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;Request xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
+xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes&quot;&gt;
+  &lt;MessageId&gt;12345678-1234-1234-1234-123456789016&lt;/MessageId&gt;
+  &lt;MessageVersion&gt;1.0.0.0&lt;/MessageVersion&gt;
+  &lt;ForceAvailabilityEventCreation&gt;true&lt;/ForceAvailabilityEventCreation&gt;
+  &lt;Sender&gt;SenderName&lt;/Sender&gt;
+  &lt;Receiver&gt;Mesh&lt;/Receiver&gt;
+  &lt;CreationDate&gt;2021-02-02T01:00:00+01:00&lt;/CreationDate&gt;
+  &lt;Inputs&gt;
+    &lt;AvailabilityEvents&gt;
+      &lt;RestrictionEvent Path=&quot;Mode/Company/Mesh&quot; Search=&quot;*
+[.Type=Generator&amp;amp;&amp;amp;.Name=ADKOL.856]&quot; EventId=&quot;2345&quot;
+Category=&quot;PowerUnavailable[MW]&quot;&gt;
+        &lt;SubEvent Status=&quot;SelfImposed&quot; Description=&quot;&quot; Value=&quot;-1&quot;&gt;
+          &lt;Frequency Start=&quot;2022-04-06T06:00:00Z&quot; End=&quot;2022-04-06T10:00:00Z&quot; /&gt;
+        &lt;/SubEvent&gt;
+      &lt;/RestrictionEvent&gt;
+    &lt;/AvailabilityEvents&gt;
+  &lt;/Inputs&gt;
+&lt;/Request&gt;
+</code></pre>
+<h3 id="delete-a-restriction-event">Delete a restriction event</h3>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;Request xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
+xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes&quot;&gt;
+  &lt;MessageId&gt;12345678-1234-1234-1234-123456789017&lt;/MessageId&gt;
+  &lt;MessageVersion&gt;1.0.0.0&lt;/MessageVersion&gt;
+  &lt;ForceAvailabilityEventCreation&gt;true&lt;/ForceAvailabilityEventCreation&gt;
+  &lt;Sender&gt;SenderName&lt;/Sender&gt;
+  &lt;Receiver&gt;Mesh&lt;/Receiver&gt;
+  &lt;CreationDate&gt;2021-02-03T01:00:00+01:00&lt;/CreationDate&gt;
+  &lt;Inputs&gt;
+    &lt;AvailabilityEvents&gt;
+      &lt;AvailabilityEventRemove Path=&quot;Mode/Company/Mesh&quot; Search=&quot;*
+[.Type=Generator&amp;amp;&amp;amp;.Name=ADKOL.856]&quot; EventId=&quot;2345&quot; /&gt;
+    &lt;/AvailabilityEvents&gt;
+  &lt;/Inputs&gt;
+&lt;/Request
+</code></pre>
+<h3 id="acknowledgement-successful-import">Acknowledgement successful import</h3>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;Reply xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
+xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes&quot;&gt;
+  &lt;RequestMessageId&gt;12345678-1234-1234-1234-123456789012&lt;/RequestMessageId&gt;
+  &lt;MessageVersion&gt;1.0.0.0&lt;/MessageVersion&gt;
+  &lt;ImportSuccess&gt;true&lt;/ImportSuccess&gt;
+&lt;/Reply&gt;
+</code></pre>
+<h3 id="acknowledgement-non-successful-import">Acknowledgement non-successful import</h3>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;Reply xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
+xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes&quot;&gt;
+  &lt;RequestMessageId&gt;12345678-1234-1234-1234-123456789012&lt;/RequestMessageId&gt;
+  &lt;MessageVersion&gt;1.0.0.0&lt;/MessageVersion&gt;
+  &lt;ImportSuccess&gt;false&lt;/ImportSuccess&gt;
+  &lt;ImportError&gt;This is the error text from MESH&lt;/ImportError&gt;
+&lt;/Reply&gt;
+</code></pre>
+              
+            </div>
+          </div><footer>
+      <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+          <a href="../export-of-time-series-values-using-mdt/" class="btn btn--outline btn--success float-left" title="Export of time series values"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      </div>
+  
+    <hr/>
+  
+    <div role="contentinfo">
+      <!-- Copyright etc -->
+    </div>
+  
+    Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  </footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version is-active">
+      
+      
+        <span><a href="../export-of-time-series-values-using-mdt/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      
+      
+    </span>
+  </div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../../../search/main.js"></script>
+      <script src="../../../js/version-select.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
