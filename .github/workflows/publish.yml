@@ -46,16 +46,18 @@ jobs:
 
       - name: Install Python dependencies
         run: |
-          python -m pip install mkdocs==1.6.1
-          python -m pip install mike==2.1.3
-          python -m pip install python-markdown-math==0.8.0
+          set -eux
+          python3 -m pip install mkdocs==1.6.1
+          python3 -m pip install mike==2.1.3
+          python3 -m pip install python-markdown-math==0.8.0
 
       - name: Build and publish documentation
         run: |
+          set -eux
           chmod +x ./build_documentation.sh
           ./build_documentation.sh
           ARGS="${{ github.event.inputs.smp_version }}"
-          if [ "${{ github.event.inputs.is_latest }}" = "true" ]; then
-            ARGS="$ARGS latest --update-aliases"
+          if [[ "${{ github.event.inputs.is_latest }}" == "true" ]]; then
+            ARGS="${ARGS} latest --update-aliases"
           fi
-          mike deploy $ARGS --push
+          mike deploy ${ARGS} --push
