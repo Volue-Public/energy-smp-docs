@@ -162,5 +162,3 @@ nav:
           - Changelog: mesh-data-transfer/changelog/CHANGELOG.md
           - General: mesh-data-transfer/general/general.md
           - Configuration: mesh-data-transfer/configuration/configuration.md
-    - Operations:
-          - Monitoring of services: operations/monitoring.md
