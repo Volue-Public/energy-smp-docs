@@ -1,3 +1,23 @@
+# Publish using GitHub action
+
+You can publish latest changes from main branch to be visible in the GitHub
+pages by using `Publish documentation` GitHub action. With this approach you
+don't need to install the development environment locally.
+
+This GitHub action is triggered manually by:
+1. Go to the **Actions** tab in your GitHub repository.
+2. Select the `Publish documentation` workflow you want to run from the list on the left.
+3. Click the **"Run workflow"** button on the right.
+4. Provide Smart Power version you want to publish to. Follow the format: 20XX.Y.
+   If you are updating an older version which is not  the latest one, please
+   uncheck **Is the version the latest one?"**.
+   Leave the branch set to **main**.
+5. Click **"Run workflow"** to start the workflow manually.
+
+![Publish using GitHub action - steps](assets/publish_gh_action.png)
+
+Once the workflow is completed the https://volue-public.github.io/energy-smp-docs should be updated.
+
 # Development environment
 
 Required packages & recommended versions:
