@@ -4,7 +4,18 @@ You can publish latest changes from the `main` branch to be visible in the GitHu
 pages by using the `Publish documentation` GitHub action. With this approach you
 don't need to install the development environment locally.
 
-This GitHub action is triggered manually by doing the following:
+## Details
+
+`Publish documentation` builds the documentation from `main` branch and pushes
+resulting HTML content to `gh-pages` branch. There is another workflow named
+`pages-build-deployment`. It is created automatically by GitHub for deploying
+HTML content from `gh-pages` branch to GitHub Pages: https://volue-public.github.io/energy-smp-docs.
+You don't need to trigger `pages-build-deployment` yourself, it will be
+triggered automatically on push to `gh-pages` branch.
+
+## Instruction
+
+This GitHub action `Publish documentation` is triggered manually by doing the following:
 1. Go to the **Actions** tab in your GitHub repository.
 2. Select the `Publish documentation` workflow you want to run from the list on the left.
 3. Click the **"Run workflow"** button on the right.
