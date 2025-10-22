@@ -44,7 +44,7 @@ As mentioned above, Volue can hardly advise on how to specifically monitor hardw
 
 We recommend that the IT operations should make sure that warnings are given for usual indicators of insufficient hardware sizing, such as:
 
-- High average CPU utilization over a certain time period (e.g. 85% for more than 20 minutes).
+- High average CPU utilisation over a certain time period (e.g. 85% for more than 20 minutes).
 - High disk usage / little space left (e.g. 85% of space used up).
 
 Obviously, the mere availability of resources should be ensured as well, with alarms going off for servers being down or network connections broken.
