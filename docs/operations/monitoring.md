@@ -97,7 +97,7 @@ Things to alert:
 
 Summary/description:
 
-- This service request new files (i.e., messages) from one or more FileResponders running in DMZ. The received information is placed into an AMQP queue to be imported by the Mesh AMQP Relay. A confirmation signal is sent back upon completion.
+- This service requests new files (i.e., messages) from one or more FileResponders running in DMZ. The received information is placed in an AMQP queue to be imported by the Mesh AMQP Relay. A confirmation signal is sent back upon completion.
 
 Output:
 
