@@ -191,7 +191,7 @@ Things to alert:
 
 - The service is not running.
 - Health endpoint is not responding with Healthy status.
-- MeshDataTransfer is responsible for fetching requests from the queues and processing them. If the number of messages on the queues is not decreasing (or number of messages in the Dead Letter Queue is increasing) the situation should be investigated.
+- Mesh Data Transfer is responsible for fetching requests from the queues and processing them. If the number of messages on the queues is not decreasing (or number of messages in the Dead Letter Queue is increasing) the situation should be investigated.
 - Messages are not removed from the order queue within a few seconds.
 - MeshDataTransfer periodically checks if Mesh service is responsive. In case of problems error message should be logged.
 
