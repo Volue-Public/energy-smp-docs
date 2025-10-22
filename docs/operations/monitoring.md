@@ -326,7 +326,7 @@ Output:
 
 Endpoints/API:
 
-- API available to read headers and lines for logs. Refer to swagger documentation at `http://<server>:18260/OptimalLog/#apip`
+- API available to read headers and lines for logs. Refer to Swagger documentation at `http://<server>:18260/OptimalLog/#apip`
 - Health endpoint: `http://<server>:18260/OptimalLog/Health`
 
 Things to alert:
