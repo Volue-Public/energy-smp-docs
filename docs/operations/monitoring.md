@@ -300,7 +300,7 @@ Summary/description:
 
 Output:
 
-- If activated Gateway generates JSON files to analyze optimization issues.
+- If activated, the Optimal Gateway generates JSON files to analyse optimisation issues.
 - Logs at `<poweldrive>:\PowelSmartLogs\Powel Gateway Service`
 
 Endpoints/API:
