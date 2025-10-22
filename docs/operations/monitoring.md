@@ -22,7 +22,7 @@
 
 ## About this document
 
-This document serves as a guide to operating Volue‘s Smart Power (SmP) suite of software.
+This document serves as a guide to monitor Volue‘s Smart Power (SmP) software suite.
 
 Background:
 
