@@ -113,7 +113,7 @@ Things to alert:
 
 - The service is not running.
 - The health endpoint is not responding.
-- Imports via Mesh AMQP Relay of  messages from this service is not created within a certain time frame.
+- Imports via Mesh AMQP Relay of messages from this service is not created within a certain time frame.
 - Observations based on health data – too long time since last call was executed or too long time since last information was received or …
 
 ### Powel FileResponder service
