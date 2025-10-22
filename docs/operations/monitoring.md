@@ -1,4 +1,4 @@
-# Operating Smart Power solutions
+# Monitor Smart Power solutions
 
 - [Operating Smart Power solutions](#operating-smart-power-solutions)
   - [About this document](#about-this-document)
