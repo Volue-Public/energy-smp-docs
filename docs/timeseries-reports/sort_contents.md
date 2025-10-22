@@ -20,7 +20,7 @@ If you know the basics and just want to check some details, here are some fast t
 
 ## General introduction
 
-[About Mesh model definition and models.](../mesh/glossary/MeshGlossary.md)
+[About Mesh model definition and models.](../mesh/concepts/modelling/general.md)
 
 [About Mesh template time series reports.](./reports_intro.md)
 
@@ -81,7 +81,7 @@ If the objects to compare have different type this logic is applied:
 
 As we understand from the flow chart above, each object in Mesh have a unique path.
 
-See [description of Mesh path.](../mesh/glossary/MeshGlossary.md#object-path)
+See [description of Mesh path.](../mesh/concepts/modelling/general.md#objects-and-attributes-paths)
 
 In a template report definition the contents refer to Mesh model objects, more precise
 to time series attributes or time series collection attributes.
