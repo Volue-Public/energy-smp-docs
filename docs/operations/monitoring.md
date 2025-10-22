@@ -363,7 +363,7 @@ Output:
 
 - AMQP messages.
 - Logs at `<poweldrive>:\PowelSmartLogs\ScadaGateway`
-- Health message contains counters of different operations, when last connected, when last data changed, when last export created, ...
+- Health message contains counters for different operations, when last connected, when last data changed, when last export created, ...
 
 Endpoints/API:
 
