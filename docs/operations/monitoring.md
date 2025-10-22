@@ -305,7 +305,7 @@ Output:
 
 Endpoints/API:
 
-- Gateway has API for starting/stopping optimizations. Refer to swagger documentation at `http://<server>:18261/Gateway/#api`
+- The Optimal Gateway has an API for starting/stopping optimisations. See Swagger documentation at `http://<server>:18261/Gateway/#api`
 - Health endpoint: `http://<server>:18261/Gateway/Health`
 
 Things to alert:
