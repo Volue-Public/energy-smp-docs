@@ -1,23 +1,28 @@
 ## MEAN
-## About the function
+
+### About the function
+
   Takes the average value of time series, arrays and number series.
 
-  The result series has the same resolution as the input time series.
+  If the input is an array of time series and all the time series have the same resolution,
+  then the result series has this resolution. If there are different resolutions involved then
+  the result time series will be a breakpoint series.
 
-## Syntax
-- MEAN(t|T|D)
+### Syntax
 
+- MEAN(t)  -> returns a number
+- MEAN(T)
+- MEAN(D)  -> returns a number
 
-## Description
+### Description
 
 
 | # | TYPE | DESCRIPTION |
 |---|---|---|
 | 1 | t or T or D | Time series Array of time series Array of numbers |
 
+## Examples
 
-
-## Example
   Example 1: @MEAN(t)
 
   `TempPercentiles = @MEAN(@t('Temperature_hour_raw'))`

@@ -1,23 +1,24 @@
 ## TIME_MASK
 
 ### About the function
+
 This function creates time series from its arguments, normally used as time
 masks (a series with 1 or 0 as value), but not limited to only this type.
 
 ### Syntax
 
-There are two main variants of this function. The recommended variants:
+There are two main categories of this function. The recommended variants:
 
 - TIME_MASK(s,S,D,s)
 - TIME_MASK(s,S,D)
-
-And these deprecated variants:
-
 - TIME_MASK(S,D)
-- TIME_MASK(s)
+
+And a less used variant:
+
 - TIME_MASK(s,s)
 
-### TIME_MASK(s,S,D,s) and TIME_MASK(s,S,D)
+### TIME_MASK(s,S,D,s)
+
 The principle for the function is that you specify a repeat frequency, an array
 of time points and a corresponding array of function values. The time points are
 repeated at the frequency given as the first argument. The last argument allows
@@ -30,16 +31,21 @@ you to specify the resolution for the result series.
 | 3 | D | Array of values which apply to the time points given in the preceding argument. |
 | 4 | s | Result series resolution. For values, see Resolution. |
 
+If the first and last symbol argument are omitted, default values are applied.
+Default repeat frequency is 'NONE' and default result series resolution is 'HOUR'.
+
+Unless the repeat frequency are 'NONE' the time points specified are moved and repeated so
+that they establish a functional value for the whole requested time period. That means when
+frequency is 'DAY' it has no meaning to use macros that add days to a time point,
+like 'DAY+3d+2h'. In this example would be the time point specification 'DAY+2h' would
+give the same result. 
+
+See [time macro specification](../timepoint-macros.md).
+
 #### Repeat frequency
+
 This argument consists of a time span code in addition to some options. The time
 span code can be one of the following calendar codes:
-
-| Symbol | Definition |
-|---|---|
-| WEEKDAY | Weekdays at daytime. Gives the value 1 at time steps within 'workhours'. |
-| WEEKEND | Night and weekend - the opposite of WEEKDAY for all days except WEEKEND. |
-| HOLIDAY | Night, weekends and holidays - the opposite of 'NORMALDAY'. |
-| NORMALDAY | Weekday at daytime, except for holidays - same as 'WEEKDAY', <br>but holidays are excluded ('holiday' and 'mholidays'). |
 
 The following frequency codes can be used:
 
@@ -67,7 +73,8 @@ Tip! You may incorporate calendar options into frequency codes as a prefix
 code. Valid calendar prefix codes are LOCAL, STANDARD, UTC and DB. For example
 frequency code LOCALDAY is the same as DAY
 
-###& Time point description array
+#### Time point description array
+
   You can use the following special codes instead of a list of definitions.
 
 | Symbol | Definition |
@@ -93,14 +100,154 @@ values in the next argument.
 | YEAR | Year |
 | VARINT | Breakpoint |
 
+## Examples
 
+**Note!** All time points shown in tables are written as UTC time points.
 
-### Example
+### Day frequency
 
+Example 1
+
+`Result = @TIME_MASK('DAY', {'DAY+07h', 'DAY+10h', 'DAY+14h','DAY+18h'}, {1,2,3,4},'VARINT')`
+
+| Time UTC | B.Ts10 |
+|---|---|
+| 2021-12-31T17:00:00Z |       4.00 |
+| 2022-01-01T06:00:00Z |       1.00 |
+| 2022-01-01T09:00:00Z |       2.00 |
+| 2022-01-01T13:00:00Z |       3.00 |
+| 2022-01-01T17:00:00Z |       4.00 |
+| 2022-01-02T06:00:00Z |       1.00 |
+| 2022-01-02T09:00:00Z |       2.00 |
+| 2022-01-02T13:00:00Z |       3.00 |
+
+Default calendar for time points are standard time zone, i.e. UTC+1:00 with **no** 
+Daylight Saving Time (DST) definition applied.
+
+We can observe that the values provided are repeated daily.
+
+Switching to a request inside inside a DST period, still gives the same result.
+
+`##=@TIME_MASK('DAY', {'DAY+07h', 'DAY+10h', 'DAY+14h','DAY+18h'}, {1,2,3,4},'VARINT')`
+
+Action:TimeseriesRead
+| Time | B.Ts10 |
+|---|---|
+| 2021-12-31T17:00:00Z |       4.00 |
+| 2022-01-01T06:00:00Z |       1.00 |
+| 2022-01-01T09:00:00Z |       2.00 |
+| 2022-01-01T13:00:00Z |       3.00 |
+| 2022-01-01T17:00:00Z |       4.00 |
+| 2022-01-02T06:00:00Z |       1.00 |
+| 2022-01-02T09:00:00Z |       2.00 |
+
+Example 2
+
+`Result = @TIME_MASK('DAY<UTC>', {'DAY+07h', 'DAY+10h', 'DAY+14h','DAY+18h'}, {1,2,3,4},'VARINT')`
+
+| Time UTC | B.Ts10 |
+|---|---|
+| 2021-12-31T18:00:00Z |       4.00 |
+| 2022-01-01T07:00:00Z |       1.00 |
+| 2022-01-01T10:00:00Z |       2.00 |
+| 2022-01-01T14:00:00Z |       3.00 |
+| 2022-01-01T18:00:00Z |       4.00 |
+| 2022-01-02T07:00:00Z |       1.00 |
+| 2022-01-02T10:00:00Z |       2.00 |
+
+The time points are now interpreted as UTC time points and 'DAY+07h' with associated value 1.0 is
+found in the result series at '2022-01-01T07:00:00Z' and '2022-01-02T07:00:00Z'.
+
+Switching to a request inside inside a DST period and using zone `LT` - local zone with DST enabled.
+
+`##=@TIME_MASK('DAY<LT>', {'DAY+07h', 'DAY+10h', 'DAY+14h','DAY+18h'}, {1,2,3,4},'VARINT')`
+
+| Time | B.Ts10 |
+|---|---|
+| 2022-03-31T16:00:00Z |       4.00 |
+| 2022-04-01T05:00:00Z |       1.00 |
+| 2022-04-01T08:00:00Z |       2.00 |
+| 2022-04-01T12:00:00Z |       3.00 |
+| 2022-04-01T16:00:00Z |       4.00 |
+| 2022-04-02T05:00:00Z |       1.00 |
+| 2022-04-02T08:00:00Z |       2.00 |
+
+Example 3
+
+Switch to hourly result resolution. Then the function will perform a transformation from breakpoint series
+as described in previous examples to hour resolution based on the functional value at time points.
+
+`Result = @TIME_MASK('DAY<UTC>', {'DAY+07h', 'DAY+10h', 'DAY+14h','DAY+18h'}, {1,2,3,4},'HOUR')`
+
+| Time | B.Ts10 |
+|---|---|
+| 2022-01-01T00:00:00Z |       4.00 |
+| 2022-01-01T01:00:00Z |       4.00 |
+| 2022-01-01T02:00:00Z |       4.00 |
+| 2022-01-01T03:00:00Z |       4.00 |
+| 2022-01-01T04:00:00Z |       4.00 |
+| 2022-01-01T05:00:00Z |       4.00 |
+| 2022-01-01T06:00:00Z |       4.00 |
+| 2022-01-01T07:00:00Z |       1.00 |
+| 2022-01-01T08:00:00Z |       1.00 |
+| 2022-01-01T09:00:00Z |       1.00 |
+| 2022-01-01T10:00:00Z |       2.00 |
+| 2022-01-01T11:00:00Z |       2.00 |
+| 2022-01-01T12:00:00Z |       2.00 |
+| 2022-01-01T13:00:00Z |       2.00 |
+| 2022-01-01T14:00:00Z |       3.00 |
+| 2022-01-01T15:00:00Z |       3.00 |
+| 2022-01-01T16:00:00Z |       3.00 |
+| 2022-01-01T17:00:00Z |       3.00 |
+| 2022-01-01T18:00:00Z |       4.00 |
+| 2022-01-01T19:00:00Z |       4.00 |
+| 2022-01-01T20:00:00Z |       4.00 |
+| 2022-01-01T21:00:00Z |       4.00 |
+| 2022-01-01T22:00:00Z |       4.00 |
+| 2022-01-01T23:00:00Z |       4.00 |
+| 2022-01-02T00:00:00Z |       4.00 |
+| 2022-01-02T01:00:00Z |       4.00 |
+
+As we can see the functional value at each hour in this day is based on a curve type 'Step' or 'Start of step'.
+
+Adding an option to the first argument like this:
+
+`Result = @TIME_MASK('DAY<UTC><Linear>', {'DAY+07h', 'DAY+10h', 'DAY+14h','DAY+18h'}, {1,2,3,4},'HOUR')`
+
+| Time | B.Ts10 |
+|---|---|
+| 2022-01-01T00:00:00Z |       2.91 |
+| 2022-01-01T01:00:00Z |       2.64 |
+| 2022-01-01T02:00:00Z |       2.36 |
+| 2022-01-01T03:00:00Z |       2.09 |
+| 2022-01-01T04:00:00Z |       1.82 |
+| 2022-01-01T05:00:00Z |       1.55 |
+| 2022-01-01T06:00:00Z |       1.27 |
+| 2022-01-01T07:00:00Z |       1.00 |
+| 2022-01-01T08:00:00Z |       1.33 |
+| 2022-01-01T09:00:00Z |       1.67 |
+| 2022-01-01T10:00:00Z |       2.00 |
+| 2022-01-01T11:00:00Z |       2.25 |
+| 2022-01-01T12:00:00Z |       2.50 |
+| 2022-01-01T13:00:00Z |       2.75 |
+| 2022-01-01T14:00:00Z |       3.00 |
+| 2022-01-01T15:00:00Z |       3.25 |
+| 2022-01-01T16:00:00Z |       3.50 |
+| 2022-01-01T17:00:00Z |       3.75 |
+| 2022-01-01T18:00:00Z |       4.00 |
+| 2022-01-01T19:00:00Z |       3.73 |
+| 2022-01-01T20:00:00Z |       3.45 |
+| 2022-01-01T21:00:00Z |       3.18 |
+| 2022-01-01T22:00:00Z |       2.91 |
+| 2022-01-01T23:00:00Z |       2.64 |
+| 2022-01-02T00:00:00Z |       2.36 |
+| 2022-01-02T01:00:00Z |       2.09 |
+
+Running this expression during winter time gives this result. 
 Result time series = @TIME_MASK('DAY', {'DAY+07h', 'DAY+10h', 'DAY+14h',
 'DAY+18h'}, {1,2,3,4},'HOUR')
 
-This gives a time series with daily repeat frequency and hourly time resolution.
+This gives a time series where time points are repeated daily and where the result has hourly time resolution.
 The presentation of data values is step wise.
 
 The table shows the result from a day on winter time (normal time). The
@@ -128,56 +275,74 @@ resolution. The presentation of data values is step wise.
 
   ![](Images/ex_TIME_MASK-nimbustable3.png)
 
-### TIME_MASK(S,D)
+## Examples - less used variant
 
-This syntax variant has no repeat frequency, the given points in time are
-absolute. Gives the same effect as using TIME_MASK(s,S,D) with repeat frequency
-'NONE'.
+### TIME_MASK(s,s)
 
-### TIME_MASK(s) and TIME_MASK(s,s)
+This function let you define a logical time series from criteria given by
+the parameters in a text resource file specified as the second argument. The values
+on the result series is either 0 or 1 depending on the arguments to the function.
+The default resolution is hour.
 
-These variants let you define a logical time series from criteria given in by
-parameters in a text file. TIME_MASK(s) references the default calendar file
-holidays.txt. TIME_MASK(s,s) uses a user-defined file. Several user-defined
-files can be used in the same report. The default resolution is hours. If the
-resolution is 15-minute periods (TIMESTEP {MIN 15,1}) the result series while
-have this resolution.
+As an example, the function can be used to create time series masks to
+for instance find the power usage in specific
+periods of the day, like low load, peak load etc.
 
-As an example, the function can be used to find the power usage in specific
-periods of the day, for instance in connection with low load, peak load etc.
-
-### Example
-  
 @TIME_MASK(s,s)
 
-  The `MyHolidayfile.txt` is a user defined calendar file:
+| # | Type | Description |
+|---|---|---|
+| 1 | s | One of the codes explained in the table below. |
+| 2 | s | A resource file reference. The format of this file and how to install it is described below. |
+
+The available codes are:
+
+| Symbol | Definition |
+|---|---|
+| WEEKDAY | Weekdays at daytime. Gives the value 1 at time steps within 'workhours'. |
+| WEEKEND | Night and weekend - the opposite of WEEKDAY for all days except WEEKEND. |
+| NORMALDAY | Weekday at daytime, except for holidays - same as 'WEEKDAY', but holidays are excluded (see 'holiday' and 'mholidays' sections in the file format description). |
+| HOLIDAY | Night, weekends and holidays - the opposite of 'NORMALDAY'. |
+
+#### Format of the resource file
+
+The `MyHolidayfile.txt` is a user defined calendar file:
 ```
   # Filename: MyHolidayfile.txt
-
   # Tariff template: time definitions
 
   workhours 06:00 22:00
-
   weekend 6 7
 
-  # Fixed holidays (date in American format, year/month/day)
-
+  # Fixed holidays (date in format year/month/day)
   holiday 1/1 1/6 4/30 5/1 12/24 12/25 12/26 12/31 1997/6/20 1997/08/22
 
+  # Moveable holidays relative easter 
   mholiday es-3 es-2 es+1 es+39 es+40 es+50
-
   seasons 12/1 4/1 6/1 9/1
-
   lseason 4/1 11/1
 ```
 
-  The function returns the following according to the calendar file definition:
+To make this file available to the function it must be installed in the Mesh resource
+section. This can be done like this using a Mesh command line tool:
+
+- Assume the file on disk is named `MyHolidayfile.txt`
+- In a terminal window, apply this command:
+  - `Powel.Mesh.CommandLineRequests.exe -w ImportTextFile -i .\MyHolidayfile.txt -w Resource/ConfigFiles/MyHolidayfile.txt -S`
+  - To see which resource files that are available, you can apply the following command
+    - `Powel.Mesh.CommandLineRequests.exe -w ListTextFiles`
+  - To see the contents on a resource file in Mesh you can apply this command
+    - `Powel.Mesh.CommandLineRequests.exe -w ExportTextFile -w Resource/ConfigFiles/MyHolidayFile.txt`
+
+#### Examples
+
+The function returns the following according to the calendar file definition:
 
 | Expression | Result mask |
 |---|---|
-| @TIME_MASK('WEEKDAY',’MyHolidayfile.txt’) | 1 for all hours (or 15-minute periods) from <br>06:00 to 22:00 on all days except for weekends, i.e. Monday to Friday inclusive. 0 otherwise. |
-| @TIME_MASK('WEEKEND',’MyHolidayfile.txt’) | 1 for all hours (or 15-minute periods) from <br>22:00 to 06:00 from Monday to Friday, and 1 for the entire day on Saturday and Sunday. 0 otherwise. |
-| @TIME_MASK('HOLIDAY',’MyHolidayfile.txt’) | Same mask as for "WEEKEND", in addition to 1 for <br>all fixed and moveable public holidays defined in the current file. See "holiday" and "mholidays". 0 otherwise. |
+| @TIME_MASK('WEEKDAY',’MyHolidayfile.txt’) | 1 for all hours from 06:00 to 22:00 on all days except for weekends, i.e. Monday to Friday inclusive. 0 otherwise. |
+| @TIME_MASK('WEEKEND',’MyHolidayfile.txt’) | 1 for all hours from 22:00 to 06:00 from Monday to Friday, and 1 for the entire day on Saturday and Sunday. 0 otherwise. |
+| @TIME_MASK('HOLIDAY',’MyHolidayfile.txt’) | Same mask as for "WEEKEND", in addition to 1 for all fixed and moveable public holidays defined in the current file. See "holiday" and "mholidays" sections on file. 0 otherwise. |
 | @TIME_MASK('NORMALDAY',’MyHolidayfile.txt’) | Opposite of WEEKDAY. |
 
 The result above can be illustrated in a figure showing the difference between
