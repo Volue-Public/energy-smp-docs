@@ -29,7 +29,7 @@ Background:
 - The SmP software is provided as on-premises solutions (incl. private cloud environments).
 - Therefore, operation of the software is usually in the hands of Volue’s customers.
 
-To enable their IT personnel to operate the solution, this presentation summarizes the required knowledge on monitoring and alerting.
+To enable the organisation's IT personnel to operate the solution, this document summarises the required knowledge about monitoring and alerting.
 
 For all pieces of software delivered, it contains information on:
 
