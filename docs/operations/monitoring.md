@@ -338,7 +338,7 @@ Things to alert:
 
 Summary/description:
 
-- OptimalMultiAsset includes the code to execute optimizations based on the data collected by Gateway.
+- Optimal Multi-Asset includes the code to execute optimisations based on the data collected by Optimal Gateway.
 
 Output:
 
