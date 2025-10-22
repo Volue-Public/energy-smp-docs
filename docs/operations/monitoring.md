@@ -31,7 +31,7 @@ Background:
 
 To enable the organisation's IT personnel to operate the solution, this document summarises the required knowledge about monitoring and alerting.
 
-For all pieces of software delivered, it contains information on:
+For all software components, it contains information about:
 
 - Which measurements can be taken for monitoring the applications and how.
 - What events should be alerted as impairing proper operation.
