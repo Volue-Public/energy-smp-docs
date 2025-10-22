@@ -269,7 +269,7 @@ Things to alert:
 
 Summary/description:
 
-- This is the service providing the Nimbus GUI (application running on the user‘s client / rdp session). The service provides settings from the configuration service for user and roles, handles task and for none Mesh task gives report content.
+- This is the service providing the Nimbus user interface (application running on the user‘s client/RDP session). The service provides settings from the configuration service for user and roles, handles tasks, and, for none-Mesh tasks, gives report content.
 
 Output:
 
