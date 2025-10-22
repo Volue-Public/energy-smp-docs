@@ -47,7 +47,7 @@ We recommend that the IT operations should make sure that warnings are given for
 - High average CPU utilisation over a certain time period (e.g. 85% for more than 20 minutes).
 - High disk usage/little disk space left (e.g. less than 15% free disk space).
 
-Obviously, the mere availability of resources should be ensured as well, with alarms going off for servers being down or network connections broken.
+Obviously, the mere availability of resources should be ensured as well, with alarms for unavailable servers or broken network connections.
 
 Other (non-Volue) software should also be monitored for availability, like the database and message queues.
 
