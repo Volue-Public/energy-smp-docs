@@ -374,7 +374,7 @@ Things to alert:
 
 - The service is not running.
 - The health endpoint is not responding.
-- Imports via Mesh AMQP Relay of  messages from this service is not created within a certain time frame.
+- Imports via Mesh AMQP Relay of messages from this service are not created within a certain time frame.
 - Observations based on health data – too long time since last data change was received or too long time since an export was created or ...
 
 ### Volue TransferAMQPFile service
