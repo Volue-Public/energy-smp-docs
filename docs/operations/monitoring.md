@@ -78,7 +78,7 @@ The above table contains information about the health endpoint of each service, 
 
 Summary/description:
 
-- Manages Powel alarm events and is the backend for Powel Alarm system.
+- Manages SmG alarm events and is the backend for the Powel Alarm system.
 
 Output:
 
