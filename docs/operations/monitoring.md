@@ -36,7 +36,7 @@ For all software components, it contains information about:
 - Which measurements can be taken to monitor the applications, and how.
 - What events should be alerted as impairing proper operation.
 
-The basics of operation (e.g. hardware-related monitoring) are briefly touched upon, too, but completely depend on the individual environment; therefore, Volue can hardly advise on them. However, IT operators will anyway know much better how to do that.
+The basics of operation (e.g. hardware-related monitoring) are described briefly, but this completely depends on the individual environment, and Volue is not able to give advise about how they should be operated.
 
 ## Systems monitoring
 
