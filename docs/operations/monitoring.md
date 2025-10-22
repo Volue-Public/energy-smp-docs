@@ -120,7 +120,7 @@ Things to alert:
 
 Summary/description:
 
-- This service is running in DMZ and returns information from non-transferred files on request from the FileRequester service. The transfer is «commited» when a positive ack is received from the FileRequester, otherwise the file will be resent on a later request.
+- This service is running in DMZ and returns information from non-transferred files on request from the FileRequester service. The transfer is «committed» when a positive ack is received from the FileRequester, otherwise the file will be resent on a later request.
 
 Output:
 
