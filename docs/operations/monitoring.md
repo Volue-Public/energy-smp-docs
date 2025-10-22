@@ -381,7 +381,7 @@ Things to alert:
 
 Summary/description:
 
-- This service is running in the Scada environment and downloads messages from a defined queue and stores the content as files in a specified directory.
+- This service is running in the SCADA environment and downloads messages from a defined queue and stores the content as files in a specified directory.
 
 Output:
 
