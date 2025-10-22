@@ -179,7 +179,7 @@ Endpoints/API:
 - Mesh Data Transfer uses queues to receive import requests.
 - It also sends import responses to the queue.
 - It communicates with Mesh using gRPC.
-- It communicates with database.
+- It communicates with the database.
 - It receives export requests on an endpoint and puts the export message on a queue and/or a file.
 - HTTP endpoints (core URL defined in the configuration file):
   - Order – time series export trigger.
