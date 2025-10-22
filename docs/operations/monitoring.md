@@ -144,7 +144,7 @@ Things to alert:
 
 Summary/description:
 
-- Main service that keeps data model and timeseries data.
+- Main service responsible for the data model and timeseries data.
 - Serves all processes, optimisation, simulation, import, export etc.
 
 Output:
