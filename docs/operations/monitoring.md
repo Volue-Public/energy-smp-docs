@@ -318,7 +318,7 @@ Things to alert:
 Summary/description:
 
 - Optimal Log is the centralised log for optimisation algorithms. Services that use it are Optimal Gateway, SHOP, Optimal Multi-Asset and ProdRisk. Its purpose is to supply log entries from these components to end users in Nimbus/Optimal Log user interface.
-- However, for monitoring & alerting purposes, you should use the actual service’s logging (following slides).
+- However, for monitoring & alerting purposes, the actual service’s logging should be used.
 
 Output:
 
