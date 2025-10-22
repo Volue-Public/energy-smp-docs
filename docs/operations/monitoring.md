@@ -172,7 +172,7 @@ Summary/description:
 Output:
 
 - Logs at `<poweldrive>:\PowelSmartLogs\MeshDataTransfer`
-- Might save import requests to the filesystem if enabled in the configuration.
+- Might save import requests to the file system if enabled in the configuration.
 
 Endpoints/API:
 
