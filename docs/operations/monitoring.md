@@ -357,7 +357,7 @@ Things to alert:
 
 Summary/description:
 
-- This service is connecting to a Scada server using OPC UA, sets up a subscription of interest, receives updates from the Scada server for this subscription, and create messages with updates in an AMQP queue for Mesh AMQP Relay to import.
+- This service is connecting to a SCADA server using OPC UA, sets up a subscription of interest, receives updates from the SCADA server for this subscription, and creates messages with updates in an AMQP queue for Mesh AMQP Relay to import.
 
 Output:
 
