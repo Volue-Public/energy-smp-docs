@@ -40,7 +40,7 @@ The basics of operation (e.g. hardware-related monitoring) are briefly touched u
 
 ## Systems monitoring
 
-As mentioned before, Volue can hardly advise on how to specifically monitor hardware / systems.
+As mentioned above, Volue can hardly advise on how to specifically monitor hardware/systems.
 
 IT Operations should definitely put warnings in place for usual indicators of insufficient hardware sizing, examples being:
 
