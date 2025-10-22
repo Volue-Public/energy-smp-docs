@@ -199,7 +199,7 @@ Things to alert:
 
 Summary/description:
 
-- This service collects data from external services (f.ex. meteorological data from Radarmeteo) and converts the information to xml messages that is stored on files when running in DMZ, otherwise sent as AMQP messages that is imported by Mesh AMQP Relay.
+- This service collects data from external services (for instance meteorological data from Radarmeteo) and converts the information to xml messages that are stored on files when running in DMZ. Otherwise they are sent as AMQP messages that are imported by Mesh AMQP Relay.
 
 Output:
 
