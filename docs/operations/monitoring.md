@@ -296,7 +296,7 @@ Things to alert:
 
 Summary/description:
 
-- Optimal Gateway collects and preprocesses data from Mesh for Optimization services Poma, SHOP and Prodrisk. 
+- Optimal Gateway collects and preprocesses data from Mesh for the optimisation services Optimal Multi-Asset, SHOP and ProdRisk. 
 
 Output:
 
