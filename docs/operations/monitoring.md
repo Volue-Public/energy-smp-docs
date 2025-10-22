@@ -221,7 +221,7 @@ Things to alert:
 
 Summary/description:
 
-- This service converts information in files to AMQP messages that is imported by Mesh AMQP Relay.
+- This service converts information in files to AMQP messages that are imported by Mesh AMQP Relay.
 - PVPLAN files are read from the D:\Powel\IccData\PVPLAN\New directory and successful transformation to the AMQP queue moves the files to the ..\Success directory. If something fails in the transformation, the files are moved to the ..\Error directory.
 
 Output:
