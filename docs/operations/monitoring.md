@@ -33,7 +33,7 @@ To enable the organisation's IT personnel to operate the solution, this document
 
 For all software components, it contains information about:
 
-- Which measurements can be taken for monitoring the applications and how.
+- Which measurements can be taken to monitor the applications, and how.
 - What events should be alerted as impairing proper operation.
 
 The basics of operation (e.g. hardware-related monitoring) are briefly touched upon, too, but completely depend on the individual environment; therefore, Volue can hardly advise on them. However, IT operators will anyway know much better how to do that.
