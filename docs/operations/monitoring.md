@@ -247,7 +247,7 @@ Things to alert:
 
 Summary/description:
 
-- This service receives SOAP calls from other systems with data that shall be transferred to Mesh (f.ex. Availability events from InGen). When the service runs in DMZ the result is xml messages that is stored on files, otherwise the result is sent as AMQP messages that is imported by Mesh AMQP Relay.
+- This service receives SOAP calls from other systems with data that is to be transferred to Mesh (e.g. Availability events from InGen). When the service runs in DMZ, the result is xml messages that are stored as files. Otherwise the result is sent as AMQP messages that are imported by Mesh AMQP Relay.
 
 Output:
 
