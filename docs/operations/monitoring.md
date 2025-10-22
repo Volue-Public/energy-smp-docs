@@ -42,7 +42,7 @@ The basics of operation (e.g. hardware-related monitoring) are described briefly
 
 As mentioned above, Volue can hardly advise on how to specifically monitor hardware/systems.
 
-IT Operations should definitely put warnings in place for usual indicators of insufficient hardware sizing, examples being:
+We recommend that the IT operations should make sure that warnings are given for usual indicators of insufficient hardware sizing, such as:
 
 - High average CPU utilization over a certain time period (e.g. 85% for more than 20 minutes).
 - High disk usage / little space left (e.g. 85% of space used up).
