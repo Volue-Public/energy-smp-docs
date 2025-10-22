@@ -396,4 +396,4 @@ Things to alert:
 
 - Service is not running.
 - The health endpoint is not responding.
-- Messages is not removed from the AMQP queue – should be done immediately.
+- Messages are not removed from the AMQP queue – should be done immediately.
