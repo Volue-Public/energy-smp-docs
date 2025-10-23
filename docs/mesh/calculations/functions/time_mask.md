@@ -42,6 +42,27 @@ give the same result.
 
 See [time macro specification](../timepoint-macros.md).
 
+This figure illustrate the implemented algorithm to convert arguments into a time series.
+
+![Time mask concept figure](./Images/time-mask-concept.png)
+
+- Every time point specification is parsed and added to a timeline
+- There are values to be associated with each time point based on index in collection.
+  The effective size of time points specification and values specification must be the same. 
+- The frequency argument determine which part of the time point that is going to be used
+  - For instance a frequency code 'DAY' means that the hour and minute part is used and
+    the year/month/day part is neglected
+- The frequency argument also describe how the parsed time points are distributed into
+  the requested time period for a calculation. The frequency is illustrated in the figure
+  as blue dotted and solid line sections.
+- The distributed points have
+  to provide a functional value for the complete requested time period. Observe the first
+  and last green time point in the figure, they are both outside the requested area. The
+  last point is only needed in case the curve type is linear.
+- The native distribution of points
+  creates a breakpoint series, so unless the last argument is 'VARINT' a standard transformation
+  is applied to create the result.
+
 #### Repeat frequency
 
 This argument consists of a time span code in addition to some options. The time
@@ -71,7 +92,9 @@ The options to frequency code are defined in <> brackets, for instance `HOUR<LT>
 
 Tip! You may incorporate calendar options into frequency codes as a prefix
 code. Valid calendar prefix codes are LOCAL, STANDARD, UTC and DB. For example
-frequency code LOCALDAY is the same as DAY
+frequency code LOCALDAY is the same as DAY. STANDARD is default and can be omitted.
+
+The calendar info is used also used when parsing time points.
 
 #### Time point description array
 
