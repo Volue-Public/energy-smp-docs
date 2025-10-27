@@ -1,0 +1,74 @@
+name: Publish documentation
+
+on:
+  workflow_dispatch:
+    inputs:
+      smp_version:
+        description: "SmP version number (e.g., 2026.1)"
+        required: true
+        default: "20XX.Y"
+      is_latest:
+        description: "Is the version the latest one?"
+        required: true
+        type: boolean
+        default: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+    strategy:
+      matrix:
+        node-version: [22.x]
+        python-version: [3.11]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Fetch all history for all branches and tags to be able to push
+          # mike deployment results to gh-pages branch.
+          fetch-depth: 0
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Configure npm auth
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
+
+      - name: Install Python dependencies
+        run: |
+          set -eux
+          python3 -m pip install mkdocs==1.6.1
+          python3 -m pip install mike==2.1.3
+          python3 -m pip install python-markdown-math==0.8.0
+
+      - name: Configure git user
+        run: |
+          set -eux
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Build and publish documentation
+        run: |
+          set -eux
+          chmod +x ./build_documentation.sh
+          ./build_documentation.sh
+          ARGS="${{ github.event.inputs.smp_version }}"
+          if [[ "${{ github.event.inputs.is_latest }}" == "true" ]]; then
+            ARGS="${ARGS} latest --update-aliases"
+          fi
+          mike deploy ${ARGS} --push

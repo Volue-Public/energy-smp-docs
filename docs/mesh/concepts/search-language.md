@@ -18,7 +18,26 @@ search), otherwise they are all objects (object search).
 
 A traversal describes a set of relative paths in the Mesh object structure. It takes a set of objects as an input (the start points) and produces a set of objects as an output (the result) by following the paths from each start point and collecting end points. The start point is used to form a set and input into the traversal. The attribute access is applied to the output of the traversal. Some of the traversals are parametrised on criteria (e.g. `[Criteria]` or `\*[Criteria]`). For example, the traversal `..` will output the parent, if it exists, for each input object. Traversals can be combined with operators to form new traversals.
 
-![Mesh search traversal](./assets/images/search-1.png)
+| NAME | SYNTAX |DESCRIPTION |EXAMPLE|
+|---|---|---|---|
+|Attribute access | `.<attribute name>` |Use dot as prefix to address attributes on the current object. In the example the current object matches the filter if it has an attribute named Siblings and its value is greater than 2. |`[.Siblings>2]`|
+| Predicated child step     | `[<criteria expression>]` | Outputs children that match the criteria. | `[.Type=Teacher&&School.Name=Berg]` |
+| Composer | `Search1/Search2` | Use slash, /, to combine searches. | `operate_school/school_has_classes`|
+| Intersection | `&` | Combines several separate searches into a collection of objects that are part of ALL separate search results.| `[.Type=School]&[.Name=Berg]`|
+| Union | `\|` | Combines several separate searches into a unique collection.| `[.Name=Eng-1]\|[.Type=Pupil]`|
+| Repeater | `<Search>*` | Repeats a search one or more times. If the star is in curly braces, it will also output intermediate results.| `[*.Name=1]`|
+| Strict repeater | `<Search>+` | Repeats a search one or more times. If the plus is in curly braces, it will also output intermediate results.| `[.Name=1]+`|
+| Self step | `@` | Outputs the same as input. This is useful when composing unions.|`@`|
+| Filter | `@[<criteria expression>]` | Filters with help of example input object that matches criteria.| `@[.Name~a]`|
+| Child walk | `*` | Outputs all child nodes (lowest objects in tree structure).| `*`|
+| Predicated child walk | `*[<criteria expression>]` | Searches down until it finds an object matching criteria. If enclosed in curly braces, `{*\}`, it will also output intermediate objects. | `*[type=Pupil]` `{*\}[type=Pupil]`|
+| Strict child walk | `+` | Almost same as child walk (see above). If start node has an empty set, this walk returns null result and returns back to start.| `+`|
+| Predicated Strict child walk | `+[<criteria expression>]` | Almost same as predicated child walk (see above). If an input object matches the criteria, and it has no descendants matching the criteria, strict child walk returns an empty result, whereas child walk returns the input object.| <ul><li>`+[.Type=Pupil]`</li> <li>`{*}[.Type=Pupil]`</li></ul>|
+| Parent step | `..` | Returns parents of input objects. | `../Olav`|
+| Parent walk | `..*[<criteria expression>]` | Outputs the input object if it matches the criteria. Otherwise, it outputs the first ancestor that matches the criteria. Can be enclosed in `{*}` to also output intermediate objects. | `..*[.Name="Olav"]`|
+| Strict parent walk | `..+[<criteria expression>]` | Outputs the first ancestor that matches the criteria. Can be enclosed in `{+}` to also output intermediate objects. | `..+[.Name="Olav"]`|
+| Link walk | `~` | Traverses by link relations. Yields all objects which current object links to. | `~[.Type=School]` |
+| Reverse link walk | `~~` | Reverse link traversal. Yields all objects which link to current object. | `~~[.Type=School]` | 
 
 ### Criteria
 
@@ -28,7 +47,16 @@ Criteria are always enclosed in square brackets, [].
 
 You may specify options for the criteria within suffix curly brackets {}, for example to ignore case sensitivity on text based comparison. {i} means the search is case insensitive.
 
-![Mesh search criteria](./assets/images/search-2.png)
+| NAME | SYNTAX |DESCRIPTION |EXAMPLE|
+|---|---|---|---|
+|Criteria relations| `>`, `<`, `>=`, `<=`, `=` | Numerical criteria used in combination with a number inside a square bracket. | `[.Type=Pupil&&.Siblings>1]` |
+| Equal criteria | `=` | Used in combination with text inside a square bracket. | `[.Type=Pupil]` |
+| Contains criteria | `~` | Used with text inside a square bracket. The string on the right-hand side is contained in the string on the left-hand side. | `[.Type=Pupil&&.Name~ok]]` |
+| Logic AND operator | `&&` | Combines sub-criteria. All criteria must evaluate to true to get a result. | `[.Type=Pupil&&.Siblings>1]` |
+| Existence criteria | `search` | Checks if the search result is not empty. | <ul><li>`[.Siblings&&!.Age]]` (objects with `Siblings` attribute, but not `Age` attribute)</li><li>`[.Siblings&&!...Age]` (objects with `Siblings` attribute, but whose parent has no `Age` attribute) |
+| Logic OR operator | `\|\|` | Has lower precedence than the AND operator. Can be controlled by grouping criteria parts in brackets `()`.| `[..Name=Anita\|\|..Name=Beate]` |
+| Logic NOT operator | `!` | Inverts the input.| `[!.Age=27]` |
+| Match criteria | `#` | Regular expression. Only for text attributes (not numerical values). | <ul><li>`[.Name#.*nen]` (Names that ends on "nen". `.` matches any character, `.*` matches all characters.)</li><li>`[.Name#[A-C\\].*]` (Searches for objects with a name starting with A, B or C. It is a range based expression `[A-C]` followed by `.*` which means all characters. Note: A part regular expression needs a double back slash quote at the end). |
 
 ## Combining multiple search operations
 
