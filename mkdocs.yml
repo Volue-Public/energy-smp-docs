@@ -166,3 +166,5 @@ nav:
             - Import of time series values: mesh-data-transfer/use-cases/import-of-time-series-values-using-mdt.md
             - Export of time series values: mesh-data-transfer/use-cases/export-of-time-series-values-using-mdt.md
             - Import of availability events: mesh-data-transfer/use-cases/import-of-availability-events-using-mdt.md
+    - Operations:
+          - Monitor services: operations/monitoring.md
