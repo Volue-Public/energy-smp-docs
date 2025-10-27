@@ -407,6 +407,11 @@
     </ul>
                   </li>
               </ul>
+              <p class="caption"><span class="caption-text">Operations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../operations/monitoring/">Monitor services</a>
+                  </li>
+              </ul>
       </div>
     </div>
     </nav>
@@ -445,12 +450,190 @@ attribute access is specified, the result objects are all attributes (attribute
 search), otherwise they are all objects (object search).</p>
 <h3 id="traversal">Traversal</h3>
 <p>A traversal describes a set of relative paths in the Mesh object structure. It takes a set of objects as an input (the start points) and produces a set of objects as an output (the result) by following the paths from each start point and collecting end points. The start point is used to form a set and input into the traversal. The attribute access is applied to the output of the traversal. Some of the traversals are parametrised on criteria (e.g. <code>[Criteria]</code> or <code>\*[Criteria]</code>). For example, the traversal <code>..</code> will output the parent, if it exists, for each input object. Traversals can be combined with operators to form new traversals.</p>
-<p><img alt="Mesh search traversal" src="../assets/images/search-1.png" /></p>
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>SYNTAX</th>
+<th>DESCRIPTION</th>
+<th>EXAMPLE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Attribute access</td>
+<td><code>.&lt;attribute name&gt;</code></td>
+<td>Use dot as prefix to address attributes on the current object. In the example the current object matches the filter if it has an attribute named Siblings and its value is greater than 2.</td>
+<td><code>[.Siblings&gt;2]</code></td>
+</tr>
+<tr>
+<td>Predicated child step</td>
+<td><code>[&lt;criteria expression&gt;]</code></td>
+<td>Outputs children that match the criteria.</td>
+<td><code>[.Type=Teacher&amp;&amp;School.Name=Berg]</code></td>
+</tr>
+<tr>
+<td>Composer</td>
+<td><code>Search1/Search2</code></td>
+<td>Use slash, /, to combine searches.</td>
+<td><code>operate_school/school_has_classes</code></td>
+</tr>
+<tr>
+<td>Intersection</td>
+<td><code>&amp;</code></td>
+<td>Combines several separate searches into a collection of objects that are part of ALL separate search results.</td>
+<td><code>[.Type=School]&amp;[.Name=Berg]</code></td>
+</tr>
+<tr>
+<td>Union</td>
+<td><code>\|</code></td>
+<td>Combines several separate searches into a unique collection.</td>
+<td><code>[.Name=Eng-1]\|[.Type=Pupil]</code></td>
+</tr>
+<tr>
+<td>Repeater</td>
+<td><code>&lt;Search&gt;*</code></td>
+<td>Repeats a search one or more times. If the star is in curly braces, it will also output intermediate results.</td>
+<td><code>[*.Name=1]</code></td>
+</tr>
+<tr>
+<td>Strict repeater</td>
+<td><code>&lt;Search&gt;+</code></td>
+<td>Repeats a search one or more times. If the plus is in curly braces, it will also output intermediate results.</td>
+<td><code>[.Name=1]+</code></td>
+</tr>
+<tr>
+<td>Self step</td>
+<td><code>@</code></td>
+<td>Outputs the same as input. This is useful when composing unions.</td>
+<td><code>@</code></td>
+</tr>
+<tr>
+<td>Filter</td>
+<td><code>@[&lt;criteria expression&gt;]</code></td>
+<td>Filters with help of example input object that matches criteria.</td>
+<td><code>@[.Name~a]</code></td>
+</tr>
+<tr>
+<td>Child walk</td>
+<td><code>*</code></td>
+<td>Outputs all child nodes (lowest objects in tree structure).</td>
+<td><code>*</code></td>
+</tr>
+<tr>
+<td>Predicated child walk</td>
+<td><code>*[&lt;criteria expression&gt;]</code></td>
+<td>Searches down until it finds an object matching criteria. If enclosed in curly braces, <code>{*\}</code>, it will also output intermediate objects.</td>
+<td><code>*[type=Pupil]</code> <code>{*\}[type=Pupil]</code></td>
+</tr>
+<tr>
+<td>Strict child walk</td>
+<td><code>+</code></td>
+<td>Almost same as child walk (see above). If start node has an empty set, this walk returns null result and returns back to start.</td>
+<td><code>+</code></td>
+</tr>
+<tr>
+<td>Predicated Strict child walk</td>
+<td><code>+[&lt;criteria expression&gt;]</code></td>
+<td>Almost same as predicated child walk (see above). If an input object matches the criteria, and it has no descendants matching the criteria, strict child walk returns an empty result, whereas child walk returns the input object.</td>
+<td><ul><li><code>+[.Type=Pupil]</code></li> <li><code>{*}[.Type=Pupil]</code></li></ul></td>
+</tr>
+<tr>
+<td>Parent step</td>
+<td><code>..</code></td>
+<td>Returns parents of input objects.</td>
+<td><code>../Olav</code></td>
+</tr>
+<tr>
+<td>Parent walk</td>
+<td><code>..*[&lt;criteria expression&gt;]</code></td>
+<td>Outputs the input object if it matches the criteria. Otherwise, it outputs the first ancestor that matches the criteria. Can be enclosed in <code>{*}</code> to also output intermediate objects.</td>
+<td><code>..*[.Name="Olav"]</code></td>
+</tr>
+<tr>
+<td>Strict parent walk</td>
+<td><code>..+[&lt;criteria expression&gt;]</code></td>
+<td>Outputs the first ancestor that matches the criteria. Can be enclosed in <code>{+}</code> to also output intermediate objects.</td>
+<td><code>..+[.Name="Olav"]</code></td>
+</tr>
+<tr>
+<td>Link walk</td>
+<td><code>~</code></td>
+<td>Traverses by link relations. Yields all objects which current object links to.</td>
+<td><code>~[.Type=School]</code></td>
+</tr>
+<tr>
+<td>Reverse link walk</td>
+<td><code>~~</code></td>
+<td>Reverse link traversal. Yields all objects which link to current object.</td>
+<td><code>~~[.Type=School]</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="criteria">Criteria</h3>
 <p>Some traversals are parametrised on criteria (see predicated child walk and child step). The criteria control which objects the traversal will accept as output, and will either accept an object by outputting true or reject it by outputting false. You can combine criteria with operators to form new criteria (see AND, OR). For example, the traversal ‘[.Name=N]’ will for each input object, output the set of child objects whose name equals ‘N’. The traversal ‘*[.Name=N]’ will for each input object output the set of closest descendant objects whose name is ‘N’.</p>
 <p>Criteria are always enclosed in square brackets, [].</p>
 <p>You may specify options for the criteria within suffix curly brackets {}, for example to ignore case sensitivity on text based comparison. {i} means the search is case insensitive.</p>
-<p><img alt="Mesh search criteria" src="../assets/images/search-2.png" /></p>
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>SYNTAX</th>
+<th>DESCRIPTION</th>
+<th>EXAMPLE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Criteria relations</td>
+<td><code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>=</code></td>
+<td>Numerical criteria used in combination with a number inside a square bracket.</td>
+<td><code>[.Type=Pupil&amp;&amp;.Siblings&gt;1]</code></td>
+</tr>
+<tr>
+<td>Equal criteria</td>
+<td><code>=</code></td>
+<td>Used in combination with text inside a square bracket.</td>
+<td><code>[.Type=Pupil]</code></td>
+</tr>
+<tr>
+<td>Contains criteria</td>
+<td><code>~</code></td>
+<td>Used with text inside a square bracket. The string on the right-hand side is contained in the string on the left-hand side.</td>
+<td><code>[.Type=Pupil&amp;&amp;.Name~ok]]</code></td>
+</tr>
+<tr>
+<td>Logic AND operator</td>
+<td><code>&amp;&amp;</code></td>
+<td>Combines sub-criteria. All criteria must evaluate to true to get a result.</td>
+<td><code>[.Type=Pupil&amp;&amp;.Siblings&gt;1]</code></td>
+</tr>
+<tr>
+<td>Existence criteria</td>
+<td><code>search</code></td>
+<td>Checks if the search result is not empty.</td>
+<td><ul><li><code>[.Siblings&amp;&amp;!.Age]]</code> (objects with <code>Siblings</code> attribute, but not <code>Age</code> attribute)</li><li><code>[.Siblings&amp;&amp;!...Age]</code> (objects with <code>Siblings</code> attribute, but whose parent has no <code>Age</code> attribute)</td>
+</tr>
+<tr>
+<td>Logic OR operator</td>
+<td><code>\|\|</code></td>
+<td>Has lower precedence than the AND operator. Can be controlled by grouping criteria parts in brackets <code>()</code>.</td>
+<td><code>[..Name=Anita\|\|..Name=Beate]</code></td>
+</tr>
+<tr>
+<td>Logic NOT operator</td>
+<td><code>!</code></td>
+<td>Inverts the input.</td>
+<td><code>[!.Age=27]</code></td>
+</tr>
+<tr>
+<td>Match criteria</td>
+<td><code>#</code></td>
+<td>Regular expression. Only for text attributes (not numerical values).</td>
+<td><ul><li><code>[.Name#.*nen]</code> (Names that ends on "nen". <code>.</code> matches any character, <code>.*</code> matches all characters.)</li><li><code>[.Name#[A-C\\].*]</code> (Searches for objects with a name starting with A, B or C. It is a range based expression <code>[A-C]</code> followed by <code>.*</code> which means all characters. Note: A part regular expression needs a double back slash quote at the end).</td>
+</tr>
+</tbody>
+</table>
 <h2 id="combining-multiple-search-operations">Combining multiple search operations</h2>
 <p>You can combine search operations with the following operators:</p>
 <ul>
