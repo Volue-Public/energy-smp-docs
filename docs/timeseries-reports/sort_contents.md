@@ -37,7 +37,7 @@ In previous sections we have briefly described the process of activating a repor
 That process is about collecting time series to be part of the activated report. In this section we will discuss how this collection of time series
 is ordered and "decorated" when presented out of the box.
 
-There are at least two different layout specifications:
+There are two main layout specifications:
 
 - The order of appearance in a tabular view layout
   - Originally, before Mesh, this was controlled by the order of column definitions in the report definition
@@ -57,8 +57,8 @@ There are three levels where you can configure this:
 - Global
   - Apply a full sort operation when **all** series are collected
 
-The *Global* approach overrule the other two definitions.
-*Start point* ordering and and *Local* ordering can work together.
+The *Global* approach override the other two definitions.
+*Start point* ordering and *Local* ordering can work together.
 
 #### Evaluating the order by criterion
 
@@ -70,7 +70,7 @@ The basic algorithm can be illustrated like this:
 
 ![SortAlgorithm](sort_flow_diagram.png)
 
-This flow shows the main process. There are some special handling when the hierarchical paths have different depth and the two objects to compare have different type.
+This flow shows the main process. There is some special handling when the hierarchical paths have different depth and the two objects to compare have different type.
 
 If the objects to compare have different type this logic is applied:
 
@@ -97,7 +97,7 @@ The following format is used to configure how the sorting should be done:
 
 - `TypeName=Sortdef[,TypeName=Sortdef ...]`
   - Sortdef is: `AValidSearchDef[:D][;AValidSearchDef[:D] ...]`
-    - There might be several search definitions in prioritized order. First definition that find a valid criterion value is used.
+    - There may be several search definitions in prioritized order. First definition that find a valid criterion value is used.
     - A trailing `:D` means descending sort operation
 
 To be used in criterion value comparison the search specification must end up at an attribute having one of these types:
@@ -132,7 +132,7 @@ as a definition implicitly connected to the type owning the time series attribut
 
 ### Multiple scopes of order by definition
 
-As mentioned earlier there are thee levels where an order by definition is applicable.
+As mentioned earlier there are three levels where an order by definition is applicable.
 
 #### Local
 
@@ -169,7 +169,7 @@ This definition means:
 - Find start points by looking for watercourse objects in the current Mesh model. Current model is configured at task level.
 - Sort them according to an attribute called `SortIndex` assumed to be available on instances of the WaterCourse type and group them according to area name.
 
-There might be several start point search sections separated with semicolon `;`. Observe that the eventual order by section (starting with `ORDER_BY:`) is defined
+There may be several start point search sections separated with semicolon `;`. Observe that the eventual order by section (starting with `ORDER_BY:`) is defined
 **immediately** after the search definition. This is because it *belongs* to that specific search expression. The next search section will have its own order by definition.
 
 Example of multiple start point definitions:  
@@ -215,7 +215,7 @@ Examples:
 - `*[.Type=HydroPlant];ORDER_BY_CONFIG:Resource/ConfigFiles/OrderBy/MySort.sort`  
     Apply global sort definitions found on `MySort.sort` file. Those types not explicitly mentioned in that definition will use ascending Name as criteria. 
 - `*[.Type=HydroPlant]ORDER_BY:HydroPlant=.OwnerShare;ORDER_BY_CONFIG:None.sort`  
-    Order starting point list according to ascending value on OwnerShare attribute on HydroPlant. The reference to `None.sort` will ensure that a potential default global sort will not overrule the ORDER_BY settings specified here
+    Order starting point list according to ascending value on OwnerShare attribute on HydroPlant. The reference to `None.sort` will ensure that a potential default global sort will not override the ORDER_BY settings specified here
 - `*[.Type=HydroPlant]ORDER_BY:HydroPlant=.OwnerShare:D,WaterCourse=.SomeAttribute`  
     Sort starting point list according to descending value of OwnerShare attribute. WaterCourse items are sorted according to ascending value of SomeAttribute. PS! These definitions will be ignored if there is a file `Resource/ConfigFiles/OrderBy/Default.sort` installed
 
@@ -226,7 +226,7 @@ In this section some hints and considerations are discussed.
 
 #### The implications of report activation process
 
-When you choose an *order-by* method it is important to understand the report activation process and therefore some details about that are described here.
+When you choose an *order-by* method it is important to understand the report activation process and therefore, some details about that are described here.
 
 ![Activation](activation_process.png)
 
