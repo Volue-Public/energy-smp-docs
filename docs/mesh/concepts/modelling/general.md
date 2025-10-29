@@ -332,6 +332,23 @@ objects or attributes. The path containing attributes (full name path) is
 guaranteed to be unique, whereas depending on the model the path without
 attributes may be ambiguous.
 
+There are Mesh objects that are not directly part of a Mesh model, but the Mesh model do have
+references to such objects. These have the following prefixes:
+
+- Repository
+  - Objects part of the Mesh model definition
+- Resource
+  - Objects that are shared between multiple Mesh models
+- Quantity
+  - Unit of measurement objects
+
+Some examples:
+
+- Repository/EnergySystem/Area
+- Repository/EnergySystem/Area/Description
+- Resource/MyModel/Mesh/Norway/Measurements/AreaNorth/WaterLevel_historical
+- Quantity/volume/million cubic meter
+
 ## Mapping
 
 We strongly advise to use the above definitions, but some of them were already known under different names:
