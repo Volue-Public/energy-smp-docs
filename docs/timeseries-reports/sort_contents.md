@@ -4,14 +4,15 @@
 
 If you know the basics and just want to check some details, here are some fast track shortcuts:
 
-- I want to sort the results from a single `TS_BINDING` query.  
+- _I want to sort the results from a single `TS_BINDING` query._  
   
-  Use the `TEMPLATE_ORDER_BY` column attribute. Here is the [syntax](#the-order-by-specification-format). This approach has a *Local* scope.
-- I want to sort the start points before activating a report.  
+  Use the `TEMPLATE_ORDER_BY` column attribute. Here is the [syntax](#the-order-by-specification-format). This approach has a *Local* scope.  
+  **_Note_!** The syntax is now harmonised with general sorting syntax. 
+- _I want to sort the start points before activating a report._  
   
   Extend the sort definition by appending `ORDER_BY:<sort definition>` to the *start point* search definition as described [here](#start-points).  
-  PS! The `ORDER_BY:` keyword must be *immediately* after the search definition (no comma, no space, nothing).
-- I want to apply a global ordering on the complete set of time series found in a report.  
+  **_Note_!** The `ORDER_BY:` keyword must be *immediately* after the search definition (no comma, no space, nothing).
+- _I want to apply a global ordering on the complete set of time series found in a report._  
   
   Then you should add a section to the start point definition starting with the keyword `;ORDER_BY_CONFIG:<sort definition>`, see more details [here](#global).  
   
@@ -127,8 +128,9 @@ Examples:
   - Included specification for case objects
     - For cReservoir objects - go to linked asset object (`to_Reservoir`) and use `HRWL`
 
-*PS! For the `TEMPLATE_ORDER_BY` definition it was possible to have a simplified format like `.HRWL` or even `HRWL` which the sort algorithm would take
-as a definition implicitly connected to the type owning the time series attribute.* **This is no longer supported.**
+**_Note!_** _For the `TEMPLATE_ORDER_BY` definition it was possible to have a simplified format like `.HRWL` or even `HRWL` which the sort algorithm would take
+as a definition implicitly connected to the type owning the time series attribute._  
+**_This is no longer supported. (from 2025.3)_**
 
 ### Multiple scopes of order by definition
 
@@ -217,7 +219,8 @@ Examples:
 - `*[.Type=HydroPlant]ORDER_BY:HydroPlant=.OwnerShare;ORDER_BY_CONFIG:None.sort`  
     Order starting point list according to ascending value on OwnerShare attribute on HydroPlant. The reference to `None.sort` will ensure that a potential default global sort will not override the ORDER_BY settings specified here
 - `*[.Type=HydroPlant]ORDER_BY:HydroPlant=.OwnerShare:D,WaterCourse=.SomeAttribute`  
-    Sort starting point list according to descending value of OwnerShare attribute. WaterCourse items are sorted according to ascending value of SomeAttribute. PS! These definitions will be ignored if there is a file `Resource/ConfigFiles/OrderBy/Default.sort` installed
+    Sort starting point list according to descending value of OwnerShare attribute. WaterCourse items are sorted according to ascending value of SomeAttribute.  
+    **_Note!_** These definitions will be ignored if there is a file `Resource/ConfigFiles/OrderBy/Default.sort` installed
 
 ### Best practice
 
@@ -305,8 +308,6 @@ A sort definition is given a name and placed into the Mesh resource section. Thi
     clr -w ListTextFiles -w Resource/ConfigFiles/OrderBy -w sort
     ```
     First list all types, second list all with suffix *sort*
-
-PS! At some point there may be a more user-friendly tool to maintain such definitions.
 
 ## Some examples using order by in template reports
 
