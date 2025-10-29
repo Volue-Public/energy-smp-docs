@@ -168,3 +168,6 @@ nav:
             - Import of availability events: mesh-data-transfer/use-cases/import-of-availability-events-using-mdt.md
     - Operations:
           - Monitor services: operations/monitoring.md
+    - Time series reports:
+          - General: timeseries-reports/reports_intro.md
+          - Sorted layout: timeseries-reports/sort_contents.md
