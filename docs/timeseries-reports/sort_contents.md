@@ -16,7 +16,7 @@ If you know the basics and just want to check some details, here are some fast t
   
   Then you should add a section to the start point definition starting with the keyword `;ORDER_BY_CONFIG:<sort definition>`, see more details [here](#global).  
   
-  As this is a **standalone** section it must be separated by the start point search definitions using the *semicolon* separator. It is the same sort definition format as used above. Be aware that a global sort definition will discard any other order by setup provided (*Local* or *start point*)
+  As this is a **standalone** section it must be separated by the start point search definitions using the *semicolon* separator. It is the same sort definition format as used above. Be aware that a global sort definition will discard any other _order-by_ setup provided (*Local* or *start point*)
   - The value next to this keyword may be an in-place definition or it may be a reference to a Mesh resource "*file*", see [here](#maintain-a-global-sorting-definition) for how to create/maintain such definitions.
 
 ## General introduction
@@ -30,7 +30,7 @@ different areas of the Mesh model and thereby provide different contents.
 
 This expandable and reusable report definition gives a lot of advantages but also less direct control over the layout, that is
 the order of the appearance typically visible in a table view. To compensate for this, the Mesh report definition and report activation
-provide different **order by** alternatives.
+provide different **_order-by_** alternatives.
 
 ## Time series report layout
 
@@ -42,12 +42,12 @@ There are two main layout specifications:
 
 - The order of appearance in a tabular view layout
   - Originally, before Mesh, this was controlled by the order of column definitions in the report definition
-  - The dynamic behavior of Mesh template reports makes *order by* features important
+  - The dynamic behavior of Mesh template reports makes _order-by_ features important
 - Legends, headers, colors, pages, groups ++
   - A lot of these attributes have to use macros that makes it possible to adapt to the properties of current object
     - Without macros all the attributes that originates from the same report column definition would be equal
 
-### The order by features supported by Mesh template reports
+### The order-by features supported by Mesh template reports
 
 There are three levels where you can configure this:
 
@@ -61,7 +61,7 @@ There are three levels where you can configure this:
 The *Global* approach override the other two definitions.
 *Start point* ordering and *Local* ordering can work together.
 
-#### Evaluating the order by criterion
+#### Evaluating the order-by criterion
 
 The sorting algorithm that is used in Mesh evaluates a potential criterion value for each hierarchical level of the
 object path, starting from top level which is the model components. (A component is a Mesh object owned directly by the Mesh model). If the criterion value is equal for the compared objects, then move on to next hierarchical
@@ -116,7 +116,7 @@ These are available:
 - `Topology`- applicable for objects part of `EnergySystem` watercourse and associated case structure. The system dynamically attach increasing numbers from top to bottom in a watercourse and uses that as criterion value. 
 - `Ignore` - do not apply any comparison 
 
-In addition to a valid `TypeName` it is possible to use a generic type name `Default` which then hold a definition for all types are not explicitly mentioned in the order by definition.
+In addition to a valid `TypeName` it is possible to use a generic type name `Default` which then hold a definition for all types are not explicitly mentioned in the order-by definition.
 
 Examples:
 
@@ -132,9 +132,9 @@ Examples:
 as a definition implicitly connected to the type owning the time series attribute._  
 **_This is no longer supported. (from 2025.3)_**
 
-### Multiple scopes of order by definition
+### Multiple scopes of order-by definition
 
-As mentioned earlier there are three levels where an order by definition is applicable.
+As mentioned earlier there are three levels where an _order-by_ definition is applicable.
 
 #### Local
 
@@ -171,8 +171,8 @@ This definition means:
 - Find start points by looking for watercourse objects in the current Mesh model. Current model is configured at task level.
 - Sort them according to an attribute called `SortIndex` assumed to be available on instances of the WaterCourse type and group them according to area name.
 
-There may be several start point search sections separated with semicolon `;`. Observe that the eventual order by section (starting with `ORDER_BY:`) is defined
-**immediately** after the search definition. This is because it *belongs* to that specific search expression. The next search section will have its own order by definition.
+There may be several start point search sections separated with semicolon `;`. Observe that the eventual _order-by_ section (starting with `ORDER_BY:`) is defined
+**immediately** after the search definition. This is because it *belongs* to that specific search expression. The next search section will have its own _order-by_ definition.
 
 Example of multiple start point definitions:  
 `*[.Type=WaterCourse]ORDER_BY:Area=Name,WaterCourse=.SortIndex;*[.Type=SomeType]ORDER_BY:Default=Ignore,HydroPlant=.SortIndex`
@@ -181,16 +181,16 @@ As described above, the parsing of the start-point definition is rather strict.
 
 #### Global
 
-If there is a global scope order by definition in place, then it will override the definitions described above (*Local* and *Start point*).
+If there is a global scope _order-by_ definition in place, then it will override the definitions described above (*Local* and *Start point*).
 In this mode **all** time series that are collected to be part of the activated report are sorted according to the global definition.
 
 Global definitions are stored in the Mesh resources section. See details on how to [create/edit/delete](#maintain-a-global-sorting-definition) such definitions.
 
 To associate a report activation with a global sorting definition there are currently three options:
 - Add `ORDER_BY_CONFIG:<path to text file resource>` to the end of start point definition. If there is a search definition in place you have to add a `;` in front of this section. See examples below.
-- Add a default order by definition to a predefined location in the Mesh resources:
+- Add a default _order-by_ definition to a predefined location in the Mesh resources:
   - `Resource/ConfigFiles/OrderBy/Default.sort`
-- Add order by definition as described above immediately after the `ORDER_BY_CONFIG:` keyword
+- Add _order-by_ definition as described above immediately after the `ORDER_BY_CONFIG:` keyword
 
 The format of the global sort specification is the same as already described. When resource "files" are used it normally contains multiple lines, one line per type. Like this:
 
@@ -208,7 +208,7 @@ These two definitions are equivalent:
 
 To utilize the special definition `Default.sort` may be convenient but due the its *global* scope it can have side undesired effects.
 Therefore, be aware that it might be used in places you did not want it to. To avoid such interference from a "hidden" default you can add a 
-global order by definition that explicitly say: *do not apply a global sort operation*. It is done by referring to a resource called
+global _order-by_ definition that explicitly say: *do not apply a global sort operation*. It is done by referring to a resource called
 `None.sort`. The system just look at the name and it does not try to look it up, hence it does not need to exist. See example below.
 
 #### Some examples of start point definitions
@@ -309,9 +309,9 @@ A sort definition is given a name and placed into the Mesh resource section. Thi
     ```
     First list all types, second list all with suffix *sort*
 
-## Some examples using order by in template reports
+## Some examples using order-by in template reports
 
-### Local scope order by
+### Local scope order-by
 
 This is the report definition:
 
@@ -332,7 +332,7 @@ END_COLUMN
 Some comments:
 
 - Searches for all `Production` series on all `HydroPlant` type objects below a watercourse.
-- Do a local order by ascending sort using the local attribute value `OwnerShare`
+- Do a local _order-by_ ascending sort using the local attribute value `OwnerShare`
 - The column heading (`TEXT` attribute) refers to local attributes for `SortIndex` and `OwnerShare`. The format `$<$.SortIndex>` is the general format where the inner part is a general search expression. The format `$<OwnerShare>` is simpler form when referring to local attributes (attributes on the object owning this time series).
 
 ![Global sort example](local_order_by.png)
@@ -415,7 +415,7 @@ The task definition have this start point definition (Nimbus Configurator):
 
 `*[.Type=WaterCourse&&.Name#L.gen];ORDER_BY_CONFIG:Default=Ignore,HydroPlant=Topology,Reservoir=Topology`
 
-PS! The global order by specification is here added directly in the Nimbus task definition. It is also possible to add this definition to a resource "file" and refer that file with full path into Mesh resource section.
+PS! The global _order-by_ specification is here added directly in the Nimbus task definition. It is also possible to add this definition to a resource "file" and refer that file with full path into Mesh resource section.
 
 The associated table presentation looks like this:
 
