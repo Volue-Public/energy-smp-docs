@@ -414,6 +414,13 @@
                   <li class="toctree-l1"><a class="reference internal" href="../../../../operations/monitoring/">Monitor services</a>
                   </li>
               </ul>
+              <p class="caption"><span class="caption-text">Time series reports</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../timeseries-reports/reports_intro/">General</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../timeseries-reports/sort_contents/">Sorted layout</a>
+                  </li>
+              </ul>
       </div>
     </div>
     </nav>
@@ -738,6 +745,23 @@ character. For example full name path for an attribute of the
 objects or attributes. The path containing attributes (full name path) is
 guaranteed to be unique, whereas depending on the model the path without
 attributes may be ambiguous.</p>
+<p>There are Mesh objects that are not directly part of a Mesh model, but the Mesh model do have
+references to such objects. These have the following prefixes:</p>
+<ul>
+<li>Repository</li>
+<li>Objects part of the Mesh model definition</li>
+<li>Resource</li>
+<li>Objects that are shared between multiple Mesh models</li>
+<li>Quantity</li>
+<li>Unit of measurement objects</li>
+</ul>
+<p>Some examples:</p>
+<ul>
+<li>Repository/EnergySystem/Area</li>
+<li>Repository/EnergySystem/Area/Description</li>
+<li>Resource/MyModel/Mesh/Norway/Measurements/AreaNorth/WaterLevel_historical</li>
+<li>Quantity/volume/million cubic meter</li>
+</ul>
 <h2 id="mapping">Mapping</h2>
 <p>We strongly advise to use the above definitions, but some of them were already known under different names:</p>
 <ul>
