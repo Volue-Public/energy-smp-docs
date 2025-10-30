@@ -7,8 +7,8 @@ Mesh standard XML format.
   - [Different event types handled](#different-event-types-handled)
   - [Different message types](#different-message-types)
   - [XML input message structure](#xml-input-message-structure)
-    - [RevisionEvent \& RevisionEventUpdate](#revisionevent--revisioneventupdate)
-    - [RestrictionEvent \& RestrictionEventUpdate](#restrictionevent--restrictioneventupdate)
+    - [RevisionEvent and RevisionEventUpdate](#revisionevent-and-revisioneventupdate)
+    - [RestrictionEvent and RestrictionEventUpdate](#restrictionevent-and-restrictioneventupdate)
     - [AvailabilityEventRemove](#availabilityeventremove)
   - [XML response message structure](#xml-response-message-structure)
   - [Examples](#examples)
@@ -29,7 +29,7 @@ The import of availability events using AMQP supports two different event types:
 such events are operations due to maintenance of the physical object or a failure that suddenly
 happens on the object.
 - `Restriction` - an event that has the possibility to just reduce the available resource by a part (f.ex. 20
-%). Examples of such events are reduced max level of a resevoir due to maintenance on the dam or
+%). Examples of such events are reduced max level of a reservoir due to maintenance on the dam or
 reduced max production due to reduced capacity in some parts of the system.
 
 ## Different message types
@@ -78,7 +78,7 @@ SmG Message Log).
 - `Inputs/AvailabilityEvents` - contains list of events to be created, updated, and/or deleted. The
 events will be handled in the same order as they are located in the list.
 
-### RevisionEvent & RevisionEventUpdate
+### RevisionEvent and RevisionEventUpdate
 
 ````xml
 <RevisionEvent Path="Model/Company/Mesh" Search="*
@@ -113,7 +113,7 @@ are:
 - `SubEvent/Frequency/Start` - start of the unavailability period.
 - `SubEvent/Frequency/End` - end of the unavailability period.
 
-### RestrictionEvent & RestrictionEventUpdate
+### RestrictionEvent and RestrictionEventUpdate
 
 ````xml
 <RestrictionEvent Path="Model/Company/Mesh" Search="*
