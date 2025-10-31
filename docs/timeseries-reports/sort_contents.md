@@ -149,7 +149,7 @@ Example:
 
 #### Start points
 
-As seen in [MainComponents](#Main) an activated report that is visible to the user always need one or more starting points.
+As seen in [MainComponents](#Main) an activated report that is visible to the user always needs one or more starting points.
 
 The activation process can be described by the following pseudo code:
 
@@ -203,8 +203,8 @@ Reservoir=.HRWL:D
 
 These two definitions are equivalent:
 
-- `start-point definiton;ORDER_BY_CONFIG:Resource/ConfigFiles/OrderBy/MySort.sort`
-- `start-point definiton;ORDER_BY_CONFIG:Default=Ignore,cReservoir=to_Reservoir.HRWL:D,Reservoir=.HRWL:D`
+- `start-point definition;ORDER_BY_CONFIG:Resource/ConfigFiles/OrderBy/MySort.sort`
+- `start-point definition;ORDER_BY_CONFIG:Default=Ignore,cReservoir=to_Reservoir.HRWL:D,Reservoir=.HRWL:D`
 
 To utilize the special definition `Default.sort` may be convenient but due the its *global* scope it can have side undesired effects.
 Therefore, be aware that it might be used in places you did not want it to. To avoid such interference from a "hidden" default you can add a 
@@ -371,7 +371,7 @@ This means activate the report definition for all `Watercourse` objects found in
 
 The result of this report activation in Nimbus looks like this:
 
-![Startpoint sort example](start_point_sort.png)
+![Start point sort example](start_point_sort.png)
 
 ### Global sorting using topology
 

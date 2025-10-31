@@ -1,6 +1,6 @@
 # Monitor Smart Power solutions
 
-- [Monitor Smart Power solutions](#operating-smart-power-solutions)
+- [Monitor Smart Power solutions](#monitor-smart-power-solutions)
   - [About this document](#about-this-document)
   - [Systems monitoring](#systems-monitoring)
   - [Service list](#service-list)

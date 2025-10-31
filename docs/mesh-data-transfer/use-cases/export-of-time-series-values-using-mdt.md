@@ -4,11 +4,11 @@ This document describes how time series values can be exported from Mesh using M
 
 The definition of the XML format is found in the [`AMQPmessageTypes.xsd`](./xsd/AMQPmessageTypes.xsd).
 
-Currently, when doing exports, it it necessary to define export definitons in the SmG Participant application using transfer definitions defined using the SmG Import/Export application.
+Currently, when doing exports, it it necessary to define export definitions in the SmG Participant application using transfer definitions defined using the SmG Import/Export application.
 
 - [Export of time series values using Mesh Data Transfer](#export-of-time-series-values-using-mesh-data-transfer)
-  - [Create export definitions](#creating-export-definitions)
-  - [Perform a manual export](#doing-a-manual-export)
+  - [Create export definitions](#create-export-definitions)
+  - [Perform a manual export](#perform-a-manual-export)
   - [XML output message structure](#xml-output-message-structure)
     - [Timestamp](#timestamp)
 
@@ -29,7 +29,7 @@ Please observe:
 - `Transfer definition` - The transfer definition defines in which format the time series shall be exported in.
 - `Transfer method` - The transfer method is a grouping method that can be used to automatically transfer the time series in a time scheduled way or when triggering an export from a Nimbus task.
 
-## Peform a manual export
+## Perform a manual export
 
 We are manually triggering an export in the SmG Participant application as a way to visualise the export process including Mesh Data Transfer:
 
