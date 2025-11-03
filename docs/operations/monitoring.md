@@ -1,12 +1,13 @@
 # Monitor Smart Power solutions
 
-- [Monitor Smart Power solutions](#operating-smart-power-solutions)
+- [Monitor Smart Power solutions](#monitor-smart-power-solutions)
   - [About this document](#about-this-document)
   - [Systems monitoring](#systems-monitoring)
   - [Service list](#service-list)
     - [Powel Alarm service](#powel-alarm-service)
     - [Powel FileRequester service](#powel-filerequester-service)
     - [Powel FileResponder service](#powel-fileresponder-service)
+    - [Powel Marginal Cost](#powel-marginal-cost)
     - [Powel Mesh service](#powel-mesh-service)
     - [Powel MeshDataTransfer service](#powel-meshdatatransfer-service)
     - [Powel MeshCollector service](#powel-meshcollector-service)
@@ -17,8 +18,9 @@
     - [Powel OptimalLog service](#powel-optimallog-service)
     - [Powel OptimalMultiAsset (POMA) service](#powel-optimalmultiasset-poma-service)
     - [Powel ScadaGateway service](#powel-scadagateway-service)
+    - [Volue Automation Framework](#volue-automation-framework)
+    - [Volue Smart Power Apps](#volue-smart-power-apps)
     - [Volue TransferAMQPFile service](#volue-transferamqpfile-service)
-
 
 ## About this document
 
@@ -53,7 +55,7 @@ Other (non-Volue) software should also be monitored for availability, like the d
 
 ## Service list
 
-There are 14 services described in this document:
+There are 29 services described in this document:
 
 ||Service|Health endpoint|Active zone Normal|Active zone Alert|Passive zone Normal|Passive zone Alert|
 |-|------|---------------|-------------------|------------------|--------------------|-------------------|
@@ -70,7 +72,22 @@ There are 14 services described in this document:
 |11|Powel Optimal Log service|http://server:18260/OptimalLog/Health|Running|Stopped/Disabled|Running|Stopped/Disabled|
 |12|Powel Optimal MultiAsset (POMA) service|http://server:18262/MultiAsset/Health|Running|Stopped/Disabled|Running|Stopped/Disabled|
 |13|Powel ScadaGateway service|http://server:port/ScadaGateway/health|Running|Stopped/Disabled|Stopped/Disabled|n/a|
-|14|Volue TransferAMQPFiles service|n/a|Running|Stopped/Disabled|Running|Stopped/Disabled|
+|14|Powel SmE Folder Watcher Service Client|?|?|?|?|?|
+|15|Powel SmE MC Receiver Service|?|?|?|?|?|
+|16|Powel SmE MC Sender Service|?|?|?|?|?|
+|17|Volue Automation Framework|?|?|?|?|?|
+|18|Volue Smart Power Apps|?|?|?|?|?|
+|19|Volue TransferAMQPFiles service|n/a|Running|Stopped/Disabled|Running|Stopped/Disabled|
+|20|Volue WorkflowEngine CronTriggerService|?|?|?|?|?|
+|21|Volue WorkflowEngine FileSystemWatcherService|?|?|?|?|?|
+|22|Volue WorkflowEngine Manager API|?|?|?|?|?|
+|23|Volue WorkflowEngine MeshService|?|?|?|?|?|
+|24|Volue WorkflowEngine OracleService|?|?|?|?|?|
+|25|Volue WorkflowEngine PDLogEventLogger|?|?|?|?|?|
+|26|Volue WorkflowEngine ProcessService|?|?|?|?|?|
+|27|Volue WorkflowEngine RunBatFile|?|?|?|?|?|
+|28|Volue WorkflowEngine RunOptimization|?|?|?|?|?|
+|29|Volue WorkflowEngine RunPowerShellFile|?|?|?|?|?|
 
 The above table contains information about the health endpoint of each service, the normal operation mode when running in either active or passive zone, and alert situation when running in either active or passive zone.
 
@@ -139,6 +156,20 @@ Things to alert:
 - The health endpoint is not responding.
 - Observations based on health data – number of failures when receiving calls is increasing or too long time since last call was successfully received or …
 - File in New-folder that is created more than 2 minutes ago.
+
+### Powel Marginal Cost
+
+Summary/description:
+
+Output:
+
+Endpoints/API:
+
+Things to alert:
+
+- The service is not running.
+- IIS Application Pool `McAppPool` must be started on the server where Marginal Cost is running.
+- IIS Site `McAppPool` must be started on the server where Marginal Cost is running.
 
 ### Powel Mesh service
 
@@ -269,7 +300,7 @@ Things to alert:
 
 Summary/description:
 
-- This is the service providing the Nimbus user interface (application running on the user‘s client/RDP session). The service provides settings from the configuration service for user and roles, handles tasks, and, for none-Mesh tasks, gives report content.
+- This is the service providing the Nimbus user interface (application running on the user‘s client/RDP session). The service provides settings from the configuration service for user and roles, handles tasks, and, for none-Mesh tasks, gives report content. This service may also be called `Powel Host for Nimbus Service`.
 
 Output:
 
@@ -376,6 +407,32 @@ Things to alert:
 - The health endpoint is not responding.
 - Imports via Mesh AMQP Relay of messages from this service are not created within a certain time frame.
 - Observations based on health data – too long time since last data change was received or too long time since an export was created or ...
+
+### Volue Automation Framework
+
+Summary/description:
+
+Output:
+
+Endpoints/API:
+
+Things to alert:
+
+- The IIS Application Pool `WorkflowEngineUI` must be started on the server where the UI of Automation Framework is running.
+- The IIS Site `WorkflowEngineUI` must be started on the server where the UI of Automation Framework is running.
+
+### Volue Smart Power Apps
+
+Summary/description:
+
+Output:
+
+Endpoints/API:
+
+Things to alert:
+
+- The IIS Application Pools `Availability`, `HydroTopologyEditor`, and `MeshConfigurator` must be started on the server where the Smart Power Apps are running.
+- The IIS Sites `Availability`, `HydroTopologyEditor`, and `MeshConfigurator` must be started on the server where the Smart Power Apps are running.
 
 ### Volue TransferAMQPFile service
 
