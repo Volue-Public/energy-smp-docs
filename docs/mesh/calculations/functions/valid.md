@@ -21,7 +21,7 @@ See also function [IsValid](../functions/isvalid.md).
 
 | Type | Description |
 |---|---|
-| T | Array of source time series, where each of them is normally the result of a @t(‘TheReference’) lookup. |
+| T | Array of source time series, where each of them normally is the result of a @t(‘TheReference’) lookup. |
 
 The function returns an array of valid time series.
 
