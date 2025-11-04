@@ -55,6 +55,6 @@ Default curve type is `STEP`. To make the result series linear you add a second 
 
 `TS5 = @TS('DAY','LINEAR')`
 
-**Note!** The curve type argument are case sensitive.
+**Note!** The curve type argument is case sensitive.
 
 You may add a third argument to initialise values to a given number.
