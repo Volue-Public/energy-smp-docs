@@ -15,7 +15,7 @@ The format of an explicit time point specification:
   - Minute as a two digits, from 00 to 59
   - Seconds as two digits, from 00 to 59
   - Milliseconds as three digits, from 000 to 999
-- If specification contains 8 characters, default value is 0 for the fields starting from hour
+- If the specification contains 8 characters, the default value is 0 for the fields starting from hour
 - If specification contains 10 characters, default value is 0 for the fields starting from minute etc
 - Optional time zone prefix
   - Available codes are
