@@ -157,6 +157,13 @@ nav:
                 - "Client certificates": mesh/grpc/ClientCertificates.md
                 - "Authorization": mesh/grpc/Authorization.md
                 - "API Specification": mesh/grpc/APISpecification.md
+          - Mesh REST API:
+                - Introduction: mesh/rest-api/introduction.md
+                - Changelog: mesh/rest-api/changelog.md
+                - API documentation: mesh/rest-api/api-documentation.md
+                - For developers:
+                      - Generate C# API from swagger.json: mesh/rest-api/generate-c#-api-from-swagger-json.md
+                      - How to use ImportMultistepWaterValueFunctions: how-to-use-ImportMultistepWaterValueFunctions.md
           - Model maintenance: mesh/model-maintenance/ModelMaintenanceConcepts.md
     - Mesh Data Transfer:
           - Changelog: mesh-data-transfer/changelog/CHANGELOG.md
