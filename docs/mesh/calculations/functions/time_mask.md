@@ -34,11 +34,7 @@ you to specify the resolution for the result series.
 If the first and last symbol arguments are omitted, default values are applied.
 Default repeat frequency is 'NONE' and default result series resolution is 'HOUR'.
 
-Unless the repeat frequency are 'NONE' the time points specified are moved and repeated so
-that they establish a functional value for the whole requested time period. That means when
-frequency is 'DAY' it has no meaning to use macros that add days to a time point,
-like 'DAY+3d+2h'. In this example would be the time point specification 'DAY+2h' would
-give the same result. 
+Unless the repeat frequency is 'NONE', the time points specified are moved and repeated so that they establish a functional value for the whole requested time period. That means when frequency is 'DAY' it has no meaning to use macros that add days to a time point, like 'DAY+3d+2h'. In this example the time point specification 'DAY+2h' would give the same result. 
 
 See [time macro specification](../timepoint-macros.md).
 
