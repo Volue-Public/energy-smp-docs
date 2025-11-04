@@ -41,7 +41,7 @@ Adding previous versions of initial series is another option to dynamically exte
 The `TS_BINDING` attribute **value** in Mesh context is associated with Mesh model instances storing time series. To describe where to look for time series, we use the Mesh model *definition*.
 The TS_BINDING value is a query and not a fixed reference, and therefore, a template report will adapt to the current state of the Mesh model.
 
-A query against a given Mesh model may result in zero, one or *many* time series. This dynamic behaviour also impact how other report attributes are defined, for instance by using macros that make the value of attributes adapt to the specific time series found. `$OBJ_NAME` is an example of such a macro and will expand to the name of the Mesh model object that owns the time series attribute.
+A query against a given Mesh model may result in zero, one or *many* time series. This dynamic behaviour also impact how other report attributes are defined, for instance by using macros that make the value of attributes adapt to the specific time series found. `$OBJ_NAME` is an example of such a macro and will expand to the name of the Mesh model object that owns the time series attribute. See [this document](./macros.md) for more details.
 
 ## Template report activation
 
