@@ -3,7 +3,7 @@
 A time point can be specified in two ways:
 
 - an explicit definition using from 8 to 17 numeric characters
-- a macro based definition that related to current time
+- a macro-based definition that related to current time
 
 The format of an explicit time point specification:
 
