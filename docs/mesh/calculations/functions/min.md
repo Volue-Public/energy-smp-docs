@@ -1,28 +1,39 @@
 ﻿## MIN
-## About the function
-Finds the highest values in time series, numbers, arrays or combinations of
-these. The result series has the same resolution as the input time series.
+
+### About the function
+
+Finds the lowest values in time series, numbers, arrays or combinations of
+these.
+
+There are many variants of this function, some returns a single number as result
+but most of them returns a time series.
+
+The result series has the same resolution as the input time series. This also applies to cases where there are multiple time series involved and they all have the same resolution. If there are series with different resolutions, the result is a breakpoint series.
 
 ## Syntax
+
 - MIN(T)
-- MIN(D)
-- MIN(t)
+- MIN(D)  -> returns a number
+- MIN(t)  -> returns a number
 - MIN(t,t)
 - MIN(T,t)
 - MIN(t,T)
 - MIN(t,d)
 - MIN(d,t)
-- MIN(d,d)
+- MIN(d,d)  -> returns a number
 - MIN(T,T)
 
-## Description
+### Description
 
 | # | Type | Description |
 |---|---|---|
 | 1 | t T d D | Time series Array of time series Number Array of numbers |
 | 2 | t d T | Time series Number Array of time series |
 
-## Example
+There are similar functions to find highest values, see [function MAX](max.md)
+
+### Examples
+
 Example 1: @MIN(T)
 
 `Temperature_hour_operative = @MIN(@T('Temperature_hour'))`

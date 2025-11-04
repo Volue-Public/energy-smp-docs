@@ -22,31 +22,31 @@ The result series has the same resolution as the input time series. This also ap
 - MAX(d,d) -> returns a number
 - MAX(T,T)
 
+### Description
+
 | # | Type | Description |
 |---|---|---|
 | 1 | t T d D | Time series, array of time series, number or array of numbers. |
 | 2 | t d T | Optional. Time series, number or array of time series. |
+
+There are similar functions to find lowest values, see [function MIN](min.md)
 
 ## Examples
 
 In general, when there are two arguments and at least one of them are an array of time series, like (t,T), (T,t) and (T,T) then the function behaves like having one array. The function concatenate the time series arguments into one array
 before doing the operation.
 
-
 ### Example 1: @MAX(t)
 
 ResTs = @MAX(@t('.Ts')
 
-Returns the highest value of the time series for the requested period. See
-similar example for the [@MIN(t) function](../functions/min.md).
+Returns the highest value of the time series for the requested period.
 
 ### Example 2: @MAX(t,t)
 
 ResTs = @MAX(@t('Ts1'),@t('Ts2'))
 
 Returns the highest value of time series 1 and 2 for every time step.
-
-See similar example for the [@MIN(t,t) function](../functions/min.md).
 
 ### Example 3: @MAX(d,d)
 
