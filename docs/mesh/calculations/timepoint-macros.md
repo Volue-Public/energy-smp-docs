@@ -53,7 +53,8 @@ A more flexible way to specify a time point is using the following format:
 
 Default time zone if zone prefix is omitted is STANDARD, i.e. local time zone with DST disabled.
 
-Assume current time is `Wednesday, October 22, 2025 10:41:49 AM`. PS! This time point is inside the DST time period.
+Assume current time is `Wednesday, October 22, 2025 10:41:49 AM`. 
+**_Note!_** This time point is inside the DST time period.
 
 Examples:
 
