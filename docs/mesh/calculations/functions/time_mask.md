@@ -187,8 +187,7 @@ Switching to a request inside inside a DST period and using zone `LT` - local zo
 
 #### Example 3
 
-Switch to hourly result resolution. Then the function will perform a transformation from breakpoint series
-as described in previous examples to hour resolution based on the functional value at time points.
+Switch to hourly result resolution. Then the function will perform a transformation from breakpoint series as described in the previous examples to hour resolution based on the functional value at time points.
 
 `Result = @TIME_MASK('DAY<UTC>', {'DAY+07h', 'DAY+10h', 'DAY+14h','DAY+18h'}, {1,2,3,4},'HOUR')`
 
