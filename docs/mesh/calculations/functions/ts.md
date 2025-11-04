@@ -32,7 +32,7 @@ The value is assigned to all points in time.
 
 ` TS1 = @TS('VARINT')`
 
-Time series TS1 is defined as a break point series and is set empty (NaN) as
+Time series TS1 is defined as a breakpoint series and is set empty (NaN) as
 default. There will be a NaN value at start of requested time period.
 
 @TS(s,d)

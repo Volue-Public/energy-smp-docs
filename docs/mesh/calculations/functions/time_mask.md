@@ -123,7 +123,7 @@ values in the next argument.
 
 `Result = @TIME_MASK('DAY', {'DAY+07h', 'DAY+10h', 'DAY+14h','DAY+18h'}, {1,2,3,4},'VARINT')`
 
-| Time UTC | B.Ts10 |
+| Time UTC | Result |
 |---|---|
 | 2021-12-31T17:00:00Z |       4.00 |
 | 2022-01-01T06:00:00Z |       1.00 |
@@ -144,7 +144,7 @@ Switching to a request inside inside a DST period, still gives the same result.
 `##=@TIME_MASK('DAY', {'DAY+07h', 'DAY+10h', 'DAY+14h','DAY+18h'}, {1,2,3,4},'VARINT')`
 
 Action:TimeseriesRead
-| Time | B.Ts10 |
+| Time | Result |
 |---|---|
 | 2021-12-31T17:00:00Z |       4.00 |
 | 2022-01-01T06:00:00Z |       1.00 |
@@ -158,7 +158,7 @@ Action:TimeseriesRead
 
 `Result = @TIME_MASK('DAY<UTC>', {'DAY+07h', 'DAY+10h', 'DAY+14h','DAY+18h'}, {1,2,3,4},'VARINT')`
 
-| Time UTC | B.Ts10 |
+| Time UTC | Result |
 |---|---|
 | 2021-12-31T18:00:00Z |       4.00 |
 | 2022-01-01T07:00:00Z |       1.00 |
@@ -175,7 +175,7 @@ Switching to a request inside inside a DST period and using zone `LT` - local zo
 
 `##=@TIME_MASK('DAY<LT>', {'DAY+07h', 'DAY+10h', 'DAY+14h','DAY+18h'}, {1,2,3,4},'VARINT')`
 
-| Time | B.Ts10 |
+| Time | Result |
 |---|---|
 | 2022-03-31T16:00:00Z |       4.00 |
 | 2022-04-01T05:00:00Z |       1.00 |
@@ -191,7 +191,7 @@ Switch to hourly result resolution. Then the function will perform a transformat
 
 `Result = @TIME_MASK('DAY<UTC>', {'DAY+07h', 'DAY+10h', 'DAY+14h','DAY+18h'}, {1,2,3,4},'HOUR')`
 
-| Time | B.Ts10 |
+| Time | Result |
 |---|---|
 | 2022-01-01T00:00:00Z |       4.00 |
 | 2022-01-01T01:00:00Z |       4.00 |
@@ -226,7 +226,7 @@ Adding an option to the first argument like this:
 
 `Result = @TIME_MASK('DAY<UTC><Linear>', {'DAY+07h', 'DAY+10h', 'DAY+14h','DAY+18h'}, {1,2,3,4},'HOUR')`
 
-| Time | B.Ts10 |
+| Time | Result |
 |---|---|
 | 2022-01-01T00:00:00Z |       2.91 |
 | 2022-01-01T01:00:00Z |       2.64 |
