@@ -294,9 +294,8 @@ resolution. The presentation of data values is step wise.
 This function lets you define a logical time series from criteria given by the parameters in a text resource file specified as the second argument. The values on the result series is either 0 or 1 depending on the arguments to the function.
 The default resolution is hour.
 
-As an example, the function can be used to create time series masks to
-for instance find the power usage in specific
-periods of the day, like low load, peak load etc.
+As an example, the function can be used to create time series masks, for instance, to
+find the power usage in specific periods of the day, like low load, peak load etc.
 
 @TIME_MASK(s,s)
 
