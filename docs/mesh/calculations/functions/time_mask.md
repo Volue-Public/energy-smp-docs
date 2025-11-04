@@ -119,7 +119,7 @@ values in the next argument.
 
 ### Day frequency
 
-Example 1
+#### Example 1
 
 `Result = @TIME_MASK('DAY', {'DAY+07h', 'DAY+10h', 'DAY+14h','DAY+18h'}, {1,2,3,4},'VARINT')`
 
