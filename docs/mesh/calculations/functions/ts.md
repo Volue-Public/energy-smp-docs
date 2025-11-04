@@ -39,7 +39,7 @@ default. There will be a NaN value at start of requested time period.
 
 `TS2 = @TS('VARINT',1)`
 
-Time series TS2 is defined as break point series and get 1 as value at start of requested time period.
+Time series TS2 is defined as breakpoint series and get 1 as value at start of requested time period.
 
 Series with other resolutions:
 
