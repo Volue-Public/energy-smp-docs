@@ -5,7 +5,7 @@
   Takes the average value of time series, arrays and number series.
 
   If the input is an array of time series and all the time series have the same resolution,
-  then the result series has this resolution. If there are different resolutions involved then
+  the result series will have this resolution. If there are different resolutions involved, 
   the result time series will be a breakpoint series.
 
 ### Syntax

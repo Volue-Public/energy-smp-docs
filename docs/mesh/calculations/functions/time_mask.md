@@ -31,7 +31,7 @@ you to specify the resolution for the result series.
 | 3 | D | Array of values which apply to the time points given in the preceding argument. |
 | 4 | s | Result series resolution. For values, see Resolution. |
 
-If the first and last symbol argument are omitted, default values are applied.
+If the first and last symbol arguments are omitted, default values are applied.
 Default repeat frequency is 'NONE' and default result series resolution is 'HOUR'.
 
 Unless the repeat frequency are 'NONE' the time points specified are moved and repeated so
