@@ -185,7 +185,7 @@ Switching to a request inside inside a DST period and using zone `LT` - local zo
 | 2022-04-02T05:00:00Z |       1.00 |
 | 2022-04-02T08:00:00Z |       2.00 |
 
-Example 3
+#### Example 3
 
 Switch to hourly result resolution. Then the function will perform a transformation from breakpoint series
 as described in previous examples to hour resolution based on the functional value at time points.
