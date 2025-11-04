@@ -291,9 +291,7 @@ resolution. The presentation of data values is step wise.
 
 ### TIME_MASK(s,s)
 
-This function let you define a logical time series from criteria given by
-the parameters in a text resource file specified as the second argument. The values
-on the result series is either 0 or 1 depending on the arguments to the function.
+This function lets you define a logical time series from criteria given by the parameters in a text resource file specified as the second argument. The values on the result series is either 0 or 1 depending on the arguments to the function.
 The default resolution is hour.
 
 As an example, the function can be used to create time series masks to
