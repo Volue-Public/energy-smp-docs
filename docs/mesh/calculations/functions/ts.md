@@ -3,7 +3,7 @@
 ### About the function
 
 Creates a time series for further use in expressions.
-This function serve as a way to declare and initialize a time series.
+This function serves as a way to declare and initialise a time series.
 
 ### Syntax
 
