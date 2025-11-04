@@ -154,7 +154,7 @@ Action:TimeseriesRead
 | 2022-01-02T06:00:00Z |       1.00 |
 | 2022-01-02T09:00:00Z |       2.00 |
 
-Example 2
+#### Example 2
 
 `Result = @TIME_MASK('DAY<UTC>', {'DAY+07h', 'DAY+10h', 'DAY+14h','DAY+18h'}, {1,2,3,4},'VARINT')`
 
