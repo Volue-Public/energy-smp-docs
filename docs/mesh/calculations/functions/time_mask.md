@@ -48,10 +48,7 @@ This figure illustrate the implemented algorithm to convert arguments into a tim
 - The frequency argument determine which part of the time point that is going to be used.
   - For instance a frequency code 'DAY' means that the hour and minute part is used and the year/month/day part is neglected.
 - The frequency argument also describes how the parsed time points are distributed into the requested time period for a calculation. The frequency is illustrated in the figure as blue dotted and solid line sections.
-- The distributed points have
-  to provide a functional value for the complete requested time period. Observe the first
-  and last green time point in the figure, they are both outside the requested area. The
-  last point is only needed in case the curve type is linear.
+- The distributed points have to provide a functional value for the complete requested time period. Observe the first and last green time point in the figure are both outside the requested area. The last point is only needed in case the curve type is linear.
 - The native distribution of points
   creates a breakpoint series, so unless the last argument is 'VARINT' a standard transformation
   is applied to create the result.
