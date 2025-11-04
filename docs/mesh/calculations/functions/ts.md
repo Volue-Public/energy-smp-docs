@@ -49,7 +49,7 @@ Time series TS3 gives an empty time series (NaN) with hourly resolution and valu
 
 `TS4 = @TS('HOUR',0)`
 
-Time series TS4 gives a time series with 0 in all of the hours for requested time period.
+Time series TS4 gives a time series with 0 in all hours for the requested time period.
 
 Default curve type is `STEP`. To make the result series linear you can add a second argument with value `'LINEAR'` like this:
 
