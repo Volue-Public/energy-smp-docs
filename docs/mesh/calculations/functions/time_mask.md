@@ -44,7 +44,7 @@ This figure illustrate the implemented algorithm to convert arguments into a tim
 
 - Every time point specification is parsed and added to a timeline.
 - There are values to be associated with each time point based on the index in collection.
-  The effective size of time points specification and values specification must be the same. 
+  The effective size of the time points specification and values specification must be the same. 
 - The frequency argument determine which part of the time point that is going to be used
   - For instance a frequency code 'DAY' means that the hour and minute part is used and
     the year/month/day part is neglected
