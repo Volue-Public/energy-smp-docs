@@ -45,7 +45,7 @@ Series with other resolutions:
 
 `TS3 = @TS('HOUR')`
 
-Time series TS3 gives an empty time series (NaN) with hourly resolution and values for requested time period.
+Time series TS3 gives an empty time series (NaN) with hourly resolution and values for the requested time period.
 
 `TS4 = @TS('HOUR',0)`
 
