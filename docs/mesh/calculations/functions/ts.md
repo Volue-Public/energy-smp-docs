@@ -57,4 +57,4 @@ Default curve type is `STEP`. To make the result series linear you add a second 
 
 **Note!** The curve type argument are case sensitive.
 
-You may add a third argument to initialize values to a given number.
+You may add a third argument to initialise values to a given number.
