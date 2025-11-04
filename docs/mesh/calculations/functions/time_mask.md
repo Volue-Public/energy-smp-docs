@@ -42,7 +42,7 @@ This figure illustrate the implemented algorithm to convert arguments into a tim
 
 ![Time mask concept figure](./Images/time-mask-concept.png)
 
-- Every time point specification is parsed and added to a timeline
+- Every time point specification is parsed and added to a timeline.
 - There are values to be associated with each time point based on index in collection.
   The effective size of time points specification and values specification must be the same. 
 - The frequency argument determine which part of the time point that is going to be used
