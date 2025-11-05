@@ -170,4 +170,5 @@ nav:
           - Monitor services: operations/monitoring.md
     - Time series reports:
           - General: timeseries-reports/reports_intro.md
+          - Macros
           - Sorted layout: timeseries-reports/sort_contents.md
