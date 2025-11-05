@@ -11,7 +11,8 @@ Mesh Data Transfer offers HTTP endpoints for creating both availability and time
 To invoke a Mesh time series export one has to post a HTTP request to Mesh Data Transfer's `Order` service. Minimal working example:
 
 ```powershell
-curl.exe -s http://localhost:7000/Order -H "Content-Type: application/json" -d '[{"Date":"2024-10-11T17:10:37","Receiver":"DemoBase","Keytab":1,"ValuesFrom":"2024-05-09T00:00:00","ValuesTo":"2024-05-11T00:00:00","Protocol":126}]'.replace('"', '\"')
+$body = '[{"Date":"2024-10-11T17:10:37","Receiver":"DemoBase","Keytab":1,"ValuesFrom":"2024-05-09T00:00:00","ValuesTo":"2024-05-11T00:00:00","Protocol":126}]'
+Invoke-WebRequest -Uri "http://localhost:7000/Order" -Method Post -ContentType "application/json" -Body $body
 ```
 
 A prerequisite of a successful time series export is a pre-filled `keytab9` database table with references to the time series we want to export. The `keytab` parameter refers to the taret `keytab9` row. `keytab9` is normally filled by the client application like Participant or Nimbus.
@@ -40,7 +41,8 @@ The sender defined in the time series export definition (a "sender host") is use
 There is also an option to specify the sender in the time series export request:
 
 ```powershell
-curl.exe -s http://localhost:7000/Order -H "Content-Type: application/json" -d '[{"Date":"2024-10-11T17:10:37","Receiver":"DemoBase","Sender":"Mesh",Keytab":1,"ValuesFrom":"2024-05-09T00:00:00","ValuesTo":"2024-05-11T00:00:00","Protocol":126}]'.replace('"', '\"')
+$body = '[{"Date":"2024-10-11T17:10:37","Receiver":"DemoBase","Sender":"Mesh","Keytab":1,"ValuesFrom":"2024-05-09T00:00:00","ValuesTo":"2024-05-11T00:00:00","Protocol":126}]'
+Invoke-WebRequest -Uri "http://localhost:7000/Order" -Method Post -ContentType "application/json" -Body $body
 ```
 
 In this case the exported time series will be limited to those that match the input sender parameter. When the time series export definition does not specify the sender host, it will be replaced with the input sender parameter (instead of the default sender).
@@ -64,5 +66,5 @@ Message flow when _exporting_ data from `Mesh`:
 Mesh Data Transfer provides request tracking capability. A request ID is included in the response to the export request. It can be used to check the request status by sending `HTTP` `GET` to the `exportstatus/<ID>` endpoint. Example:
 
 ```powershell
-curl.exe -s http://localhost:7000/exportstatus/4bb1306d-5259-411a-8e28-2c41107d48c9
+Invoke-WebRequest -Uri "http://localhost:7000/exportstatus/4bb1306d-5259-411a-8e28-2c41107d48c9" -Method Get
 ```
