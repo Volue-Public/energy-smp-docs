@@ -404,6 +404,8 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../timeseries-reports/reports_intro/">General</a>
                   </li>
+                  <li class="toctree-l1"><a class="" href="../../../../Macros">None</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../timeseries-reports/sort_contents/">Sorted layout</a>
                   </li>
               </ul>
@@ -435,14 +437,18 @@
             <div class="section" itemprop="articleBody">
               
                 <h2 id="mean">MEAN</h2>
-<h2 id="about-the-function">About the function</h2>
+<h3 id="about-the-function">About the function</h3>
 <p>Takes the average value of time series, arrays and number series.</p>
-<p>The result series has the same resolution as the input time series.</p>
-<h2 id="syntax">Syntax</h2>
+<p>If the input is an array of time series and all the time series have the same resolution,
+  the result series will have this resolution. If there are different resolutions involved, 
+  the result time series will be a breakpoint series.</p>
+<h3 id="syntax">Syntax</h3>
 <ul>
-<li>MEAN(t|T|D)</li>
+<li>MEAN(t)  -&gt; returns a number</li>
+<li>MEAN(T)</li>
+<li>MEAN(D)  -&gt; returns a number</li>
 </ul>
-<h2 id="description">Description</h2>
+<h3 id="description">Description</h3>
 <table>
 <thead>
 <tr>
@@ -459,7 +465,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="example">Example</h2>
+<h2 id="examples">Examples</h2>
 <p>Example 1: @MEAN(t)</p>
 <p><code>TempPercentiles = @MEAN(@t('Temperature_hour_raw'))</code></p>
 <p>The result values are the average value of the values in

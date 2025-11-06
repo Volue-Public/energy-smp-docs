@@ -404,6 +404,8 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../timeseries-reports/reports_intro/">General</a>
                   </li>
+                  <li class="toctree-l1"><a class="" href="../../../../Macros">None</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../timeseries-reports/sort_contents/">Sorted layout</a>
                   </li>
               </ul>
@@ -435,23 +437,26 @@
             <div class="section" itemprop="articleBody">
               
                 <h2 id="min">MIN</h2>
-<h2 id="about-the-function">About the function</h2>
-<p>Finds the highest values in time series, numbers, arrays or combinations of
-these. The result series has the same resolution as the input time series.</p>
+<h3 id="about-the-function">About the function</h3>
+<p>Finds the lowest values in time series, numbers, arrays or combinations of
+these.</p>
+<p>There are many variants of this function, some returns a single number as result
+but most of them returns a time series.</p>
+<p>The result series has the same resolution as the input time series. This also applies to cases where there are multiple time series involved and they all have the same resolution. If there are series with different resolutions, the result is a breakpoint series.</p>
 <h2 id="syntax">Syntax</h2>
 <ul>
 <li>MIN(T)</li>
-<li>MIN(D)</li>
-<li>MIN(t)</li>
+<li>MIN(D)  -&gt; returns a number</li>
+<li>MIN(t)  -&gt; returns a number</li>
 <li>MIN(t,t)</li>
 <li>MIN(T,t)</li>
 <li>MIN(t,T)</li>
 <li>MIN(t,d)</li>
 <li>MIN(d,t)</li>
-<li>MIN(d,d)</li>
+<li>MIN(d,d)  -&gt; returns a number</li>
 <li>MIN(T,T)</li>
 </ul>
-<h2 id="description">Description</h2>
+<h3 id="description">Description</h3>
 <table>
 <thead>
 <tr>
@@ -473,7 +478,8 @@ these. The result series has the same resolution as the input time series.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="example">Example</h2>
+<p>There are similar functions to find highest values, see <a href="../max/">function MAX</a></p>
+<h3 id="examples">Examples</h3>
 <p>Example 1: @MIN(T)</p>
 <p><code>Temperature_hour_operative = @MIN(@T('Temperature_hour'))</code></p>
 <p>@T(‘Temperature_hour’) is an array of time series.</p>

@@ -16,8 +16,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "General";
-        var mkdocs_page_input_path = "timeseries-reports/reports_intro.md";
+        var mkdocs_page_name = "Macros";
+        var mkdocs_page_input_path = "timeseries-reports/macros.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -401,20 +401,8 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
-              <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">General</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#mesh-provides-a-generic-report-definition">Mesh provides a generic report definition</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#which-time-series-become-part-of-a-report">Which time series become part of a report?</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#template-report-activation">Template report activation</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#different-time-series-data-sources">Different time series data sources</a>
-    </li>
-        </ul>
-    </li>
-    </ul>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../reports_intro/">General</a>
                   </li>
                   <li class="toctree-l1"><a class="" href="../../Macros">None</a>
                   </li>
@@ -435,8 +423,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Time series reports</li>
-      <li class="breadcrumb-item active">General</li>
+      <li class="breadcrumb-item active">Macros</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -445,96 +432,73 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="mesh-template-reports">Mesh template reports</h1>
-<p>A time series report in Mesh context is based on a template definition. The Mesh model objects are the data providers.</p>
-<p>The report definition uses Mesh model queries to find time series to include in an activated report presented to the user through a client user interface.</p>
-<p>A report definition is currently stored in the Oracle database (table RC_SET ++) and is edited by the SmG Calculator application. The definition format is basically the same as for SmG time series reports that was introduced in the beginning of 90's. A report definition consists of the following sections:</p>
+                <h2 id="macros-in-mesh-template-reports">Macros in Mesh template reports</h2>
+<p>Mesh has taken the template report concept to a new level. See <a href="../reports_intro/">a general introduction</a> for more background info.</p>
+<p>We utilize macros in order to make a generic report definition adapt to the specific information. These macros
+are expanded with current Mesh object as the context. Current object is the "node" that owns the time series attribute where the actual time series is found.</p>
+<h3 id="which-report-attributes-support-macros">Which report attributes support macros</h3>
+<p>Macros can be used as part of the value for these report attributes:</p>
 <ul>
-<li>General report attribute/value pairs</li>
-<li>Column definitions with attribute/value pairs (also referred to as report items)</li>
+<li>GROUP - defines hierarchical group membership</li>
+<li>GROUP_MGR - defines the "manager" of a hierarchical group, i.e. the only visible member when the given group is closed.</li>
+<li>PAGES - defines one or more logical pages that this time series is part of.</li>
+<li>GRAPHAXIS - general attribute that defines a named axis with info about min,max,legend etc.</li>
+<li>GRAPHUSEAXIS - defines the association with a named axis from actual time series</li>
+<li>WIDTH - defines the visual width of a time series column</li>
+<li>GRAPHWIDTH - defines the width of the graphical presentation of a time series</li>
+<li>GRAPHTYPE - defines the type of graph.</li>
+<li>GRAPHSTYLE - defines the style of a graph.</li>
+<li>GRAPHCOLOR - defines the colour of the graph.</li>
+<li>DESCRIPTION - defines a text that describes the time series. It is mapped to a tooltip text activated when hovering over the object on report visualisation.</li>
+<li>COLOR_VALUE - defines the color dependent of time series values.</li>
+<li>COLOR_CELL - defines the background color of table view cells.</li>
+<li>COLOR_HEAD - defines the colour used in table column header.</li>
+<li>COLOR - defines the general colour for numeric values.</li>
+<li>TEXT - defines the column header description.</li>
+<li>GRAPHTEXT - defines the legend attached to graph.</li>
+<li>INFO - contributes to the window header description.</li>
 </ul>
-<p>For each column definition there must be a reference to something that can provide time series data, i.e. a time series source.<br />
-In general, the following source types are available:</p>
+<h3 id="the-syntax-of-report-attribute-macros">The syntax of report attribute macros</h3>
+<p>The syntax is:</p>
 <ul>
-<li>Time series name or time series key (attribute DBI_KEY)</li>
-<li>Local time series expression (a block wrapped with #SLV_START ... ##SLV_END)</li>
-<li>Time series query (attribute TS_BINDING)</li>
+<li>$&lt;<em>definition</em>&gt;</li>
+<li><em>definition</em> can have simple format or a general search format<ul>
+<li>simple format is just referring to a name of an attribute on the current Mesh object.</li>
+<li>The attribute have to be either one of these types: string, bool or numeric.</li>
+<li>general format starts with <strong>another $</strong> followed by a search specification</li>
 </ul>
-<p>Mesh template reports only supports the <strong>TS_BINDING</strong> approach.</p>
-<h2 id="mesh-provides-a-generic-report-definition">Mesh provides a generic report definition</h2>
-<p>The Mesh models are based on a domain description called Mesh model <em>definition</em>. It defines object types and value attributes on those, as well as attributes that describe how object types relate to other object types. A Mesh model consists of instances of available types and connections between them. Time series attribute definitions attached to an object type regulate which time series that are available on instances of that type. Such queries are expressed as the value of the TS_BINDING attribute in 
-column definitions.</p>
-<p>Mesh template report definitions may also refer to other attributes to be shown in, for example, the column header or to be used as a criterion for sort operations.</p>
-<p>A report column definition in Mesh context <em>may</em> expand to multiple time series, whereas the SmG version provides a 1:1 ratio between column definition and
-time series to be included in the activated report. Whether to use the 1:1 approach or a more dynamic 1:n approach to get the report layout as you want it in Mesh,
-also depends on the power and flexibility of the <em>order by</em> feature. How to utilise <em>order by</em> to achieve a desired layout is discussed <a href="../sort_contents/">here</a>.</p>
-<p>Because the Mesh report can be applied at different starting points, it will increase efficiency/maintainability even when you create reports where each TS_BINDING maps to one time series.</p>
-<h2 id="which-time-series-become-part-of-a-report">Which time series become part of a report?</h2>
-<p>The column definition attribute named <code>TS_BINDING</code> is used to look up time series to be part of an activated report.
-Some of the collected time series may not immediately appear in the visible view onto the report due to page configurations and hierarchical grouping.
-There are also options to dynamically include more time series by retrieving series that are used to provide initial series through calculations.
-Adding previous versions of initial series is another option to dynamically extend the report.</p>
-<p>The <code>TS_BINDING</code> attribute <strong>value</strong> in Mesh context is associated with Mesh model instances storing time series. To describe where to look for time series, we use the Mesh model <em>definition</em>.
-The TS_BINDING value is a query and not a fixed reference, and therefore, a template report will adapt to the current state of the Mesh model.</p>
-<p>A query against a given Mesh model may result in zero, one or <em>many</em> time series. This dynamic behaviour also impact how other report attributes are defined, for instance by using macros that make the value of attributes adapt to the specific time series found. <code>$OBJ_NAME</code> is an example of such a macro and will expand to the name of the Mesh model object that owns the time series attribute. See <a href="../macros/">this document</a> for more details.</p>
-<h2 id="template-report-activation">Template report activation</h2>
-<p>A template report definition is based on a Mesh model <em>definition</em> but needs additional context to be activated:</p>
-<ul>
-<li>A Mesh model where there are instances of the object types found in the Mesh model <em>definition</em></li>
-<li>A starting point definition</li>
-<li>A time period that defines which part of each time series that are read/calculated and visualised in the client that activated the report.</li>
-</ul>
-<p>The starting point definition can be given in two ways:</p>
-<ul>
-<li>By the user in a Nimbus ad hoc report task</li>
-<li>View and select a Mesh object or multiple Mesh objects in a tree viewer</li>
-<li>View a list of available Mesh template reports that are relevant for selected Mesh object.</li>
-<li>
-<p>A report is activated when both Mesh start-point object(s) and report are selected</p>
 </li>
-<li>
-<p>By the designer of a Nimbus Mesh task</p>
-</li>
-<li>This is done from the Nimbus Configurator, allowing the designer to associate specific reports and starting points to be activated/viewed on certain areas of the Nimbus screen.</li>
+<li>alternatively, a set of predefined macros are available. See below.</li>
 </ul>
-<p><strong><em>Note!</em></strong> Some Mesh template report definitions are designed to work with instances of a <em>specific object type</em> as starting point.<br />
-If the report is not associated with a specific object type, the report can be combined with any Mesh "node" object.
-But, it will not necessarily resolve to any contents because the TS_BINDING queries may not find any time series when applied.</p>
-<p><img alt="MainComponents" src="../main_components.png" /></p>
-<p>The figure above summarises the report activation process and the players involved. Some comments:</p>
+<p>A macro can be located in the middle of a static string value and therefore the general format is having a prefix and <code>&lt; &gt;</code> scope delimiters.</p>
+<h4 id="predefined-macros">Predefined macros</h4>
 <ul>
-<li>To the left there is a "designer" that uses some tools to provide report definitions accessible for client user to the right</li>
-<li>The SmG Calculator is currently used to make and maintain report definitions</li>
-<li>The Nimbus Configurator is currently used to create Nimbus tasks where time series reports are a crucial part.</li>
-<li>The report definition contains one or more report column definitions, each having a TS_BINDING attribute that targets time series attributes in the Mesh model.</li>
-<li>At this stage the designer makes a choice whether this is a report definition that assumes the starting point is a specific Mesh object type or not.</li>
-<li>This choice affects how the TS_BINDING specifications are formulated.</li>
-<li>When configuring a Nimbus task, the designer must also define one or more starting points. This can be as generic as the Mesh model scope or it can be one or more specific Mesh objects explicitly identified or by a search expression. </li>
-<li>The user is able to select starting point(s) and time period from where the time series data is requested when using the Ad-hoc report.</li>
+<li>$ObjName - the name of current Mesh object.</li>
+<li>There might be one or more <code>../</code> between $ and ObjName.<br />
+    Like $../ObjName and $../..ObjName referring to the name of parent of or grandparent of<br />
+    current object.</li>
+<li>$FullObjName - path to current object. Only node names are included, so it is not a general
+  path description described <a href="../../mesh/concepts/modelling/general/#objects-and-attributes-paths">here</a></li>
+<li>$Type - the type name of current object</li>
+<li>$AttrName - the time series attribute name where where current time series is connected</li>
+<li>$RootObjName - the name of the object from where the search operations (<code>TS_BINDING</code>) are done.</li>
+<li>$StartPointName - same value as $RootObjName but only applicable for the <code>PAGES</code> attribute.</li>
+<li>$StartPage - defines the name of the initial page that is activated. It has limited scope, contributes to the window title through the <code>INFO</code> attribute.</li>
+<li>$ReportName - the name of the report definition for the activated report. Applicable to <code>INFO</code> attribute.</li>
+<li>$FullReportName - the full path the report definition for the activated report. Applicable to <code>INFO</code> attribute.</li>
 </ul>
-<h3 id="different-time-series-data-sources">Different time series data sources</h3>
-<p>From where time series data is retrieved is defined by the TS_BINDING attribute in a report definition.
-The value of a TS_BINDING attribute is a search specification that finds time series attributes in a Mesh model based on a starting point.</p>
-<p>This dynamic expansion may end up at time series attributes having different scopes:</p>
+<h3 id="examples">Examples</h3>
 <ul>
-<li>It is attached to a physical time series, i.e. a time series stored in the database.</li>
-<li>There is a local calculation expression attached to this Mesh model object (instance).</li>
-<li>There is a calculation expression defined for this attribute definition, i.e. defined as part of Mesh model definition.</li>
-<li>There is none of the above data sources, but the <code>Session series</code> feature is activated. In this case, a temporary time series is created in memory (breakpoint resolution) with a session scope. Session scope means the time series will not be visible outside the current Mesh session.</li>
+<li>TEXT <code>$ObjName#Level#Max $&lt;HRWL&gt;#masl</code></li>
+<li>If attribute HRWL exist on current object then <code>$&lt;HRWL&gt;</code> is replaced by the value 451.50, the value of this double attribute.</li>
+<li>In this case we use the simple format. The same result we get if the general search format <code>$&lt;$.HRWL&gt;</code> is used. Here the <em>definition</em> starts with a $ and search is simply saying get <code>HRWL</code>from current object referred by <code>.</code> in front.</li>
+<li>COLOR_CELL <code>$&lt;$..*/[.Type=CellColors].ResultCell&gt;</code></li>
+<li>This example refers to a string attribute <code>ResultCell</code> at an object of type <code>CellColors</code> found by searching upwards relative to current object.</li>
 </ul>
-<p>The list above also describes the internal priority. For example:</p>
-<ul>
-<li>The values are retrieved from the physical time series even if there are a
-specific or general calculation expression available.</li>
-<li>A local expression (at instance) will be used instead of the general expression.</li>
-</ul>
+<p>The search syntax are described <a href="../../mesh/concepts/search-language/">here</a>.</p>
               
             </div>
           </div><footer>
-      <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-          <a href="../../operations/monitoring/" class="btn btn--outline btn--success float-left" title="Monitor services"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-          <a href="../sort_contents/" class="btn btn--outline btn--success float-right" title="Sorted layout">Next <span class="icon icon-circle-arrow-right"></span></a>
-      </div>
   
     <hr/>
   
@@ -556,10 +520,6 @@ specific or general calculation expression available.</li>
     <span class="rst-current-version" data-toggle="rst-current-version is-active">
       
       
-        <span><a href="../../operations/monitoring/" style="color: #fcfcfc">&laquo; Previous</a></span>
-      
-      
-        <span><a href="../sort_contents/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
   </div>

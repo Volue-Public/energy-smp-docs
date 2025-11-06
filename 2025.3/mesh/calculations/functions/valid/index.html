@@ -404,6 +404,8 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../timeseries-reports/reports_intro/">General</a>
                   </li>
+                  <li class="toctree-l1"><a class="" href="../../../../Macros">None</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../timeseries-reports/sort_contents/">Sorted layout</a>
                   </li>
               </ul>
@@ -434,8 +436,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="valid">Valid</h1>
-<h2 id="about-the-function">About the function</h2>
+                <h2 id="valid">Valid</h2>
+<h3 id="about-the-function">About the function</h3>
 <p>A time series reference specified by <strong>@t(‘TheReference’)</strong> may give no result.
 The reason for this may be one of the following:</p>
 <ul>
@@ -444,16 +446,12 @@ The reason for this may be one of the following:</p>
 </ul>
 <p>In these cases the system will display a warning message. The warning message
 tells the user it did not manage to resolve <strong>TheReference</strong> for a given object.</p>
-<p>You may use either <a href="../isvalid/">IsValid</a> or Valid to handle these cases.</p>
-<h2 id="syntax">Syntax</h2>
-<ul>
-<li>IsValid(t)</li>
-</ul>
-<h2 id="syntax_1">Syntax</h2>
+<p>See also function <a href="../isvalid/">IsValid</a>.</p>
+<h3 id="syntax">Syntax</h3>
 <ul>
 <li>Valid(T)</li>
 </ul>
-<h2 id="description">Description</h2>
+<h3 id="description">Description</h3>
 <table>
 <thead>
 <tr>
@@ -463,12 +461,26 @@ tells the user it did not manage to resolve <strong>TheReference</strong> for a 
 </thead>
 <tbody>
 <tr>
-<td>t</td>
-<td>Array of source time series, where each of them is normally the result of a @t(‘TheReference’).</td>
+<td>T</td>
+<td>Array of source time series, where each of them normally is the result of a @t(‘TheReference’) lookup.</td>
 </tr>
 </tbody>
 </table>
 <p>The function returns an array of valid time series.</p>
+<h2 id="examples">Examples</h2>
+<p>Precondition:</p>
+<ul>
+<li>The expression is located at an attribute that has the following time series
+  attributes: H_Ts1, H_Ts2 and H_Ts3</li>
+<li>On object A in test model, all these attributes have physical time series connected</li>
+<li>On object B in test model, only H_Ts1 and H_Ts3 have physical time series connected</li>
+</ul>
+<p>Expression:</p>
+<p><code>## = @Size(@Valid({@t('.H_Ts1'),@t('.H_Ts2'),@t('.H_Ts3'),@t('.H_DoesNotExist')}))</code></p>
+<p>On object A, there are three valid time series so the returned array
+will have three series, so the result of <code>Size</code> will be 3.</p>
+<p>On object B, there are two valid time series so the returned array
+will have two series, so the result of <code>Size</code> will be 2.</p>
               
             </div>
           </div><footer>

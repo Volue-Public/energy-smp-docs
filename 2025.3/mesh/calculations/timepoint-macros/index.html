@@ -16,8 +16,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Calculations";
-        var mkdocs_page_input_path = "mesh/calculations/calculations.md";
+        var mkdocs_page_name = "Time point specification";
+        var mkdocs_page_input_path = "mesh/calculations/timepoint-macros.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -52,44 +52,12 @@
                 </li>
               </ul>
               <p class="caption"><span class="caption-text">Mesh</span></p>
-              <ul class="current">
+              <ul>
                   <li class="toctree-l1"><a class="reference internal" >Concepts</a>
     <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../../concepts/availability/">Availability</a>
                 </li>
-                <li class="toctree-l2 current"><a class="reference internal current" href="#">Calculations</a>
-    <ul class="current">
-    <li class="toctree-l3"><a class="reference internal" href="#calculation-expression-language">Calculation expression language</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#example-1">Example 1</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#calculation-expression-definition">Calculation expression definition</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#calculation-scope-with-respect-to-time">Calculation scope with respect to time</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#first-example">First example</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#second-example">Second example</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#third-example">Third example</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#fourth-example">Fourth example</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#time-zones">Time Zones</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#using-transform-calculation-functions">Using @TRANSFORM calculation functions</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#time-point-macros">Time point macros</a>
-    </li>
-        </ul>
-    </li>
-    </ul>
+                <li class="toctree-l2"><a class="reference internal" href="../calculations/">Calculations</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" >Modelling</a>
     <ul>
@@ -113,41 +81,9 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../installation/MeshServiceInstallationGuide/">Installation</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" >Calculations</a>
-    <ul class="current">
-                <li class="toctree-l2 current"><a class="reference internal current" href="#">Calculations</a>
-    <ul class="current">
-    <li class="toctree-l3"><a class="reference internal" href="#calculation-expression-language">Calculation expression language</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#example-1">Example 1</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#calculation-expression-definition">Calculation expression definition</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#calculation-scope-with-respect-to-time">Calculation scope with respect to time</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#first-example">First example</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#second-example">Second example</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#third-example">Third example</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#fourth-example">Fourth example</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#time-zones">Time Zones</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#using-transform-calculation-functions">Using @TRANSFORM calculation functions</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#time-point-macros">Time point macros</a>
-    </li>
-        </ul>
-    </li>
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" >Calculations</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../calculations/">Calculations</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" >Functions</a>
     <ul>
@@ -487,9 +423,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Mesh</li>
-          <li class="breadcrumb-item">Calculations</li>
-      <li class="breadcrumb-item active">Calculations</li>
+      <li class="breadcrumb-item active">Time point specification</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -498,230 +432,77 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="calculations-in-mesh-general-concepts">Calculations in Mesh - general concepts</h1>
-<p>This is an important and unique part of Mesh. It gives Volue and its customers
-the ability to define time series as expressions, rather than having a separate
-calculation carried out and let values be stored onto a time series then
-available for read. Many years ago Volue introduced the concept of virtual time
-series, which means the calculation is integrated as part of the read operation.</p>
-<h2 id="calculation-expression-language">Calculation expression language</h2>
-<p>The expression language has a proprietary syntax. It has been around since mid
-90's and is widely adopted by the Volue customers to extend their collection of
-available time series. Some characteristics on the language:</p>
+                <h1 id="time-point-specification">Time point specification</h1>
+<p>A time point can be specified in two ways:</p>
 <ul>
-<li>The expressions are vector based eliminating the need for complicated loops.</li>
-<li>References to time series are done by the Mesh search and the navigation
-  language. See example.</li>
-<li>Standard operators and operator precedence are supported (+,-,*,/).</li>
-<li>There are built-in functions covering a wide range of operations.</li>
+<li>an explicit definition using from 8 to 17 numeric characters</li>
+<li>a macro-based definition that related to current time</li>
 </ul>
-<h3 id="example-1">Example 1</h3>
-<p>Assuming we have an expression on a Mesh object type <em>HydroPlant</em> that is
-bound to a time series attribute definition <em>Income</em>. On the <em>HydroPlant</em> type
-there is another time series attribute definition <em>Production</em> as well as a
-time dependent relation <em>to_PriceArea</em> to a <em>PriceArea</em> type object. On the
-<em>PriceArea</em> object type there is a time series attribute definition <em>Price</em>.</p>
-<p><img alt="image" src="../ExampleRespository.png" /></p>
-<p>The calculation of <em>Income</em> can be expressed like this:</p>
-<pre><code>## = @t('.Production') * @t('to_PriceArea.Price')
-</code></pre>
-<p>Some details about this simple expression:</p>
+<p>The format of an explicit time point specification:</p>
 <ul>
-<li>
-<p>We have two time series that are multiplied with each other to produce the
-  result, here identified by the macro <code>##</code>.</p>
-</li>
-<li>
-<p>In this example a reference function <code>@t(searchSpec)</code> is used. It is a function
-  that returns the time series it finds by applying the search specification. The
-  search specification has the "current instance", in this case an instance of the
-  type <em>HydroPlant</em>, as its starting point. See the figure below showing a small
-  physical model.</p>
-</li>
-<li>
-<p>In a search specification the dot (.) indicates local to the current object.
-  Therefore '.Production' means a local attribute named Production. The search
-  specification 'to_PriceArea.Price' means to navigate through a named relation
-  (to_PriceArea) and then on the target object lookup the local attribute named
-  Price.</p>
-</li>
+<li>YYYYMMDDhhmmssxxx</li>
+<li>Year given as 4 digits</li>
+<li>Month as a two digits, from 01 to 12</li>
+<li>Day as a two digits, from 01 to 31</li>
+<li>Hour as a two digits, from 00 to 23</li>
+<li>Minute as a two digits, from 00 to 59</li>
+<li>Seconds as two digits, from 00 to 59</li>
+<li>Milliseconds as three digits, from 000 to 999</li>
+<li>If the specification contains 8 characters, the default value is 0 for the fields starting from hour</li>
+<li>If the specification contains 10 characters, the default value is 0 for the fields starting from minute etc,</li>
+<li>Optional time zone prefix</li>
+<li>Available codes are<ul>
+<li>UTC</li>
+<li>LOCAL</li>
+<li>STANDARD</li>
 </ul>
-<p><img alt="image" src="../ExamplePhysicalModelAndResources.png" /></p>
-<p>When values for a given time interval are requested for the Income series on a
-model object Brattset, a HydroPlant instance, the search and navigation will see
-the world from this instance. Navigating to_PriceArea in this case ends up in
-the PriceArea instance named NO3.</p>
-<h2 id="functions">Functions</h2>
-<p>Here are some general comments to functions used in expressions:</p>
-<p>A function is defined as <code>@function_name(arguments)</code>. The arguments may be empty
-or defined as a comma separated list.</p>
-<p>Mesh calculation supports six basic data types. This is:</p>
+</li>
+<li>The zone name STANDARD is the same as omitting time zone prefix, i.e. maps to default behaviour.</li>
+</ul>
+<p>Default time zone is STANDARD, that is local time zone with daylight saving time (DST) disabled. No DST means using the same UTC offset all year long.</p>
+<p>Examples:</p>
 <ul>
-<li>A number - represented by letter <code>d</code></li>
-<li>A string - represented by letter <code>s</code></li>
-<li>A time series - represented by letter <code>t</code></li>
-<li>A vector of numbers - represented by letter <code>D</code></li>
-<li>A vector of strings - represented by letter <code>S</code></li>
-<li>A vector of time series - represented by letter <code>T</code></li>
+<li>20251022 -&gt; UTC 2025-10-21T23:00:00Z</li>
+<li>202510220143 -&gt; UTC 2025-10-22T00:43:00Z</li>
+<li>LOCAL20251022 -&gt; UTC 2025-10-21T22:00:00Z</li>
 </ul>
-<p>All functions are registered with an argument list definition and a return value
-type. For instance, the function t used in the example above has a signature
-<code>@t(s) -&gt; t</code>. A signature suffix <code>ttsd</code> means 4 arguments: a time series, a time
-series, a string and a number.</p>
-<p>Another example: A function named SUM has multiple signatures: <code>@SUM(T) -&gt; t</code>,
-<code>@SUM(t) -&gt; d</code> and <code>@SUM(D) -&gt; d</code>. The first version takes a vector of time
-series and returns the sum of these time series, the second version takes a time
-series and returns a number and the last version takes a vector of numbers and
-returns a single number.</p>
-<p>A function implementation will normally have to cope with the fact that time
-series given as arguments may have different resolutions. Ref. example above:
-the Production series may have values every 15 minutes and the Price series may
-have values every hour.</p>
-<p>The argument to a function can be the result of another function.</p>
-<h2 id="calculation-expression-definition">Calculation expression definition</h2>
-<p>The time series calculation definitions are in general associated with the
-Mesh model definition. This means that the calculations are defined as part
-of the domain description and expressed using types and attributes therein.
-Traditionally, before Mesh, expressions referred to explicit time series and in
-consequence they were less generic than Mesh based expressions. Mesh and mesh
-information modelling have created the foundation for generalized expressions,
-template calculation expressions.</p>
-<p>In cases where the general template based calculation expression definition
-does not "fit" very well it is possible to associate an override expression
-directly onto a time series attribute on an instance in the model. This gives
-a 1:1 definition which must be maintained separately, therefore should be used
-with caution.</p>
-<h2 id="calculation-scope-with-respect-to-time">Calculation scope with respect to time</h2>
-<p>The Mesh time series calculation definitions normally do not contain anything
-about which time period or time interval to apply. This is something that is
-defined as part of the read request, i.e. asking the time series to provide
-values for a given time interval. A time series result is provided by addressing
-a time series attribute on a Mesh instance, for instance the <em>Income</em> attribute
-on a <em>HydroPlant</em> instance (ref. previous example), and give it a time interval
-to get values for (the <em>requested interval</em>).</p>
-<p>Usually, all the values are calculated on the requested interval. But
-there might be functions that will need other data input. Examples:</p>
-<ol>
-<li><code>@DELTA(@t('.Temperature'))</code></li>
-<li><code>@TS_GLIDING_AVERAGE(@t('.Temperature'), 7)</code></li>
-<li><code>@ACCUMULATE(@t('.Precipitation'), 'YEAR')</code></li>
-<li><code>@TS_OFFSET(@t('.Temperature'), 'DAY', 1)</code></li>
-</ol>
-<p>The need for extra data on these examples are commented below. Time interval is
-indicated by a line where equal sign is part of the requested interval, and dots
-indicate extra data needed.</p>
-<h3 id="first-example">First example</h3>
-<p><code>@DELTA(@t('.Temperature'))</code>: Delta operation needs previous value, hence one
-extra value (represented by a dot) at the beginning of requested interval.</p>
-<pre><code>      .====================
-</code></pre>
-<h3 id="second-example">Second example</h3>
-<p><code>@TS_GLIDING_AVERAGE(@t('.Temperature'), 7)</code>: A time series gliding operation
-will use a value window to produce a center value. Hence it will need some extra
-data at the front and at the end to produce a consistent result. When the value
-is 7 this means 3 values in the front and 3 values at the end.</p>
-<pre><code>    ...====================...
-</code></pre>
-<h3 id="third-example">Third example</h3>
-<p><code>@ACCUMULATE(@t('.Precipitation'), 'YEAR')</code>: A time series accumulate operation
-will need the data from a defined start, here start of year.</p>
-<pre><code>..............//........====================
-</code></pre>
-<p>The // indicates that this might be many dots, depending on the start of the
-requested interval.</p>
-<h3 id="fourth-example">Fourth example</h3>
-<p><code>@TS_OFFSET(@t('.Temperature'), 'DAY', 1)</code>: The function TS_OFFSET moves values
-from one time interval to another. In this example, the values are moved one
-day, i.e to the next day relative to the requested time interval.</p>
-<pre><code>    ......============
-</code></pre>
-<p>Here the dots represent 1 day and the requested time interval 2 days.</p>
-<h2 id="time-zones">Time Zones</h2>
-<p>There are situations where other time zones are involved:</p>
+<p>A more flexible way to specify a time point is using the following format:</p>
 <ul>
+<li>[zone] anchor sign offset</li>
+<li>Example</li>
 <li>
-<p>Volue database, currently the owner of the time series data in Volue context,
-  is using a concept of a database zone. In our European context this is UTC+1.</p>
-</li>
-<li>
-<p>Default time zone in calculation context is, due to backwards compatibility, the
-  same as DB zone - UTC+1.</p>
-</li>
-<li>
-<p>Some calculation operations are explicitly related to time zones. For example,
-  a transformation of a time series from higher resolution to lower resolution
-  often needs to have a definition of the zone. A fixed interval hour series
-  transformed to a day series needs to know which zone this day is related to. See
-  discussion of a @TRANSFORM example below.</p>
-</li>
-<li>
-<p>In some cases, the function arguments are time point macros, they will also
-  need a time zone context to have a precise meaning. See the separate chapter on
-  time macros.</p>
-</li>
-</ul>
-<h3 id="using-transform-calculation-functions">Using <code>@TRANSFORM</code> calculation functions</h3>
-<p>This function comes in many different variants defined by the different argument
-signatures. Here, two of them are discussed:</p>
-<pre><code>## = @TRANSFORM(@t('.Consumption'), 'DAY', 'SUM')
-## = @TRANSFORM(@t('.Consumption'), 'DAY', 'SUM', 'LT')
-## = @TRANSFORM(@t('.Consumption'), 'DAY', 'SUM', 'UTC')
-</code></pre>
-<p>All examples transform an input series from its source resolution, for example
-hour resolution, into a day resolution result series. Because the functions are
-using DB zone (UTC+1) as a basic zone (without DaylightSavingTime (DST)) the
-first result will contain values created from all hours in the UTC+1 day and
-night. The second example will do the same, but will use zone UTC+1 with DST as
-its definition. This means most values come from 24 source values but could also
-be based on 23 or 25 values due to DST season shift.</p>
-<p>The last example is referring to the UTC zone with no DST so values are shifted
-one hour compared to the first two examples.</p>
-<h3 id="time-point-macros">Time point macros</h3>
-<p>A time point specification can be explicit or based on the macros that make time
-point follow current time. Examples related to current time:</p>
+<p>LOCALDAY+3d-2h+51x</p>
 <ul>
-<li>202002291336 -&gt; Saturday 29 February 2020 13:36:00</li>
-<li>DAY - Start of the current day in UTC+1 zone</li>
-<li>WEEK+2d+14h-10x - Is interpreted as start of this week (UTC+1) plus 2 days
-  plus 14 hours minus 10 minutes</li>
+<li>Zone is LOCAL - local time zone with DST enabled</li>
+<li>Anchor is DAY - start  of day in the current zone (LOCAL)</li>
+<li>Offset is calculated from </li>
+<li>+3d - add 3 days</li>
+<li>-2h - subtract 2 hours</li>
+<li>+51x - add 51 minutes</li>
 </ul>
-<p>Available base codes are YEAR, MONTH, WEEK, DAY, MIN15 and NOW. The function
-named @TIME_MASK is having some examples where the mask values are created from
-such macros. See the reference documentation for details.</p>
-<h1 id="basic-time-series-operations">Basic time series operations</h1>
-<p>Calculation functions and operator implementations must be able to cope with
-different time resolutions. In some cases there are functional requirements with
-regards to the time series arguments given to the function, but in general not.</p>
-<p>To cope with different resolutions, we operate with something called a
-functional value. It is basically a value from the time series outside the
-concrete points on the series.</p>
-<h2 id="example-1-add-an-15-minute-series-and-an-hour-series">Example 1, add an 15 minute series and an hour series</h2>
-<p>The first example shows the result of adding two time series, one with hour
-resolution and one with 15 minutes resolution. The light grey values on Ts1
-are the "functional value" of this series on the time points not found on the
-time series. As we see, the understanding of a functional value is different
-whether the shape of series is defined to be stepwise or linear. The result of
-this addition will have a 15 minutes resolution and if one of the operands are
-linear, the result will also be defined as linear.</p>
-<p><img alt="image" src="../AddDifferentResolutionSeries.png" /></p>
-<h2 id="example-2-applying-the-max-function-on-two-time-series-arguments">Example 2, applying the MAX function on two time series arguments</h2>
-<p>The second example contains two input time series and a result time series.
-The first series is a fixed resolution series of linear shape and the second
-is a breakpoint time series with a stepwise shape. The function applied (@MAX)
-is taking two arguments so the signature is "MAX|tt". To make the result more
-"outstanding" a constant value 2 is added to the result. PS! The result curve
-is added manually so it is probably not perfectly shaped, but good enough to see
-how the result is created from time points coming from one of the time series,
-as well as new time points coming from the functional values that represents
-crossing between them. These points are indicated by vertical dash-dot lines.</p>
-<p><img alt="image" src="../MAXDifferentResolutionSeries.png" /></p>
+</li>
+<li>
+<p>The valid time zone codes are: UTC, LOCAL  and STANDARD </p>
+</li>
+<li>The anchor codes are the same as time resolution specification, YEAR, MONTH, WEEK, DAY, HOUR, MIN30 and MIN15.</li>
+<li>The available offset codes are</li>
+<li>d - days</li>
+<li>h - hours</li>
+<li>x - minutes</li>
+</ul>
+<p>Default time zone if zone prefix is omitted is STANDARD, i.e. local time zone with DST disabled.</p>
+<p>Assume current time is <code>Wednesday, October 22, 2025 10:41:49 AM</code>. 
+<strong><em>Note!</em></strong> This time point is inside the DST time period.</p>
+<p>Examples:</p>
+<ul>
+<li>DAY+2h -&gt; UTC 2025-10-22T01:00:00Z</li>
+<li>WEEK+1d+4h-10x -&gt; UTC 2025-10-21T04:50:00Z</li>
+<li>UTCDAY+2h -&gt; UTC 2025-10-22T02:00:00Z</li>
+<li>LOCALDAY+2h -&gt; UTC 2025-10-22T00:00:00Z</li>
+</ul>
               
             </div>
           </div><footer>
-      <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-          <a href="../../installation/MeshServiceInstallationGuide/" class="btn btn--outline btn--success float-left" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-          <a href="../functions/introduction/" class="btn btn--outline btn--success float-right" title="Introduction">Next <span class="icon icon-circle-arrow-right"></span></a>
-      </div>
   
     <hr/>
   
@@ -743,10 +524,6 @@ crossing between them. These points are indicated by vertical dash-dot lines.</p
     <span class="rst-current-version" data-toggle="rst-current-version is-active">
       
       
-        <span><a href="../../installation/MeshServiceInstallationGuide/" style="color: #fcfcfc">&laquo; Previous</a></span>
-      
-      
-        <span><a href="../functions/introduction/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
   </div>

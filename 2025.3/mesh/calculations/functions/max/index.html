@@ -404,6 +404,8 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../timeseries-reports/reports_intro/">General</a>
                   </li>
+                  <li class="toctree-l1"><a class="" href="../../../../Macros">None</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../timeseries-reports/sort_contents/">Sorted layout</a>
                   </li>
               </ul>
@@ -453,6 +455,7 @@ but most of them returns a time series.</p>
 <li>MAX(d,d) -&gt; returns a number</li>
 <li>MAX(T,T)</li>
 </ul>
+<h3 id="description">Description</h3>
 <table>
 <thead>
 <tr>
@@ -474,17 +477,16 @@ but most of them returns a time series.</p>
 </tr>
 </tbody>
 </table>
+<p>There are similar functions to find lowest values, see <a href="../min/">function MIN</a></p>
 <h2 id="examples">Examples</h2>
 <p>In general, when there are two arguments and at least one of them are an array of time series, like (t,T), (T,t) and (T,T) then the function behaves like having one array. The function concatenate the time series arguments into one array
 before doing the operation.</p>
 <h3 id="example-1-maxt">Example 1: @MAX(t)</h3>
 <p>ResTs = @MAX(@t('.Ts')</p>
-<p>Returns the highest value of the time series for the requested period. See
-similar example for the <a href="../min/">@MIN(t) function</a>.</p>
+<p>Returns the highest value of the time series for the requested period.</p>
 <h3 id="example-2-maxtt">Example 2: @MAX(t,t)</h3>
 <p>ResTs = @MAX(@t('Ts1'),@t('Ts2'))</p>
 <p>Returns the highest value of time series 1 and 2 for every time step.</p>
-<p>See similar example for the <a href="../min/">@MIN(t,t) function</a>.</p>
 <h3 id="example-3-maxdd">Example 3: @MAX(d,d)</h3>
 <p>Res = @MAX(8,2.5)</p>
 <p>Res = 8</p>

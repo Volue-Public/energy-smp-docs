@@ -398,9 +398,9 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#xml-input-message-structure">XML input message structure</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#revisionevent-revisioneventupdate">RevisionEvent &amp; RevisionEventUpdate</a>
+    <li class="toctree-l4"><a class="reference internal" href="#revisionevent-and-revisioneventupdate">RevisionEvent and RevisionEventUpdate</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#restrictionevent-restrictioneventupdate">RestrictionEvent &amp; RestrictionEventUpdate</a>
+    <li class="toctree-l4"><a class="reference internal" href="#restrictionevent-and-restrictioneventupdate">RestrictionEvent and RestrictionEventUpdate</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#availabilityeventremove">AvailabilityEventRemove</a>
     </li>
@@ -442,6 +442,8 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/reports_intro/">General</a>
                   </li>
+                  <li class="toctree-l1"><a class="" href="../../../Macros">None</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/sort_contents/">Sorted layout</a>
                   </li>
               </ul>
@@ -478,8 +480,8 @@ Mesh standard XML format.</p>
 <li><a href="#different-event-types-handled">Different event types handled</a></li>
 <li><a href="#different-message-types">Different message types</a></li>
 <li><a href="#xml-input-message-structure">XML input message structure</a><ul>
-<li><a href="#revisionevent--revisioneventupdate">RevisionEvent \&amp; RevisionEventUpdate</a></li>
-<li><a href="#restrictionevent--restrictioneventupdate">RestrictionEvent \&amp; RestrictionEventUpdate</a></li>
+<li><a href="#revisionevent-and-revisioneventupdate">RevisionEvent and RevisionEventUpdate</a></li>
+<li><a href="#restrictionevent-and-restrictioneventupdate">RestrictionEvent and RestrictionEventUpdate</a></li>
 <li><a href="#availabilityeventremove">AvailabilityEventRemove</a></li>
 </ul>
 </li>
@@ -503,7 +505,7 @@ Mesh standard XML format.</p>
 such events are operations due to maintenance of the physical object or a failure that suddenly
 happens on the object.</li>
 <li><code>Restriction</code> - an event that has the possibility to just reduce the available resource by a part (f.ex. 20
-%). Examples of such events are reduced max level of a resevoir due to maintenance on the dam or
+%). Examples of such events are reduced max level of a reservoir due to maintenance on the dam or
 reduced max production due to reduced capacity in some parts of the system.</li>
 </ul>
 <h2 id="different-message-types">Different message types</h2>
@@ -547,7 +549,7 @@ SmG Message Log).</li>
 <li><code>Inputs/AvailabilityEvents</code> - contains list of events to be created, updated, and/or deleted. The
 events will be handled in the same order as they are located in the list.</li>
 </ul>
-<h3 id="revisionevent-revisioneventupdate">RevisionEvent &amp; RevisionEventUpdate</h3>
+<h3 id="revisionevent-and-revisioneventupdate">RevisionEvent and RevisionEventUpdate</h3>
 <pre><code class="language-xml">&lt;RevisionEvent Path=&quot;Model/Company/Mesh&quot; Search=&quot;*
 [.Type=Generator&amp;amp;&amp;amp;.Name=ADKOL.856]&quot; EventId=&quot;1234&quot;&gt;
   &lt;SubEvent Status=&quot;Planned&quot; Description=&quot;&quot; Value=&quot;1&quot;&gt;
@@ -579,7 +581,7 @@ are:</li>
 <li><code>SubEvent/Frequency/Start</code> - start of the unavailability period.</li>
 <li><code>SubEvent/Frequency/End</code> - end of the unavailability period.</li>
 </ul>
-<h3 id="restrictionevent-restrictioneventupdate">RestrictionEvent &amp; RestrictionEventUpdate</h3>
+<h3 id="restrictionevent-and-restrictioneventupdate">RestrictionEvent and RestrictionEventUpdate</h3>
 <pre><code class="language-xml">&lt;RestrictionEvent Path=&quot;Model/Company/Mesh&quot; Search=&quot;*
 [.Type=ForecastPoint&amp;amp;&amp;amp;.Name=ITH-1124-U1&amp;amp;&amp;amp;...Pump=0]&quot;
 EventId=&quot;254525&quot; Category=&quot;ProductionMax[MW]&quot;&gt;

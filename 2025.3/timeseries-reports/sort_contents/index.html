@@ -404,6 +404,8 @@
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../reports_intro/">General</a>
                   </li>
+                  <li class="toctree-l1"><a class="" href="../../Macros">None</a>
+                  </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Sorted layout</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#shortcuts">Shortcuts</a>
@@ -610,7 +612,7 @@ operation defined by the <code>TS_BINDING</code>. The sorted list is added to co
 <code>TS_BINDING</code>         <code>*[.Type=Reservoir].ReservoirLevel_operative</code>
 <code>TEMPLATE_ORDER_BY</code>  <code>Default=Ignore,Reservoir=.HRWL:D</code></p>
 <h4 id="start-points">Start points</h4>
-<p>As seen in <a href="#Main">MainComponents</a> an activated report that is visible to the user always need one or more starting points.</p>
+<p>As seen in <a href="#Main">MainComponents</a> an activated report that is visible to the user always needs one or more starting points.</p>
 <p>The activation process can be described by the following pseudo code:</p>
 <pre><code>for each startPoint in startPoints
    for each columnDefinition in columnDefinitions
@@ -648,8 +650,8 @@ Reservoir=.HRWL:D
 </code></pre>
 <p>These two definitions are equivalent:</p>
 <ul>
-<li><code>start-point definiton;ORDER_BY_CONFIG:Resource/ConfigFiles/OrderBy/MySort.sort</code></li>
-<li><code>start-point definiton;ORDER_BY_CONFIG:Default=Ignore,cReservoir=to_Reservoir.HRWL:D,Reservoir=.HRWL:D</code></li>
+<li><code>start-point definition;ORDER_BY_CONFIG:Resource/ConfigFiles/OrderBy/MySort.sort</code></li>
+<li><code>start-point definition;ORDER_BY_CONFIG:Default=Ignore,cReservoir=to_Reservoir.HRWL:D,Reservoir=.HRWL:D</code></li>
 </ul>
 <p>To utilize the special definition <code>Default.sort</code> may be convenient but due the its <em>global</em> scope it can have side undesired effects.
 Therefore, be aware that it might be used in places you did not want it to. To avoid such interference from a "hidden" default you can add a 
@@ -788,7 +790,7 @@ END_COLUMN
 <p><code>*[.Type=Watercourse]ORDER_BY:Default=Ignore,Watercourse=.SortIndex:D</code></p>
 <p>This means activate the report definition for all <code>Watercourse</code> objects found in this Mesh model. The order of the objects are given by <em>descending</em> <code>SortIndex</code> found on the <code>Watercourse</code> objects.</p>
 <p>The result of this report activation in Nimbus looks like this:</p>
-<p><img alt="Startpoint sort example" src="../start_point_sort.png" /></p>
+<p><img alt="Start point sort example" src="../start_point_sort.png" /></p>
 <h3 id="global-sorting-using-topology">Global sorting using topology</h3>
 <p>This is the report definition:</p>
 <pre><code>OBJECT_TYPE 21

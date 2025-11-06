@@ -406,6 +406,8 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/reports_intro/">General</a>
                   </li>
+                  <li class="toctree-l1"><a class="" href="../../../Macros">None</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/sort_contents/">Sorted layout</a>
                   </li>
               </ul>
@@ -439,7 +441,8 @@
 <h2 id="usage">Usage</h2>
 <h3 id="time-series-export">Time series export</h3>
 <p>To invoke a Mesh time series export one has to post a HTTP request to Mesh Data Transfer's <code>Order</code> service. Minimal working example:</p>
-<pre><code class="language-powershell">curl.exe -s http://localhost:7000/Order -H &quot;Content-Type: application/json&quot; -d '[{&quot;Date&quot;:&quot;2024-10-11T17:10:37&quot;,&quot;Receiver&quot;:&quot;DemoBase&quot;,&quot;Keytab&quot;:1,&quot;ValuesFrom&quot;:&quot;2024-05-09T00:00:00&quot;,&quot;ValuesTo&quot;:&quot;2024-05-11T00:00:00&quot;,&quot;Protocol&quot;:126}]'.replace('&quot;', '\&quot;')
+<pre><code class="language-powershell">$body = '[{&quot;Date&quot;:&quot;2024-10-11T17:10:37&quot;,&quot;Receiver&quot;:&quot;DemoBase&quot;,&quot;Keytab&quot;:1,&quot;ValuesFrom&quot;:&quot;2024-05-09T00:00:00&quot;,&quot;ValuesTo&quot;:&quot;2024-05-11T00:00:00&quot;,&quot;Protocol&quot;:126}]'
+Invoke-WebRequest -Uri &quot;http://localhost:7000/Order&quot; -Method Post -ContentType &quot;application/json&quot; -Body $body
 </code></pre>
 <p>A prerequisite of a successful time series export is a pre-filled <code>keytab9</code> database table with references to the time series we want to export. The <code>keytab</code> parameter refers to the taret <code>keytab9</code> row. <code>keytab9</code> is normally filled by the client application like Participant or Nimbus.</p>
 <p><code>Protocol</code> denotes the export type. Possible options are:</p>
@@ -493,7 +496,8 @@
 <h4 id="export-sender">Export sender</h4>
 <p>The sender defined in the time series export definition (a "sender host") is used by Mesh Data Transfer to specify the sender of the time series data (the sender is then referenced in the Message Log or directly in case of some of the export types, like Standard export or GS2; moreover all the output is grouped by the senders (see below)). If the sender is not defined in the time series export definition, a default sender is selected (which is defined by <code>ParticipantSettings/ICC_SENDER</code> parameter in the configuration file).</p>
 <p>There is also an option to specify the sender in the time series export request:</p>
-<pre><code class="language-powershell">curl.exe -s http://localhost:7000/Order -H &quot;Content-Type: application/json&quot; -d '[{&quot;Date&quot;:&quot;2024-10-11T17:10:37&quot;,&quot;Receiver&quot;:&quot;DemoBase&quot;,&quot;Sender&quot;:&quot;Mesh&quot;,Keytab&quot;:1,&quot;ValuesFrom&quot;:&quot;2024-05-09T00:00:00&quot;,&quot;ValuesTo&quot;:&quot;2024-05-11T00:00:00&quot;,&quot;Protocol&quot;:126}]'.replace('&quot;', '\&quot;')
+<pre><code class="language-powershell">$body = '[{&quot;Date&quot;:&quot;2024-10-11T17:10:37&quot;,&quot;Receiver&quot;:&quot;DemoBase&quot;,&quot;Sender&quot;:&quot;Mesh&quot;,&quot;Keytab&quot;:1,&quot;ValuesFrom&quot;:&quot;2024-05-09T00:00:00&quot;,&quot;ValuesTo&quot;:&quot;2024-05-11T00:00:00&quot;,&quot;Protocol&quot;:126}]'
+Invoke-WebRequest -Uri &quot;http://localhost:7000/Order&quot; -Method Post -ContentType &quot;application/json&quot; -Body $body
 </code></pre>
 <p>In this case the exported time series will be limited to those that match the input sender parameter. When the time series export definition does not specify the sender host, it will be replaced with the input sender parameter (instead of the default sender).</p>
 <p>The same rules apply to Sender request parameter as to the Receiver parameter, i.e. it can be a name or an integer.</p>
@@ -505,7 +509,7 @@
 <p>Message flow when <em>exporting</em> data from <code>Mesh</code>:</p>
 <p><img alt="Export Order Flow" src="../docs/data-export.svg" title="Export Order Flow" /></p>
 <p>Mesh Data Transfer provides request tracking capability. A request ID is included in the response to the export request. It can be used to check the request status by sending <code>HTTP</code> <code>GET</code> to the <code>exportstatus/&lt;ID&gt;</code> endpoint. Example:</p>
-<pre><code class="language-powershell">curl.exe -s http://localhost:7000/exportstatus/4bb1306d-5259-411a-8e28-2c41107d48c9
+<pre><code class="language-powershell">Invoke-WebRequest -Uri &quot;http://localhost:7000/exportstatus/4bb1306d-5259-411a-8e28-2c41107d48c9&quot; -Method Get
 </code></pre>
               
             </div>

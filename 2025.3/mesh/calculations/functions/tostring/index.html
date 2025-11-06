@@ -404,6 +404,8 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../timeseries-reports/reports_intro/">General</a>
                   </li>
+                  <li class="toctree-l1"><a class="" href="../../../../Macros">None</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../timeseries-reports/sort_contents/">Sorted layout</a>
                   </li>
               </ul>
@@ -434,12 +436,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="tostring">ToString</h1>
-<h2 id="about-the-function">About the function</h2>
+                <h2 id="tostring">ToString</h2>
+<h3 id="about-the-function">About the function</h3>
 <p>This function translates a number to a string. It will not round the value, only
 truncate it. Optional argument describes number of decimals to include in the
 string.</p>
-<h2 id="syntax">Syntax</h2>
+<h3 id="syntax">Syntax</h3>
 <ul>
 <li>ToString(d[,d])</li>
 </ul>
@@ -465,7 +467,7 @@ string.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="example">Example</h2>
+<h3 id="examples">Examples</h3>
 <p>Double attribute named 'Factor' has a numerical value 2.756.</p>
 <p><code>@ToString(@d('.Factor')</code>  returns "2"</p>
 <p><code>@ToString(@d('.Factor',1)</code> returns "2.7"</p>
