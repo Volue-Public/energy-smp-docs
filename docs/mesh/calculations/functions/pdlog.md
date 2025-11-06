@@ -54,7 +54,7 @@ function in Mesh:
 
 ### Example 2
 Compares an inflow accumulated time series with a historical version of the same
-time series. If the accumulated end value change exeeds 10% absolute value a
+time series. If the accumulated end value change exceeds 10% absolute value a
 message is created in SmG Event Log:
 
 ```
@@ -69,8 +69,16 @@ ENDIF
 ```
   ![](assets/images/pdlog_ex2.png)
 
-The following message in written in Event Log:
+The following message in written in the SmG Event Log:
 
 ```
-12:23:15 Inflow forecast deviates on time series, Model/MeshTEK/Cases.has_OptimisationCases/Morre_Long_Opt.has_cAreas/Norge.has_cHydroProduction/Vannkraft.has_cWaterCourses/Mørre.has_cProdriskAreas/Mørre.has_cProdriskModules/Storvatnet.has_cProdriskScenarios/1960.Inflow_accumulated/Inflow_accumulated, period start 10/25/2020 11:00:00 PM UTC, period end 2/27/2022 11:00:00 PM UTC
+12:23:15 Inflow forecast deviates on time series, 
+Model/MeshTEK/Cases.has_OptimisationCases/
+Morre_Long_Opt.has_cAreas/Norge.has_cHydroProduction/
+Vannkraft.has_cWaterCourses/Mørre.has_cProdriskAreas/Mørre.has_cProdriskModules/
+Storvatnet.has_cProdriskScenarios/1960.Inflow_accumulated/Inflow_accumulated, 
+period start 10/25/2020 11:00:00 PM UTC, period end 2/27/2022 11:00:00 PM UTC
 ```
+
+**_Note_!** The log line is wrapped to make the view more readable. The $path macro
+expands to a very long text.

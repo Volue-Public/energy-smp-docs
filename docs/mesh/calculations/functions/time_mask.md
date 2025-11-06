@@ -123,18 +123,18 @@ values in the next argument.
 
 `Result = @TIME_MASK('DAY', {'DAY+07h', 'DAY+10h', 'DAY+14h','DAY+18h'}, {1,2,3,4},'VARINT')`
 
-| Time UTC | Result |
-|---|---|
-| 2021-12-31T17:00:00Z |       4.00 |
-| 2022-01-01T06:00:00Z |       1.00 |
-| 2022-01-01T09:00:00Z |       2.00 |
-| 2022-01-01T13:00:00Z |       3.00 |
-| 2022-01-01T17:00:00Z |       4.00 |
-| 2022-01-02T06:00:00Z |       1.00 |
-| 2022-01-02T09:00:00Z |       2.00 |
-| 2022-01-02T13:00:00Z |       3.00 |
+| Time UTC | Result | Comment |
+|---|---|---|
+| 2021-12-31T17:00:00Z |       4.00 | The point that cover start of requested period |
+| 2022-01-01T06:00:00Z |       1.00 | From DAY+7h, parsed as UTC+01 zone |
+| 2022-01-01T09:00:00Z |       2.00 |  |
+| 2022-01-01T13:00:00Z |       3.00 |  |
+| 2022-01-01T17:00:00Z |       4.00 |  |
+| 2022-01-02T06:00:00Z |       1.00 |  |
+| 2022-01-02T09:00:00Z |       2.00 |  |
+| 2022-01-02T13:00:00Z |       3.00 |  |
 
-Default calendar for time points are standard time zone, i.e. UTC+1:00 with **no** 
+Default calendar for time points is standard time zone, i.e. UTC+1:00 with **no** 
 Daylight Saving Time (DST) definition applied.
 
 We can observe that the values provided are repeated daily.
@@ -143,8 +143,7 @@ Switching to a request inside inside a DST period, still gives the same result.
 
 `##=@TIME_MASK('DAY', {'DAY+07h', 'DAY+10h', 'DAY+14h','DAY+18h'}, {1,2,3,4},'VARINT')`
 
-Action:TimeseriesRead
-| Time | Result |
+| Time UTC | Result |
 |---|---|
 | 2021-12-31T17:00:00Z |       4.00 |
 | 2022-01-01T06:00:00Z |       1.00 |
@@ -158,24 +157,24 @@ Action:TimeseriesRead
 
 `Result = @TIME_MASK('DAY<UTC>', {'DAY+07h', 'DAY+10h', 'DAY+14h','DAY+18h'}, {1,2,3,4},'VARINT')`
 
-| Time UTC | Result |
-|---|---|
-| 2021-12-31T18:00:00Z |       4.00 |
-| 2022-01-01T07:00:00Z |       1.00 |
-| 2022-01-01T10:00:00Z |       2.00 |
-| 2022-01-01T14:00:00Z |       3.00 |
-| 2022-01-01T18:00:00Z |       4.00 |
-| 2022-01-02T07:00:00Z |       1.00 |
-| 2022-01-02T10:00:00Z |       2.00 |
+| Time UTC | Result | Comment |
+|---|---|---|
+| 2021-12-31T18:00:00Z |       4.00 |  |
+| 2022-01-01T07:00:00Z |       1.00 | From DAY+07h, parsed as UTC zone (frequency option)|
+| 2022-01-01T10:00:00Z |       2.00 |  |
+| 2022-01-01T14:00:00Z |       3.00 |  |
+| 2022-01-01T18:00:00Z |       4.00 |  |
+| 2022-01-02T07:00:00Z |       1.00 |  |
+| 2022-01-02T10:00:00Z |       2.00 |  |
 
 The time points are now interpreted as UTC time points and 'DAY+07h' with associated value 1.0 is
 found in the result series at '2022-01-01T07:00:00Z' and '2022-01-02T07:00:00Z'.
 
 Switching to a request inside inside a DST period and using zone `LT` - local zone with DST enabled.
 
-`##=@TIME_MASK('DAY<LT>', {'DAY+07h', 'DAY+10h', 'DAY+14h','DAY+18h'}, {1,2,3,4},'VARINT')`
+`Result = @TIME_MASK('DAY<LT>', {'DAY+07h', 'DAY+10h', 'DAY+14h','DAY+18h'}, {1,2,3,4},'VARINT')`
 
-| Time | Result |
+| Time UTC | Result |
 |---|---|
 | 2022-03-31T16:00:00Z |       4.00 |
 | 2022-04-01T05:00:00Z |       1.00 |
@@ -191,7 +190,7 @@ Switch to hourly result resolution. Then the function will perform a transformat
 
 `Result = @TIME_MASK('DAY<UTC>', {'DAY+07h', 'DAY+10h', 'DAY+14h','DAY+18h'}, {1,2,3,4},'HOUR')`
 
-| Time | Result |
+| Time UTC | Result |
 |---|---|
 | 2022-01-01T00:00:00Z |       4.00 |
 | 2022-01-01T01:00:00Z |       4.00 |
@@ -226,7 +225,10 @@ Adding an option to the first argument like this:
 
 `Result = @TIME_MASK('DAY<UTC><Linear>', {'DAY+07h', 'DAY+10h', 'DAY+14h','DAY+18h'}, {1,2,3,4},'HOUR')`
 
-| Time | Result |
+Due to the `<Linear>` option in the first argument, the functional value at a time point is found from a linearisation between two points.
+
+
+| Time UTC | Result |
 |---|---|
 | 2022-01-01T00:00:00Z |       2.91 |
 | 2022-01-01T01:00:00Z |       2.64 |
@@ -255,9 +257,12 @@ Adding an option to the first argument like this:
 | 2022-01-02T00:00:00Z |       2.36 |
 | 2022-01-02T01:00:00Z |       2.09 |
 
-Running this expression during winter time gives this result. 
-Result time series = @TIME_MASK('DAY', {'DAY+07h', 'DAY+10h', 'DAY+14h',
-'DAY+18h'}, {1,2,3,4},'HOUR')
+#### Example 4
+
+Some examples where results are shown in the Nimbus client where time points are _presented_ in local time zone with DST.
+
+`Result = @TIME_MASK('DAY', {'DAY+07h', 'DAY+10h', 'DAY+14h',
+'DAY+18h'}, {1,2,3,4},'HOUR')`
 
 This gives a time series where time points are repeated daily and where the result has hourly time resolution.
 The presentation of data values is step wise.
@@ -271,16 +276,16 @@ are shifted to one hour later.
 
 ![](Images/ex_TIME_MASK-nimbustable1.png)
 
-Result time series = @TIME_MASK('DAY', {'DAY+07h', 'DAY+10h', 'DAY+14h',
-'DAY+18h'}, {1,2,3,4},'HOUR')
+`Result = @TIME_MASK('DAY', {'DAY+07h', 'DAY+10h', 'DAY+14h',
+'DAY+18h'}, {1,2,3,4},'HOUR')`
 
 This gives a time series with daily repeat frequency and hourly time resolution.
 The presentation of data values is linear.
 
   ![](Images/ex_TIME_MASK-nimbustable2.png)
 
-Result time series = @TIME_MASK('DAY', {'DAY+07h', 'DAY+10h', 'DAY+14h',
-'DAY+18h'}, {1,2,3,4},'VARINT')
+`Result = @TIME_MASK('DAY', {'DAY+07h', 'DAY+10h', 'DAY+14h',
+'DAY+18h'}, {1,2,3,4},'VARINT')`
 
 This gives a time series with daily repeat frequency and breakpoint time
 resolution. The presentation of data values is step wise.

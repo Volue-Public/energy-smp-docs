@@ -22,7 +22,10 @@ See [Unit codes for SET_TS_VALUNIT](../functions/unit_codes_for_set_ts_val_unit.
 Time series application search window. Look in the **Unit** drop down menu to
 check if you are using the correct language for the code.
 
-### Example
+**Note!** The value unit may affect the default transformation method that is used 
+when the series is requested in another resolution.
+
+### Examples
 
 Example 1: @SET_TS_VALUNIT(t,d)
 
