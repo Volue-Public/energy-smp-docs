@@ -31,7 +31,87 @@ DELTA(t,’-2h’): res(t) = y(t) – y(t -2h) Second argument has value ‘-2h�
 The input time series might be a fixed interval series or a variable interval
 series.
 
-### Example
+### Examples
+
+#### Example 1
+
+H_Ts1 is a hourly time series with some empty values.
+
+`Result = @DELTA(@t('.H_Ts1'))`
+
+```
+| Time | H_Ts1 | Result |
+|---|---|---|
+| 2021-12-31T22:00:00Z | nan        | nan        |
+| 2021-12-31T23:00:00Z |      -1.00 |      -1.00 |
+| 2022-01-01T00:00:00Z |       0.00 |       1.00 |
+| 2022-01-01T01:00:00Z |      10.00 |      10.00 |
+| 2022-01-01T02:00:00Z | nan        |     -10.00 |
+| 2022-01-01T03:00:00Z |   20000.00 |   20000.00 |
+| 2022-01-01T04:00:00Z |   12500.00 |   -7500.00 |
+| 2022-01-01T05:00:00Z |       1.00 |  -12499.00 |
+| 2022-01-01T06:00:00Z |   12500.00 |   12499.00 |
+| 2022-01-01T07:00:00Z |      10.00 |  -12490.00 |
+| 2022-01-01T08:00:00Z |      10.00 |       0.00 |
+```
+
+As the result series shows, an empty value is treated as 0 in these delta calculations.
+
+#### Example 2
+
+`Result = @DELTA(@t('.H_Ts1'),'+2h')`
+
+| Time | H_Ts1 | Result |
+|---|---|---|
+| 2021-12-31T22:00:00Z | nan        |       0.00 |
+| 2021-12-31T23:00:00Z |      -1.00 |      11.00 |
+| 2022-01-01T00:00:00Z |       0.00 |      -0.00 |
+| 2022-01-01T01:00:00Z |      10.00 |   19990.00 |
+| 2022-01-01T02:00:00Z | nan        |   12500.00 |
+| 2022-01-01T03:00:00Z |   20000.00 |  -19999.00 |
+| 2022-01-01T04:00:00Z |   12500.00 |       0.00 |
+| 2022-01-01T05:00:00Z |       1.00 |       9.00 |
+| 2022-01-01T06:00:00Z |   12500.00 |  -12490.00 |
+| 2022-01-01T07:00:00Z |      10.00 |       0.00 |
+| 2022-01-01T08:00:00Z |      10.00 |       0.00 |
+
+In this case a value at time t is based on difference between value 2 hours ahead and the value at t.
+
+#### Example 3
+
+BP_Ts1 is a time series with break point resolution.
+
+`Result = @DELTA(@t('.BP_Ts1'))`
+
+| Time | H_Ts1 | Result |
+|---|---|---|
+| 2021-12-31T23:00:00Z |       1.00 | nan        |
+| 2022-01-01T04:00:00Z |       1.50 |       0.50 |
+| 2022-01-01T09:00:00Z |       1.20 |      -0.30 |
+
+There is no
+value before the value at 2021-12-31T23:00:00Z on BP_Ts1 series.
+When input series has break point resolution, empty value is treated
+differently compared to fixed interval.
+We see this in the first value (nan) on the result series. 
+
+#### Example 4
+
+BP_Ts1 is a time series with break point resolution and _linear_ curve type.
+
+`Result = @DELTA(@t('.BP_Ts1'),'+2h')`
+
+
+| Time | H_Ts1 | Result | Comment |
+|---|---|---|---|
+| 2021-12-31T23:00:00Z |       1.00 |       0.20 | Value at +2h is 1.2 (1.0+(1.5-1.0)*2/5) |
+| 2022-01-01T04:00:00Z |       1.50 |      -0.12 |  |
+| 2022-01-01T09:00:00Z |       1.20 |       0.40 | There is a value 2.0 at input series at 13:00 UTC |
+
+**_Note_!** Due to the linear curve type of input series the result value is based on functional value at
+offset hours.
+
+#### Example 5
 
 `TemperatureForecast_delta = @DELTA(@t('AreaTemperature'))`
 
