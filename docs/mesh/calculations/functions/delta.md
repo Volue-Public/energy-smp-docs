@@ -15,8 +15,8 @@ The result series has the same resolution as the input time series.
 
 | # | Type | Description |
 |---|---|---|
-| 1 | t | Time series, fixed interval series or breakpoint.<br/> Finds the difference between the current value and the previous value in the <br/>time series used in the argument. |
-| 2 | d or s | Optional. <br/>If argument 2 is set to a number different from 0, the value is calculated as <br/>the difference between the next value and the current value. <br/>If using the number 0, the calculation is equal to the default setting in argument 1.<br/><br/> If the second argument is a text it is assumed to be a time macro symbol. <br/>The time macro must equal to or be coarser than <br/>the resolution of the input time series. Using a time macro > than 0, <br/>the function calculates the value as the difference between the next value <br/>representing the time macro step and the current value.|
+| 1 | t | Time series, fixed interval series or breakpoint. Finds the difference between the current value and the previous value in the time series used in the argument. |
+| 2 | d or s | Optional. If argument 2 is set to a number different from 0, the value is calculated as the difference between the next value and the current value. If using the number 0, the calculation is equal to the default setting in argument 1. If the second argument is a text it is assumed to be a time macro symbol. The time macro must equal to or be coarser than the resolution of the input time series. Using a time macro > than 0, the function calculates the value as the difference between the next value representing the time macro step and the current value.|
 
 The function can be described like this:
 
@@ -35,7 +35,7 @@ series.
 
 #### Example 1
 
-H_Ts1 is a hourly time series with some empty values.
+H_Ts1 is an hourly time series with some empty values.
 
 `Result = @DELTA(@t('.H_Ts1'))`
 
