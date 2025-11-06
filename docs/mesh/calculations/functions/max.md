@@ -38,7 +38,7 @@ before doing the operation.
 
 ### Example 1: @MAX(t)
 
-Return the highest value of the time series for the _requested_ period.
+Returns the highest value of the time series for the _requested_ period.
 
 `Result = @TS('VARINT',@MAX( @t('.H_Ts1')))`
 
@@ -96,7 +96,7 @@ step. The resolution is breakpoint in case there are different resolutions invol
 
 {@t('.H_Ts1'),@t('.H_Ts2'),@t('.H_Ts3')} is an array of time series.
 
-More common usage is to provide an argument that collect series, for
+A more common usage is to provide an argument that collects the series, for
 example like this.
 
 `Result = @MAX(@T('has_MetStations.Temperature'))`

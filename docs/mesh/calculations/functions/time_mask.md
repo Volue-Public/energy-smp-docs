@@ -134,7 +134,7 @@ values in the next argument.
 | 2022-01-02T09:00:00Z |       2.00 |  |
 | 2022-01-02T13:00:00Z |       3.00 |  |
 
-Default calendar for time points are standard time zone, i.e. UTC+1:00 with **no** 
+Default calendar for time points is standard time zone, i.e. UTC+1:00 with **no** 
 Daylight Saving Time (DST) definition applied.
 
 We can observe that the values provided are repeated daily.
@@ -225,7 +225,7 @@ Adding an option to the first argument like this:
 
 `Result = @TIME_MASK('DAY<UTC><Linear>', {'DAY+07h', 'DAY+10h', 'DAY+14h','DAY+18h'}, {1,2,3,4},'HOUR')`
 
-Due to `<Linear>` option in first argument the functional value at a time point is found from a linearisation between two points.
+Due to the `<Linear>` option in the first argument, the functional value at a time point is found from a linearisation between two points.
 
 
 | Time UTC | Result |
@@ -259,7 +259,7 @@ Due to `<Linear>` option in first argument the functional value at a time point 
 
 #### Example 4
 
-Some examples where results are shown in Nimbus client where time points are _presented_ in local time zone with DST.
+Some examples where results are shown in the Nimbus client where time points are _presented_ in local time zone with DST.
 
 `Result = @TIME_MASK('DAY', {'DAY+07h', 'DAY+10h', 'DAY+14h',
 'DAY+18h'}, {1,2,3,4},'HOUR')`

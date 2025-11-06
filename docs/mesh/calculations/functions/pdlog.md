@@ -69,7 +69,7 @@ ENDIF
 ```
   ![](assets/images/pdlog_ex2.png)
 
-The following message in written in Event Log:
+The following message in written in the SmG Event Log:
 
 ```
 12:23:15 Inflow forecast deviates on time series, 

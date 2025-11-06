@@ -75,11 +75,11 @@ As the result series shows, an empty value is treated as 0 in these delta calcul
 | 2022-01-01T07:00:00Z |      10.00 |       0.00 |
 | 2022-01-01T08:00:00Z |      10.00 |       0.00 |
 
-In this case a value at time t is based on difference between value 2 hours ahead and the value at t.
+In this case, a value at time t is based on the difference between the value 2 hours ahead and the value at t.
 
 #### Example 3
 
-BP_Ts1 is a time series with break point resolution.
+BP_Ts1 is a time series with breakpoint resolution.
 
 `Result = @DELTA(@t('.BP_Ts1'))`
 
@@ -89,10 +89,8 @@ BP_Ts1 is a time series with break point resolution.
 | 2022-01-01T04:00:00Z |       1.50 |       0.50 |
 | 2022-01-01T09:00:00Z |       1.20 |      -0.30 |
 
-There is no
-value before the value at 2021-12-31T23:00:00Z on BP_Ts1 series.
-When input series has break point resolution, empty value is treated
-differently compared to fixed interval.
+There is no value before the value at 2021-12-31T23:00:00Z on BP_Ts1 series.
+When the input series has breakpoint resolution, empty value is treated differently compared to fixed interval.
 We see this in the first value (nan) on the result series. 
 
 #### Example 4
@@ -108,8 +106,7 @@ BP_Ts1 is a time series with break point resolution and _linear_ curve type.
 | 2022-01-01T04:00:00Z |       1.50 |      -0.12 |  |
 | 2022-01-01T09:00:00Z |       1.20 |       0.40 | There is a value 2.0 at input series at 13:00 UTC |
 
-**_Note_!** Due to the linear curve type of input series the result value is based on functional value at
-offset hours.
+**_Note_!** Due to the linear curve type of the input series, the result value is based on the functional value at offset hours.
 
 #### Example 5
 
