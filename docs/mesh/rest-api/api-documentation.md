@@ -2406,7 +2406,7 @@ Properties:
 
 *The minimal information of a specific Mesh object.*
 
-Type: objectd
+Type: object
 
 Properties:
 
