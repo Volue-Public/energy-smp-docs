@@ -8,24 +8,24 @@ This `ImportMultistepWaterValueFunctions` method supports the same functionality
 
 `Reservoirs` exist below the water course object: 
 
-![Reservoirs in Nimbus](pictures/wvf-reservoirs.png)
+![Reservoirs in Nimbus](images/wvf-reservoirs.png)
 
 The water value function structure: 
 
-![The WaterValueFunction structure](pictures/wvf-overview.png)
+![The WaterValueFunction structure](images/wvf-overview.png)
 
 A water value function below the water value main object: 
 
-![WaterValueFunction parameters](pictures/wvf-watervaluefunction.png)
+![WaterValueFunction parameters](images/wvf-watervaluefunction.png)
 
 Cut group below the water value function: 
 
-![Cut group](pictures/wvf-cutgroup.png)
+![Cut group](images/wvf-cutgroup.png)
 
 Reservoir water values below the cut group:
 
-![Marginal water values](pictures/wvf-reservoirwv1.png) 
-![Reservoir filling table](pictures/wvf-reservoirwv2.png)
+![Marginal water values](images/wvf-reservoirwv1.png) 
+![Reservoir filling table](images/wvf-reservoirwv2.png)
 
 ## Old solution
 
