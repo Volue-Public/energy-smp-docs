@@ -71,7 +71,7 @@
 
 ## Version 1.3.0
 
-- We have fixed an issue when transfering the security header information from the incomming request to the Mesh gRPC request. (#21)
+- We have fixed an issue when transferring the security header information from the incoming request to the Mesh gRPC request. (#21)
 
 ## Version 1.2.0
 
