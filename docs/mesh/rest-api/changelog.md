@@ -58,7 +58,7 @@
 
 ## Version 1.5.0
 
-- We have added a new method `ImportMultistepWaterValueFunctions` that imports multistep water value functions into the Mesh model for a given water course. The method will automatically also delete existing water value functions older than x days back in time, where x is defined by the `DeleteWaterValuesOlderThanDays` in the appsettings.json configuration. Default value for the `DeleteWaterValuesOlderYhanDays` parameter is 20 (days). (#37)
+- We have added a new method `ImportMultistepWaterValueFunctions` that imports multistep water value functions into the Mesh model for a given water course. The method will automatically also delete existing water value functions older than x days back in time, where x is defined by the `DeleteWaterValuesOlderThanDays` in the appsettings.json configuration. Default value for the `DeleteWaterValuesOlderThanDays` parameter is 20 (days). (#37)
 
 ## Version 1.4.1
 
