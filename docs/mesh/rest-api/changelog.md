@@ -39,7 +39,7 @@
 - We have fixed an issue where MeshRestAPI.exe version would be marked improperly. (#64)
 - We have updated the Rest API to use the Mesh v2.17 gRPC interface.
 - We have added support for *MIN30* and *undefined* time series resolutions. (#61)
-- We have fixed the Kerberos integration in order to authorize the user of the request correctly. We have also added the possibility to host the REST API in IIS. An extra startup test is also added to avoid running with security on http:// endpoints. (#41)
+- We have fixed the Kerberos integration in order to authorise the user of the request correctly. We have also added the possibility to host the REST API in IIS. An extra startup test is also added to avoid running with security on http:// endpoints. (#41)
 - We have added possibility to save log messages to file. This is activated by specifying a file path to the `LoggingToFile` attribute in appsettings.json. (#56)
 
 ## Version 1.6.0

@@ -75,7 +75,7 @@ The JWT token looks typically something like this (removed parts of secrets with
 }
 ```
 
-The content of the header must look like the following:
+The content of the header could look like the following:
 
 ```cmd
 Authorization: Bearer eyJhbGci...<snip>...yu5CSpyHI
@@ -105,17 +105,17 @@ Uses `Asp.Versioning` with:
 
 ## Mesh session usage
 
-When using the API it is necessary to create a session in Mesh to "work" within. If you don't have a session you will not be able to do execute any operation. Each session has an automatic time-out of 5 minutes, and if there is no activity against the session within such a timeframe, the session is automatically terminated without storing any changes in that session.
+When using the API it is necessary to create a session in Mesh to "work" within. If you don't have a session you will not be able to execute any operation. Each session has an automatic time-out of 5 minutes, and if there is no activity against the session within such a timeframe, the session is automatically terminated without storing any changes in that session.
 
-A way to prevent the automatic timeout to take place, it is possible to call the ExtendSession method which will make the session active 5 more minutes.
+A way to prevent the automatic timeout to take place, it is possible to call the `ExtendSession` method which will make the session active 5 more minutes.
 
 ### Commit and rollback functionality
 
-The data within a session are automatically updated with changes commited from other sessions in Mesh and changes commited directly to the database from outside of Mesh.
+The data within a session are automatically updated with changes committed from other sessions in Mesh and changes committed directly to the database from outside of Mesh.
 
-User changes that are added to a session is not not shared outside of the session before it is commited to the database using the Commit method. This method will save all changes added since the last Commit or Rollback operation.
+User changes that are added to a session are not not shared outside of the session before it is committed to the database using the `Commit` method. This method will save all changes added since the last `Commit` or `Rollback` operation.
 
-If the changes added to the session is not wanted to be performed, the Rollback method will remove all changes added since the last Commit or Rollback operation.
+If the changes added to the session should not be performed, the `Rollback` method will remove all changes added since the last `Commit` or `Rollback` operation.
 
 ### Short or long running sessions
 
@@ -126,39 +126,39 @@ Each session will typically have overheads related to functionality like:
 - Perform calculations, and
 - Closing the session and cleaning up memory.
 
-Within a session data is automatically updated from stored changes and recalulation is only done for the parts that has changed since last read operation of the same data information.
+Within a session, data is automatically updated from stored changes and recalulation is only done for the parts that have changed since the last read operation of the same data information.
 
-**Notice!** It is advised to use long-running sessions instead of frequently creating new sessions for operations yielding the same data information.
+_**Note!**_ It is recommended to use long-running sessions instead of frequently creating new sessions for operations yielding the same data information.
 
 ### Sequence diagrams
 
 #### Simple read operation
 
-This is describing a way to execute one or more read operations in an operation that completes fairly quickly. The example is using the ReadTimeSeriesValues method, but is valid for any API method that is not changing data.
+This is describing a way to execute one or more read operations in an operation that completes fairly quickly. The example is using the `ReadTimeSeriesValues` method, but is valid for any API method that is not changing data.
 
 ![SimpleReadSession](images/simple-read-session.png)
 
 #### Simple write operation with commit
 
-This is describing a way to execute one or more write operations in an operation that completes fairly quickly. The example is using the WriteTimeSeriesValues method, but is valid for any API method. The Commit method will store all changes added in the session to the database.
+This is describing a way to execute one or more write operations in an operation that completes fairly quickly. The example is using the `WriteTimeSeriesValues` method, but is valid for any API method. The `Commit` method will store all changes added in the session to the database.
 
 ![SimpleWriteSessionWithCommit](images/simple-write-session-commit.png)
 
 #### Simple write operation with rollback
 
-This is describing a way to execute one or more write operations in an operation that completes fairly quickly. The example is using the WriteTimeSeriesValues method, but is valid for any API method. The Rollback method will revert all changes added in the session.
+This is describing a way to execute one or more write operations in an operation that completes fairly quickly. The example is using the `WriteTimeSeriesValues` method, but is valid for any API method. The `Rollback` method will revert all changes added in the session.
 
 ![SimpleWriteSessionWithRollback](images/simple-write-session-rollback.png)
 
 #### Long running read operations
 
-This is describing how a long-time running session that reads information from Mesh can be implemented. The example is using the ReadTimeSeriesValues method, but is valid for any API method that is not changing data.
+This is describing how a long-time running session that reads information from Mesh can be implemented. The example is using the `ReadTimeSeriesValues` method, but is valid for any API method that is not changing data.
 
 ![LongRunningReadSessions](images/long-running-read-session.png)
 
 #### Long running write operations
 
-This is describing how a long-time running session that both reads and writes information from and to Mesh can be implemented. The example is using the WriteTimeSeriesValues method, but is valid for any API method.
+This is describing how a long-time running session that both reads and writes information from and to Mesh can be implemented. The example is using the `WriteTimeSeriesValues` method, but is valid for any API method.
 
 ![LongRunningWriteSessions](images/long-running-write-session.png)
 
@@ -166,7 +166,7 @@ This is describing how a long-time running session that both reads and writes in
 
 Below is example code of how to use the generated C# code (i.e., MeshRestAPI) from the swagger.json information to access the Mesh service with OAuth2 authentication and authorisation.
 
-_**Note**_ All strings in brackets ("<...>") must be replaced with information valid for the environment where the code is run.
+_**Note!**_ All strings in brackets ("<...>") must be replaced with information valid for the environment where the code is run.
 
 ```C#
 using System.Numerics;

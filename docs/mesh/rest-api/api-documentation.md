@@ -4,7 +4,7 @@ A public Mesh REST API to access Volue Mesh information.
 
 *All operations requiring a sessionId should be used within a session that is always using CreateSession and CloseSession, and DoCommit or DoRollback for write operations. Changing the configuration should change this requirement for testing purposes only.*
 
-A Swagger interface is provided by the REST API and is available to local users of the API for documentation and manual testing. **Notice! It is possible to remove the Swagger interface from the configuration of the service.**
+A Swagger interface is provided by the REST API and is available to local users of the API for documentation and manual testing. _**Note! It is possible to remove the Swagger interface from the configuration of the service.**_
 
 - [Public Mesh REST API for Volue Mesh v.2.19](#public-mesh-rest-api-for-volue-mesh-v219)
   - [Version **v1** Endpoints](#version-v1-endpoints)
