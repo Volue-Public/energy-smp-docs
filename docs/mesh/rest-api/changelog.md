@@ -77,7 +77,7 @@
 
 - We have fixed an issue when reading values using resource path or timeseriesKey to identify the time series. This fix involves the following methods: ReadTimeSeriesValues, ReadTimeSeriesValuesRaw, ReadTimeSeriesValuesMulti and ReadTimeSeriesValuesMultiRaw. (#9)
 - We have enhanced the exception messages returned from the API to better pin-point the source of the exception. Exceptions originating from the Mesh service is containing a `MESH - ` part, otherwise it contains an `API - ` part. (#10)
-- We have fixed exceptions from the ReadTimeSeriesValuesMulti, ReadTimeSeriesValuesMultiRaw and WriteTimeSerisValuesMultiRaw methods to always return reference to the time series if the exception is related to a specific time series. (#11)
+- We have fixed exceptions from the ReadTimeSeriesValuesMulti, ReadTimeSeriesValuesMultiRaw and WriteTimeSeriesValuesMultiRaw methods to always return reference to the time series if the exception is related to a specific time series. (#11)
 
 ## Version 1.1.1
 
