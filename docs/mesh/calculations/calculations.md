@@ -184,7 +184,7 @@ day, i.e to the next day relative to the requested time interval.
 Here the dots represent 1 day and the requested time interval 2 days.
 
 
-## Time Zones
+## Time zones
 
 There are situations where other time zones are involved:
 
@@ -202,8 +202,7 @@ There are situations where other time zones are involved:
 
 - In some cases, the function arguments are time point macros, they will also
   need a time zone context to have a precise meaning. See the separate chapter on
-  time macros.
-
+  [time macros](./timepoint-macros.md).
 
 ### Using `@TRANSFORM` calculation functions
 
@@ -226,21 +225,6 @@ be based on 23 or 25 values due to DST season shift.
 
 The last example is referring to the UTC zone with no DST so values are shifted
 one hour compared to the first two examples.
-
-
-### Time point macros
-
-A time point specification can be explicit or based on the macros that make time
-point follow current time. Examples related to current time:
-
-- 202002291336 -> Saturday 29 February 2020 13:36:00
-- DAY - Start of the current day in UTC+1 zone
-- WEEK+2d+14h-10x - Is interpreted as start of this week (UTC+1) plus 2 days
-  plus 14 hours minus 10 minutes
-
-Available base codes are YEAR, MONTH, WEEK, DAY, MIN15 and NOW. The function
-named @TIME_MASK is having some examples where the mask values are created from
-such macros. See the reference documentation for details.
 
 
 # Basic time series operations
