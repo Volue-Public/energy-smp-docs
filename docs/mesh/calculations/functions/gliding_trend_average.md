@@ -28,7 +28,7 @@ number of previous values from which average values are calculated. For
 instance, in the table the average of the three closest previous values to Time
 3 (including the value in Time 3) (8+20+19)/3 = 15,67.
 
-![](Images/ex_GLIDING_TREND_AVERAGE-nimbustable.png)
+![](assets/images/ex_GLIDING_TREND_AVERAGE-nimbustable.png)
 
 Example 2: GLIDING_TREND_AVERAGE(t,d,D)
 
@@ -39,4 +39,4 @@ and the second closest values counts twice as much as the third closest value
 for the trend. The array must contain the same number as the value used in
 argument 2. The sum is divided on the total number of weight factors.
 
-![](Images/ex_GLIDING_TREND_AVERAGE-nimbustable2.png)
+![](assets/images/ex_GLIDING_TREND_AVERAGE-nimbustable2.png)

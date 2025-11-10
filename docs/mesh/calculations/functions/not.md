@@ -15,4 +15,4 @@ is 0.
 
 In row 2 the result is 1, as the value of Temperature_hour_raw is 0 or NaN.
 
-![](Images/ex_NOT-nimbuschart_red.png)
+![](assets/images/ex_NOT-nimbuschart_red.png)

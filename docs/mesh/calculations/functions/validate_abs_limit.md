@@ -53,4 +53,4 @@ before the function adds its status values. This is done using the
 values outside the upper level value 210 or the lower limit value 207, are
 marked with **!** (Not OK) and the validation method **V01**.
 
-![](Images/ex_ValidateAbsLimit-nimbusexample.png)
+![](assets/images/ex_ValidateAbsLimit-nimbusexample.png)

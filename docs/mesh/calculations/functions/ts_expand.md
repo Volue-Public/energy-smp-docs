@@ -19,7 +19,7 @@ Example 1: @TS_EXPAND(t)
 
 `Temperature_hour_operative = @TS_EXPAND(@t('Temperature_hour_raw'))`
 
-![](Images/ex_TS_EXPAND-nimbustable.png)
+![](assets/images/ex_TS_EXPAND-nimbustable.png)
 
 Example 2: @TS_EXPAND(t,s)
 
@@ -27,7 +27,7 @@ Example 2: @TS_EXPAND(t,s)
 
 The original time series has a linear curve type.
 
-![](Images/ex_TS_EXPAND-nimbustable2.png)
+![](assets/images/ex_TS_EXPAND-nimbustable2.png)
 
 Description TS_EXPAND(t,s,s)
 

@@ -97,7 +97,7 @@ In some of the functions the term profile series is used. This is a time series 
 
 The profile series can be used in two ways, relative or absolute. Current functions exist in two versions, one using relative profile and one using the profile directly (called absolute). The latter version can be scaled using a coefficient that is an argument to the function.
 
-![Profile handling diagram](Images/image10.gif)
+![Profile handling diagram](assets/images/image10.gif)
 
 The figure shows that use of relative profile will strengthen the variation if the mean value for the input data series (V) is large compared to the mean value on the profile series (M). By using absolute profile the variation will equal the profile series, possibly adjusted with a factor different from 1 that is given as first argument to the functions using absolute profile.
 

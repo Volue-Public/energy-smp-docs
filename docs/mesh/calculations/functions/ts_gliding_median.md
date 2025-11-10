@@ -20,4 +20,4 @@ For the result time series the median is 19 at 06:00, as the median of the
 sequence (8, 20, 19) is 19. Using a higher `d` number the result will get
 smoother.
 
-![](Images/ex_TS_GLIDING_MEDIAN-nimbustable.png)
+![](assets/images/ex_TS_GLIDING_MEDIAN-nimbustable.png)

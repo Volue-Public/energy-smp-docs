@@ -1,6 +1,6 @@
 # GetForecast
 
-![](Images/GetForecast1.png)
+![](assets/images/GetForecast1.png)
 
 **Description** GetForecast(t,d|s,d|s[,d|s])
 
@@ -18,6 +18,6 @@ condition that the write time for the forecast series is less than or equal to
 the time the argument represents. If no forecast series has its start time
 within the given interval, the function returns a time series with NaN.
 
-![](Images/GetForecast2.png)
+![](assets/images/GetForecast2.png)
 
 

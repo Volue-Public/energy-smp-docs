@@ -24,7 +24,7 @@ Example 1: @POWER(t,d)
 Waterlevel_hour_operative = @POWER(@t('Waterlevel_hour_raw'),2)
 ```
 
-![](Images/ex_POWER-nimbustable1.png)
+![](assets/images/ex_POWER-nimbustable1.png)
 
 Example 2: @POWER(d,t)
 
@@ -32,7 +32,7 @@ Example 2: @POWER(d,t)
 Waterlevel_hour_operative = @POWER(2,@t('Waterlevel_hour_raw'))
 ```
 
-![](Images/ex_POWER-nimbustable2.png)
+![](assets/images/ex_POWER-nimbustable2.png)
 
 Example 3: @POWER(t,t)
 
@@ -40,7 +40,7 @@ Example 3: @POWER(t,t)
 Waterlevel_hour_operative = @POWER(@t('Waterlevel_hour_raw'),@t('Waterlevel_hour_raw'),)
 ```
 
-![](Images/ex_POWER-nimbustable3.png)
+![](assets/images/ex_POWER-nimbustable3.png)
 
 Example 4: @POWER(d,d)
 

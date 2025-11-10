@@ -73,7 +73,7 @@ Accumulation syntax 2
 
 Accumulates the precipitation for each hydrological year.
 
-![](Images/ex_accumulate.png)
+![](assets/images/ex_accumulate.png)
 
 ## Example 4
 
@@ -83,7 +83,7 @@ Accumulation syntax 2 with second argument omitted.
 
 Accumulates the precipitation for each week.
 
-![](Images/ex_accumulate2.png)
+![](assets/images/ex_accumulate2.png)
 
 ## Example 5
 
@@ -120,10 +120,10 @@ In the following example from Nimbus, the function has accumulated the
 precipitation from the turn of the year. The start value (tstart), >0, is
 displayed in the blue curve:
 
-  ![](Images/ex_accumulate3.png)
+  ![](assets/images/ex_accumulate3.png)
 
 In the following example from Nimbus, the presentation starts later in the year
 than in the previous example. The start value (tsstar) is displayed in the blue
 chart:
 
-  ![](Images/ex_accumulate4.png)
+  ![](assets/images/ex_accumulate4.png)

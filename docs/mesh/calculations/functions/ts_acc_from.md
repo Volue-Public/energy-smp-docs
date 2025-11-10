@@ -60,4 +60,4 @@ Value from the x-series is taken from the current time step.
 
 Result is shown in column 5 of the table.
 
-![](Images/ex_ts_acc_from.gif)
+![](assets/images/ex_ts_acc_from.gif)

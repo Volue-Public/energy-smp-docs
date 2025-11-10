@@ -16,4 +16,4 @@ of the time window.
 
 The result is a smoother time series with no major fluctuations, e.g.
 
-![](Images/ex_TS_GLIDING_GAUSS-nimbustable.png)
+![](assets/images/ex_TS_GLIDING_GAUSS-nimbustable.png)

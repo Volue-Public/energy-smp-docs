@@ -43,7 +43,7 @@ There are similar functions to find highest values, see [function MAX](max.md)
 Returns the lowest value of all the time series in the array for each time step,
 e.g.:
 
-![](Images/ex_MIN-nimbustable.png)
+![](assets/images/ex_MIN-nimbustable.png)
 
 #### Example 2: @MIN(D)
 
@@ -59,14 +59,14 @@ Returns the lowest values from the time series for the requested period.
 
 `Temperature_hour_operative = @t('.Temperature_hour_raw')/@MIN(@t('.Temperature_hour_raw'))`
 
-![](Images/ex_MIN-nimbustable2.png)
+![](assets/images/ex_MIN-nimbustable2.png)
 
 From the requested period, we can see that the minimum value is -5. Used in
 calculation the result values are divided on -5.
 
 `Temperature_hour_operative = @t('.Temperature_hour_raw')+@MIN(@t('.Temperature_hour_raw'))`
 
-![](Images/ex_MIN-nimbustable3.png)
+![](assets/images/ex_MIN-nimbustable3.png)
 
 From the requested period, we can see that the minimum value is -5. Used in
 calculation the result values are added by -5.
@@ -78,7 +78,7 @@ calculation the result values are added by -5.
 It returns the lowest of the values for each time step in time series 1 and time
 series 2.
 
-![](Images/ex_MIN-nimbustable4.png)
+![](assets/images/ex_MIN-nimbustable4.png)
 
 #### Example 5: @MIN(T,t)
 
@@ -90,7 +90,7 @@ series 2.
 Returns the lowest value of the time series in the array and the single time
 series for each time step, e.g.:
 
-![](Images/ex_MIN-nimbustable5.png)
+![](assets/images/ex_MIN-nimbustable5.png)
 
 #### Example 6: @MIN(t,d)
 
@@ -99,7 +99,7 @@ series for each time step, e.g.:
 Returns the lowest value of the time series and a selected number for each time
 step, e.g.:
 
-![](Images/ex_MIN-nimbustable6.png)
+![](assets/images/ex_MIN-nimbustable6.png)
 
 #### Example 7: @MIN(d,d)
 

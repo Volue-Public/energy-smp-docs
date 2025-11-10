@@ -1,4 +1,4 @@
 # GetMergedForecast
 
-![](Images/Get MergedForecast.png)
+![](assets/images/Get MergedForecast.png)
 

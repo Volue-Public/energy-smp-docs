@@ -29,7 +29,7 @@ If the number of observations (time series) do not correspond to the required
 percentile, the percentile is calculated by linearization between previous and
 following percentiles.
 
-![](Images/ex_percentile1.png)
+![](assets/images/ex_percentile1.png)
 
 In this example we ask for the 100% percentile. This takes the max value for
 each time step for the period from year 2000 to year 2010 (the year 2010 is not
@@ -63,7 +63,7 @@ Example 2
 The result will be equal to the time series with the highest sum for the
 requested period, i.e. Ensemble03 (P100).
 
-![](Images/ex_percentile2.png)
+![](assets/images/ex_percentile2.png)
 
 Example 3
 
@@ -73,7 +73,7 @@ The result will be equal to the time series with the highest sum for the
 requested period, i.e. Ensemble03 (P100). This is scaled by the factor
 SumMean/IndexTimeSeriesMean.
 
-![](Images/ex_percentile3.png)
+![](assets/images/ex_percentile3.png)
 
 Example 4
 
@@ -83,7 +83,7 @@ The result will be equal to the max value for each time step scaled with a
 factor. The factor is found by taking the sum for the time series with
 percentile index P100, divided by the sum for the max value time series.
 
-![](Images/ex_percentile4.png)
+![](assets/images/ex_percentile4.png)
 
 ### Methods
 

@@ -31,7 +31,7 @@ The result values are the average value of the values in
 @t('Temperature_hour_raw') for the requested time period, repeated throughout
 the entire result series as a break point series.
 
-  ![](Images/ex_MEAN-nimbustable.png)
+  ![](assets/images/ex_MEAN-nimbustable.png)
 
 **Tip!** If you want to calculate the mean value for a period different from the
 requested time period, you can use the
@@ -47,7 +47,7 @@ time series in the array for every time step.
 
   For instance at 01:00: (-1,26+3,09+8,87)/3 = 3,57
 
-  ![](Images/ex_MEAN-nimbustable2.png)
+  ![](assets/images/ex_MEAN-nimbustable2.png)
 
   Example 3: @MEAN(D)
 

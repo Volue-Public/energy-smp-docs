@@ -20,7 +20,7 @@ if the value is different from 0, otherwise it uses values from the second time.
 If both series have value 0, 0 is returned. If both series have missing value,
 missing value is returned. Result is shown in the last column of the table.
 
-![](Images/ex_MIXbe-Nimbustable.png)
+![](assets/images/ex_MIXbe-Nimbustable.png)
 
 Example 2: @MIX0(T)
 
@@ -31,4 +31,4 @@ array different from 0. If all series have 0, 0 is returned. If all series have
 missing values, missing value is returned. Result is shown in the last column of
 the table.
 
-![](Images/ex_MIXbe-Nimbustable2.png)
+![](assets/images/ex_MIXbe-Nimbustable2.png)

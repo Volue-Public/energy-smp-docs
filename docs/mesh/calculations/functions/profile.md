@@ -36,7 +36,7 @@ with values created by repetition of the values found on the input series.
 
 `Result time series = @PROFILE(@t('TSPH'))`
 
-![](Images/ex_PROFILE-nimbustable1.png)
+![](assets/images/ex_PROFILE-nimbustable1.png)
 
 The figure shows the profile series defined with data for a 24-hour period at
 September 21st 2014. The result of @PROFILE(@t('TSPH')) for any other requested

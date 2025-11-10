@@ -45,7 +45,7 @@ MI = Calculated mean value for the profile series for the distributed period
 @DISTRIBUTE(@t('Ts5'),MaskSeries,Profile) where the mask series argument is true
 for all the time points.
 
-![](Images/ex_DISTRIBUTE-nimbustable6.png)
+![](assets/images/ex_DISTRIBUTE-nimbustable6.png)
 
 ### Ra8
 ## About the function
@@ -80,7 +80,7 @@ Example 1
 @DISTRIBUTE(1,@t('Ts5'),MaskSeries,Profile) where the mask series argument is
 true for all the time points.
 
-![](Images/ex_TRANS_PROFILE-nimbustable.png)
+![](assets/images/ex_TRANS_PROFILE-nimbustable.png)
 
 Example 2
 

@@ -56,7 +56,7 @@ The values of AreaTemp are time-shifted. "d" determines the number of time
 intervals by which the time series is to be shifted. We can see that the result
 moves backwards in time for negative numbers.
 
-  ![](Images/ex_TS_OFFSET-nimbustable.png)
+  ![](assets/images/ex_TS_OFFSET-nimbustable.png)
 
   Example 2: @TS_OFFSET(t,d)
 
@@ -66,4 +66,4 @@ The values of AreaTemp are time-shifted. "d" determines the number of time
 intervals by which the time series is to be shifted. We can see that the result
 moves forward in time for positive numbers.
 
-  ![](Images/ex_TS_OFFSET-nimbustable2.png)
+  ![](assets/images/ex_TS_OFFSET-nimbustable2.png)

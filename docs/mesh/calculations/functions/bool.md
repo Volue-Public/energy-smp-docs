@@ -27,7 +27,7 @@ resolution as the input time series.
 
 
 
-  ![](Images/ex_BOOL-nimbustable1.png)
+  ![](assets/images/ex_BOOL-nimbustable1.png)
 
 ## Examples
 ### Example 1: 
@@ -43,7 +43,7 @@ Only NaN is converted to false.
 
   All values are set to true (1) except from NaN, which is false (0), e.g.
 
-  ![](Images/ex_BOOL-nimbustable2.png)
+  ![](assets/images/ex_BOOL-nimbustable2.png)
 
 
 
@@ -58,7 +58,7 @@ Only NaN is converted to false.
 
   For example:
 
-  ![](Images/ex_BOOL-nimbustable3.png)
+  ![](assets/images/ex_BOOL-nimbustable3.png)
 
 
 
@@ -68,11 +68,11 @@ Only NaN is converted to false.
 TsBrp =
 @TIME_MASK('HOUR',{'HOUR','HOUR+15x','HOUR+30x','HOUR+40x','HOUR+50x'},{12,15,15,0,20},'VARINT')
 
-  ![](Images/ex_BOOL-nimbustable4.png)
+  ![](assets/images/ex_BOOL-nimbustable4.png)
 
 Using the following expression, we can convert the input to the time series
 below:
 
   `Temperature_hour_VV = @BOOL(TsBrp,0,'COMPRESS')`
 
-  ![](Images/ex_BOOL-nimbustable5.png)
+  ![](assets/images/ex_BOOL-nimbustable5.png)

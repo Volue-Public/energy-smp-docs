@@ -33,4 +33,4 @@ The resulting time series is equal to the sum of the values for each time
 interval in the expression. For instance, in the first row, the result is `0,79
 + -0,30 = 0,49` as shown in the last column.
 
-![](Images/ex_SUM-nimbustable.png)
+![](assets/images/ex_SUM-nimbustable.png)

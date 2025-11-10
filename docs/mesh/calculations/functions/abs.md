@@ -14,4 +14,4 @@ This function is used to determine the absolute value(s) for a time series.
 
 In Time 14, the resulting absolute value of -5,00 is 5,00.
 
-![](Images/ex_ABS-nimbustable.png)
+![](assets/images/ex_ABS-nimbustable.png)

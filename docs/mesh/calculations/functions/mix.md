@@ -41,7 +41,7 @@ Values in the result time series return a value from the first time series if
 this exists, otherwise the value from the second time series is retrieved, as
 shown in the table.
 
-![](Images/ex_MIX-nimbustable.png)
+![](assets/images/ex_MIX-nimbustable.png)
 
 Description MIX(t,t,t)
 
@@ -57,6 +57,6 @@ Description MIX(t,t,t)
 ```
 Temperature_hour_operative = @MIX(@t('Temperature_hour_raw'),@t('TempPercentiles'),@t('TempManualCorrection'))
 ```
-![](Images/ex_MIX-nimbustable2.png)
+![](assets/images/ex_MIX-nimbustable2.png)
 
 **Tip!** See also [MIX0](../functions/mix0.md).

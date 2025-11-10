@@ -13,4 +13,4 @@ values of the input are in radians.
 ## Example
 `Temperature_hour_VV = @COS(@t('Temperature_hour_raw'))`
 
-![](Images/ex_COS-ninbustable1.png)
+![](assets/images/ex_COS-ninbustable1.png)

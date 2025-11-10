@@ -40,7 +40,7 @@ See [time macro specification](../timepoint-macros.md).
 
 This figure illustrate the implemented algorithm to convert arguments into a time series.
 
-![Time mask concept figure](./Images/time-mask-concept.png)
+![Time mask concept figure](assets/images/time-mask-concept.png)
 
 - Every time point specification is parsed and added to a timeline.
 - There are values to be associated with each time point based on the index in collection.
@@ -274,7 +274,7 @@ the time zone of the database.
 Note! If the same expressions are run for a day in summer time, the values
 are shifted to one hour later.
 
-![](Images/ex_TIME_MASK-nimbustable1.png)
+![](assets/images/ex_TIME_MASK-nimbustable1.png)
 
 `Result = @TIME_MASK('DAY', {'DAY+07h', 'DAY+10h', 'DAY+14h',
 'DAY+18h'}, {1,2,3,4},'HOUR')`
@@ -282,7 +282,7 @@ are shifted to one hour later.
 This gives a time series with daily repeat frequency and hourly time resolution.
 The presentation of data values is linear.
 
-  ![](Images/ex_TIME_MASK-nimbustable2.png)
+  ![](assets/images/ex_TIME_MASK-nimbustable2.png)
 
 `Result = @TIME_MASK('DAY', {'DAY+07h', 'DAY+10h', 'DAY+14h',
 'DAY+18h'}, {1,2,3,4},'VARINT')`
@@ -290,7 +290,7 @@ The presentation of data values is linear.
 This gives a time series with daily repeat frequency and breakpoint time
 resolution. The presentation of data values is step wise.
 
-  ![](Images/ex_TIME_MASK-nimbustable3.png)
+  ![](assets/images/ex_TIME_MASK-nimbustable3.png)
 
 ## Examples - less used variant
 
@@ -362,4 +362,4 @@ The function returns the following according to the calendar file definition:
 The result above can be illustrated in a figure showing the difference between
 the various masks:
 
-  ![](Images/ex_timemasks_chart.gif)
+  ![](assets/images/ex_timemasks_chart.gif)

@@ -44,4 +44,4 @@ removed before the function adds its status values. This is done using the
 to 0.05. The values are not in percent. All values outside exceeding the delta
 limits, are marked with **!** (Not OK) and the validation method **V02**.
 
-![](Images/ex_ValidateDeltaLimit-nimbustable.png)
+![](assets/images/ex_ValidateDeltaLimit-nimbustable.png)

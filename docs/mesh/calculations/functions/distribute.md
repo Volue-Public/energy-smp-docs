@@ -29,9 +29,9 @@ method as base for the distribution.
 
 `ResultTimeSeries = @DISTRIBUTE(@t('Ts5'),MaskSeries)`
 
-![](Images/ex_DISTRIBUTE-nimbustable1.png)
+![](assets/images/ex_DISTRIBUTE-nimbustable1.png)
 
-![](Images/ex_DISTRIBUTE-nimbustable2.png)
+![](assets/images/ex_DISTRIBUTE-nimbustable2.png)
 
 Mask time series in argument 2 is only used as a logical time series giving the
 distributed interval for the input value to be distributed within. The example
@@ -46,7 +46,7 @@ The result will be a break point time series.
 
 `Result time series = @DISTRIBUTE(@t('Ts5'),MaskSeries)`
 
-![](Images/ex_DISTRIBUTE-nimbustable3.png)
+![](assets/images/ex_DISTRIBUTE-nimbustable3.png)
 
 ### R7
 ## About the function
@@ -87,7 +87,7 @@ Argument 3 gives the profile values (same as the mask series)
 
 Result time series = @DISTRIBUTE(@t('Ts5'),MaskSeries,Profile)
 
-![](Images/ex_DISTRIBUTE-nimbustable4.png)
+![](assets/images/ex_DISTRIBUTE-nimbustable4.png)
 
 Based on the equation, the first value of the distributed period is calculated
 like this:
@@ -129,7 +129,7 @@ Argument 3 gives the profile values (same as the mask series)
 
 Result time series = @DISTRIBUTE(1,@t('Ts5'),MaskSeries,Profile)
 
-![](Images/ex_DISTRIBUTE-nimbustable5.png)
+![](assets/images/ex_DISTRIBUTE-nimbustable5.png)
 
 Based on the equation, the first value of the distributed period is calculated
 like this:
@@ -146,7 +146,7 @@ Argument 3 gives the profile values (same as the mask series)
 
 Result time series = @DISTRIBUTE(10,@t('Ts5'),MaskSeries,Profile)
 
-![](Images/ex_DISTRIBUTE-nimbustable7.png)
+![](assets/images/ex_DISTRIBUTE-nimbustable7.png)
 
 Based on the equation, the first value of the distributed period is calculated
 like this:
