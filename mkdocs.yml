@@ -16,7 +16,7 @@ nav:
     - Mesh:
           - Concepts:
                 - Availability: mesh/concepts/availability.md
-                - Calculations: mesh/calculations/calculations.md
+                - Calculations: mesh/concepts/calculations.md
                 - Modelling:
                       - General: mesh/concepts/modelling/general.md
                       - Rating curves: mesh/concepts/modelling/rating-curves.md
@@ -27,7 +27,7 @@ nav:
                 - Time series: mesh/concepts/time-series.md
           - Installation: mesh/installation/MeshServiceInstallationGuide.md
           - Calculations:
-                - General: mesh/calculations/calculations.md
+                - General: mesh/calculations/general.md
                 - Time macros: mesh/calculations/timepoint-macros.md
                 - Functions:
                       - Introduction: mesh/calculations/functions/introduction.md
