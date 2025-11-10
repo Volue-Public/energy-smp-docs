@@ -54,7 +54,7 @@ The method has the following input parameters:
 - `wvfName` is name of the WaterValueFunction to create.
 - `waterValueDate` is the date and time that the water value function is created for.
 - `sessionId` is id of the session the call is a part of.
-- In addition will the body contain the water values for the different reservoirs as a list reservoir data where each reservoice data element contains of:
+- In addition will the body contain the water values for the different reservoirs as a list reservoir data where each reservoir data element contains of:
   - `reservoirName` is the name of a reservoir below the WaterCourse object,
   - `volumesInMm3` is a list of reservoir volumes (as doubles) in Mm3 (million qubic meters), and 
   - `valuesInEuroPerMm3` is a list of water values (as doubles) in Euro per Mm3.
