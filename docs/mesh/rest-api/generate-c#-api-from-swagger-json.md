@@ -1,14 +1,19 @@
-# How to generate C# api from the swagger.json OpenAPI definition
+# How to generate C# API from the swagger.json OpenAPI definition
+
+- [How to generate C# API from the swagger.json OpenAPI definition](#how-to-generate-c-api-from-the-swaggerjson-openapi-definition)
+  - [Using Visual Studio 2022](#using-visual-studio-2022)
+  - [Make it right using the NSwagStudio](#make-it-right-using-the-nswagstudio)
+    - [Configure a NSwagStudio project](#configure-a-nswagstudio-project)
 
 ## Using Visual Studio 2022
 
 The easiest solution is just to add a connected service to the project:
 
-![Add connected service to project](pictures/add-connected-service-to-project.png)
+![Add connected service to project](images/add-connected-service-to-project.png)
 
 and then configure the API code creation:
 
-![Configure API code creation](pictures/configure-connected-service.png)
+![Configure API code creation](images/configure-connected-service.png)
 
 When choosing `Finish`, the code is created as `.\obj\swaggerClient.cs`.
 
@@ -44,7 +49,7 @@ The utility may be downloaded from [here].
 
 [here]: https://github.com/RicoSuter/NSwag/wiki/NSwagStudio
 
-### Configure a NSwagStudi project
+### Configure a NSwagStudio project
 
 Do the following steps:
 
@@ -52,7 +57,7 @@ Do the following steps:
    - Select which runtime to use (e.g. `Net70`).
    - In the `OpenAPI/Swagger Specification` folder, enter the URL to the Mesh Rest API (e.g. `http://localhost:7060/swagger/v1/swagger.json`).
 
-   ![Input specification](pictures/NSwagStudio-input-spec.png)
+   ![Input specification](images/NSwagStudio-input-spec.png)
 
 2. Specify outputs:
    - Select `CSharp Client` and select the `CSharp Client` page.
@@ -62,7 +67,7 @@ Do the following steps:
      - Select the `Generate Nullable Reference Type (NRT) annotations (C# 8)` option.
      - `Output file path` (f.ex. `C:\Dev\energy-mesh-rest-api\src\MestRestAPI.Test\MeshRestAPI.cs`).
 
-     ![Output specification](pictures/NSwagStudio-complete.png)
+     ![Output specification](images/NSwagStudio-complete.png)
 
 3. Generate the code by choosing `Generate Files` in the lower right corner.
 
