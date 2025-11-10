@@ -13,4 +13,4 @@ radians.
 ## Example
 `Temperature_hour_VV = @SIN(@t('Temperature_hour_raw'))`
 
-![](Images/ex_SIN-nimbustable1.png)
+![](assets/images/ex_SIN-nimbustable1.png)

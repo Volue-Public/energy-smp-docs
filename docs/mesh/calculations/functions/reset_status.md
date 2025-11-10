@@ -87,4 +87,4 @@ information in Nimbus. Available correction methods are as follows:
 In the following example, the first column is the series original status. In the
 second column the status sign/exclamation mark,`!`(Not ok), is removed.
 
-  ![](Images/ex_RESET_STATUS-nimbustable.png)
+  ![](assets/images/ex_RESET_STATUS-nimbustable.png)

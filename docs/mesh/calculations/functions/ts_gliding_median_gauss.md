@@ -17,4 +17,4 @@ median values. `d` determines the size of the time window.
 With d = 3, the median is calculated with the previous value, current value and
 next value and then normally distributed.
 
-![](Images/ex_TS_GLIDING_MEDIAN_GAUSS-nimbustable.png)
+![](assets/images/ex_TS_GLIDING_MEDIAN_GAUSS-nimbustable.png)

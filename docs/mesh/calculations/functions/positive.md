@@ -18,4 +18,4 @@ positive number.
 From the table, we see that only positive numbers are returned. Negative numbers
 and NaN return empty rows.
 
-![](Images/ex_POSITIVE-nimbustable.png)
+![](assets/images/ex_POSITIVE-nimbustable.png)

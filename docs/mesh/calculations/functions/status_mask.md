@@ -93,17 +93,17 @@ information in Nimbus. Available validation methods are as follows:
 
   The result sets all the missing and manually changed values to 0.
 
-  ![](Images/ex_STATUS_MASK-nimbustable.png)
+  ![](assets/images/ex_STATUS_MASK-nimbustable.png)
 
 `Temperature_hour_operative =
 @STATUS_MASK(@t('Temperature_hour_raw'),'missing|MANUAL','BOOLINV')`
 
   The result sets all the missing and manually changed values to 1.
 
-  ![](Images/ex_STATUS_MASK-nimbustable2.png)
+  ![](assets/images/ex_STATUS_MASK-nimbustable2.png)
 
 `Temperature_hour_operative = @STATUS_MASK(@t('Temperature_hour_raw'),'MANUAL','BLANK')`
 
   The result sets all the manually changed values to NaN.
 
-  ![](Images/ex_STATUS_MASK-nimbustable3.png)
+  ![](assets/images/ex_STATUS_MASK-nimbustable3.png)

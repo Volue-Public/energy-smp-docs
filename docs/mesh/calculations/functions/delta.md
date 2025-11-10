@@ -117,4 +117,4 @@ value and the previous value in the input time series. An example of this is
 shown below. The value of the first row is based on the difference to the value
 13,56 in a preceding point in time.
 
-![](Images/ex_DELTA-BDM.png)
+![](assets/images/ex_DELTA-BDM.png)

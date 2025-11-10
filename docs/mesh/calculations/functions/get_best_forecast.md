@@ -1,3 +1,3 @@
 # GetBestForecast
 
-![](Images/GetBestForecast.png)
+![](assets/images/GetBestForecast.png)

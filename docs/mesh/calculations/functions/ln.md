@@ -28,7 +28,7 @@ Example 1: LN(t)
 Temperature_hour_VV = @LN(@t('Temperature_hour_raw'))
 ```
 
-![](Images/ex_LN-nimbusexample1.png)
+![](assets/images/ex_LN-nimbusexample1.png)
 
 Example 2: LN(d)
 

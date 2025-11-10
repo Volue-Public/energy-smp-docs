@@ -31,4 +31,4 @@ Example 2: @LOG(d)
 
 Example 2 returns the number 0 for all rows.
 
-![](Images/ex_LOG-nimbustable1.png)
+![](assets/images/ex_LOG-nimbustable1.png)

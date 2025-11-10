@@ -74,33 +74,33 @@ transformation methods are available for this latter use.
 
   Input series:
 
-  ![](Images/ex_TRANSFORM-nimbustable.png)
+  ![](assets/images/ex_TRANSFORM-nimbustable.png)
 
   Uses conversion from quarter to hour resolution:
 
   ResSum = @TRANSFORM(@t(‘Ts15Min’,'HOUR','SUM')
 
-  ![](Images/ex_TRANSFORM-nimbustable2.png)
+  ![](assets/images/ex_TRANSFORM-nimbustable2.png)
 
   ResMean = @TRANSFORM(@t(‘Ts15Min’),'HOUR','MEAN')
 
-  ![](Images/ex_TRANSFORM-nimbustable3.png)
+  ![](assets/images/ex_TRANSFORM-nimbustable3.png)
 
   ResMin = @TRANSFORM(@t(‘Ts15Min’),'HOUR','MIN')
 
-  ![](Images/ex_TRANSFORM-nimbustable4.png)
+  ![](assets/images/ex_TRANSFORM-nimbustable4.png)
 
   ResMax = @TRANSFORM(@t(‘Ts15Min’),'HOUR','MAX')
 
-  ![](Images/ex_TRANSFORM-nimbustable5.png)
+  ![](assets/images/ex_TRANSFORM-nimbustable5.png)
 
   ResFirst = @TRANSFORM(@t(‘Ts15Min’),'HOUR','FIRST')
 
-  ![](Images/ex_TRANSFORM-nimbustable6.png)
+  ![](assets/images/ex_TRANSFORM-nimbustable6.png)
 
   ResLast = @TRANSFORM(@t(‘Ts15Min’),'HOUR','LAST')
 
-  ![](Images/ex_TRANSFORM-nimbustable7.png)
+  ![](assets/images/ex_TRANSFORM-nimbustable7.png)
 
 
 

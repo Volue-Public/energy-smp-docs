@@ -13,4 +13,4 @@ values of the input are in radians.
 ## Example
 `Temperature_hour_VV = @TAN(@t('Temperature_hour_raw'))`
 
-![](Images/ex_TAN-nimbustable1.png)
+![](assets/images/ex_TAN-nimbustable1.png)

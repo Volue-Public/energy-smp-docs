@@ -31,4 +31,4 @@ summarizing the previous value, the current value and the next value, divided by
 
 Res = (18+17+13)/3 = 16
 
-![](Images/ex_TS_GLIDING_AVERAGE-nimbustable.png)
+![](assets/images/ex_TS_GLIDING_AVERAGE-nimbustable.png)

@@ -48,4 +48,4 @@ New value by adding the increment: 5.00+1.00 = 6.00 in row 3. See table.
 Following the last value of the series the result is equal for both editions,
 the last value is kept.
 
-![](Images/ex_ts_iq_fill.gif)
+![](assets/images/ex_ts_iq_fill.gif)

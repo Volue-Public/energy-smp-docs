@@ -34,7 +34,7 @@ series in the array. In the case of an empty index or values outside of 1,2,3 an
 undefined value is returned. The result is shown in the second column of the
 table.
 
-![](Images/ex_MIXbe-Nimbustable.png)
+![](assets/images/ex_MIXbe-Nimbustable.png)
 
 Example 2: @MIX(t,T,t)
 
@@ -44,7 +44,7 @@ In the case of an empty index or values outside of 1,2,3 values from the time
 series in the 3.rd argument are used. The result is shown in the second column
 of the table.
 
-![](Images/ex_MIXbe-Nimbustable2.png)
+![](assets/images/ex_MIXbe-Nimbustable2.png)
 
 Example 3: @MIX(t,T,t)
 

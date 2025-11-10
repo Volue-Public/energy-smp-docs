@@ -38,4 +38,4 @@ series @TS('VARINT',@d('ValidateMaxRepeatedValues')). The delta used when
 comparing the values is set to 0.01 and the value 0.0 is considered correct no
 matter how many times it is repeated.
 
-![](Images/ex_ValidateRepeatValue-nimbustable.png)
+![](assets/images/ex_ValidateRepeatValue-nimbustable.png)
