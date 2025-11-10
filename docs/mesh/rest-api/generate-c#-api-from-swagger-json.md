@@ -9,11 +9,11 @@
 
 The easiest solution is just to add a connected service to the project:
 
-![Add connected service to project](images/add-connected-service-to-project.png)
+![Add connected service to project](assets/images/add-connected-service-to-project.png)
 
 and then configure the API code creation:
 
-![Configure API code creation](images/configure-connected-service.png)
+![Configure API code creation](assets/images/configure-connected-service.png)
 
 When choosing `Finish`, the code is created as `.\obj\swaggerClient.cs`.
 
@@ -57,7 +57,7 @@ Do the following steps:
    - Select which runtime to use (e.g. `Net70`).
    - In the `OpenAPI/Swagger Specification` folder, enter the URL to the Mesh Rest API (e.g. `http://localhost:7060/swagger/v1/swagger.json`).
 
-   ![Input specification](images/NSwagStudio-input-spec.png)
+   ![Input specification](assets/images/NSwagStudio-input-spec.png)
 
 2. Specify outputs:
    - Select `CSharp Client` and select the `CSharp Client` page.
@@ -67,7 +67,7 @@ Do the following steps:
      - Select the `Generate Nullable Reference Type (NRT) annotations (C# 8)` option.
      - `Output file path` (f.ex. `C:\Dev\energy-mesh-rest-api\src\MestRestAPI.Test\MeshRestAPI.cs`).
 
-     ![Output specification](images/NSwagStudio-complete.png)
+     ![Output specification](assets/images/NSwagStudio-complete.png)
 
 3. Generate the code by choosing `Generate Files` in the lower right corner.
 

@@ -136,31 +136,31 @@ _**Note!**_ It is recommended to use long-running sessions instead of frequently
 
 This is describing a way to execute one or more read operations in an operation that completes fairly quickly. The example is using the `ReadTimeSeriesValues` method, but is valid for any API method that is not changing data.
 
-![SimpleReadSession](images/simple-read-session.png)
+![SimpleReadSession](assets/images/simple-read-session.png)
 
 #### Simple write operation with commit
 
 This is describing a way to execute one or more write operations in an operation that completes fairly quickly. The example is using the `WriteTimeSeriesValues` method, but is valid for any API method. The `Commit` method will store all changes added in the session to the database.
 
-![SimpleWriteSessionWithCommit](images/simple-write-session-commit.png)
+![SimpleWriteSessionWithCommit](assets/images/simple-write-session-commit.png)
 
 #### Simple write operation with rollback
 
 This is describing a way to execute one or more write operations in an operation that completes fairly quickly. The example is using the `WriteTimeSeriesValues` method, but is valid for any API method. The `Rollback` method will revert all changes added in the session.
 
-![SimpleWriteSessionWithRollback](images/simple-write-session-rollback.png)
+![SimpleWriteSessionWithRollback](assets/images/simple-write-session-rollback.png)
 
 #### Long running read operations
 
 This is describing how a long-time running session that reads information from Mesh can be implemented. The example is using the `ReadTimeSeriesValues` method, but is valid for any API method that is not changing data.
 
-![LongRunningReadSessions](images/long-running-read-session.png)
+![LongRunningReadSessions](assets/images/long-running-read-session.png)
 
 #### Long running write operations
 
 This is describing how a long-time running session that both reads and writes information from and to Mesh can be implemented. The example is using the `WriteTimeSeriesValues` method, but is valid for any API method.
 
-![LongRunningWriteSessions](images/long-running-write-session.png)
+![LongRunningWriteSessions](assets/images/long-running-write-session.png)
 
 ## Examples of API usage
 
