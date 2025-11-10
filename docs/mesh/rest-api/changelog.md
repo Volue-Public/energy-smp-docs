@@ -88,6 +88,6 @@
 - We have added a new function (UpdateRatingCurveVersions) to add new, or change or delete existing information of a rating curve attribute. (#2)
 - We have added a new function (GetXySets) to get information of an XySets attribute. (#2)
 - We have added a new function (UpdateXySets) to add new, or change or delete existing information of an XySets attribute. (#2)
-- We have changed all attibute functions by adding a new parameter making it possible to use the Mesh Guid as a reference to an attribute. (#2)
+- We have changed all attribute functions by adding a new parameter making it possible to use the Mesh Guid as a reference to an attribute. (#2)
 - We have changed the definition of the ReadTimeSeriesValuesMulti and ReadTimeSeriesValuesMultiRaw functions to use POST operation instead of GET. (#5)
 - We have fixed an error in input check for the WriteTimeSeriesValuesMultiRaw function when only specifying the TimeseriesKey reference for the time series. (#7)
