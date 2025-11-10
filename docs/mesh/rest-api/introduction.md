@@ -126,7 +126,7 @@ Each session will typically have overheads related to functionality like:
 - Perform calculations, and
 - Closing the session and cleaning up memory.
 
-Within a session, data is automatically updated from stored changes and recalulation is only done for the parts that have changed since the last read operation of the same data information.
+Within a session, data is automatically updated from stored changes and recalculation is only done for the parts that have changed since the last read operation of the same data information.
 
 _**Note!**_ It is recommended to use long-running sessions instead of frequently creating new sessions for operations yielding the same data information.
 
