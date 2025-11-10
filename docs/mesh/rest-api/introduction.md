@@ -1,10 +1,10 @@
 # Introduction
 
-Volue Mesh REST API is an official REST API built on top of the public gRPC interface to Volue Mesh. It provides a RESTful interface for accessing Mesh energy data management functionality. The service is built with ASP.NET Core 8.0 and can be hosted using either IIS or Kestrel web server.
+The Volue Mesh REST API is an official REST API built on top of the public gRPC interface to Mesh. It provides a RESTful interface for accessing Mesh energy data management functionality. The service is built with ASP.NET Core 8.0 and can be hosted using either IIS or Kestrel web server.
 
 Access to the Mesh REST API is normally: <https://server:7060> where server is the name of the server where the Mesh REST API service is running.
 
-The Mesh REST API offers also a Swagger user interface to manually test the usage. This Swagger interface is available as: <https://server:7060/swagger/index.html>. **Notice!** The Swagger interface may be turned off in the configuration.
+The Mesh REST API also offers a Swagger user interface to manually test the usage. This Swagger interface is available as: <https://server:7060/swagger/index.html>. _**Note!**_ The Swagger interface may be turned off in the configuration.
 
 - [Introduction](#introduction)
   - [Session Management Pattern](#session-management-pattern)
@@ -27,16 +27,16 @@ The Mesh REST API offers also a Swagger user interface to manually test the usag
 
 The API requires session-based operations:
 
-1. **CreateSession** - Initialize a session with Mesh
+1. **CreateSession** - Initialise a session with Mesh
 2. Perform operations (queries/writes) using the sessionId
 3. **Commit** or **Rollback** changes if writes were made
 4. **CloseSession** - End the session
 
-Exception: When configuration parameter `AutoAddSession` is `true` (testing only), sessions are automatically created per operation.
+Exception: When the configuration parameter `AutoAddSession` is `true` (testing only), sessions are automatically created per operation.
 
 ## Security Architecture
 
-Supports three security models (using configuration parameter `SecurityModel`):
+Supports three security models (using the configuration parameter `SecurityModel`):
 
 - **None**: No authentication
 - **OAuth2**: JWT bearer tokens validated and forwarded to Mesh
@@ -46,7 +46,7 @@ The authentication scheme uses a policy-based multi-scheme approach that inspect
 
 HTTPS endpoints are required when security is enabled. HTTP endpoints will cause startup failure with security enabled when using Kestrel.
 
-### Using OAuth2 security token
+### Use OAuth2 security token
 
 The OAuth2 security token is added as a JSON Web Token (JWT) using the `Bearer` scheme and the payload is `Base64Url` encoded (<https://en.wikipedia.org/wiki/JSON_Web_Token>).
 
@@ -75,20 +75,20 @@ The JWT token looks typically something like this (removed parts of secrets with
 }
 ```
 
-The content of the header shall look like the following:
+The content of the header must look like the following:
 
 ```cmd
 Authorization: Bearer eyJhbGci...<snip>...yu5CSpyHI
 ```
 
-### Using Kerberos user information
+### Use Kerberos user information
 
 The Kerberos user information is also using the Bearer access token:
 
 - If the request already has a Bearer access token, this token will be forwarded directly to the Mesh service.
 - If the request is not having an access token, but there is a defined user identity in the request, this user is used to get the Bearer token from the Mesh service, and the received Bearer token is added to the request to the Mesh service.
 
-The content of the header with an external added Bearer token shall look like the following:
+The content of the header with an external added Bearer token must look like the following:
 
 ```cmd
 Authorization: Bearer eyJhbGci...<snip>...yu5CSpyHI
@@ -164,9 +164,9 @@ This is describing how a long-time running session that both reads and writes in
 
 ## Examples of API usage
 
-Below is example code of how to use the generated C# code (i.e., MeshRestAPI) from the swagger.json information to access the Mesh service with OAuth2 authentication and authorization.
+Below is example code of how to use the generated C# code (i.e., MeshRestAPI) from the swagger.json information to access the Mesh service with OAuth2 authentication and authorisation.
 
-**Notice** All strings in brackets ("<...>") must be replaced with information valid for the environment where the code is run.
+_**Note**_ All strings in brackets ("<...>") must be replaced with information valid for the environment where the code is run.
 
 ```C#
 using System.Numerics;

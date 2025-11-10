@@ -2,7 +2,7 @@
 
 A public Mesh REST API to access Volue Mesh information.
 
-*All operations that is requiring a sessionId should be used within a session, that is always using CreateSession and CloseSession, and DoCommit or DoRollback for write operations. Changing the configuration may change this requirement for testing purposes only.*
+*All operations requiring a sessionId should be used within a session that is always using CreateSession and CloseSession, and DoCommit or DoRollback for write operations. Changing the configuration should change this requirement for testing purposes only.*
 
 A Swagger interface is provided by the REST API and is a
 
@@ -112,7 +112,7 @@ Schema: [MeshVersionInfo](#meshversioninfo)
 
 ### `GET /api/v1/GetUserIdentity`
 
-*Returns the identity of the user that is authorized by the Mesh server.*
+*Returns the identity of the user that is authorised by the Mesh server.*
 
 GET /api/v1/GetUserIdentity
 
@@ -338,7 +338,7 @@ true
 
 ### `GET /api/v1/ReadTimeSeriesValuesRaw`
 
-*Read raw time series values from mesh for a specific time series.*
+*Read raw time series values from Mesh for a specific time series.*
 
 GET /api/v1/ReadTimeSeriesValuesRaw
 {
@@ -406,7 +406,7 @@ Schema: [MeshTimeseriesValues](#meshtimeseriesvalues)
 
 ### `GET /api/v1/ReadTimeSeriesValues`
 
-*Read time series values from mesh for a specific time series. The values can be transformed to a different resolution and time zone then the values stored in Mesh.*
+*Read time series values from Mesh for a specific time series. The values can be transformed to a different resolution and time zone than the values stored in Mesh.*
 
 GET /api/v1/ReadTimeSeriesValues
 {
@@ -480,7 +480,7 @@ Schema: [MeshTimeseriesValues](#meshtimeseriesvalues)
 
 ### `POST /api/v1/ReadTimeSeriesValuesMultiRaw`
 
-*Read raw time series values from mesh for several specific time series.*
+*Read raw time series values from Mesh for several specific time series.*
 
 POST /api/v1/ReadTimeSeriesValuesMultiRaw
 {
@@ -572,7 +572,7 @@ Schema: [[MeshTimeseriesValues]](#meshtimeseriesvalues)
 
 ### `POST /api/v1/ReadTimeSeriesValuesMulti`
 
-*Read time series values from mesh for a list of specific time series. The values can be transformed to a different resolution and time zone then the values stored in Mesh.*
+*Read time series values from Mesh for a list of specific time series. The values can be transformed to a different resolution and time zone than the values stored in Mesh.*
 
 POST /api/v1/ReadTimeSeriesValuesMulti
 {
@@ -670,7 +670,7 @@ Schema: [[MeshTimeseriesValues]](#meshtimeseriesvalues)
 
 ### `POST /api/v1/WriteTimeSeriesValuesMultiRaw`
 
-*Write raw time series values to mesh for one or more specific time series.*
+*Write raw time series values to Mesh for one or more specific time series.*
 
 POST /api/v1/WriteTimeSeriesValuesMultiRaw
 [
@@ -776,11 +776,11 @@ POST /api/v1/CreatePhysicalTimeSeries
 
 | Name | In | Required | Description | Type |
 |------|----|----------|-------------|------|
-| `path` | query | No | Path of the time series. **Notice!** The path will automatically be prepended with "Resource". | string |
-| `name` | query | No | Name of the time series. **Notice!** The concatenated string of path and name must be unique in the database. | string |
+| `path` | query | No | Path of the time series. _**Note!**_ The path will automatically be prepended with "Resource". | string |
+| `name` | query | No | Name of the time series. _**Note!**_ The concatenated string of path and name must be unique in the database. | string |
 | `curveType` | query | No | Curve type of the time series. | - |
 | `resolution` | query | No | Resolution of the time series. | - |
-| `unitOfMeasurement` | query | No | Name of the unit of measurement to use for the time series. **Notice!** This string must match an existing unit in Mesh. | string |
+| `unitOfMeasurement` | query | No | Name of the unit of measurement to use for the time series. _**Note!**_ This string must match an existing unit in Mesh. | string |
 | `sessionId` | query | No | Guid of the Mesh session to use in the search. | string |
 
 **Response Body**
@@ -861,7 +861,7 @@ Schema: [string]
 
 ### `GET /api/v1/SearchForObjects`
 
-*Searches for objects in the Mesh model.*
+*Search for objects in the Mesh model.*
 
 GET /api/v1/SearchForObjects
 {
@@ -1215,7 +1215,7 @@ true
 
 ### `GET /api/v1/SearchForAttributes`
 
-*Searches for attributes of a given type within the Mesh model.*
+*Search for attributes of a given type within the Mesh model.*
 
 GET /api/v1/SearchForAttributes
 {
@@ -1988,15 +1988,15 @@ true
 |------|----|----------|-------------|------|
 | `attributePath` | query | No | Full path to the attribute to change. | string |
 | `attributeId` | query | No | The id of the attribute to change. | string |
-| `fromDate` | query | No | For versioned XY sets all existing XY sets inside the interval will be deleted, fromDate specifies the start of the interval. For non-versioned XY sets (`XYSetAttribute`) this must be null. | string |
-| `toDate` | query | No | For versioned XY sets all existing XY sets inside the interval will be deleted, fromDate specifies the start of the interval. For non-versioned XY sets (`XYSetAttribute`) this must be null. | string |
+| `fromDate` | query | No | For versioned XY-sets all existing XY-sets inside the interval will be deleted, fromDate specifies the start of the interval. For non-versioned XY-sets (`XYSetAttribute`) this must be null. | string |
+| `toDate` | query | No | For versioned XY-sets all existing XY-sets inside the interval will be deleted, fromDate specifies the start of the interval. For non-versioned XY-sets (`XYSetAttribute`) this must be null. | string |
 | `sessionId` | query | No | Guid of the Mesh session to use when reading values. | string |
 
 **Request Body**
 
-If updating a versioned XY set attribute (`XYZSeriesAttribute`) the `XySet`s in xySets will be inserted in the XY set series. The validFromTime of all XY sets must be inside the interval.
+If updating a versioned XY-set attribute (`XYZSeriesAttribute`) the `XySet`s in xySets will be inserted in the XY-set series. The validFromTime of all XY-sets must be inside the interval.
 
-**Notice!** If updating a non-versioned XY set attribute (`XYSetAttribute`) this must contain zero or one `XySet`.
+_**Note!**_ If updating a non-versioned XY-set attribute (`XYSetAttribute`) this must contain zero or one `XySet`.
 
 Schema: [[MeshXySet]](#meshxyset)
 
@@ -2048,7 +2048,7 @@ true
 
 *Import a multistep water value function into the Mesh model.
 
-**Notice!** In order to ensure efficient data management, this method will also automatically delete old water value functions which have the same structure as the one you import, and which are older than a specific retention period specified as `DeleteWaterValuesOlderThanDays` in the api configuration.
+_**Note!**_ In order to ensure efficient data management, this method will also automatically delete old water value functions which have the same structure as the one you import, and which are older than a specific retention period specified as `DeleteWaterValuesOlderThanDays` in the API configuration.
 
 POST /api/v1/ImportMultistepWaterValueFunctions
 {
@@ -2075,8 +2075,8 @@ POST /api/v1/ImportMultistepWaterValueFunctions
 
 | Name | In | Required | Description | Type |
 |------|----|----------|-------------|------|
-| `waterCoursePath` | query | No | Full path to the water course object where the reservoirs exists below. | string |
-| `waterCourseId` | query | No | Id of the water course object where the reservoirs exists below. | string |
+| `waterCoursePath` | query | No | Full path to the water course object where the reservoirs exist below. | string |
+| `waterCourseId` | query | No | Id of the water course object where the reservoirs exist below. | string |
 | `wvfMainPath` | query | No | Full path to the main water value function object. | string |
 | `wvfMainId` | query | No | Id of the main water value function object. | string |
 | `wvfName` | query | No | Name of the water value function to create. | string |
@@ -2130,7 +2130,7 @@ true
 
 ### `POST /api/v1/IdentifyVirtualTSusage`
 
-*Lists out all usage of SmG virtual time series in the given object types below the given start object.*
+*List all usage of SmG virtual time series in the given object types below the given start object.*
 
 POST /api/v1/IdentifyVirtualTSusage
 {
@@ -2492,7 +2492,7 @@ Properties:
 - `path`: The complete path within Mesh to this object.
   - type: string
   - nullable: true
-- `timeseriesKey`: The key to the time series in the Oracle database. **Notice!** Only if it is a time series stored in the database.
+- `timeseriesKey`: The key to the time series in the Oracle database. _**Note!**_ Only if it is a time series stored in the database.
   - type: integer
   - format: int64
   - nullable: true
@@ -2512,7 +2512,7 @@ Properties:
 - `Month` - resolution is 1 month between each value.
 - `Year` - resolution is 1 year between each value.
 
-**Notice!** For intervals larger than 1 hour, the number of hours may depend on the time zone used.
+_**Note!**_ For intervals larger than 1 hour, the number of hours may depend on the time zone used.
 
 Type: string
 

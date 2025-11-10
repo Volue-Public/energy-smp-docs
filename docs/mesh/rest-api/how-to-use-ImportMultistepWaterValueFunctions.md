@@ -1,12 +1,12 @@
-# How to use the ImportMultistepWaterValueFunctions
+# Use the ImportMultistepWaterValueFunctions
 
-This ImportMultistepWaterValueFunctions methos was added to the 1.5.0 version of the Mesh REST API.
+This `ImportMultistepWaterValueFunctions` method was added to the 1.5.0 version of the Mesh REST API.
 
-This ImportMultistepWaterValueFunctions method supports the same functionality that was earlier only provided by Optimal Gateway and the usage of a Powershell script, and populate the WaterValueFunctions structure with converted input data.
+This `ImportMultistepWaterValueFunctions` method supports the same functionality that was earlier only provided by Optimal Gateway by using a PowerShell script, to populate the `WaterValueFunctions` structure with converted input data.
 
 ## How it looks in Nimbus
 
-Reservoirs exists below the water course object: 
+`Reservoirs` exist below the water course object: 
 
 ![Reservoirs in Nimbus](pictures/wvf-reservoirs.png)
 
@@ -38,14 +38,14 @@ ReservoirB; 0.000 84600.000; 0.001 84599.999; 0.796 76148.460; 0.797 67696.920; 
 ReservoirC; 0.000 12500.000; 0.001 12499.999; 9.496 11251.250; 9.497 10002.500; 9.498 8753.750; 9.499 7505.000; 9.500 6256.250; 9.501 5007.500; 9.502 3758.750; 9.503 2510.000; 9.504 1261.250; 9.505 12.501; 9.506 12.500; 11.150 0.000;
 ````
 
-An example of how to run the powershell script is shown below:
+An example of how to run the PowerShell script is shown below:
 
 ```` powershell
 #Example for multistep water value file
 RunWaterValueImporter -ModelName "CompanyMesh" -MultiStepWaterValueFile "MultiStepWaterValueRiverX.txt" -Area "SomewhereElse" -WaterValueFunctionMainName "WaterValueFunctionMain" -WaterValueFunctionName "RiverX" -WaterValueDate "202407010001" -WaterCourses "RiverX"
 ````
 
-## Using the ImportMultistepWaterValueFunctions method
+## Use the ImportMultistepWaterValueFunctions method
 
 The method has the following input parameters:
 
@@ -64,11 +64,11 @@ The method returns true if everything runs successful, otherwise an exception is
 
 The method will automatically remove water value functions older than a given number of days back in time. The number of days is specified in as the `DeleteWaterValuesOlderThanDays` parameter in the appsettings.json configuration file of the Mesh REST API.
 
-**Notice!** Changes done by the method will not be visible for other users before the Commit method is run.
+_**Note!**_ Changes done by the method will not be visible for other users before the `Commit` method is run.
 
 ### Example of usage
 
-The example using the text file and powershell script above will be like this:
+The example using the text file and PowerShell script above will be like this:
 
 - waterCoursePath = `Model/CompanyMesh/Mesh.To_Areas/SomewhereElse.To_HydroProduction/HydroAssets.To_WaterCourses/RiverX`
 - wvfMainPath = `Model/CompanyMesh/Mesh.To_Areas/SomewhereElse.To_HydroProduction/HydroAssets.has_WaterValueFunctionsMain/WaterValueFunctionMain`

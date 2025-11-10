@@ -10,9 +10,9 @@ and then configure the API code creation:
 
 ![Configure API code creation](pictures/configure-connected-service.png)
 
-When pressing the `Finish` button, the code is created as `.\obj\swaggerClient.cs`.
+When choosing `Finish`, the code is created as `.\obj\swaggerClient.cs`.
 
-The only problem with the created code is that nullable object references in the OpenAPI description is not created as nullable in the C# code:
+The only problem with the created code is that nullable object references in the OpenAPI description are not created as nullable in the C# code:
 
 ```json
 "timeseriesResource": {
@@ -44,13 +44,13 @@ The utility may be downloaded from [here].
 
 [here]: https://github.com/RicoSuter/NSwag/wiki/NSwagStudio
 
-### Setup of NSwagStudi project
+### Configure a NSwagStudi project
 
 Do the following steps:
 
 1. Specify input:
-   - Select which runtime to use (f.ex. `Net70`).
-   - In the `OpenAPI/Swagger Specification` folder, enter the URL to the Mesh Rest API (f.ex. `http://localhost:7060/swagger/v1/swagger.json`).
+   - Select which runtime to use (e.g. `Net70`).
+   - In the `OpenAPI/Swagger Specification` folder, enter the URL to the Mesh Rest API (e.g. `http://localhost:7060/swagger/v1/swagger.json`).
 
    ![Input specification](pictures/NSwagStudio-input-spec.png)
 
@@ -64,8 +64,8 @@ Do the following steps:
 
      ![Output specification](pictures/NSwagStudio-complete.png)
 
-3. Generate the code by pressing the `Generate Files` button in the lower right corner.
+3. Generate the code by choosing `Generate Files` in the lower right corner.
 
-4. Save the configuration using the `File\Save` options to a file in your project (f.ex. `C:\Dev\energy-mesh-rest-api\src\MestRestAPI.Test\MeshRestAPI.nswag`).
+4. Save the configuration using the `File\Save` options to a file in your project (e.g. `C:\Dev\energy-mesh-rest-api\src\MestRestAPI.Test\MeshRestAPI.nswag`).
 
 You are then ready to use the API from your code.
