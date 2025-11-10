@@ -2544,7 +2544,7 @@ Properties:
 - `expression`: Expression that describes the calculation for this time series.
   - type: string
   - nullable: true
-- `isLocalExpression`: Flag to signal if this expression is local (true) or comming from the template (false).
+- `isLocalExpression`: Flag to signal if this expression is local (true) or coming from the template (false).
   - type: boolean
   - nullable: true
 
