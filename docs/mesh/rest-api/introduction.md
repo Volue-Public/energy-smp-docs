@@ -9,8 +9,8 @@ The Mesh REST API also offers a Swagger user interface to manually test the usag
 - [Introduction](#introduction)
   - [Session Management Pattern](#session-management-pattern)
   - [Security Architecture](#security-architecture)
-    - [Using OAuth2 security token](#using-oauth2-security-token)
-    - [Using Kerberos user information](#using-kerberos-user-information)
+    - [Use OAuth2 security token](#use-oauth2-security-token)
+    - [Use Kerberos user information](#use-kerberos-user-information)
   - [API Versioning](#api-versioning)
   - [Mesh session usage](#mesh-session-usage)
     - [Commit and rollback functionality](#commit-and-rollback-functionality)
@@ -136,31 +136,31 @@ Within a session data is automatically updated from stored changes and recalulat
 
 This is describing a way to execute one or more read operations in an operation that completes fairly quickly. The example is using the ReadTimeSeriesValues method, but is valid for any API method that is not changing data.
 
-![SimpleReadSession](pictures/simple-read-session.png)
+![SimpleReadSession](images/simple-read-session.png)
 
 #### Simple write operation with commit
 
 This is describing a way to execute one or more write operations in an operation that completes fairly quickly. The example is using the WriteTimeSeriesValues method, but is valid for any API method. The Commit method will store all changes added in the session to the database.
 
-![SimpleWriteSessionWithCommit](pictures/simple-write-session-commit.png)
+![SimpleWriteSessionWithCommit](images/simple-write-session-commit.png)
 
 #### Simple write operation with rollback
 
 This is describing a way to execute one or more write operations in an operation that completes fairly quickly. The example is using the WriteTimeSeriesValues method, but is valid for any API method. The Rollback method will revert all changes added in the session.
 
-![SimpleWriteSessionWithRollback](pictures/simple-write-session-rollback.png)
+![SimpleWriteSessionWithRollback](images/simple-write-session-rollback.png)
 
 #### Long running read operations
 
 This is describing how a long-time running session that reads information from Mesh can be implemented. The example is using the ReadTimeSeriesValues method, but is valid for any API method that is not changing data.
 
-![LongRunningReadSessions](pictures/long-running-read-session.png)
+![LongRunningReadSessions](images/long-running-read-session.png)
 
 #### Long running write operations
 
 This is describing how a long-time running session that both reads and writes information from and to Mesh can be implemented. The example is using the WriteTimeSeriesValues method, but is valid for any API method.
 
-![LongRunningWriteSessions](pictures/long-running-write-session.png)
+![LongRunningWriteSessions](images/long-running-write-session.png)
 
 ## Examples of API usage
 
