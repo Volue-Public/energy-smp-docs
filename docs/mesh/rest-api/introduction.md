@@ -6,23 +6,6 @@ Access to the Mesh REST API is normally: <https://server:7060> where server is t
 
 The Mesh REST API also offers a Swagger user interface to manually test the usage. This Swagger interface is available as: <https://server:7060/swagger/index.html>. _**Note!**_ The Swagger interface may be turned off in the configuration.
 
-- [Introduction](#introduction)
-  - [Session Management Pattern](#session-management-pattern)
-  - [Security Architecture](#security-architecture)
-    - [Use OAuth2 security token](#use-oauth2-security-token)
-    - [Use Kerberos user information](#use-kerberos-user-information)
-  - [API Versioning](#api-versioning)
-  - [Mesh session usage](#mesh-session-usage)
-    - [Commit and rollback functionality](#commit-and-rollback-functionality)
-    - [Short or long running sessions](#short-or-long-running-sessions)
-    - [Sequence diagrams](#sequence-diagrams)
-      - [Simple read operation](#simple-read-operation)
-      - [Simple write operation with commit](#simple-write-operation-with-commit)
-      - [Simple write operation with rollback](#simple-write-operation-with-rollback)
-      - [Long running read operations](#long-running-read-operations)
-      - [Long running write operations](#long-running-write-operations)
-  - [Examples of API usage](#examples-of-api-usage)
-
 ## Session Management Pattern
 
 The API requires session-based operations:
