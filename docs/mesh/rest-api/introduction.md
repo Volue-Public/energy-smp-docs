@@ -166,7 +166,7 @@ This is describing how a long-time running session that both reads and writes in
 
 Below is example code of how to use the generated C# code (i.e., MeshRestAPI) from the swagger.json information to access the Mesh service with OAuth2 authentication and authorisation.
 
-_**Note!**_ All strings in brackets ("<...>") must be replaced with information valid for the environment where the code is run.
+_**Note!**_ All strings in brackets ("[...]") must be replaced with information valid for the environment where the code is run.
 
 ```C#
 using System.Numerics;
