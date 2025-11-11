@@ -482,28 +482,6 @@
 <p>The Volue Mesh REST API is an official REST API built on top of the public gRPC interface to Mesh. It provides a RESTful interface for accessing Mesh energy data management functionality. The service is built with ASP.NET Core 8.0 and can be hosted using either IIS or Kestrel web server.</p>
 <p>Access to the Mesh REST API is normally: <a href="https://server:7060">https://server:7060</a> where server is the name of the server where the Mesh REST API service is running.</p>
 <p>The Mesh REST API also offers a Swagger user interface to manually test the usage. This Swagger interface is available as: <a href="https://server:7060/swagger/index.html">https://server:7060/swagger/index.html</a>. <em><strong>Note!</strong></em> The Swagger interface may be turned off in the configuration.</p>
-<ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#session-management-pattern">Session Management Pattern</a></li>
-<li><a href="#security-architecture">Security Architecture</a><ul>
-<li><a href="#use-oauth2-security-token">Use OAuth2 security token</a></li>
-<li><a href="#use-kerberos-user-information">Use Kerberos user information</a></li>
-</ul>
-</li>
-<li><a href="#api-versioning">API Versioning</a></li>
-<li><a href="#mesh-session-usage">Mesh session usage</a><ul>
-<li><a href="#commit-and-rollback-functionality">Commit and rollback functionality</a></li>
-<li><a href="#short-or-long-running-sessions">Short or long running sessions</a></li>
-<li><a href="#sequence-diagrams">Sequence diagrams</a></li>
-<li><a href="#simple-read-operation">Simple read operation</a></li>
-<li><a href="#simple-write-operation-with-commit">Simple write operation with commit</a></li>
-<li><a href="#simple-write-operation-with-rollback">Simple write operation with rollback</a></li>
-<li><a href="#long-running-read-operations">Long running read operations</a></li>
-<li><a href="#long-running-write-operations">Long running write operations</a></li>
-</ul>
-</li>
-<li><a href="#examples-of-api-usage">Examples of API usage</a></li>
-</ul>
 <h2 id="session-management-pattern">Session Management Pattern</h2>
 <p>The API requires session-based operations:</p>
 <ol>

@@ -590,83 +590,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="public-mesh-rest-api-for-volue-mesh-v219">Public Mesh REST API for Volue Mesh v.2.19</h1>
+                <h1 id="public-mesh-rest-api-v191-for-volue-mesh">Public Mesh REST API v.1.9.1 for Volue Mesh</h1>
 <p>A public Mesh REST API to access Volue Mesh information.</p>
 <p><em>All operations requiring a sessionId should be used within a session that is always using CreateSession and CloseSession, and DoCommit or DoRollback for write operations. Changing the configuration should change this requirement for testing purposes only.</em></p>
 <p>A Swagger interface is provided by the REST API and is available to local users of the API for documentation and manual testing. <em><strong>Note! It is possible to remove the Swagger interface from the configuration of the service.</strong></em></p>
-<ul>
-<li><a href="#public-mesh-rest-api-for-volue-mesh-v219">Public Mesh REST API for Volue Mesh v.2.19</a></li>
-<li><a href="#version-v1-endpoints">Version <strong>v1</strong> Endpoints</a><ul>
-<li><a href="#get-apiv1getversion"><code>GET /api/v1/GetVersion</code></a></li>
-<li><a href="#get-apiv1getuseridentity"><code>GET /api/v1/GetUserIdentity</code></a></li>
-<li><a href="#get-apiv1createsession"><code>GET /api/v1/CreateSession</code></a></li>
-<li><a href="#post-apiv1commit"><code>POST /api/v1/Commit</code></a></li>
-<li><a href="#post-apiv1rollback"><code>POST /api/v1/Rollback</code></a></li>
-<li><a href="#get-apiv1closesession"><code>GET /api/v1/CloseSession</code></a></li>
-<li><a href="#get-apiv1extendsession"><code>GET /api/v1/ExtendSession</code></a></li>
-<li><a href="#get-apiv1readtimeseriesvaluesraw"><code>GET /api/v1/ReadTimeSeriesValuesRaw</code></a></li>
-<li><a href="#get-apiv1readtimeseriesvalues"><code>GET /api/v1/ReadTimeSeriesValues</code></a></li>
-<li><a href="#post-apiv1readtimeseriesvaluesmultiraw"><code>POST /api/v1/ReadTimeSeriesValuesMultiRaw</code></a></li>
-<li><a href="#post-apiv1readtimeseriesvaluesmulti"><code>POST /api/v1/ReadTimeSeriesValuesMulti</code></a></li>
-<li><a href="#post-apiv1writetimeseriesvaluesmultiraw"><code>POST /api/v1/WriteTimeSeriesValuesMultiRaw</code></a></li>
-<li><a href="#post-apiv1createphysicaltimeseries"><code>POST /api/v1/CreatePhysicalTimeSeries</code></a></li>
-<li><a href="#get-apiv1listmodels"><code>GET /api/v1/ListModels</code></a></li>
-<li><a href="#get-apiv1searchforobjects"><code>GET /api/v1/SearchForObjects</code></a></li>
-<li><a href="#get-apiv1getobject"><code>GET /api/v1/GetObject</code></a></li>
-<li><a href="#post-apiv1createobject"><code>POST /api/v1/CreateObject</code></a></li>
-<li><a href="#post-apiv1updateobject"><code>POST /api/v1/UpdateObject</code></a></li>
-<li><a href="#post-apiv1deleteobject"><code>POST /api/v1/DeleteObject</code></a></li>
-<li><a href="#get-apiv1searchforattributes"><code>GET /api/v1/SearchForAttributes</code></a></li>
-<li><a href="#get-apiv1getattribute"><code>GET /api/v1/GetAttribute</code></a></li>
-<li><a href="#get-apiv1gettimeseriesresource"><code>GET /api/v1/GetTimeseriesResource</code></a></li>
-<li><a href="#get-apiv1getratingcurveversions"><code>GET /api/v1/GetRatingCurveVersions</code></a></li>
-<li><a href="#get-apiv1getxysets"><code>GET /api/v1/GetXySets</code></a></li>
-<li><a href="#post-apiv1updateintattribute"><code>POST /api/v1/UpdateIntAttribute</code></a></li>
-<li><a href="#post-apiv1updatedoubleattribute"><code>POST /api/v1/UpdateDoubleAttribute</code></a></li>
-<li><a href="#post-apiv1updateboolattribute"><code>POST /api/v1/UpdateBoolAttribute</code></a></li>
-<li><a href="#post-apiv1updatestringattribute"><code>POST /api/v1/UpdateStringAttribute</code></a></li>
-<li><a href="#post-apiv1updatedatetimeattribute"><code>POST /api/v1/UpdateDateTimeAttribute</code></a></li>
-<li><a href="#post-apiv1updatetimeseriesattribute"><code>POST /api/v1/UpdateTimeSeriesAttribute</code></a></li>
-<li><a href="#post-apiv1updatelinkrelationattribute"><code>POST /api/v1/UpdateLinkRelationAttribute</code></a></li>
-<li><a href="#post-apiv1updateratingcurveversions"><code>POST /api/v1/UpdateRatingCurveVersions</code></a></li>
-<li><a href="#post-apiv1updatexysets"><code>POST /api/v1/UpdateXySets</code></a></li>
-<li><a href="#post-apiv1importmultistepwatervaluefunctions"><code>POST /api/v1/ImportMultistepWaterValueFunctions</code></a></li>
-<li><a href="#post-apiv1identifyvirtualtsusage"><code>POST /api/v1/IdentifyVirtualTSusage</code></a></li>
-</ul>
-</li>
-<li><a href="#version-v1-schemas">Version <strong>v1</strong> Schemas</a><ul>
-<li><a href="#meshaccumulationenum">MeshAccumulationEnum</a></li>
-<li><a href="#meshattribute">MeshAttribute</a></li>
-<li><a href="#meshattributesimple">MeshAttributeSimple</a></li>
-<li><a href="#meshattributevalue">MeshAttributeValue</a></li>
-<li><a href="#meshattributevalueenum">MeshAttributeValueEnum</a></li>
-<li><a href="#meshcurvetypeenum">MeshCurveTypeEnum</a></li>
-<li><a href="#meshinterval">MeshInterval</a></li>
-<li><a href="#meshlinkrelation">MeshLinkRelation</a></li>
-<li><a href="#meshlinkrelationversion">MeshLinkRelationVersion</a></li>
-<li><a href="#meshobject">MeshObject</a></li>
-<li><a href="#meshobjectsimple">MeshObjectSimple</a></li>
-<li><a href="#meshownershiprelation">MeshOwnershipRelation</a></li>
-<li><a href="#meshratingcurvesegment">MeshRatingCurveSegment</a></li>
-<li><a href="#meshratingcurveversion">MeshRatingCurveVersion</a></li>
-<li><a href="#meshreferencedobject">MeshReferencedObject</a></li>
-<li><a href="#meshresolutionenum">MeshResolutionEnum</a></li>
-<li><a href="#meshtimezonealignmentenum">MeshTimeZoneAlignmentEnum</a></li>
-<li><a href="#meshtimeseries">MeshTimeseries</a></li>
-<li><a href="#meshtimeseriesresource">MeshTimeseriesResource</a></li>
-<li><a href="#meshtimeseriesvalues">MeshTimeseriesValues</a></li>
-<li><a href="#meshtsid">MeshTsId</a></li>
-<li><a href="#meshuseridentityinfo">MeshUserIdentityInfo</a></li>
-<li><a href="#meshvalue">MeshValue</a></li>
-<li><a href="#meshversioninfo">MeshVersionInfo</a></li>
-<li><a href="#meshversionedlinkrelation">MeshVersionedLinkRelation</a></li>
-<li><a href="#meshxycurve">MeshXyCurve</a></li>
-<li><a href="#meshxyset">MeshXySet</a></li>
-<li><a href="#multistepwatervalues">MultiStepWaterValues</a></li>
-<li><a href="#virtualtsinfo">VirtualTSinfo</a></li>
-</ul>
-</li>
-</ul>
 <h2 id="version-v1-endpoints">Version <strong>v1</strong> Endpoints</h2>
 <h3 id="get-apiv1getversion"><code>GET /api/v1/GetVersion</code></h3>
 <p><em>Returns the version of the Mesh service and the REST API.</em></p>
