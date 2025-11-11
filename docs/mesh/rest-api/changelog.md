@@ -1,21 +1,5 @@
 # Changelog
 
-- [Changelog](#changelog)
-  - [Version 1.9.1](#version-191)
-  - [Version 1.9.0](#version-190)
-  - [Version 1.8.1](#version-181)
-  - [Version 1.8.0](#version-180)
-  - [Version 1.7.0](#version-170)
-  - [Version 1.6.0](#version-160)
-  - [Version 1.5.2](#version-152)
-  - [Version 1.5.1](#version-151)
-  - [Version 1.5.0](#version-150)
-  - [Version 1.4.1](#version-141)
-  - [Version 1.4.0](#version-140)
-  - [Version 1.3.0](#version-130)
-  - [Version 1.2.0](#version-120)
-  - [Version 1.1.1](#version-111)
-
 ## Version 1.9.1
 
 - We have modified how exception status codes from the Mesh gRPC API are converted into REST API status codes. (#86)

@@ -1,10 +1,5 @@
 # How to generate C# API from the swagger.json OpenAPI definition
 
-- [How to generate C# API from the swagger.json OpenAPI definition](#how-to-generate-c-api-from-the-swaggerjson-openapi-definition)
-  - [Using Visual Studio 2022](#using-visual-studio-2022)
-  - [Make it right using the NSwagStudio](#make-it-right-using-the-nswagstudio)
-    - [Configure a NSwagStudio project](#configure-a-nswagstudio-project)
-
 ## Using Visual Studio 2022
 
 The easiest solution is just to add a connected service to the project:
