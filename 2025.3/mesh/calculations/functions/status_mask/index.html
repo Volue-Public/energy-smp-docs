@@ -373,6 +373,24 @@
                 </li>
     </ul>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >Mesh REST API</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../rest-api/introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../rest-api/changelog/">Changelog</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../rest-api/api-documentation/">API specification</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >For developers</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../rest-api/generate-c%23-api-from-swagger-json/">Generate C# API from swagger.json</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../rest-api/how-to-use-ImportMultistepWaterValueFunctions/">How to use ImportMultistepWaterValueFunctions</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../model-maintenance/ModelMaintenanceConcepts/">Model maintenance</a>
                   </li>
               </ul>
@@ -622,14 +640,14 @@ information in Nimbus. Available validation methods are as follows:</p>
 <h2 id="example">Example</h2>
 <p><code>Temperature_hour_operative = @STATUS_MASK(@t('Temperature_hour_raw'),'missing|MANUAL','BOOL')</code></p>
 <p>The result sets all the missing and manually changed values to 0.</p>
-<p><img alt="" src="../Images/ex_STATUS_MASK-nimbustable.png" /></p>
+<p><img alt="" src="../assets/images/ex_STATUS_MASK-nimbustable.png" /></p>
 <p><code>Temperature_hour_operative =
 @STATUS_MASK(@t('Temperature_hour_raw'),'missing|MANUAL','BOOLINV')</code></p>
 <p>The result sets all the missing and manually changed values to 1.</p>
-<p><img alt="" src="../Images/ex_STATUS_MASK-nimbustable2.png" /></p>
+<p><img alt="" src="../assets/images/ex_STATUS_MASK-nimbustable2.png" /></p>
 <p><code>Temperature_hour_operative = @STATUS_MASK(@t('Temperature_hour_raw'),'MANUAL','BLANK')</code></p>
 <p>The result sets all the manually changed values to NaN.</p>
-<p><img alt="" src="../Images/ex_STATUS_MASK-nimbustable3.png" /></p>
+<p><img alt="" src="../assets/images/ex_STATUS_MASK-nimbustable3.png" /></p>
               
             </div>
           </div><footer>

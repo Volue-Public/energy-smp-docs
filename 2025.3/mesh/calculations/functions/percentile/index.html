@@ -373,6 +373,24 @@
                 </li>
     </ul>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >Mesh REST API</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../rest-api/introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../rest-api/changelog/">Changelog</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../rest-api/api-documentation/">API specification</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >For developers</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../rest-api/generate-c%23-api-from-swagger-json/">Generate C# API from swagger.json</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../rest-api/how-to-use-ImportMultistepWaterValueFunctions/">How to use ImportMultistepWaterValueFunctions</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../model-maintenance/ModelMaintenanceConcepts/">Model maintenance</a>
                   </li>
               </ul>
@@ -499,7 +517,7 @@ third argument.</p>
 <p>If the number of observations (time series) do not correspond to the required
 percentile, the percentile is calculated by linearization between previous and
 following percentiles.</p>
-<p><img alt="" src="../Images/ex_percentile1.png" /></p>
+<p><img alt="" src="../assets/images/ex_percentile1.png" /></p>
 <p>In this example we ask for the 100% percentile. This takes the max value for
 each time step for the period from year 2000 to year 2010 (the year 2010 is not
 included in the calculation).</p>
@@ -547,19 +565,19 @@ for P70 and P80.</p>
 <p><code>## = @PERCENTILE(@T('AreaTemperature'),100,'BY_SUM')</code></p>
 <p>The result will be equal to the time series with the highest sum for the
 requested period, i.e. Ensemble03 (P100).</p>
-<p><img alt="" src="../Images/ex_percentile2.png" /></p>
+<p><img alt="" src="../assets/images/ex_percentile2.png" /></p>
 <p>Example 3</p>
 <p><code>## = @PERCENTILE(@T('AreaTemperature'),100,'SCALED_MEAN_BY_SUM')</code></p>
 <p>The result will be equal to the time series with the highest sum for the
 requested period, i.e. Ensemble03 (P100). This is scaled by the factor
 SumMean/IndexTimeSeriesMean.</p>
-<p><img alt="" src="../Images/ex_percentile3.png" /></p>
+<p><img alt="" src="../assets/images/ex_percentile3.png" /></p>
 <p>Example 4</p>
 <p><code>## = @PERCENTILE(@T('AreaTemperature'),100,'SCALED_BY_SUM')</code></p>
 <p>The result will be equal to the max value for each time step scaled with a
 factor. The factor is found by taking the sum for the time series with
 percentile index P100, divided by the sum for the max value time series.</p>
-<p><img alt="" src="../Images/ex_percentile4.png" /></p>
+<p><img alt="" src="../assets/images/ex_percentile4.png" /></p>
 <h3 id="methods">Methods</h3>
 <p>Method BY_SUM:</p>
 <ul>

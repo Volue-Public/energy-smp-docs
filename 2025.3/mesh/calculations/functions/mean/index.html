@@ -373,6 +373,24 @@
                 </li>
     </ul>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >Mesh REST API</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../rest-api/introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../rest-api/changelog/">Changelog</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../rest-api/api-documentation/">API specification</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >For developers</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../rest-api/generate-c%23-api-from-swagger-json/">Generate C# API from swagger.json</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../rest-api/how-to-use-ImportMultistepWaterValueFunctions/">How to use ImportMultistepWaterValueFunctions</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../model-maintenance/ModelMaintenanceConcepts/">Model maintenance</a>
                   </li>
               </ul>
@@ -471,7 +489,7 @@
 <p>The result values are the average value of the values in
 @t('Temperature_hour_raw') for the requested time period, repeated throughout
 the entire result series as a break point series.</p>
-<p><img alt="" src="../Images/ex_MEAN-nimbustable.png" /></p>
+<p><img alt="" src="../assets/images/ex_MEAN-nimbustable.png" /></p>
 <p><strong>Tip!</strong> If you want to calculate the mean value for a period different from the
 requested time period, you can use the
 <a href="../push_ext_period/">PushExtPeriod</a>/<a href="../pop_ext_period/">PopExtPeriod</a> function
@@ -481,7 +499,7 @@ to explicitly define the input period to the function.</p>
 <p>The <strong>Temperature_hour_operative</strong> column gives the average value of all the
 time series in the array for every time step.</p>
 <p>For instance at 01:00: (-1,26+3,09+8,87)/3 = 3,57</p>
-<p><img alt="" src="../Images/ex_MEAN-nimbustable2.png" /></p>
+<p><img alt="" src="../assets/images/ex_MEAN-nimbustable2.png" /></p>
 <p>Example 3: @MEAN(D)</p>
 <p>Res = @MEAN(1,5,8,2.5,11)</p>
 <p>Res = 5.5</p>

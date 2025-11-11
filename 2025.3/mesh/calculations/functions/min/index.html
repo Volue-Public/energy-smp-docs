@@ -373,6 +373,24 @@
                 </li>
     </ul>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >Mesh REST API</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../rest-api/introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../rest-api/changelog/">Changelog</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../rest-api/api-documentation/">API specification</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >For developers</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../rest-api/generate-c%23-api-from-swagger-json/">Generate C# API from swagger.json</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../rest-api/how-to-use-ImportMultistepWaterValueFunctions/">How to use ImportMultistepWaterValueFunctions</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../model-maintenance/ModelMaintenanceConcepts/">Model maintenance</a>
                   </li>
               </ul>
@@ -485,7 +503,7 @@ but most of them returns a time series.</p>
 <p>@T('.Temperature_hour') returns an array of time series.</p>
 <p>Returns the lowest value of all the time series in the array for each time step,
 e.g.:</p>
-<p><img alt="" src="../Images/ex_MIN-nimbustable.png" /></p>
+<p><img alt="" src="../assets/images/ex_MIN-nimbustable.png" /></p>
 <h4 id="example-2-mind">Example 2: @MIN(D)</h4>
 <p>Result = @MIN({1, 5, 8, 2.5, 11})</p>
 <p>Result = 1</p>
@@ -493,30 +511,30 @@ e.g.:</p>
 <h4 id="example-3-mint">Example 3: @MIN(t)</h4>
 <p>Returns the lowest values from the time series for the requested period.</p>
 <p><code>Temperature_hour_operative = @t('.Temperature_hour_raw')/@MIN(@t('.Temperature_hour_raw'))</code></p>
-<p><img alt="" src="../Images/ex_MIN-nimbustable2.png" /></p>
+<p><img alt="" src="../assets/images/ex_MIN-nimbustable2.png" /></p>
 <p>From the requested period, we can see that the minimum value is -5. Used in
 calculation the result values are divided on -5.</p>
 <p><code>Temperature_hour_operative = @t('.Temperature_hour_raw')+@MIN(@t('.Temperature_hour_raw'))</code></p>
-<p><img alt="" src="../Images/ex_MIN-nimbustable3.png" /></p>
+<p><img alt="" src="../assets/images/ex_MIN-nimbustable3.png" /></p>
 <p>From the requested period, we can see that the minimum value is -5. Used in
 calculation the result values are added by -5.</p>
 <h4 id="example-4-mintt">Example 4: @MIN(t,t)</h4>
 <p><code>Temperature_hour_operative = @MIN(@t('.Temperature_hour_raw'),@t('.TempManualCorrection'))</code></p>
 <p>It returns the lowest of the values for each time step in time series 1 and time
 series 2.</p>
-<p><img alt="" src="../Images/ex_MIN-nimbustable4.png" /></p>
+<p><img alt="" src="../assets/images/ex_MIN-nimbustable4.png" /></p>
 <h4 id="example-5-mintt">Example 5: @MIN(T,t)</h4>
 <p><code>Temperature_hour_operative = @MIN(@T('.Temperature_hour'),@t('.TempManualCorrection'))</code></p>
 <p>@T('.Temperature_hour') is an array of three time series.
 @t('.TempManualCorrection') is a single time series.</p>
 <p>Returns the lowest value of the time series in the array and the single time
 series for each time step, e.g.:</p>
-<p><img alt="" src="../Images/ex_MIN-nimbustable5.png" /></p>
+<p><img alt="" src="../assets/images/ex_MIN-nimbustable5.png" /></p>
 <h4 id="example-6-mintd">Example 6: @MIN(t,d)</h4>
 <p><code>Result = @MIN(@t('Temperature_hour_raw'),-0.5)</code></p>
 <p>Returns the lowest value of the time series and a selected number for each time
 step, e.g.:</p>
-<p><img alt="" src="../Images/ex_MIN-nimbustable6.png" /></p>
+<p><img alt="" src="../assets/images/ex_MIN-nimbustable6.png" /></p>
 <h4 id="example-7-mindd">Example 7: @MIN(d,d)</h4>
 <p><code>Result = @MIN(8,2.5)</code></p>
 <p>Result = 2.5</p>

@@ -373,6 +373,24 @@
                 </li>
     </ul>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >Mesh REST API</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../rest-api/introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../rest-api/changelog/">Changelog</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../rest-api/api-documentation/">API specification</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >For developers</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../rest-api/generate-c%23-api-from-swagger-json/">Generate C# API from swagger.json</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../rest-api/how-to-use-ImportMultistepWaterValueFunctions/">How to use ImportMultistepWaterValueFunctions</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../model-maintenance/ModelMaintenanceConcepts/">Model maintenance</a>
                   </li>
               </ul>
@@ -474,8 +492,8 @@ method as base for the distribution.</p>
 <h2 id="example">Example</h2>
 <p><code>MaskSeries = @TIME_MASK('HOUR',{'HOUR','HOUR+15x','HOUR+30x','HOUR+45x'},{1,2,3,2},'MIN15)</code></p>
 <p><code>ResultTimeSeries = @DISTRIBUTE(@t('Ts5'),MaskSeries)</code></p>
-<p><img alt="" src="../Images/ex_DISTRIBUTE-nimbustable1.png" /></p>
-<p><img alt="" src="../Images/ex_DISTRIBUTE-nimbustable2.png" /></p>
+<p><img alt="" src="../assets/images/ex_DISTRIBUTE-nimbustable1.png" /></p>
+<p><img alt="" src="../assets/images/ex_DISTRIBUTE-nimbustable2.png" /></p>
 <p>Mask time series in argument 2 is only used as a logical time series giving the
 distributed interval for the input value to be distributed within. The example
 gives hourly value divided into four.</p>
@@ -485,7 +503,7 @@ into the number of true values, skipping the time point set to false. <strong>No
 The result will be a break point time series.</p>
 <p><code>MaskSeries = @TIME_MASK('HOUR',{'HOUR','HOUR+15x','HOUR+30x','HOUR+45x'},{1,2,NaN,2},'MIN15')</code></p>
 <p><code>Result time series = @DISTRIBUTE(@t('Ts5'),MaskSeries)</code></p>
-<p><img alt="" src="../Images/ex_DISTRIBUTE-nimbustable3.png" /></p>
+<p><img alt="" src="../assets/images/ex_DISTRIBUTE-nimbustable3.png" /></p>
 <h3 id="r7">R7</h3>
 <h2 id="about-the-function_1">About the function</h2>
 <p>As function <a href="#r6">R6</a>, but with a third argument which is a profile series. This
@@ -529,7 +547,7 @@ decides how the distribution of the values is done.</p>
 <p>Argument 2 is a mask series (all time points contributes)</p>
 <p>Argument 3 gives the profile values (same as the mask series)</p>
 <p>Result time series = @DISTRIBUTE(@t('Ts5'),MaskSeries,Profile)</p>
-<p><img alt="" src="../Images/ex_DISTRIBUTE-nimbustable4.png" /></p>
+<p><img alt="" src="../assets/images/ex_DISTRIBUTE-nimbustable4.png" /></p>
 <p>Based on the equation, the first value of the distributed period is calculated
 like this:</p>
 <p>FirstValue = 2 / 4 * 1 / 2 = 0,25</p>
@@ -578,7 +596,7 @@ used in the formula are the same as described in <a href="#r7">R7</a>.</p>
 <p>Argument 2 is a mask series (all time points contributes)</p>
 <p>Argument 3 gives the profile values (same as the mask series)</p>
 <p>Result time series = @DISTRIBUTE(1,@t('Ts5'),MaskSeries,Profile)</p>
-<p><img alt="" src="../Images/ex_DISTRIBUTE-nimbustable5.png" /></p>
+<p><img alt="" src="../assets/images/ex_DISTRIBUTE-nimbustable5.png" /></p>
 <p>Based on the equation, the first value of the distributed period is calculated
 like this:</p>
 <p>FirstValue = 2 / 4 + 1 ∙ (1 - 2) = -0,5</p>
@@ -587,7 +605,7 @@ like this:</p>
 <p>Argument 2 is a mask series (all time points contributes)</p>
 <p>Argument 3 gives the profile values (same as the mask series)</p>
 <p>Result time series = @DISTRIBUTE(10,@t('Ts5'),MaskSeries,Profile)</p>
-<p><img alt="" src="../Images/ex_DISTRIBUTE-nimbustable7.png" /></p>
+<p><img alt="" src="../assets/images/ex_DISTRIBUTE-nimbustable7.png" /></p>
 <p>Based on the equation, the first value of the distributed period is calculated
 like this:</p>
 <p>FirstValue = 2 / 4 + 10 ∙ (1 - 2) = -9,5</p>

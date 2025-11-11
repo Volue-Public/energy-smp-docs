@@ -373,6 +373,24 @@
                 </li>
     </ul>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >Mesh REST API</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../rest-api/introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../rest-api/changelog/">Changelog</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../rest-api/api-documentation/">API specification</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >For developers</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../rest-api/generate-c%23-api-from-swagger-json/">Generate C# API from swagger.json</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../rest-api/how-to-use-ImportMultistepWaterValueFunctions/">How to use ImportMultistepWaterValueFunctions</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../model-maintenance/ModelMaintenanceConcepts/">Model maintenance</a>
                   </li>
               </ul>
@@ -492,7 +510,7 @@ Default repeat frequency is 'NONE' and default result series resolution is 'HOUR
 <p>Unless the repeat frequency is 'NONE', the time points specified are moved and repeated so that they establish a functional value for the whole requested time period. That means when frequency is 'DAY' it has no meaning to use macros that add days to a time point, like 'DAY+3d+2h'. In this example the time point specification 'DAY+2h' would give the same result. </p>
 <p>See <a href="../../timepoint-macros/">time macro specification</a>.</p>
 <p>This figure illustrate the implemented algorithm to convert arguments into a time series.</p>
-<p><img alt="Time mask concept figure" src="../Images/time-mask-concept.png" /></p>
+<p><img alt="Time mask concept figure" src="../assets/images/time-mask-concept.png" /></p>
 <ul>
 <li>Every time point specification is parsed and added to a timeline.</li>
 <li>There are values to be associated with each time point based on the index in collection.
@@ -1090,17 +1108,17 @@ definition of the expression has no reference to a defined time zone and uses
 the time zone of the database.</p>
 <p>Note! If the same expressions are run for a day in summer time, the values
 are shifted to one hour later.</p>
-<p><img alt="" src="../Images/ex_TIME_MASK-nimbustable1.png" /></p>
+<p><img alt="" src="../assets/images/ex_TIME_MASK-nimbustable1.png" /></p>
 <p><code>Result = @TIME_MASK('DAY', {'DAY+07h', 'DAY+10h', 'DAY+14h',
 'DAY+18h'}, {1,2,3,4},'HOUR')</code></p>
 <p>This gives a time series with daily repeat frequency and hourly time resolution.
 The presentation of data values is linear.</p>
-<p><img alt="" src="../Images/ex_TIME_MASK-nimbustable2.png" /></p>
+<p><img alt="" src="../assets/images/ex_TIME_MASK-nimbustable2.png" /></p>
 <p><code>Result = @TIME_MASK('DAY', {'DAY+07h', 'DAY+10h', 'DAY+14h',
 'DAY+18h'}, {1,2,3,4},'VARINT')</code></p>
 <p>This gives a time series with daily repeat frequency and breakpoint time
 resolution. The presentation of data values is step wise.</p>
-<p><img alt="" src="../Images/ex_TIME_MASK-nimbustable3.png" /></p>
+<p><img alt="" src="../assets/images/ex_TIME_MASK-nimbustable3.png" /></p>
 <h2 id="examples-less-used-variant">Examples - less used variant</h2>
 <h3 id="time_maskss">TIME_MASK(s,s)</h3>
 <p>This function lets you define a logical time series from criteria given by the parameters in a text resource file specified as the second argument. The values on the result series is either 0 or 1 depending on the arguments to the function.
@@ -1217,7 +1235,7 @@ section. This can be done like this using a Mesh command line tool:</p>
 </table>
 <p>The result above can be illustrated in a figure showing the difference between
 the various masks:</p>
-<p><img alt="" src="../Images/ex_timemasks_chart.gif" /></p>
+<p><img alt="" src="../assets/images/ex_timemasks_chart.gif" /></p>
               
             </div>
           </div><footer>

@@ -373,6 +373,24 @@
                 </li>
     </ul>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >Mesh REST API</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../rest-api/introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../rest-api/changelog/">Changelog</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../rest-api/api-documentation/">API specification</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >For developers</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../rest-api/generate-c%23-api-from-swagger-json/">Generate C# API from swagger.json</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../rest-api/how-to-use-ImportMultistepWaterValueFunctions/">How to use ImportMultistepWaterValueFunctions</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../model-maintenance/ModelMaintenanceConcepts/">Model maintenance</a>
                   </li>
               </ul>
@@ -482,7 +500,7 @@ as a basis for the distribution.</p>
 <p><strong>Note!</strong> This set up gives the same result as
 @DISTRIBUTE(@t('Ts5'),MaskSeries,Profile) where the mask series argument is true
 for all the time points.</p>
-<p><img alt="" src="../Images/ex_DISTRIBUTE-nimbustable6.png" /></p>
+<p><img alt="" src="../assets/images/ex_DISTRIBUTE-nimbustable6.png" /></p>
 <h3 id="ra8">Ra8</h3>
 <h2 id="about-the-function_1">About the function</h2>
 <p>Same as <a href="#r8">R8</a>, but with absolute handling of the profile. The profile can be
@@ -528,7 +546,7 @@ used in the formula are the same as described in <a href="#r8">R8</a>.</p>
 <p><strong>Note!</strong> This set up gives the same result as
 @DISTRIBUTE(1,@t('Ts5'),MaskSeries,Profile) where the mask series argument is
 true for all the time points.</p>
-<p><img alt="" src="../Images/ex_TRANS_PROFILE-nimbustable.png" /></p>
+<p><img alt="" src="../assets/images/ex_TRANS_PROFILE-nimbustable.png" /></p>
 <p>Example 2</p>
 <p><code>Profile = @TIME_MASK('HOUR',{'HOUR','HOUR+15x','HOUR+30x','HOUR+45x'},{1,2,3,2},'MIN15')</code></p>
 <p><code>Result time series = @TRANS_PROFILE(10,@t('Ts5'),Profile)</code></p>

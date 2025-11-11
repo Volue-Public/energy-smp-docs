@@ -373,6 +373,24 @@
                 </li>
     </ul>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >Mesh REST API</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../rest-api/introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../rest-api/changelog/">Changelog</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../rest-api/api-documentation/">API specification</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >For developers</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../rest-api/generate-c%23-api-from-swagger-json/">Generate C# API from swagger.json</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../rest-api/how-to-use-ImportMultistepWaterValueFunctions/">How to use ImportMultistepWaterValueFunctions</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../model-maintenance/ModelMaintenanceConcepts/">Model maintenance</a>
                   </li>
               </ul>
@@ -513,20 +531,20 @@ transformation methods are available for this latter use.</p>
 <p>Res2 = @TRANSFORM(@t('BrpTs'), 'DAY', 'AVGI')</p>
 <p>Example 3: Shows variants and their resulting time series</p>
 <p>Input series:</p>
-<p><img alt="" src="../Images/ex_TRANSFORM-nimbustable.png" /></p>
+<p><img alt="" src="../assets/images/ex_TRANSFORM-nimbustable.png" /></p>
 <p>Uses conversion from quarter to hour resolution:</p>
 <p>ResSum = @TRANSFORM(@t(‘Ts15Min’,'HOUR','SUM')</p>
-<p><img alt="" src="../Images/ex_TRANSFORM-nimbustable2.png" /></p>
+<p><img alt="" src="../assets/images/ex_TRANSFORM-nimbustable2.png" /></p>
 <p>ResMean = @TRANSFORM(@t(‘Ts15Min’),'HOUR','MEAN')</p>
-<p><img alt="" src="../Images/ex_TRANSFORM-nimbustable3.png" /></p>
+<p><img alt="" src="../assets/images/ex_TRANSFORM-nimbustable3.png" /></p>
 <p>ResMin = @TRANSFORM(@t(‘Ts15Min’),'HOUR','MIN')</p>
-<p><img alt="" src="../Images/ex_TRANSFORM-nimbustable4.png" /></p>
+<p><img alt="" src="../assets/images/ex_TRANSFORM-nimbustable4.png" /></p>
 <p>ResMax = @TRANSFORM(@t(‘Ts15Min’),'HOUR','MAX')</p>
-<p><img alt="" src="../Images/ex_TRANSFORM-nimbustable5.png" /></p>
+<p><img alt="" src="../assets/images/ex_TRANSFORM-nimbustable5.png" /></p>
 <p>ResFirst = @TRANSFORM(@t(‘Ts15Min’),'HOUR','FIRST')</p>
-<p><img alt="" src="../Images/ex_TRANSFORM-nimbustable6.png" /></p>
+<p><img alt="" src="../assets/images/ex_TRANSFORM-nimbustable6.png" /></p>
 <p>ResLast = @TRANSFORM(@t(‘Ts15Min’),'HOUR','LAST')</p>
-<p><img alt="" src="../Images/ex_TRANSFORM-nimbustable7.png" /></p>
+<p><img alt="" src="../assets/images/ex_TRANSFORM-nimbustable7.png" /></p>
 <h3 id="r2">R2</h3>
 <h2 id="about-the-function_1">About the function</h2>
 <p>Conversion to periods given by points of time on the series given as argument 2.
