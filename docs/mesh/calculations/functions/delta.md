@@ -39,7 +39,6 @@ H_Ts1 is an hourly time series with some empty values.
 
 `Result = @DELTA(@t('.H_Ts1'))`
 
-```
 | Time | H_Ts1 | Result |
 |---|---|---|
 | 2021-12-31T22:00:00Z | nan        | nan        |
@@ -53,7 +52,6 @@ H_Ts1 is an hourly time series with some empty values.
 | 2022-01-01T06:00:00Z |   12500.00 |   12499.00 |
 | 2022-01-01T07:00:00Z |      10.00 |  -12490.00 |
 | 2022-01-01T08:00:00Z |      10.00 |       0.00 |
-```
 
 As the result series shows, an empty value is treated as 0 in these delta calculations.
 

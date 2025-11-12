@@ -32,7 +32,7 @@ Returns the number found at given index. If index is out of range, then the retu
 | # | Type | Description |
 |---|---|---|
 | 1 | t | Time series. |
-| 2 | s | Time argument. May be a macro expanded to time point. <br>Examples: DAY+10h, UTC20141124 |
+| 2 | s | Time argument. May be a [macro](../timepoint-macros.md) expanded to time point. Examples: DAY+10h, UTC20141124 |
 
 Returns a value found on the time series at given time point. If time argument is not valid, then the returned value is NaN.
 
