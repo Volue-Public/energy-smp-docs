@@ -149,7 +149,8 @@ Example:
 
 #### Start points
 
-As seen in [MainComponents](#Main) an activated report that is visible to the user always needs one or more starting points.
+An activated report that is visible to the user always needs one or more starting points.
+See [more about the activation process here](./reports_intro.md#template-report-activation)
 
 The activation process can be described by the following pseudo code:
 
