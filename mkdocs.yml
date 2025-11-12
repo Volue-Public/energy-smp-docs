@@ -28,6 +28,7 @@ nav:
           - Installation: mesh/installation/MeshServiceInstallationGuide.md
           - Calculations:
                 - General: mesh/calculations/calculations.md
+                - Time macros: mesh/calculations/timepoint-macros.md
                 - Functions:
                       - Introduction: mesh/calculations/functions/introduction.md
                       - General:
@@ -177,5 +178,5 @@ nav:
           - Monitor services: operations/monitoring.md
     - Time series reports:
           - General: timeseries-reports/reports_intro.md
-          - Macros
+          - Macros: timeseries-reports/macros.md
           - Sorted layout: timeseries-reports/sort_contents.md
