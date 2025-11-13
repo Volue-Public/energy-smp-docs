@@ -81,11 +81,9 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#time-zones">Time Zones</a>
+    <li class="toctree-l3"><a class="reference internal" href="#time-zones">Time zones</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#using-transform-calculation-functions">Using @TRANSFORM calculation functions</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#time-point-macros">Time point macros</a>
     </li>
         </ul>
     </li>
@@ -139,15 +137,15 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#time-zones">Time Zones</a>
+    <li class="toctree-l3"><a class="reference internal" href="#time-zones">Time zones</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#using-transform-calculation-functions">Using @TRANSFORM calculation functions</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#time-point-macros">Time point macros</a>
     </li>
         </ul>
     </li>
     </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../timepoint-macros/">Time macros</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" >Functions</a>
     <ul>
@@ -486,7 +484,7 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/reports_intro/">General</a>
                   </li>
-                  <li class="toctree-l1"><a class="" href="../../../Macros">None</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/macros/">Macros</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/sort_contents/">Sorted layout</a>
                   </li>
@@ -654,7 +652,7 @@ day, i.e to the next day relative to the requested time interval.</p>
 <pre><code>    ......============
 </code></pre>
 <p>Here the dots represent 1 day and the requested time interval 2 days.</p>
-<h2 id="time-zones">Time Zones</h2>
+<h2 id="time-zones">Time zones</h2>
 <p>There are situations where other time zones are involved:</p>
 <ul>
 <li>
@@ -675,7 +673,7 @@ day, i.e to the next day relative to the requested time interval.</p>
 <li>
 <p>In some cases, the function arguments are time point macros, they will also
   need a time zone context to have a precise meaning. See the separate chapter on
-  time macros.</p>
+  <a href="../timepoint-macros/">time macros</a>.</p>
 </li>
 </ul>
 <h3 id="using-transform-calculation-functions">Using <code>@TRANSFORM</code> calculation functions</h3>
@@ -694,18 +692,6 @@ its definition. This means most values come from 24 source values but could also
 be based on 23 or 25 values due to DST season shift.</p>
 <p>The last example is referring to the UTC zone with no DST so values are shifted
 one hour compared to the first two examples.</p>
-<h3 id="time-point-macros">Time point macros</h3>
-<p>A time point specification can be explicit or based on the macros that make time
-point follow current time. Examples related to current time:</p>
-<ul>
-<li>202002291336 -&gt; Saturday 29 February 2020 13:36:00</li>
-<li>DAY - Start of the current day in UTC+1 zone</li>
-<li>WEEK+2d+14h-10x - Is interpreted as start of this week (UTC+1) plus 2 days
-  plus 14 hours minus 10 minutes</li>
-</ul>
-<p>Available base codes are YEAR, MONTH, WEEK, DAY, MIN15 and NOW. The function
-named @TIME_MASK is having some examples where the mask values are created from
-such macros. See the reference documentation for details.</p>
 <h1 id="basic-time-series-operations">Basic time series operations</h1>
 <p>Calculation functions and operator implementations must be able to cope with
 different time resolutions. In some cases there are functional requirements with
@@ -738,7 +724,7 @@ crossing between them. These points are indicated by vertical dash-dot lines.</p
           </div><footer>
       <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
           <a href="../../installation/MeshServiceInstallationGuide/" class="btn btn--outline btn--success float-left" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-          <a href="../functions/introduction/" class="btn btn--outline btn--success float-right" title="Introduction">Next <span class="icon icon-circle-arrow-right"></span></a>
+          <a href="../timepoint-macros/" class="btn btn--outline btn--success float-right" title="Time macros">Next <span class="icon icon-circle-arrow-right"></span></a>
       </div>
   
     <hr/>
@@ -764,7 +750,7 @@ crossing between them. These points are indicated by vertical dash-dot lines.</p
         <span><a href="../../installation/MeshServiceInstallationGuide/" style="color: #fcfcfc">&laquo; Previous</a></span>
       
       
-        <span><a href="../functions/introduction/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span><a href="../timepoint-macros/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
   </div>

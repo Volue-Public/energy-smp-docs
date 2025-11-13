@@ -85,6 +85,8 @@
     <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../../mesh/calculations/calculations/">Calculations</a>
                 </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/calculations/timepoint-macros/">Time macros</a>
+                </li>
                 <li class="toctree-l2"><a class="reference internal" >Functions</a>
     <ul>
                 <li class="toctree-l3"><a class="reference internal" href="../../mesh/calculations/functions/introduction/">Introduction</a>
@@ -422,7 +424,7 @@
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../reports_intro/">General</a>
                   </li>
-                  <li class="toctree-l1"><a class="" href="../../Macros">None</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../macros/">Macros</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Sorted layout</a>
     <ul class="current">
@@ -630,7 +632,8 @@ operation defined by the <code>TS_BINDING</code>. The sorted list is added to co
 <code>TS_BINDING</code>         <code>*[.Type=Reservoir].ReservoirLevel_operative</code>
 <code>TEMPLATE_ORDER_BY</code>  <code>Default=Ignore,Reservoir=.HRWL:D</code></p>
 <h4 id="start-points">Start points</h4>
-<p>As seen in <a href="#Main">MainComponents</a> an activated report that is visible to the user always needs one or more starting points.</p>
+<p>An activated report that is visible to the user always needs one or more starting points.
+See <a href="../reports_intro/#template-report-activation">more about the activation process here</a></p>
 <p>The activation process can be described by the following pseudo code:</p>
 <pre><code>for each startPoint in startPoints
    for each columnDefinition in columnDefinitions
@@ -858,7 +861,7 @@ END_COLUMN
             </div>
           </div><footer>
       <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-          <a href="../reports_intro/" class="btn btn--outline btn--success float-left" title="General"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+          <a href="../macros/" class="btn btn--outline btn--success float-left" title="Macros"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       </div>
   
     <hr/>
@@ -881,7 +884,7 @@ END_COLUMN
     <span class="rst-current-version" data-toggle="rst-current-version is-active">
       
       
-        <span><a href="../reports_intro/" style="color: #fcfcfc">&laquo; Previous</a></span>
+        <span><a href="../macros/" style="color: #fcfcfc">&laquo; Previous</a></span>
       
       
     </span>

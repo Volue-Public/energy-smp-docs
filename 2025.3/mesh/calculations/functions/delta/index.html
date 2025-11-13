@@ -85,6 +85,8 @@
     <ul class="current">
                 <li class="toctree-l2"><a class="reference internal" href="../../calculations/">Calculations</a>
                 </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../timepoint-macros/">Time macros</a>
+                </li>
                 <li class="toctree-l2 current"><a class="reference internal current" >Functions</a>
     <ul class="current">
                 <li class="toctree-l3"><a class="reference internal" href="../introduction/">Introduction</a>
@@ -422,7 +424,7 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../timeseries-reports/reports_intro/">General</a>
                   </li>
-                  <li class="toctree-l1"><a class="" href="../../../../Macros">None</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../timeseries-reports/macros/">Macros</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../timeseries-reports/sort_contents/">Sorted layout</a>
                   </li>
@@ -496,20 +498,72 @@ series.</p>
 <h4 id="example-1">Example 1</h4>
 <p>H_Ts1 is an hourly time series with some empty values.</p>
 <p><code>Result = @DELTA(@t('.H_Ts1'))</code></p>
-<pre><code>| Time | H_Ts1 | Result |
-|---|---|---|
-| 2021-12-31T22:00:00Z | nan        | nan        |
-| 2021-12-31T23:00:00Z |      -1.00 |      -1.00 |
-| 2022-01-01T00:00:00Z |       0.00 |       1.00 |
-| 2022-01-01T01:00:00Z |      10.00 |      10.00 |
-| 2022-01-01T02:00:00Z | nan        |     -10.00 |
-| 2022-01-01T03:00:00Z |   20000.00 |   20000.00 |
-| 2022-01-01T04:00:00Z |   12500.00 |   -7500.00 |
-| 2022-01-01T05:00:00Z |       1.00 |  -12499.00 |
-| 2022-01-01T06:00:00Z |   12500.00 |   12499.00 |
-| 2022-01-01T07:00:00Z |      10.00 |  -12490.00 |
-| 2022-01-01T08:00:00Z |      10.00 |       0.00 |
-</code></pre>
+<table>
+<thead>
+<tr>
+<th>Time</th>
+<th>H_Ts1</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2021-12-31T22:00:00Z</td>
+<td>nan</td>
+<td>nan</td>
+</tr>
+<tr>
+<td>2021-12-31T23:00:00Z</td>
+<td>-1.00</td>
+<td>-1.00</td>
+</tr>
+<tr>
+<td>2022-01-01T00:00:00Z</td>
+<td>0.00</td>
+<td>1.00</td>
+</tr>
+<tr>
+<td>2022-01-01T01:00:00Z</td>
+<td>10.00</td>
+<td>10.00</td>
+</tr>
+<tr>
+<td>2022-01-01T02:00:00Z</td>
+<td>nan</td>
+<td>-10.00</td>
+</tr>
+<tr>
+<td>2022-01-01T03:00:00Z</td>
+<td>20000.00</td>
+<td>20000.00</td>
+</tr>
+<tr>
+<td>2022-01-01T04:00:00Z</td>
+<td>12500.00</td>
+<td>-7500.00</td>
+</tr>
+<tr>
+<td>2022-01-01T05:00:00Z</td>
+<td>1.00</td>
+<td>-12499.00</td>
+</tr>
+<tr>
+<td>2022-01-01T06:00:00Z</td>
+<td>12500.00</td>
+<td>12499.00</td>
+</tr>
+<tr>
+<td>2022-01-01T07:00:00Z</td>
+<td>10.00</td>
+<td>-12490.00</td>
+</tr>
+<tr>
+<td>2022-01-01T08:00:00Z</td>
+<td>10.00</td>
+<td>0.00</td>
+</tr>
+</tbody>
+</table>
 <p>As the result series shows, an empty value is treated as 0 in these delta calculations.</p>
 <h4 id="example-2">Example 2</h4>
 <p><code>Result = @DELTA(@t('.H_Ts1'),'+2h')</code></p>
