@@ -16,7 +16,7 @@ There is a dedicated set of history functions to extract values from a versioned
 
 ## Hourly example data
 
-In the function descriptions there are some examples based on a sequence of write operations. These values are presented in a Nimbus client view shown below. The header text for each version gives information on the validity interval for which the time series had the values shown in an associated column:
+In the function descriptions there are some examples based on a sequence of write operations. These values are presented in a Nimbus client view shown below. The header text for each version gives information on the validity interval for which the time series had the values shown in each column:
 
 ![](assets/images/HistoricalValues_Hour.png)
 
