@@ -16,8 +16,7 @@ There might be multiple versions that cover the same value time period.
 - GetForecast(t,d|s,d|s)
 - GetForecast(t,d|s,d|s,d|s)
 
-The second,third and fourth argument is a time point definition, either given
-as a number (tick value) or a definition having a syntax described [here](../timepoint-macros.md).
+The second, third and fourth argument is a time point definition, either given as a number (tick value) or a definition having a syntax described [here](../timepoint-macros.md).
 
 The first value in a forecast write operation is associated with time point t0.
 
@@ -54,7 +53,7 @@ The data used in these examples are described [here](./history.md#hourly-example
 
 `## = @GetForecast(@t('.Temperature_forecast'))`
 
-Requested start time (*tstart*) is `UTC2025110602`, a time point just before second version of the example series was written. In first store operation value 1 was written to the series, in second store operation value 2 was written.
+Requested start time (*tstart*) is `UTC2025110602`, a time point just before the second version of the example series was written. In the first store operation the value 1 was written to the series, in the second store operation the value 2 was written.
 
 | Time (UTC) | Current | Result |
 |---|---|---|
@@ -94,8 +93,8 @@ The same expression, but now with a *tstart* one hour later: `UTC2025110603`.
 
 #### Get forecast with forecast start arguments
 
-First forecast write (value 1) have a first value at  `UTC2025110523`.
-Second forecast write (value 2) have a first value at `UTC2025110603`, i.e. 4 hours later.
+The first forecast write (value 1) has a first value at  `UTC2025110523`.
+The second forecast write (value 2) has a first value at `UTC2025110603`, i.e. 4 hours later.
 
 `## = @GetForecast(@t('.Temperature_forecast'),'UTC2025110602','UTC2025110605')`
 

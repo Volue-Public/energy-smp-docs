@@ -2,12 +2,9 @@
 
 ### About the function
 
-Returns an array of time points related to change events that have impact on 
-values within requested time period for the given time series. It is possible to
-restrict number of time points returned.
+Returns an array of time points related to change events that have impact on values within the requested time period for the given time series. It is possible to restrict the number of time points returned.
 
-The function is often used together with [GetTsAsOfTime](./get_ts_as_of_time.md) in 'ExactTime' mode to
-extract explicitly what parts of the series that where changed at these times.
+The function is often used together with [GetTsAsOfTime](./get_ts_as_of_time.md) in 'ExactTime' mode to extract explicitly what parts of the series that were changed at these times.
 
 A time point is defined as a number which represents a `tick` value.
 Each tick is 100 nanoseconds, i.e. there are 10,000 ticks in a millisecond.
@@ -33,7 +30,7 @@ November 6, 2025 13:20:19
 | 1 | t | Time series. |
 | 2 | d | Desired maximum number of audit times for the time series. |
 
-Note! If the number of change events for the given time series and period is less
+**_Note!_** If the number of change events for the given time series and period is less
 than the given number, then a reduced set is returned.
 
 The time points returned represent time of write (UTC) and is sorted, latest first.
@@ -41,9 +38,9 @@ The time points returned represent time of write (UTC) and is sorted, latest fir
 ## Examples
 
 GetTsAuditTimes (ts,3) returns the time points related to the last 3 changes
-that is done within requested time period for the time series t0.
+that are done within the requested time period for the time series t0.
 
-The following examples uses the history layers described [here](./history.md#hourly-example-data).
+The following examples use the history layers described [here](./history.md#hourly-example-data).
 
 `timepoints = @GetTsAuditTimes(@t('.Temperature_forecast'))`
 

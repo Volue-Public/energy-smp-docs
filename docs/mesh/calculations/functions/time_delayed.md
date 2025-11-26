@@ -44,7 +44,7 @@ between the current segment and the next segment.
 
 `DelayedFlow = @TimeDelayed (@t('.FlowSeries'), '.FlowDelayTableAttributeName')`
 
-The flow table used have the values described above.
+The flow table used has the values described above.
 
 | Time (UTC) | FlowSeries | DelayedFlow | Description |
 |---|---|---|---|

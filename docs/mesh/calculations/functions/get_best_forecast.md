@@ -1,16 +1,15 @@
 ## GetBestForecast
 
-This function is now obsolete.
-It returns latest written value at all time points part of requested time period.
+**_Note!_** This function is now obsolete.
+It returns the latest written value at all time points part of requested time period.
 
-The figure below illustrate this. The returned series is a merge of the
-red segments.
+The figure below illustrates this. The returned series is a merge of the red segments.
 
 ![](assets/images/GetBestForecast.png)
 
 ### Example
 
-The following expressions gives the same result.
+The following expressions give the same result.
 
 `## = @t('.Temperature_forecast')`
 

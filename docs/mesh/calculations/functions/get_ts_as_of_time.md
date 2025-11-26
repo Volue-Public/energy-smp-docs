@@ -114,9 +114,9 @@ function will retrieve those values written at the given time, else nan value.
 | 2025-11-07T00:00:00Z |       4.00 | nan        |
 | 2025-11-07T01:00:00Z |       4.00 | nan        |
 
-PS! The nan value indicate that the last write did not contain a value for that time point.
+**_Note!_** The `nan` value indicates that the last write did not contain a value for that time point.
 
-In the next example the method used is `Delta` and the time point is set to an earlier time of write.
+In the next example, the method used is `Delta` and the time point is set to an earlier time of write.
 
 `## = @GetTsAsOfTime(@t('.Temperature_forecast'),@AT(@GetTsAuditTimes(@t('.Temperature_forecast'),6),2),'Delta')`
 
