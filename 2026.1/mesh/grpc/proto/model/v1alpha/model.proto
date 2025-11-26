@@ -1,0 +1,594 @@
+syntax = "proto3";
+
+package volue.mesh.grpc.model.v1alpha;
+
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+
+import "model/v1alpha/resources.proto";
+import "type/resources.proto";
+
+
+// Mesh model service
+// -------------------------------
+// The Mesh model service is an API for managing Mesh model.
+//
+service ModelService {
+
+  rpc ListModels(ListModelsRequest) returns (ListModelsResponse) {}
+
+  rpc GetObject(GetObjectRequest) returns (Object) {}
+
+  // Search for objects from the model.
+  // The search uses Mesh's query language, which is the same language that's
+  // used in for example Nimbus.
+  //
+  // The result stream is not ordered in any particular way, and the caller
+  // should not expect the ordering of search results to be stable.
+  //
+  // If the search doesn't find any results an empty stream and an OK status
+  // is returned.
+  rpc SearchObjects(SearchObjectsRequest) returns (stream Object) {}
+
+  // Search for `Object`s, i.e.: instances of a given `ObjectDefinition`.
+  rpc SearchObjectsByDefinition(SearchObjectsByDefinitionRequest) returns (stream Object) {}
+
+  // Create new object in the model.
+  // In the first step user sets owner and name of the new object.
+  // In case of success, the create operation returns OK status and newly
+  // created object with all of the attributes set to default values.
+  // Then the user may update the attributes with proper update attributes
+  // RPCs, e.g.: `UpdateSimpleAttribute` or `UpdateTimeseriesAttribute`.
+  // Note: Returned object has all attributes (no masks applied).
+  rpc CreateObject(CreateObjectRequest) returns (Object) {}
+
+  rpc CreateModel(CreateModelRequest) returns (Object) {}
+
+  // Update existing object in the model.
+  // User may rename an object or change its owner.
+  // To update object's attributes use proper update attributes RPCs,
+  // e.g.: `UpdateSimpleAttribute` or `UpdateTimeseriesAttribute`.
+  rpc UpdateObject(UpdateObjectRequest) returns (UpdateObjectResponse) {}
+
+  rpc DeleteObject(DeleteObjectRequest) returns (DeleteObjectResponse) {}
+
+  rpc GetAttribute(GetAttributeRequest) returns (Attribute) {}
+
+  // Search for attributes from the model.
+  // The search uses Mesh's query language, which is the same language that's
+  // used in for example Nimbus.
+  //
+  // The result stream is not ordered in any particular way, and the caller
+  // should not expect the ordering of search results to be stable.
+  //
+  // If the search doesn't find any results an empty stream and an OK status
+  // is returned.
+  rpc SearchAttributes(SearchAttributesRequest) returns (stream Attribute) {}
+
+  // Update value(s) of existing simple attribute in the model.
+  // Simple attribute is a singular type or collection of the following types:
+  // - double
+  // - integer
+  // - boolean
+  // - string
+  // - UTC time
+  rpc UpdateSimpleAttribute(UpdateSimpleAttributeRequest) returns (UpdateSimpleAttributeResponse) {}
+
+  rpc UpdateTimeseriesAttribute(UpdateTimeseriesAttributeRequest) returns (UpdateTimeseriesAttributeResponse) {}
+
+  // Update existing one-to-one or one-to-many link relation (non-versioned)
+  // attributes in the model.
+  rpc UpdateLinkRelationAttribute(UpdateLinkRelationAttributeRequest) returns (UpdateLinkRelationAttributeResponse) {}
+
+  // Update existing versioned one-to-one link relation attribute in the model.
+  rpc UpdateVersionedLinkRelationAttribute(UpdateVersionedLinkRelationAttributeRequest) returns (UpdateVersionedLinkRelationAttributeResponse) {}
+
+  // Get zero or more `XySet`s from an XY-set attribute (`XYSetAttribute`) or
+  // a versioned XY-set attribute (`XYZSeriesAttribute`). See `GetXySetsRequest`
+  // for more information.
+  rpc GetXySets(GetXySetsRequest) returns (GetXySetsResponse) {}
+
+  // Create, update, and/or delete `XySet`s in an XY-set attribute
+  // (`XYZAttribute`) or a versioned XY-set attribute (`XYZSeriesAttribute`).
+  // See `UpdateXySetsRequest` for more information.
+  rpc UpdateXySets(UpdateXySetsRequest) returns (UpdateXySetsResponse) {}
+
+  // Get rating curve version(s) from a rating curve attribute
+  // (`RatingCurveAttribute`).
+  // See `GetRatingCurveVersionsRequest` for more information.
+  rpc GetRatingCurveVersions(GetRatingCurveVersionsRequest) returns (GetRatingCurveVersionsResponse) {}
+
+  // Create, update, and/or delete rating curve versions in a rating curve
+  // attribute (`RatingCurveAttribute`).
+  // See `UpdateRatingCurveVersionsRequest` for more information.
+  rpc UpdateRatingCurveVersions(UpdateRatingCurveVersionsRequest) returns (UpdateRatingCurveVersionsResponse) {}
+
+  // Get the validity of the object if it has.
+  rpc GetValidity(GetValidityRequest) returns (GetValidityResponse) {}
+
+  // Update validity of the object.
+  rpc UpdateValidity(UpdateValidityRequest) returns (UpdateValidityResponse) {}
+
+  // Search for link relation attributes pointing to a given object.
+  // See `SearchLinkedFromRequest` for more information.
+  rpc SearchLinkedFrom(SearchLinkedFromRequest) returns (stream SearchLinkedFromResponse) {}
+}
+
+message ListModelsRequest {
+  volue.mesh.grpc.type.Guid session_id = 1;
+
+  // If set then only models that are instances of given model definition are
+  // returned. Otherwise all models are returned.
+  volue.mesh.grpc.type.MeshId model_definition_id = 2;
+
+  // Defines what model information should be included in the response.
+  // If not set all information will be included.
+  //
+  // An array containing `Object` message field names to be returned in the
+  // response.
+  // For example to return only ID and path:
+  //   field_mask = ['id', 'path']
+  google.protobuf.FieldMask object_field_mask = 3;
+}
+
+message ListModelsResponse {
+  repeated Object models = 1;
+}
+
+message GetObjectRequest {
+  volue.mesh.grpc.type.Guid session_id = 1;
+
+  // ID or path of object to be returned.
+  volue.mesh.grpc.type.MeshId object_id = 2;
+
+  // Defines what `Object`s information should be included in the response.
+  // If not set all information will be included.
+  //
+  // An array containing `Object` message field names to be returned in the
+  // response.
+  // For example to return only ID and path:
+  //   field_mask = ['id', 'path']
+  google.protobuf.FieldMask object_field_mask = 3;
+
+  // If the object field mask (3) has also `attributes` set then additionally
+  // user can set masks that define what attributes for the given object should
+  // be returned in the response message.
+  // If no attribute mask is set then all attributes will be returned.
+  AttributesMasks attributes_masks = 4;
+
+  // If the object field mask (3) has also `attributes` set then additionally
+  // user can define what attribute information should be included in response.
+  //
+  // An array containing `Attribute` message field names to be returned in the
+  // response.
+  // For example to return only ID and definition:
+  //   field_mask = ['id', 'definition']
+  google.protobuf.FieldMask attribute_field_mask = 5;
+}
+
+message SearchObjectsRequest {
+  volue.mesh.grpc.type.Guid session_id = 1;
+
+  // Mesh searches always require a start point for the search.
+  volue.mesh.grpc.type.MeshId start_object_id = 2;
+
+  // Query in Mesh query language format.
+  string query = 3;
+
+  // Defines what `Object`s information should be included in the response.
+  // If not set all information will be included.
+  //
+  // An array containing `Object` message field names to be returned in the
+  // response.
+  // For example to return only ID and path:
+  //   field_mask = ['id', 'path']
+  google.protobuf.FieldMask object_field_mask = 4;
+
+  // If the object field mask (4) has also `attributes` set then additionally
+  // user can set masks that define what attributes for the objects should be
+  // returned in the response message.
+  // If no attribute mask is set then all attributes will be returned.
+  AttributesMasks attributes_masks = 5;
+
+  // If the object field mask (4) has also `attributes` set then additionally
+  // user can define what attribute information should be included in response.
+  //
+  // An array containing `Attribute` message field names to be returned in the
+  // response.
+  // For example to return only ID and definition:
+  //   field_mask = ['id', 'definition']
+  google.protobuf.FieldMask attribute_field_mask = 6;
+}
+
+message SearchObjectsByDefinitionRequest {
+  volue.mesh.grpc.type.Guid session_id = 1;
+  volue.mesh.grpc.type.MeshId object_definition_id = 2;
+
+  // Defines what `Object`s information should be included in the response.
+  // If not set all information will be included.
+  //
+  // An array containing `Object` message field names to be returned in the
+  // response.
+  // For example to return only ID and path:
+  //   field_mask = ['id', 'path']
+  google.protobuf.FieldMask object_field_mask = 3;
+
+  // If the object field mask (3) has also `attributes` set then additionally
+  // user can set masks that define what attributes for the objects should be
+  // returned in the response message.
+  // If no attribute mask is set then all attributes will be returned.
+  AttributesMasks attributes_masks = 4;
+
+  // If the object field mask (3) has also `attributes` set then additionally
+  // user can define what attribute information should be included in response.
+  //
+  // An array containing `Attribute` message field names to be returned in the
+  // response.
+  // For example to return only ID and definition:
+  //   field_mask = ['id', 'definition']
+  google.protobuf.FieldMask attribute_field_mask = 5;
+}
+
+message CreateObjectRequest {
+  volue.mesh.grpc.type.Guid session_id = 1;
+
+  // Name of the new object.
+  string name = 2;
+
+  // Owner of the new object.
+  // To create first level child of a model, the owner must be a model.
+  // In all other cases the owner must be an ownership relation attribute.
+  // E.g.: for `SomePowerPlant1` object with path:
+  //   - Model/SimpleThermalTestModel/ThermalComponent.ThermalPowerToPlantRef/SomePowerPlant1
+  //   Owner will be the `ThermalPowerToPlantRef` attribute.
+  volue.mesh.grpc.type.MeshId owner_id = 3;
+
+  // Must be set only when creating first level children of a model.
+  // If not creating first level children of the model, must not be set.
+  // To obtain list of object definitions use `SearchObjectDefinitions` RPC.
+  volue.mesh.grpc.type.MeshId object_definition_id = 4;
+}
+
+message CreateModelRequest {
+  volue.mesh.grpc.type.Guid session_id = 1;
+
+  // Name of the new model.
+  string name = 2;
+
+  volue.mesh.grpc.type.MeshId model_definition_id = 3;
+}
+
+message UpdateObjectRequest {
+  volue.mesh.grpc.type.Guid session_id = 1;
+
+  // Identifier of the object to be updated.
+  volue.mesh.grpc.type.MeshId object_id = 2;
+
+  // Only paths set in the field mask are updated.
+  google.protobuf.FieldMask field_mask = 3;
+
+  // New name of the object.
+  string new_name = 4;
+
+  // New owner of the object.
+  // Owner must be an ownership relation attribute of Object or Object
+  // Collection type.
+  // E.g.: for `SomePowerPlant1` object with path:
+  //   - Model/SimpleThermalTestModel/ThermalComponent.ThermalPowerToPlantRef/SomePowerPlant1
+  //   Owner will be the `ThermalPowerToPlantRef` attribute.
+  volue.mesh.grpc.type.MeshId new_owner_id = 5;
+}
+
+message UpdateObjectResponse {
+}
+
+message DeleteObjectRequest {
+  volue.mesh.grpc.type.Guid session_id = 1;
+
+  // Object to be deleted.
+  volue.mesh.grpc.type.MeshId object_id = 2;
+
+  // If set to true then all child objects (owned by the object to be deleted)
+  // in the model will also be deleted.
+  // Default value is false (default value for bool in proto3 is false).
+  bool recursive_delete = 3;
+}
+
+message DeleteObjectResponse {
+}
+
+message GetAttributeRequest {
+  volue.mesh.grpc.type.Guid session_id = 1;
+
+  // ID or path of attribute to be returned.
+  volue.mesh.grpc.type.MeshId attribute_id = 2;
+
+  // Defines what `Attribute`s information should be included in the response.
+  // If not set all information will be included.
+  //
+  // An array containing `Attribute` message field names to be returned in the
+  // response.
+  // For example to return only ID and path:
+  //   field_mask = ['id', 'path']
+  google.protobuf.FieldMask field_mask = 3;
+}
+
+message SearchAttributesRequest {
+  volue.mesh.grpc.type.Guid session_id = 1;
+
+  // Mesh searches always require a start point for the search.
+  volue.mesh.grpc.type.MeshId start_object_id = 2;
+
+  // Query in Mesh query language format.
+  string query = 3;
+
+  // Defines what `Attribute`s information should be included in the response.
+  // If not set all information will be included.
+  //
+  // An array containing `Attribute` message field names to be returned in the
+  // response.
+  // For example to return only ID and path:
+  //   field_mask = ['id', 'path']
+  google.protobuf.FieldMask field_mask = 4;
+}
+
+message UpdateSimpleAttributeRequest {
+  volue.mesh.grpc.type.Guid session_id = 1;
+
+  volue.mesh.grpc.type.MeshId attribute_id = 2;
+
+  // Simple attribute value example:
+  //   To update a string attribute value set
+  //      new_singular_value.string_value = 'new_value'
+  //   To update a string attribute collection values set
+  //      new_collection_values[0].string_value = 'new_value_1'
+  //      new_collection_values[1].string_value = 'new_value_2'
+  //      new_collection_values[2].string_value = 'new_value_3'
+  //
+  // Note: 
+  // To remove all existing values from an attribute collection
+  // just set session_id and attribute_id of an attribute collection
+  // type and leave the new_collection_values empty.
+
+  // Singular type can be e.g.: double attribute
+  AttributeValue new_singular_value = 3;
+  // Collection of types can be e.g.: collection of double attributes
+  repeated AttributeValue new_collection_values = 4;
+}
+
+message UpdateSimpleAttributeResponse {
+}
+
+message UpdateTimeseriesAttributeRequest {
+  volue.mesh.grpc.type.Guid session_id = 1;
+
+  volue.mesh.grpc.type.MeshId attribute_id = 2;
+
+  // An array containing field names to be updated.
+  // For example to update a time series attribute local expression and
+  // connected time series resource:
+  //   field_mask = ['new_timeseries_resource_key', 'new_local_expression']
+  //   new_timeseries_resource_key = 100
+  //   new_local_expression = 'new local expression'
+  google.protobuf.FieldMask field_mask = 3;
+
+  // Time series key of the time series resource to be connected to
+  // the given time series attribute.
+  // Note:
+  // To disconnect time series attribute from already connected time
+  // series resource set `new_timeseries_resource_key` to 0.
+  int64 new_timeseries_resource_key = 4;
+
+  // Sets new local expression. To remove local expression set
+  // `new_local_expression` to empty string. When there is no local expression,
+  // then the template expression is used.
+  //
+  // For more information refer to `TimeseriesAttributeValue`.
+  string new_local_expression = 5;
+}
+
+message UpdateTimeseriesAttributeResponse {
+}
+
+// Update request message for one-to-one link relation and one-to-many link
+// relation attributes.
+message UpdateLinkRelationAttributeRequest {
+  volue.mesh.grpc.type.Guid session_id = 1;
+
+  // One-to-one link relation attribute (`ReferenceAttribute`) or one-to-many
+  // link relation attribute (`ReferenceCollectionAttribute`) identifier.
+  volue.mesh.grpc.type.MeshId attribute = 2;
+
+  // If set to true for a one-to-many link relation (non-versioned) attribute
+  // (`ReferenceCollectionAttribute`) this will append `target_object_ids` to
+  // already existing ones.
+  // If set to false then all currently existing target objects will be
+  // replaced by `target_object_ids`.
+  //
+  // For one-to-one link relation (non-versioned) attribute
+  // (`ReferenceAttribute`) this must set to false.
+  bool append = 3;
+
+  // If updating a one-to-one link relation (non-versioned) attribute
+  // (`ReferenceAttribute`) this must contain zero or one
+  // `target_object_ids`. If there is no `target_object_ids` provided then
+  // currently existing target object will be removed.
+  //
+  // If updating a one-to-many link relation (non-versioned) attribute
+  // (`ReferenceCollectionAttribute`) this may contain zero, one or more
+  // `target_object_ids`s. If there are no `target_object_ids` provided and
+  // `append` is set to false then all currently existing target objects will
+  // be removed.
+  repeated volue.mesh.grpc.type.Guid target_object_ids = 4;
+}
+
+message UpdateLinkRelationAttributeResponse {
+}
+
+// Update request message for versioned one-to-one link relation and versioned
+// one-to-many link relation attributes.
+message UpdateVersionedLinkRelationAttributeRequest {
+  volue.mesh.grpc.type.Guid session_id = 1;
+
+  // For versioned one-to-one link relation attribute
+  // (`ReferenceSeriesAttribute`) all existing versions with `valid_from_time`
+  // inside the interval will be deleted. Passing a `null` interval is an error.
+  //
+  // Example:
+  //   Existing versions:  |--- ver 1 --->|--- ver 2 --->|--- ver 3 --->
+  //   Request `interval`:           <------------->
+  //   Result:             |---------- ver 1 ----------->|--- ver 3 --->
+  //
+  // For versioned one-to-many link relation attribute
+  // (`ReferenceSeriesCollectionAttribute`) this must set to `null`.
+  volue.mesh.grpc.type.UtcInterval interval = 2;
+
+  // Versioned one-to-one link relation attribute (`ReferenceSeriesAttribute`)
+  // or versioned one-to-many link relation
+  // (`ReferenceSeriesCollectionAttribute`) identifier.
+  volue.mesh.grpc.type.MeshId attribute = 3;
+
+  // If updating a versioned one-to-one link relation attribute
+  // (`ReferenceSeriesAttribute`):
+  // - Request must contain zero or one `entries`. If there are no `entries`
+  //   provided then currently existing entries will  be removed.
+  // - All `valid_from_time` of all `versions` in the `entries` must be inside
+  //   the interval.
+  // - All `versions` in the `entries` must be sorted in ascending order by
+  //   `valid_from_time`. All `valid_from_time` timestamps must be unique.
+  //
+  // If updating a versioned one-to-many link relation attribute
+  // (`ReferenceSeriesCollectionAttribute`) this may contain zero, one or more
+  // `entries`s. All `versions` in the `entries` must be sorted in ascending
+  // order by `valid_from_time`. All `valid_from_time` timestamps within each
+  // entry must be unique.
+  // If there are no `entries` provided then all currently existing
+  // entries will be removed.
+  repeated VersionedLinkRelationAttributeValue entries = 4;
+}
+
+message UpdateVersionedLinkRelationAttributeResponse {
+}
+
+message GetRatingCurveVersionsRequest {
+  volue.mesh.grpc.type.Guid session_id = 1;
+
+  // Retrieve all versions that apply in this interval.
+  // This may include one version with a `from` before
+  // the interval.
+  volue.mesh.grpc.type.UtcInterval interval = 2;
+
+  // Don't return `x_range_from` and `x_value_segments`,
+  // only `from`s, in the returned `RatingCurveVersion`s.
+  bool versions_only = 3;
+
+  // The ID of a rating curve attribute (`RatingCurveAttribute`).
+  volue.mesh.grpc.type.MeshId attribute = 4;
+}
+
+message GetRatingCurveVersionsResponse {
+  repeated RatingCurveVersion versions = 1;
+}
+
+message UpdateRatingCurveVersionsRequest {
+  volue.mesh.grpc.type.Guid session_id = 1;
+
+  // All existing rating curve versions inside the interval will be
+  // deleted. Passing a `null` interval is an error.
+  volue.mesh.grpc.type.UtcInterval interval = 2;
+
+  // The ID of a rating curve attribute (`RatingCurveAttribute`).
+  volue.mesh.grpc.type.MeshId attribute = 3;
+
+  // Update rating curve versions for rating curve attribute. The `from` of all
+  // versions must be inside the interval. All versions must be sorted in
+  // ascending order by `from`. All `from` timestamps must be unique.
+  repeated RatingCurveVersion versions = 4;
+}
+
+message UpdateRatingCurveVersionsResponse {
+}
+
+// A request for the `XySet`s in an interval, or in the case of `XYSet` attributes
+// the single `XySet` owned by that attribute.
+message GetXySetsRequest {
+  volue.mesh.grpc.type.Guid session_id = 1;
+
+  // For versioned XY sets (`XYZSeriesAttribute`) retrieve all versions that apply
+  // in this interval. This may include one version with a `valid_from_time` before
+  // the interval.
+  //
+  // For non-versioned XY set attributes (`XYSetAttribute`) this must be null.
+  volue.mesh.grpc.type.UtcInterval interval = 2;
+
+  // Don't return `XyCurve`s, only `valid_from_time`s, in the returned `XySet`s.
+  bool versions_only = 3;
+
+  // The ID of a versioned XY set attribute (`XYZSeriesAttribute`) or a non-versioned
+  // XY set attribute (`XYSetAttribute`).
+  volue.mesh.grpc.type.MeshId attribute = 4;
+}
+
+message GetXySetsResponse {
+  repeated XySet xy_sets = 1;
+}
+
+message UpdateXySetsRequest {
+  volue.mesh.grpc.type.Guid session_id = 1;
+
+  // For versioned XY sets all existing XY sets inside the interval will be
+  // deleted. Passing a `null` interval is an error.
+  //
+  // For non-versioned XY sets (`XYSetAttribute`) this must be null.
+  volue.mesh.grpc.type.UtcInterval interval = 2;
+
+  // The ID of a versioned XY set attribute (`XYZSeriesAttribute`) or a non-versioned
+  // XY set attribute (`XYSetAttribute`).
+  volue.mesh.grpc.type.MeshId attribute = 3;
+
+  // If updating a versioned XY set attribute (`XYZSeriesAttribute`) the `XySet`s
+  // in `xy_sets` will be inserted in the XY set series. The `valid_from_time` of all
+  // XY sets must be inside the interval. Provided XY sets do not need to be
+  // sorted by `valid_from_time`. However, all `valid_from_time` timestamps
+  // must be unique.
+  //
+  // If updating a non-versioned XY set attribute (`XYSetAttribute`) this must contain
+  // zero or one `XySet`.
+  repeated XySet xy_sets = 4;
+}
+
+message UpdateXySetsResponse {
+}
+
+message GetValidityRequest {
+  volue.mesh.grpc.type.Guid session_id = 1;
+  volue.mesh.grpc.type.MeshId object_id = 2;
+}
+
+message GetValidityResponse {
+  optional google.protobuf.Timestamp valid_from = 1;
+  optional google.protobuf.Timestamp valid_until = 2;
+}
+
+message UpdateValidityRequest {
+  volue.mesh.grpc.type.Guid session_id = 1;
+  volue.mesh.grpc.type.MeshId object_id = 2;
+  optional google.protobuf.Timestamp valid_from = 3;
+  optional google.protobuf.Timestamp valid_until = 4;
+}
+
+message UpdateValidityResponse {
+}
+
+message SearchLinkedFromRequest {
+  volue.mesh.grpc.type.Guid session_id = 1;
+
+  // Identifier of an object for which
+  // all link relation attributes that point to it will be returned.
+  volue.mesh.grpc.type.MeshId target_object_id = 2;
+}
+
+message SearchLinkedFromResponse {
+  // Identifier of the link relation attribute pointing to the target object.
+  volue.mesh.grpc.type.MeshId link_relation_id = 1;
+}

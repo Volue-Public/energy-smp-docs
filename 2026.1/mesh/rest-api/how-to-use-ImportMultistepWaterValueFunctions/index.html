@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+<title>Smart Power Documentation</title>
+
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../wave/wave.css" rel="stylesheet" />
+        <link href="../../../stylesheets/extra.css" rel="stylesheet" />
+        <link href="../../../css/version-select.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "How to use ImportMultistepWaterValueFunctions";
+        var mkdocs_page_input_path = "mesh/rest-api/how-to-use-ImportMultistepWaterValueFunctions.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav is-active">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search fill-neutral--contrast">
+      <a href="../../..">
+          <img src="../../../logo.png" class="logo" alt="Logo"/>
+        </a>
+
+        <!-- A trick to place the version selector where I want it to be. -->
+        <div class="icon-home" style="display: none;"></div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mesh</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" >Concepts</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/availability/">Availability</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../calculations/calculations/">Calculations</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Modelling</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/rating-curves/">Rating curves</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/relations/">Relations</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/xy-sets/">XY-sets</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/search-language/">Search language</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/sessions/">Sessions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/time-series/">Time series</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../installation/MeshServiceInstallationGuide/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Calculations</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../calculations/calculations/">Calculations</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../calculations/timepoint-macros/">Time macros</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Functions</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../calculations/functions/introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >General</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/allocate_reserves/">Allocate_Reserves</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/at/">AT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/color/">ColorARGB</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/compare/">Compare</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/concatenate/">Concatenate</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/copy_ts/">CopyTs</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/delta/">Delta</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/disable_cache/">DisableCache</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/getyfx/">GET_Y_FX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/isvalid/">IsValid</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/linear/">Linear</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/max/">MAX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/meshid/">MeshId</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/min/">MIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/parameter/">Parameter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/pdlog/">PDLOG</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/reference_lookup/">Reference Lookup</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/restriction/">Restriction</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/revision/">Revision</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/set_ts_val_unit/">Set_Ts_Valunit</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/size/">Size</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/time_mask/">Time_Mask</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/tostring/">ToString</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/trace/">Trace</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ts/">TS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/unit_codes_for_set_ts_val_unit/">Unit Codes for Set_Ts_Valunit</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/valid/">Valid</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Forecast</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/get_best_forecast/">GetBestForecast</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/get_all_forecasts/">GetAllForecasts</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/get_forecast/">GetForecast</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/get_merged_forecast/">GetMergedForecasts</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >History</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/history/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/get_ts_as_of_time/">GetTsAsOfTime</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/get_ts_historical_versions/">GetTsHistoricalVersions</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/get_ts_audit_times/">GetTsAuditTimes</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Logical</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/bool/">Bool</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/inside/">Inside</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/negative/">Negative</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/not/">Not</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/outside/">Outside</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/positive/">Positive</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Math</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ts_gliding_average/">TS_GLIDING_AVERAGE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ts_gliding_gauss/">TS_GLIDING_GAUSS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ts_gliding_median/">TS_GLIDING_MEDIAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ts_gliding_median_gauss/">TS_GLIDING_MEDIAN_GAUSS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/gliding_trend_average/">GLIDING_TREND_AVERAGE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ts_acc_from/">TS_ACC_FROM</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/power/">POWER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/abs/">ABS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ceil/">CEIL</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/floor/">FLOOR</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/integer/">INTEGER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/log/">LOG</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ln/">LN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/round/">ROUND</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/round_integer/">ROUND_INTEGER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/acos/">ACOS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/asin/">ASIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/atan/">ATAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/cos/">COS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/sin/">SIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/tan/">TAN</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Mix</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/mix/">MIX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/mix_by_selecting_from_time_series_array/">MIX by selecting from time series array</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/mix0/">MIX0</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/tsiqfill/">TS_IQ-FILL</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Sim</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/convert_volume/">CONVERT_VOLUME</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/rating_curve/">RatingCurve</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/time_delayed/">TimeDelayed</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/xy/">XY</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/yx/">YX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/zxy/">ZX_Y</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/zyx/">ZY_X</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Statistical</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/mean/">MEAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/normal/">Normal</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/percentile/">PERCENTILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/sum/">SUM</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Status</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/status/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/reset_status/">RESET_STATUS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/status_mask/">STATUS_MASK</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/status_count/">STATUS_COUNT</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Time</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/is_resolution/">IsResolution</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/is_time_valid/">IsTimeValid</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/push_ext_period/">PushExtPeriod</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/pop_ext_period/">PopExtPeriod</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/time/">Time</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/resolution/">Resolution</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/timespan/">TimeSpan</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/time_to_string/">TimeToString</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/time_examples/">Time Examples</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/time_point_information/">Time Point Information</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Transform</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/transform_what_when/">Which function can be used when</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/transform_terms/">Terms used in the functions</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/transform/">TRANSFORM</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ts_expand/">TS_EXPAND</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ts_offset/">TS_OFFSET</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/values_from_year/">ValuesFromYear</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/distribute/">DISTRIBUTE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/trans_profile/">TRANS_PROFILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/profile/">PROFILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/profile_with_explicit_frequency/">PROFILE with explicit frequency</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/accumulate/">ACCUMULATE</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >VEE</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/validate_abs_limit/">ValidateAbsLimit</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/validate_delta_limit/">ValidateDeltaLimit</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/validate_delta_limit_extreme/">ValidateDeltaLimitExtreme</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/validate_repeat_value/">ValidateRepeatValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/correct_average_value/">CorrectAverageValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/correct_constant_value/">CorrectConstantValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/correct_copy_value/">CorrectCopyValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/correct_extrapolate/">CorrectExtrapolate</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/correct_interpolate/">CorrectInterpolate</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >gRPC</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../grpc/ClientCertificates/">Client certificates</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grpc/Authorization/">Authorization</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grpc/APISpecification/">API Specification</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Mesh REST API</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../changelog/">Changelog</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../api-documentation/">API specification</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" >For developers</a>
+    <ul class="current">
+                <li class="toctree-l3"><a class="reference internal" href="../generate-c%23-api-from-swagger-json/">Generate C# API from swagger.json</a>
+                </li>
+                <li class="toctree-l3 current"><a class="reference internal current" href="#">How to use ImportMultistepWaterValueFunctions</a>
+    <ul class="current">
+    <li class="toctree-l4"><a class="reference internal" href="#how-it-looks-in-nimbus">How it looks in Nimbus</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#old-solution">Old solution</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#use-the-importmultistepwatervaluefunctions-method">Use the ImportMultistepWaterValueFunctions method</a>
+    </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../model-maintenance/ModelMaintenanceConcepts/">Model maintenance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mesh Data Transfer</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mesh-data-transfer/changelog/CHANGELOG/">Changelog</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mesh-data-transfer/general/general/">General</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mesh-data-transfer/configuration/configuration/">Configuration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Use cases</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh-data-transfer/use-cases/import-of-time-series-values-using-mdt/">Import of time series values</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh-data-transfer/use-cases/export-of-time-series-values-using-mdt/">Export of time series values</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh-data-transfer/use-cases/import-of-availability-events-using-mdt/">Import of availability events</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../operations/monitoring/">Monitor services</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Time series reports</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/reports_intro/">General</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/macros/">Macros</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/sort_contents/">Sorted layout</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap is-active">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars is-active"></i>
+          <a href="../../..">Smart Power Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Mesh</li>
+          <li class="breadcrumb-item">Mesh REST API</li>
+          <li class="breadcrumb-item">For developers</li>
+      <li class="breadcrumb-item active">How to use ImportMultistepWaterValueFunctions</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="use-the-importmultistepwatervaluefunctions">Use the ImportMultistepWaterValueFunctions</h1>
+<p>This <code>ImportMultistepWaterValueFunctions</code> method was added to the 1.5.0 version of the Mesh REST API.</p>
+<p>This <code>ImportMultistepWaterValueFunctions</code> method supports the same functionality that was earlier only provided by Optimal Gateway by using a PowerShell script, to populate the <code>WaterValueFunctions</code> structure with converted input data.</p>
+<h2 id="how-it-looks-in-nimbus">How it looks in Nimbus</h2>
+<p><code>Reservoirs</code> exist below the water course object: </p>
+<p><img alt="Reservoirs in Nimbus" src="../assets/images/wvf-reservoirs.png" /></p>
+<p>The water value function structure: </p>
+<p><img alt="The WaterValueFunction structure" src="../assets/images/wvf-overview.png" /></p>
+<p>A water value function below the water value main object: </p>
+<p><img alt="WaterValueFunction parameters" src="../assets/images/wvf-watervaluefunction.png" /></p>
+<p>Cut group below the water value function: </p>
+<p><img alt="Cut group" src="../assets/images/wvf-cutgroup.png" /></p>
+<p>Reservoir water values below the cut group:</p>
+<p><img alt="Marginal water values" src="../assets/images/wvf-reservoirwv1.png" /> 
+<img alt="Reservoir filling table" src="../assets/images/wvf-reservoirwv2.png" /></p>
+<h2 id="old-solution">Old solution</h2>
+<p>This script needed the input as a text file. This is an example of this input file:</p>
+<pre><code class="language-text">Multi-step marginal water values per reservoir (tuples of Mm3 and EUR/Mm3)
+ReservoirA; 0.000 8176.960; 105.600 8152.450; 119.690 8127.940; 127.790 8103.430; 127.930 8078.920; 128.070 8054.410; 128.220 8029.900; 128.360 8005.390; 128.500 7980.880; 128.650 7956.360; 128.790 7931.850; 128.930 7907.340; 129.070 7882.830; 129.220 7858.320; 129.360 7833.810; 129.500 7809.300; 129.640 7784.790; 129.790 7760.280; 129.930 7735.760; 130.070 7711.250; 130.220 7686.740; 130.360 7662.230; 130.500 7637.720; 130.640 7613.210; 130.790 7588.700; 130.930 7564.190; 131.070 7539.680; 131.210 7515.160; 132.140 7490.650; 146.230 7466.140; 172.020 0.000
+ReservoirB; 0.000 84600.000; 0.001 84599.999; 0.796 76148.460; 0.797 67696.920; 0.798 59245.380; 0.799 50793.840;  0.800 42342.300; 0.801 33890.760; 0.802 25439.220; 0.803 16987.680; 0.804 8536.140; 0.805 84.601; 0.806 84.600; 1.380 0.000;
+ReservoirC; 0.000 12500.000; 0.001 12499.999; 9.496 11251.250; 9.497 10002.500; 9.498 8753.750; 9.499 7505.000; 9.500 6256.250; 9.501 5007.500; 9.502 3758.750; 9.503 2510.000; 9.504 1261.250; 9.505 12.501; 9.506 12.500; 11.150 0.000;
+</code></pre>
+<p>An example of how to run the PowerShell script is shown below:</p>
+<pre><code class="language-powershell">#Example for multistep water value file
+RunWaterValueImporter -ModelName &quot;CompanyMesh&quot; -MultiStepWaterValueFile &quot;MultiStepWaterValueRiverX.txt&quot; -Area &quot;SomewhereElse&quot; -WaterValueFunctionMainName &quot;WaterValueFunctionMain&quot; -WaterValueFunctionName &quot;RiverX&quot; -WaterValueDate &quot;202407010001&quot; -WaterCourses &quot;RiverX&quot;
+</code></pre>
+<h2 id="use-the-importmultistepwatervaluefunctions-method">Use the ImportMultistepWaterValueFunctions method</h2>
+<p>The method has the following input parameters:</p>
+<ul>
+<li><code>waterCoursePath</code> or <code>waterCourseId</code> is pointing to the WaterCourse object where the reservoirs are located below.</li>
+<li><code>wvfMainPath</code> or <code>wvfMainId</code> is pointing to the WaterValueFunctionMain object where the water values will be located below.</li>
+<li><code>wvfName</code> is name of the WaterValueFunction to create.</li>
+<li><code>waterValueDate</code> is the date and time that the water value function is created for.</li>
+<li><code>sessionId</code> is id of the session the call is a part of.</li>
+<li>In addition will the body contain the water values for the different reservoirs as a list reservoir data where each reservoir data element contains of:</li>
+<li><code>reservoirName</code> is the name of a reservoir below the WaterCourse object,</li>
+<li><code>volumesInMm3</code> is a list of reservoir volumes (as doubles) in Mm3 (million cubic meters), and </li>
+<li><code>valuesInEuroPerMm3</code> is a list of water values (as doubles) in Euro per Mm3.</li>
+<li>The number of items in both lists must be the same.</li>
+</ul>
+<p>The method returns true if everything runs successful, otherwise an exception is thrown.</p>
+<p>The method will automatically remove water value functions older than a given number of days back in time. The number of days is specified in as the <code>DeleteWaterValuesOlderThanDays</code> parameter in the appsettings.json configuration file of the Mesh REST API.</p>
+<p><em><strong>Note!</strong></em> Changes done by the method will not be visible for other users before the <code>Commit</code> method is run.</p>
+<h3 id="example-of-usage">Example of usage</h3>
+<p>The example using the text file and PowerShell script above will be like this:</p>
+<ul>
+<li>waterCoursePath = <code>Model/CompanyMesh/Mesh.To_Areas/SomewhereElse.To_HydroProduction/HydroAssets.To_WaterCourses/RiverX</code></li>
+<li>wvfMainPath = <code>Model/CompanyMesh/Mesh.To_Areas/SomewhereElse.To_HydroProduction/HydroAssets.has_WaterValueFunctionsMain/WaterValueFunctionMain</code></li>
+<li>wvfName = <code>RiverX-2024-07-01T00:01</code></li>
+<li>wvfDate = <code>2024-07-01T00:01:00+02:00</code></li>
+<li>body =</li>
+</ul>
+<p><code>json
+  [
+    {
+      "reservoirName": "ReservoirA",
+      "volumesInMm3" : [0.000, 105.600, 119.690, 127.790, 127.930, 128.070, 128.220, 128.360, 128.500, 128.650, 128.790, 128.930, 129.070, 129.220, 129.360, 129.500, 129.640, 129.790, 129.930, 130.070, 130.220, 130.360, 130.500, 130.640, 130.790, 130.930, 131.070, 131.210, 132.140, 146.230, 172.020],
+      "valuesInEuroPerMm3": [8176.960, 8152.450, 8127.940, 8103.430, 8078.920, 8054.410, 8029.900, 8005.390, 7980.880, 7956.360, 7931.850, 7907.340, 7882.830, 7858.320, 7833.810, 7809.300, 7784.790, 7760.280, 7735.760, 7711.250, 7686.740, 7662.230, 7637.720, 7613.210, 7588.700, 7564.190, 7539.680, 7515.160, 7490.650, 7466.140, 0.000]
+    },
+    {
+      "reservoirName": "ReservoirB",
+      "volumesInMm3": [0.000, 0.001, 0.796, 0.797, 0.798, 0.799,  0.800, 0.801, 0.802, 0.803, 0.804, 0.805, 0.806, 1.380],
+      "valuesInEuroPerMm3": [84600.000, 84599.999, 76148.460, 67696.920, 59245.380, 50793.840, 42342.300, 33890.760, 25439.220, 16987.680, 8536.140, 84.601, 84.600, 0.000]
+    },
+    {
+      "reservoirName": "ReservoirC",
+      "volumesInMm3": [0.000, 0.001, 9.496, 9.497, 9.498, 9.499, 9.500, 9.501, 9.502, 9.503, 9.504, 9.505, 9.506, 11.150],
+      "valuesInEuroPerMm3": [12500.000, 12499.999, 11251.250, 10002.500, 8753.750, 7505.000, 6256.250, 5007.500, 3758.750, 2510.000, 1261.250, 12.501, 12.500, 0.000]
+    }
+  ]</code></p>
+<p>And below is also an example of a similar call using C# (taken from the Mesh REST API tests):</p>
+<pre><code class="language-c#">var now = DateTime.Now;
+var wvfName = $&quot;RiverX-{now.ToString(&quot;u&quot;).Replace(&quot; &quot;,&quot;T&quot;).Substring(0,16)}&quot;;
+var multiStepWaterValues = new List&lt;MultiStepWaterValues&gt;();
+var wtrValue = new MultiStepWaterValues()
+{
+  ReservoirName = &quot;ReservoirA&quot;,
+  VolumesInMm3 = new List&lt;double&gt;(),
+  ValuesInEuroPerMm3 = new List&lt;double&gt;()
+};
+wtrValue.VolumesInMm3.Add(0.000);wtrValue.ValuesInEuroPerMm3.Add(8176.960);
+wtrValue.VolumesInMm3.Add(105.600);wtrValue.ValuesInEuroPerMm3.Add(8152.450);
+wtrValue.VolumesInMm3.Add(119.690);wtrValue.ValuesInEuroPerMm3.Add(8127.940);
+wtrValue.VolumesInMm3.Add(127.790);wtrValue.ValuesInEuroPerMm3.Add(8103.430);
+wtrValue.VolumesInMm3.Add(127.930);wtrValue.ValuesInEuroPerMm3.Add(8078.920);
+wtrValue.VolumesInMm3.Add(128.070);wtrValue.ValuesInEuroPerMm3.Add(8054.410);
+wtrValue.VolumesInMm3.Add(128.220);wtrValue.ValuesInEuroPerMm3.Add(8029.900);
+wtrValue.VolumesInMm3.Add(128.360);wtrValue.ValuesInEuroPerMm3.Add(8005.390);
+wtrValue.VolumesInMm3.Add(128.500);wtrValue.ValuesInEuroPerMm3.Add(7980.880);
+wtrValue.VolumesInMm3.Add(128.650);wtrValue.ValuesInEuroPerMm3.Add(7956.360);
+wtrValue.VolumesInMm3.Add(128.790);wtrValue.ValuesInEuroPerMm3.Add(7931.850);
+wtrValue.VolumesInMm3.Add(128.930);wtrValue.ValuesInEuroPerMm3.Add(7907.340);
+wtrValue.VolumesInMm3.Add(129.070);wtrValue.ValuesInEuroPerMm3.Add(7882.830);
+wtrValue.VolumesInMm3.Add(129.220);wtrValue.ValuesInEuroPerMm3.Add(7858.320);
+wtrValue.VolumesInMm3.Add(129.360);wtrValue.ValuesInEuroPerMm3.Add(7833.810);
+wtrValue.VolumesInMm3.Add(129.500);wtrValue.ValuesInEuroPerMm3.Add(7809.300);
+wtrValue.VolumesInMm3.Add(129.640);wtrValue.ValuesInEuroPerMm3.Add(7784.790);
+wtrValue.VolumesInMm3.Add(129.790);wtrValue.ValuesInEuroPerMm3.Add(7760.280);
+wtrValue.VolumesInMm3.Add(129.930);wtrValue.ValuesInEuroPerMm3.Add(7735.760);
+wtrValue.VolumesInMm3.Add(130.070);wtrValue.ValuesInEuroPerMm3.Add(7711.250);
+wtrValue.VolumesInMm3.Add(130.220);wtrValue.ValuesInEuroPerMm3.Add(7686.740);
+wtrValue.VolumesInMm3.Add(130.360);wtrValue.ValuesInEuroPerMm3.Add(7662.230);
+wtrValue.VolumesInMm3.Add(130.500);wtrValue.ValuesInEuroPerMm3.Add(7637.720);
+wtrValue.VolumesInMm3.Add(130.640);wtrValue.ValuesInEuroPerMm3.Add(7613.210);
+wtrValue.VolumesInMm3.Add(130.790);wtrValue.ValuesInEuroPerMm3.Add(7588.700);
+wtrValue.VolumesInMm3.Add(130.930);wtrValue.ValuesInEuroPerMm3.Add(7564.190);
+wtrValue.VolumesInMm3.Add(131.070);wtrValue.ValuesInEuroPerMm3.Add(7539.680);
+wtrValue.VolumesInMm3.Add(131.210);wtrValue.ValuesInEuroPerMm3.Add(7515.160);
+wtrValue.VolumesInMm3.Add(132.140);wtrValue.ValuesInEuroPerMm3.Add(7490.650);
+wtrValue.VolumesInMm3.Add(146.230);wtrValue.ValuesInEuroPerMm3.Add(7466.140);
+wtrValue.VolumesInMm3.Add(172.020);wtrValue.ValuesInEuroPerMm3.Add(   0.000);
+multiStepWaterValues.Add(wtrValue);
+wtrValue = new MultiStepWaterValues()
+{
+  ReservoirName = &quot;ReservoirB&quot;,
+  VolumesInMm3 = new List&lt;double&gt;(),
+  ValuesInEuroPerMm3 = new List&lt;double&gt;()
+};
+wtrValue.VolumesInMm3.Add(0.000);wtrValue.ValuesInEuroPerMm3.Add(84600.000);
+wtrValue.VolumesInMm3.Add(0.001);wtrValue.ValuesInEuroPerMm3.Add(84599.999);
+wtrValue.VolumesInMm3.Add(0.796);wtrValue.ValuesInEuroPerMm3.Add(76148.460);
+wtrValue.VolumesInMm3.Add(0.797);wtrValue.ValuesInEuroPerMm3.Add(67696.920);
+wtrValue.VolumesInMm3.Add(0.798);wtrValue.ValuesInEuroPerMm3.Add(59245.380);
+wtrValue.VolumesInMm3.Add(0.799);wtrValue.ValuesInEuroPerMm3.Add(50793.840);
+wtrValue.VolumesInMm3.Add(0.800);wtrValue.ValuesInEuroPerMm3.Add(42342.300);
+wtrValue.VolumesInMm3.Add(0.801);wtrValue.ValuesInEuroPerMm3.Add(33890.760);
+wtrValue.VolumesInMm3.Add(0.802);wtrValue.ValuesInEuroPerMm3.Add(25439.220);
+wtrValue.VolumesInMm3.Add(0.803);wtrValue.ValuesInEuroPerMm3.Add(16987.680);
+wtrValue.VolumesInMm3.Add(0.804);wtrValue.ValuesInEuroPerMm3.Add(8536.140);
+wtrValue.VolumesInMm3.Add(0.805);wtrValue.ValuesInEuroPerMm3.Add(84.601);
+wtrValue.VolumesInMm3.Add(1.380);wtrValue.ValuesInEuroPerMm3.Add(0.000);
+multiStepWaterValues.Add(wtrValue);
+wtrValue = new MultiStepWaterValues()
+{
+  ReservoirName = &quot;ReservoirC&quot;,
+  VolumesInMm3 = new List&lt;double&gt;(),
+  ValuesInEuroPerMm3 = new List&lt;double&gt;()
+};
+wtrValue.VolumesInMm3.Add(0.000);wtrValue.ValuesInEuroPerMm3.Add(12500.000);
+wtrValue.VolumesInMm3.Add(0.001);wtrValue.ValuesInEuroPerMm3.Add(12499.999);
+wtrValue.VolumesInMm3.Add(9.496);wtrValue.ValuesInEuroPerMm3.Add(11251.250);
+wtrValue.VolumesInMm3.Add(9.497);wtrValue.ValuesInEuroPerMm3.Add(10002.500);
+wtrValue.VolumesInMm3.Add(9.498);wtrValue.ValuesInEuroPerMm3.Add(8753.750);
+wtrValue.VolumesInMm3.Add(9.499);wtrValue.ValuesInEuroPerMm3.Add(7505.000);
+wtrValue.VolumesInMm3.Add(9.500);wtrValue.ValuesInEuroPerMm3.Add(6256.250);
+wtrValue.VolumesInMm3.Add(9.501);wtrValue.ValuesInEuroPerMm3.Add(5007.500);
+wtrValue.VolumesInMm3.Add(9.502);wtrValue.ValuesInEuroPerMm3.Add(3758.750);
+wtrValue.VolumesInMm3.Add(9.503);wtrValue.ValuesInEuroPerMm3.Add(2510.000);
+wtrValue.VolumesInMm3.Add(9.504);wtrValue.ValuesInEuroPerMm3.Add(1261.250);
+wtrValue.VolumesInMm3.Add(9.505);wtrValue.ValuesInEuroPerMm3.Add(12.501);
+wtrValue.VolumesInMm3.Add(9.506);wtrValue.ValuesInEuroPerMm3.Add(12.500);
+wtrValue.VolumesInMm3.Add(11.150);wtrValue.ValuesInEuroPerMm3.Add(0.000);
+multiStepWaterValues.Add(wtrValue);
+// import a multistep water value function
+string waterCoursePath = &quot;Model/CompanyMesh/Mesh.To_Areas/SomewhereElse.To_HydroProduction/HydroAssets.To_WaterCourses/RiverX&quot;;
+string wvfMainPath = &quot;Model/CompanyMesh/Mesh.To_Areas/SomewhereElse.To_HydroProduction/HydroAssets.has_WaterValueFunctionsMain/WaterValueFunctionMain&quot;;
+var importReq = api?.ImportMultistepWaterValueFunctionsAsync(
+  waterCoursePath,
+  null,
+  wvfMainPath,
+  null,
+  wvfName,
+  now,
+  sessionId,
+  multiStepWaterValues).Result;
+</code></pre>
+              
+            </div>
+          </div><footer>
+      <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+          <a href="../generate-c%23-api-from-swagger-json/" class="btn btn--outline btn--success float-left" title="Generate C# API from swagger.json"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+          <a href="../../model-maintenance/ModelMaintenanceConcepts/" class="btn btn--outline btn--success float-right" title="Model maintenance">Next <span class="icon icon-circle-arrow-right"></span></a>
+      </div>
+  
+    <hr/>
+  
+    <div role="contentinfo">
+      <!-- Copyright etc -->
+    </div>
+  
+    Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  </footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version is-active">
+      
+      
+        <span><a href="../generate-c%23-api-from-swagger-json/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      
+      
+        <span><a href="../../model-maintenance/ModelMaintenanceConcepts/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+  </div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../../../search/main.js"></script>
+      <script src="../../../js/version-select.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
