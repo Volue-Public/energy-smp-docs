@@ -1,4 +1,8 @@
 # SmartPower documentation
 
-This repo is an attempt to store the documentation for the SmartPower in one place.
+## Found a problem or have a question?
 
+If you discover an issue, notice incorrect information, or have a question,
+please let us know by creating an  an issue here: [GitHub Issues](https://github.com/Volue-Public/energy-smp-docs/issues).
+
+Your feedback helps us improve. Thank you!
