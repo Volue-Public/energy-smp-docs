@@ -21,7 +21,7 @@ If you know the basics and just want to check some details, here are some fast t
   As this is a **standalone** _section_ it must be separated by the start point search definitions using the *semicolon* separator. It is the same sort definition format as used above. Be aware that a global sort definition will discard any other _order-by_ setup provided (*Local* or *start point*)
   - The value next to this keyword may be an in-place definition or it may be a reference to a Mesh resource "*file*", see [here](#maintain-a-global-sorting-definition) for how to create/maintain such definitions.
 
-- _I have a default sort definition but do not want to use it on current report._
+- _I have a default sort definition but do not want to use it on the current report._
 
   Then you should add a _section_ to the Mesh start point definition like this `;ORDER_BY_CONFIG:None.sort`  
 **_Note_!** Sections are separated with semicolon.
@@ -217,7 +217,7 @@ These two definitions are equivalent:
 - `start-point definition;ORDER_BY_CONFIG:Resource/ConfigFiles/OrderBy/MySort.sort`
 - `start-point definition;ORDER_BY_CONFIG:Default=Ignore,cReservoir=to_Reservoir.HRWL:D,Reservoir=.HRWL:D`
 
-To utilize the special definition `Default.sort` may be convenient but due the its *global* scope it can have undesired side effects.
+To utilise the special definition `Default.sort` may be convenient but due the its *global* scope it can have undesired side effects.
 It might be used in places you did not want it to. To avoid such interference from a "hidden" default you can add a 
 global _order-by_ definition that explicitly say: *do not apply a global sort operation*. It is done by referring to a resource called
 `None.sort`. The system just look at the name and it does not try to look it up, hence it does not need to exist. See example below.
