@@ -518,14 +518,23 @@
 <li><em>I want to sort the results from a single <code>TS_BINDING</code> query.</em>  </li>
 </ul>
 <p>Use the <code>TEMPLATE_ORDER_BY</code> column attribute. Here is the <a href="#the-order-by-specification-format">syntax</a>. This approach has a <em>Local</em> scope.<br />
-<strong><em>Note</em>!</strong> The syntax is now harmonised with general sorting syntax. 
-- <em>I want to sort the start points before activating a report.</em>  </p>
-<p>Extend the sort definition by appending <code>ORDER_BY:&lt;sort definition&gt;</code> to the <em>start point</em> search definition as described <a href="#start-points">here</a>.<br />
-<strong><em>Note</em>!</strong> The <code>ORDER_BY:</code> keyword must be <em>immediately</em> after the search definition (no comma, no space, nothing).
-- <em>I want to apply a global ordering on the complete set of time series found in a report.</em>  </p>
-<p>Then you should add a section to the start point definition starting with the keyword <code>;ORDER_BY_CONFIG:&lt;sort definition&gt;</code>, see more details <a href="#global">here</a>.  </p>
-<p>As this is a <strong>standalone</strong> section it must be separated by the start point search definitions using the <em>semicolon</em> separator. It is the same sort definition format as used above. Be aware that a global sort definition will discard any other <em>order-by</em> setup provided (<em>Local</em> or <em>start point</em>)
+<strong><em>Note</em>!</strong> The syntax is now harmonised with general sorting syntax.</p>
+<ul>
+<li><em>I want to sort the start points before activating a report.</em>  </li>
+</ul>
+<p>Append <code>ORDER_BY:&lt;sort definition&gt;</code> to the <em>start point</em> search definition as described <a href="#start-points">here</a>.<br />
+<strong><em>Note</em>!</strong> The <code>ORDER_BY:</code> keyword must be added <em>immediately</em> after the search definition (no comma, no space, nothing).</p>
+<ul>
+<li><em>I want to apply a global ordering on the complete set of time series found in a report.</em>  </li>
+</ul>
+<p>Then you should add a <em>section</em> to the Mesh start point definition like this <code>;ORDER_BY_CONFIG:&lt;sort definition&gt;</code>, see more details <a href="#global">here</a>.  </p>
+<p>As this is a <strong>standalone</strong> <em>section</em> it must be separated by the start point search definitions using the <em>semicolon</em> separator. It is the same sort definition format as used above. Be aware that a global sort definition will discard any other <em>order-by</em> setup provided (<em>Local</em> or <em>start point</em>)
   - The value next to this keyword may be an in-place definition or it may be a reference to a Mesh resource "<em>file</em>", see <a href="#maintain-a-global-sorting-definition">here</a> for how to create/maintain such definitions.</p>
+<ul>
+<li><em>I have a default sort definition but do not want to use it on the current report.</em></li>
+</ul>
+<p>Then you should add a <em>section</em> to the Mesh start point definition like this <code>;ORDER_BY_CONFIG:None.sort</code><br />
+<strong><em>Note</em>!</strong> Sections are separated with semicolon.</p>
 <h2 id="general-introduction">General introduction</h2>
 <p><a href="../../mesh/concepts/modelling/general/">About Mesh model definition and models.</a></p>
 <p><a href="../reports_intro/">About Mesh template time series reports.</a></p>
@@ -658,11 +667,21 @@ See <a href="../reports_intro/#template-report-activation">more about the activa
 <p>If there is a global scope <em>order-by</em> definition in place, then it will override the definitions described above (<em>Local</em> and <em>Start point</em>).
 In this mode <strong>all</strong> time series that are collected to be part of the activated report are sorted according to the global definition.</p>
 <p>Global definitions are stored in the Mesh resources section. See details on how to <a href="#maintain-a-global-sorting-definition">create/edit/delete</a> such definitions.</p>
-<p>To associate a report activation with a global sorting definition there are currently three options:
-- Add <code>ORDER_BY_CONFIG:&lt;path to text file resource&gt;</code> to the end of start point definition. If there is a search definition in place you have to add a <code>;</code> in front of this section. See examples below.
-- Add a default <em>order-by</em> definition to a predefined location in the Mesh resources:
-  - <code>Resource/ConfigFiles/OrderBy/Default.sort</code>
-- Add <em>order-by</em> definition as described above immediately after the <code>ORDER_BY_CONFIG:</code> keyword</p>
+<p>To associate a report activation with a global sorting definition there are currently three options:</p>
+<ul>
+<li>
+<p>Add <code>ORDER_BY_CONFIG:&lt;path to text file resource&gt;</code> to the end of start point definition. If there is a search definition in place you have to add a <code>;</code> in front of this section. See examples below.</p>
+</li>
+<li>
+<p>Add a default <em>order-by</em> definition to a predefined location in the Mesh resources:</p>
+</li>
+<li>
+<p><code>Resource/ConfigFiles/OrderBy/Default.sort</code></p>
+</li>
+<li>
+<p>Add <em>order-by</em> definition as described above immediately after the <code>ORDER_BY_CONFIG:</code> keyword</p>
+</li>
+</ul>
 <p>The format of the global sort specification is the same as already described. When resource "files" are used it normally contains multiple lines, one line per type. Like this:</p>
 <p>File <em>MySort.sort</em></p>
 <pre><code>Default=Ignore
@@ -674,8 +693,8 @@ Reservoir=.HRWL:D
 <li><code>start-point definition;ORDER_BY_CONFIG:Resource/ConfigFiles/OrderBy/MySort.sort</code></li>
 <li><code>start-point definition;ORDER_BY_CONFIG:Default=Ignore,cReservoir=to_Reservoir.HRWL:D,Reservoir=.HRWL:D</code></li>
 </ul>
-<p>To utilize the special definition <code>Default.sort</code> may be convenient but due the its <em>global</em> scope it can have side undesired effects.
-Therefore, be aware that it might be used in places you did not want it to. To avoid such interference from a "hidden" default you can add a 
+<p>To utilise the special definition <code>Default.sort</code> may be convenient but due the its <em>global</em> scope it can have undesired side effects.
+It might be used in places you did not want it to. To avoid such interference from a "hidden" default you can add a 
 global <em>order-by</em> definition that explicitly say: <em>do not apply a global sort operation</em>. It is done by referring to a resource called
 <code>None.sort</code>. The system just look at the name and it does not try to look it up, hence it does not need to exist. See example below.</p>
 <h4 id="some-examples-of-start-point-definitions">Some examples of start point definitions</h4>
