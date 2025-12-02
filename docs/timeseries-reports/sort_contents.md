@@ -7,17 +7,24 @@ If you know the basics and just want to check some details, here are some fast t
 - _I want to sort the results from a single `TS_BINDING` query._  
   
   Use the `TEMPLATE_ORDER_BY` column attribute. Here is the [syntax](#the-order-by-specification-format). This approach has a *Local* scope.  
-  **_Note_!** The syntax is now harmonised with general sorting syntax. 
+  **_Note_!** The syntax is now harmonised with general sorting syntax.
+
 - _I want to sort the start points before activating a report._  
   
-  Extend the sort definition by appending `ORDER_BY:<sort definition>` to the *start point* search definition as described [here](#start-points).  
-  **_Note_!** The `ORDER_BY:` keyword must be *immediately* after the search definition (no comma, no space, nothing).
+  Append `ORDER_BY:<sort definition>` to the *start point* search definition as described [here](#start-points).  
+  **_Note_!** The `ORDER_BY:` keyword must be added *immediately* after the search definition (no comma, no space, nothing).
+
 - _I want to apply a global ordering on the complete set of time series found in a report._  
   
-  Then you should add a section to the start point definition starting with the keyword `;ORDER_BY_CONFIG:<sort definition>`, see more details [here](#global).  
+  Then you should add a _section_ to the Mesh start point definition like this `;ORDER_BY_CONFIG:<sort definition>`, see more details [here](#global).  
   
-  As this is a **standalone** section it must be separated by the start point search definitions using the *semicolon* separator. It is the same sort definition format as used above. Be aware that a global sort definition will discard any other _order-by_ setup provided (*Local* or *start point*)
+  As this is a **standalone** _section_ it must be separated by the start point search definitions using the *semicolon* separator. It is the same sort definition format as used above. Be aware that a global sort definition will discard any other _order-by_ setup provided (*Local* or *start point*)
   - The value next to this keyword may be an in-place definition or it may be a reference to a Mesh resource "*file*", see [here](#maintain-a-global-sorting-definition) for how to create/maintain such definitions.
+
+- _I have a default sort definition but do not want to use it on current report._
+
+  Then you should add a _section_ to the Mesh start point definition like this `;ORDER_BY_CONFIG:None.sort`  
+**_Note_!** Sections are separated with semicolon.
 
 ## General introduction
 
@@ -188,9 +195,12 @@ In this mode **all** time series that are collected to be part of the activated 
 Global definitions are stored in the Mesh resources section. See details on how to [create/edit/delete](#maintain-a-global-sorting-definition) such definitions.
 
 To associate a report activation with a global sorting definition there are currently three options:
+
 - Add `ORDER_BY_CONFIG:<path to text file resource>` to the end of start point definition. If there is a search definition in place you have to add a `;` in front of this section. See examples below.
+
 - Add a default _order-by_ definition to a predefined location in the Mesh resources:
   - `Resource/ConfigFiles/OrderBy/Default.sort`
+
 - Add _order-by_ definition as described above immediately after the `ORDER_BY_CONFIG:` keyword
 
 The format of the global sort specification is the same as already described. When resource "files" are used it normally contains multiple lines, one line per type. Like this:
@@ -207,8 +217,8 @@ These two definitions are equivalent:
 - `start-point definition;ORDER_BY_CONFIG:Resource/ConfigFiles/OrderBy/MySort.sort`
 - `start-point definition;ORDER_BY_CONFIG:Default=Ignore,cReservoir=to_Reservoir.HRWL:D,Reservoir=.HRWL:D`
 
-To utilize the special definition `Default.sort` may be convenient but due the its *global* scope it can have side undesired effects.
-Therefore, be aware that it might be used in places you did not want it to. To avoid such interference from a "hidden" default you can add a 
+To utilize the special definition `Default.sort` may be convenient but due the its *global* scope it can have undesired side effects.
+It might be used in places you did not want it to. To avoid such interference from a "hidden" default you can add a 
 global _order-by_ definition that explicitly say: *do not apply a global sort operation*. It is done by referring to a resource called
 `None.sort`. The system just look at the name and it does not try to look it up, hence it does not need to exist. See example below.
 
