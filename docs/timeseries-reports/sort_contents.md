@@ -47,10 +47,10 @@ is ordered and "decorated" when presented out of the box.
 
 There are two main layout specifications:
 
-- The order of appearance in a tabular view layout
+- **The order of appearance in a tabular view layout**
   - Originally, before Mesh, this was controlled by the order of column definitions in the report definition
   - The dynamic behavior of Mesh template reports makes _order-by_ features important
-- Legends, headers, colors, pages, groups ++
+- **Legends, headers, colors, pages, groups ++**
   - A lot of these attributes have to use macros that makes it possible to adapt to the properties of current object
     - Without macros all the attributes that originates from the same report column definition would be equal
 
@@ -58,11 +58,11 @@ There are two main layout specifications:
 
 There are three levels where you can configure this:
 
-- Local
+- **Local**
   - Applied to results from a single TS_BINDING request
-- Start point
+- **Start point**
   - Control the order of start points applied to build the report instance
-- Global
+- **Global**
   - Apply a full sort operation when **all** series are collected
 
 The *Global* approach override the other two definitions.
@@ -127,10 +127,11 @@ In addition to a valid `TypeName` it is possible to use a generic type name `Def
 
 Examples:
 
-- `Default=Ignore,Reservoir=.HRWL:D`
-  - Sort objects by the descending `HRWL` attribute value (Highest Regulated Water Level) found on instances of type `Reservoir`
-  - For all other types - do no comparison
-- `Default=Ignore,WaterCourse=Name,cWaterCourse=Name,Reservoir=.HRWL,cReservoir=to_Reservoir.HRWL`
+`Default=Ignore,Reservoir=.HRWL:D`
+- Sort objects by the descending `HRWL` attribute value (Highest Regulated Water Level) found on instances of type `Reservoir`
+- For all other types - do no comparison
+
+`Default=Ignore,WaterCourse=Name,cWaterCourse=Name,Reservoir=.HRWL,cReservoir=to_Reservoir.HRWL`
   - Same as a above, but group according to watercourse name and use ascending order
   - Included specification for case objects
     - For cReservoir objects - go to linked asset object (`to_Reservoir`) and use `HRWL`
@@ -198,8 +199,7 @@ To associate a report activation with a global sorting definition there are curr
 
 - Add `ORDER_BY_CONFIG:<path to text file resource>` to the end of start point definition. If there is a search definition in place you have to add a `;` in front of this section. See examples below.
 
-- Add a default _order-by_ definition to a predefined location in the Mesh resources:
-  - `Resource/ConfigFiles/OrderBy/Default.sort`
+- Add a default _order-by_ definition to a predefined location in the Mesh resources: `Resource/ConfigFiles/OrderBy/Default.sort`
 
 - Add _order-by_ definition as described above immediately after the `ORDER_BY_CONFIG:` keyword
 
@@ -225,10 +225,13 @@ global _order-by_ definition that explicitly say: *do not apply a global sort op
 #### Some examples of start point definitions
 
 Examples:
+
 - `*[.Type=HydroPlant];ORDER_BY_CONFIG:Resource/ConfigFiles/OrderBy/MySort.sort`  
     Apply global sort definitions found on `MySort.sort` file. Those types not explicitly mentioned in that definition will use ascending Name as criteria. 
+
 - `*[.Type=HydroPlant]ORDER_BY:HydroPlant=.OwnerShare;ORDER_BY_CONFIG:None.sort`  
     Order starting point list according to ascending value on OwnerShare attribute on HydroPlant. The reference to `None.sort` will ensure that a potential default global sort will not override the ORDER_BY settings specified here
+
 - `*[.Type=HydroPlant]ORDER_BY:HydroPlant=.OwnerShare:D,WaterCourse=.SomeAttribute`  
     Sort starting point list according to descending value of OwnerShare attribute. WaterCourse items are sorted according to ascending value of SomeAttribute.  
     **_Note!_** These definitions will be ignored if there is a file `Resource/ConfigFiles/OrderBy/Default.sort` installed
@@ -246,18 +249,20 @@ When you choose an *order-by* method it is important to understand the report ac
 
 The illustration above shows the following:
 
-- Context
+Context
   - There is a task definition 
     - it refers to a report definition
     - it refers to a start point definition
   - The search for start point found two Mesh objects `S1` and `S2`
   - The report contains two column definitions, query `A` and `B`
-- Apply report definition for start point `S1`
+
+Apply report definition for start point `S1`
   - When query `A` was applied to start point `S1` it found time series attribute `A1`, `A2` and `A3`
     - Add these three time series to the report collection
   - When query `B` was applied to start point `S1` it found time series attribute `B1`
     - Add this time series to the report collection
-- Apply report definition for start point `S2`
+
+Apply report definition for start point `S2`
   - When query `A` was applied to start point `S2` it found time series attribute `A1` and `A2`
     - Add these time series to the report collection
   - When query `B` was applied to start point `S2` it found time series attribute `B1`, `B2` and `B3`
@@ -288,10 +293,13 @@ The use of global sort definition may be considered in these cases.
 #### Some general remarks
 
 To summarize:
+
 - Which *order-by* method to use depends on the characteristics of the report definition
+
 - Sort operations on Mesh objects with different depth may be challenging
+
 - Sort definition using keyword `Topology` is a specialized method that can be used on types in the *Watercourse* family as defined in Volue's definition `EnergySystem`. It sort objects from top to bottom, i.e. from highest `Reservoir` or `Creek` and downwards. 
-  - From Mesh version 2.18 (check release notes) the topology method can also be applied to start points.
+
 - If sort definition cannot decide between two objects
   - it will try to use default method
   - if one or both objects end up at time series object it will use the `Index` method to decide
@@ -300,12 +308,14 @@ To summarize:
 
 A sort definition is given a name and placed into the Mesh resource section. This usage can be compared to a file stored in a hierarchical file system. The tool `Powel.Mesh.CommandlineRequests.exe` can be used to import, export and list available sorting definitions. The commands to do that are (`clr` is used as an alias):
 
-- Import: 
+- Import:  
+  
     ```
     clr -i Default.sort -w ImportTextFile -w Resource/ConfigFiles/OrderBy/Default.sort -S
     ```
 
 - Export:
+
     ```
     clr -o Default.sort -w ExportTextFile -w Resource/ConfigFiles/OrderBy/Default.sort
     clr -w ExportTextFile -w Resource/ConfigFiles/OrderBy/Default.sort
@@ -314,6 +324,7 @@ A sort definition is given a name and placed into the Mesh resource section. Thi
     First is export to file, second to standard output (terminal) and last is export to file and delete `Resource` definition.
 
 - List available items:
+
     ```
     clr -w ListTextFiles -w Resource/ConfigFiles/OrderBy
     clr -w ListTextFiles -w Resource/ConfigFiles/OrderBy -w sort
