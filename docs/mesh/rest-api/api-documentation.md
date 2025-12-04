@@ -696,7 +696,7 @@ Schema: [boolean]
 
 Deleting values are done automatically as part of the write process using the `WriteTimeSeriesValuesMultiRaw` function specifying the `interval` part for a time series to identify the period that should be replaced with the information in the `values` part.
 
-_**Note!**_ _There must always be at least one value in the values part, but this can either be the last value before or after the period to delete, or a `null` value with `MISSING` status (=67108864). For versions before 2026.1 the value must be a real number (for instance `0`)._
+_**Note!**_ There must always be at least one value in the values part, but this can either be the last value before or after the period to delete, or a `null` value with `MISSING` status (=67108864). For versions before 2026.1 the value must be a real number (for instance `0`).
 
 **Example**
 
