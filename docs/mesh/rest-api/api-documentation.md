@@ -602,7 +602,9 @@ Schema: [[MeshTimeseriesValues]](#meshtimeseriesvalues)
 
 ### `POST /api/v1/WriteTimeSeriesValuesMultiRaw`
 
-*Write raw time series values to Mesh for one or more specific time series.*
+*Write raw time series values to Mesh for one or more specific time series*
+
+***Note!*** *The `interval` for a time series must contain the value period for all value dates in `values`, and all values within the `interval` period are deleted before storing the values.*
 
 POST /api/v1/WriteTimeSeriesValuesMultiRaw
 [
@@ -689,6 +691,117 @@ Schema: [boolean]
 | 501 | Not Implemented |
 | 503 | Service Unavailable |
 | 504 | Gateway Timeout |
+
+#### Delete values from a time series
+
+Deleting values are done automatically as part of the write process using the `WriteTimeSeriesValuesMultiRaw` function specifying the `interval` part for a time series to identify the period that should be replaced with the information in the `values` part.
+
+_**Note!**_ There must always be at least one value in the values part, but this can either be the last value before or after the period to delete, or a `null` value with `MISSING` status (=67108864). For versions before 2026.1 the value must be a real number (for instance `0`).
+
+**Example**
+
+Values before (from `ReadTimeSeriesValuesRaw`):
+
+```json
+{
+  "id": {
+    "id": "e91f1ffd-e5ea-4916-a3ef-b35ee5ca3b95",
+    "path": "[Full path to the time series]",
+    "timeseriesKey": 131854
+  },
+  "resolution": "Min15",
+  "interval": {
+    "startTime": "2025-05-01T00:45:00Z",
+    "endTime": "2025-05-01T01:45:00Z"
+  },
+  "values": [
+    {
+      "date": "2025-05-01T00:45:00Z",
+      "value": 15,
+      "status": 167772160
+    },
+    {
+      "date": "2025-05-01T01:00:00Z",
+      "value": 0,
+      "status": 167772160
+    },
+    {
+      "date": "2025-05-01T01:15:00Z",
+      "value": 0,
+      "status": 167772160
+    },
+    {
+      "date": "2025-05-01T01:30:00Z",
+      "value": 4,
+      "status": 167772160
+    }
+  ]
+}
+```
+
+Delete operation of the period between `01:00` (inclusive) and `01:30` (exclusive) using `WriteTimeSeriesValuesMultiRaw`:
+
+```json
+[
+  {
+    "id": {
+      "id": null,
+      "path": "[Full path to the time series]",
+      "timeseriesKey": null
+    },
+    "interval": {
+      "startTime": "2025-05-01T01:00:00Z",
+      "endTime": "2025-05-01T01:30:00Z"
+    },
+    "values": [
+      {
+         "date": "2025-05-01T01:00:00Z",
+         "value": null, // Must be a real number before the 2026.1 version
+         "status": 67108864
+      }
+    ]
+  }
+]
+```
+
+And the result is (from `ReadTimeSeriesValuesRaw`):
+
+```json
+{
+  "id": {
+    "id": "e91f1ffd-e5ea-4916-a3ef-b35ee5ca3b95",
+    "path": "[Full path to the time series]",
+    "timeseriesKey": 131854
+  },
+  "resolution": "Min15",
+  "interval": {
+    "startTime": "2025-05-01T00:45:00Z",
+    "endTime": "2025-05-01T01:45:00Z"
+  },
+  "values": [
+    {
+      "date": "2025-05-01T00:45:00Z",
+      "value": 15,
+      "status": 167772160
+    },
+    {
+      "date": "2025-05-01T01:00:00Z",
+      "value": null,
+      "status": 67108864 // status is missing
+    },
+    {
+      "date": "2025-05-01T01:15:00Z",
+      "value": null, 
+      "status": 67108864 // status is missing
+    },
+    {
+      "date": "2025-05-01T01:30:00Z",
+      "value": 4,
+      "status": 167772160
+    }
+  ]
+}
+```
 
 ### `POST /api/v1/CreatePhysicalTimeSeries`
 
