@@ -739,7 +739,7 @@ Values before (from `ReadTimeSeriesValuesRaw`):
 }
 ```
 
-Delete operation of the period between `01:00` (inclusive) and `01:30` (exclusive):
+Delete operation of the period between `01:00` (inclusive) and `01:30` (exclusive) using `WriteTimeSeriesValuesMultiRaw`:
 
 ```json
 [
@@ -764,7 +764,7 @@ Delete operation of the period between `01:00` (inclusive) and `01:30` (exclusiv
 ]
 ```
 
-And the result is:
+And the result is (from `ReadTimeSeriesValuesRaw`):
 
 ```json
 {
