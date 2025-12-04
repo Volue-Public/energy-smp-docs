@@ -692,7 +692,7 @@ Schema: [boolean]
 | 503 | Service Unavailable |
 | 504 | Gateway Timeout |
 
-#### Deleting values from a time series
+#### Delete values from a time series
 
 Deleting values are done automatically as part of the write process using the `WriteTimeSeriesValuesMultiRaw` function specifying the `interval` part for a time series to identify the period that should be replaced with the information in the `values` part.
 
