@@ -34,6 +34,8 @@
     - [General installation problems](#general-installation-problems)
     - [Problems related to Oracle 19](#problems-related-to-oracle-19)
   - [Security considerations](#security-considerations)
+  - [Version compatibility](#version-compatibility)
+    - [Mesh Python SDK compatibility matrix](#mesh-python-sdk-compatibility-matrix)
   - [mesh.json - complete](#meshjson-complete)
   - [Contact information](#contact-information)
 
@@ -701,6 +703,25 @@ Account running Mesh service MUST have access to those files.
 
 It is strongly recommended to configure the database connection to use encryption.
 This ensures that sensitive data, including credentials and queries, is protected from interception during transmission.
+
+## Version compatibility
+
+### Mesh Python SDK compatibility matrix
+
+| Mesh server / client | v1.11.0 | v1.12.0 | v1.13.0 |
+|----------------------|---------|---------|---------|
+| **2.17 / 2025.1** | ❌ | ✔️ | ❌ |
+| **2.18 / 2025.2** | ❌ | ✔️ | ✔️ |
+| **2.19 / 2025.3** | ❌ | ✔️ | ✔️ |
+| **2.20 / 2026.1** | ❌ | ✔️ | ✔️ |
+
+**Legend:**
+
+- ✔️ Supported - compatible
+- ❌ Not supported - incompatible, using these combination may lead to runtime errors
+
+Please also refer to Mesh Python SDK [versions page](https://volue-public.github.io/energy-mesh-python/versions.html).
+
 
 ## mesh.json - complete
 
