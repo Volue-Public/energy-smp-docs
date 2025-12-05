@@ -75,5 +75,5 @@ jobs:
             ARGS="${ARGS} latest --update-aliases"
           fi
 
-          mike set-default latest --push
           mike deploy ${ARGS} --push
+          mike set-default latest --push
