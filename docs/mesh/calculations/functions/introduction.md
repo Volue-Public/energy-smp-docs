@@ -2,8 +2,6 @@
 
 Mesh allows you to efficiently manage time series data used in several work processes. The solution lets you structure your data in your own logical hierarchy. The hierarchy is built from custom defined object types related to each other in an object model. Time series and property types are connected to the objects.
 
-For more details about object model concepts, see Mesh System Guide.
-
 ## Template calculations setup
 
 The object model is well suited for setting up time series calculations as template expressions. This means more efficient set up and maintenance and ensures consistent results thought out the system.
