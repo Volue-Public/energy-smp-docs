@@ -718,7 +718,7 @@ This ensures that sensitive data, including credentials and queries, is protecte
 **Legend:**
 
 - ✔️ Supported - compatible
-- ❌ Not supported - incompatible, using these combination may lead to runtime errors
+- ❌ Not supported - incompatible, using these combinations may lead to runtime errors
 
 Please also refer to Mesh Python SDK [versions page](https://volue-public.github.io/energy-mesh-python/versions.html).
 
