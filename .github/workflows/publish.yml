@@ -65,10 +65,15 @@ jobs:
       - name: Build and publish documentation
         run: |
           set -eux
+
           chmod +x ./build_documentation.sh
           ./build_documentation.sh
+
           ARGS="${{ github.event.inputs.smp_version }}"
+
           if [[ "${{ github.event.inputs.is_latest }}" == "true" ]]; then
             ARGS="${ARGS} latest --update-aliases"
           fi
+
           mike deploy ${ARGS} --push
+          mike set-default latest --push
