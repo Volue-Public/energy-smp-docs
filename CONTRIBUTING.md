@@ -13,7 +13,7 @@ HTML content from `gh-pages` branch to GitHub Pages: https://volue-public.github
 You don't need to trigger `pages-build-deployment` yourself, it will be
 triggered automatically on push to `gh-pages` branch.
 
-## Instruction
+## Instructions
 
 This GitHub action `Publish documentation` is triggered manually by doing the following:
 1. Go to the **Actions** tab in your GitHub repository.
@@ -95,6 +95,6 @@ If the `latest` alias was already used for some older version you need also to p
 mike deploy X.Y latest --update-aliases
 ```
 
-Once deployed, you can browse through all the documentation versions using `mike serve` command.
+Once deployed, you can browse through all the documentation versions by using `mike serve` command instead of `python -m mkdocs serve`.
 
-Pass the `--push` flag to the `deploy` command to push your changes to the remote and publish the documentation.
+To push your changes to the remote and publish the documentation, pass the `--push` flag to the `deploy` command.
