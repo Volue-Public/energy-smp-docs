@@ -1,43 +1,45 @@
 # Mesh Service Installation Guide
 
 - [Mesh Service Installation Guide](#mesh-service-installation-guide)
-  - [About this document](#about-this-document)
-  - [Prerequisites](#prerequisites)
-    - [System requirements](#system-requirements)
-    - [Checklist before you start the installation](#checklist-before-you-start-the-installation)
-    - [General setup](#general-setup)
-      - [Hardware requirements](#hardware-requirements)
-      - [Windows services and TCP communication](#windows-services-and-tcp-communication)
-      - [Communication between Nimbus Client and Mesh server](#communication-between-nimbus-client-and-mesh-server)
-  - [Install the Mesh Service](#install-the-mesh-service)
-    - [Configuring core dump creation](#configuring-core-dump-creation)
-  - [Configuration](#configuration)
-    - [mesh.json - minimum version](#meshjson-minimum-version)
-    - [Database connection](#database-connection)
-    - [Mesh ports and authentication for ZMQ](#mesh-ports-and-authentication-for-zmq)
-    - [Mesh gRPC server](#mesh-grpc-server)
-      - [Enable the server and configure port numbers](#enable-the-server-and-configure-port-numbers)
-    - [Use Transport Layer Security (TLS)](#use-transport-layer-security-tls)
-      - [Certificates](#certificates)
-      - [Loading certificates from file system](#loading-certificates-from-file-system)
-      - [Windows Certificate Store](#windows-certificate-store)
-    - [Authentication](#authentication)
-      - [Kerberos](#kerberos)
-      - [OAuth 2.0 access tokens](#oauth-20-access-tokens)
-        - [Access token types](#access-token-types)
-        - [Configuration](#oauth-configuration)
-    - [Authorisation](#authorisation)
-    - [Limit time series cache usage](#limit-time-series-cache-usage)
-  - [Verify the installation](#verify-the-installation)
-  - [Update the Mesh object model](#update-the-mesh-object-model)
-  - [Error situations](#error-situations)
-    - [General installation problems](#general-installation-problems)
-    - [Problems related to Oracle 19](#problems-related-to-oracle-19)
-  - [Security considerations](#security-considerations)
-  - [Version compatibility](#version-compatibility)
-    - [Mesh Python SDK compatibility matrix](#mesh-python-sdk-compatibility-matrix)
-  - [mesh.json - complete](#meshjson-complete)
-  - [Contact information](#contact-information)
+    - [About this document](#about-this-document)
+    - [Prerequisites](#prerequisites)
+        - [System requirements](#system-requirements)
+        - [Checklist before you start the installation](#checklist-before-you-start-the-installation)
+        - [General setup](#general-setup)
+            - [Hardware requirements](#hardware-requirements)
+            - [Windows services and TCP communication](#windows-services-and-tcp-communication)
+            - [Communication between Nimbus Client and Mesh server](#communication-between-nimbus-client-and-mesh-server)
+    - [Install the Mesh Service](#install-the-mesh-service)
+        - [Configuring core dump creation](#configuring-core-dump-creation)
+    - [Configuration](#configuration)
+        - [mesh.json - minimum version](#meshjson-minimum-version)
+        - [Database connection](#database-connection)
+            - [Credentials](#credentials)
+            - [Oracle external authentication](#oracle-external-authentication)
+        - [Mesh ports and authentication for ZMQ](#mesh-ports-and-authentication-for-zmq)
+        - [Mesh gRPC server](#mesh-grpc-server)
+            - [Enable the server and configure port numbers](#enable-the-server-and-configure-port-numbers)
+        - [Use Transport Layer Security (TLS)](#use-transport-layer-security-tls)
+            - [Certificates](#certificates)
+            - [Loading certificates from file system](#loading-certificates-from-file-system)
+            - [Windows Certificate Store](#windows-certificate-store)
+        - [Authentication](#authentication)
+            - [Kerberos](#kerberos)
+            - [OAuth 2.0 access tokens](#oauth-20-access-tokens)
+                - [Access token types](#access-token-types)
+                - [Configuration](#oauth-configuration)
+        - [Authorisation](#authorisation)
+        - [Limit time series cache usage](#limit-time-series-cache-usage)
+    - [Verify the installation](#verify-the-installation)
+    - [Update the Mesh object model](#update-the-mesh-object-model)
+    - [Error situations](#error-situations)
+        - [General installation problems](#general-installation-problems)
+        - [Problems related to Oracle 19](#problems-related-to-oracle-19)
+    - [Security considerations](#security-considerations)
+    - [Version compatibility](#version-compatibility)
+        - [Mesh Python SDK compatibility matrix](#mesh-python-sdk-compatibility-matrix)
+    - [mesh.json - complete](#meshjson-complete)
+    - [Contact information](#contact-information)
 
 <div style="page-break-after: always;"></div>
 
@@ -209,12 +211,13 @@ sqlplus <DatabaseUser>/<DatabasePassword>@<Database>
 #### Oracle external authentication
 
 To use it:
+
 - The database server must be configured to support external authentication
   and the account running Mesh service must be granted proper privileges in
   the database. The following privileges are required:
-  - `execute on sys.dbms_lock`
-  - `execute on sys.dbms_change_notification`
-  - `change notification`
+    - `execute on sys.dbms_lock`
+    - `execute on sys.dbms_change_notification`
+    - `change notification`
 - On the client side (i.e. server running Mesh service) the Oracle client
   must be configured to use NTS authentication. See `sqlnet.ora` file:
   ```
@@ -345,9 +348,9 @@ Parameters:
 
 - `CertificateThumbprint` is a 160 bit SHA1 hash. Listed in the certificate details section.
 - `SystemStoreName` name of the system store. Some predefined system stores are:
-  - `ROOT` - mapping to *Trusted Root Certification Authorities"
-  - `MY` - mapping to Personal
-  - `CA` - mapping to *Intermediate Certification Authorities"
+    - `ROOT` - mapping to *Trusted Root Certification Authorities"
+    - `MY` - mapping to Personal
+    - `CA` - mapping to *Intermediate Certification Authorities"
 
 ### Authentication
 
