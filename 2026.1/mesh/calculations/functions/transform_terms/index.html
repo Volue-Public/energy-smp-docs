@@ -538,14 +538,6 @@
 <td>MAX</td>
 <td>Largest value in the accumulation period.</td>
 </tr>
-<tr>
-<td>GSUM</td>
-<td>This transformation code requires that you use TRANSFORM version with resolution given as a break point series (version R2) and that the base series is fixed interval.<br/><br/>Same as SUM but with different period handling. In this case the period is not adjusted with regards to resolution. Here you can e.g. transform to week value based on Wednesday to Wednesday or inhomogeneous periods given by points of time on a given break point series. This transformation code requires that you use TRANSFORM version with resolution given as a break point series (version R2).</td>
-</tr>
-<tr>
-<td>GMEAN</td>
-<td>See GSUM. Same properties, but here mean value for period is calculated.</td>
-</tr>
 </tbody>
 </table>
 <p>Observe that in case the transformation method is integral based (for example ACCAVGI and ACCAVGI_NOW), the source series must have curvetype staircase start of step.</p>

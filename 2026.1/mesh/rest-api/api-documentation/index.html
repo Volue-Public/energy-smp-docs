@@ -1805,7 +1805,8 @@
 </tbody>
 </table>
 <h3 id="post-apiv1writetimeseriesvaluesmultiraw"><code>POST /api/v1/WriteTimeSeriesValuesMultiRaw</code></h3>
-<p><em>Write raw time series values to Mesh for one or more specific time series.</em></p>
+<p><em>Write raw time series values to Mesh for one or more specific time series</em></p>
+<p><strong><em>Note!</em></strong> <em>The <code>interval</code> for a time series must contain the value period for all value dates in <code>values</code>, and all values within the <code>interval</code> period are deleted before storing the values.</em></p>
 <p>POST /api/v1/WriteTimeSeriesValuesMultiRaw
 [
   {
@@ -1939,6 +1940,104 @@
 </tr>
 </tbody>
 </table>
+<h4 id="delete-values-from-a-time-series">Delete values from a time series</h4>
+<p>Deleting values are done automatically as part of the write process using the <code>WriteTimeSeriesValuesMultiRaw</code> function specifying the <code>interval</code> part for a time series to identify the period that should be replaced with the information in the <code>values</code> part.</p>
+<p><em><strong>Note!</strong></em> There must always be at least one value in the values part, but this can either be the last value before or after the period to delete, or a <code>null</code> value with <code>MISSING</code> status (=67108864). For versions before 2026.1 the value must be a real number (for instance <code>0</code>).</p>
+<p><strong>Example</strong></p>
+<p>Values before (from <code>ReadTimeSeriesValuesRaw</code>):</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: {
+    &quot;id&quot;: &quot;e91f1ffd-e5ea-4916-a3ef-b35ee5ca3b95&quot;,
+    &quot;path&quot;: &quot;[Full path to the time series]&quot;,
+    &quot;timeseriesKey&quot;: 131854
+  },
+  &quot;resolution&quot;: &quot;Min15&quot;,
+  &quot;interval&quot;: {
+    &quot;startTime&quot;: &quot;2025-05-01T00:45:00Z&quot;,
+    &quot;endTime&quot;: &quot;2025-05-01T01:45:00Z&quot;
+  },
+  &quot;values&quot;: [
+    {
+      &quot;date&quot;: &quot;2025-05-01T00:45:00Z&quot;,
+      &quot;value&quot;: 15,
+      &quot;status&quot;: 167772160
+    },
+    {
+      &quot;date&quot;: &quot;2025-05-01T01:00:00Z&quot;,
+      &quot;value&quot;: 0,
+      &quot;status&quot;: 167772160
+    },
+    {
+      &quot;date&quot;: &quot;2025-05-01T01:15:00Z&quot;,
+      &quot;value&quot;: 0,
+      &quot;status&quot;: 167772160
+    },
+    {
+      &quot;date&quot;: &quot;2025-05-01T01:30:00Z&quot;,
+      &quot;value&quot;: 4,
+      &quot;status&quot;: 167772160
+    }
+  ]
+}
+</code></pre>
+<p>Delete operation of the period between <code>01:00</code> (inclusive) and <code>01:30</code> (exclusive) using <code>WriteTimeSeriesValuesMultiRaw</code>:</p>
+<pre><code class="language-json">[
+  {
+    &quot;id&quot;: {
+      &quot;id&quot;: null,
+      &quot;path&quot;: &quot;[Full path to the time series]&quot;,
+      &quot;timeseriesKey&quot;: null
+    },
+    &quot;interval&quot;: {
+      &quot;startTime&quot;: &quot;2025-05-01T01:00:00Z&quot;,
+      &quot;endTime&quot;: &quot;2025-05-01T01:30:00Z&quot;
+    },
+    &quot;values&quot;: [
+      {
+         &quot;date&quot;: &quot;2025-05-01T01:00:00Z&quot;,
+         &quot;value&quot;: null, // Must be a real number before the 2026.1 version
+         &quot;status&quot;: 67108864
+      }
+    ]
+  }
+]
+</code></pre>
+<p>And the result is (from <code>ReadTimeSeriesValuesRaw</code>):</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: {
+    &quot;id&quot;: &quot;e91f1ffd-e5ea-4916-a3ef-b35ee5ca3b95&quot;,
+    &quot;path&quot;: &quot;[Full path to the time series]&quot;,
+    &quot;timeseriesKey&quot;: 131854
+  },
+  &quot;resolution&quot;: &quot;Min15&quot;,
+  &quot;interval&quot;: {
+    &quot;startTime&quot;: &quot;2025-05-01T00:45:00Z&quot;,
+    &quot;endTime&quot;: &quot;2025-05-01T01:45:00Z&quot;
+  },
+  &quot;values&quot;: [
+    {
+      &quot;date&quot;: &quot;2025-05-01T00:45:00Z&quot;,
+      &quot;value&quot;: 15,
+      &quot;status&quot;: 167772160
+    },
+    {
+      &quot;date&quot;: &quot;2025-05-01T01:00:00Z&quot;,
+      &quot;value&quot;: null,
+      &quot;status&quot;: 67108864 // status is missing
+    },
+    {
+      &quot;date&quot;: &quot;2025-05-01T01:15:00Z&quot;,
+      &quot;value&quot;: null, 
+      &quot;status&quot;: 67108864 // status is missing
+    },
+    {
+      &quot;date&quot;: &quot;2025-05-01T01:30:00Z&quot;,
+      &quot;value&quot;: 4,
+      &quot;status&quot;: 167772160
+    }
+  ]
+}
+</code></pre>
 <h3 id="post-apiv1createphysicaltimeseries"><code>POST /api/v1/CreatePhysicalTimeSeries</code></h3>
 <p><em>Creates a physical time series in the database.</em></p>
 <p>POST /api/v1/CreatePhysicalTimeSeries

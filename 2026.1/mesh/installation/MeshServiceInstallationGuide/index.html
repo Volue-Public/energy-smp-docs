@@ -171,6 +171,12 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-compatibility">Version compatibility</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#mesh-python-sdk-compatibility-matrix">Mesh Python SDK compatibility matrix</a>
+    </li>
+        </ul>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#meshjson-complete">mesh.json - complete</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#contact-information">Contact information</a>
@@ -595,6 +601,10 @@
 </ul>
 </li>
 <li><a href="#security-considerations">Security considerations</a></li>
+<li><a href="#version-compatibility">Version compatibility</a><ul>
+<li><a href="#mesh-python-sdk-compatibility-matrix">Mesh Python SDK compatibility matrix</a></li>
+</ul>
+</li>
 <li><a href="#meshjson-complete">mesh.json - complete</a></li>
 <li><a href="#contact-information">Contact information</a></li>
 </ul>
@@ -1173,6 +1183,50 @@ Account running Mesh service MUST have access to those files.</p>
 <h3 id="database">Database</h3>
 <p>It is strongly recommended to configure the database connection to use encryption.
 This ensures that sensitive data, including credentials and queries, is protected from interception during transmission.</p>
+<h2 id="version-compatibility">Version compatibility</h2>
+<h3 id="mesh-python-sdk-compatibility-matrix">Mesh Python SDK compatibility matrix</h3>
+<table>
+<thead>
+<tr>
+<th>Mesh server / client</th>
+<th>v1.11.0</th>
+<th>v1.12.0</th>
+<th>v1.13.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>2.17 / 2025.1</strong></td>
+<td>❌</td>
+<td>✔️</td>
+<td>❌</td>
+</tr>
+<tr>
+<td><strong>2.18 / 2025.2</strong></td>
+<td>❌</td>
+<td>✔️</td>
+<td>✔️</td>
+</tr>
+<tr>
+<td><strong>2.19 / 2025.3</strong></td>
+<td>❌</td>
+<td>✔️</td>
+<td>✔️</td>
+</tr>
+<tr>
+<td><strong>2.20 / 2026.1</strong></td>
+<td>❌</td>
+<td>✔️</td>
+<td>✔️</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Legend:</strong></p>
+<ul>
+<li>✔️ Supported - compatible</li>
+<li>❌ Not supported - incompatible, using these combinations may lead to runtime errors</li>
+</ul>
+<p>Please also refer to Mesh Python SDK <a href="https://volue-public.github.io/energy-mesh-python/versions.html">versions page</a>.</p>
 <h2 id="meshjson-complete">mesh.json - complete</h2>
 <p>Below is the complete <code>mesh.json</code> listed with all options with default values.</p>
 <pre><code class="language-json">{
