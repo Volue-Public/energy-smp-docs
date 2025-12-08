@@ -57,7 +57,7 @@
     <ul class="current">
                 <li class="toctree-l2"><a class="reference internal" href="../availability/">Availability</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../calculations/calculations/">Calculations</a>
+                <li class="toctree-l2"><a class="reference internal" href="../calculations/">Calculations</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" >Modelling</a>
     <ul>
@@ -101,7 +101,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" >Calculations</a>
     <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../../calculations/calculations/">Calculations</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../calculations/general/">General</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../calculations/timepoint-macros/">Time macros</a>
                 </li>
@@ -520,7 +520,7 @@ via a <a href="../modelling/general/#attribute">time series attribute</a>. Eithe
 directly or as part of a calculation.</p>
 <h3 id="virtual-time-series">Virtual time series</h3>
 <p>Virtual time series do not contain actual data points but an expression that is
-used to compute data points as a result. The <a href="../../calculations/calculations/">calculation expressions</a>
+used to compute data points as a result. The <a href="../../calculations/general/">calculation expressions</a>
 may reference other virtual or physical time series or constants. For example:</p>
 <pre><code>&quot;##= %'/TestResourceCatalog/physicalTimeSeries' + 3\n&quot;
 </code></pre>
@@ -530,7 +530,7 @@ in a storage called <em>resources</em>.</p>
 <h3 id="calculation-time-series">Calculation time series</h3>
 <p>Calculation time series are similar to virtual time series, but they are
 a newer concept and are more flexible. They do not contain actual data points
-but a <a href="../../calculations/calculations/">calculation expressions</a> that may
+but a <a href="../../calculations/general/">calculation expressions</a> that may
 reference other time series types, attribute values or constants. For example:</p>
 <pre><code>&quot;##= @d('.DoubleAttribute') + @t('.TimeSeriesAttributePhysical') + @t('...TimeSeriesAttributeCalculation')\n&quot;
 </code></pre>
@@ -545,7 +545,7 @@ all values in a time series, find values and status for a time series at
 a given historical time, transform time series values from one resolution to
 another and many more. These functions are loosely arranged into groups
 representing a common category for those functions. See
-<a href="../../calculations/calculations/">Mesh calculations</a> and
+<a href="../../calculations/general/">Mesh calculations</a> and
 <a href="../../calculations/functions/introduction/">Mesh calculation functions</a> for more information.</p>
               
             </div>

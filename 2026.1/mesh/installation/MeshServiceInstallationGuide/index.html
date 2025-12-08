@@ -57,7 +57,7 @@
     <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../../concepts/availability/">Availability</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../calculations/calculations/">Calculations</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/calculations/">Calculations</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" >Modelling</a>
     <ul>
@@ -185,7 +185,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" >Calculations</a>
     <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../../calculations/calculations/">Calculations</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../calculations/general/">General</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../calculations/timepoint-macros/">Time macros</a>
                 </li>
@@ -557,15 +557,17 @@
               
                 <h1 id="mesh-service-installation-guide">Mesh Service Installation Guide</h1>
 <ul>
-<li><a href="#mesh-service-installation-guide">Mesh Service Installation Guide</a></li>
+<li><a href="#mesh-service-installation-guide">Mesh Service Installation Guide</a><ul>
 <li><a href="#about-this-document">About this document</a></li>
 <li><a href="#prerequisites">Prerequisites</a><ul>
 <li><a href="#system-requirements">System requirements</a></li>
 <li><a href="#checklist-before-you-start-the-installation">Checklist before you start the installation</a></li>
-<li><a href="#general-setup">General setup</a></li>
+<li><a href="#general-setup">General setup</a><ul>
 <li><a href="#hardware-requirements">Hardware requirements</a></li>
 <li><a href="#windows-services-and-tcp-communication">Windows services and TCP communication</a></li>
 <li><a href="#communication-between-nimbus-client-and-mesh-server">Communication between Nimbus Client and Mesh server</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#install-the-mesh-service">Install the Mesh Service</a><ul>
@@ -574,19 +576,29 @@
 </li>
 <li><a href="#configuration">Configuration</a><ul>
 <li><a href="#meshjson-minimum-version">mesh.json - minimum version</a></li>
-<li><a href="#database-connection">Database connection</a></li>
+<li><a href="#database-connection">Database connection</a><ul>
+<li><a href="#credentials">Credentials</a></li>
+<li><a href="#oracle-external-authentication">Oracle external authentication</a></li>
+</ul>
+</li>
 <li><a href="#mesh-ports-and-authentication-for-zmq">Mesh ports and authentication for ZMQ</a></li>
-<li><a href="#mesh-grpc-server">Mesh gRPC server</a></li>
+<li><a href="#mesh-grpc-server">Mesh gRPC server</a><ul>
 <li><a href="#enable-the-server-and-configure-port-numbers">Enable the server and configure port numbers</a></li>
-<li><a href="#use-transport-layer-security-tls">Use Transport Layer Security (TLS)</a></li>
+</ul>
+</li>
+<li><a href="#use-transport-layer-security-tls">Use Transport Layer Security (TLS)</a><ul>
 <li><a href="#certificates">Certificates</a></li>
 <li><a href="#loading-certificates-from-file-system">Loading certificates from file system</a></li>
 <li><a href="#windows-certificate-store">Windows Certificate Store</a></li>
-<li><a href="#authentication">Authentication</a></li>
+</ul>
+</li>
+<li><a href="#authentication">Authentication</a><ul>
 <li><a href="#kerberos">Kerberos</a></li>
 <li><a href="#oauth-20-access-tokens">OAuth 2.0 access tokens</a><ul>
 <li><a href="#access-token-types">Access token types</a></li>
 <li><a href="#oauth-configuration">Configuration</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#authorisation">Authorisation</a></li>
@@ -607,6 +619,8 @@
 </li>
 <li><a href="#meshjson-complete">mesh.json - complete</a></li>
 <li><a href="#contact-information">Contact information</a></li>
+</ul>
+</li>
 </ul>
 <div style="page-break-after: always;"></div>
 
@@ -794,23 +808,27 @@ You define the database connection string in <code>mesh.json</code>:</p>
 <pre><code class="language-cmd">sqlplus &lt;DatabaseUser&gt;/&lt;DatabasePassword&gt;@&lt;Database&gt;
 </code></pre>
 <h4 id="oracle-external-authentication">Oracle external authentication</h4>
-<p>To use it:
-- The database server must be configured to support external authentication
+<p>To use it:</p>
+<ul>
+<li>The database server must be configured to support external authentication
   and the account running Mesh service must be granted proper privileges in
-  the database. The following privileges are required:
-  - <code>execute on sys.dbms_lock</code>
-  - <code>execute on sys.dbms_change_notification</code>
-  - <code>change notification</code>
-- On the client side (i.e. server running Mesh service) the Oracle client
+  the database. The following privileges are required:<ul>
+<li><code>execute on sys.dbms_lock</code></li>
+<li><code>execute on sys.dbms_change_notification</code></li>
+<li><code>change notification</code></li>
+</ul>
+</li>
+<li>On the client side (i.e. server running Mesh service) the Oracle client
   must be configured to use NTS authentication. See <code>sqlnet.ora</code> file:
-  <code>SQLNET.AUTHENTICATION_SERVICES= (NTS)</code>
-- On the client side, set <code>ExternalCredentials</code> parameter to <code>true</code> in the
+  <code>SQLNET.AUTHENTICATION_SERVICES= (NTS)</code></li>
+<li>On the client side, set <code>ExternalCredentials</code> parameter to <code>true</code> in the
   <code>Oracle</code> section in <code>mesh.json</code> configuration file:
   <code>json
   "Oracle": {
     "Server": "&lt;Database&gt;",
     "ExternalCredentials": true
-  }</code></p>
+  }</code></li>
+</ul>
 <h3 id="mesh-ports-and-authentication-for-zmq">Mesh ports and authentication for ZMQ</h3>
 <p>In the Mesh configuration file <code>mesh.json</code> the lines are used (with default values):</p>
 <pre><code class="language-json">  &quot;Zmq&quot;: {
@@ -893,10 +911,12 @@ Grant permissions only to the specific users or groups that require access (prin
 <p>Parameters:</p>
 <ul>
 <li><code>CertificateThumbprint</code> is a 160 bit SHA1 hash. Listed in the certificate details section.</li>
-<li><code>SystemStoreName</code> name of the system store. Some predefined system stores are:</li>
+<li><code>SystemStoreName</code> name of the system store. Some predefined system stores are:<ul>
 <li><code>ROOT</code> - mapping to *Trusted Root Certification Authorities"</li>
 <li><code>MY</code> - mapping to Personal</li>
 <li><code>CA</code> - mapping to *Intermediate Certification Authorities"</li>
+</ul>
+</li>
 </ul>
 <h3 id="authentication">Authentication</h3>
 <p>Mesh server could be configured to protect its gRPC API so that only authenticated users that are assigned to specific roles can access it. There are two options:</p>
@@ -1323,7 +1343,7 @@ This ensures that sensitive data, including credentials and queries, is protecte
           </div><footer>
       <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
           <a href="../../concepts/time-series/" class="btn btn--outline btn--success float-left" title="Time series"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-          <a href="../../calculations/calculations/" class="btn btn--outline btn--success float-right" title="Calculations">Next <span class="icon icon-circle-arrow-right"></span></a>
+          <a href="../../calculations/general/" class="btn btn--outline btn--success float-right" title="General">Next <span class="icon icon-circle-arrow-right"></span></a>
       </div>
   
     <hr/>
@@ -1349,7 +1369,7 @@ This ensures that sensitive data, including credentials and queries, is protecte
         <span><a href="../../concepts/time-series/" style="color: #fcfcfc">&laquo; Previous</a></span>
       
       
-        <span><a href="../../calculations/calculations/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span><a href="../../calculations/general/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
   </div>
