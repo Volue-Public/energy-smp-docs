@@ -61,7 +61,7 @@ the world from this instance. Navigating to_PriceArea in this case ends up in
 the PriceArea instance named NO3.
 
 
-## Functions
+## Calculation functions
 
 Here are some general comments to functions used in expressions:
 
@@ -94,6 +94,8 @@ the Production series may have values every 15 minutes and the Price series may
 have values every hour.
 
 The argument to a function can be the result of another function.
+
+For more information about Mesh calculation functions, see [Calculations in Mesh - introduction](./functions/introduction.md).
 
 
 ## Calculation expression definition
