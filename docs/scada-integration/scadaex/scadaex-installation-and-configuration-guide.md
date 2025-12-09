@@ -1,5 +1,33 @@
 # Powel ScadaEx - Installation and Configuration guide
 
+- [Powel ScadaEx - Installation and Configuration guide](#powel-scadaex---installation-and-configuration-guide)
+  - [About this document](#about-this-document)
+    - [Documentation overview](#documentation-overview)
+    - [Writing conventions](#writing-conventions)
+  - [Introduction](#introduction)
+  - [Prerequisites](#prerequisites)
+    - [System requirements](#system-requirements)
+  - [Install ScadaEx](#install-scadaex)
+    - [Overview of application files](#overview-of-application-files)
+      - [Basic SmG configuration](#basic-smg-configuration)
+    - [Configure logging to the Windows Event Log](#configure-logging-to-the-windows-event-log)
+      - [About event logs](#about-event-logs)
+      - [About event sources](#about-event-sources)
+      - [Logging to the event log without or with incorrect setup](#logging-to-the-event-log-without-or-with-incorrect-setup)
+      - [Configure event logging for ScadaEx](#configure-event-logging-for-scadaex)
+      - [Manage the event logging](#manage-the-event-logging)
+    - [Install as Windows Service](#install-as-windows-service)
+      - [Manage the service](#manage-the-service)
+  - [Configure ScadaEx](#configure-scadaex)
+    - [Configuration locations](#configuration-locations)
+    - [Logging](#logging)
+    - [Configuration variable reference](#configuration-variable-reference)
+      - [Common](#common)
+      - [HistoryCollection](#historycollection)
+      - [Common AutoPilot and TsToScada](#common-autopilot-and-tstoscada)
+      - [TsToScada](#tstoscada)
+      - [AutoPilot](#autopilot)
+
 ## About this document
 
 This document describes how to install and configure Powel ScadaEx. It is intended for a technical audience, to be used by Powel consultants and system administrator/IT personnel at Powel’s customers.

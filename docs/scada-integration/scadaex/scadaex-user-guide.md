@@ -1,5 +1,50 @@
 # Powel ScadaEx - User guide
 
+- [Powel ScadaEx - User guide](#powel-scadaex---user-guide)
+  - [About this document](#about-this-document)
+    - [Documentation overview](#documentation-overview)
+    - [Writing conventions](#writing-conventions)
+  - [Introduction](#introduction)
+    - [Terminology](#terminology)
+  - [Modes of operation](#modes-of-operation)
+    - [HistoryCollection: Transferring values from Nematic to SmG](#historycollection-transferring-values-from-nematic-to-smg)
+      - [How Nematic/iFIX tag gets mapped into time series](#how-nematicifix-tag-gets-mapped-into-time-series)
+      - [Collection type (history mode)](#collection-type-history-mode)
+      - [Queue collection and check rate](#queue-collection-and-check-rate)
+      - [Value cache and queue collection strategy](#value-cache-and-queue-collection-strategy)
+      - [Error handling](#error-handling)
+        - [Loss of database communication/failure to insert values into the SmG database](#loss-of-database-communicationfailure-to-insert-values-into-the-smg-database)
+        - [Duplicate items](#duplicate-items)
+        - [Overflow in the iFIX message queue](#overflow-in-the-ifix-message-queue)
+        - [Loss of communication with the iFIX message queue](#loss-of-communication-with-the-ifix-message-queue)
+    - [TsToScada: Transferring data from time-series in SmG database to Nematic Data-blocks](#tstoscada-transferring-data-from-time-series-in-smg-database-to-nematic-data-blocks)
+      - [File format for time series export list](#file-format-for-time-series-export-list)
+        - [Examples of \<timespec\>](#examples-of-timespec)
+        - [Examples of configuration file contents](#examples-of-configuration-file-contents)
+        - [Examples of \<simple\_period\_spec\>](#examples-of-simple_period_spec)
+        - [Description of functions that are applied on specified interval](#description-of-functions-that-are-applied-on-specified-interval)
+      - [Configuration](#configuration)
+        - [Controlling the update and refresh rate](#controlling-the-update-and-refresh-rate)
+    - [AutoPilot](#autopilot)
+      - [Configuration file format](#configuration-file-format)
+        - [StandardPowerPlant](#standardpowerplant)
+        - [StandardReservoir](#standardreservoir)
+        - [CustomAutopilot](#customautopilot)
+      - [Monitoring period and memory clean-up](#monitoring-period-and-memory-clean-up)
+      - [TargetTime and Execute](#targettime-and-execute)
+      - [Alarms](#alarms)
+        - [Plan changed alarm](#plan-changed-alarm)
+        - [Plan missing alarm](#plan-missing-alarm)
+  - [Command line reference](#command-line-reference)
+    - [Main options](#main-options)
+    - [Setup options](#setup-options)
+      - [Installing and uninstalling service](#installing-and-uninstalling-service)
+      - [Installing and uninstalling event log](#installing-and-uninstalling-event-log)
+    - [Run options](#run-options)
+      - [Command file](#command-file)
+    - [Service options](#service-options)
+    - [Setting configuration variables using command line arguments](#setting-configuration-variables-using-command-line-arguments)
+
 ## About this document
 
 This document describes how to use the application. It is intended for a technical audience.
@@ -43,25 +88,6 @@ The following table contains explanations of important terminology used in this 
 |Nematic|Product name of Netcontrol (www.netcontrol.fi). Extends iFIX from Intellution into a usable SCADA for powerplants.|
 |iFIX|Product name for GE Intelligent Platforms (www.ge-ip.com), part of the Proficy portfolio (“Proficy iFIX HMI/SCADA”). Delivers the building blocks (the SCADA engine) for Netcontrol’s Nematic product.|
 |Node, Tag and Field|Node is the name of a SCADA server, tag is the name of a database block and field is an attribute on the database block. An individual attribute in an iFix database is usually referred to using a combined unique identifier “NODE.TAG.FIELD”, denoted NTF for short.|
-
-### ScadaEx version history
-
-The following table shows important changes in ScadaEx:
-
-|VERSION|ADDED/IMPROVED/REMOVED|DESCRIPTION|
-|-------|----------------------|-----------|
-|10.2.1|Added|Support for logging to Windows Event Log instead of console.|
-||Added|Support for installing and running as a Windows Service.|
-||Added|Support for reading command line arguments from file (command file).|
-||Improved|Command line syntax extended to support new features (Windows Event Log, Windows Service, command file etc.), and some other general improvements. All changes are backwards compatible so existing commands should function as before.|
-||Improved|Modifications in the main collection loop logic of history collection, primarily related to database disconnection and the creation of files. The configuration variable ICC_IFIX_MIN_QREAD is now only considered when database is not connected, and default value is the value of ICC_IFIX_MAX_CACHE.|
-||Added|Added configuration variables ICC_SCADAEX_USE_EVENTLOG, ICC_SCADAEX_EVENTSOURCE, ICC_IFIX_CACHEDUMP_DIR and ICC_SCADAEX_COMMANDFILE.|
-||Improved|Renamed configuration variable SCADAEX_DEBUGLEVEL to ICC_SCADAEX_DEBUGLEVEL (conformance with name format of the other variables).|
-||Removed|Removed configuration variable DEBUG_IFIXIMP. Use ICC_SCADAEX_DEBUGLEVEL instead.|
-|Phoebe|Improved|A new instance of Autopilot trace file including date stamp in the name is created when Autopilot is started.|
-||Improved|An option to turn on/off Ifix log to ICC-Log with the configuration variable SCADAEX_LOG_IFIX (TRUE/FALSE or YES/NO). Default value is no logging to ICC log.|
-||Improved|Logging user messages to console (if present) when shutting down ScadaEx with <CTRL_C> EVENT.|
-||Added|Added configuration variable LOG_XTRA_2_TRACE_FILE to add more information to Autopilot trace file to ease debugging. Default value is TRUE.|
 
 ## Modes of operation
 
