@@ -80,11 +80,13 @@ The options to frequency code are defined in <> brackets, for instance `HOUR<LT>
 | DB | Database configured calendar used when moving time points with given frequency. |
 | UTC | UTC calendar used when moving time points with given frequency. |
 
-Tip! You may incorporate calendar options into frequency codes as a prefix
-code. Valid calendar prefix codes are LOCAL, STANDARD, UTC and DB. For example
-frequency code LOCALDAY is the same as DAY. STANDARD is default and can be omitted.
+This calendar info is also used when parsing time points.
 
-The calendar info is used also used when parsing time points.
+The frequency argument permits unknown components, for example a `LOCAL` prefix.
+These components are ignored, and support may be deprecated and then removed in
+future releases. In other words you may use `LOCALDAY`, but that is interpreted
+as `DAY` and you should use `DAY` or `DAY<LT>` instead.
+
 
 #### Time point description array
 
