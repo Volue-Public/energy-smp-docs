@@ -104,6 +104,7 @@ nav:
                             - MIX0: mesh/calculations/functions/mix0.md
                             - TS_IQ-FILL: mesh/calculations/functions/tsiqfill.md
                       - Sim:
+                            - About: mesh/calculations/functions/sim.md
                             - CONVERT_VOLUME: mesh/calculations/functions/convert_volume.md
                             - RatingCurve: mesh/calculations/functions/rating_curve.md
                             - TimeDelayed: mesh/calculations/functions/time_delayed.md
@@ -122,6 +123,7 @@ nav:
                             - STATUS_MASK: mesh/calculations/functions/status_mask.md
                             - STATUS_COUNT: mesh/calculations/functions/status_count.md
                       - Time:
+                            - About: mesh/calculations/functions/time_about.md
                             - IsResolution: mesh/calculations/functions/is_resolution.md
                             - IsTimeValid: mesh/calculations/functions/is_time_valid.md
                             - PushExtPeriod: mesh/calculations/functions/push_ext_period.md
@@ -145,6 +147,7 @@ nav:
                             - PROFILE with explicit frequency: mesh/calculations/functions/profile_with_explicit_frequency.md
                             - ACCUMULATE: mesh/calculations/functions/accumulate.md
                       - VEE:
+                            - About: mesh/calculations/functions/vee.md
                             - ValidateAbsLimit: mesh/calculations/functions/validate_abs_limit.md
                             - ValidateDeltaLimit: mesh/calculations/functions/validate_delta_limit.md
                             - ValidateDeltaLimitExtreme: mesh/calculations/functions/validate_delta_limit_extreme.md
