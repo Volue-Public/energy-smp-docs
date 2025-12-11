@@ -91,7 +91,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a>
+    <li class="toctree-l3"><a class="reference internal" href="#calculation-functions">Calculation functions</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#calculation-expression-definition">Calculation expression definition</a>
     </li>
@@ -279,6 +279,8 @@
                 </li>
                 <li class="toctree-l3"><a class="reference internal" >Sim</a>
     <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/sim/">About</a>
+                </li>
                 <li class="toctree-l4"><a class="reference internal" href="../functions/convert_volume/">CONVERT_VOLUME</a>
                 </li>
                 <li class="toctree-l4"><a class="reference internal" href="../functions/rating_curve/">RatingCurve</a>
@@ -321,6 +323,8 @@
                 </li>
                 <li class="toctree-l3"><a class="reference internal" >Time</a>
     <ul>
+                <li class="toctree-l4"><a class="" href="../functions/time_about.md">About</a>
+                </li>
                 <li class="toctree-l4"><a class="reference internal" href="../functions/is_resolution/">IsResolution</a>
                 </li>
                 <li class="toctree-l4"><a class="reference internal" href="../functions/is_time_valid/">IsTimeValid</a>
@@ -371,6 +375,8 @@
                 </li>
                 <li class="toctree-l3"><a class="reference internal" >VEE</a>
     <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/vee/">About</a>
+                </li>
                 <li class="toctree-l4"><a class="reference internal" href="../functions/validate_abs_limit/">ValidateAbsLimit</a>
                 </li>
                 <li class="toctree-l4"><a class="reference internal" href="../functions/validate_delta_limit/">ValidateDeltaLimit</a>
@@ -537,7 +543,7 @@ time dependent relation <em>to_PriceArea</em> to a <em>PriceArea</em> type objec
 model object Brattset, a HydroPlant instance, the search and navigation will see
 the world from this instance. Navigating to_PriceArea in this case ends up in
 the PriceArea instance named NO3.</p>
-<h2 id="functions">Functions</h2>
+<h2 id="calculation-functions">Calculation functions</h2>
 <p>Here are some general comments to functions used in expressions:</p>
 <p>A function is defined as <code>@function_name(arguments)</code>. The arguments may be empty
 or defined as a comma separated list.</p>
@@ -564,6 +570,7 @@ series given as arguments may have different resolutions. Ref. example above:
 the Production series may have values every 15 minutes and the Price series may
 have values every hour.</p>
 <p>The argument to a function can be the result of another function.</p>
+<p>For more information about Mesh calculation functions, see <a href="../functions/introduction/">Calculations in Mesh - introduction</a>.</p>
 <h2 id="calculation-expression-definition">Calculation expression definition</h2>
 <p>The time series calculation definitions are in general associated with the
 Mesh model definition. This means that the calculations are defined as part
