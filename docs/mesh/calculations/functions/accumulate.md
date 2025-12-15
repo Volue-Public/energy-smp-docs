@@ -32,7 +32,7 @@ period, the accumulation buffer is reset.
 | Type | Description |
 |---|---|
 | t | Input data series (fixed interval). |
-| s | Accumulation from start or end of the interval given in the next argument. <br>’>’ means from the start of the interval and forward. ’<’ means from the end of <br>the interval and backwards. |
+| s | Must be ’>’. |
 | d | Accumulation period given as number of points. |
 
 ## Example 1
