@@ -1,6 +1,6 @@
-# Powel ScadaEx - User guide
+# Volue ScadaEx - User guide
 
-- [Powel ScadaEx - User guide](#powel-scadaex---user-guide)
+- [Volue ScadaEx - User guide](#volue-scadaex---user-guide)
   - [About this document](#about-this-document)
     - [Documentation overview](#documentation-overview)
     - [Writing conventions](#writing-conventions)
@@ -53,8 +53,8 @@ This document describes how to use the application. It is intended for a technic
 
 |DOCUMENT|WHEN|TARGET GROUP|LOCATION|
 |--------|----|------------|--------|
-|SmG Release notes|Overview|System owner, system administrator/IT operations, end user|myPowel, Powel ftp-server|
-|ScadaEx Installation and Configuration guide|Set-up|System administrator/IT operations|myPowel, Powel ftp-server|
+|SmG Release notes|Overview|System owner, system administrator/IT operations, end user|myPowel, Volue ftp-server|
+|ScadaEx Installation and Configuration guide|Set-up|System administrator/IT operations|myPowel, Volue ftp-server|
 
 ### Writing conventions
 
@@ -68,12 +68,12 @@ This document describes how to use the application. It is intended for a technic
 
 ## Introduction
 
-ScadaEx is a software component that integrates the Powel SmG system and the Nematic Scada system. The component can be considered as an extended Scada component, and therefore it has been given the name “ScadaEx”. This comprehensive functionality includes two-way exchange of time series data between the Nematic/iFIX real-time database and the SmG time series database (Oracle), autopilot functionality, and naming conventions between the Powel Simulator data model and the Scada real time database.
+ScadaEx is a software component that integrates the Volue SmG system and the Nematic Scada system. The component can be considered as an extended Scada component, and therefore it has been given the name “ScadaEx”. This comprehensive functionality includes two-way exchange of time series data between the Nematic/iFIX real-time database and the SmG time series database (Oracle), autopilot functionality, and naming conventions between the Volue Simulator data model and the Scada real time database.
 
 ScadaEx is a single application that runs on the Scada node side by side with the Nematic and its underlying iFIX system. The application can operate in one of several modes at a time, but multiple instances can be started to operate different modes on the same node. Currently the following modes of operation are defined:
 
-- Transfer of values from Nematic real time data base to the Powel SmG data base for historical storage (“HistoryCollection” mode).
-- Transfer of values from Powel SmG database to specified Nematic real time database entities (“TsToScada” mode).
+- Transfer of values from Nematic real time data base to the Volue SmG data base for historical storage (“HistoryCollection” mode).
+- Transfer of values from Volue SmG database to specified Nematic real time database entities (“TsToScada” mode).
 - Autopilot driver, feeding the Nematic real-time database blocks with values according to autopilot plans (“AutoPilot” mode).
 
 The program uses a cross reference file for mapping between Nematic identities and SmG time series identities.
@@ -84,7 +84,7 @@ The following table contains explanations of important terminology used in this 
 
 |EXPRESSION|EXPLANATION|
 |----------|-----------|
-|Powel SmG|Powel Smart Generation, a product name of Volue AS (www.volue.com). Delivers Energy Management Software (EMS) for production planning and optimization. Integrates with Netcontrol’s Nematic product.|
+|Volue SmG|Volue Smart Generation, a product name of Volue AS (www.volue.com). Delivers Energy Management Software (EMS) for production planning and optimization. Integrates with Netcontrol’s Nematic product.|
 |Nematic|Product name of Netcontrol (www.netcontrol.fi). Extends iFIX from Intellution into a usable SCADA for powerplants.|
 |iFIX|Product name for GE Intelligent Platforms (www.ge-ip.com), part of the Proficy portfolio (“Proficy iFIX HMI/SCADA”). Delivers the building blocks (the SCADA engine) for Netcontrol’s Nematic product.|
 |Node, Tag and Field|Node is the name of a SCADA server, tag is the name of a database block and field is an attribute on the database block. An individual attribute in an iFix database is usually referred to using a combined unique identifier “NODE.TAG.FIELD”, denoted NTF for short.|
@@ -100,7 +100,7 @@ We call this the “HistoryCollection” mode in this document, although various
 
 ### HistoryCollection: Transferring values from Nematic to SmG
 
-In a SmG/Nematic integrated system the SmG database is the storage space for all historical information from the Scada real-time database. The data will be stored in time series of irregular interval type, so-called break point time series, so that every value from Netcon can be stored. Scheduled tasks can be set up to aggregate the original time series with very fine resolution into fixed interval time series with more practical resolutions like hour or 15 minutes. Since the amount of data in the original break point time series may get very high, it is recommended to delete values that exceed a specified age from these, and instead use aggregated time series for long term storage. This deletion can also be set up as scheduled task. Powel supplies scripts and database jobs to support this functionality.
+In a SmG/Nematic integrated system the SmG database is the storage space for all historical information from the Scada real-time database. The data will be stored in time series of irregular interval type, so-called break point time series, so that every value from Netcon can be stored. Scheduled tasks can be set up to aggregate the original time series with very fine resolution into fixed interval time series with more practical resolutions like hour or 15 minutes. Since the amount of data in the original break point time series may get very high, it is recommended to delete values that exceed a specified age from these, and instead use aggregated time series for long term storage. This deletion can also be set up as scheduled task. Volue supplies scripts and database jobs to support this functionality.
 
 To import values from the Nematic/iFIX database into the time series database use the following syntax:
 
@@ -171,7 +171,7 @@ The path separator in SmG is ‘/’, and this character is a legal character in
 
 The “Collection Type” parameter in the “Historical Collection” configuration of Netcon database blocks is used to set a mode of (a set of parameters for) the history collection of the block.
 
-The historical values stored for a Netcon database block with history collection enabled will always be initially stored in a break point time series in the SmG database. ScadaEx will create the time series if it does not exist. But as described above there are usually additional operations that one would want to be performed on the stored values. Every changed value from Scada will be stored in the break point time series, the storage space required for these time series can therefore become a problem. Thus, it is recommended to regularly aggregate the break point time series into coarser resolution like 15 minute or hour interval time series. Powel offers scripts that can be set up as scheduled tasks to perform the aggregation, followed by deletion of old break points from the original break point time series. These scripts use the information from the collection type parameter to decide what operations to perform on each individual break point time series.
+The historical values stored for a Netcon database block with history collection enabled will always be initially stored in a break point time series in the SmG database. ScadaEx will create the time series if it does not exist. But as described above there are usually additional operations that one would want to be performed on the stored values. Every changed value from Scada will be stored in the break point time series, the storage space required for these time series can therefore become a problem. Thus, it is recommended to regularly aggregate the break point time series into coarser resolution like 15 minute or hour interval time series. Volue offers scripts that can be set up as scheduled tasks to perform the aggregation, followed by deletion of old break points from the original break point time series. These scripts use the information from the collection type parameter to decide what operations to perform on each individual break point time series.
 
 The collection type defines:
 
@@ -313,7 +313,7 @@ ScadaEx.exe TsToScada <configuration_file> [Debug]
 Example:
 
 ```cmd
-ScadaEx.exe TSTOSCADA C:\Powel\IccDir\iccfiles\ts_to_scada_map.txt
+ScadaEx.exe TSTOSCADA C:\Volue\IccDir\iccfiles\ts_to_scada_map.txt
 ```
 
 If the given configuration file is not found, or ScadaEx does not have permission to read it, then the configuration variable `ICC_IFIX_EXP_MAP` will be checked. If set then the value is assumed to be a file path, and ScadaEx will attempt to read that file instead. If the configuration variable is not set, then it tries to read a file with name “ts_to_ifix_map.txt” in the current working directory.
@@ -406,7 +406,7 @@ The update- and refresh rates are controlled by the following configuration vari
 
 ### AutoPilot
 
-The AutoPilot mode of ScadaEx reports changes in production plans stored as time series in SmG to the Scada system. Only changes in values are reported - setpoints. The autopilot will monitor time series both back in time and forward in time within a defined monitoring window to be able to spot changes that can affect the current (or near future) setpoints. The normal usage is to use Powel Simulator as a utility for production planning, and store plans that are committed into the special Current Plan Scenario (CPS). The CPS scenario is a dedicated scenario meant to, at all times , contain the detailed production plan for all components in the water course that is considered the best for the active planning period. The AutoPilot function will normally be configured to map the planning time series from the CPS scenario to corresponding Netcon database blocks for execution of the plans.
+The AutoPilot mode of ScadaEx reports changes in production plans stored as time series in SmG to the Scada system. Only changes in values are reported - setpoints. The autopilot will monitor time series both back in time and forward in time within a defined monitoring window to be able to spot changes that can affect the current (or near future) setpoints. The normal usage is to use Volue Simulator as a utility for production planning, and store plans that are committed into the special Current Plan Scenario (CPS). The CPS scenario is a dedicated scenario meant to, at all times , contain the detailed production plan for all components in the water course that is considered the best for the active planning period. The AutoPilot function will normally be configured to map the planning time series from the CPS scenario to corresponding Netcon database blocks for execution of the plans.
 
 To start the autopilot utility, monitoring time-series in the SmG database and writing set points to Nematic database-blocks, use the following syntax:
 
@@ -417,7 +417,7 @@ ScadaEx.exe AutoPilot <configuration_file> [Debug]
 Example:
 
 ```cmd
-ScadaEx.exe AUTOPILOT C:\Powel\IccDir\iccfiles\autopilot_map.txt
+ScadaEx.exe AUTOPILOT C:\Volue\IccDir\iccfiles\autopilot_map.txt
 ```
 
 If the given configuration file is not found, or ScadaEx does not have permission to read it, then the configuration variable `ICC_SCADAEX_AP_FILE` will be checked. If set then the value is assumed to be a file path, and ScadaEx will attempt to read that file instead. If the configuration variable is not set, then it tries to read a file with name “autopilot.txt” in the current working directory.
@@ -514,7 +514,7 @@ See [File format for time series export list](#file-format-for-time-series-expor
 
 The time period specified in time series references in the configuration of AutoPilot and TsToScada is used to evaluate the time series functions first, min, max, etc. It defines the reference period, e.g. using function sum will result in summing values within the entire monitoring period.
 
-A bit less intuitive use of the specified period is to monitor changes in time series. When ScadaEx is refreshing its internal memory representation of time series it reads a change log from the database and uses the monitoring period to filter the changes relevant at the current time. It does not only include changes that are strictly within the period, but is smart enough to detect changes outside the monitoring period that may influence the values inside the period for a break point time series (depending on the step type). Changes that are detected will be logged to Powel Activity Log, and to Windows Event log (if enabled). It will also be written to the console window, but only if debug level is at least 2. The log message is in the format:
+A bit less intuitive use of the specified period is to monitor changes in time series. When ScadaEx is refreshing its internal memory representation of time series it reads a change log from the database and uses the monitoring period to filter the changes relevant at the current time. It does not only include changes that are strictly within the period, but is smart enough to detect changes outside the monitoring period that may influence the values inside the period for a break point time series (depending on the step type). Changes that are detected will be logged to Volue Activity Log, and to Windows Event log (if enabled). It will also be written to the console window, but only if debug level is at least 2. The log message is in the format:
 
 ```txt
 AP-<ChangeType>:”<TSCODE>”[YYYY.MM.DD hh:mm:ss LT] <value(s)>
@@ -670,24 +670,6 @@ Syntax string for installing event log:
 Arguments:
 
 - Specifying one of the optional arguments (AutoPilot, TsToScada or ScadaValuesToHistDb), which identifies one of the modes of operation described in ScadaEx version history
-
-The following table shows important changes in ScadaEx:
-
-|VERSION|ADDED/IMPROVED/REMOVED|DESCRIPTION|
-|-------|----------------------|-----------|
-|10.2.1|Added|Support for logging to Windows Event Log instead of console.|
-||Added|Support for installing and running as a Windows Service.|
-||Added|Support for reading command line arguments from file (command file).|
-||Improved|Command line syntax extended to support new features (Windows Event Log, Windows Service, command file etc.), and some other general improvements. All changes are backwards compatible so existing commands should function as before.|
-||Improved|Modifications in the main collection loop logic of history collection, primarily related to database disconnection and the creation of files. The configuration variable ICC_IFIX_MIN_QREAD is now only considered when database is not connected, and default value is the value of ICC_IFIX_MAX_CACHE.|
-||Added|Added configuration variables ICC_SCADAEX_USE_EVENTLOG, ICC_SCADAEX_EVENTSOURCE, ICC_IFIX_CACHEDUMP_DIR and ICC_SCADAEX_COMMANDFILE.|
-||Improved|Renamed configuration variable SCADAEX_DEBUGLEVEL to ICC_SCADAEX_DEBUGLEVEL (conformance with name format of the other variables).|
-||Removed|Removed configuration variable DEBUG_IFIXIMP. Use ICC_SCADAEX_DEBUGLEVEL instead.|
-|Phoebe|Improved|A new instance of Autopilot trace file including date stamp in the name is created when Autopilot is started.|
-||Improved|An option to turn on/off Ifix log to ICC-Log with the configuration variable SCADAEX_LOG_IFIX (TRUE/FALSE or YES/NO). Default value is no logging to ICC log.|
-||Improved|Logging user messages to console (if present) when shutting down ScadaEx with <CTRL_C> EVENT.|
-||Added|Added configuration variable LOG_XTRA_2_TRACE_FILE to add more information to Autopilot trace file to ease debugging. Default value is TRUE.|
-
 - [Modes of operation](#modes-of-operation), will create an event source with a predefined name according to the mode (“AutoPilot”, “TsToScada” or “HistoryCollection”).
 - If the optional argument is omitted, then a requirement is that the configuration variable ICC_SCADAEX_EVENTSOURCE is set and contains the name of the event source to be used.
 
@@ -711,32 +693,14 @@ Arguments:
 Syntax string:
 
 ```cmd
-[-run] [CommandFile] [<command_file>] [AutoPilot <configuration_file> [Debug]] | [TsToScada <configuration_file> [Debug]] [ScadaValuesToHistDb|TsToHistDb <scada_node>]
+[-run] [CommandFile] [<command_file>] [AutoPilot <configuration_file> [Debug]] | [TsToScada <configuration_file> [Debug]] [ScadaValuesToHistDb|TsToHistDb <scada_node> [Debug]]
 ```
 
 Arguments:
 
 The arguments mostly specify mode of operation according to ScadaEx version history.
 
-The following table shows important changes in ScadaEx:
-
-|VERSION|ADDED/IMPROVED/REMOVED|DESCRIPTION|
-|-------|----------------------|-----------|
-|10.2.1|Added|Support for logging to Windows Event Log instead of console.|
-||Added|Support for installing and running as a Windows Service.|
-||Added|Support for reading command line arguments from file (command file).|
-||Improved|Command line syntax extended to support new features (Windows Event Log, Windows Service, command file etc.), and some other general improvements. All changes are backwards compatible so existing commands should function as before.|
-||Improved|Modifications in the main collection loop logic of history collection, primarily related to database disconnection and the creation of files. The configuration variable ICC_IFIX_MIN_QREAD is now only considered when database is not connected, and default value is the value of ICC_IFIX_MAX_CACHE.|
-||Added|Added configuration variables ICC_SCADAEX_USE_EVENTLOG, ICC_SCADAEX_EVENTSOURCE, ICC_IFIX_CACHEDUMP_DIR and ICC_SCADAEX_COMMANDFILE.|
-||Improved|Renamed configuration variable SCADAEX_DEBUGLEVEL to ICC_SCADAEX_DEBUGLEVEL (conformance with name format of the other variables).|
-||Removed|Removed configuration variable DEBUG_IFIXIMP. Use ICC_SCADAEX_DEBUGLEVEL instead.|
-|Phoebe|Improved|A new instance of Autopilot trace file including date stamp in the name is created when Autopilot is started.|
-||Improved|An option to turn on/off Ifix log to ICC-Log with the configuration variable SCADAEX_LOG_IFIX (TRUE/FALSE or YES/NO). Default value is no logging to ICC log.|
-||Improved|Logging user messages to console (if present) when shutting down ScadaEx with <CTRL_C> EVENT.|
-||Added|Added configuration variable LOG_XTRA_2_TRACE_FILE to add more information to Autopilot trace file to ease debugging. Default value is TRUE.|
-
-[Modes of operation](#modes-of-operation), and the syntax string for the different modes are described there.
-
+- [Modes of operation](#modes-of-operation), and the syntax string for the different modes are described there.
 - The syntax is backwards compatible, to run AutoPilot just call “ScadaEx.exe AutoPilot \<cfgfile>” etc.
 - All arguments are optional, if ScadaEx is started without any command line arguments then a command file is assumed, and a reference to the command file must be set as environment variable ICC_SCADAEX_COMMANDFILE.
 
@@ -779,7 +743,7 @@ Arguments:
 
 ### Setting configuration variables using command line arguments
 
-Configuration in ScadaEx is based on variables defined as name-value-pairs. They can be set as Windows environment variables or Powel configuration variables, see ScadaEx Installation and Configuration guide. But as a third alternative the configuration variables can also be set as regular command line arguments (also via command file). The advantage of this is that it is easy to set individual configuration for a single instance of ScadaEx.exe, without having to start ScadaEx from a batch script that sets the environment variables using set-commands before starting ScadaEx.exe.
+Configuration in ScadaEx is based on variables defined as name-value-pairs. They can be set as Windows environment variables or Volue configuration variables, see ScadaEx Installation and Configuration guide. But as a third alternative the configuration variables can also be set as regular command line arguments (also via command file). The advantage of this is that it is easy to set individual configuration for a single instance of ScadaEx.exe, without having to start ScadaEx from a batch script that sets the environment variables using set-commands before starting ScadaEx.exe.
 
 The support for configuration variables as command line arguments can be described by the following points:
 

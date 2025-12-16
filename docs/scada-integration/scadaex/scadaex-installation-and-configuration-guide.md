@@ -1,6 +1,6 @@
-# Powel ScadaEx - Installation and Configuration guide
+# Volue ScadaEx - Installation and Configuration guide
 
-- [Powel ScadaEx - Installation and Configuration guide](#powel-scadaex---installation-and-configuration-guide)
+- [Volue ScadaEx - Installation and Configuration guide](#volue-scadaex---installation-and-configuration-guide)
   - [About this document](#about-this-document)
     - [Documentation overview](#documentation-overview)
     - [Writing conventions](#writing-conventions)
@@ -30,11 +30,11 @@
 
 ## About this document
 
-This document describes how to install and configure Powel ScadaEx. It is intended for a technical audience, to be used by Powel consultants and system administrator/IT personnel at Powel’s customers.
+This document describes how to install and configure Volue ScadaEx. It is intended for a technical audience, to be used by Volue consultants and system administrator/IT personnel at Volue’s customers.
 
-When installing Powel software, some level of knowledge of the following is required:
+When installing Volue software, some level of knowledge of the following is required:
 
-- Powel software, both from a technical and a functional point of view
+- Volue software, both from a technical and a functional point of view
 - Installing and configuring Microsoft Windows operating systems for servers and clients
 - Installing and configuring Oracle database solutions
 
@@ -42,7 +42,7 @@ When installing Powel software, some level of knowledge of the following is requ
 
 |DOCUMENT|WHEN|TARGET GROUP|LOCATION|
 |--------|----|------------|--------|
-|SmG Release notes|Overview|System owner, system administrator/IT operations, end user|myPowel, Powel ftp-server|
+|SmG Release notes|Overview|System owner, system administrator/IT operations, end user|myPowel, Volue ftp-server|
 |SmG Installation guide|Set-up|System administrator/IT operations|myPowel|
 |ScadaEx User guide|Daily use|End user|myPowel|
 
@@ -58,22 +58,22 @@ When installing Powel software, some level of knowledge of the following is requ
 
 ## Introduction
 
-ScadaEx is a software component that integrates the Powel SmG system and the Nematic Scada system. The component can be considered as an extended Scada component, and therefore it has been given the name “ScadaEx”. This comprehensive functionality includes two-way exchange of time series data between the Nematic/iFIX real-time database and the SmG time series database (Oracle), autopilot functionality, and naming conventions between the Powel Simulator data model and the Scada real time database.
+ScadaEx is a software component that integrates the Volue SmG system and the Nematic Scada system. The component can be considered as an extended Scada component, and therefore it has been given the name “ScadaEx”. This comprehensive functionality includes two-way exchange of time series data between the Nematic/iFIX real-time database and the SmG time series database (Oracle), autopilot functionality, and naming conventions between the Volue Simulator data model and the Scada real time database.
 
-For more details, see `ScadaEx User guide`.
+For more details, see *ScadaEx User guide*.
 
 ## Prerequisites
 
 ### System requirements
 
-For a detailed overview of system requirements, see SmG Release notes.
+For a detailed overview of system requirements, see *SmG Release notes*.
 
 ## Install ScadaEx
 
 The ScadaEx software is distributed as a Zip archive file and is deployed using a simple “copy-install” method. There is no separate installer. To install you perform the following steps:
 
 - Extract the Zip file to an appropriate folder.
-  - Powel recommends extracting to folder `C:\Powel\Icc`.
+  - Volue recommends extracting to folder `C:\Volue\Icc`.
   - Make sure you extract with paths, as the Zip file contains files in a subfolder structure that needs to be kept.
 - Perform a basic SmG configuration.
   - Some SmG configuration is required for ScadaEx to run, e.g. installation path and database connection info. See [Basic SmG configuration](#basic-smg-configuration).
@@ -114,7 +114,7 @@ ScadaEx requires the following minimum set of files and folders for it to work c
             PDLog.lang
 ```
 
-Following the standard SmG installation, the two folders bin and gui containing all the listed application files must be located in a folder given by the configuration variable **ICC_HOME**. Default **ICC_HOME** location is `C:\Powel\Icc`.
+Following the standard SmG installation, the two folders bin and gui containing all the listed application files must be located in a folder given by the configuration variable **ICC_HOME**. Default **ICC_HOME** location is `C:\Volue\Icc`.
 
 To be able to read the configuration from the SmG configuration database, the PowelCfgServer.exe COM component is also required and must be registered. This is normally not supplied with ScadaEx, and the SmG configuration must be stored in registry (or as environment variables).
 
@@ -124,8 +124,8 @@ Some of the required SmG configuration variables are listed below. For a complet
 
 |NAME|DESCRIPTION AND DEFAULT/RECOMMENDED VALUE|
 |----|-----------------------------------------|
-|ICC_HOME|C:\Powel\Icc|
-|HOME|C:\Powel\IccData|
+|ICC_HOME|C:\Volue\Icc|
+|HOME|C:\Volue\IccData|
 |ICCDIR|%HOME%\iccfiles|
 |ICC_LANGPATH|%ICC_HOME%\gui|
 |NLS_LANG|american_america.we8iso8859p1|
@@ -137,7 +137,7 @@ Some of the required SmG configuration variables are listed below. For a complet
 
 ### Configure logging to the Windows Event Log
 
-ScadaEx supports logging to Windows Event Log as an alternative to logging to the console window, and as an addition to logging to Powel Activity Log (PAL). There are many advantages by using the Windows Event Log:
+ScadaEx supports logging to Windows Event Log as an alternative to logging to the console window, and as an addition to logging to Volue Activity Log (PAL). There are many advantages by using the Windows Event Log:
 
 - Speed. Logging to the console window is slow, high debug level may lead to high CPU usage.
 - Persistency. The information logged to the Windows Event Log is stored to a log file, managed by the Windows Event Logging subsystem. With console logging the information is mostly lost the moment the application is stopped.
@@ -187,7 +187,7 @@ The name of the log key is also used as the display name for the log, e.g. in th
 
 |PARAMETER|VALUE TYPE|DESCRIPTION|
 |---------|----------|-----------|
-1File|REG_SZ or REG_EXPAND_SZ|Path to the file where the event log records are stored. If not set then the event logging service will automatically create a file path with folder path %SystemRoot%\system32\winevt\logs, a file name matching the event log registry key (name of the log) and file extension .evt or .evtx (In Vista and Server 2008 the file type changed from binary .evt to XML-based .evtx). If an existing log file is to be moved, then this value must be changed accordingly.|
+|File|REG_SZ or REG_EXPAND_SZ|Path to the file where the event log records are stored. If not set then the event logging service will automatically create a file path with folder path %SystemRoot%\system32\winevt\logs, a file name matching the event log registry key (name of the log) and file extension .evt or .evtx (In Vista and Server 2008 the file type changed from binary .evt to XML-based .evtx). If an existing log file is to be moved, then this value must be changed accordingly.|
 |MaxSize|REG_DWORD|The maximum physical size the log file may grow to. This value must be specified in 64Kb (0x00010000) increments. Nonconforming values are rounded upwards to the next 64Kb boundary by the event logging service. The default is 1MB (0x 00100000.|
 |AutoBackupLogFiles|REG_DWORD|Enables automatic backup of the file. Default value is 0, then no backup is performed. Any other value than 0 needs retention value -1 (0xFFFFFFFF) for it to have effect.|
 |Retention|REG_DWORD|Controls if it should be possible to delete old log items to make room for new when the file size reaches the maximum. Default value is 0, then oldest item will always be overwritten when the log is full. Any value different from 0, typically the value -1 (0xFFFFFFFF) is used, then no items will be deleted, and the log must be cleaned manually to make room for new items when it is full.|
@@ -239,8 +239,8 @@ You can manually configure the event log and event source to be used by ScadaEx,
 
 The result of this command is:
 
-- A custom event log for ScadaEx will be created if it does not exist already. It will get the pre-defined name “Powel ScadaEx”. Event log properties will be default values only, so you may want to manually inspect it later – although in the normal case the default setup should work fine. This event log is shared by all instances of ScadaEx on the computer.
-- A common event source for ScadaEx will be created if it does not exist already. It will get the name “Powel ScadaEx”, and will be added to the custom event log described in the previous point.
+- A custom event log for ScadaEx will be created if it does not exist already. It will get the pre-defined name “Volue ScadaEx”. Event log properties will be default values only, so you may want to manually inspect it later – although in the normal case the default setup should work fine. This event log is shared by all instances of ScadaEx on the computer.
+- A common event source for ScadaEx will be created if it does not exist already. It will get the name “Volue ScadaEx”, and will be added to the custom event log described in the previous point.
 - A dedicated event source for the ScadaEx operation will also be created if it does not exist already. By specifying one of the operational modes ScadaEx supports as an argument, the event source name will be some predefined name based on this (“AutoPilot”, “TsToScada” or “HistoryCollection”). This means that all instances of ScadaEx running in AutoPilot mode on the computer will be logging with the same event source. But you can also customize an event source just for a single instance of ScadaEx. To do this you have to specify the configuration variable `ICC_SCADAEX_EVENTSOURCE`. When this variable is set, and you run the setup command with just “-setup InstallEventLog” (not the optional operational mode argument), then the event source name will be taken from the configuration variable. Note that it is important that the same value is set for the configuration variable in the environment of the ScadaEx instance that will be logging with this event source.
 
 The immediate result of the “InstallEventLog” setup command is only changes in the Windows registry. A registry key will be created for the custom event log, and the event sources will be created as subkeys of this. No values (parameters) will be added to the log key, which means Windows’ event logging service will use default configuration for the log. When Windows’ event logging service discovers this registry key it will create an event log file where it will store any event records logged to it, so even if ScadaEx only performs registry-only changes the indirect result is also creation of a log file. Since we have not explicit set the log file path, it will be created in the default location and with the default name matching the name of the event log registry key. The maximum size of the log file will be 1MB (assuming Server 2008 or newer), and the retention policy will be to overwrite old items when the log file is full.
@@ -250,7 +250,7 @@ The event sources, sub-keys of the event log, will also be created with mostly d
 The result of running the following command:
 
 ```cmd
-    C:\Powel\Icc\bin\ScadaEx.exe -setup InstallEventLog AutoPilot
+    C:\Volue\Icc\bin\ScadaEx.exe -setup InstallEventLog AutoPilot
 ```
 
 Is the same as importing the following registry file:
@@ -259,10 +259,10 @@ Is the same as importing the following registry file:
   Windows Registry Editor Version 5.00
   [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog\Powel ScadaEx]
     [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog\Powel ScadaEx\Powel ScadaEx]
-      "EventMessageFile"="C:\\Powel\\Icc\\bin\\ScadaEx.exe"
+      "EventMessageFile"="C:\\Volue\\Icc\\bin\\ScadaEx.exe"
       "TypesSupported"=dword:00000007
     [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog\Powel ScadaEx\AutoPilot]
-      "EventMessageFile"="C:\\Powel\\Icc\\bin\\ScadaEx.exe"
+      "EventMessageFile"="C:\\Volue\\Icc\\bin\\ScadaEx.exe"
       "TypesSupported"=dword:00000007
 ```
 
@@ -270,7 +270,7 @@ To make ScadaEx log to the configured event log, the configuration variable **IC
 
 ***Notes!***
 
-- Each event source is connected to a copy of ScadaEx.exe by a reference to the full path. If the file is deleted or moved, then logging using this event source name will still work – but not exactly as intended. It will work as described in Logging to the event log without or with incorrect setup, page 10.
+- Each event source is connected to a copy of `ScadaEx.exe` by a reference to the full path. If the file is deleted or moved, then logging using this event source name will still work – but not exactly as intended. It will work as described in [Logging to the event log without or with incorrect setup](#logging-to-the-event-log-without-or-with-incorrect-setup).
 - If an event source with the same name is already installed in for the event log, the existing configuration will not change. This means that the event source will still be connected to the path to `ScadaEx.exe` that initially was installed to the event source. To change the path, you must either modify registry manually or run “UninstallEventLog” on the event source first and then “InstallEventLog”.
 - Since the event logging service looks up event sources by name to find the event log to use, there is a risk of naming conflicts. E.g. other applications may already have installed an event source with name “AutoPilot” when you install one on the ScadaEx custom log. When logging ScadaEx and other applications have no reference to the event log name only the event source, so it is entirely up to the event logging service to resolve this into an appropriate event log. The result of duplicate event source names is unpredictable, possibly the events will be logged to an incorrect log. The solution to this is to specify a different event source name to be used by ScadaEx using the configuration variable `ICC_SCADAEX_EVENTSOURCE`.
 
@@ -280,7 +280,7 @@ Uninstallation may be performed using “-setup UnistallEventLog”. The syntax 
 
 You can use the additional argument “All” to remove the entire event log, and any event sources added to it. Note that the event log file itself is not deleted, as described above, only the registry key for it – the entry for the event log in the event logging service’s configuration.
 
-If event sources have been installed with custom names that are no longer known, then uninstalling with the “All” option will remove them. This will also remove any other event sources and the entire event log configuration. See Manage the event logging (page 12) for a solution to this problem.
+If event sources have been installed with custom names that are no longer known, then uninstalling with the “All” option will remove them. This will also remove any other event sources and the entire event log configuration. See [Manage the event logging](#manage-the-event-logging) for a solution to this problem.
 
 #### Manage the event logging
 
@@ -288,9 +288,9 @@ The event log can be managed from the Windows Event Viewer application or other 
 
 ***Note!*** You may not have access to do this without restarting the computer first. This is described in Microsoft Knowledge Base article 172156: “How to Delete Corrupt Event Viewer Log Files” (http://support.microsoft.com/kb/172156).
 
-The event sources do not have a very convenient administrative tool, and you will probably have to use registry. Each event source installed by ScadaEx will be listed as subkeys under the “Powel ScadaEx” event log key described above. By looking at these in the Windows registry editor you will see the names of the event sources, and the paths to ScadaEx they refer to. The event source names are the names of the registry keys, the file references are stored in a string value with name EventMessageFile under this key. If you locate an event source that is not needed you can just delete the event source’s registry key, or you can take note of the name and use ScadaEx’s “-setup uninstalleventlog” command.
+The event sources do not have a very convenient administrative tool, and you will probably have to use registry. Each event source installed by ScadaEx will be listed as subkeys under the “Powel ScadaEx” event log key described above. By looking at these in the Windows registry editor you will see the names of the event sources, and the paths to ScadaEx they refer to. The event source names are the names of the registry keys, the file references are stored in a string value with name EventMessageFile under this key. If you locate an event source that is not needed you can just delete the event source’s registry key, or you can take note of the name and use ScadaEx’s `-setup uninstalleventlog` command.
 
-Windows PowerShell makes it easy to access registry from command prompt, and since the event sources are just registry items, PowerShell can easily be used to show – and modify - the event sources. The following command will list all event source sub-keys under the registry key for the “Powel ScadaEx” event log (assuming it exist):
+Windows PowerShell makes it easy to access registry from command prompt, and since the event sources are just registry items, PowerShell can easily be used to show – and modify - the event sources. The following command will list all event source sub-keys under the registry key for the `Powel ScadaEx` event log (assuming it exist):
 
 ```powershell
     Get-ChildItem "HKLM:\SYSTEM\CurrentControlSet\Services\Eventlog\Powel ScadaEx"
@@ -344,7 +344,7 @@ This will delete the service and uninstall its event source. As with event loggi
 
 The service can be managed by many different programs. Windows provides the Service management user interface and the SC command line program for various administrative tasks, as well as the simple “net start” and “net stop” commands for starting and stopping the service.
 
-Only a few aspects are possible to change from the Service management user interface in Windows, mainly the current status (starting and stopping the service), the start-up type (manual or automatic) and the user account the service shall run in. Windows PowerShell makes it easy to access services from command prompt and allows changing most of the properties. Since the service configuration is stored in registry, the generic registry commands can be used to modify the stored configuration just like for the Windows event log as described in Manage the event logging, page 12. But PowerShell provides dedicated commands to administrate services which make it even more powerful. The following is some of the relevant commands available in PowerShell V2:
+Only a few aspects are possible to change from the Service management user interface in Windows, mainly the current status (starting and stopping the service), the start-up type (manual or automatic) and the user account the service shall run in. Windows PowerShell makes it easy to access services from command prompt and allows changing most of the properties. Since the service configuration is stored in registry, the generic registry commands can be used to modify the stored configuration just like for the Windows event log as described in [Manage the event logging](#manage-the-event-logging). But PowerShell provides dedicated commands to administrate services which make it even more powerful. The following is some of the relevant commands available in PowerShell V2:
 
 - Start-Service
 - Stop-Service
@@ -369,7 +369,7 @@ The following command will start a service with name “ScadaExService1”
     Start-Service ScadaExService1
 ```
 
-The following command can be used to modify the displayname and description, and change the startup type to “Automatic”, of a service with name “ScadaExService1”
+The following command can be used to modify the display name and description, and change the startup type to `Automatic`, of a service with name `ScadaExService1`.
 
 ```powershell
     Set-Service ScadaExService1 -DisplayName "ScadaEx Service #1" –Description “This is the description of my first ScadaEx Service” –StartupType Automatic
@@ -388,7 +388,7 @@ The configuration can be stored in one of the following locations:
 - Command line arguments
   - The command line syntax of ScadaEx allows you to define configuration variables at the end of the command string.
 - See *ScadaEx User guide* for more information about configuration variables.
-- Powel configuration variables
+- Volue configuration variables
   - This may be in registry or in configuration database. Note that the use of configuration database introduces dependency on a separate COM module.
   - When the configuration variables are loaded when the application is started, they will be loaded as regular process environment variables into the ScadaEx process. Any existing variables will not be modified or removed, so if set in the environment where the application is started before the start of the application, they will have the initial value within the process.
 
@@ -398,7 +398,7 @@ Log systems supported:
 
 - Console window
 - Windows Event Log
-- Powel Application Log (PAL)
+- Volue Application Log (PAL)
 
 ScadaEx will by default log a certain amount of information, but when needed the log level can be increased by activating the debug level. The debug level may be set in one of two ways:
 
@@ -415,7 +415,7 @@ The configuration variable `ICC_SCADAEX_DEBUGLEVEL` can be used to specify any d
 4. Used to log information about which time periods of data that are stored in memory for the active time series. 
 5. Only used by the AutoPilot operation mode and will make it report the contents of every time series it monitors. This reported information is the same as when refreshing time series with debug level 2.
 
-Some configuration variables – including `ICC_SCADAEX_DEBUGLEVEL`, sometimes will only be considered when set in the environment before ScadaEx is started (see ScadaEx User guide for more information about configuration variables). For instance, debug logging during command argument parsing, service initialisation etc. cannot be enabled by setting the debug level configuration variable in SmG configuration or in the command argument string itself, it must be set in the calling environment – e.g. by use of the set-command in a command prompt or batch file before starting ScadaEx. After the command arguments have been parsed and all configuration variables loaded the debug level variable is updated, so any settings will have affect from that point on.
+Some configuration variables – including `ICC_SCADAEX_DEBUGLEVEL`, sometimes will only be considered when set in the environment before ScadaEx is started (see *ScadaEx User guide* for more information about configuration variables). For instance, debug logging during command argument parsing, service initialisation etc. cannot be enabled by setting the debug level configuration variable in SmG configuration or in the command argument string itself, it must be set in the calling environment – e.g. by use of the set-command in a command prompt or batch file before starting ScadaEx. After the command arguments have been parsed and all configuration variables loaded the debug level variable is updated, so any settings will have affect from that point on.
 
 ### Configuration variable reference
 
@@ -426,14 +426,16 @@ The following sections describes groups of configuration variables. Each variabl
 |NAME|TYPE|DESCRIPTION|
 |----|----|-----------|
 |ICCDIR|B|After the configuration has been loaded the current directory of the process will be set to the path given by this variable. This means any relative file paths will be resolved according to this path. The exception is the command file, since it is evaluated before the configuration has been loaded.|
-|ICC_SCADAEX_DEBUGLEVEL|I|An integer to set as the debug level, which controls how much information that will be logged. See Logging (page 15) for more information.|
+|ICC_SCADAEX_DEBUGLEVEL|I|An integer to set as the debug level, which controls how much information that will be logged. See [Logging](#logging) for more information.|
 |ICC_IFIX_TZ_STD|B|Specifies the time zone of time stamps read from the iFix interface. Default is to assume UTC, but if this variable is set then default time zone is assumed instead.|
 |ICC_IFIX_NO_WINDOW_TITLE|B|By default the console window title will be changed according to the running operation. If this variable is set then the title will not be set.|
 |ICC_SCADAEX_COMMANDFILE|S|Absolute or relative path to a command file, a text file containing command arguments to ScadaEx. If relative it is relative to the current directory at the time of application startup - not `ICCDIR` like most other file paths. ***Note!*** This variable must be present in the environment ScadaEx is started from (e.g. using a set-command in a bat file), it cannot be set as a regular SmG configuration variable because it is used before the regular configuration is loaded. It can however be set as a configuration variable argument on the command line as described in the ScadaEx User guide. See *ScadaEx User guide* for more information about the command file.|
-|ICC_SCADAEX_USE_EVENTLOG|B|To enable logging to Windows Event Log when running ScadaEx as a console application. No information (other than some initial startup information) will be logged to the command prompt. When running as service this is forced behavior. See ScadaEx User guide for more information about installing and uninstalling the event log.|
-|ICC_SCADAEX_EVENTSOURCE|S|Name of the event source to use when logging to Windows Event Log. When running as service the event source name is forced identical to the service name. See ScadaEx User guide for more information about installing and uninstalling the event log.|
+|ICC_SCADAEX_USE_EVENTLOG|B|To enable logging to Windows Event Log when running ScadaEx as a console application. No information (other than some initial startup information) will be logged to the command prompt. When running as service this is forced behavior. See *ScadaEx User guide* for more information about installing and uninstalling the event log.|
+|ICC_SCADAEX_EVENTSOURCE|S|Name of the event source to use when logging to Windows Event Log. When running as service the event source name is forced identical to the service name. See *ScadaEx User guide* for more information about installing and uninstalling the event log.|
 |ICC_SCADAEX_DB_RECONNECT|B|If automatic reconnection should be performed when connection to database is lost. This is forced behaviour in HistoryCollection, and it is unsupported in AutoPilot. Only TsToScada will use this variable: If not set then it will quit at first database connection problem like AutoPilot does, and if set it will keep running and at irregular intervals try to reconnect like HistoryCollection does.|
 |ICC_IFIX_RECONNECT_DELAY|I|Minimum time period in number seconds between a reconnect should be attempted after connection to database has been lost. Default value is 10 seconds. The reconnection will only be attempted when a database connection is needed, and not all functions will comply with this setting. E.g. when HistoryCollection decides to attempt to commit it’s time series cache to the database it will attempt to reconnect regardless of this configuration variable. The main purpose of this is to avoid that extensive efforts to try to reconnect will make the any backup off-line operation modes suffer, which e.g. could lead to HistoryCollection failing to avoid queue size from growing above its limit and thereby losing data.|
+|ICC_SCADAEX_TRACEFILE_PATH|S|Complete path to the directory where the trace log files will be located.|
+|LOG_XTRA_2_TRACE_FILE|B|Flag to signal if extra information shall be logged to the trace file.|
 
 #### HistoryCollection
 
@@ -489,10 +491,10 @@ The following sections describes groups of configuration variables. Each variabl
 |ICC_SCADAEX_AP_OPERSLEEP|I|Sleep period between each unit processed. Default is 0, which means all units will be processed in sequence without any sleep between.|
 |ICC_SCADAEX_AP_MEMCLEANUP|I|Same as `ICC_2IFIX_MEMCLEANUP`:  Number of seconds between each time the internal time series cache shall be cleared to avoid accumulation of a data for long time periods that will no longer be of any use. Default value is 86400 (24 hours, 24*3600). Minimum allowed value is 2.|
 |ICC_AP_PLANCHANGE_NEXT_DAY_HOUR|I|Hour of the day when changes for the next day should be reported by setting the plan changed alarm, in addition to changes the current day. Default is 17, which means after 17:00 any changes for the following day will be reported.|
-|ICC_SCADAEX_AP_POWELSIMSHOP|B|Enables the “PowelSimShop” mode of the missing plan alarms. See ScadaEx User guide for more information about alarms.|
-|ICC_SCADAEX_AP_CHECK_HOUR|I|Hour of the day to check if plan value for the next day is missing. Default value is 21. See ScadaEx User guide for more information about alarms.|
-|ICC_SCADAEX_AP_OLD_PLAN|I|In “PowelSimShop” missing plan alarm mode this value specifies the length of the time window in number of hours where a value is considered valid. If the break point value for the current time is older than this number of hours then it is considered old, and a missing plan alarm will be set. Default value is 24. See ScadaEx User guide for more information about alarms.|
-|ICC_IFIX_EXEC_ON_FAILED_VALUES|B|If execute block should be set even if ScadaEx failed to write some of the values to iFix. If not set then the following will be logged: "Failed to update AP values. Final execute command <NTF> skipped for safety reasons".|
-|ICC_IFIX_EXEC_ON_MISSING_VALUES|B|If execute block should be set even if ScadaEx found missing values in some of the planning time series. If not set then the following will be logged: "Missing values for ts <TS>. Final execute command skipped for safety reasons".|
+|ICC_SCADAEX_AP_POWELSIMSHOP|B|Enables the “PowelSimShop” mode of the missing plan alarms. See *ScadaEx User guide* for more information about alarms.|
+|ICC_SCADAEX_AP_CHECK_HOUR|I|Hour of the day to check if plan value for the next day is missing. Default value is 21. See *ScadaEx User guide* for more information about alarms.|
+|ICC_SCADAEX_AP_OLD_PLAN|I|In “PowelSimShop” missing plan alarm mode this value specifies the length of the time window in number of hours where a value is considered valid. If the break point value for the current time is older than this number of hours then it is considered old, and a missing plan alarm will be set. Default value is 24. See *ScadaEx User guide* for more information about alarms.|
+|ICC_IFIX_EXEC_ON_FAILED_VALUES|B|If execute block should be set even if ScadaEx failed to write some of the values to iFix. If not set then the following will be logged: "Failed to update AP values. Final execute command \<NTF> skipped for safety reasons".|
+|ICC_IFIX_EXEC_ON_MISSING_VALUES|B|If execute block should be set even if ScadaEx found missing values in some of the planning time series. If not set then the following will be logged: "Missing values for ts \<TS>. Final execute command skipped for safety reasons".|
 |ICC_SCADAEX_AP_FMS|B|If ScadaEx should write information to the SmG database required by the Flexible Manning Security (FMS) functionality in other SmG software.|
 |ICC_SCADAEX_AP_FMS_DISABLE|B|Special flag to properly deactivate the FMS information written by ScadaEx due to `ICC_SCADAEX_AP_FMS`. The reason for this is that the information written by ScadaEx includes reference to node and mapfile, and when ScadaEx is stopped this information will not be removed for safety reasons. Therefore, when a configuration file is renamed or is no longer in use the information will be kept in the database. This configuration variable (ICC_SCADAEX_AP_FMS_DISABLE) will make ScadaEx remove any FMS information written for the current configuration. To deactivate a configuration file the ScadaEx must be started with this variable set and can then be stopped immediately after the FMS processing has completed.|

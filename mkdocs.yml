@@ -180,3 +180,8 @@ nav:
           - General: timeseries-reports/reports_intro.md
           - Macros: timeseries-reports/macros.md
           - Sorted layout: timeseries-reports/sort_contents.md
+    - Scada integrations:
+      - ScadaEx:
+        - Changelog: scada-integration/scadaex/releases.md
+        - User guide: scada-integration/scadaex/scadaex-user-guide.md
+        - Installation and configuration guide: scada-integration/scadaex/scadaex-installation-and-configuration-guide.md
