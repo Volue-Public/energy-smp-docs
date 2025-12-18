@@ -10,7 +10,7 @@ different from the current calculation period.
 
 
 ## Description
-  TS_OFFSET(t,d,[s]) is used relative to current period.
+TS_OFFSET(t,d[,s]) is used relative to current period.
 
 
 
@@ -22,13 +22,7 @@ different from the current calculation period.
 
 
 
-  The table below shows the valid offset unit codes.
-
-Additionally, the unit codes can be combined with a zone code, representing the
-local time, standard time, UTC time and database time. For instance LOCALDAY.
-
-  ***Note!*** LOCAL can only be combined with time unit DAY or coarser.
-
+The table below shows the valid offset unit codes.
 
 
 | UNIT code |
@@ -39,11 +33,6 @@ local time, standard time, UTC time and database time. For instance LOCALDAY.
 | WEEK |
 | MONTH |
 | YEAR |
-| LOCAL |
-| STANDARD |
-| UTC |
-| DB |
-
 
 
   **Example**
