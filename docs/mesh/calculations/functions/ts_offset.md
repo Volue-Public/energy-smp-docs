@@ -28,6 +28,7 @@ The table below shows the valid offset unit codes.
 | UNIT code |
 |---|
 | MIN15 |
+| MIN30 |
 | HOUR |
 | DAY |
 | WEEK |

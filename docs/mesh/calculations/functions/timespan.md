@@ -9,7 +9,7 @@ The function transform its argument to a time span represented as a number.
 
 | Type | Description |
 |---|---|
-| s | A definition like MIN15, HOUR, DAY, WEEK, MONTH, YEAR |
+| s | A definition like MIN15, MIN30, HOUR, DAY, WEEK, MONTH, YEAR |
 
 The function returns a time span that can be used to calculate another time
 point combined with the result of the [Time](../functions/time.md) function. The time

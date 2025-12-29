@@ -8,6 +8,7 @@ The functions in this category are used to calculate time series with a differen
 |---|---|
 | VARINT | Break point series, i.e. free distance between each point of time with value. |
 | MIN15 | Fixed 15 minutes interval |
+| MIN30 | Fixed 30 minutes interval |
 | HOUR | Fixed hour interval |
 | DAY | Fixed day interval |
 | WEEK | Fixed week interval |
