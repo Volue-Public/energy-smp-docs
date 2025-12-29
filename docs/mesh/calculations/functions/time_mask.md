@@ -108,6 +108,7 @@ values in the next argument.
 | Symbol | Definition |
 |---|---|
 | MIN15 | Quarter of an hour |
+| MIN30 | Half an hour |
 | HOUR | Hour |
 | DAY | 24-hour period |
 | WEEK | Week |

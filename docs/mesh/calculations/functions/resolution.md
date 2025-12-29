@@ -19,7 +19,7 @@ Valid resolutions text symbols are:
 
 - VARINT - breakpoint resolution
 - MIN15, MIN30, HOUR, DAY, WEEK, MONTH, YEAR - fixed interval series
-- 
+
 ## Example
 
 `Res = @Resolution(@t('.Ts1'))`
