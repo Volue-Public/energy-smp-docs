@@ -604,10 +604,11 @@ span code can be one of the following calendar codes:</p>
 </tr>
 </tbody>
 </table>
-<p>Tip! You may incorporate calendar options into frequency codes as a prefix
-code. Valid calendar prefix codes are LOCAL, STANDARD, UTC and DB. For example
-frequency code LOCALDAY is the same as DAY. STANDARD is default and can be omitted.</p>
-<p>The calendar info is used also used when parsing time points.</p>
+<p>This calendar info is also used when parsing time points.</p>
+<p>The frequency argument permits unknown components, for example a <code>LOCAL</code> prefix.
+These components are ignored, and support may be deprecated and then removed in
+future releases. In other words you may use <code>LOCALDAY</code>, but that is interpreted
+as <code>DAY</code> and you should use <code>DAY</code> or <code>DAY&lt;LT&gt;</code> instead.</p>
 <h4 id="time-point-description-array">Time point description array</h4>
 <p>You can use the following special codes instead of a list of definitions.</p>
 <table>
@@ -654,6 +655,10 @@ values in the next argument.</p>
 <tr>
 <td>MIN15</td>
 <td>Quarter of an hour</td>
+</tr>
+<tr>
+<td>MIN30</td>
+<td>Half an hour</td>
 </tr>
 <tr>
 <td>HOUR</td>

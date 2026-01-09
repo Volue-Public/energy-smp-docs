@@ -598,7 +598,7 @@ there might be functions that will need other data input. Examples:</p>
 <li><code>@DELTA(@t('.Temperature'))</code></li>
 <li><code>@TS_GLIDING_AVERAGE(@t('.Temperature'), 7)</code></li>
 <li><code>@ACCUMULATE(@t('.Precipitation'), 'YEAR')</code></li>
-<li><code>@TS_OFFSET(@t('.Temperature'), 'DAY', 1)</code></li>
+<li><code>@TS_OFFSET(@t('.Temperature'), 1, 'DAY')</code></li>
 </ol>
 <p>The need for extra data on these examples are commented below. Time interval is
 indicated by a line where equal sign is part of the requested interval, and dots
@@ -623,7 +623,7 @@ will need the data from a defined start, here start of year.</p>
 <p>The // indicates that this might be many dots, depending on the start of the
 requested interval.</p>
 <h3 id="fourth-example">Fourth example</h3>
-<p><code>@TS_OFFSET(@t('.Temperature'), 'DAY', 1)</code>: The function TS_OFFSET moves values
+<p><code>@TS_OFFSET(@t('.Temperature'), 1, 'DAY')</code>: The function TS_OFFSET moves values
 from one time interval to another. In this example, the values are moved one
 day, i.e to the next day relative to the requested time interval.</p>
 <pre><code>    ......============

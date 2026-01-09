@@ -1948,7 +1948,7 @@
 </table>
 <h4 id="delete-values-from-a-time-series">Delete values from a time series</h4>
 <p>Deleting values are done automatically as part of the write process using the <code>WriteTimeSeriesValuesMultiRaw</code> function specifying the <code>interval</code> part for a time series to identify the period that should be replaced with the information in the <code>values</code> part.</p>
-<p><em><strong>Note!</strong></em> There must always be at least one value in the values part, but this can either be the last value before or after the period to delete, or a <code>null</code> value with <code>MISSING</code> status (=67108864). For versions before 2026.1 the value must be a real number (for instance <code>0</code>).</p>
+<p><em><strong>Note!</strong></em> For versions before 2026.1, there must be at least one value in the values part, but this can either be the last value before or after the period to delete, or a <code>0</code> value with <code>MISSING</code> status (=67108864).</p>
 <p><strong>Example</strong></p>
 <p>Values before (from <code>ReadTimeSeriesValuesRaw</code>):</p>
 <pre><code class="language-json">{
@@ -1997,14 +1997,7 @@
     &quot;interval&quot;: {
       &quot;startTime&quot;: &quot;2025-05-01T01:00:00Z&quot;,
       &quot;endTime&quot;: &quot;2025-05-01T01:30:00Z&quot;
-    },
-    &quot;values&quot;: [
-      {
-         &quot;date&quot;: &quot;2025-05-01T01:00:00Z&quot;,
-         &quot;value&quot;: null, // Must be a real number before the 2026.1 version
-         &quot;status&quot;: 67108864
-      }
-    ]
+    }
   }
 ]
 </code></pre>

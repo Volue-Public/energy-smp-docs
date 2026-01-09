@@ -472,7 +472,7 @@ different from the current calculation period.</p>
 <li>TS_OFFSET(t,d[,s])</li>
 </ul>
 <h2 id="description">Description</h2>
-<p>TS_OFFSET(t,d,[s]) is used relative to current period.</p>
+<p>TS_OFFSET(t,d[,s]) is used relative to current period.</p>
 <table>
 <thead>
 <tr>
@@ -504,9 +504,6 @@ different from the current calculation period.</p>
 </tbody>
 </table>
 <p>The table below shows the valid offset unit codes.</p>
-<p>Additionally, the unit codes can be combined with a zone code, representing the
-local time, standard time, UTC time and database time. For instance LOCALDAY.</p>
-<p><strong><em>Note!</em></strong> LOCAL can only be combined with time unit DAY or coarser.</p>
 <table>
 <thead>
 <tr>
@@ -516,6 +513,9 @@ local time, standard time, UTC time and database time. For instance LOCALDAY.</p
 <tbody>
 <tr>
 <td>MIN15</td>
+</tr>
+<tr>
+<td>MIN30</td>
 </tr>
 <tr>
 <td>HOUR</td>
@@ -531,18 +531,6 @@ local time, standard time, UTC time and database time. For instance LOCALDAY.</p
 </tr>
 <tr>
 <td>YEAR</td>
-</tr>
-<tr>
-<td>LOCAL</td>
-</tr>
-<tr>
-<td>STANDARD</td>
-</tr>
-<tr>
-<td>UTC</td>
-</tr>
-<tr>
-<td>DB</td>
 </tr>
 </tbody>
 </table>
