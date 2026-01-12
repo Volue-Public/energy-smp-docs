@@ -23,7 +23,7 @@ A prerequisite of a successful time series export is a pre-filled `keytab9` data
 
 #### **"RegularOrder"** endpoint
 
-The `RegularOrder` service handles export orders using wider time series match criteria by selecting time series to export by `ValuesTo` and `ValuesFrom` parameters and at least one of following parameters: `Receiver`, `Protocol`, `ExportMethod`. For example:
+The `RegularOrder` service handles export orders using wider time series match criteria by selecting time series to export by `ValuesTo` and `ValuesFrom` parameters and at least one of the following parameters: `Receiver`, `Protocol`, `ExportMethod`. For example:
 
 ```powershell
 $body = '[{"Date":"2024-10-11T17:10:37","Receiver":"DemoBase","ValuesFrom":"2024-05-09T00:00:00","ValuesTo":"2024-05-11T00:00:00","Protocol":123, "ExportMethod":111}]'
