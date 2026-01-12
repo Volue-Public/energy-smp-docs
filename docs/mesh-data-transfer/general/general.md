@@ -8,14 +8,33 @@ Mesh Data Transfer offers HTTP endpoints for creating both availability and time
 
 ### Time series export
 
-To invoke a Mesh time series export one has to post a HTTP request to Mesh Data Transfer's `Order` service. Minimal working example:
+To invoke a Mesh time series export, you post an HTTP request to one of Mesh Data Transfer's export endpoints.
+
+#### **"Order"** endpoint
+
+The `Order` service handles keytab-specific export orders. Minimal working example:
 
 ```powershell
 $body = '[{"Date":"2024-10-11T17:10:37","Receiver":"DemoBase","Keytab":1,"ValuesFrom":"2024-05-09T00:00:00","ValuesTo":"2024-05-11T00:00:00","Protocol":126}]'
 Invoke-WebRequest -Uri "http://localhost:7000/Order" -Method Post -ContentType "application/json" -Body $body
 ```
 
-A prerequisite of a successful time series export is a pre-filled `keytab9` database table with references to the time series we want to export. The `keytab` parameter refers to the taret `keytab9` row. `keytab9` is normally filled by the client application like Participant or Nimbus.
+A prerequisite of a successful time series export is a pre-filled `keytab9` database table with references to the time series we want to export. The `keytab` parameter refers to the target `keytab9` row. `keytab9` is normally filled by the client application like Participant or Nimbus.
+
+#### **"RegularOrder"** endpoint
+
+The `RegularOrder` service handles export orders using wider time series match criteria by selecting time series to export by `ValuesTo` and `ValuesFrom` parameters and at least one of the following parameters: `Receiver`, `Protocol`, `ExportMethod`. For example:
+
+```powershell
+$body = '[{"Date":"2024-10-11T17:10:37","Receiver":"DemoBase","ValuesFrom":"2024-05-09T00:00:00","ValuesTo":"2024-05-11T00:00:00","Protocol":123, "ExportMethod":111}]'
+Invoke-WebRequest -Uri "http://localhost:7000/RegularOrder" -Method Post -ContentType "application/json" -Body $body
+```
+
+#### Export message body parameters
+
+`ValuesFrom`, `ValuesTo` define the time series period.
+
+`Receiver` can be either the name or the integer key (`opun_key`) of the receiver participant.
 
 `Protocol` denotes the export type. Possible options are:
 
@@ -31,8 +50,8 @@ A prerequisite of a successful time series export is a pre-filled `keytab9` data
 | 138 | TS Volumes Web Service export |
 | 139 | MSCONS                        |
 
+`ExportMethod` is an integer key (`tstr_key`) of the transfer definition used by the receiver for a specific time series.
 
-`Receiver` can be either the name or the integer key (`opun_key`) of the receiver participant.
 
 #### Export sender
 
