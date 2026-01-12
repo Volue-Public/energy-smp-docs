@@ -168,6 +168,9 @@ nav:
                 - For developers:
                       - Generate C# API from swagger.json: mesh/rest-api/generate-c#-api-from-swagger-json.md
                       - How to use ImportMultistepWaterValueFunctions: mesh/rest-api/how-to-use-ImportMultistepWaterValueFunctions.md
+          - Excel Add-In for Mesh:
+                - User guide: mesh/excel-add-in/addin-excel-user-guide-for-mesh.md
+                - Installation guide: mesh/excel-add-in/how-to-install-addin-excel-for-mesh.md
           - Model maintenance: mesh/model-maintenance/ModelMaintenanceConcepts.md
     - Mesh Data Transfer:
           - Changelog: mesh-data-transfer/changelog/CHANGELOG.md
