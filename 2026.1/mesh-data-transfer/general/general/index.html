@@ -404,7 +404,7 @@
               </ul>
               <p class="caption"><span class="caption-text">Mesh Data Transfer</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../../changelog/CHANGELOG/">Changelog</a>
+                  <li class="toctree-l1"><a class="" href="../../changelog/CHANGELOG.md">Changelog</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">General</a>
     <ul class="current">
@@ -466,11 +466,21 @@
 <p>Mesh Data Transfer offers HTTP endpoints for creating both availability and time series export orders (used by certain Volue products, e.g. Participant, Nimbus). Imports are requested via queues (AMQP 1.0 or Azure Service Bus) and the outcomes of the import operations are sent to AMQP reply queues. The export results are stored as files or sent to an AMQP queue, depending on the configuration. Mesh Data Transfer is also responsible for saving export status to the <code>Message Log</code> (in the case of imports it is done by Mesh).</p>
 <h2 id="usage">Usage</h2>
 <h3 id="time-series-export">Time series export</h3>
-<p>To invoke a Mesh time series export one has to post a HTTP request to Mesh Data Transfer's <code>Order</code> service. Minimal working example:</p>
+<p>To invoke a Mesh time series export, you post an HTTP request to one of Mesh Data Transfer's export endpoints.</p>
+<h4 id="order-endpoint"><strong>"Order"</strong> endpoint</h4>
+<p>The <code>Order</code> service handles keytab-specific export orders. Minimal working example:</p>
 <pre><code class="language-powershell">$body = '[{&quot;Date&quot;:&quot;2024-10-11T17:10:37&quot;,&quot;Receiver&quot;:&quot;DemoBase&quot;,&quot;Keytab&quot;:1,&quot;ValuesFrom&quot;:&quot;2024-05-09T00:00:00&quot;,&quot;ValuesTo&quot;:&quot;2024-05-11T00:00:00&quot;,&quot;Protocol&quot;:126}]'
 Invoke-WebRequest -Uri &quot;http://localhost:7000/Order&quot; -Method Post -ContentType &quot;application/json&quot; -Body $body
 </code></pre>
-<p>A prerequisite of a successful time series export is a pre-filled <code>keytab9</code> database table with references to the time series we want to export. The <code>keytab</code> parameter refers to the taret <code>keytab9</code> row. <code>keytab9</code> is normally filled by the client application like Participant or Nimbus.</p>
+<p>A prerequisite of a successful time series export is a pre-filled <code>keytab9</code> database table with references to the time series we want to export. The <code>keytab</code> parameter refers to the target <code>keytab9</code> row. <code>keytab9</code> is normally filled by the client application like Participant or Nimbus.</p>
+<h4 id="regularorder-endpoint"><strong>"RegularOrder"</strong> endpoint</h4>
+<p>The <code>RegularOrder</code> service handles export orders using wider time series match criteria by selecting time series to export by <code>ValuesTo</code> and <code>ValuesFrom</code> parameters and at least one of the following parameters: <code>Receiver</code>, <code>Protocol</code>, <code>ExportMethod</code>. For example:</p>
+<pre><code class="language-powershell">$body = '[{&quot;Date&quot;:&quot;2024-10-11T17:10:37&quot;,&quot;Receiver&quot;:&quot;DemoBase&quot;,&quot;ValuesFrom&quot;:&quot;2024-05-09T00:00:00&quot;,&quot;ValuesTo&quot;:&quot;2024-05-11T00:00:00&quot;,&quot;Protocol&quot;:123, &quot;ExportMethod&quot;:111}]'
+Invoke-WebRequest -Uri &quot;http://localhost:7000/RegularOrder&quot; -Method Post -ContentType &quot;application/json&quot; -Body $body
+</code></pre>
+<h4 id="export-message-body-parameters">Export message body parameters</h4>
+<p><code>ValuesFrom</code>, <code>ValuesTo</code> define the time series period.</p>
+<p><code>Receiver</code> can be either the name or the integer key (<code>opun_key</code>) of the receiver participant.</p>
 <p><code>Protocol</code> denotes the export type. Possible options are:</p>
 <table>
 <thead>
@@ -518,7 +528,7 @@ Invoke-WebRequest -Uri &quot;http://localhost:7000/Order&quot; -Method Post -Con
 </tr>
 </tbody>
 </table>
-<p><code>Receiver</code> can be either the name or the integer key (<code>opun_key</code>) of the receiver participant.</p>
+<p><code>ExportMethod</code> is an integer key (<code>tstr_key</code>) of the transfer definition used by the receiver for a specific time series.</p>
 <h4 id="export-sender">Export sender</h4>
 <p>The sender defined in the time series export definition (a "sender host") is used by Mesh Data Transfer to specify the sender of the time series data (the sender is then referenced in the Message Log or directly in case of some of the export types, like Standard export or GS2; moreover all the output is grouped by the senders (see below)). If the sender is not defined in the time series export definition, a default sender is selected (which is defined by <code>ParticipantSettings/ICC_SENDER</code> parameter in the configuration file).</p>
 <p>There is also an option to specify the sender in the time series export request:</p>
@@ -541,7 +551,7 @@ Invoke-WebRequest -Uri &quot;http://localhost:7000/Order&quot; -Method Post -Con
             </div>
           </div><footer>
       <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-          <a href="../../changelog/CHANGELOG/" class="btn btn--outline btn--success float-left" title="Changelog"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+          <a href="../../../mesh/model-maintenance/ModelMaintenanceConcepts/" class="btn btn--outline btn--success float-left" title="Model maintenance"><span class="icon icon-circle-arrow-left"></span> Previous</a>
           <a href="../../configuration/configuration/" class="btn btn--outline btn--success float-right" title="Configuration">Next <span class="icon icon-circle-arrow-right"></span></a>
       </div>
   
@@ -565,7 +575,7 @@ Invoke-WebRequest -Uri &quot;http://localhost:7000/Order&quot; -Method Post -Con
     <span class="rst-current-version" data-toggle="rst-current-version is-active">
       
       
-        <span><a href="../../changelog/CHANGELOG/" style="color: #fcfcfc">&laquo; Previous</a></span>
+        <span><a href="../../../mesh/model-maintenance/ModelMaintenanceConcepts/" style="color: #fcfcfc">&laquo; Previous</a></span>
       
       
         <span><a href="../../configuration/configuration/" style="color: #fcfcfc">Next &raquo;</a></span>
