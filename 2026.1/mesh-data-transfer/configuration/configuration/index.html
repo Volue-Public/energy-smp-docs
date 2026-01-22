@@ -404,8 +404,6 @@
               </ul>
               <p class="caption"><span class="caption-text">Mesh Data Transfer</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="" href="../../changelog/CHANGELOG.md">Changelog</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../general/general/">General</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Configuration</a>
@@ -517,7 +515,9 @@ Other useful options in <code>Args</code> section are:
 <h3 id="brokers-configuration">Brokers Configuration</h3>
 <p>Mesh Data Transfer service operates on AMQP entities. AMQP broker is a piece of software capable of relaying messages from one service to another.
 <code>BrokersConfiguration</code> configuration item allows the user to specify broker connection strings - more than one connection string is allowed.
-In case of connection failure, the service will choose the next connection string from the list and will try to establish a new connection.</p>
+In case of connection failure, the service will choose the next connection string from the list and will try to establish a new connection.
+If the sections or any parameters within the section is not present, they are ignored. </p>
+<p>Note! If a protocol is configured to export to a queue defined in the BrokersConfiguration section, the configuration is mandatory.</p>
 <pre><code class="language-json">  &quot;BrokersConfiguration&quot;: {
     &quot;B1&quot;: {
       &quot;ConnectionStrings&quot;: [
@@ -719,7 +719,8 @@ If the <code>DestinationQueues</code> mapping does not provide target queue info
 <p>Another parameter for <code>StoragePerProtocol</code> nodes is <code>DefaultDecimals</code>. It defines the number of decimals that is saved in the exported time series values if the decimals parameter is not defined in the time series export definition. It is optional and currently it is only supported for EDIEL DELFOR, ExcelCSV and GS2 export types.</p>
 <p><code>ICC_TRANSLOG_DIR</code> is a directory where export files are kept in order to look them up from MessageLog application.
 Please make sure that these directories are created.
-<code>AvailabilityExportQueue</code> is a reference to one of the queues defined in <code>QueuesConfiguration</code> item.</p>
+<code>AvailabilityExportQueue</code> is a reference to one of the queues defined in <code>QueuesConfiguration</code> item.
+If the sections or any parameters within the section is not present, they are ignored.</p>
 <pre><code class="language-json">&quot;Storage&quot;: {
   &quot;StoragePerProtocol&quot;: {
     &quot;PVPLAN&quot;: {
