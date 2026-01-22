@@ -50,6 +50,9 @@ More information can be found in serilog file sink [documentation](https://githu
 Mesh Data Transfer service operates on AMQP entities. AMQP broker is a piece of software capable of relaying messages from one service to another.
 `BrokersConfiguration` configuration item allows the user to specify broker connection strings - more than one connection string is allowed.
 In case of connection failure, the service will choose the next connection string from the list and will try to establish a new connection.
+If the sections or any parameters within the section is not present, they are ignored. 
+
+Note! If a protocol is configured to export to a queue defined in the BrokersConfiguration section, the configuration is mandatory.
 
 ```json
   "BrokersConfiguration": {
@@ -337,6 +340,7 @@ Another parameter for `StoragePerProtocol` nodes is `DefaultDecimals`. It define
 `ICC_TRANSLOG_DIR` is a directory where export files are kept in order to look them up from MessageLog application.
 Please make sure that these directories are created.
 `AvailabilityExportQueue` is a reference to one of the queues defined in `QueuesConfiguration` item.
+If the sections or any parameters within the section is not present, they are ignored.
 ```json
 "Storage": {
   "StoragePerProtocol": {
