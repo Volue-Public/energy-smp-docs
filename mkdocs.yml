@@ -170,7 +170,6 @@ nav:
                       - How to use ImportMultistepWaterValueFunctions: mesh/rest-api/how-to-use-ImportMultistepWaterValueFunctions.md
           - Model maintenance: mesh/model-maintenance/ModelMaintenanceConcepts.md
     - Mesh Data Transfer:
-          - Changelog: mesh-data-transfer/changelog/CHANGELOG.md
           - General: mesh-data-transfer/general/general.md
           - Configuration: mesh-data-transfer/configuration/configuration.md
           - Use cases:
