@@ -51,9 +51,9 @@ This document describes how to install and upgrade the Mesh Service. Installatio
 
 ### System requirements
 
-- Operating system: Windows Server Standard 2019 or 2022, 64-bit
+- Operating system: Windows Server Standard 2019, 2022 or 2025, 64-bit
 - SmG Database (with compatible SmG version)
-- Microsoft Visual C++ Redistributable for Visual Studio 2015-2022
+- Microsoft Visual C++ Redistributable for Visual Studio 2017-2026, version 14.50 or newer, 64-bit
 - .NET Framework 4.8
 
 Database upgrades are done via the SmG database upgrade. Ensure you have the correct version of SmG, see latest release notes.
