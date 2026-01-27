@@ -123,7 +123,7 @@ nav:
                             - STATUS_MASK: mesh/calculations/functions/status_mask.md
                             - STATUS_COUNT: mesh/calculations/functions/status_count.md
                       - Time:
-                            - About: mesh/calculations/functions/time_about.md
+                            - About: mesh/calculations/functions/time_group.md
                             - IsResolution: mesh/calculations/functions/is_resolution.md
                             - IsTimeValid: mesh/calculations/functions/is_time_valid.md
                             - PushExtPeriod: mesh/calculations/functions/push_ext_period.md
