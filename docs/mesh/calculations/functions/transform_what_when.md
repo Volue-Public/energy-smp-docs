@@ -27,15 +27,7 @@ The calculator performs calculations with reference to normal time if nothing el
 
 For this type of task the following is used:
 
-R5 = [@TRANSFORM(t,s,s,s)](../functions/transform.md#r5)
-
-### ACCUMULATE SELECTED VALUES
-
-Standard accumulation uses all values included in the source period for each single result value, e.g. all values in a day. If you do not wish this, you use a mask series with values equal to 1 for the points of time/values that are included and 0 otherwise. The mask series must have the same resolution as the source series.
-
-For this type of task the following is used:
-
-R4 = [@TRANSFORM(t,s,s,t)](../functions/transform.md#r4)
+R4 = [@TRANSFORM(t,s,s,s)](../functions/transform.md#r4)
 
 ### DISTRIBUTING VALUES WITH REFERENCE TO PROFILE
 
