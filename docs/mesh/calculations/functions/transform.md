@@ -1,6 +1,6 @@
 ## TRANSFORM
 This topic describes the TRANSFORM variants ([R1](#r1), [R2](#r2), [R3](#r3),
-[R4](#r4), [R5](#r5)) for transforming from one time resolution to another. To
+[R4](#r4)) for transforming from one time resolution to another. To
 get an overview of all the transformation function variants, see:
 
 [Which functions can be used when?](../functions/transform_what_when.md)
@@ -49,17 +49,12 @@ transformation methods are available for this latter use.
 ## Syntax
 - TRANSFORM(t,s,s)
 
-
 ## Description
-
-
 | # | Type | Description |
 |---|---|---|
 | 1 | t | Time series to be converted. |
 | 2 | s | Time resolution of the result, given as a RESOLUTION symbol (see separate table). |
 | 3 | s | Conversion method, given as a TRANSMETHOD symbol (see separate table). |
-
-
 
 ## Example
   Example 1: @TRANSFORM(t,s,s) Create week sums from a time series
@@ -102,8 +97,6 @@ transformation methods are available for this latter use.
 
   ![](assets/images/ex_TRANSFORM-nimbustable7.png)
 
-
-
 ### R2
 ## About the function
 Conversion to periods given by points of time on the series given as argument 2.
@@ -113,17 +106,12 @@ standard calendar units, e.g. 3 hours, 10 days, etc.
 ## Syntax
 - TRANSFORM(t,t,s)
 
-
 ## Description
-
-
 | # | Type | Description |
 |---|---|---|
 | 1 | t | Time series to be converted. |
 | 2 | t | Time resolution on result, given as a break point series. The result series contains values on the points of time that exist on this series for current period. The values on this series are not used. |
 | 3 | s | Conversion method, given as a TRANSMETHOD symbol. |
-
-
 
 ## Example
 If you want to create an 8 hour accumulation for a time series you may do like
@@ -145,57 +133,18 @@ number of seconds in the period.
 ## Syntax
 - TRANSFORM(t,d,s)
 
-
 ## Description
-
-
 | # | Type | Description |
 |---|---|---|
 | 1 | t | Time series to be converted. |
 | 2 | d | Time resolution on the result, given as number of seconds in each period. |
 | 3 | s | Conversion method, given as a TRANSMETHOD symbol. |
 
-
-
 ## Example
 If d is defined as the value 864000 this means a period of 10 days
 (60*60*24*10). The result is a break point series.
 
 ### R4
-## About the function
-Corresponding functionality as to [R1](#r1), but with an additional argument
-representing a mask series. This decides which values in the base series that
-should contribute to converted value. If you should transform to a time series
-with finer resolution, you must use the DISTRIBUTE function.
-
-## Syntax
-- TRANSFORM(t,s,s,t)
-
-
-## Description
-
-
-| # | Type | Description |
-|---|---|---|
-| 1 | t | Time series to be converted. |
-| 2 | s | Time resolution on result, given as a RESOLUTION symbol. |
-| 3 | s | Conversion method, given as a TRANSMETHOD symbol. |
-| 4 | t | Mask series deciding which values on the time series in argument 1 that should contribute to the result. |
-
-
-
-## Example
-If you wish to calculate a day series with the sum of values for 6am to 8pm, you
-can define the following expression:
-
-Create a time mask series that define hours to be included in the sum (value
-equals 1 on the mask series):
-
-  TM = @TIME_MASK('DAY', {'DAY+6h','DAY+20h'}, {1,0})
-
-  Res = @TRANSFORM(@t('HourTs'), 'DAY', 'SUM', TM)
-
-### R5
 ## About the function
 Corresponding functionality as in [R1](#r1), but with an additional argument
 that decides which time zone that is the base for the conversion. This gives the
@@ -205,10 +154,7 @@ environment.
 ## Syntax
 - TRANSFORM(t,s,s,s)
 
-
 ## Description
-
-
 | # | Type | Description |
 |---|---|---|
 | 1 | t | Time series to be converted. |
@@ -216,10 +162,7 @@ environment.
 | 3 | s | Conversion method, given as a TRANSMETHOD symbol. |
 | 4 | s | Symbol stating time zone. 'LOCAL', 'LOKAL' and 'LT' give local time zone, 'NORMAL', 'STANDARD' and 'NT' gives normal time zone. Otherwise, the system will perform a lookup and see whether the value of the symbol is the name on an explicitly stated time zone in the system. Unknown zone equals no zone and then normal time zone is used. |
 
-
-
   **Example**
-
 If you wish to calculate the DAY average on every hour of the day with Daylight
 Saving Time (DST), you can make an expression like this :
 
