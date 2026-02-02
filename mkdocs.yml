@@ -14,6 +14,7 @@ markdown_extensions:
 nav:
     - Home: index.md
     - Mesh:
+          - Overview: mesh/index.md
           - Concepts:
                 - Availability: mesh/concepts/availability.md
                 - Calculations: mesh/concepts/calculations.md
