@@ -39,7 +39,7 @@ Connect to Mesh programmatically.
 
 ## Calculations
 
-- [Calculation oerview](calculations/general.md) - Introduction to calculations in Mesh
+- [Calculation overview](calculations/general.md) - Introduction to calculations in Mesh
 - [Time macros](calculations/timepoint-macros.md) - Time-based calculation macros
 - [Calculation functions](calculations/functions/introduction.md) - Complete catalog of available functions
 
