@@ -54,5 +54,5 @@ The `timepoints` array contains these numbers:
 | 638980320580000000 | November 6, 2025 13:20:58 |
 | 638980320190000000 | November 6, 2025 13:20:19 |
 
-See [GetTsAsOfTime](./get_ts_as_of_time.md#example) for an example on how this function can be used.
+See [GetTsAsOfTime](./get_ts_as_of_time.md#example-using-gettsaudittimes) for an example on how this function can be used.
 
