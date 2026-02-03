@@ -53,6 +53,8 @@
               </ul>
               <p class="caption"><span class="caption-text">Mesh</span></p>
               <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../../">Overview</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" >Concepts</a>
     <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../../../concepts/availability/">Availability</a>
@@ -293,7 +295,7 @@
                 </li>
                 <li class="toctree-l3"><a class="reference internal" >Time</a>
     <ul>
-                <li class="toctree-l4"><a class="" href="../time_about.md">About</a>
+                <li class="toctree-l4"><a class="reference internal" href="../time_group/">About</a>
                 </li>
                 <li class="toctree-l4"><a class="reference internal" href="../is_resolution/">IsResolution</a>
                 </li>
@@ -474,11 +476,7 @@
 <h3 id="make-transformation-with-reference-to-time-zone">MAKE TRANSFORMATION WITH REFERENCE TO TIME ZONE</h3>
 <p>The calculator performs calculations with reference to normal time if nothing else is given. A normal example is to accumulate hour values to day values or week values using local time (summer time) or a different time zone.</p>
 <p>For this type of task the following is used:</p>
-<p>R5 = <a href="../transform/#r5">@TRANSFORM(t,s,s,s)</a></p>
-<h3 id="accumulate-selected-values">ACCUMULATE SELECTED VALUES</h3>
-<p>Standard accumulation uses all values included in the source period for each single result value, e.g. all values in a day. If you do not wish this, you use a mask series with values equal to 1 for the points of time/values that are included and 0 otherwise. The mask series must have the same resolution as the source series.</p>
-<p>For this type of task the following is used:</p>
-<p>R4 = <a href="../transform/#r4">@TRANSFORM(t,s,s,t)</a></p>
+<p>R4 = <a href="../transform/#r4">@TRANSFORM(t,s,s,s)</a></p>
 <h3 id="distributing-values-with-reference-to-profile">DISTRIBUTING VALUES WITH REFERENCE TO PROFILE</h3>
 <p>If you transform from fixed interval resolution to a finer resolution, e.g. from day to hour and want the calculated value to be distributed with reference to a profile, you cannot use standard transformation given from R1.</p>
 <p>For this type of task the following is used:</p>

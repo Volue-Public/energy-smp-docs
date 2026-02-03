@@ -53,6 +53,8 @@
               </ul>
               <p class="caption"><span class="caption-text">Mesh</span></p>
               <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../../">Overview</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" >Concepts</a>
     <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../../../concepts/availability/">Availability</a>
@@ -293,7 +295,7 @@
                 </li>
                 <li class="toctree-l3"><a class="reference internal" >Time</a>
     <ul>
-                <li class="toctree-l4"><a class="" href="../time_about.md">About</a>
+                <li class="toctree-l4"><a class="reference internal" href="../time_group/">About</a>
                 </li>
                 <li class="toctree-l4"><a class="reference internal" href="../is_resolution/">IsResolution</a>
                 </li>
@@ -462,7 +464,7 @@
               
                 <h2 id="transform">TRANSFORM</h2>
 <p>This topic describes the TRANSFORM variants (<a href="#r1">R1</a>, <a href="#r2">R2</a>, <a href="#r3">R3</a>,
-<a href="#r4">R4</a>, <a href="#r5">R5</a>) for transforming from one time resolution to another. To
+<a href="#r4">R4</a>) for transforming from one time resolution to another. To
 get an overview of all the transformation function variants, see:</p>
 <p><a href="../transform_what_when/">Which functions can be used when?</a></p>
 <p>Transformation of time series from one resolution to another resolution is
@@ -634,64 +636,15 @@ number of seconds in the period.</p>
 (60<em>60</em>24*10). The result is a break point series.</p>
 <h3 id="r4">R4</h3>
 <h2 id="about-the-function_3">About the function</h2>
-<p>Corresponding functionality as to <a href="#r1">R1</a>, but with an additional argument
-representing a mask series. This decides which values in the base series that
-should contribute to converted value. If you should transform to a time series
-with finer resolution, you must use the DISTRIBUTE function.</p>
-<h2 id="syntax_3">Syntax</h2>
-<ul>
-<li>TRANSFORM(t,s,s,t)</li>
-</ul>
-<h2 id="description_3">Description</h2>
-<table>
-<thead>
-<tr>
-<th>#</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>t</td>
-<td>Time series to be converted.</td>
-</tr>
-<tr>
-<td>2</td>
-<td>s</td>
-<td>Time resolution on result, given as a RESOLUTION symbol.</td>
-</tr>
-<tr>
-<td>3</td>
-<td>s</td>
-<td>Conversion method, given as a TRANSMETHOD symbol.</td>
-</tr>
-<tr>
-<td>4</td>
-<td>t</td>
-<td>Mask series deciding which values on the time series in argument 1 that should contribute to the result.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="example_3">Example</h2>
-<p>If you wish to calculate a day series with the sum of values for 6am to 8pm, you
-can define the following expression:</p>
-<p>Create a time mask series that define hours to be included in the sum (value
-equals 1 on the mask series):</p>
-<p>TM = @TIME_MASK('DAY', {'DAY+6h','DAY+20h'}, {1,0})</p>
-<p>Res = @TRANSFORM(@t('HourTs'), 'DAY', 'SUM', TM)</p>
-<h3 id="r5">R5</h3>
-<h2 id="about-the-function_4">About the function</h2>
 <p>Corresponding functionality as in <a href="#r1">R1</a>, but with an additional argument
 that decides which time zone that is the base for the conversion. This gives the
 possibilities to user periods that are different from the rest of the
 environment.</p>
-<h2 id="syntax_4">Syntax</h2>
+<h2 id="syntax_3">Syntax</h2>
 <ul>
 <li>TRANSFORM(t,s,s,s)</li>
 </ul>
-<h2 id="description_4">Description</h2>
+<h2 id="description_3">Description</h2>
 <table>
 <thead>
 <tr>
@@ -723,8 +676,8 @@ environment.</p>
 </tr>
 </tbody>
 </table>
-<p><strong>Example</strong></p>
-<p>If you wish to calculate the DAY average on every hour of the day with Daylight
+<p><strong>Example</strong>
+If you wish to calculate the DAY average on every hour of the day with Daylight
 Saving Time (DST), you can make an expression like this :</p>
 <p>Res = @TRANSFORM(@TRANSFORM(@t(‘HourSeries’), 'DAY', 'MEAN', 'LT'), 'HOUR',
 'MEAN', 'LT')</p>
