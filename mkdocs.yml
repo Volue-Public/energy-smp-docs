@@ -159,9 +159,10 @@ nav:
                             - CorrectExtrapolate: mesh/calculations/functions/correct_extrapolate.md
                             - CorrectInterpolate: mesh/calculations/functions/correct_interpolate.md
           - "gRPC":
-                - "Client certificates": mesh/grpc/ClientCertificates.md
-                - "Authorization": mesh/grpc/Authorization.md
                 - "API Specification": mesh/grpc/APISpecification.md
+                - "Authorization": mesh/grpc/Authorization.md
+                - "Client certificates": mesh/grpc/ClientCertificates.md
+                - "Message size limits": mesh/grpc/MessageSizeLimits.md
           - Mesh REST API:
                 - Introduction: mesh/rest-api/introduction.md
                 - Changelog: mesh/rest-api/changelog.md
