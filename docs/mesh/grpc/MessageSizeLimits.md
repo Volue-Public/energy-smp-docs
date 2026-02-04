@@ -65,8 +65,8 @@ Each point consists of these three fields, totaling 20 bytes per point.
 
 ### Reading data
 
-When reading large time series data:
-- Increase the maximum gRPC inbound message size from the client side when establishing connection.
+When reading large amounts of time series data:
+- Increase the maximum gRPC inbound message size from the client side when establishing the connection.
 - Send request data in chunks (split time intervals into smaller ranges). Please keep in mind that
   for some calculations, the result of several reads with smaller ranges doesn't need to sum up to
   one read over longer interval.
