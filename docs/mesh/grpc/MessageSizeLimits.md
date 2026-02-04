@@ -50,8 +50,8 @@ When working with time series data, keep the following in mind:
 
 ## Time series data format
 
-[Time series data](../concepts/time-series.md) in Mesh gRPC API is using Apache Arrow byte
-representation with the following structure:
+In Mesh gRPC API, Apache Arrow is used to represent [time series data](../concepts/time-series.md)
+with the following structure:
 
 | Column | Type | Description |
 |--------|------|-------------|
@@ -66,10 +66,11 @@ Each point consists of these three fields, totaling 20 bytes per point.
 ### Reading data
 
 When reading large amounts of time series data:
-- Increase the maximum gRPC inbound message size from the client side when establishing the connection.
-- Send request data in chunks (split time intervals into smaller ranges). Please keep in mind that
-  for some calculations, the result of several reads with smaller ranges doesn't need to sum up to
-  one read over longer interval.
+- Increase the maximum gRPC inbound message size from the client side when establishing the
+  connection.
+- Send request data in chunks (split time intervals into smaller ranges). Note that for some
+  calculations, the result of several reads with smaller ranges does not need to sum up to the same
+  as one read over a longer interval.
 
 ### Writing data
 
