@@ -16,8 +16,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Search language";
-        var mkdocs_page_input_path = "mesh/concepts/search-language.md";
+        var mkdocs_page_name = "Message size limits";
+        var mkdocs_page_input_path = "mesh/grpc/MessageSizeLimits.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -55,41 +55,29 @@
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" >Concepts</a>
-    <ul class="current">
-                <li class="toctree-l2"><a class="reference internal" href="../availability/">Availability</a>
+                  <li class="toctree-l1"><a class="reference internal" >Concepts</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/availability/">Availability</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../calculations/">Calculations</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/calculations/">Calculations</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" >Modelling</a>
     <ul>
-                <li class="toctree-l3"><a class="reference internal" href="../modelling/general/">General</a>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/general/">General</a>
                 </li>
-                <li class="toctree-l3"><a class="reference internal" href="../modelling/rating-curves/">Rating curves</a>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/rating-curves/">Rating curves</a>
                 </li>
-                <li class="toctree-l3"><a class="reference internal" href="../modelling/relations/">Relations</a>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/relations/">Relations</a>
                 </li>
-                <li class="toctree-l3"><a class="reference internal" href="../modelling/xy-sets/">XY-sets</a>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/xy-sets/">XY-sets</a>
                 </li>
     </ul>
                 </li>
-                <li class="toctree-l2 current"><a class="reference internal current" href="#">Search language</a>
-    <ul class="current">
-    <li class="toctree-l3"><a class="reference internal" href="#query-syntax">Query syntax</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#traversal">Traversal</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#criteria">Criteria</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#combining-multiple-search-operations">Combining multiple search operations</a>
-    </li>
-    </ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/search-language/">Search language</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../sessions/">Sessions</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/time-series/">Time series</a>
                 </li>
     </ul>
                   </li>
@@ -385,15 +373,45 @@
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" >gRPC</a>
-    <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../../grpc/APISpecification/">API Specification</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" >gRPC</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../APISpecification/">API Specification</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../grpc/Authorization/">Authorization</a>
+                <li class="toctree-l2"><a class="reference internal" href="../Authorization/">Authorization</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../grpc/ClientCertificates/">Client certificates</a>
+                <li class="toctree-l2"><a class="reference internal" href="../ClientCertificates/">Client certificates</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../grpc/MessageSizeLimits/">Message size limits</a>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Message size limits</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#client-side-limits">Client-side limits</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#inbound-messages-server-to-client">Inbound messages (server to client)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#outbound-messages-client-to-server">Outbound messages (client to server)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#server-side-limits">Server-side limits</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#inbound-messages-client-to-server">Inbound messages (client to server)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#time-series-data">Time series data</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#time-series-data-format">Time series data format</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices">Best practices</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#reading-data">Reading data</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#writing-data">Writing data</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -464,8 +482,8 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">Mesh</li>
-          <li class="breadcrumb-item">Concepts</li>
-      <li class="breadcrumb-item active">Search language</li>
+          <li class="breadcrumb-item">gRPC</li>
+      <li class="breadcrumb-item active">Message size limits</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -474,231 +492,87 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="mesh-search-language">Mesh search language</h1>
-<p>The Mesh search language can be used to find Mesh objects.</p>
-<p>To be able to search for a Mesh object you need to specify which model to
-search in, where in the model the search should start and the query matching
-the criteria of the Mesh object you are searching for.</p>
-<h2 id="query-syntax">Query syntax</h2>
-<p>A search consists of a traversal, optionally followed by an <a href="../modelling/general/#attribute">attribute</a>
-access (".AttributeName"). A search takes an object (the start point) as input
-and produces a set of objects or attributes as output (the result). If the
-attribute access is specified, the result objects are all attributes (attribute
-search), otherwise they are all objects (object search).</p>
-<h3 id="traversal">Traversal</h3>
-<p>A traversal describes a set of relative paths in the Mesh object structure. It takes a set of objects as an input (the start points) and produces a set of objects as an output (the result) by following the paths from each start point and collecting end points. The start point is used to form a set and input into the traversal. The attribute access is applied to the output of the traversal. Some of the traversals are parametrised on criteria (e.g. <code>[Criteria]</code> or <code>\*[Criteria]</code>). For example, the traversal <code>..</code> will output the parent, if it exists, for each input object. Traversals can be combined with operators to form new traversals.</p>
+                <h1 id="message-size-limits">Message size limits</h1>
+<h2 id="overview">Overview</h2>
+<p>gRPC communication between Mesh clients and servers has specific message size limitations that
+must be considered when designing applications and performing operations, particularly when working
+with large datasets or time series data.</p>
+<h2 id="client-side-limits">Client-side limits</h2>
+<h3 id="inbound-messages-server-to-client">Inbound messages (server to client)</h3>
+<p>By default, gRPC limits the size of inbound messages to <strong>4MB</strong>. This limit applies to responses
+received from the Mesh server by the client.</p>
+<p>When creating a connection to the Mesh server, clients can configure this limit to accommodate
+larger responses if needed. This is particularly useful when:
+- Running long simulations with datasets enabled
+- Retrieving large amounts of data in a single operation
+- Working with operations that may exceed the 4MB default limit</p>
+<p>If the inbound message size exceeds the configured limit, a <code>RESOURCE_EXHAUSTED</code> status code will
+be returned.</p>
+<h3 id="outbound-messages-client-to-server">Outbound messages (client to server)</h3>
+<p>gRPC outbound message size is <strong>not limited by default</strong> on the client side. However, this does
+not mean unlimited data can be sent in a single request due to server-side restrictions (see
+below).</p>
+<h2 id="server-side-limits">Server-side limits</h2>
+<h3 id="inbound-messages-client-to-server">Inbound messages (client to server)</h3>
+<p>The Mesh server has a <strong>fixed 4MB limit</strong> for inbound messages. This limit is <strong>not
+configurable</strong>. If a client sends a message that exceeds this limit, the request will be
+discarded.</p>
+<p>Due to this restriction, clients <strong>must</strong> send data in chunks when performing write operations
+that could potentially exceed this limit, like writing time series points.</p>
+<h2 id="time-series-data">Time series data</h2>
+<p>When working with time series data, keep the following in mind:
+- A single time series point occupies <strong>20 bytes</strong>.
+- To avoid exceeding the 4MB limit, a single read or write operation should contain approximately
+  <strong>200,000 points maximum</strong>.
+- Calculate the expected data size based on the number of points and time interval before
+  performing operations.</p>
+<h2 id="time-series-data-format">Time series data format</h2>
+<p>In Mesh gRPC API, Apache Arrow is used to represent <a href="../../concepts/time-series/">time series data</a>
+with the following structure:</p>
 <table>
 <thead>
 <tr>
-<th>NAME</th>
-<th>SYNTAX</th>
-<th>DESCRIPTION</th>
-<th>EXAMPLE</th>
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Attribute access</td>
-<td><code>.&lt;attribute name&gt;</code></td>
-<td>Use dot as prefix to address attributes on the current object. In the example the current object matches the filter if it has an attribute named Siblings and its value is greater than 2.</td>
-<td><code>[.Siblings&gt;2]</code></td>
+<td>utc_time</td>
+<td>timestamp(ms)</td>
+<td>UTC Unix timestamp in milliseconds (stored as 64-bit integer)</td>
 </tr>
 <tr>
-<td>Predicated child step</td>
-<td><code>[&lt;criteria expression&gt;]</code></td>
-<td>Outputs children that match the criteria.</td>
-<td><code>[.Type=Teacher&amp;&amp;School.Name=Berg]</code></td>
+<td>flags</td>
+<td>uint32</td>
+<td>Status flags for the data point</td>
 </tr>
 <tr>
-<td>Composer</td>
-<td><code>Search1/Search2</code></td>
-<td>Use slash, /, to combine searches.</td>
-<td><code>operate_school/school_has_classes</code></td>
-</tr>
-<tr>
-<td>Intersection</td>
-<td><code>&amp;</code></td>
-<td>Combines several separate searches into a collection of objects that are part of ALL separate search results.</td>
-<td><code>[.Type=School]&amp;[.Name=Berg]</code></td>
-</tr>
-<tr>
-<td>Union</td>
-<td><code>\|</code></td>
-<td>Combines several separate searches into a unique collection.</td>
-<td><code>[.Name=Eng-1]\|[.Type=Pupil]</code></td>
-</tr>
-<tr>
-<td>Repeater</td>
-<td><code>&lt;Search&gt;*</code></td>
-<td>Repeats a search one or more times. If the star is in curly braces, it will also output intermediate results.</td>
-<td><code>[*.Name=1]</code></td>
-</tr>
-<tr>
-<td>Strict repeater</td>
-<td><code>&lt;Search&gt;+</code></td>
-<td>Repeats a search one or more times. If the plus is in curly braces, it will also output intermediate results.</td>
-<td><code>[.Name=1]+</code></td>
-</tr>
-<tr>
-<td>Self step</td>
-<td><code>@</code></td>
-<td>Outputs the same as input. This is useful when composing unions.</td>
-<td><code>@</code></td>
-</tr>
-<tr>
-<td>Filter</td>
-<td><code>@[&lt;criteria expression&gt;]</code></td>
-<td>Filters with help of example input object that matches criteria.</td>
-<td><code>@[.Name~a]</code></td>
-</tr>
-<tr>
-<td>Child walk</td>
-<td><code>*</code></td>
-<td>Outputs all child nodes (lowest objects in tree structure).</td>
-<td><code>*</code></td>
-</tr>
-<tr>
-<td>Predicated child walk</td>
-<td><code>*[&lt;criteria expression&gt;]</code></td>
-<td>Searches down until it finds an object matching criteria. If enclosed in curly braces, <code>{*\}</code>, it will also output intermediate objects.</td>
-<td><code>*[type=Pupil]</code> <code>{*\}[type=Pupil]</code></td>
-</tr>
-<tr>
-<td>Strict child walk</td>
-<td><code>+</code></td>
-<td>Almost same as child walk (see above). If start node has an empty set, this walk returns null result and returns back to start.</td>
-<td><code>+</code></td>
-</tr>
-<tr>
-<td>Predicated Strict child walk</td>
-<td><code>+[&lt;criteria expression&gt;]</code></td>
-<td>Almost same as predicated child walk (see above). If an input object matches the criteria, and it has no descendants matching the criteria, strict child walk returns an empty result, whereas child walk returns the input object.</td>
-<td><ul><li><code>+[.Type=Pupil]</code></li> <li><code>{*}[.Type=Pupil]</code></li></ul></td>
-</tr>
-<tr>
-<td>Parent step</td>
-<td><code>..</code></td>
-<td>Returns parents of input objects.</td>
-<td><code>../Olav</code></td>
-</tr>
-<tr>
-<td>Parent walk</td>
-<td><code>..*[&lt;criteria expression&gt;]</code></td>
-<td>Outputs the input object if it matches the criteria. Otherwise, it outputs the first ancestor that matches the criteria. Can be enclosed in <code>{*}</code> to also output intermediate objects.</td>
-<td><code>..*[.Name="Olav"]</code></td>
-</tr>
-<tr>
-<td>Strict parent walk</td>
-<td><code>..+[&lt;criteria expression&gt;]</code></td>
-<td>Outputs the first ancestor that matches the criteria. Can be enclosed in <code>{+}</code> to also output intermediate objects.</td>
-<td><code>..+[.Name="Olav"]</code></td>
-</tr>
-<tr>
-<td>Link walk</td>
-<td><code>~</code></td>
-<td>Traverses by link relations. Yields all objects which current object links to.</td>
-<td><code>~[.Type=School]</code></td>
-</tr>
-<tr>
-<td>Reverse link walk</td>
-<td><code>~~</code></td>
-<td>Reverse link traversal. Yields all objects which link to current object.</td>
-<td><code>~~[.Type=School]</code></td>
+<td>value</td>
+<td>double</td>
+<td>The actual time series value</td>
 </tr>
 </tbody>
 </table>
-<h3 id="criteria">Criteria</h3>
-<p>Some traversals are parametrised on criteria (see predicated child walk and child step). The criteria control which objects the traversal will accept as output, and will either accept an object by outputting true or reject it by outputting false. You can combine criteria with operators to form new criteria (see AND, OR). For example, the traversal ‘[.Name=N]’ will for each input object, output the set of child objects whose name equals ‘N’. The traversal ‘*[.Name=N]’ will for each input object output the set of closest descendant objects whose name is ‘N’.</p>
-<p>Criteria are always enclosed in square brackets, [].</p>
-<p>You may specify options for the criteria within suffix curly brackets {}, for example to ignore case sensitivity on text based comparison. {i} means the search is case insensitive.</p>
-<table>
-<thead>
-<tr>
-<th>NAME</th>
-<th>SYNTAX</th>
-<th>DESCRIPTION</th>
-<th>EXAMPLE</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Criteria relations</td>
-<td><code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>=</code></td>
-<td>Numerical criteria used in combination with a number inside a square bracket.</td>
-<td><code>[.Type=Pupil&amp;&amp;.Siblings&gt;1]</code></td>
-</tr>
-<tr>
-<td>Equal criteria</td>
-<td><code>=</code></td>
-<td>Used in combination with text inside a square bracket.</td>
-<td><code>[.Type=Pupil]</code></td>
-</tr>
-<tr>
-<td>Contains criteria</td>
-<td><code>~</code></td>
-<td>Used with text inside a square bracket. The string on the right-hand side is contained in the string on the left-hand side.</td>
-<td><code>[.Type=Pupil&amp;&amp;.Name~ok]]</code></td>
-</tr>
-<tr>
-<td>Logic AND operator</td>
-<td><code>&amp;&amp;</code></td>
-<td>Combines sub-criteria. All criteria must evaluate to true to get a result.</td>
-<td><code>[.Type=Pupil&amp;&amp;.Siblings&gt;1]</code></td>
-</tr>
-<tr>
-<td>Existence criteria</td>
-<td><code>search</code></td>
-<td>Checks if the search result is not empty.</td>
-<td><ul><li><code>[.Siblings&amp;&amp;!.Age]]</code> (objects with <code>Siblings</code> attribute, but not <code>Age</code> attribute)</li><li><code>[.Siblings&amp;&amp;!...Age]</code> (objects with <code>Siblings</code> attribute, but whose parent has no <code>Age</code> attribute)</td>
-</tr>
-<tr>
-<td>Logic OR operator</td>
-<td><code>\|\|</code></td>
-<td>Has lower precedence than the AND operator. Can be controlled by grouping criteria parts in brackets <code>()</code>.</td>
-<td><code>[..Name=Anita\|\|..Name=Beate]</code></td>
-</tr>
-<tr>
-<td>Logic NOT operator</td>
-<td><code>!</code></td>
-<td>Inverts the input.</td>
-<td><code>[!.Age=27]</code></td>
-</tr>
-<tr>
-<td>Match criteria</td>
-<td><code>#</code></td>
-<td>Regular expression. Only for text attributes (not numerical values).</td>
-<td><ul><li><code>[.Name#.*nen]</code> (Names that ends on "nen". <code>.</code> matches any character, <code>.*</code> matches all characters.)</li><li><code>[.Name#[A-C\\].*]</code> (Searches for objects with a name starting with A, B or C. It is a range based expression <code>[A-C]</code> followed by <code>.*</code> which means all characters. Note: A part regular expression needs a double back slash quote at the end).</td>
-</tr>
-</tbody>
-</table>
-<h2 id="combining-multiple-search-operations">Combining multiple search operations</h2>
-<p>You can combine search operations with the following operators:</p>
-<ul>
-<li><strong>INTERSECTION, &amp;</strong>:<ul>
-<li>The result is the intersection between each result set.</li>
-<li>Syntax: <em>Search1&amp;Search2</em></li>
-</ul>
-</li>
-<li><strong>UNION, |</strong>:<ul>
-<li>The result is the union between each result set.</li>
-<li>Syntax: <em>Search1|Search2</em></li>
-</ul>
-</li>
-<li>
-<p><strong>COMPOSITION, /</strong>:</p>
-<ul>
-<li>Uses the output from Search1 as input to Search2.</li>
-<li>Syntax: <em>Search1/Search2</em></li>
-</ul>
-<p>When using INTERSECTION and UNION between searches, you only use a single character, &amp; or |, respectively. Inside an object criteria, you use double character to specify a logic AND, &amp;&amp;, or logic OR, ||, respectively</p>
-</li>
-</ul>
+<p>Each point consists of these three fields, totaling 20 bytes per point.</p>
+<h2 id="best-practices">Best practices</h2>
+<h3 id="reading-data">Reading data</h3>
+<p>When reading large amounts of time series data:
+- Increase the maximum gRPC inbound message size from the client side when establishing the
+  connection.
+- Send request data in chunks (split time intervals into smaller ranges). Note that for some
+  calculations, the result of several reads with smaller ranges does not need to sum up to the same
+  as one read over a longer interval.</p>
+<h3 id="writing-data">Writing data</h3>
+<p>When writing data to the Mesh server, chunking is mandatory due to the fixed 4MB server-side
+inbound limit. Large write operations must be split into multiple smaller requests.</p>
               
             </div>
           </div><footer>
       <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-          <a href="../modelling/xy-sets/" class="btn btn--outline btn--success float-left" title="XY-sets"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-          <a href="../sessions/" class="btn btn--outline btn--success float-right" title="Sessions">Next <span class="icon icon-circle-arrow-right"></span></a>
+          <a href="../ClientCertificates/" class="btn btn--outline btn--success float-left" title="Client certificates"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+          <a href="../../rest-api/introduction/" class="btn btn--outline btn--success float-right" title="Introduction">Next <span class="icon icon-circle-arrow-right"></span></a>
       </div>
   
     <hr/>
@@ -721,10 +595,10 @@ search), otherwise they are all objects (object search).</p>
     <span class="rst-current-version" data-toggle="rst-current-version is-active">
       
       
-        <span><a href="../modelling/xy-sets/" style="color: #fcfcfc">&laquo; Previous</a></span>
+        <span><a href="../ClientCertificates/" style="color: #fcfcfc">&laquo; Previous</a></span>
       
       
-        <span><a href="../sessions/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span><a href="../../rest-api/introduction/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
   </div>
