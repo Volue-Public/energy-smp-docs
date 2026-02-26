@@ -63,6 +63,7 @@ SmG Message Log).
   - `Path` - path to a starting point for the search in the Mesh model.
   - `Search` - search for the time series attribute to store the values on relative to the object defined by the Path. **_Note!_** This search must result in exactly one hit to be used in the import.
   - `DeltaT` - the resolution of the data to import defined as `P<days>DT<hours>H<minutes>M<seconds>S` (for example, hourly resolution is `PT1H` and 15 minute resolution is `PT15M`).
+  - `Reference` - reference used to identify the time series based on the `External reference` defined in the import definition using SmG Participant.
 - `Inputs/TimeseriesPoints/Points/Segments` - contains a list of time intervals that is inserted or updated with the received values.
 - `Inputs/TimeseriesPoints/Points/Segments/Segment` - defines a time interval to be replaced with the received values with the following attributes:
   - `Start` - defines the start (inclusive) of the time interval to insert/replace.
