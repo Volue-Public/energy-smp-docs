@@ -6,6 +6,150 @@ Access to the Mesh REST API is normally: <https://server:7060> where server is t
 
 The Mesh REST API also offers a Swagger user interface to manually test the usage. This Swagger interface is available as: <https://server:7060/swagger/index.html>. _**Note!**_ The Swagger interface may be turned off in the configuration.
 
+## Installation
+
+The service code may be installed in any directory, and no extra installation is needed to make the service run.
+
+Installation of the service may be done by the sc command:
+
+````cmd
+sc create "Powel Mesh REST API" binPath= <path>\MeshRestAPI.exe start= delayed-auto
+````
+
+NB! The service shall be run as LocalSystem and with automatic restart.
+
+## Configuration
+
+The appsetting.json configuration has the following items:
+
+### Logging
+
+Logging is set up to use the Serilog framework and logging to both the Console and to File:
+
+````json
+  "Serilog": {
+  "MinimumLevel": {
+    "Default": "Information", //Legal values: Debug, Information, Warning, Error
+    "Override": {
+      "Microsoft": "Warning",
+      "System": "Warning"
+    }
+  },
+  "Using": [ "Serilog.Sinks.Console", "Serilog.Sinks.File" ],
+  "Enrich": [ "WithMachineName", "WithProcessName", "WithThreadId", "FromLogContext" ],
+  "WriteTo": [
+    {
+      "Name": "Console",
+      "Args": {
+        "formatter": "Serilog.Formatting.Json.JsonFormatter, Serilog"
+      }
+    },
+    {
+      "Name": "File",
+      "Args": {
+        "path": "C:/PowelSmartLogs/MeshRestAPI/MeshRestAPI-.txt",
+        "formatter": "Serilog.Formatting.Json.JsonFormatter, Serilog",
+        "rollingInterval": "Day",
+        "fileSizeLimitBytes": 104857600,
+        "rollOnFileSizeLimit": true,
+        "retainedFileCountLimit": 2
+      }
+    }
+  ]
+},
+````
+
+If you want turn off some logging, just comment out the corresponding WriteTo part. Example without logging to file:
+
+````json
+"WriteTo": [
+  {
+    "Name": "Console",
+    "Args": {
+      "formatter": "Serilog.Formatting.Json.JsonFormatter, Serilog"
+    }
+  //},
+  //{
+  //  "Name": "File",
+  //  "Args": {
+  //    "path": "C:/PowelSmartLogs/MeshRestAPI/MeshRestAPI-.txt",
+  //    "formatter": "Serilog.Formatting.Json.JsonFormatter, Serilog",
+  //    "rollingInterval": "Day",
+  //    "fileSizeLimitBytes": 104857600,
+  //    "rollOnFileSizeLimit": true,
+  //    "retainedFileCountLimit": 2
+  //  }
+  }
+]
+````
+
+### Mesh REST API parameters
+
+The `MeshRestAPI` object contains the generic parameters to change the operation of the REST API:
+
+````json
+  "MeshRestAPI": {
+    "MeshGrpcEndpoint": "http://localhost:50051", // Address to the Mesh gRPC endpoint.
+    "MeshServerPrincipal": "HOST/server.domain.com", // Principal as the hosting server if Mesh is run as a service, or as the current user if Mesh is run from command line.
+    "UtcOffset": 0, // Offset in hours.
+    "DeleteWaterValuesOlderThanDays": 14, // Delete water values older than this number of days when running the ImportMultistepWaterValueFunctions method.
+    "AutoAddSession": false, // Flag to automatically use a new session for every call when sessionId is not specified.
+    // NB! This option shall only be used in testing mode with a very limited number of calls 
+    // and not in production.
+    "SecurityModel": "OAuth2", // Legal values: None, Kerberos, OAuth2, or combinations like Kerberos&OAuth2
+    "TokenTimeToLiveMinutes": 60, //Life time in minutes for the security token [1,infinity>, default: 60
+    "UseSwagger": true, // Flag to allow Swagger UI interface.
+    "UseIIS": true, // Flag to use IIS instead of Kestrel.
+    "AuthenticateAsServiceAccount": false, // Flag to authenticate as service account. NB! Fallback to old functionality, will be removed in later versions.
+    "LoggingToFile": null, // Path to log file (example: "logs/log.txt"). If empty, logging to console only.
+    "UseHttpsRedirection": false, // Flag to redirect HTTP requests to HTTPS.
+    "IgnoreMeshVersionCheck": false // Flag to ignore Mesh version check at start-up.
+  },
+````
+
+### Host filtering
+
+The REST API is hosted using the Kestrel web server. While Kestrel supports configuration based on prefixes such as <http://example.com:5000>, Kestrel largely ignores the host name. Host localhost is a special case used for binding to loopback addresses. Any host other than an explicit IP address binds to all public IP addresses. Host headers aren't validated.
+
+As a workaround, use Host Filtering Middleware.
+
+Host Filtering Middleware is disabled by default. To enable the middleware, define an AllowedHosts key in appsettings.json/appsettings.{Environment}.json. The value is a semicolon-delimited list of host names without port numbers:
+
+````json
+  "AllowedHosts": "example.com;localhost"
+````
+
+### Kestrel parameters
+
+The REST API is hosted using the Kestrel web server if the `UseIIS` setting is `false`, and is configured using the Kestrel object:
+
+````json
+  "Kestrel": {
+    "Endpoints": {
+      "Http": {
+        "Url": "http://localhost:7060"
+      },
+      "HttpsInlineCertStore": { //more examples: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/endpoints?view=aspnetcore-8.0
+        "Url": "https://localhost:7061",
+        "Certificate": {
+          "Subject": "<subject; required>",
+          "Store": "<certificate store; required>",
+          "Location": "<location; defaults to CurrentUser>",
+          "AllowInvalid": "<true or false; defaults to false>"
+        }
+      }
+    }
+  },
+  "Limits": {
+    "MaxConcurrentConnections": 20,
+    "MaxConcurrentUpgradedConnections": 20,
+    "MaxRequestBodySize": 10240 // max size in bytes
+  },
+  "DisableStringReuse": true
+````
+
+NB! Do not use Http endpoint together with security! See: [Security Architecture](#security-architecture)
+
 ## Session Management Pattern
 
 The API requires session-based operations:
