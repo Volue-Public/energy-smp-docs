@@ -1,23 +1,29 @@
 # Changelog
 
-## Version 1.9.1
+## Version 1.10.0 (2026.1)
+
+- We have added a check on startup to verify that the REST API is connecting to a Mesh service with correct version. If there is a mismatch, the REST API service is failing to start. It is possible to ignore the check on startup in the configuration, see: `IgnoreMeshVersionCheck` flag. (#59)
+
+- We have made a fix for the `WriteTimeSeriesValuesMultiRaw` function which now allows `null` as a value to be stored for a time series. It is now also allowed to just specify a period without any values, in order to delete all values within that period. (#70)
+
+## Version 1.9.1 (2025.3)
 
 - We have modified how exception status codes from the Mesh gRPC API are converted into REST API status codes. (#86)
 
-## Version 1.9.0
+## Version 1.9.0 (2025.3)
 
 - We have updated the Rest API to use the Mesh v2.19 gRPC interface.
 - A new method `CreatePhysicalTimeSeries` is added to enable creation of physical time series in the database. (#78)
 
-## Version 1.8.1
+## Version 1.8.1 (2025.2)
 
 - We have updated the logging configuration to use pure Serilog configuration within the appsettings.json. NB! The MeshRestAPI:LoggingToFile parameter is no longer in use and can be removed. (#76)
 
-## Version 1.8.0
+## Version 1.8.0 (2025.2)
 
 - We have updated the Rest API to use the Mesh v2.18 gRPC interface.
 
-## Version 1.7.0
+## Version 1.7.0 (2025.1)
 
 - We have updated reading empty time series to align with changes in Mesh 2.17 changes. (#63)
 - We have fixed an issue where MeshRestAPI.exe version would be marked improperly. (#64)
@@ -26,29 +32,29 @@
 - We have fixed the Kerberos integration in order to authorise the user of the request correctly. We have also added the possibility to host the REST API in IIS. An extra startup test is also added to avoid running with security on http:// endpoints. (#41)
 - We have added possibility to save log messages to file. This is activated by specifying a file path to the `LoggingToFile` attribute in appsettings.json. (#56)
 
-## Version 1.6.0
+## Version 1.6.0 (2024.5)
 
 - We have updated the Rest API to use the Mesh v2.16 gRPC interface.
 
-## Version 1.5.2
+## Version 1.5.2 (2024.4)
 
 - We have modified the response from `GetAttribute` and `GetObject` to contain the complete attribute definition as the `MeshAttribute` object instead of the `MeshTsId` object. We have also created a new method `GetTimeseriesResource` to get the time series resource information for a given time series key, and at the same time the `attributeKey` parameter is removed from the `GetAttributeMethod`. (#46)
 - We have changed the internal error handling in the API in order to return more correct status codes. (#25)
 - We have added a new method `IdentifyVirtualTSusage` to identify SmG virtual time series in the Mesh model. (#57)
 
-## Version 1.5.1
+## Version 1.5.1 (2024.4)
 
 - We have fixed a crash situation related to `GetObject` when the time series in the database has a unit of measurement that is not supported by Mesh, i.e. it is null. (#45,#53)
 
-## Version 1.5.0
+## Version 1.5.0 (2024.4)
 
 - We have added a new method `ImportMultistepWaterValueFunctions` that imports multistep water value functions into the Mesh model for a given water course. The method will automatically also delete existing water value functions older than x days back in time, where x is defined by the `DeleteWaterValuesOlderThanDays` in the appsettings.json configuration. Default value for the `DeleteWaterValuesOlderThanDays` parameter is 20 (days). (#37)
 
-## Version 1.4.1
+## Version 1.4.1 (2024.3)
 
 - We have changed all string inputs referring to a path to be optional if there is an id or a key that may specify the same information. (#33)
 
-## Version 1.4.0
+## Version 1.4.0 (2024.3)
 
 - We have updated the API to support gRPC version for Mesh 2.14. (#23)
 - We have modified the internal behaviour of the ReadTimeSeriesValues and ReadTimeSeriesValuesMulti to not use the `relative_to` object in the request since this is not necessary any more. (#24)
