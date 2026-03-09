@@ -2,8 +2,13 @@
 
 ## Prerequisites
 
+<<<<<<< HEAD
 1. Mesh REST API is installed on a local server.
    1. Accessible as http://server:7060/swagger
+=======
+1. Mesh REST API is installed on a local server
+   1. Accessible as http://<server>:7060/swagger
+>>>>>>> refs/remotes/origin/tosa-addin-excel-v1
 
 ## Install Excel AddIn for Mesh
 
