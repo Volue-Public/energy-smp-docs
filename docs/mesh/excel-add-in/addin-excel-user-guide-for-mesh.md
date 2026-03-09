@@ -1,9 +1,6 @@
 # AddIn-Excel User Guide for Mesh
 
 - [AddIn-Excel User Guide for Mesh](#addin-excel-user-guide-for-mesh)
-  - [About this document](#about-this-document)
-    - [Documentation overview](#documentation-overview)
-    - [Writing conventions](#writing-conventions)
   - [Introduction](#introduction)
     - [Prerequisites](#prerequisites)
     - [Functionality in Emulated TsApi for Mesh](#functionality-in-emulated-tsapi-for-mesh)
@@ -47,27 +44,6 @@
     - [Set up the Times series to report](#set-up-the-times-series-to-report)
   - [Updates to PowelAddIn.xls](#updates-to-poweladdinxls)
   - [Updates to worksheets](#updates-to-worksheets)
-
-## About this document
-
-This document describes how to use the application. It is intended for a technical audience.
-
-### Documentation overview
-
-|DOCUMENT|WHEN|TARGET GROUP|LOCATION|
-|--------|----|------------|--------|
-|Smart Generation Release notes|Overview|System owner, system administrator/IT operations, end user|myVolue|
-|Smart Generation Installation guide|Setup|System administrator/IT operations|myVolue|
-
-### Writing conventions
-
-- **Bold** is used for menu items, dialogue boxes, buttons and functions in GUI.
-- `>` is used to separate a sequentially selection of menu items, e.g., File > Save as
-- The typewriter font is used in code examples.
-- Numbered lists are used for steps in a process.
-- Bulleted lists are used for items without priority.
-- ***Note!*** is used in front of important information.
-- ***Tip!*** is used in front of additional information.
 
 ## Introduction
 
@@ -522,9 +498,9 @@ To save data to the database, just press the `Save to Powel database` button. If
 
 After the `LoadFromDB` and `SaveToDB` worksheet are setup and tested, it may be convenient to hide the worksheets to ensure that other users don’t tamper with the setup or get confused with the information in the worksheet.
 
-Hiding a worksheet is very simple: select the worksheet and use the menu `Format\Sheet\Hide`. To unhide a worksheet, use the menu `Format\Sheet\Unhide…` and select the worksheet in the dialogue box with all the hidden worksheets.
+Hiding a worksheet is very simple: right click on the worksheet tab to hide and select the `Hide` option in the pop-up menu. To unhide a worksheet, right click on any worksheet tab, select the `Unhide...` option in the pop-up menu, and select the worksheet in the dialogue box with all the hidden worksheets.
 
-But when you hide the worksheets the buttons to Load and Save data will also be hidden. To add the functionality to a worksheet, display the Control Toolbar menus (View\Toolbars\Control Toolbox menu). Set the work sheet in Design mode and select the Command button and use the mouse to place the command button in the worksheet. Then display the properties and set the Caption (text in the button) and the Font. See the properties dialogue below.
+But when you hide the worksheets the buttons to Load and Save data will also be hidden. To add the functionality to a worksheet, display the Control Toolbar menus (Developer\Controls menu). Set the work sheet in Design mode, select the Command button from the Insert menu, and use the mouse to place the command button in the worksheet. Then display the properties and set the Caption (text in the button) and the Font. See the properties dialogue below.
 
 ![Command button properties](assets/images/commandbutton-properties.png)
 
