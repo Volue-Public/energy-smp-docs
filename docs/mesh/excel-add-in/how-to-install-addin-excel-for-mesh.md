@@ -3,7 +3,7 @@
 ## Prerequisites
 
 1. Mesh REST API is installed on a local server
-   1. Accessible as http://server:7060/swagger
+   1. Accessible as http://<server>:7060/swagger
 
 ## Installation
 
