@@ -557,9 +557,14 @@ To save data to the database, choose **Save to Powel database**. If there are an
 
 After the **LoadFromDB** and **SaveToDB** worksheets are configured and tested, it may be convenient to hide the worksheets to ensure that other users do not tamper with the configuration or get confused with the information in the worksheet.
 
-Hiding a worksheet is very simple: right click on the worksheet tab to hide and select the `Hide` option in the pop-up menu. To unhide a worksheet, right click on any worksheet tab, select the `Unhide...` option in the pop-up menu, and select the worksheet in the dialogue box with all the hidden worksheets.
+You can hide the worksheet by right-clicking the tab and choosing **Hide** from the context menu. To unhide a worksheet, select any worksheet tab and choose **Unhide…** from the context menu. Select the worksheet in the dialog box with all the hidden worksheets.
 
-But when you hide the worksheets the buttons to Load and Save data will also be hidden. To add the functionality to a worksheet, display the Control Toolbar menus (Developer\Controls menu). Set the work sheet in Design mode, select the Command button from the Insert menu, and use the mouse to place the command button in the worksheet. Then display the properties and set the Caption (text in the button) and the Font. See the properties dialogue below.
+When you hide the worksheets, the buttons to load and save data will also be hidden. To add the functionality to a worksheet, display the Control Toolbar menus (**Developer** > **Controls** menu).
+
+Set the work sheet in **Design mode** and select the **Command** button and use the mouse to place the command button in the worksheet.
+
+Open the properties and set the **Caption** (button text) and the **Font**. See the **Properties** dialog below.
+
 
 ![Command button properties](assets/images/commandbutton-properties.png)
 
