@@ -162,6 +162,7 @@ nav:
                 - "API Specification": mesh/grpc/APISpecification.md
                 - "Authorization": mesh/grpc/Authorization.md
                 - "Client certificates": mesh/grpc/ClientCertificates.md
+                - "Frequently Asked Questions": mesh/grpc/FAQ.md
                 - "Message size limits": mesh/grpc/MessageSizeLimits.md
           - Mesh REST API:
                 - Introduction: mesh/rest-api/introduction.md
