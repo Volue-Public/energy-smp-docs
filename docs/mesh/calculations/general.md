@@ -18,6 +18,7 @@ available time series. Some characteristics on the language:
   language. See example.
 - Standard operators and operator precedence are supported (+,-,*,/).
 - There are built-in functions covering a wide range of operations.
+- There is an `if then else` operator and `IF THEN ENDIF` statement blocks. 
 
 
 ### Example 1
@@ -184,6 +185,86 @@ day, i.e to the next day relative to the requested time interval.
 ```
 
 Here the dots represent 1 day and the requested time interval 2 days.
+
+## IF THEN ELSE ENDIF flow control
+
+These operations are supported:
+
+- Ternary if-then-else operator
+- IF THEN ENDIF execution blocks
+
+Both alternatives support nested operations, i.e. :
+
+- there might be another ternary operator inside the true_value or false_value
+- there might be nested IF test THEN ... ENDIF blocks.
+
+Unfortunately the block execution does not support `ELSE` and `ELSEIF` sections.
+
+### Ternary operator
+
+Operations using this construct have this structure:
+
+`Result = test_statement ? true_value : false_value`
+
+All 3 parts may be a fixed value or expressions.
+
+**Example 1**
+
+```
+## = @d('.DoSum') ? @SUM(@T('has_Units.TS')) : @MEAN(@T('has_Units.TS'))
+```
+The numeric value of `DoSum`attribute is treated as a true/false value. If true,
+the result is calculated based on `SUM` function, else the average is calculated using `MEAN` function.
+
+**Example 2**
+
+```
+Mask = @TimeMask('DAY',{'DAY+8h','DAY+16h'},{1,0})
+## = Mask ? @t('.Cost') : @t('.Cost') *1.5 
+```
+Let's assume the `Cost` time series has hourly resolution.
+The `Mask` series produced by `TimeMask` function is a breakpoint series.
+The result is an hourly series with result equal `Cost` series for all hours from 08 (inclusive) until 16,
+else the values are the `Cost` value multiplied with a factor (1.5).
+
+### Block statements
+
+The other flow control approach is like this:
+
+```
+IF test_statement THEN
+  statement1
+  statement2
+  statementN
+ENDIF
+```
+
+If the test_statement is a evaluated to a time series, then **all** values within requested calculation time period
+on this time series must be true in order to execute statement1...N
+
+**Example 1**
+
+```
+## = @t('.Measurement')
+IF @OUTSIDE(@t('.Measurement'),@t('.LowerLimit'),@t('.UpperLimit'))  THEN
+  Validated = @ValidateAbsLimit(@t('.Measurement'),@t('.LowerLimit'),@t('.UpperLimit'))
+  ## = @CorrectInterpolate(Validated,5,'FALSE')
+ENDIF 
+```
+If there are some values outside of limits, do corrective action.
+
+__Note!__ In a real setup there would be more validation and correction methods in use.
+
+**Example 2**
+
+```
+## = @t('.Measurement')
+IF @d('.DoCorrection')  THEN
+  Validated = @ValidateAbsLimit(@t('.Measurement'),@t('.LowerLimit'),@t('.UpperLimit'))
+  ## = @CorrectInterpolate(Validated,5,'FALSE')
+ENDIF 
+```
+If the `DoCorrection` is enabled by setting a value not equal to zero, then do corrective action.
 
 
 ## Time zones
