@@ -1,4 +1,4 @@
-## gRPC API Specification
+## gRPC API specification
 
 The details of the Mesh gRPC API are defined in a set of Protocol Buffer (`.proto`) files. These files specify the available services, messages, and methods for interacting with the Mesh via gRPC.
 
