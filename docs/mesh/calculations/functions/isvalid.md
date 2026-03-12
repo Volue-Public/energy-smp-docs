@@ -54,7 +54,7 @@ to physical time series or have associated calculation expression.
 In this example the `Watercourse` objects named Lyse and Sauda have an ownership relation `has_HydroPlant` where the `HydroPlant` object
 type have a time series attributes `Income` and `Production`. The `Income` attribute have an associated expression.
 
-The `HydroPlant` objects below Lyse does not have any physical time series attached to `Production` attribute, but those below Sauda have.
+The `HydroPlant` objects below Lyse do not have any physical time series attached to the `Production` attribute, but those below Sauda have.
 
 **Case 1**
 - The expression on a `Watercourse` attribute is like this
