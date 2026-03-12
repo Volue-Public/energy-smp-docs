@@ -159,7 +159,7 @@ nav:
                             - CorrectExtrapolate: mesh/calculations/functions/correct_extrapolate.md
                             - CorrectInterpolate: mesh/calculations/functions/correct_interpolate.md
           - "gRPC":
-                - "API Specification": mesh/grpc/APISpecification.md
+                - "API specification": mesh/grpc/APISpecification.md
                 - "Authorization": mesh/grpc/Authorization.md
                 - "Client certificates": mesh/grpc/ClientCertificates.md
                 - "Frequently Asked Questions": mesh/grpc/FAQ.md
