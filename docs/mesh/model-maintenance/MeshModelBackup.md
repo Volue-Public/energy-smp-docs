@@ -14,7 +14,7 @@ There are two options for this.
 
 ### Full restore
 
-This is the recommended option. In this way we're performing an "on-top" import of the backup as described in [assign-based-on-top-updates](ModelMaintenanceConcepts.md#assign-based-on-top-updates):
+This is the recommended option. In this way we're performing an "on-top" import of the backup as described in [Assign-based ("on-top") updates](ModelMaintenanceConcepts.md#assign-based-on-top-updates):
 
 1. Any missing parts of the model that are present in the backup are restored.
 2. Any objects and attributes in the model that differ from those of the backup are replaced by the latter, including link relations. This is useful for cases where e.g. a part of the model is accidentally deleted, thus nulling out any link relations pointing to deleted objects.
@@ -53,7 +53,7 @@ Replace `<test_mdump>` and `<prod_mdump>` with the paths to the test and product
 
 To perform the partial restore, follow these steps:
 
-_On the test environment_:
+#### On the test environment
 
 1. Import the latest backup:
 
@@ -81,7 +81,7 @@ Powel.Mesh.Model.ImportExport.exe -o objects_to_restore.mdump -c <object_guid>
 
 Replace `<object_guid>` with the GUID from step 2.
 
-_On the production environment_:
+#### On the production environment
 
 Import the .mdump file we created from the test environment:
 
@@ -89,7 +89,7 @@ Import the .mdump file we created from the test environment:
 Powel.Mesh.Model.ImportExport.exe -i objects_to_restore.mdump -S
 ```
 
-_Adding missing links_
+#### Adding missing links
 
 Objects linking to restored objects can be identified by using the search expression `~~` when standing on an object instance in Mesh Search on the object in test.
 
