@@ -33,50 +33,50 @@ nav:
                 - Functions:
                       - Introduction: mesh/calculations/functions/introduction.md
                       - General:
-                            - Allocate_Reserves: mesh/calculations/functions/allocate_reserves.md
+                            - AllocateReserves: mesh/calculations/functions/allocate_reserves.md
                             - AT: mesh/calculations/functions/at.md
                             - ColorARGB: mesh/calculations/functions/color.md
                             - Compare: mesh/calculations/functions/compare.md
                             - Concatenate: mesh/calculations/functions/concatenate.md
                             - CopyTs: mesh/calculations/functions/copy_ts.md
-                            - Delta: mesh/calculations/functions/delta.md
+                            - DELTA: mesh/calculations/functions/delta.md
                             - DisableCache: mesh/calculations/functions/disable_cache.md
                             - GET_Y_FX: mesh/calculations/functions/getyfx.md
                             - IsValid: mesh/calculations/functions/isvalid.md
                             - Linear: mesh/calculations/functions/linear.md
                             - MAX: mesh/calculations/functions/max.md
-                            - MeshId: mesh/calculations/functions/meshid.md
+                            - MeshID: mesh/calculations/functions/meshid.md
                             - MIN: mesh/calculations/functions/min.md
                             - Parameter: mesh/calculations/functions/parameter.md
                             - PDLOG: mesh/calculations/functions/pdlog.md
                             - Reference Lookup: mesh/calculations/functions/reference_lookup.md
                             - Restriction: mesh/calculations/functions/restriction.md
                             - Revision: mesh/calculations/functions/revision.md
-                            - Set_Ts_Valunit: mesh/calculations/functions/set_ts_val_unit.md
+                            - SET_TS_VALUNIT: mesh/calculations/functions/set_ts_val_unit.md
                             - Size: mesh/calculations/functions/size.md
-                            - Time_Mask: mesh/calculations/functions/time_mask.md
+                            - TIME_MASK: mesh/calculations/functions/time_mask.md
                             - ToString: mesh/calculations/functions/tostring.md
                             - Trace: mesh/calculations/functions/trace.md
                             - TS: mesh/calculations/functions/ts.md
-                            - Unit Codes for Set_Ts_Valunit: mesh/calculations/functions/unit_codes_for_set_ts_val_unit.md
+                            - Unit Codes for SET_TS_VALUNIT: mesh/calculations/functions/unit_codes_for_set_ts_val_unit.md
                             - Valid: mesh/calculations/functions/valid.md
                       - Forecast:
                             - GetBestForecast: mesh/calculations/functions/get_best_forecast.md
                             - GetAllForecasts: mesh/calculations/functions/get_all_forecasts.md
                             - GetForecast: mesh/calculations/functions/get_forecast.md
-                            - GetMergedForecasts: mesh/calculations/functions/get_merged_forecast.md
+                            - GetMergedForecast: mesh/calculations/functions/get_merged_forecast.md
                       - History:
                             - About: mesh/calculations/functions/history.md
                             - GetTsAsOfTime: mesh/calculations/functions/get_ts_as_of_time.md
                             - GetTsHistoricalVersions: mesh/calculations/functions/get_ts_historical_versions.md
                             - GetTsAuditTimes: mesh/calculations/functions/get_ts_audit_times.md
                       - Logical:
-                            - Bool: mesh/calculations/functions/bool.md
-                            - Inside: mesh/calculations/functions/inside.md
-                            - Negative: mesh/calculations/functions/negative.md
-                            - Not: mesh/calculations/functions/not.md
-                            - Outside: mesh/calculations/functions/outside.md
-                            - Positive: mesh/calculations/functions/positive.md
+                            - BOOL: mesh/calculations/functions/bool.md
+                            - INSIDE: mesh/calculations/functions/inside.md
+                            - NEGATIVE: mesh/calculations/functions/negative.md
+                            - NOT: mesh/calculations/functions/not.md
+                            - OUTSIDE: mesh/calculations/functions/outside.md
+                            - POSITIVE: mesh/calculations/functions/positive.md
                       - Math:
                             - TS_GLIDING_AVERAGE: mesh/calculations/functions/ts_gliding_average.md
                             - TS_GLIDING_GAUSS: mesh/calculations/functions/ts_gliding_gauss.md
@@ -103,7 +103,7 @@ nav:
                             - MIX: mesh/calculations/functions/mix.md
                             - MIX by selecting from time series array: mesh/calculations/functions/mix_by_selecting_from_time_series_array.md
                             - MIX0: mesh/calculations/functions/mix0.md
-                            - TS_IQ-FILL: mesh/calculations/functions/tsiqfill.md
+                            - TS_IQ_FILL: mesh/calculations/functions/tsiqfill.md
                       - Sim:
                             - About: mesh/calculations/functions/sim.md
                             - CONVERT_VOLUME: mesh/calculations/functions/convert_volume.md
@@ -159,9 +159,10 @@ nav:
                             - CorrectExtrapolate: mesh/calculations/functions/correct_extrapolate.md
                             - CorrectInterpolate: mesh/calculations/functions/correct_interpolate.md
           - "gRPC":
-                - "API Specification": mesh/grpc/APISpecification.md
+                - "API specification": mesh/grpc/APISpecification.md
                 - "Authorization": mesh/grpc/Authorization.md
                 - "Client certificates": mesh/grpc/ClientCertificates.md
+                - "Frequently Asked Questions": mesh/grpc/FAQ.md
                 - "Message size limits": mesh/grpc/MessageSizeLimits.md
           - Mesh REST API:
                 - Introduction: mesh/rest-api/introduction.md
@@ -170,6 +171,9 @@ nav:
                 - For developers:
                       - Generate C# API from swagger.json: mesh/rest-api/generate-c#-api-from-swagger-json.md
                       - How to use ImportMultistepWaterValueFunctions: mesh/rest-api/how-to-use-ImportMultistepWaterValueFunctions.md
+          - Excel AddIn for Mesh:
+                - User guide: mesh/excel-add-in/addin-excel-user-guide-for-mesh.md
+                - Installation guide: mesh/excel-add-in/how-to-install-addin-excel-for-mesh.md
           - Model maintenance: mesh/model-maintenance/ModelMaintenanceConcepts.md
     - Mesh Data Transfer:
           - General: mesh-data-transfer/general/general.md
