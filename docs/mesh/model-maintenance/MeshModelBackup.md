@@ -4,7 +4,7 @@ This document recommends a setup for backing up/restoring the Mesh model in case
 
 ## Scheduled Backup
 
-The recommended setup is to have periodic backups of the production Mesh model, ideally on a daily basis. That way, if a restore is needed at some point during the next day, the latest backup should be relatively similar to the state of the model before the damaging changes were done. Backups and restores are done by using the `Model.ImportExport` tool; the backup themselves are .mdump binary files.
+The recommended setup is to have periodic backups of the production Mesh model, ideally on a daily basis. That way, if a restore is needed at some point during the next day, the latest backup should be relatively similar to the state of the model before the damaging changes were done. Backups and restores are done by using the `Model.ImportExport` tool; the backups themselves are .mdump binary files.
 
 We provide a script called MeshModelBackup.ps1 which can be used to perform such backups in an easy way: <link to script>
 
@@ -65,7 +65,7 @@ Powel.Mesh.Model.ImportExport.exe -i <path_to_backup> -S
 
 `IntMeshQuery.exe -a Lookup -p <path_to_object>`
 
-and replacing `<path_to_object>` with the path to the desired object within the model. Alternatively, you can run:
+and replace `<path_to_object>` with the path to the desired object within the model. Alternatively, you can run:
 
 ```
 IntMeshQuery.exe -a ModelStructure -m <model_name> --verbose > ModelStructure.txt
@@ -91,7 +91,7 @@ Powel.Mesh.Model.ImportExport.exe -i objects_to_restore.mdump -S
 
 #### Adding missing links
 
-Objects linking to restored objects can be identified by using the search expression `~~` when standing on an object instance in Mesh Search on the object in test.
+Objects linking to restored objects can be identified by using the search expression `~~` when standing on an object instance in Mesh Search on the object in the test environment:
 
 ![](MMBackup_1.png)
 
