@@ -14,7 +14,7 @@ There are two options for this.
 
 ### Full restore
 
-This is the recommended option. In this way we're performing an "on-top" import of the backup as described in [Assign-based ("on-top") updates](ModelMaintenanceConcepts.md#assign-based-on-top-updates):
+This is the recommended option. In this way we're performing an "on-top" import of the backup as described [here](ModelMaintenanceConcepts.md#assign-based-on-top-updates):
 
 1. Any missing parts of the model that are present in the backup are restored.
 2. Any objects and attributes in the model that differ from those of the backup are replaced by the latter, including link relations. This is useful for cases where e.g. a part of the model is accidentally deleted, thus nulling out any link relations pointing to deleted objects.
@@ -23,7 +23,7 @@ This is the recommended option. In this way we're performing an "on-top" import 
 While this approach is not recommended for model definition updates, it's safe to use for restoring a model from a backup. Note that there are a few caveats:
 
 1. Any non-additive changes made since the backup will be lost.
-2. If the model definition has changed since the backup, the issues described in <link to ModelMaintenanceConcepts.md> may appear.
+2. If the model definition has changed since the backup, the issues described [here](ModelMaintenanceConcepts.md#assign-based-on-top) may appear.
 
 As mentioned before, the recommended way to mitigate these issues is to have frequent backups so that a restore operation should not cause too much recent work to be lost.
 
