@@ -24,7 +24,7 @@ Understand the fundamental concepts behind Mesh:
 
 ## API access
 
-Connect to Mesh programmatically.
+Connect to Mesh programmatically:
 
 ### gRPC
 
@@ -48,3 +48,4 @@ Connect to Mesh programmatically.
 Manage and maintain your Mesh data model:
 
 - [Model maintenance concepts](model-maintenance/ModelMaintenanceConcepts.md) - Best practices for model management
+- [Model backups](model-maintenance/ModelBackup.md) - Best practices for managing model backups
