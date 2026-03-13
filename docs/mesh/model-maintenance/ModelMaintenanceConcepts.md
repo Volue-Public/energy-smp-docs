@@ -88,7 +88,7 @@ It performs the following steps:
 
 This operation does _not_ delete anything, it just stores inconditionally on top of the existing
 state. Differences between the existing state and the contents of the update will be resolved by
-favoring the update, though conflicts may arise in some cases (see [here](#assign-based-on-top)
+favoring the contents of the update, though conflicts may arise in some cases (see [here](#assign-based-on-top)
 for more information).
 
 It is also possible to specify that only whatever's missing should be imported by passing
