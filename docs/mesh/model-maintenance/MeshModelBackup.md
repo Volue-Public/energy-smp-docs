@@ -4,13 +4,11 @@ This document recommends a setup for backing up/restoring the Mesh model in case
 
 ## Scheduled Backup
 
-The recommended setup is to have periodic backups of the production Mesh model, ideally on a daily basis. That way, if a restore is needed at some point during the next day, the latest backup should be relatively similar to the state of the model before the damaging changes were done. Backups and restores are done by using the `Model.ImportExport` tool; the backups themselves are .mdump binary files.
-
-We provide a script called MeshModelBackup.ps1 which can be used to perform such backups in an easy way: <link to script>
+The recommended setup is to have periodic backups of the production Mesh model, ideally on a daily basis. That way, if a restore is needed at some point during the next day, the latest backup should be relatively similar to the state of the model before the damaging changes were done. Backups and restores are done by using the `Model.ImportExport` tool; the backups themselves are .mdump binary files. We also provide a script called MeshModelBackup.ps1 which can be used to perform such backups in an easy way; the script in turn uses the `Model.ImportExport` tool internally.
 
 ## Restoring the Mesh model state from a backup
 
-There are two options for this.
+There are two options for this:
 
 ### Full restore
 
