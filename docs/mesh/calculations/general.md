@@ -190,13 +190,13 @@ Here the dots represent 1 day and the requested time interval 2 days.
 
 These operations are supported:
 
-- Ternary if-then-else operator
-- IF THEN ENDIF execution blocks
+- Ternary `if-then-else` operator
+- `IF THEN ENDIF` execution blocks
 
 Both alternatives support nested operations, i.e. :
 
 - there might be another ternary operator inside the true_value or false_value
-- there might be nested IF test THEN ... ENDIF blocks.
+- there might be nested `IF test THEN ... ENDIF` blocks.
 
 Unfortunately the block execution does not support `ELSE` and `ELSEIF` sections.
 
@@ -246,7 +246,7 @@ on this time series must be true in order to execute statement1...N
 
 ```
 ## = @t('.Measurement')
-IF @OUTSIDE(@t('.Measurement'),@t('.LowerLimit'),@t('.UpperLimit'))  THEN
+IF @OUTSIDE(@t('.LowerLimit'),@t('.Measurement'),@t('.UpperLimit'))  THEN
   Validated = @ValidateAbsLimit(@t('.Measurement'),@t('.LowerLimit'),@t('.UpperLimit'))
   ## = @CorrectInterpolate(Validated,5,'FALSE')
 ENDIF 
