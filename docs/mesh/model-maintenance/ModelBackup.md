@@ -15,7 +15,7 @@ There are two options for this:
 This is the recommended option. In this way we're performing an "on-top" import of the backup as described [here](ModelMaintenanceConcepts.md#assign-based-on-top-updates).
 
 1. Any missing parts of the model that are present in the backup are restored.
-2. Any objects and attributes in the model that differ from those of the backup are replaced by the latter, including link relations. This is useful for cases where e.g. a part of the model is accidentally deleted, thus removing any link relations pointing to deleted objects.
+2. Any objects and attributes in the model that differ from those of the backup are replaced by the latter, including link relations. This is useful for cases where e.g. a part of the model is accidentally deleted, thus nulling out any link relations pointing to deleted objects.
 3. No objects are deleted from the model, even if they are not present in the backup.
 
 While this approach is not recommended for model definition updates, it is safe to use for restoring a model from a backup.
@@ -35,17 +35,14 @@ Powel.Mesh.Model.ImportExport.exe -i <path_to_backup> -S
 
 Replace `<path_to_backup>` with the path to the `*_fm.mdump` file produced by `MeshModelBackup.ps1`.
 
-**_Note!_** This command will check whether any of the imported objects refer to a time series resource that does not exist. If so, it will create it (as an empty time series).
-
-You can pass the `-T` option to `Model.ImportExport` to disable this behaviour. In this case the attributes will still be created but not connected to a time series.
+**_Note!_** This command will check whether any of the imported objects refer to a time series resource that does not exist. If so, it will create it (as an empty time series). You can pass the `-T` option to `Model.ImportExport` to disable this behaviour. In this case the attributes will still be created but not connected to a time series.
 
 ### Partial restore
 
 This option can be used if there are changes to the model since the last backup that need to be preserved. In this case, only the part of the model that needs to be restored will be imported, instead of the entire model.
 
-This option is a bit more complicated than performing a full restore since there is no way to "extract" a part of the model directly from an `.mdump` file.
+This option is a bit more complicated than performing a full restore since there is no way to "extract" a part of the model directly from an `.mdump` file. We recommend following this procedure:
 
-We recommend following this procedure:
 1. Import the backup to a non-production environment.
 2. Export the desired part of the model to a separate `.mdump`.
 3. Import that `.mdump` to the production model.
@@ -56,7 +53,7 @@ Another disadvantage of partial restores is that they are not able to automatica
 
 This also assumes that there are no changes to the model definition since the last backup that could affect the part of the model that is being restored. If there are, you must replicate those changes in the test environment before performing the export to avoid having conflicts later when importing to the production model.
 
-Since there is still an "on-top" import, it should not be necessary to replicate changes that only added new objects. To view the differences between the test and production environments, you can first export each of them into an `.mdump` file and then compare them by running the following:
+Since this is still an "on-top" import, it should not be necessary to replicate changes that only added new objects. To view the differences between the test and production environments, you can first export each of them into an `.mdump` file and then compare them by running the following:
 
 ```
 Powel.Mesh.Model.ImportExport.exe -w SummaryOfChangesReport -w <test_mdump> -w <prod_mdump> -o Report.md
@@ -102,7 +99,7 @@ Import the .mdump file we created from the test environment:
 Powel.Mesh.Model.ImportExport.exe -i objects_to_restore.mdump -S
 ```
 
-#### Add missing links
+#### Adding missing links
 
 Objects linking to restored objects can be identified by using the search expression `~~` when standing on an object instance in Mesh Search on the object in the test environment:
 
