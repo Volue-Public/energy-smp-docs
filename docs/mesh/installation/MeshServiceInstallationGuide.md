@@ -218,6 +218,7 @@ To use it:
     - `execute on sys.dbms_lock`
     - `execute on sys.dbms_change_notification`
     - `change notification`
+    - `select on sys.v_$instance`
 - On the client side (i.e. server running Mesh service) the Oracle client
   must be configured to use NTS authentication. See `sqlnet.ora` file:
   ```
