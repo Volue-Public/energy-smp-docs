@@ -154,7 +154,7 @@ The following problems can appear on this approach:
 
 Consider the following sequence:
 
-![](MMConcepts_1.png)
+![](assets/MMConcepts_1.png)
 
 ### Step 1
 A Mesh model definition (MD) is in a master state 1. It is installed on a target system.

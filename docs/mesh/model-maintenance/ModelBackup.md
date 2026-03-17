@@ -103,8 +103,8 @@ Powel.Mesh.Model.ImportExport.exe -i objects_to_restore.mdump -S
 
 Objects linking to restored objects can be identified by using the search expression `~~` when standing on an object instance in Mesh Search on the object in the test environment:
 
-![](MBackup_1.png)
+![](assets/MBackup_1.png)
 
 You can check in Mesh Configurator whether a link could exist before checking all object instances:
 
-![](MBackup_2.png)
+![](assets/MBackup_2.png)
