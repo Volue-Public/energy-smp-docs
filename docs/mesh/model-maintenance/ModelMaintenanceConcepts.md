@@ -86,8 +86,12 @@ It performs the following steps:
 - Push objects from the `New` model definition to the target system.
 - If the target system accepts the incoming changes, it becomes the new model definition.
 
-This operation does _not_ delete anything, just stores unconditionally on top of the existing state.
-Alternatively, it is possible to specify that only whatever's missing should be imported by passing
+This operation does _not_ delete anything, it just stores unconditionally on top of the existing
+state. Differences between the existing state and the contents of the update will be resolved by
+favouring the contents of the update, though conflicts may arise in some cases (see [here](#assign-based-on-top)
+for more information).
+
+It is also possible to specify that only whatever is missing should be imported by passing
 the `-w ImportOnlyMissingElementTypesAndDefinitions` option to the `Model.ImportExport` tool.
 
 
@@ -96,7 +100,7 @@ the `-w ImportOnlyMissingElementTypesAndDefinitions` option to the `Model.Import
 ## Delta-based
 Prior to the last step (push), the `Model.ImportExport` tool will check the following:
 
-- Problem D1: An object is marked as new on the, but this object _does_ exist on the target system
+- Problem D1: An object is marked as new, but this object _does_ exist on the target system
   (based on ID lookup).
 - Problem D2: An object marked for updating does _not_ exist on the target system.
 - Problem D3: An object marked for deletion does _not_ exist on the target system.

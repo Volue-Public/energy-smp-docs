@@ -174,7 +174,9 @@ nav:
           - Excel AddIn for Mesh:
                 - User guide: mesh/excel-add-in/addin-excel-user-guide-for-mesh.md
                 - Installation guide: mesh/excel-add-in/how-to-install-addin-excel-for-mesh.md
-          - Model maintenance: mesh/model-maintenance/ModelMaintenanceConcepts.md
+          - Model maintenance:
+              - Model maintenance concepts: mesh/model-maintenance/ModelMaintenanceConcepts.md
+              - Model backups: mesh/model-maintenance/ModelBackup.md
     - Mesh Data Transfer:
           - General: mesh-data-transfer/general/general.md
           - Configuration: mesh-data-transfer/configuration/configuration.md
