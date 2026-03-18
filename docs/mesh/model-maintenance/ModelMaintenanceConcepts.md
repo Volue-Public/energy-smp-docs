@@ -1,4 +1,6 @@
-# General introduction
+# Mesh model maintenance concepts
+
+## General introduction
 
 Mesh operates under a few basic assumptions:
 
@@ -6,17 +8,17 @@ Mesh operates under a few basic assumptions:
 - Every object is able to do binary serialization (read/write).
 - Every object has an associated version number.
 
-## "Model definition" vs "model"
+### "Model definition" vs "model"
 A model definition is a description of a domain with respect to object types, attributes, and
 relations. It defines what information is available through Mesh for this domain. An instance of
 a model definition is simply called a "model". See also the [Modelling](../concepts/modelling//general.md).
 
-## The `EnergySystem` model definition
+### The `EnergySystem` model definition
 This is the Mesh model definition made by Volue to cover the information needed by the Mesh
 connected modules. It defines the basic types to describe a hydro/thermal/wind system,
 case management and time series quality related to this.  
 
-## Customer extensions
+### Customer extensions
 An important point in Mesh modelling is the capability for customers, and specific projects,
 to extend the `EnergySystem` model definition. This can be:
 
@@ -28,20 +30,20 @@ to extend the `EnergySystem` model definition. This can be:
 
 This feature is widely used in large projects, but also applicable for smaller customers.
 
-### Managing customer extensions
+#### Managing customer extensions
 Currently this is supported by use of Mesh namespaces. Changes made by customer/projects end up
 in the `Custom` namespace. This basic configuration also prevents customers from making changes
 on mandatory parts of the model definition. It's a simple solution while waiting for a full blown
 authentication/authorization feature.
 
 
-# Current process
+## Current process
 
-## Master model
+### Master model
 The master model definition is maintained through a server owned by Volue connected to an Oracle
 database.
 
-## Model definition update 
+### Model definition update 
 Mesh model definitions can be exported into a binary file by using the `Model.ImportExport` tool.
 These binaries normally have an .mdump extension and are not human-readable (and thus not suited
 for regular version control systems). The scope of the export can be specified through CLI options.
@@ -60,7 +62,7 @@ process for updating, and indicates some of the problems that may arise along th
 Throughout this document (and other literature) we'll use the term "model update" to refer to an
 update of the model definition (as well as its derived models).
 
-### Delta-based updates
+#### Delta-based updates
 This is the preferred approach for model updates. It performs the following steps:
 
 - Get the differences between the model definition which is currently installed on the target system
@@ -77,7 +79,7 @@ installed (and potentially expanded on) on the target system, and `New` is a new
 definition. The customer's own changes to the model definition are not taken into account when
 calculating the delta between `Base` and `New`.
 
-### Assign-based ("on-top") updates
+#### Assign-based ("on-top") updates
 This approach should be avoided, but experience shows that this sometimes may be the only way to
 fix some problematic cases. It's similar to forcing the model definition to change into a new state.
 
@@ -95,9 +97,9 @@ It is also possible to specify that only whatever is missing should be imported 
 the `-w ImportOnlyMissingElementTypesAndDefinitions` option to the `Model.ImportExport` tool.
 
 
-# Challenges related to current approach/toolset
+## Challenges related to current approach/toolset
 
-## Delta-based
+### Delta-based
 Prior to the last step (push), the `Model.ImportExport` tool will check the following:
 
 - Problem D1: An object is marked as new, but this object _does_ exist on the target system
@@ -135,7 +137,7 @@ the customers' own models, but they won't be affected by the delta import since 
 the customers themselves.
 
 
-## Assign-based ("on-top")
+### Assign-based ("on-top")
 The following problems can appear on this approach:
 
 - Problem A1: Some enumeration values related to no value seem to be recreated (especially the
@@ -150,19 +152,19 @@ The following problems can appear on this approach:
   on later attempts to do delta-based updates.
 
 
-# Example
+## Example
 
 Consider the following sequence:
 
 ![](assets/MMConcepts_1.png)
 
-### Step 1
+#### Step 1
 A Mesh model definition (MD) is in a master state 1. It is installed on a target system.
 This should be straightforward, no problems at all.
 
 The MD 1 is also stored as a file inside Mesh Resources, within the `ObjectModelUpdates` folder.
 
-### Step 2
+#### Step 2
 The master model definition is extended, and the version 3 is going to be updated on the target
 system. There have been no customer changes on the MD on the target system at this point.
 A delta update is provided from MD 3 "minus" MD 1, illustrated as triangle `a`. There should be
@@ -170,7 +172,7 @@ no problems doing this update.
 
 The `ObjectModelUpdates` folder will now also contain the MD 3.
 
-### Step 3
+#### Step 3
 Now we wish to update the target system to master version 6, but the MD on the target system has
 been modified as well by the customer. However, as the figure shows, these changes merely extend
 the target system's MD, but do not modify the "core" MD 3. The delta update `b` is done based on
@@ -178,7 +180,7 @@ master MD 6 minus master MD 3. There should be no problems doing this update eit
 
 The `ObjectModelUpdates` folder will now also contain the MD 6.
 
-### Step 4
+#### Step 4
 As before, we wish to update the target system to MD 7. However, in this case there have been
 customer changes on core parts of the MD originating from master (represented by the two extra boxes
 within the MD), so that the delta update `c` would be in conflict with such customer changes.
@@ -189,7 +191,7 @@ In many cases this is accepted by the target system, so that the master MD is fa
 local one.
 
 
-# Summary
+## Summary
 This document provides some background information on the process of model definition maintenance.
 It shows that there are basic features in the tools supporting the maintenance process.
 Experience shows that problems may arise, which must be worked around using miscellaneous cleanup
