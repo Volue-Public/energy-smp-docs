@@ -116,9 +116,9 @@ and that core dumps for any crashes are sent to the Volue Support together
 with the Mesh log and any information about what was happening in the system at
 the time of the crash.
 
-See https://docs.microsoft.com/en-us/windows/win32/wer/collecting-user-mode-dumps for more
-information on how to collect core dumps. Alternatively set the following
-registry values under `HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\Windows Error Reporting\LocalDumps\Powel.Mesh.Server.exe`:
+See [Microsoft documentation](https://docs.microsoft.com/en-us/windows/win32/wer/collecting-user-mode-dumps)
+for more information on how to collect core dumps. Alternatively set the
+following registry values under `HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\Windows Error Reporting\LocalDumps\Powel.Mesh.Server.exe`:
 
 |Parameter|Type|Value|
 |---|---|---|
