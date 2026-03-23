@@ -16,12 +16,12 @@ The function takes each value in the input time series and distributes it forwar
 
 #### How the calculation works
 
-For each time step *i* in the input series:
+For each time step `i` in the input series:
 
-1. Read the input value *v* at time step *i*.
-2. Look up the matching Z segment (or interpolate between two segments if *v* falls between thresholds).
-3. Produce a set of *(offset, fraction)* pairs from the corresponding XY curve.
-4. For each pair, add *v * fraction* to the output at time step *i + offset*.
+1. Read the input value `v` at time step `i`.
+2. Look up the matching Z segment (or interpolate between two segments if `v` falls between thresholds).
+3. Produce a set of `(offset, fraction)` pairs from the corresponding XY curve.
+4. For each pair, add `v * fraction` to the output at time step `i + offset`.
 
 Because the output at any given time step can receive delayed contributions from multiple earlier input values, the function internally extends the evaluation interval backwards by the maximum delay in the XY set. This ensures that flow that started before the requested period but arrives within it is correctly accounted for.
 
@@ -44,13 +44,13 @@ Because the output at any given time step can receive delayed contributions from
 
 #### Example
 
-Given an input value of exactly **20** at time *t* and an XY curve for the Z = 20 segment, the value is distributed as follows:
+Given an input value of exactly 20 at time `t` and an XY curve for the Z = 20 segment, the value is distributed as follows:
 
-- At *t* + 4h: 20 * 0.02 = 0.40
-- At *t* + 5h: 20 * 0.50 = 10.00
-- At *t* + 6h: 20 * 0.40 = 8.00
-- At *t* + 7h: 20 * 0.07 = 1.40
-- At *t* + 8h: 20 * 0.01 = 0.20
+- At `t` + 4h: 20 * 0.02 = 0.40
+- At `t` + 5h: 20 * 0.50 = 10.00
+- At `t` + 6h: 20 * 0.40 = 8.00
+- At `t` + 7h: 20 * 0.07 = 1.40
+- At `t` + 8h: 20 * 0.01 = 0.20
 
 (The percentages sum to 100%, preserving total volume)
 
