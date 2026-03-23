@@ -2,7 +2,7 @@
 
 ### About this function
 
-This function uses an [XY set]() to calculate a time-delayed output based on an input time series. A typical use case is simulating how water discharge at one point arrives downstream over time: a sudden increase in flow does not appear instantly at the output; instead, it spreads out over several time steps, with some fractions arriving early and the rest arriving progressively later.
+This function uses an [XY set](../../concepts/modelling/xy-sets.md) to calculate a time-delayed output based on an input time series. A typical use case is simulating how water discharge at one point arrives downstream over time: a sudden increase in flow does not appear instantly at the output; instead, it spreads out over several time steps, with some fractions arriving early and the rest arriving progressively later.
 
 The function takes each value in the input time series and distributes it forward in time according to a delay distribution curve stored in the XY set. Note that the distribution preserves the total volume; i.e. volume in equals volume out. When several input values contribute to the same output time step, their delayed contributions are summed, which can produce transient peaks or dips in the output (e.g., when a fast-flow "front" catches up with the tail of an earlier slow-flow period).
 
@@ -53,8 +53,6 @@ Given an input value of exactly **20** at time *t* and an XY curve for the Z = 2
 - At *t* + 8h: 20 * 0.01 = 0.20
 
 (The percentages sum to 100%, preserving total volume)
-
-If the value falls between 20 and 30, the multiplication factors are found by linear interpolation between the Z = 20 and Z = 30 curves. For example, for 29 the values could be approximately 0.15 and 0.67.
 
 #### Usage
 
