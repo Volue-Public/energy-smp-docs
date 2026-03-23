@@ -57,7 +57,7 @@ Given an input value of exactly 20 at time `t` and an XY curve for the Z = 20 se
 #### Usage
 
 ```
-DelayedFlow = @TimeDelayed(@t('.FlowSeries'), '.FlowDelayTableAttributeName')
+DelayedFlow = @TimeDelayed(@t('.FlowTimeSeries'), '.FlowDelayXySetAttributeName')
 ```
 
 #### Worked example with constant and changing flow
