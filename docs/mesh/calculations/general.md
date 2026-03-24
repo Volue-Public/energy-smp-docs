@@ -240,7 +240,8 @@ ENDIF
 ```
 
 If the test_statement is a evaluated to a time series, then **all** values within requested calculation time period
-on this time series must be true in order to execute statement1...N
+on this time series must be not equal to 0 in order to execute statement1...N. You may have to turn the test time series to a logical series having either 1 or 0 as values. 1 is true, 0 is false. This can be done by using the [BOOL function](./functions/bool.md)
+
 
 **Example 1**
 
@@ -251,7 +252,7 @@ IF @OUTSIDE(@t('.LowerLimit'),@t('.Measurement'),@t('.UpperLimit'))  THEN
   ## = @CorrectInterpolate(Validated,5,'FALSE')
 ENDIF 
 ```
-If there are some values outside of limits, do corrective action.
+If there are some values outside of limits, do corrective action. The [OUTSIDE function](./functions/outside.md) function returns a logical time series with values 1 or 0. In some cases you may have to apply the BOOL function on the test series to convert it to a logical series.  
 
 __Note!__ In a real setup there would be more validation and correction methods in use.
 
