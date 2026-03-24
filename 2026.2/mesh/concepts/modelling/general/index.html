@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../../img/favicon.ico" />
+<title>Smart Power Documentation</title>
+
+    <link rel="stylesheet" href="../../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../../wave/wave.css" rel="stylesheet" />
+        <link href="../../../../stylesheets/extra.css" rel="stylesheet" />
+        <link href="../../../../css/version-select.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "General";
+        var mkdocs_page_input_path = "mesh/concepts/modelling/general.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav is-active">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search fill-neutral--contrast">
+      <a href="../../../..">
+          <img src="../../../../logo.png" class="logo" alt="Logo"/>
+        </a>
+
+        <!-- A trick to place the version selector where I want it to be. -->
+        <div class="icon-home" style="display: none;"></div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mesh</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Concepts</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../../availability/">Availability</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../calculations/">Calculations</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" >Modelling</a>
+    <ul class="current">
+                <li class="toctree-l3 current"><a class="reference internal current" href="#">General</a>
+    <ul class="current">
+    <li class="toctree-l4"><a class="reference internal" href="#model-definition">Model definition</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#model">Model</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#resource">Resource</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#extended-metadata">Extended metadata</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#objects-and-attributes-paths">Objects and attributes paths</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#mapping">Mapping</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../rating-curves/">Rating curves</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../relations/">Relations</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../xy-sets/">XY-sets</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../search-language/">Search language</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../sessions/">Sessions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../time-series/">Time series</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../installation/MeshServiceInstallationGuide/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Calculations</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../calculations/general/">General</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../calculations/timepoint-macros/">Time macros</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Functions</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../calculations/functions/introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >General</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/allocate_reserves/">AllocateReserves</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/at/">AT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/color/">ColorARGB</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/compare/">Compare</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/concatenate/">Concatenate</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/copy_ts/">CopyTs</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/delta/">DELTA</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/disable_cache/">DisableCache</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/getyfx/">GET_Y_FX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/isvalid/">IsValid</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/linear/">Linear</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/max/">MAX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/meshid/">MeshID</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/min/">MIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/parameter/">Parameter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/pdlog/">PDLOG</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/reference_lookup/">Reference Lookup</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/restriction/">Restriction</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/revision/">Revision</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/set_ts_val_unit/">SET_TS_VALUNIT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/size/">Size</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/time_mask/">TIME_MASK</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/tostring/">ToString</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/trace/">Trace</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/ts/">TS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/unit_codes_for_set_ts_val_unit/">Unit Codes for SET_TS_VALUNIT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/valid/">Valid</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Forecast</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/get_best_forecast/">GetBestForecast</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/get_all_forecasts/">GetAllForecasts</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/get_forecast/">GetForecast</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/get_merged_forecast/">GetMergedForecast</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >History</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/history/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/get_ts_as_of_time/">GetTsAsOfTime</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/get_ts_historical_versions/">GetTsHistoricalVersions</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/get_ts_audit_times/">GetTsAuditTimes</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Logical</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/bool/">BOOL</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/inside/">INSIDE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/negative/">NEGATIVE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/not/">NOT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/outside/">OUTSIDE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/positive/">POSITIVE</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Math</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/ts_gliding_average/">TS_GLIDING_AVERAGE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/ts_gliding_gauss/">TS_GLIDING_GAUSS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/ts_gliding_median/">TS_GLIDING_MEDIAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/ts_gliding_median_gauss/">TS_GLIDING_MEDIAN_GAUSS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/gliding_trend_average/">GLIDING_TREND_AVERAGE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/ts_acc_from/">TS_ACC_FROM</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/power/">POWER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/abs/">ABS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/ceil/">CEIL</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/floor/">FLOOR</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/integer/">INTEGER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/log/">LOG</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/ln/">LN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/round/">ROUND</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/round_integer/">ROUND_INTEGER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/acos/">ACOS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/asin/">ASIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/atan/">ATAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/cos/">COS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/sin/">SIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/tan/">TAN</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Mix</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/mix/">MIX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/mix_by_selecting_from_time_series_array/">MIX by selecting from time series array</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/mix0/">MIX0</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/tsiqfill/">TS_IQ_FILL</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Sim</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/sim/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/convert_volume/">CONVERT_VOLUME</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/rating_curve/">RatingCurve</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/time_delayed/">TimeDelayed</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/xy/">XY</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/yx/">YX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/zxy/">ZX_Y</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/zyx/">ZY_X</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Statistical</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/mean/">MEAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/normal/">Normal</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/percentile/">PERCENTILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/sum/">SUM</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Status</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/status/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/reset_status/">RESET_STATUS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/status_mask/">STATUS_MASK</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/status_count/">STATUS_COUNT</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Time</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/time_group/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/is_resolution/">IsResolution</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/is_time_valid/">IsTimeValid</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/push_ext_period/">PushExtPeriod</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/pop_ext_period/">PopExtPeriod</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/time/">Time</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/resolution/">Resolution</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/timespan/">TimeSpan</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/time_to_string/">TimeToString</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/time_examples/">Time Examples</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/time_point_information/">Time Point Information</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Transform</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/transform_what_when/">Which function can be used when</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/transform_terms/">Terms used in the functions</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/transform/">TRANSFORM</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/ts_expand/">TS_EXPAND</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/ts_offset/">TS_OFFSET</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/values_from_year/">ValuesFromYear</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/distribute/">DISTRIBUTE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/trans_profile/">TRANS_PROFILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/profile/">PROFILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/profile_with_explicit_frequency/">PROFILE with explicit frequency</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/accumulate/">ACCUMULATE</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >VEE</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/vee/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/validate_abs_limit/">ValidateAbsLimit</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/validate_delta_limit/">ValidateDeltaLimit</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/validate_delta_limit_extreme/">ValidateDeltaLimitExtreme</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/validate_repeat_value/">ValidateRepeatValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/correct_average_value/">CorrectAverageValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/correct_constant_value/">CorrectConstantValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/correct_copy_value/">CorrectCopyValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/correct_extrapolate/">CorrectExtrapolate</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../calculations/functions/correct_interpolate/">CorrectInterpolate</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >gRPC</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../grpc/APISpecification/">API specification</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../grpc/Authorization/">Authorization</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../grpc/ClientCertificates/">Client certificates</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../grpc/FAQ/">Frequently Asked Questions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../grpc/MessageSizeLimits/">Message size limits</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Mesh REST API</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../rest-api/introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../rest-api/changelog/">Changelog</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../rest-api/api-documentation/">API specification</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >For developers</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../rest-api/generate-c%23-api-from-swagger-json/">Generate C# API from swagger.json</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../rest-api/how-to-use-ImportMultistepWaterValueFunctions/">How to use ImportMultistepWaterValueFunctions</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Excel AddIn for Mesh</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../excel-add-in/addin-excel-user-guide-for-mesh/">User guide</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../excel-add-in/how-to-install-addin-excel-for-mesh/">Installation guide</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Model maintenance</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../model-maintenance/ModelMaintenanceConcepts/">Model maintenance concepts</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../model-maintenance/ModelBackup/">Model backups</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mesh Data Transfer</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../mesh-data-transfer/general/general/">General</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../mesh-data-transfer/configuration/configuration/">Configuration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Use cases</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../mesh-data-transfer/use-cases/import-of-time-series-values-using-mdt/">Import of time series values</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../mesh-data-transfer/use-cases/export-of-time-series-values-using-mdt/">Export of time series values</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../mesh-data-transfer/use-cases/import-of-availability-events-using-mdt/">Import of availability events</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../operations/monitoring/">Monitor services</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Time series reports</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../timeseries-reports/reports_intro/">General</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../timeseries-reports/macros/">Macros</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../timeseries-reports/sort_contents/">Sorted layout</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap is-active">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars is-active"></i>
+          <a href="../../../..">Smart Power Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Mesh</li>
+          <li class="breadcrumb-item">Concepts</li>
+          <li class="breadcrumb-item">Modelling</li>
+      <li class="breadcrumb-item active">General</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="modelling">Modelling</h1>
+<p>Mesh is a data management system based on object modelling.
+Real world objects are represented in Mesh using the following concepts:</p>
+<ul>
+<li>models and model definitions</li>
+<li>objects and object definitions</li>
+<li>attributes and attribute definitions</li>
+</ul>
+<p>Model definition contains one or more object definitions. Each object
+definition contains one or more attribute definitions. The definitions
+serve as <em>blueprints</em> and can be instantiated. Instances of the definitions are
+just called: models, objects and attributes.</p>
+<p>For example we could have a model definition called <em>EnergySystem</em> that has
+object definition called <em>PowerPlant</em> that has two attribute definitions:</p>
+<ul>
+<li><em>NumberOfWindTurbines</em> of integer type</li>
+<li><em>PowerProduction</em> time series</li>
+</ul>
+<p>Such definitions could be instantiated and so we could have: model called
+<em>MyEnergySystem</em> that has three objects:</p>
+<ul>
+<li><em>PowerPlantA</em> with <em>NumberOfWindTurbines</em> = 5</li>
+<li><em>PowerPlantB</em> with <em>NumberOfWindTurbines</em> = 10</li>
+<li><em>PowerPlantC</em> with <em>NumberOfWindTurbines</em> = 3</li>
+</ul>
+<p><img alt="Mesh modelling" src="../../assets/images/modelling.png" /></p>
+<h2 id="model-definition">Model definition</h2>
+<p>The Mesh model definition is designed to represent the structure of customer's
+infrastructure and assets. This can be a hydropower production system with
+water courses, creeks, reservoirs, water routes, gates, sensors, hydro plants
+and so on. The Mesh model definition contains
+<a href="#object-definition">object definitions</a>, <a href="#attribute-type">attribute types</a>
+and <a href="#attribute-definition">attribute definitions</a> of different types.</p>
+<p>Additionally, model definition contains <a href="#namespace">namespaces</a> that are used
+for grouping and filtering purposes. The model definition is also a top-level
+namespace.</p>
+<p>Each asset type is represented by an <a href="#object-definition">object definition</a>.</p>
+<p><img alt="Hydropower object structure" src="../../assets/images/hydropower-object-structure.png" /></p>
+<h3 id="object-definition">Object definition</h3>
+<p>Contains <a href="#attribute-definition">attribute definitions</a> of different types.
+Object definition could be compared to a C++ class.</p>
+<p>For example: an object definition could represent a reservoir. It can have
+an attribute definition that represents current water level in a reservoir and
+an ownership relation attribute definition that represents how water is flowing
+to another object like hydro plant.</p>
+<h3 id="attribute-definition">Attribute definition</h3>
+<p>Attribute definition may be singular or an array of one of the following types:</p>
+<ul>
+<li>Self-contained simple type: string, boolean, int, double or UTC timestamp.</li>
+<li>Time series attribute, it can be a calculation or a reference to a physical
+  time series or virtual time series.</li>
+<li><a href="../xy-sets/">XY-set</a></li>
+<li><a href="../rating-curves/">Rating curve</a></li>
+<li>Ownership or link relation to an object definition. Refer to <a href="#attribute">attributes</a> and <a href="../relations/">relations</a>.</li>
+</ul>
+<p>Each attribute definition has:</p>
+<ul>
+<li>ID</li>
+<li>name</li>
+<li>description</li>
+<li>value type, e.g. double attribute or time series attribute</li>
+<li>minimum and maximum cardinality, useful for definitions of an array type
+  (e.g. array of boolean), for singular definitions they are always set to 1</li>
+</ul>
+<p>Additionally specific attribute definitions may have additional fields like
+default value, accepted value ranges, etc. E.g.:</p>
+<ul>
+<li>time series attribute definition has <em>template expression</em></li>
+<li>ownership relation attribute definition has <em>target object type name</em>.</li>
+</ul>
+<p>Changing the name of an attribute definition will also change the names of
+all already existing attributes in the model to the new value.</p>
+<p>Attribute definition could be compared to a C++ class member.</p>
+<h3 id="attribute-type">Attribute type</h3>
+<p>Used for creating <em>re-usable</em> <a href="#attribute-definition">attribute definitions</a>.
+Once defined could be used by different <a href="#object-definition">object definitions</a>
+for creating an attribute definition based on it.</p>
+<p>Every attribute definition that is based on an attribute type will inherit
+name, description and unit of measurement (if applicable) of that attribute
+type. For enumeration attribute types the definitions will also inherit default
+value if not provided explicitly when creating the attribute definition.</p>
+<p>Updates of all above mentioned properties (name, description and unit of
+measurement) can be done on attribute definition level. In such case the
+attribute type and attribute definition may have different property values.
+However, there is a special way of handling changes to name and unit of
+measurement done on attribute type level. Updating an attribute type name or
+unit of measurement will update also names and unit of measurements in all
+attribute definitions that were created based on the given attribute type.
+Other properties like description will change just the property on the
+attribute type level. See examples below:</p>
+<p><img alt="Attribute type properties propagation" src="../../assets/images/attribute-type-propagation.png" /></p>
+<h3 id="namespace">Namespace</h3>
+<p>Used for grouping and filtering purposes in a <a href="#model-definition">model definition</a>.
+You can compare it to a C++ namespace.</p>
+<p>Namespace may contain:</p>
+<ul>
+<li>object definitions</li>
+<li>attribute types</li>
+<li>other (nested) namespaces</li>
+</ul>
+<h3 id="template-calculation-definition">Template calculation definition</h3>
+<p>Defines calculation expression that could be used by <a href="#attribute">time series attributes</a>.</p>
+<h3 id="tags">Tags</h3>
+<p>Special enumeration values that can be attached to attribute types and object
+definitions. Similar to namespaces they are used for grouping and filtering
+purposes.</p>
+<h2 id="model">Model</h2>
+<p>Based on the Mesh <a href="#model-definition">model definition</a>, customers can build
+a model of their infrastructure by creating instances matching their specific
+assets. For example water courses named 'WaterCourse1', 'WaterCourse2',
+reservoirs named 'Reservoir1', 'Reservoir2' and so on. The resulting
+model is a tree where all the nodes are Mesh objects from the Mesh model
+that represent customer's physical assets. The root (top-level) object, is
+called model. It is the same as other regular objects, except it does not have
+an owner.</p>
+<p>Model is an instance of <a href="#model-definition">model definition</a>. There can be
+multiple models based on the same model definition.</p>
+<h3 id="object">Object</h3>
+<p>Mesh object contains <a href="#attribute">attributes</a>. Object is an instance of an
+<a href="#object-definition">object definition</a>.</p>
+<p>Objects are identified by IDs or paths, refer to
+<a href="#objects-and-attributes-paths">objects and attributes paths</a>
+for more information.</p>
+<h3 id="attribute">Attribute</h3>
+<p>Attribute is an instance of an <a href="#attribute-definition">attribute definition</a>.
+Attribute contains a <strong>definition</strong> (inherited from attribute definition) and
+possibly a <strong>value</strong> of some type.</p>
+<p>There are the following types of attributes:</p>
+<ul>
+<li>
+<p><strong>Simple attributes</strong> - all of them have value(s) (defined on attribute level) and
+  default value (defined on the attribute definition level). They are
+  aggregating the following types:</p>
+<ul>
+<li>
+<p>Double attribute - additionally it has minimum value, maximum value and
+unit of measurement (defined on the attribute definition level).</p>
+<p>Definition value types are <code>DoubleAttributeDefinition</code> for singular value
+or <code>DoubleArrayAttributeDefinition</code> for collection of values.</p>
+</li>
+<li>
+<p>Integer attribute - additionally it has minimum value, maximum value and
+unit of measurement (defined on the attribute definition level).</p>
+<p>Definition value types are <code>Int64AttributeDefinition</code> for singular value
+or <code>Int64ArrayAttributeDefinition</code> for collection of values.</p>
+</li>
+<li>
+<p>Boolean attribute - definition value types are <code>BooleanAttributeDefinition</code>
+for singular value or <code>BooleanArrayAttributeDefinition</code> for collection of
+values.</p>
+</li>
+<li>
+<p>String attribute - definition value types are <code>StringAttributeDefinition</code>
+for singular value or <code>StringArrayAttributeDefinition</code> for collection of
+values.</p>
+</li>
+<li>
+<p>UTC time attribute - additionally it has minimum value and maximum values
+(defined on the attribute definition level).</p>
+<p>The default, minimum and maximum value for this attribute is a string,
+where you can use expressions like: <code>UTC20220510072415</code>.</p>
+<p>Definition value types are <code>UtcDateTimeAttributeDefinition</code> for singular
+value or <code>UtcDateTimeArrayAttributeDefinition</code> for collection of values.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Time series attributes</strong> - they can be a:</p>
+<ul>
+<li>
+<p>reference to a physical time series: it has actual data (timestamps,
+values and flags) and meta data (e.g. curve type, resolution, etc.).</p>
+</li>
+<li>
+<p>reference to a virtual time series: it has defined an expression to
+calculate time series data (similar to calculation time series).</p>
+</li>
+<li>
+<p>calculation time series: it has defined an expression to calculate
+time series data. The calculation expression can be defined on the
+attribute definition level (then it is a <em>template expression</em>) or
+overwritten for the given attribute in the model (then it stored as
+<em>local expression</em>).</p>
+</li>
+</ul>
+<p>Definition value types are <code>TimeseriesAttributeDefinition</code> for singular value
+or <code>TimeseriesCollectionAttributeDefinition</code> for collection of values.</p>
+</li>
+<li>
+<p><a href="../xy-sets/"><strong>XY-set attributes</strong></a></p>
+</li>
+<li>
+<p><a href="../rating-curves/"><strong>Rating curve attributes</strong></a></p>
+</li>
+<li>
+<p><strong>Ownership relation attributes</strong> - represent relations where one object owns
+  another object. The owned object's owner is always an ownership relation
+  attribute that belongs to some other object.
+  There are two types of ownership relation attributes:</p>
+<ul>
+<li>one-to-one</li>
+<li>one-to-many</li>
+</ul>
+<p>When creating a new object the owner must be an ownership relation attribute
+of one-to-many type. Ownership relation attribute has defined <em>target object
+type name</em> (on the attribute definition level) that shows what object value
+type is accepted to be added as child.</p>
+<p>Definition value types are <code>ElementAttributeDefinition</code> for singular value or
+<code>ElementCollectionAttributeDefinition</code> for collection of values.</p>
+<p>Refer to <a href="../relations/">relations</a> for more information.</p>
+</li>
+<li>
+<p><strong>Link relation attributes</strong> - represent relations where one object may point
+  to another object, but does not own it.
+  There are two types of link relation attributes:</p>
+<ul>
+<li>one-to-one</li>
+<li>one-to-many</li>
+</ul>
+<p>Definition value types are <code>ReferenceAttributeDefinition</code> for singular value
+or <code>ReferenceCollectionAttributeDefinition</code> for collection of values.</p>
+<p>Refer to <a href="../relations/">relations</a> for more information.</p>
+</li>
+<li>
+<p><strong>Versioned link relation attributes</strong> - extension of <strong>link relation
+  attributes</strong>, where the target object can change over time.
+  It consists of a list of pairs:</p>
+<ul>
+<li>Target object ID.</li>
+<li>Timestamp which indicates start of the period where the target object is
+  active (linked to), the target object is active until the next target
+  object in the list, if any, becomes active.</li>
+</ul>
+<p>There are two types of versioned link relation attributes:</p>
+<ul>
+<li>one-to-one</li>
+<li>one-to-many</li>
+</ul>
+<p>Definition value types are <code>ReferenceSeriesAttributeDefinition</code> for singular
+value or <code>ReferenceSeriesCollectionAttributeDefinition</code> for collection of
+values.</p>
+<p>Refer to <a href="../relations/">relations</a> for more information.</p>
+</li>
+</ul>
+<h2 id="resource">Resource</h2>
+<ul>
+<li>Resource - Container storing data (e.g. time series), used by <a href="#model">model</a>.</li>
+<li>Physical time series - Time series data (timestamps, values and flags) and meta data (e.g. curve type, resolution, etc.).</li>
+<li>Virtual time series - Has defined an expression to calculate time series data (similar to calculation time series) but is stored in resources.</li>
+<li>Catalog - Used for grouping and filtering purposes. Catalog typically contains physical time series, virtual time series or other catalogs. Similar to <a href="#namespace">namespaces</a> in <a href="#model-definition">model definition</a>.</li>
+</ul>
+<h2 id="extended-metadata">Extended metadata</h2>
+<p>Extended metadata is an additional and optional information that can be set on:</p>
+<ul>
+<li>Namespaces and model definition (which is also a namespace)</li>
+<li>Attribute definitions</li>
+<li>Object definitions</li>
+</ul>
+<p>It is a list of key-value pairs: category name and a JSON object.
+Maximum size of the JSON object serialized to a string is 4000 characters.</p>
+<p>If a given attribute definition, object definition or namespace has more
+than one extended metadata, then the category names must be unique.</p>
+<p>For example, an object definition may have 2 extended metadata entries:
+* Category name <code>MyCategory1</code> with associated JSON object:</p>
+<pre><code class="language-json">{
+    &quot;Labels&quot; : [&quot;Label A&quot;,&quot;Label B&quot;],
+    &quot;Something&quot; : {&quot;MaxValue&quot;:100}
+}
+</code></pre>
+<ul>
+<li>Category name <code>MyCategory2</code> with associated JSON object:</li>
+</ul>
+<pre><code class="language-json">{
+    &quot;Active&quot;: true
+}
+</code></pre>
+<h2 id="objects-and-attributes-paths">Objects and attributes paths</h2>
+<p>Objects and attributes are identified by IDs or paths. Path is a string
+uniquely identifying an object in the model and contains all ancestors of
+a given object and optionally their ownership relation attributes.</p>
+<p>For example the path for some reservoir could be:</p>
+<pre><code>  Model/Mesh/MyArea/MyHydroProduction/MyWaterCourse/MyReservoir
+</code></pre>
+<p>This is a path where only objects are provided. A path where also ownership
+relation attributes, that connect those objects, are provided is called full
+name. For the same reservoir the full name path is:</p>
+<pre><code>  Model/Mesh.To_Areas/MyArea.To_HydroProduction/MyHydroProduction.To_WaterCourses/MyWaterCourse.To_Reservoirs/MyReservoir
+</code></pre>
+<p>As you can see the attributes are provided after objects and a <em>dot</em> "."
+character. For example full name path for an attribute of the
+<em>MyReservoir</em> reservoir is:</p>
+<pre><code>  Model/Mesh.To_Areas/MyArea.To_HydroProduction/MyHydroProduction.To_WaterCourses/MyWaterCourse.To_Reservoirs/MyReservoir.MaxVolume
+</code></pre>
+<p>Every path in Mesh model starts with <code>Model/</code> prefix.</p>
+<p>Mesh gRPC API returns always full names as paths when reading
+objects or attributes. The path containing attributes (full name path) is
+guaranteed to be unique, whereas depending on the model the path without
+attributes may be ambiguous.</p>
+<p>There are Mesh objects that are not directly part of a Mesh model, but the Mesh model do have
+references to such objects. These have the following prefixes:</p>
+<ul>
+<li>Repository</li>
+<li>Objects part of the Mesh model definition</li>
+<li>Resource</li>
+<li>Objects that are shared between multiple Mesh models</li>
+<li>Quantity</li>
+<li>Unit of measurement objects</li>
+</ul>
+<p>Some examples:</p>
+<ul>
+<li>Repository/EnergySystem/Area</li>
+<li>Repository/EnergySystem/Area/Description</li>
+<li>Resource/MyModel/Mesh/Norway/Measurements/AreaNorth/WaterLevel_historical</li>
+<li>Quantity/volume/million cubic meter</li>
+</ul>
+<h2 id="mapping">Mapping</h2>
+<p>We strongly advise to use the above definitions, but some of them were already known under different names:</p>
+<ul>
+<li>Model definition - object model, meta model, repository (in Mesh Explorer)</li>
+<li>Object definition - element type, object type (in Mesh Configurator)</li>
+<li>Model - physical model</li>
+<li>Object - physical object</li>
+<li>Attribute - property</li>
+<li>Versioned XY set - <code>XYZSeries</code></li>
+</ul>
+              
+            </div>
+          </div><footer>
+      <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+          <a href="../../calculations/" class="btn btn--outline btn--success float-left" title="Calculations"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+          <a href="../rating-curves/" class="btn btn--outline btn--success float-right" title="Rating curves">Next <span class="icon icon-circle-arrow-right"></span></a>
+      </div>
+  
+    <hr/>
+  
+    <div role="contentinfo">
+      <!-- Copyright etc -->
+    </div>
+  
+    Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  </footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version is-active">
+      
+      
+        <span><a href="../../calculations/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      
+      
+        <span><a href="../rating-curves/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+  </div>
+    <script src="../../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../../..";</script>
+    <script src="../../../../js/theme_extra.js"></script>
+    <script src="../../../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../../../../search/main.js"></script>
+      <script src="../../../../js/version-select.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

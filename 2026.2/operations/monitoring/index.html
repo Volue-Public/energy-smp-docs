@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+<title>Smart Power Documentation</title>
+
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../wave/wave.css" rel="stylesheet" />
+        <link href="../../stylesheets/extra.css" rel="stylesheet" />
+        <link href="../../css/version-select.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Monitor services";
+        var mkdocs_page_input_path = "operations/monitoring.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav is-active">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search fill-neutral--contrast">
+      <a href="../..">
+          <img src="../../logo.png" class="logo" alt="Logo"/>
+        </a>
+
+        <!-- A trick to place the version selector where I want it to be. -->
+        <div class="icon-home" style="display: none;"></div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mesh</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mesh/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Concepts</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/concepts/availability/">Availability</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/concepts/calculations/">Calculations</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Modelling</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../mesh/concepts/modelling/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../mesh/concepts/modelling/rating-curves/">Rating curves</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../mesh/concepts/modelling/relations/">Relations</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../mesh/concepts/modelling/xy-sets/">XY-sets</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/concepts/search-language/">Search language</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/concepts/sessions/">Sessions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/concepts/time-series/">Time series</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mesh/installation/MeshServiceInstallationGuide/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Calculations</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/calculations/general/">General</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/calculations/timepoint-macros/">Time macros</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Functions</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../mesh/calculations/functions/introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >General</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/allocate_reserves/">AllocateReserves</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/at/">AT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/color/">ColorARGB</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/compare/">Compare</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/concatenate/">Concatenate</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/copy_ts/">CopyTs</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/delta/">DELTA</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/disable_cache/">DisableCache</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/getyfx/">GET_Y_FX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/isvalid/">IsValid</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/linear/">Linear</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/max/">MAX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/meshid/">MeshID</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/min/">MIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/parameter/">Parameter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/pdlog/">PDLOG</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/reference_lookup/">Reference Lookup</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/restriction/">Restriction</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/revision/">Revision</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/set_ts_val_unit/">SET_TS_VALUNIT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/size/">Size</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/time_mask/">TIME_MASK</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/tostring/">ToString</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/trace/">Trace</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/ts/">TS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/unit_codes_for_set_ts_val_unit/">Unit Codes for SET_TS_VALUNIT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/valid/">Valid</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Forecast</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/get_best_forecast/">GetBestForecast</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/get_all_forecasts/">GetAllForecasts</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/get_forecast/">GetForecast</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/get_merged_forecast/">GetMergedForecast</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >History</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/history/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/get_ts_as_of_time/">GetTsAsOfTime</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/get_ts_historical_versions/">GetTsHistoricalVersions</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/get_ts_audit_times/">GetTsAuditTimes</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Logical</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/bool/">BOOL</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/inside/">INSIDE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/negative/">NEGATIVE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/not/">NOT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/outside/">OUTSIDE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/positive/">POSITIVE</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Math</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/ts_gliding_average/">TS_GLIDING_AVERAGE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/ts_gliding_gauss/">TS_GLIDING_GAUSS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/ts_gliding_median/">TS_GLIDING_MEDIAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/ts_gliding_median_gauss/">TS_GLIDING_MEDIAN_GAUSS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/gliding_trend_average/">GLIDING_TREND_AVERAGE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/ts_acc_from/">TS_ACC_FROM</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/power/">POWER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/abs/">ABS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/ceil/">CEIL</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/floor/">FLOOR</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/integer/">INTEGER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/log/">LOG</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/ln/">LN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/round/">ROUND</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/round_integer/">ROUND_INTEGER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/acos/">ACOS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/asin/">ASIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/atan/">ATAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/cos/">COS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/sin/">SIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/tan/">TAN</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Mix</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/mix/">MIX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/mix_by_selecting_from_time_series_array/">MIX by selecting from time series array</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/mix0/">MIX0</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/tsiqfill/">TS_IQ_FILL</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Sim</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/sim/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/convert_volume/">CONVERT_VOLUME</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/rating_curve/">RatingCurve</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/time_delayed/">TimeDelayed</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/xy/">XY</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/yx/">YX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/zxy/">ZX_Y</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/zyx/">ZY_X</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Statistical</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/mean/">MEAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/normal/">Normal</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/percentile/">PERCENTILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/sum/">SUM</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Status</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/status/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/reset_status/">RESET_STATUS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/status_mask/">STATUS_MASK</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/status_count/">STATUS_COUNT</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Time</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/time_group/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/is_resolution/">IsResolution</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/is_time_valid/">IsTimeValid</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/push_ext_period/">PushExtPeriod</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/pop_ext_period/">PopExtPeriod</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/time/">Time</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/resolution/">Resolution</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/timespan/">TimeSpan</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/time_to_string/">TimeToString</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/time_examples/">Time Examples</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/time_point_information/">Time Point Information</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Transform</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/transform_what_when/">Which function can be used when</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/transform_terms/">Terms used in the functions</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/transform/">TRANSFORM</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/ts_expand/">TS_EXPAND</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/ts_offset/">TS_OFFSET</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/values_from_year/">ValuesFromYear</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/distribute/">DISTRIBUTE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/trans_profile/">TRANS_PROFILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/profile/">PROFILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/profile_with_explicit_frequency/">PROFILE with explicit frequency</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/accumulate/">ACCUMULATE</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >VEE</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/vee/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/validate_abs_limit/">ValidateAbsLimit</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/validate_delta_limit/">ValidateDeltaLimit</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/validate_delta_limit_extreme/">ValidateDeltaLimitExtreme</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/validate_repeat_value/">ValidateRepeatValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/correct_average_value/">CorrectAverageValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/correct_constant_value/">CorrectConstantValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/correct_copy_value/">CorrectCopyValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/correct_extrapolate/">CorrectExtrapolate</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/correct_interpolate/">CorrectInterpolate</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >gRPC</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/grpc/APISpecification/">API specification</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/grpc/Authorization/">Authorization</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/grpc/ClientCertificates/">Client certificates</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/grpc/FAQ/">Frequently Asked Questions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/grpc/MessageSizeLimits/">Message size limits</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Mesh REST API</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/rest-api/introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/rest-api/changelog/">Changelog</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/rest-api/api-documentation/">API specification</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >For developers</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../mesh/rest-api/generate-c%23-api-from-swagger-json/">Generate C# API from swagger.json</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../mesh/rest-api/how-to-use-ImportMultistepWaterValueFunctions/">How to use ImportMultistepWaterValueFunctions</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Excel AddIn for Mesh</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/excel-add-in/addin-excel-user-guide-for-mesh/">User guide</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/excel-add-in/how-to-install-addin-excel-for-mesh/">Installation guide</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Model maintenance</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/model-maintenance/ModelMaintenanceConcepts/">Model maintenance concepts</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/model-maintenance/ModelBackup/">Model backups</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mesh Data Transfer</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mesh-data-transfer/general/general/">General</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mesh-data-transfer/configuration/configuration/">Configuration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Use cases</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh-data-transfer/use-cases/import-of-time-series-values-using-mdt/">Import of time series values</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh-data-transfer/use-cases/export-of-time-series-values-using-mdt/">Export of time series values</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh-data-transfer/use-cases/import-of-availability-events-using-mdt/">Import of availability events</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Monitor services</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#about-this-document">About this document</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#systems-monitoring">Systems monitoring</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#service-list">Service list</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#powel-alarm-service">Powel Alarm service</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#powel-filerequester-service">Powel FileRequester service</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#powel-fileresponder-service">Powel FileResponder service</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#powel-mesh-service">Powel Mesh service</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#powel-meshdatatransfer-service">Powel MeshDataTransfer service</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#powel-meshcollector-service">Powel MeshCollector service</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#powel-meshfileimportconverter-service">Powel MeshFileImportConverter service</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#powel-meshsoapimportserver-service">Powel MeshSoapImportServer service</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#powel-nimbus-service">Powel Nimbus service</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#powel-optimalgateway-service">Powel OptimalGateway service</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#powel-optimallog-service">Powel OptimalLog service</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#powel-optimalmultiasset-poma-service">Powel OptimalMultiAsset (POMA) service</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#powel-scadagateway-service">Powel ScadaGateway service</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#volue-transferamqpfile-service">Volue TransferAMQPFile service</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Time series reports</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../timeseries-reports/reports_intro/">General</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../timeseries-reports/macros/">Macros</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../timeseries-reports/sort_contents/">Sorted layout</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap is-active">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars is-active"></i>
+          <a href="../..">Smart Power Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Operations</li>
+      <li class="breadcrumb-item active">Monitor services</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="monitor-smart-power-solutions">Monitor Smart Power solutions</h1>
+<ul>
+<li><a href="#monitor-smart-power-solutions">Monitor Smart Power solutions</a></li>
+<li><a href="#about-this-document">About this document</a></li>
+<li><a href="#systems-monitoring">Systems monitoring</a></li>
+<li><a href="#service-list">Service list</a><ul>
+<li><a href="#powel-alarm-service">Powel Alarm service</a></li>
+<li><a href="#powel-filerequester-service">Powel FileRequester service</a></li>
+<li><a href="#powel-fileresponder-service">Powel FileResponder service</a></li>
+<li><a href="#powel-mesh-service">Powel Mesh service</a></li>
+<li><a href="#powel-meshdatatransfer-service">Powel MeshDataTransfer service</a></li>
+<li><a href="#powel-meshcollector-service">Powel MeshCollector service</a></li>
+<li><a href="#powel-meshfileimportconverter-service">Powel MeshFileImportConverter service</a></li>
+<li><a href="#powel-meshsoapimportserver-service">Powel MeshSoapImportServer service</a></li>
+<li><a href="#powel-nimbus-service">Powel Nimbus service</a></li>
+<li><a href="#powel-optimalgateway-service">Powel OptimalGateway service</a></li>
+<li><a href="#powel-optimallog-service">Powel OptimalLog service</a></li>
+<li><a href="#powel-optimalmultiasset-poma-service">Powel OptimalMultiAsset (POMA) service</a></li>
+<li><a href="#powel-scadagateway-service">Powel ScadaGateway service</a></li>
+<li><a href="#volue-transferamqpfile-service">Volue TransferAMQPFile service</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="about-this-document">About this document</h2>
+<p>This document serves as a guide to monitor Volue‘s Smart Power (SmP) software suite.</p>
+<p>Background:</p>
+<ul>
+<li>The SmP software is provided as on-premises solutions (incl. private cloud environments).</li>
+<li>Therefore, operation of the software is usually in the hands of Volue’s customers.</li>
+</ul>
+<p>To enable the organisation's IT personnel to operate the solution, this document summarises the required knowledge about monitoring and alerting.</p>
+<p>For all software components, it contains information about:</p>
+<ul>
+<li>Which measurements can be taken to monitor the applications, and how.</li>
+<li>What events should be alerted as impairing proper operation.</li>
+</ul>
+<p>The basics of operation (e.g. hardware-related monitoring) are described briefly, but this completely depends on the individual environment, and Volue is not able to give advise about how they should be operated.</p>
+<h2 id="systems-monitoring">Systems monitoring</h2>
+<p>As mentioned above, Volue can hardly advise on how to specifically monitor hardware/systems.</p>
+<p>We recommend that the IT operations should make sure that warnings are given for usual indicators of insufficient hardware sizing, such as:</p>
+<ul>
+<li>High average CPU utilisation over a certain time period (e.g. 85% for more than 20 minutes).</li>
+<li>High disk usage/little disk space left (e.g. less than 15% free disk space).</li>
+</ul>
+<p>Obviously, the mere availability of resources should be ensured as well, with alarms for unavailable servers or broken network connections.</p>
+<p>Other (non-Volue) software should also be monitored for availability, like the database and message queues.</p>
+<h2 id="service-list">Service list</h2>
+<p>There are 14 services described in this document:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Service</th>
+<th>Health endpoint</th>
+<th>Active zone Normal</th>
+<th>Active zone Alert</th>
+<th>Passive zone Normal</th>
+<th>Passive zone Alert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Powel Alarm service</td>
+<td>n\a</td>
+<td>Running</td>
+<td>Stopped/Disabled</td>
+<td>Running</td>
+<td>Stopped/Disabled</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Powel FileRequester service</td>
+<td>http://server:7431/FileRequester/health</td>
+<td>Running</td>
+<td>Stopped/Disabled</td>
+<td>Stopped/Disabled</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Powel FileResponder service</td>
+<td>http://server:5200/FileResponder/health</td>
+<td>Running</td>
+<td>Stopped/Disabled</td>
+<td>Running</td>
+<td>Stopped/Disabled</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Powel Mesh service</td>
+<td>http://server:20000/meshHealth/health</td>
+<td>Running</td>
+<td>Stopped/Disabled</td>
+<td>Running</td>
+<td>Stopped/Disabled</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Powel Mesh Data Transfer service</td>
+<td>http://server:7000/health</td>
+<td>Running</td>
+<td>Stopped/Disabled</td>
+<td>Stopped/Disabled</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Powel MeshCollector service</td>
+<td>http://server:7341/MeshCollectorService/health</td>
+<td>Running</td>
+<td>Stopped/Disabled</td>
+<td>Runnning</td>
+<td>Stopped/Disabled</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Powel MeshFileConverter service</td>
+<td>http://server:7432/MeshFileConverterService/health</td>
+<td>Running</td>
+<td>Stopped/Disabled</td>
+<td>Stopped/Disabled</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Powel MeshSoapImportServer service</td>
+<td>http://server:7000/MeshSoapImportServer/health</td>
+<td>Running</td>
+<td>Stopped/Disabled</td>
+<td>Running/Stopped/Disabled</td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>Powel Nimbus service</td>
+<td>http://server:23142/hc/</td>
+<td>Running</td>
+<td>Stopped/Disabled</td>
+<td>Running</td>
+<td>Stopped/Disabled</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Powel Optimal Gateway service</td>
+<td>http://server:18261/Gateway/Health</td>
+<td>Running</td>
+<td>Stopped/Disabled</td>
+<td>Running</td>
+<td>Stopped/Disabled</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Powel Optimal Log service</td>
+<td>http://server:18260/OptimalLog/Health</td>
+<td>Running</td>
+<td>Stopped/Disabled</td>
+<td>Running</td>
+<td>Stopped/Disabled</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Powel Optimal MultiAsset (POMA) service</td>
+<td>http://server:18262/MultiAsset/Health</td>
+<td>Running</td>
+<td>Stopped/Disabled</td>
+<td>Running</td>
+<td>Stopped/Disabled</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Powel ScadaGateway service</td>
+<td>http://server:port/ScadaGateway/health</td>
+<td>Running</td>
+<td>Stopped/Disabled</td>
+<td>Stopped/Disabled</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Volue TransferAMQPFiles service</td>
+<td>n/a</td>
+<td>Running</td>
+<td>Stopped/Disabled</td>
+<td>Running</td>
+<td>Stopped/Disabled</td>
+</tr>
+</tbody>
+</table>
+<p>The above table contains information about the health endpoint of each service, the normal operation mode when running in either active or passive zone, and alert situation when running in either active or passive zone.</p>
+<h3 id="powel-alarm-service">Powel Alarm service</h3>
+<p>Summary/description:</p>
+<ul>
+<li>Manages SmG alarm events and is the backend for the Powel Alarm system.</li>
+</ul>
+<p>Output:</p>
+<ul>
+<li>Logs default at <code>&lt;poweldrive&gt;:\Powel\Icc\bin\log\NotificationService.log</code></li>
+<li>Location and log level is configurable in AlarmService.exe.config</li>
+</ul>
+<p>Endpoints/API:</p>
+<ul>
+<li>N/A</li>
+</ul>
+<p>Things to alert:</p>
+<ul>
+<li>The service is not running.</li>
+</ul>
+<h3 id="powel-filerequester-service">Powel FileRequester service</h3>
+<p>Summary/description:</p>
+<ul>
+<li>This service requests new files (i.e., messages) from one or more FileResponders running in DMZ. The received information is placed in an AMQP queue to be imported by the Mesh AMQP Relay. A confirmation signal is sent back upon completion.</li>
+</ul>
+<p>Output:</p>
+<ul>
+<li>AMQP messages.</li>
+<li>Logs at <code>&lt;poweldrive&gt;:\PowelSmartLogs\FileRequester</code></li>
+<li>Health message contains counters of different operations, when last call was executed, when last information received, ...</li>
+</ul>
+<p>Endpoints/API:</p>
+<ul>
+<li>Health endpoint: <code>http://&lt;server&gt;:7431/FileRequester/health</code></li>
+</ul>
+<p>Things to alert:</p>
+<ul>
+<li>The service is not running.</li>
+<li>The health endpoint is not responding.</li>
+<li>Imports via Mesh AMQP Relay of messages from this service is not created within a certain time frame.</li>
+<li>Observations based on health data – too long time since last call was executed or too long time since last information was received or …</li>
+</ul>
+<h3 id="powel-fileresponder-service">Powel FileResponder service</h3>
+<p>Summary/description:</p>
+<ul>
+<li>This service is running in DMZ and returns information from non-transferred files on request from the FileRequester service. The transfer is «committed» when a positive ack is received from the FileRequester, otherwise the file will be resent on a later request.</li>
+</ul>
+<p>Output:</p>
+<ul>
+<li>Messages transferred to the FileRequester.</li>
+<li>Logs at <code>&lt;poweldrive&gt;:\PowelSmartLogs\FileResponder</code></li>
+<li>Health message contains counters of different operations, when last call was received, when last transfer was performed, ...</li>
+</ul>
+<p>Endpoints/API:</p>
+<ul>
+<li>Endpoint used by FileRequester: <code>http://&lt;server&gt;:5200</code></li>
+<li>Health endpoint: <code>http://&lt;server&gt;:5200/FileResponder/health</code></li>
+</ul>
+<p>Things to alert:</p>
+<ul>
+<li>The service is not running.</li>
+<li>The health endpoint is not responding.</li>
+<li>Observations based on health data – number of failures when receiving calls is increasing or too long time since last call was successfully received or …</li>
+<li>File in New-folder that is created more than 2 minutes ago.</li>
+</ul>
+<h3 id="powel-mesh-service">Powel Mesh service</h3>
+<p>Summary/description:</p>
+<ul>
+<li>Main service responsible for the data model and timeseries data.</li>
+<li>Serves all processes, optimisation, simulation, import, export etc.</li>
+</ul>
+<p>Output:</p>
+<ul>
+<li>Logs at <code>&lt;poweldrive&gt;:\PowelSmartLogs\Mesh</code></li>
+</ul>
+<p>Endpoints/API:</p>
+<ul>
+<li>Health endpoint at: <code>http://&lt;server&gt;:2000/meshHealth/health</code></li>
+</ul>
+<p>Things to alert:</p>
+<ul>
+<li>The "Powel Mesh" service is not running.</li>
+<li>The health endpoint is not responding.</li>
+<li>If ORA-xxx error found in log, report to 1st line support / DB admins.</li>
+</ul>
+<h3 id="powel-meshdatatransfer-service">Powel MeshDataTransfer service</h3>
+<p>Summary/description:</p>
+<ul>
+<li>Receives import messages from queues, and export requests from on an endpoint.</li>
+<li>Translates the imports and sends them to Mesh.</li>
+<li>Translates export requests and puts messages to queues and/or files.</li>
+</ul>
+<p>Output:</p>
+<ul>
+<li>Logs at <code>&lt;poweldrive&gt;:\PowelSmartLogs\MeshDataTransfer</code></li>
+<li>Might save import requests to the file system if enabled in the configuration.</li>
+</ul>
+<p>Endpoints/API:</p>
+<ul>
+<li>Mesh Data Transfer uses queues to receive import requests.</li>
+<li>It also sends import responses to the queue.</li>
+<li>It communicates with Mesh using gRPC.</li>
+<li>It communicates with the database.</li>
+<li>It receives export requests on an endpoint and puts the export message on a queue and/or a file.</li>
+<li>HTTP endpoints (core URL defined in the configuration file):</li>
+<li>Order – time series export trigger.</li>
+<li>AvailabilityExport – availability export trigger.</li>
+<li>Reimport – retry of certain import request.</li>
+<li>Health endpoint: <code>http://&lt;server&gt;:7000/health</code></li>
+</ul>
+<p>Things to alert:</p>
+<ul>
+<li>The service is not running.</li>
+<li>Health endpoint is not responding with Healthy status.</li>
+<li>Mesh Data Transfer is responsible for fetching requests from the queues and processing them. If the number of messages on the queues is not decreasing (or number of messages in the Dead Letter Queue is increasing) the situation should be investigated.</li>
+<li>Messages are not removed from the order queue within a few seconds.</li>
+<li>Mesh Data Transfer periodically checks if the Mesh service is responsive. In case of problems, an error message should be logged.</li>
+</ul>
+<h3 id="powel-meshcollector-service">Powel MeshCollector service</h3>
+<p>Summary/description:</p>
+<ul>
+<li>This service collects data from external services (for instance meteorological data from Radarmeteo) and converts the information to xml messages that are stored on files when running in DMZ. Otherwise they are sent as AMQP messages that are imported by Mesh AMQP Relay.</li>
+</ul>
+<p>Output:</p>
+<ul>
+<li>AMQP messages.</li>
+<li>Logs at <code>&lt;poweldrive&gt;:\PowelSmartLogs\MeshCollectorService</code></li>
+<li>Health message contains counters of different operations, when last call was executed, when last forecast was received, ...</li>
+</ul>
+<p>Endpoints/API:</p>
+<ul>
+<li>Health endpoint: <code>http://&lt;server&gt;:7341/MeshCollectorService/health</code></li>
+</ul>
+<p>Things to alert:</p>
+<ul>
+<li>The service is not running.</li>
+<li>The health endpoint is not responding.</li>
+<li>Observations based on health data – too long time since last call was executed or when last forecast was received or …</li>
+</ul>
+<h3 id="powel-meshfileimportconverter-service">Powel MeshFileImportConverter service</h3>
+<p>Summary/description:</p>
+<ul>
+<li>This service converts information in files to AMQP messages that are imported by Mesh AMQP Relay.</li>
+<li>PVPLAN files are read from the D:\Powel\IccData\PVPLAN\New directory and successful transformation to the AMQP queue moves the files to the ..\Success directory. If something fails in the transformation, the files are moved to the ..\Error directory.</li>
+</ul>
+<p>Output:</p>
+<ul>
+<li>AMQP messages.</li>
+<li>Logs at <code>&lt;poweldrive&gt;:\PowelSmartLogs\MeshFileImportConverterService</code></li>
+<li>Health message contains counters of different operations, when last call was executed, number of converted files and number of conversion errors.</li>
+</ul>
+<p>Endpoints/API:</p>
+<ul>
+<li>Health endpoint: <code>http://&lt;server&gt;:7433/MeshFileImportConverterService/health</code></li>
+</ul>
+<p>Things to alert:</p>
+<ul>
+<li>The service is not running.</li>
+<li>The health endpoint is not responding.</li>
+<li>Imports via Mesh AMQP Relay of  messages from this service is not created within a certain time frame.</li>
+<li>Observations based on health data – too long time since last call was executed or number of conversion failures.</li>
+<li>If files stay in the &lt;&gt;\PVPLAN\New directory for more than a minute.</li>
+<li>If files stay in the &lt;&gt;\PVPLAN\Error directory for more than a minute (the file is moved here in the start of the transformation process but is moved to the &lt;&gt;\PVPLAN\Success directory when the transformation is competed successfully).</li>
+</ul>
+<h3 id="powel-meshsoapimportserver-service">Powel MeshSoapImportServer service</h3>
+<p>Summary/description:</p>
+<ul>
+<li>This service receives SOAP calls from other systems with data that is to be transferred to Mesh (e.g. Availability events from InGen). When the service runs in DMZ, the result is xml messages that are stored as files. Otherwise the result is sent as AMQP messages that are imported by Mesh AMQP Relay.</li>
+</ul>
+<p>Output:</p>
+<ul>
+<li>AMQP messages.</li>
+<li>Logs at <code>&lt;poweldrive&gt;:\PowelSmartLogs\MeshSoapImportServer</code></li>
+<li>Health message contains counters of different operations, when last call was received, ...</li>
+</ul>
+<p>Endpoints/API:</p>
+<ul>
+<li>Health endpoint: <code>http://&lt;server&gt;:22/MeshSoapImportServer/health</code></li>
+</ul>
+<p>Things to alert:</p>
+<ul>
+<li>The service is not running.</li>
+<li>The health endpoint is not responding.</li>
+<li>Observations based on health data – number of failures when receiving calls is increasing or too long time since last call was successfully received or …</li>
+</ul>
+<h3 id="powel-nimbus-service">Powel Nimbus service</h3>
+<p>Summary/description:</p>
+<ul>
+<li>This is the service providing the Nimbus user interface (application running on the user‘s client/RDP session). The service provides settings from the configuration service for user and roles, handles tasks, and, for none-Mesh tasks, gives report content.</li>
+</ul>
+<p>Output:</p>
+<ul>
+<li>This service writes a log file to disk. Default to <code>&lt;poweldrive&gt;:\PowelSmartLogs\ServiceHosts.WindowsServiceHost\Powel.Icc.ServiceHosts.WindowsServiceHost.log</code>.</li>
+<li>Location and log level is configurable in Powel.Icc.ServiceHosts.WindowsServiceHost.exe.config.</li>
+</ul>
+<p>Endpoints/API:</p>
+<ul>
+<li>Default endpoints (configurable in Powel.Icc.ServiceHosts.WindowsServiceHost.exe.config): <code>http://&lt;server&gt;:23124/hc</code></li>
+</ul>
+<p>Things to alert:</p>
+<ul>
+<li>The Health endpoint for the service could be used to give status for each endpoint in the service. While if health endpoint is not answering at all it could be used as an indication of the service being down and an alert.</li>
+<li>For each endpoint the status tag could bused to alert if it is not "Healthy"</li>
+</ul>
+<pre><code class="language-json">  {&quot;status&quot;:&quot;Healthy&quot;,&quot;address&quot;:&quot;http://localhost:23124/hc/&quot;,&quot;dependencies&quot;:{&quot;ServiceBroker&quot;:{&quot;status&quot;:&quot;Healthy&quot;,&quot;counters&quot;:{&quot;numberOfUserProcesses&quot;:0},&quot;dependencies&quot;:{}},&quot;ConfigurationReaderService&quot;:{&quot;status&quot;:&quot;Healthy&quot;,&quot;address&quot;:&quot;http://localhost:23124/hc/configurationreaderservice/&quot;},&quot;EventMonitorService&quot;:{&quot;status&quot;:&quot;Healthy&quot;,&quot;address&quot;:&quot;http://localhost:23124/hc/eventmonitorservice/&quot;},&quot;OptimizationService&quot;:{&quot;status&quot;:&quot;Healthy&quot;,&quot;address&quot;:&quot;http://localhost:23124/hc/optimizationservice/&quot;}}}
+</code></pre>
+<ul>
+<li>Alert if the service is not running in the active zone.</li>
+<li>Alert if there is a “Fatal” message in the log file Powel.Icc.ServiceHosts.WindowsServiceHost.log</li>
+</ul>
+<h3 id="powel-optimalgateway-service">Powel OptimalGateway service</h3>
+<p>Summary/description:</p>
+<ul>
+<li>Optimal Gateway collects and preprocesses data from Mesh for the optimisation services Optimal Multi-Asset, SHOP and ProdRisk. </li>
+</ul>
+<p>Output:</p>
+<ul>
+<li>If activated, the Optimal Gateway generates JSON files to analyse optimisation issues.</li>
+<li>Logs at <code>&lt;poweldrive&gt;:\PowelSmartLogs\Powel Gateway Service</code></li>
+</ul>
+<p>Endpoints/API:</p>
+<ul>
+<li>The Optimal Gateway has an API for starting/stopping optimisations. See Swagger documentation at <code>http://&lt;server&gt;:18261/Gateway/#api</code></li>
+<li>Health endpoint: <code>http://&lt;server&gt;:18261/Gateway/Health</code></li>
+</ul>
+<p>Things to alert:</p>
+<ul>
+<li>The "Powel Optimal Gateway Service" is not running.</li>
+<li>The health endpoint is not responding.</li>
+</ul>
+<h3 id="powel-optimallog-service">Powel OptimalLog service</h3>
+<p>Summary/description:</p>
+<ul>
+<li>Optimal Log is the centralised log for optimisation algorithms. Services that use it are Optimal Gateway, SHOP, Optimal Multi-Asset and ProdRisk. Its purpose is to supply log entries from these components to end users in Nimbus/Optimal Log user interface.</li>
+<li>However, for monitoring &amp; alerting purposes, the actual service’s logging should be used.</li>
+</ul>
+<p>Output:</p>
+<ul>
+<li>Logs at <code>&lt;poweldrive&gt;:\PowelSmartLogs\Powel Optimal Log</code></li>
+</ul>
+<p>Endpoints/API:</p>
+<ul>
+<li>API available to read headers and lines for logs. Refer to Swagger documentation at <code>http://&lt;server&gt;:18260/OptimalLog/#apip</code></li>
+<li>Health endpoint: <code>http://&lt;server&gt;:18260/OptimalLog/Health</code></li>
+</ul>
+<p>Things to alert:</p>
+<ul>
+<li>The "Powel Optimal Log Service" is not running.</li>
+<li>The health endpoint is not responding.</li>
+</ul>
+<h3 id="powel-optimalmultiasset-poma-service">Powel OptimalMultiAsset (POMA) service</h3>
+<p>Summary/description:</p>
+<ul>
+<li>Optimal Multi-Asset includes the code to execute optimisations based on the data collected by Optimal Gateway.</li>
+</ul>
+<p>Output:</p>
+<ul>
+<li>Logs at <code>&lt;poweldrive&gt;:\PowelSmartLogs\Powel Optimal MultiAsset</code></li>
+</ul>
+<p>Endpoints/API:</p>
+<ul>
+<li>Health endpoint: <code>http://&lt;server&gt;:18262/MultiAsset/Health</code></li>
+</ul>
+<p>Things to alert:</p>
+<ul>
+<li>The "Powel Optimal MultiAsset Service" is not running.</li>
+<li>The health endpoint is not responding.</li>
+</ul>
+<h3 id="powel-scadagateway-service">Powel ScadaGateway service</h3>
+<p>Summary/description:</p>
+<ul>
+<li>This service is connecting to a SCADA server using OPC UA, sets up a subscription of interest, receives updates from the SCADA server for this subscription, and creates messages with updates in an AMQP queue for Mesh AMQP Relay to import.</li>
+</ul>
+<p>Output:</p>
+<ul>
+<li>AMQP messages.</li>
+<li>Logs at <code>&lt;poweldrive&gt;:\PowelSmartLogs\ScadaGateway</code></li>
+<li>Health message contains counters for different operations, when last connected, when last data changed, when last export created, ...</li>
+</ul>
+<p>Endpoints/API:</p>
+<ul>
+<li>Health endpoint: <code>http://&lt;server&gt;:\&lt;port\&gt;/ScadaGateway/health</code></li>
+<li>Port used is defined in the appsettings.json as HttpPort.</li>
+</ul>
+<p>Things to alert:</p>
+<ul>
+<li>The service is not running.</li>
+<li>The health endpoint is not responding.</li>
+<li>Imports via Mesh AMQP Relay of messages from this service are not created within a certain time frame.</li>
+<li>Observations based on health data – too long time since last data change was received or too long time since an export was created or ...</li>
+</ul>
+<h3 id="volue-transferamqpfile-service">Volue TransferAMQPFile service</h3>
+<p>Summary/description:</p>
+<ul>
+<li>This service is running in the SCADA environment and downloads messages from a defined queue and stores the content as files in a specified directory.</li>
+</ul>
+<p>Output:</p>
+<ul>
+<li>Messages created in one or more directories.</li>
+<li>Logs at <code>&lt;poweldrive&gt;:\PowelSmartLogs\TransferAmqpFiles</code></li>
+</ul>
+<p>Endpoints/API:</p>
+<ul>
+<li>None.</li>
+</ul>
+<p>Things to alert:</p>
+<ul>
+<li>Service is not running.</li>
+<li>The health endpoint is not responding.</li>
+<li>Messages are not removed from the AMQP queue – should be done immediately.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+      <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+          <a href="../../mesh-data-transfer/use-cases/import-of-availability-events-using-mdt/" class="btn btn--outline btn--success float-left" title="Import of availability events"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+          <a href="../../timeseries-reports/reports_intro/" class="btn btn--outline btn--success float-right" title="General">Next <span class="icon icon-circle-arrow-right"></span></a>
+      </div>
+  
+    <hr/>
+  
+    <div role="contentinfo">
+      <!-- Copyright etc -->
+    </div>
+  
+    Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  </footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version is-active">
+      
+      
+        <span><a href="../../mesh-data-transfer/use-cases/import-of-availability-events-using-mdt/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      
+      
+        <span><a href="../../timeseries-reports/reports_intro/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+  </div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../../search/main.js"></script>
+      <script src="../../js/version-select.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

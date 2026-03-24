@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+<title>Smart Power Documentation</title>
+
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../wave/wave.css" rel="stylesheet" />
+        <link href="../../../stylesheets/extra.css" rel="stylesheet" />
+        <link href="../../../css/version-select.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "General";
+        var mkdocs_page_input_path = "mesh/calculations/general.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav is-active">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search fill-neutral--contrast">
+      <a href="../../..">
+          <img src="../../../logo.png" class="logo" alt="Logo"/>
+        </a>
+
+        <!-- A trick to place the version selector where I want it to be. -->
+        <div class="icon-home" style="display: none;"></div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mesh</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Concepts</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/availability/">Availability</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/calculations/">Calculations</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Modelling</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/rating-curves/">Rating curves</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/relations/">Relations</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/xy-sets/">XY-sets</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/search-language/">Search language</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/sessions/">Sessions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/time-series/">Time series</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../installation/MeshServiceInstallationGuide/">Installation</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Calculations</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">General</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#calculation-expression-language">Calculation expression language</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#example-1">Example 1</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#calculation-functions">Calculation functions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#calculation-expression-definition">Calculation expression definition</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#calculation-scope-with-respect-to-time">Calculation scope with respect to time</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#first-example">First example</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#second-example">Second example</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#third-example">Third example</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#fourth-example">Fourth example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#time-zones">Time zones</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#using-transform-calculation-functions">Using @TRANSFORM calculation functions</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../timepoint-macros/">Time macros</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Functions</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../functions/introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >General</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/allocate_reserves/">AllocateReserves</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/at/">AT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/color/">ColorARGB</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/compare/">Compare</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/concatenate/">Concatenate</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/copy_ts/">CopyTs</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/delta/">DELTA</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/disable_cache/">DisableCache</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/getyfx/">GET_Y_FX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/isvalid/">IsValid</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/linear/">Linear</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/max/">MAX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/meshid/">MeshID</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/min/">MIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/parameter/">Parameter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/pdlog/">PDLOG</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/reference_lookup/">Reference Lookup</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/restriction/">Restriction</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/revision/">Revision</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/set_ts_val_unit/">SET_TS_VALUNIT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/size/">Size</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/time_mask/">TIME_MASK</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/tostring/">ToString</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/trace/">Trace</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/ts/">TS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/unit_codes_for_set_ts_val_unit/">Unit Codes for SET_TS_VALUNIT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/valid/">Valid</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Forecast</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/get_best_forecast/">GetBestForecast</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/get_all_forecasts/">GetAllForecasts</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/get_forecast/">GetForecast</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/get_merged_forecast/">GetMergedForecast</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >History</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/history/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/get_ts_as_of_time/">GetTsAsOfTime</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/get_ts_historical_versions/">GetTsHistoricalVersions</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/get_ts_audit_times/">GetTsAuditTimes</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Logical</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/bool/">BOOL</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/inside/">INSIDE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/negative/">NEGATIVE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/not/">NOT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/outside/">OUTSIDE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/positive/">POSITIVE</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Math</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/ts_gliding_average/">TS_GLIDING_AVERAGE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/ts_gliding_gauss/">TS_GLIDING_GAUSS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/ts_gliding_median/">TS_GLIDING_MEDIAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/ts_gliding_median_gauss/">TS_GLIDING_MEDIAN_GAUSS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/gliding_trend_average/">GLIDING_TREND_AVERAGE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/ts_acc_from/">TS_ACC_FROM</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/power/">POWER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/abs/">ABS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/ceil/">CEIL</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/floor/">FLOOR</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/integer/">INTEGER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/log/">LOG</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/ln/">LN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/round/">ROUND</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/round_integer/">ROUND_INTEGER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/acos/">ACOS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/asin/">ASIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/atan/">ATAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/cos/">COS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/sin/">SIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/tan/">TAN</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Mix</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/mix/">MIX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/mix_by_selecting_from_time_series_array/">MIX by selecting from time series array</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/mix0/">MIX0</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/tsiqfill/">TS_IQ_FILL</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Sim</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/sim/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/convert_volume/">CONVERT_VOLUME</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/rating_curve/">RatingCurve</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/time_delayed/">TimeDelayed</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/xy/">XY</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/yx/">YX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/zxy/">ZX_Y</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/zyx/">ZY_X</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Statistical</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/mean/">MEAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/normal/">Normal</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/percentile/">PERCENTILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/sum/">SUM</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Status</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/status/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/reset_status/">RESET_STATUS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/status_mask/">STATUS_MASK</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/status_count/">STATUS_COUNT</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Time</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/time_group/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/is_resolution/">IsResolution</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/is_time_valid/">IsTimeValid</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/push_ext_period/">PushExtPeriod</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/pop_ext_period/">PopExtPeriod</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/time/">Time</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/resolution/">Resolution</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/timespan/">TimeSpan</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/time_to_string/">TimeToString</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/time_examples/">Time Examples</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/time_point_information/">Time Point Information</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Transform</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/transform_what_when/">Which function can be used when</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/transform_terms/">Terms used in the functions</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/transform/">TRANSFORM</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/ts_expand/">TS_EXPAND</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/ts_offset/">TS_OFFSET</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/values_from_year/">ValuesFromYear</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/distribute/">DISTRIBUTE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/trans_profile/">TRANS_PROFILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/profile/">PROFILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/profile_with_explicit_frequency/">PROFILE with explicit frequency</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/accumulate/">ACCUMULATE</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >VEE</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/vee/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/validate_abs_limit/">ValidateAbsLimit</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/validate_delta_limit/">ValidateDeltaLimit</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/validate_delta_limit_extreme/">ValidateDeltaLimitExtreme</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/validate_repeat_value/">ValidateRepeatValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/correct_average_value/">CorrectAverageValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/correct_constant_value/">CorrectConstantValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/correct_copy_value/">CorrectCopyValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/correct_extrapolate/">CorrectExtrapolate</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../functions/correct_interpolate/">CorrectInterpolate</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >gRPC</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../grpc/APISpecification/">API specification</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grpc/Authorization/">Authorization</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grpc/ClientCertificates/">Client certificates</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grpc/FAQ/">Frequently Asked Questions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grpc/MessageSizeLimits/">Message size limits</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Mesh REST API</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../rest-api/introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../rest-api/changelog/">Changelog</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../rest-api/api-documentation/">API specification</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >For developers</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../rest-api/generate-c%23-api-from-swagger-json/">Generate C# API from swagger.json</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../rest-api/how-to-use-ImportMultistepWaterValueFunctions/">How to use ImportMultistepWaterValueFunctions</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Excel AddIn for Mesh</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../excel-add-in/addin-excel-user-guide-for-mesh/">User guide</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../excel-add-in/how-to-install-addin-excel-for-mesh/">Installation guide</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Model maintenance</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../model-maintenance/ModelMaintenanceConcepts/">Model maintenance concepts</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../model-maintenance/ModelBackup/">Model backups</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mesh Data Transfer</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mesh-data-transfer/general/general/">General</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mesh-data-transfer/configuration/configuration/">Configuration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Use cases</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh-data-transfer/use-cases/import-of-time-series-values-using-mdt/">Import of time series values</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh-data-transfer/use-cases/export-of-time-series-values-using-mdt/">Export of time series values</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh-data-transfer/use-cases/import-of-availability-events-using-mdt/">Import of availability events</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../operations/monitoring/">Monitor services</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Time series reports</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/reports_intro/">General</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/macros/">Macros</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/sort_contents/">Sorted layout</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap is-active">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars is-active"></i>
+          <a href="../../..">Smart Power Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Mesh</li>
+          <li class="breadcrumb-item">Calculations</li>
+      <li class="breadcrumb-item active">General</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="calculations-in-mesh-general-concepts">Calculations in Mesh - general concepts</h1>
+<p>This is an important and unique part of Mesh. It gives Volue and its customers
+the ability to define time series as expressions, rather than having a separate
+calculation carried out and let values be stored onto a time series then
+available for read. Many years ago Volue introduced the concept of virtual time
+series, which means the calculation is integrated as part of the read operation.</p>
+<h2 id="calculation-expression-language">Calculation expression language</h2>
+<p>The expression language has a proprietary syntax. It has been around since mid
+90's and is widely adopted by the Volue customers to extend their collection of
+available time series. Some characteristics on the language:</p>
+<ul>
+<li>The expressions are vector based eliminating the need for complicated loops.</li>
+<li>References to time series are done by the Mesh search and the navigation
+  language. See example.</li>
+<li>Standard operators and operator precedence are supported (+,-,*,/).</li>
+<li>There are built-in functions covering a wide range of operations.</li>
+</ul>
+<h3 id="example-1">Example 1</h3>
+<p>Assuming we have an expression on a Mesh object type <em>HydroPlant</em> that is
+bound to a time series attribute definition <em>Income</em>. On the <em>HydroPlant</em> type
+there is another time series attribute definition <em>Production</em> as well as a
+time dependent relation <em>to_PriceArea</em> to a <em>PriceArea</em> type object. On the
+<em>PriceArea</em> object type there is a time series attribute definition <em>Price</em>.</p>
+<p><img alt="image" src="../ExampleRespository.png" /></p>
+<p>The calculation of <em>Income</em> can be expressed like this:</p>
+<pre><code>## = @t('.Production') * @t('to_PriceArea.Price')
+</code></pre>
+<p>Some details about this simple expression:</p>
+<ul>
+<li>
+<p>We have two time series that are multiplied with each other to produce the
+  result, here identified by the macro <code>##</code>.</p>
+</li>
+<li>
+<p>In this example a reference function <code>@t(searchSpec)</code> is used. It is a function
+  that returns the time series it finds by applying the search specification. The
+  search specification has the "current instance", in this case an instance of the
+  type <em>HydroPlant</em>, as its starting point. See the figure below showing a small
+  physical model.</p>
+</li>
+<li>
+<p>In a search specification the dot (.) indicates local to the current object.
+  Therefore '.Production' means a local attribute named Production. The search
+  specification 'to_PriceArea.Price' means to navigate through a named relation
+  (to_PriceArea) and then on the target object lookup the local attribute named
+  Price.</p>
+</li>
+</ul>
+<p><img alt="image" src="../ExamplePhysicalModelAndResources.png" /></p>
+<p>When values for a given time interval are requested for the Income series on a
+model object Brattset, a HydroPlant instance, the search and navigation will see
+the world from this instance. Navigating to_PriceArea in this case ends up in
+the PriceArea instance named NO3.</p>
+<h2 id="calculation-functions">Calculation functions</h2>
+<p>Here are some general comments to functions used in expressions:</p>
+<p>A function is defined as <code>@function_name(arguments)</code>. The arguments may be empty
+or defined as a comma separated list.</p>
+<p>Mesh calculation supports six basic data types. This is:</p>
+<ul>
+<li>A number - represented by letter <code>d</code></li>
+<li>A string - represented by letter <code>s</code></li>
+<li>A time series - represented by letter <code>t</code></li>
+<li>A vector of numbers - represented by letter <code>D</code></li>
+<li>A vector of strings - represented by letter <code>S</code></li>
+<li>A vector of time series - represented by letter <code>T</code></li>
+</ul>
+<p>All functions are registered with an argument list definition and a return value
+type. For instance, the function t used in the example above has a signature
+<code>@t(s) -&gt; t</code>. A signature suffix <code>ttsd</code> means 4 arguments: a time series, a time
+series, a string and a number.</p>
+<p>Another example: A function named SUM has multiple signatures: <code>@SUM(T) -&gt; t</code>,
+<code>@SUM(t) -&gt; d</code> and <code>@SUM(D) -&gt; d</code>. The first version takes a vector of time
+series and returns the sum of these time series, the second version takes a time
+series and returns a number and the last version takes a vector of numbers and
+returns a single number.</p>
+<p>A function implementation will normally have to cope with the fact that time
+series given as arguments may have different resolutions. Ref. example above:
+the Production series may have values every 15 minutes and the Price series may
+have values every hour.</p>
+<p>The argument to a function can be the result of another function.</p>
+<p>For more information about Mesh calculation functions, see <a href="../functions/introduction/">Calculations in Mesh - introduction</a>.</p>
+<h2 id="calculation-expression-definition">Calculation expression definition</h2>
+<p>The time series calculation definitions are in general associated with the
+Mesh model definition. This means that the calculations are defined as part
+of the domain description and expressed using types and attributes therein.
+Traditionally, before Mesh, expressions referred to explicit time series and in
+consequence they were less generic than Mesh based expressions. Mesh and mesh
+information modelling have created the foundation for generalized expressions,
+template calculation expressions.</p>
+<p>In cases where the general template based calculation expression definition
+does not "fit" very well it is possible to associate an override expression
+directly onto a time series attribute on an instance in the model. This gives
+a 1:1 definition which must be maintained separately, therefore should be used
+with caution.</p>
+<h2 id="calculation-scope-with-respect-to-time">Calculation scope with respect to time</h2>
+<p>The Mesh time series calculation definitions normally do not contain anything
+about which time period or time interval to apply. This is something that is
+defined as part of the read request, i.e. asking the time series to provide
+values for a given time interval. A time series result is provided by addressing
+a time series attribute on a Mesh instance, for instance the <em>Income</em> attribute
+on a <em>HydroPlant</em> instance (ref. previous example), and give it a time interval
+to get values for (the <em>requested interval</em>).</p>
+<p>Usually, all the values are calculated on the requested interval. But
+there might be functions that will need other data input. Examples:</p>
+<ol>
+<li><code>@DELTA(@t('.Temperature'))</code></li>
+<li><code>@TS_GLIDING_AVERAGE(@t('.Temperature'), 7)</code></li>
+<li><code>@ACCUMULATE(@t('.Precipitation'), 'YEAR')</code></li>
+<li><code>@TS_OFFSET(@t('.Temperature'), 1, 'DAY')</code></li>
+</ol>
+<p>The need for extra data on these examples are commented below. Time interval is
+indicated by a line where equal sign is part of the requested interval, and dots
+indicate extra data needed.</p>
+<h3 id="first-example">First example</h3>
+<p><code>@DELTA(@t('.Temperature'))</code>: Delta operation needs previous value, hence one
+extra value (represented by a dot) at the beginning of requested interval.</p>
+<pre><code>      .====================
+</code></pre>
+<h3 id="second-example">Second example</h3>
+<p><code>@TS_GLIDING_AVERAGE(@t('.Temperature'), 7)</code>: A time series gliding operation
+will use a value window to produce a center value. Hence it will need some extra
+data at the front and at the end to produce a consistent result. When the value
+is 7 this means 3 values in the front and 3 values at the end.</p>
+<pre><code>    ...====================...
+</code></pre>
+<h3 id="third-example">Third example</h3>
+<p><code>@ACCUMULATE(@t('.Precipitation'), 'YEAR')</code>: A time series accumulate operation
+will need the data from a defined start, here start of year.</p>
+<pre><code>..............//........====================
+</code></pre>
+<p>The // indicates that this might be many dots, depending on the start of the
+requested interval.</p>
+<h3 id="fourth-example">Fourth example</h3>
+<p><code>@TS_OFFSET(@t('.Temperature'), 1, 'DAY')</code>: The function TS_OFFSET moves values
+from one time interval to another. In this example, the values are moved one
+day, i.e to the next day relative to the requested time interval.</p>
+<pre><code>    ......============
+</code></pre>
+<p>Here the dots represent 1 day and the requested time interval 2 days.</p>
+<h2 id="time-zones">Time zones</h2>
+<p>There are situations where other time zones are involved:</p>
+<ul>
+<li>
+<p>Volue database, currently the owner of the time series data in Volue context,
+  is using a concept of a database zone. In our European context this is UTC+1.</p>
+</li>
+<li>
+<p>Default time zone in calculation context is, due to backwards compatibility, the
+  same as DB zone - UTC+1.</p>
+</li>
+<li>
+<p>Some calculation operations are explicitly related to time zones. For example,
+  a transformation of a time series from higher resolution to lower resolution
+  often needs to have a definition of the zone. A fixed interval hour series
+  transformed to a day series needs to know which zone this day is related to. See
+  discussion of a @TRANSFORM example below.</p>
+</li>
+<li>
+<p>In some cases, the function arguments are time point macros, they will also
+  need a time zone context to have a precise meaning. See the separate chapter on
+  <a href="../timepoint-macros/">time macros</a>.</p>
+</li>
+</ul>
+<h3 id="using-transform-calculation-functions">Using <code>@TRANSFORM</code> calculation functions</h3>
+<p>This function comes in many different variants defined by the different argument
+signatures. Here, two of them are discussed:</p>
+<pre><code>## = @TRANSFORM(@t('.Consumption'), 'DAY', 'SUM')
+## = @TRANSFORM(@t('.Consumption'), 'DAY', 'SUM', 'LT')
+## = @TRANSFORM(@t('.Consumption'), 'DAY', 'SUM', 'UTC')
+</code></pre>
+<p>All examples transform an input series from its source resolution, for example
+hour resolution, into a day resolution result series. Because the functions are
+using DB zone (UTC+1) as a basic zone (without DaylightSavingTime (DST)) the
+first result will contain values created from all hours in the UTC+1 day and
+night. The second example will do the same, but will use zone UTC+1 with DST as
+its definition. This means most values come from 24 source values but could also
+be based on 23 or 25 values due to DST season shift.</p>
+<p>The last example is referring to the UTC zone with no DST so values are shifted
+one hour compared to the first two examples.</p>
+<h1 id="basic-time-series-operations">Basic time series operations</h1>
+<p>Calculation functions and operator implementations must be able to cope with
+different time resolutions. In some cases there are functional requirements with
+regards to the time series arguments given to the function, but in general not.</p>
+<p>To cope with different resolutions, we operate with something called a
+functional value. It is basically a value from the time series outside the
+concrete points on the series.</p>
+<h2 id="example-1-add-an-15-minute-series-and-an-hour-series">Example 1, add an 15 minute series and an hour series</h2>
+<p>The first example shows the result of adding two time series, one with hour
+resolution and one with 15 minutes resolution. The light grey values on Ts1
+are the "functional value" of this series on the time points not found on the
+time series. As we see, the understanding of a functional value is different
+whether the shape of series is defined to be stepwise or linear. The result of
+this addition will have a 15 minutes resolution and if one of the operands are
+linear, the result will also be defined as linear.</p>
+<p><img alt="image" src="../AddDifferentResolutionSeries.png" /></p>
+<h2 id="example-2-applying-the-max-function-on-two-time-series-arguments">Example 2, applying the MAX function on two time series arguments</h2>
+<p>The second example contains two input time series and a result time series.
+The first series is a fixed resolution series of linear shape and the second
+is a breakpoint time series with a stepwise shape. The function applied (@MAX)
+is taking two arguments so the signature is "MAX|tt". To make the result more
+"outstanding" a constant value 2 is added to the result. PS! The result curve
+is added manually so it is probably not perfectly shaped, but good enough to see
+how the result is created from time points coming from one of the time series,
+as well as new time points coming from the functional values that represents
+crossing between them. These points are indicated by vertical dash-dot lines.</p>
+<p><img alt="image" src="../MAXDifferentResolutionSeries.png" /></p>
+              
+            </div>
+          </div><footer>
+      <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+          <a href="../../installation/MeshServiceInstallationGuide/" class="btn btn--outline btn--success float-left" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+          <a href="../timepoint-macros/" class="btn btn--outline btn--success float-right" title="Time macros">Next <span class="icon icon-circle-arrow-right"></span></a>
+      </div>
+  
+    <hr/>
+  
+    <div role="contentinfo">
+      <!-- Copyright etc -->
+    </div>
+  
+    Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  </footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version is-active">
+      
+      
+        <span><a href="../../installation/MeshServiceInstallationGuide/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      
+      
+        <span><a href="../timepoint-macros/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+  </div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../../../search/main.js"></script>
+      <script src="../../../js/version-select.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

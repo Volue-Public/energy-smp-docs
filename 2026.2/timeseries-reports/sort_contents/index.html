@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+<title>Smart Power Documentation</title>
+
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../wave/wave.css" rel="stylesheet" />
+        <link href="../../stylesheets/extra.css" rel="stylesheet" />
+        <link href="../../css/version-select.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Sorted layout";
+        var mkdocs_page_input_path = "timeseries-reports/sort_contents.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav is-active">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search fill-neutral--contrast">
+      <a href="../..">
+          <img src="../../logo.png" class="logo" alt="Logo"/>
+        </a>
+
+        <!-- A trick to place the version selector where I want it to be. -->
+        <div class="icon-home" style="display: none;"></div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mesh</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mesh/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Concepts</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/concepts/availability/">Availability</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/concepts/calculations/">Calculations</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Modelling</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../mesh/concepts/modelling/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../mesh/concepts/modelling/rating-curves/">Rating curves</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../mesh/concepts/modelling/relations/">Relations</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../mesh/concepts/modelling/xy-sets/">XY-sets</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/concepts/search-language/">Search language</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/concepts/sessions/">Sessions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/concepts/time-series/">Time series</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mesh/installation/MeshServiceInstallationGuide/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Calculations</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/calculations/general/">General</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/calculations/timepoint-macros/">Time macros</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Functions</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../mesh/calculations/functions/introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >General</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/allocate_reserves/">AllocateReserves</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/at/">AT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/color/">ColorARGB</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/compare/">Compare</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/concatenate/">Concatenate</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/copy_ts/">CopyTs</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/delta/">DELTA</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/disable_cache/">DisableCache</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/getyfx/">GET_Y_FX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/isvalid/">IsValid</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/linear/">Linear</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/max/">MAX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/meshid/">MeshID</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/min/">MIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/parameter/">Parameter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/pdlog/">PDLOG</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/reference_lookup/">Reference Lookup</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/restriction/">Restriction</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/revision/">Revision</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/set_ts_val_unit/">SET_TS_VALUNIT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/size/">Size</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/time_mask/">TIME_MASK</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/tostring/">ToString</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/trace/">Trace</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/ts/">TS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/unit_codes_for_set_ts_val_unit/">Unit Codes for SET_TS_VALUNIT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/valid/">Valid</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Forecast</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/get_best_forecast/">GetBestForecast</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/get_all_forecasts/">GetAllForecasts</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/get_forecast/">GetForecast</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/get_merged_forecast/">GetMergedForecast</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >History</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/history/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/get_ts_as_of_time/">GetTsAsOfTime</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/get_ts_historical_versions/">GetTsHistoricalVersions</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/get_ts_audit_times/">GetTsAuditTimes</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Logical</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/bool/">BOOL</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/inside/">INSIDE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/negative/">NEGATIVE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/not/">NOT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/outside/">OUTSIDE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/positive/">POSITIVE</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Math</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/ts_gliding_average/">TS_GLIDING_AVERAGE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/ts_gliding_gauss/">TS_GLIDING_GAUSS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/ts_gliding_median/">TS_GLIDING_MEDIAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/ts_gliding_median_gauss/">TS_GLIDING_MEDIAN_GAUSS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/gliding_trend_average/">GLIDING_TREND_AVERAGE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/ts_acc_from/">TS_ACC_FROM</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/power/">POWER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/abs/">ABS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/ceil/">CEIL</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/floor/">FLOOR</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/integer/">INTEGER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/log/">LOG</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/ln/">LN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/round/">ROUND</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/round_integer/">ROUND_INTEGER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/acos/">ACOS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/asin/">ASIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/atan/">ATAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/cos/">COS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/sin/">SIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/tan/">TAN</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Mix</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/mix/">MIX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/mix_by_selecting_from_time_series_array/">MIX by selecting from time series array</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/mix0/">MIX0</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/tsiqfill/">TS_IQ_FILL</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Sim</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/sim/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/convert_volume/">CONVERT_VOLUME</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/rating_curve/">RatingCurve</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/time_delayed/">TimeDelayed</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/xy/">XY</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/yx/">YX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/zxy/">ZX_Y</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/zyx/">ZY_X</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Statistical</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/mean/">MEAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/normal/">Normal</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/percentile/">PERCENTILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/sum/">SUM</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Status</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/status/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/reset_status/">RESET_STATUS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/status_mask/">STATUS_MASK</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/status_count/">STATUS_COUNT</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Time</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/time_group/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/is_resolution/">IsResolution</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/is_time_valid/">IsTimeValid</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/push_ext_period/">PushExtPeriod</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/pop_ext_period/">PopExtPeriod</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/time/">Time</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/resolution/">Resolution</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/timespan/">TimeSpan</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/time_to_string/">TimeToString</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/time_examples/">Time Examples</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/time_point_information/">Time Point Information</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Transform</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/transform_what_when/">Which function can be used when</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/transform_terms/">Terms used in the functions</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/transform/">TRANSFORM</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/ts_expand/">TS_EXPAND</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/ts_offset/">TS_OFFSET</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/values_from_year/">ValuesFromYear</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/distribute/">DISTRIBUTE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/trans_profile/">TRANS_PROFILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/profile/">PROFILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/profile_with_explicit_frequency/">PROFILE with explicit frequency</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/accumulate/">ACCUMULATE</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >VEE</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/vee/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/validate_abs_limit/">ValidateAbsLimit</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/validate_delta_limit/">ValidateDeltaLimit</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/validate_delta_limit_extreme/">ValidateDeltaLimitExtreme</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/validate_repeat_value/">ValidateRepeatValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/correct_average_value/">CorrectAverageValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/correct_constant_value/">CorrectConstantValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/correct_copy_value/">CorrectCopyValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/correct_extrapolate/">CorrectExtrapolate</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../mesh/calculations/functions/correct_interpolate/">CorrectInterpolate</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >gRPC</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/grpc/APISpecification/">API specification</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/grpc/Authorization/">Authorization</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/grpc/ClientCertificates/">Client certificates</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/grpc/FAQ/">Frequently Asked Questions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/grpc/MessageSizeLimits/">Message size limits</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Mesh REST API</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/rest-api/introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/rest-api/changelog/">Changelog</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/rest-api/api-documentation/">API specification</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >For developers</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../mesh/rest-api/generate-c%23-api-from-swagger-json/">Generate C# API from swagger.json</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../mesh/rest-api/how-to-use-ImportMultistepWaterValueFunctions/">How to use ImportMultistepWaterValueFunctions</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Excel AddIn for Mesh</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/excel-add-in/addin-excel-user-guide-for-mesh/">User guide</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/excel-add-in/how-to-install-addin-excel-for-mesh/">Installation guide</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Model maintenance</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/model-maintenance/ModelMaintenanceConcepts/">Model maintenance concepts</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh/model-maintenance/ModelBackup/">Model backups</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mesh Data Transfer</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mesh-data-transfer/general/general/">General</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mesh-data-transfer/configuration/configuration/">Configuration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Use cases</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh-data-transfer/use-cases/import-of-time-series-values-using-mdt/">Import of time series values</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh-data-transfer/use-cases/export-of-time-series-values-using-mdt/">Export of time series values</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mesh-data-transfer/use-cases/import-of-availability-events-using-mdt/">Import of availability events</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../operations/monitoring/">Monitor services</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Time series reports</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../reports_intro/">General</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../macros/">Macros</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Sorted layout</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#shortcuts">Shortcuts</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#general-introduction">General introduction</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#time-series-report-layout">Time series report layout</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#the-order-by-features-supported-by-mesh-template-reports">The order-by features supported by Mesh template reports</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#evaluating-the-order-by-criterion">Evaluating the order-by criterion</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#mesh-object-path">Mesh object path</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#the-order-by-specification-format">The order-by specification format</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#multiple-scopes-of-order-by-definition">Multiple scopes of order-by definition</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#local">Local</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#start-points">Start points</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#global">Global</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#some-examples-of-start-point-definitions">Some examples of start point definitions</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practice">Best practice</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#the-implications-of-report-activation-process">The implications of report activation process</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#simple-reports">Simple reports</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#cluster-reports">Cluster reports</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#complex-reports">Complex reports</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#some-general-remarks">Some general remarks</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#maintain-a-global-sorting-definition">Maintain a global sorting definition</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#some-examples-using-order-by-in-template-reports">Some examples using order-by in template reports</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#local-scope-order-by">Local scope order-by</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#task-setup-using-start-point-ordering">Task setup using start point ordering</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#global-sorting-using-topology">Global sorting using topology</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap is-active">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars is-active"></i>
+          <a href="../..">Smart Power Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Time series reports</li>
+      <li class="breadcrumb-item active">Sorted layout</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="layout-of-template-time-series-reports">Layout of template time series reports</h1>
+<h2 id="shortcuts">Shortcuts</h2>
+<p>If you know the basics and just want to check some details, here are some fast track shortcuts:</p>
+<ul>
+<li><em>I want to sort the results from a single <code>TS_BINDING</code> query.</em>  </li>
+</ul>
+<p>Use the <code>TEMPLATE_ORDER_BY</code> column attribute. Here is the <a href="#the-order-by-specification-format">syntax</a>. This approach has a <em>Local</em> scope.<br />
+<strong><em>Note</em>!</strong> The syntax is now harmonised with general sorting syntax.</p>
+<ul>
+<li><em>I want to sort the start points before activating a report.</em>  </li>
+</ul>
+<p>Append <code>ORDER_BY:&lt;sort definition&gt;</code> to the <em>start point</em> search definition as described <a href="#start-points">here</a>.<br />
+<strong><em>Note</em>!</strong> The <code>ORDER_BY:</code> keyword must be added <em>immediately</em> after the search definition (no comma, no space, nothing).</p>
+<ul>
+<li><em>I want to apply a global ordering on the complete set of time series found in a report.</em>  </li>
+</ul>
+<p>Then you should add a <em>section</em> to the Mesh start point definition like this <code>;ORDER_BY_CONFIG:&lt;sort definition&gt;</code>, see more details <a href="#global">here</a>.  </p>
+<p>As this is a <strong>standalone</strong> <em>section</em> it must be separated by the start point search definitions using the <em>semicolon</em> separator. It is the same sort definition format as used above. Be aware that a global sort definition will discard any other <em>order-by</em> setup provided (<em>Local</em> or <em>start point</em>)
+  - The value next to this keyword may be an in-place definition or it may be a reference to a Mesh resource "<em>file</em>", see <a href="#maintain-a-global-sorting-definition">here</a> for how to create/maintain such definitions.</p>
+<ul>
+<li><em>I have a default sort definition but do not want to use it on the current report.</em></li>
+</ul>
+<p>Then you should add a <em>section</em> to the Mesh start point definition like this <code>;ORDER_BY_CONFIG:None.sort</code><br />
+<strong><em>Note</em>!</strong> Sections are separated with semicolon.</p>
+<h2 id="general-introduction">General introduction</h2>
+<p><a href="../../mesh/concepts/modelling/general/">About Mesh model definition and models.</a></p>
+<p><a href="../reports_intro/">About Mesh template time series reports.</a></p>
+<p>The template based approach provided by Mesh is based on a high level report definition that expands to real contents by use of queries into the Mesh model. That means the <em>same</em> report definition can be applied to
+different areas of the Mesh model and thereby provide different contents.</p>
+<p>This expandable and reusable report definition gives a lot of advantages but also less direct control over the layout, that is
+the order of the appearance typically visible in a table view. To compensate for this, the Mesh report definition and report activation
+provide different <strong><em>order-by</em></strong> alternatives.</p>
+<h2 id="time-series-report-layout">Time series report layout</h2>
+<p>In previous sections we have briefly described the process of activating a report definition at one or more start-points in a Mesh model.
+That process is about collecting time series to be part of the activated report. In this section we will discuss how this collection of time series
+is ordered and "decorated" when presented out of the box.</p>
+<p>There are two main layout specifications:</p>
+<ul>
+<li><strong>The order of appearance in a tabular view layout</strong></li>
+<li>Originally, before Mesh, this was controlled by the order of column definitions in the report definition</li>
+<li>The dynamic behavior of Mesh template reports makes <em>order-by</em> features important</li>
+<li><strong>Legends, headers, colors, pages, groups ++</strong></li>
+<li>A lot of these attributes have to use macros that makes it possible to adapt to the properties of current object<ul>
+<li>Without macros all the attributes that originates from the same report column definition would be equal</li>
+</ul>
+</li>
+</ul>
+<h3 id="the-order-by-features-supported-by-mesh-template-reports">The order-by features supported by Mesh template reports</h3>
+<p>There are three levels where you can configure this:</p>
+<ul>
+<li><strong>Local</strong></li>
+<li>Applied to results from a single TS_BINDING request</li>
+<li><strong>Start point</strong></li>
+<li>Control the order of start points applied to build the report instance</li>
+<li><strong>Global</strong></li>
+<li>Apply a full sort operation when <strong>all</strong> series are collected</li>
+</ul>
+<p>The <em>Global</em> approach override the other two definitions.
+<em>Start point</em> ordering and <em>Local</em> ordering can work together.</p>
+<h4 id="evaluating-the-order-by-criterion">Evaluating the order-by criterion</h4>
+<p>The sorting algorithm that is used in Mesh evaluates a potential criterion value for each hierarchical level of the
+object path, starting from top level which is the model components. (A component is a Mesh object owned directly by the Mesh model). If the criterion value is equal for the compared objects, then move on to next hierarchical
+level and do the same type of operation.</p>
+<p>The basic algorithm can be illustrated like this:</p>
+<p><img alt="SortAlgorithm" src="../sort_flow_diagram.png" /></p>
+<p>This flow shows the main process. There is some special handling when the hierarchical paths have different depth and the two objects to compare have different type.</p>
+<p>If the objects to compare have different type this logic is applied:</p>
+<ul>
+<li>If the sort definitions involved are compatible - proceed as normal. Example: Both types have <code>Topology</code> as definition</li>
+<li>If not compatible, try to find equal types further down the object path</li>
+</ul>
+<h4 id="mesh-object-path">Mesh object path</h4>
+<p>As we understand from the flow chart above, each object in Mesh have a unique path.</p>
+<p>See <a href="../../mesh/concepts/modelling/general/#objects-and-attributes-paths">description of Mesh path.</a></p>
+<p>In a template report definition the contents refer to Mesh model objects, more precise
+to time series attributes or time series collection attributes.</p>
+<p>Each part of the object path below the model name may have an <strong>order-by</strong> specification attached.
+Such specifications are linked to objects through their object type.</p>
+<p>The <strong>order-by</strong> specification provide details on how to find the criterion value associated with a concrete instance.  </p>
+<h4 id="the-order-by-specification-format">The order-by specification format</h4>
+<p>The following format is used to configure how the sorting should be done:</p>
+<ul>
+<li><code>TypeName=Sortdef[,TypeName=Sortdef ...]</code></li>
+<li>Sortdef is: <code>AValidSearchDef[:D][;AValidSearchDef[:D] ...]</code><ul>
+<li>There may be several search definitions in prioritized order. First definition that find a valid criterion value is used.</li>
+<li>A trailing <code>:D</code> means descending sort operation</li>
+</ul>
+</li>
+</ul>
+<p>To be used in criterion value comparison the search specification must end up at an attribute having one of these types:</p>
+<ul>
+<li>Integer - a fixed number</li>
+<li>Double - a decimal number</li>
+<li>String - a set of characters</li>
+<li>Node - in this case it is internally mapped to a String that contains the name of the node</li>
+</ul>
+<p>In addition, it is possible to use the following predefined keywords as an alternative to providing a search definition.
+These are available:</p>
+<ul>
+<li><code>Name</code> - use the name of the object as criterion value</li>
+<li><code>Index</code> - use the position of report column definition from where this object originates (which TS_BINDING is coming from)</li>
+<li><code>Topology</code>- applicable for objects part of <code>EnergySystem</code> watercourse and associated case structure. The system dynamically attach increasing numbers from top to bottom in a watercourse and uses that as criterion value. </li>
+<li><code>Ignore</code> - do not apply any comparison </li>
+</ul>
+<p>In addition to a valid <code>TypeName</code> it is possible to use a generic type name <code>Default</code> which then hold a definition for all types are not explicitly mentioned in the order-by definition.</p>
+<p>Examples:</p>
+<p><code>Default=Ignore,Reservoir=.HRWL:D</code>
+- Sort objects by the descending <code>HRWL</code> attribute value (Highest Regulated Water Level) found on instances of type <code>Reservoir</code>
+- For all other types - do no comparison</p>
+<p><code>Default=Ignore,WaterCourse=Name,cWaterCourse=Name,Reservoir=.HRWL,cReservoir=to_Reservoir.HRWL</code>
+  - Same as a above, but group according to watercourse name and use ascending order
+  - Included specification for case objects
+    - For cReservoir objects - go to linked asset object (<code>to_Reservoir</code>) and use <code>HRWL</code></p>
+<p><strong><em>Note!</em></strong> <em>For the <code>TEMPLATE_ORDER_BY</code> definition it was possible to have a simplified format like <code>.HRWL</code> or even <code>HRWL</code> which the sort algorithm would take
+as a definition implicitly connected to the type owning the time series attribute.</em><br />
+<strong><em>This is no longer supported. (from 2025.3)</em></strong></p>
+<h3 id="multiple-scopes-of-order-by-definition">Multiple scopes of order-by definition</h3>
+<p>As mentioned earlier there are three levels where an <em>order-by</em> definition is applicable.</p>
+<h4 id="local">Local</h4>
+<p>At this level we use the report column definition attribute <code>TEMPLATE_ORDER_BY</code>.</p>
+<p>The definition is used to sort the time series attributes found from applying the search
+operation defined by the <code>TS_BINDING</code>. The sorted list is added to collection of time series for activated report.</p>
+<p>Example:
+<code>TS_BINDING</code>         <code>*[.Type=Reservoir].ReservoirLevel_operative</code>
+<code>TEMPLATE_ORDER_BY</code>  <code>Default=Ignore,Reservoir=.HRWL:D</code></p>
+<h4 id="start-points">Start points</h4>
+<p>An activated report that is visible to the user always needs one or more starting points.
+See <a href="../reports_intro/#template-report-activation">more about the activation process here</a></p>
+<p>The activation process can be described by the following pseudo code:</p>
+<pre><code>for each startPoint in startPoints
+   for each columnDefinition in columnDefinitions
+       tslist = apply search based on TS_BINDING from startPoint
+       if there is an order-by definition then apply sort operation to tslist
+       add tslist (sorted or not sorted) to activated report contents
+</code></pre>
+<p>The scope now is related to sort the list of start-points.</p>
+<p>Example of a start point definition:<br />
+<code>*[.Type=WaterCourse]ORDER_BY:Area=Name,WaterCourse=.SortIndex</code></p>
+<p>This definition means:</p>
+<ul>
+<li>Find start points by looking for watercourse objects in the current Mesh model. Current model is configured at task level.</li>
+<li>Sort them according to an attribute called <code>SortIndex</code> assumed to be available on instances of the WaterCourse type and group them according to area name.</li>
+</ul>
+<p>There may be several start point search sections separated with semicolon <code>;</code>. Observe that the eventual <em>order-by</em> section (starting with <code>ORDER_BY:</code>) is defined
+<strong>immediately</strong> after the search definition. This is because it <em>belongs</em> to that specific search expression. The next search section will have its own <em>order-by</em> definition.</p>
+<p>Example of multiple start point definitions:<br />
+<code>*[.Type=WaterCourse]ORDER_BY:Area=Name,WaterCourse=.SortIndex;*[.Type=SomeType]ORDER_BY:Default=Ignore,HydroPlant=.SortIndex</code></p>
+<p>As described above, the parsing of the start-point definition is rather strict.</p>
+<h4 id="global">Global</h4>
+<p>If there is a global scope <em>order-by</em> definition in place, then it will override the definitions described above (<em>Local</em> and <em>Start point</em>).
+In this mode <strong>all</strong> time series that are collected to be part of the activated report are sorted according to the global definition.</p>
+<p>Global definitions are stored in the Mesh resources section. See details on how to <a href="#maintain-a-global-sorting-definition">create/edit/delete</a> such definitions.</p>
+<p>To associate a report activation with a global sorting definition there are currently three options:</p>
+<ul>
+<li>
+<p>Add <code>ORDER_BY_CONFIG:&lt;path to text file resource&gt;</code> to the end of start point definition. If there is a search definition in place you have to add a <code>;</code> in front of this section. See examples below.</p>
+</li>
+<li>
+<p>Add a default <em>order-by</em> definition to a predefined location in the Mesh resources: <code>Resource/ConfigFiles/OrderBy/Default.sort</code></p>
+</li>
+<li>
+<p>Add <em>order-by</em> definition as described above immediately after the <code>ORDER_BY_CONFIG:</code> keyword</p>
+</li>
+</ul>
+<p>The format of the global sort specification is the same as already described. When resource "files" are used it normally contains multiple lines, one line per type. Like this:</p>
+<p>File <em>MySort.sort</em></p>
+<pre><code>Default=Ignore
+cReservoir=to_Reservoir.HRWL:D
+Reservoir=.HRWL:D
+</code></pre>
+<p>These two definitions are equivalent:</p>
+<ul>
+<li><code>start-point definition;ORDER_BY_CONFIG:Resource/ConfigFiles/OrderBy/MySort.sort</code></li>
+<li><code>start-point definition;ORDER_BY_CONFIG:Default=Ignore,cReservoir=to_Reservoir.HRWL:D,Reservoir=.HRWL:D</code></li>
+</ul>
+<p>To utilise the special definition <code>Default.sort</code> may be convenient but due the its <em>global</em> scope it can have undesired side effects.
+It might be used in places you did not want it to. To avoid such interference from a "hidden" default you can add a 
+global <em>order-by</em> definition that explicitly say: <em>do not apply a global sort operation</em>. It is done by referring to a resource called
+<code>None.sort</code>. The system just look at the name and it does not try to look it up, hence it does not need to exist. See example below.</p>
+<h4 id="some-examples-of-start-point-definitions">Some examples of start point definitions</h4>
+<p>Examples:</p>
+<ul>
+<li>
+<p><code>*[.Type=HydroPlant];ORDER_BY_CONFIG:Resource/ConfigFiles/OrderBy/MySort.sort</code><br />
+    Apply global sort definitions found on <code>MySort.sort</code> file. Those types not explicitly mentioned in that definition will use ascending Name as criteria. </p>
+</li>
+<li>
+<p><code>*[.Type=HydroPlant]ORDER_BY:HydroPlant=.OwnerShare;ORDER_BY_CONFIG:None.sort</code><br />
+    Order starting point list according to ascending value on OwnerShare attribute on HydroPlant. The reference to <code>None.sort</code> will ensure that a potential default global sort will not override the ORDER_BY settings specified here</p>
+</li>
+<li>
+<p><code>*[.Type=HydroPlant]ORDER_BY:HydroPlant=.OwnerShare:D,WaterCourse=.SomeAttribute</code><br />
+    Sort starting point list according to descending value of OwnerShare attribute. WaterCourse items are sorted according to ascending value of SomeAttribute.<br />
+<strong><em>Note!</em></strong> These definitions will be ignored if there is a file <code>Resource/ConfigFiles/OrderBy/Default.sort</code> installed</p>
+</li>
+</ul>
+<h3 id="best-practice">Best practice</h3>
+<p>It's hard to say what's the preferred method to setup a proper <em>order-by</em> definition. It depends on the type of report at hand. 
+In this section some hints and considerations are discussed.</p>
+<h4 id="the-implications-of-report-activation-process">The implications of report activation process</h4>
+<p>When you choose an <em>order-by</em> method it is important to understand the report activation process and therefore, some details about that are described here.</p>
+<p><img alt="Activation" src="../activation_process.png" /></p>
+<p>The illustration above shows the following:</p>
+<p>Context
+  - There is a task definition 
+    - it refers to a report definition
+    - it refers to a start point definition
+  - The search for start point found two Mesh objects <code>S1</code> and <code>S2</code>
+  - The report contains two column definitions, query <code>A</code> and <code>B</code></p>
+<p>Apply report definition for start point <code>S1</code>
+  - When query <code>A</code> was applied to start point <code>S1</code> it found time series attribute <code>A1</code>, <code>A2</code> and <code>A3</code>
+    - Add these three time series to the report collection
+  - When query <code>B</code> was applied to start point <code>S1</code> it found time series attribute <code>B1</code>
+    - Add this time series to the report collection</p>
+<p>Apply report definition for start point <code>S2</code>
+  - When query <code>A</code> was applied to start point <code>S2</code> it found time series attribute <code>A1</code> and <code>A2</code>
+    - Add these time series to the report collection
+  - When query <code>B</code> was applied to start point <code>S2</code> it found time series attribute <code>B1</code>, <code>B2</code> and <code>B3</code>
+    - Add these time series to the report collection</p>
+<p>If there are <code>TEMPLATE_ORDER_BY</code> definitions on column definitions, the result from query will be sorted according to this before adding it to collection.</p>
+<p>If there are <code>ORDER_BY:</code> at end of start point search definitions, then the result from start point search operation will be sorted according to this.</p>
+<h4 id="simple-reports">Simple reports</h4>
+<p>A simple report is for instance a report based on a definition having <em>one</em> column definition.
+In such cases use of <code>TEMPLATE_ORDER_BY</code> will do.</p>
+<h4 id="cluster-reports">Cluster reports</h4>
+<p>In this group we have report definitions that refer to several time series relative to a dedicated Mesh object type.
+Most often it will be bound to that type and normally have several report column definitions (multiple TS_BINDING definitions). It may reach out to several time series attributes on that type as well as other time series attributes found relative  to this type (up/down or through links).</p>
+<p>In such cases use of <code>ORDER_BY</code> on start point definitions most likely are the best choice. It can also be combined with <code>TEMPLATE_ORDER_BY</code> on queries that may return multiple time series.</p>
+<h4 id="complex-reports">Complex reports</h4>
+<p>It's hard to pinpoint exactly what a complex report definition is. One criterion may be that it refers to time series bound to several hierarchical levels. Another is that it contains many column definitions that address time series on different object types.</p>
+<p>The use of global sort definition may be considered in these cases.</p>
+<h4 id="some-general-remarks">Some general remarks</h4>
+<p>To summarize:</p>
+<ul>
+<li>
+<p>Which <em>order-by</em> method to use depends on the characteristics of the report definition</p>
+</li>
+<li>
+<p>Sort operations on Mesh objects with different depth may be challenging</p>
+</li>
+<li>
+<p>Sort definition using keyword <code>Topology</code> is a specialized method that can be used on types in the <em>Watercourse</em> family as defined in Volue's definition <code>EnergySystem</code>. It sort objects from top to bottom, i.e. from highest <code>Reservoir</code> or <code>Creek</code> and downwards. </p>
+</li>
+<li>
+<p>If sort definition cannot decide between two objects</p>
+</li>
+<li>it will try to use default method</li>
+<li>if one or both objects end up at time series object it will use the <code>Index</code> method to decide</li>
+</ul>
+<h3 id="maintain-a-global-sorting-definition">Maintain a global sorting definition</h3>
+<p>A sort definition is given a name and placed into the Mesh resource section. This usage can be compared to a file stored in a hierarchical file system. The tool <code>Powel.Mesh.CommandlineRequests.exe</code> can be used to import, export and list available sorting definitions. The commands to do that are (<code>clr</code> is used as an alias):</p>
+<ul>
+<li>
+<p>Import:  </p>
+<p><code>clr -i Default.sort -w ImportTextFile -w Resource/ConfigFiles/OrderBy/Default.sort -S</code></p>
+</li>
+<li>
+<p>Export:</p>
+<p><code>clr -o Default.sort -w ExportTextFile -w Resource/ConfigFiles/OrderBy/Default.sort
+clr -w ExportTextFile -w Resource/ConfigFiles/OrderBy/Default.sort
+clr -w ExportTextFile -w Resource/ConfigFiles/OrderBy/Default.sort -w delete</code>
+First is export to file, second to standard output (terminal) and last is export to file and delete <code>Resource</code> definition.</p>
+</li>
+<li>
+<p>List available items:</p>
+<p><code>clr -w ListTextFiles -w Resource/ConfigFiles/OrderBy
+clr -w ListTextFiles -w Resource/ConfigFiles/OrderBy -w sort</code>
+First list all types, second list all with suffix <em>sort</em></p>
+</li>
+</ul>
+<h2 id="some-examples-using-order-by-in-template-reports">Some examples using order-by in template reports</h2>
+<h3 id="local-scope-order-by">Local scope order-by</h3>
+<p>This is the report definition:</p>
+<pre><code>MESH_SESSION_TS &quot;ON&quot;
+OBJECT_TYPE 21
+MESH_GUID &quot;85e6f7a9-c82d-452f-a32c-9ca9399ab4f6&quot;
+DBI_COLUMN
+    TS_BINDING &quot;*[.Type=HydroPlant].Production&quot;
+    COLOR_HEAD &quot;Sky Blue&quot;
+    NAME &quot;PlantProduction&quot;
+    GRAPHTEXT &quot;$FullObjName $AttrName&quot;
+    TEXT &quot;$FullObjName#$AttrName#SI $&lt;$.SortIndex&gt;#OwnerShare $&lt;OwnerShare&gt;&quot;
+    TEMPLATE_ORDER_BY &quot;Default=Ignore,HydroPlant=.OwnerShare&quot;
+END_COLUMN
+</code></pre>
+<p>Some comments:</p>
+<ul>
+<li>Searches for all <code>Production</code> series on all <code>HydroPlant</code> type objects below a watercourse.</li>
+<li>Do a local <em>order-by</em> ascending sort using the local attribute value <code>OwnerShare</code></li>
+<li>The column heading (<code>TEXT</code> attribute) refers to local attributes for <code>SortIndex</code> and <code>OwnerShare</code>. The format <code>$&lt;$.SortIndex&gt;</code> is the general format where the inner part is a general search expression. The format <code>$&lt;OwnerShare&gt;</code> is simpler form when referring to local attributes (attributes on the object owning this time series).</li>
+</ul>
+<p><img alt="Global sort example" src="../local_order_by.png" /></p>
+<h3 id="task-setup-using-start-point-ordering">Task setup using start point ordering</h3>
+<p>This is the report definition:</p>
+<pre><code>MESH_SESSION_TS &quot;ON&quot;
+OBJECT_TYPE 21
+MESH_GUID &quot;85e6f7a9-c82d-452f-a32c-9ca9399ab4f6&quot;
+DBI_COLUMN
+    GRAPHTEXT &quot;$ObjName $AttrName&quot;
+    TS_BINDING &quot;*[.Type=Watercourse].Income&quot;
+    TEXT &quot;$FullObjName#$AttrName#Parent SI $&lt;$...SortIndex&gt;#SI $&lt;$.SortIndex&gt;&quot;
+    BORDERS &quot;Left&quot;
+    COLOR_HEAD &quot;Orange Red&quot;
+    NAME &quot;WCIncome&quot;
+END_COLUMN
+DBI_COLUMN
+    GRAPHTEXT &quot;$ObjName $AttrName&quot;
+    TS_BINDING &quot;*[.Type=HydroPlant].Production&quot;
+    TEXT &quot;$FullObjName#$AttrName#Parent SI $&lt;$...SortIndex&gt;#SI $&lt;$.SortIndex&gt;&quot;
+    COLOR_HEAD &quot;Blue&quot;
+    NAME &quot;PlantProduction&quot;
+END_COLUMN
+</code></pre>
+<p>Start point definition (inside task definition):</p>
+<p><code>*[.Type=Watercourse]ORDER_BY:Default=Ignore,Watercourse=.SortIndex:D</code></p>
+<p>This means activate the report definition for all <code>Watercourse</code> objects found in this Mesh model. The order of the objects are given by <em>descending</em> <code>SortIndex</code> found on the <code>Watercourse</code> objects.</p>
+<p>The result of this report activation in Nimbus looks like this:</p>
+<p><img alt="Start point sort example" src="../start_point_sort.png" /></p>
+<h3 id="global-sorting-using-topology">Global sorting using topology</h3>
+<p>This is the report definition:</p>
+<pre><code>OBJECT_TYPE 21
+MESH_GUID &quot;c36b3004-3f89-4f60-a473-a80c83f13f23&quot;
+DBI_COLUMN
+     GRAPHTEXT &quot;$ObjName $AttrName&quot;
+     TS_BINDING &quot;*[.Type=Reservoir].Inflow_local&quot;
+     COLOR_HEAD &quot;Light Sky Blue&quot;
+     TEXT &quot;$ObjName#$AttrName#$&lt;HRWL&gt;&quot;
+     NAME &quot;Inflow_local&quot;
+END_COLUMN
+DBI_COLUMN
+     TEXT &quot;$ObjName#$AttrName&quot;
+     GRAPHTEXT &quot;$ObjName $AttrName&quot;
+     TS_BINDING &quot;*[.Type=Reservoir].Inflow_distributed&quot;
+     COLOR_HEAD &quot;Medium Slate Blue&quot;
+     NAME &quot;Inflow_distributed&quot;
+END_COLUMN
+DBI_COLUMN
+     TEXT &quot;$ObjName#$AttrName&quot;
+     GRAPHTEXT &quot;$ObjName $AttrName&quot;
+     TS_BINDING &quot;*[.Type=HydroPlant].Production_operative&quot;
+     COLOR_HEAD &quot;Orange&quot;
+     NAME &quot;Production_operative&quot;
+END_COLUMN
+DBI_COLUMN
+     TEXT &quot;$ObjName#$AttrName&quot;
+     TS_BINDING &quot;*[.Type=HydroPlant].Production_discharge&quot;
+     COLOR_HEAD &quot;Pink&quot;
+     NAME &quot;Production_discharge&quot;
+END_COLUMN
+</code></pre>
+<p>The report is bound to Mesh object type named <code>WaterCourse</code>.</p>
+<p>The task definition have this start point definition (Nimbus Configurator):</p>
+<p><code>*[.Type=WaterCourse&amp;&amp;.Name#L.gen];ORDER_BY_CONFIG:Default=Ignore,HydroPlant=Topology,Reservoir=Topology</code></p>
+<p>PS! The global <em>order-by</em> specification is here added directly in the Nimbus task definition. It is also possible to add this definition to a resource "file" and refer that file with full path into Mesh resource section.</p>
+<p>The associated table presentation looks like this:</p>
+<p><img alt="Global sort example" src="../global_sort.png" /></p>
+<p>Some comments to the visible layout:</p>
+<ul>
+<li>The sort definition <code>Topology</code> order time series from top highest reservoir in this watercourse</li>
+<li>Time series coming from the same object will be ordered according to position within report definition</li>
+<li>Therefore <code>Inflow_local</code> is located before <code>Inflow_distributed</code></li>
+<li>After some reservoir series there are some contribution from hydro plant object, then from some downstream reservoirs etc.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+      <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+          <a href="../macros/" class="btn btn--outline btn--success float-left" title="Macros"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      </div>
+  
+    <hr/>
+  
+    <div role="contentinfo">
+      <!-- Copyright etc -->
+    </div>
+  
+    Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  </footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version is-active">
+      
+      
+        <span><a href="../macros/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      
+      
+    </span>
+  </div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../../search/main.js"></script>
+      <script src="../../js/version-select.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

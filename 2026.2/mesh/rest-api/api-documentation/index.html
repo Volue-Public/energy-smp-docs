@@ -1,0 +1,5581 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+<title>Smart Power Documentation</title>
+
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../wave/wave.css" rel="stylesheet" />
+        <link href="../../../stylesheets/extra.css" rel="stylesheet" />
+        <link href="../../../css/version-select.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "API specification";
+        var mkdocs_page_input_path = "mesh/rest-api/api-documentation.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav is-active">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search fill-neutral--contrast">
+      <a href="../../..">
+          <img src="../../../logo.png" class="logo" alt="Logo"/>
+        </a>
+
+        <!-- A trick to place the version selector where I want it to be. -->
+        <div class="icon-home" style="display: none;"></div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mesh</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Concepts</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/availability/">Availability</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/calculations/">Calculations</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Modelling</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/rating-curves/">Rating curves</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/relations/">Relations</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/xy-sets/">XY-sets</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/search-language/">Search language</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/sessions/">Sessions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/time-series/">Time series</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../installation/MeshServiceInstallationGuide/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Calculations</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../calculations/general/">General</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../calculations/timepoint-macros/">Time macros</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Functions</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../calculations/functions/introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >General</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/allocate_reserves/">AllocateReserves</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/at/">AT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/color/">ColorARGB</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/compare/">Compare</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/concatenate/">Concatenate</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/copy_ts/">CopyTs</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/delta/">DELTA</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/disable_cache/">DisableCache</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/getyfx/">GET_Y_FX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/isvalid/">IsValid</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/linear/">Linear</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/max/">MAX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/meshid/">MeshID</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/min/">MIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/parameter/">Parameter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/pdlog/">PDLOG</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/reference_lookup/">Reference Lookup</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/restriction/">Restriction</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/revision/">Revision</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/set_ts_val_unit/">SET_TS_VALUNIT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/size/">Size</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/time_mask/">TIME_MASK</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/tostring/">ToString</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/trace/">Trace</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ts/">TS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/unit_codes_for_set_ts_val_unit/">Unit Codes for SET_TS_VALUNIT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/valid/">Valid</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Forecast</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/get_best_forecast/">GetBestForecast</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/get_all_forecasts/">GetAllForecasts</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/get_forecast/">GetForecast</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/get_merged_forecast/">GetMergedForecast</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >History</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/history/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/get_ts_as_of_time/">GetTsAsOfTime</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/get_ts_historical_versions/">GetTsHistoricalVersions</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/get_ts_audit_times/">GetTsAuditTimes</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Logical</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/bool/">BOOL</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/inside/">INSIDE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/negative/">NEGATIVE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/not/">NOT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/outside/">OUTSIDE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/positive/">POSITIVE</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Math</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ts_gliding_average/">TS_GLIDING_AVERAGE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ts_gliding_gauss/">TS_GLIDING_GAUSS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ts_gliding_median/">TS_GLIDING_MEDIAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ts_gliding_median_gauss/">TS_GLIDING_MEDIAN_GAUSS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/gliding_trend_average/">GLIDING_TREND_AVERAGE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ts_acc_from/">TS_ACC_FROM</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/power/">POWER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/abs/">ABS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ceil/">CEIL</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/floor/">FLOOR</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/integer/">INTEGER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/log/">LOG</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ln/">LN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/round/">ROUND</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/round_integer/">ROUND_INTEGER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/acos/">ACOS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/asin/">ASIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/atan/">ATAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/cos/">COS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/sin/">SIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/tan/">TAN</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Mix</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/mix/">MIX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/mix_by_selecting_from_time_series_array/">MIX by selecting from time series array</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/mix0/">MIX0</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/tsiqfill/">TS_IQ_FILL</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Sim</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/sim/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/convert_volume/">CONVERT_VOLUME</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/rating_curve/">RatingCurve</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/time_delayed/">TimeDelayed</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/xy/">XY</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/yx/">YX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/zxy/">ZX_Y</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/zyx/">ZY_X</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Statistical</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/mean/">MEAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/normal/">Normal</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/percentile/">PERCENTILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/sum/">SUM</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Status</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/status/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/reset_status/">RESET_STATUS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/status_mask/">STATUS_MASK</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/status_count/">STATUS_COUNT</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Time</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/time_group/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/is_resolution/">IsResolution</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/is_time_valid/">IsTimeValid</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/push_ext_period/">PushExtPeriod</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/pop_ext_period/">PopExtPeriod</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/time/">Time</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/resolution/">Resolution</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/timespan/">TimeSpan</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/time_to_string/">TimeToString</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/time_examples/">Time Examples</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/time_point_information/">Time Point Information</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Transform</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/transform_what_when/">Which function can be used when</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/transform_terms/">Terms used in the functions</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/transform/">TRANSFORM</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ts_expand/">TS_EXPAND</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ts_offset/">TS_OFFSET</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/values_from_year/">ValuesFromYear</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/distribute/">DISTRIBUTE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/trans_profile/">TRANS_PROFILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/profile/">PROFILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/profile_with_explicit_frequency/">PROFILE with explicit frequency</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/accumulate/">ACCUMULATE</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >VEE</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/vee/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/validate_abs_limit/">ValidateAbsLimit</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/validate_delta_limit/">ValidateDeltaLimit</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/validate_delta_limit_extreme/">ValidateDeltaLimitExtreme</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/validate_repeat_value/">ValidateRepeatValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/correct_average_value/">CorrectAverageValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/correct_constant_value/">CorrectConstantValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/correct_copy_value/">CorrectCopyValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/correct_extrapolate/">CorrectExtrapolate</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/correct_interpolate/">CorrectInterpolate</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >gRPC</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../grpc/APISpecification/">API specification</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grpc/Authorization/">Authorization</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grpc/ClientCertificates/">Client certificates</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grpc/FAQ/">Frequently Asked Questions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grpc/MessageSizeLimits/">Message size limits</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Mesh REST API</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../changelog/">Changelog</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">API specification</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#version-v1-endpoints">Version v1 Endpoints</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-apiv1getversion">GET /api/v1/GetVersion</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#get-apiv1getuseridentity">GET /api/v1/GetUserIdentity</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#get-apiv1createsession">GET /api/v1/CreateSession</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#post-apiv1commit">POST /api/v1/Commit</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#post-apiv1rollback">POST /api/v1/Rollback</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#get-apiv1closesession">GET /api/v1/CloseSession</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#get-apiv1extendsession">GET /api/v1/ExtendSession</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#get-apiv1readtimeseriesvaluesraw">GET /api/v1/ReadTimeSeriesValuesRaw</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#get-apiv1readtimeseriesvalues">GET /api/v1/ReadTimeSeriesValues</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#post-apiv1readtimeseriesvaluesmultiraw">POST /api/v1/ReadTimeSeriesValuesMultiRaw</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#post-apiv1readtimeseriesvaluesmulti">POST /api/v1/ReadTimeSeriesValuesMulti</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#post-apiv1writetimeseriesvaluesmultiraw">POST /api/v1/WriteTimeSeriesValuesMultiRaw</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#post-apiv1createphysicaltimeseries">POST /api/v1/CreatePhysicalTimeSeries</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#get-apiv1listmodels">GET /api/v1/ListModels</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#get-apiv1searchforobjects">GET /api/v1/SearchForObjects</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#get-apiv1getobject">GET /api/v1/GetObject</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#post-apiv1createobject">POST /api/v1/CreateObject</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#post-apiv1updateobject">POST /api/v1/UpdateObject</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#post-apiv1deleteobject">POST /api/v1/DeleteObject</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#get-apiv1searchforattributes">GET /api/v1/SearchForAttributes</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#get-apiv1getattribute">GET /api/v1/GetAttribute</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#get-apiv1gettimeseriesresource">GET /api/v1/GetTimeseriesResource</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#get-apiv1getratingcurveversions">GET /api/v1/GetRatingCurveVersions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#get-apiv1getxysets">GET /api/v1/GetXySets</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#post-apiv1updateintattribute">POST /api/v1/UpdateIntAttribute</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#post-apiv1updatedoubleattribute">POST /api/v1/UpdateDoubleAttribute</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#post-apiv1updateboolattribute">POST /api/v1/UpdateBoolAttribute</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#post-apiv1updatestringattribute">POST /api/v1/UpdateStringAttribute</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#post-apiv1updatedatetimeattribute">POST /api/v1/UpdateDateTimeAttribute</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#post-apiv1updatetimeseriesattribute">POST /api/v1/UpdateTimeSeriesAttribute</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#post-apiv1updatelinkrelationattribute">POST /api/v1/UpdateLinkRelationAttribute</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#post-apiv1updateratingcurveversions">POST /api/v1/UpdateRatingCurveVersions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#post-apiv1updatexysets">POST /api/v1/UpdateXySets</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#post-apiv1importmultistepwatervaluefunctions">POST /api/v1/ImportMultistepWaterValueFunctions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#post-apiv1identifyvirtualtsusage">POST /api/v1/IdentifyVirtualTSusage</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#version-v1-schemas">Version v1 Schemas</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#meshaccumulationenum">MeshAccumulationEnum</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#meshattribute">MeshAttribute</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#meshattributesimple">MeshAttributeSimple</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#meshattributevalue">MeshAttributeValue</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#meshattributevalueenum">MeshAttributeValueEnum</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#meshcurvetypeenum">MeshCurveTypeEnum</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#meshinterval">MeshInterval</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#meshlinkrelation">MeshLinkRelation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#meshlinkrelationversion">MeshLinkRelationVersion</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#meshobject">MeshObject</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#meshobjectsimple">MeshObjectSimple</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#meshownershiprelation">MeshOwnershipRelation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#meshratingcurvesegment">MeshRatingCurveSegment</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#meshratingcurveversion">MeshRatingCurveVersion</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#meshreferencedobject">MeshReferencedObject</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#meshresolutionenum">MeshResolutionEnum</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#meshtimezonealignmentenum">MeshTimeZoneAlignmentEnum</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#meshtimeseries">MeshTimeseries</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#meshtimeseriesresource">MeshTimeseriesResource</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#meshtimeseriesvalues">MeshTimeseriesValues</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#meshtsid">MeshTsId</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#meshuseridentityinfo">MeshUserIdentityInfo</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#meshvalue">MeshValue</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#meshversioninfo">MeshVersionInfo</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#meshversionedlinkrelation">MeshVersionedLinkRelation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#meshxycurve">MeshXyCurve</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#meshxyset">MeshXySet</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#multistepwatervalues">MultiStepWaterValues</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#virtualtsinfo">VirtualTSinfo</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >For developers</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../generate-c%23-api-from-swagger-json/">Generate C# API from swagger.json</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../how-to-use-ImportMultistepWaterValueFunctions/">How to use ImportMultistepWaterValueFunctions</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Excel AddIn for Mesh</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../excel-add-in/addin-excel-user-guide-for-mesh/">User guide</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../excel-add-in/how-to-install-addin-excel-for-mesh/">Installation guide</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Model maintenance</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../model-maintenance/ModelMaintenanceConcepts/">Model maintenance concepts</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../model-maintenance/ModelBackup/">Model backups</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mesh Data Transfer</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mesh-data-transfer/general/general/">General</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mesh-data-transfer/configuration/configuration/">Configuration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Use cases</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh-data-transfer/use-cases/import-of-time-series-values-using-mdt/">Import of time series values</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh-data-transfer/use-cases/export-of-time-series-values-using-mdt/">Export of time series values</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh-data-transfer/use-cases/import-of-availability-events-using-mdt/">Import of availability events</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../operations/monitoring/">Monitor services</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Time series reports</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/reports_intro/">General</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/macros/">Macros</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/sort_contents/">Sorted layout</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap is-active">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars is-active"></i>
+          <a href="../../..">Smart Power Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Mesh</li>
+          <li class="breadcrumb-item">Mesh REST API</li>
+      <li class="breadcrumb-item active">API specification</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="public-mesh-rest-api-v191-for-volue-mesh">Public Mesh REST API v.1.9.1 for Volue Mesh</h1>
+<p>A public Mesh REST API to access Volue Mesh information.</p>
+<p><em>All operations requiring a sessionId should be used within a session that is always using CreateSession and CloseSession, and DoCommit or DoRollback for write operations. Changing the configuration should change this requirement for testing purposes only.</em></p>
+<p>A Swagger interface is provided by the REST API and is available to local users of the API for documentation and manual testing. <em><strong>Note! It is possible to remove the Swagger interface from the configuration of the service.</strong></em></p>
+<h2 id="version-v1-endpoints">Version <strong>v1</strong> Endpoints</h2>
+<h3 id="get-apiv1getversion"><code>GET /api/v1/GetVersion</code></h3>
+<p><em>Returns the version of the Mesh service and the REST API.</em></p>
+<p>GET /api/v1/GetVersion</p>
+<p><strong>Response Body</strong></p>
+<p>Schema: <a href="#meshversioninfo">MeshVersionInfo</a></p>
+<pre><code class="language-json">{
+  &quot;meshVersion&quot;: &quot;string&quot;,
+  &quot;apiVersion&quot;: &quot;string&quot;
+}
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-apiv1getuseridentity"><code>GET /api/v1/GetUserIdentity</code></h3>
+<p><em>Returns the identity of the user that is authorised by the Mesh server.</em></p>
+<p>GET /api/v1/GetUserIdentity</p>
+<p><strong>Response Body</strong></p>
+<p>Schema: <a href="#meshuseridentityinfo">MeshUserIdentityInfo</a></p>
+<pre><code class="language-json">{
+  &quot;displayName&quot;: &quot;string&quot;,
+  &quot;source&quot;: &quot;string&quot;,
+  &quot;identifier&quot;: &quot;string&quot;
+}
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-apiv1createsession"><code>GET /api/v1/CreateSession</code></h3>
+<p><em>Create a new Mesh session.</em></p>
+<p>GET /api/v1/CreateSession</p>
+<p><strong>Response Body</strong></p>
+<p>Schema: string($uuid)</p>
+<pre><code class="language-json">&quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-apiv1commit"><code>POST /api/v1/Commit</code></h3>
+<p><em>Commit changes within a Mesh session to the data store.</em></p>
+<p>POST /api/v1/Commit
+{
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5"
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the session to commit.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response Body</strong></p>
+<p>Schema: boolean</p>
+<pre><code class="language-json">true
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-apiv1rollback"><code>POST /api/v1/Rollback</code></h3>
+<p><em>Removes all changes introduced in a Mesh session.</em></p>
+<p>POST /api/v1/Rollback
+{
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5"
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the session to rollback changes from.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response Body</strong></p>
+<p>Schema: boolean</p>
+<pre><code class="language-json">true
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-apiv1closesession"><code>GET /api/v1/CloseSession</code></h3>
+<p><em>Closes an existing Mesh session.</em></p>
+<p>GET /api/v1/CloseSession
+{
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5"
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to close.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response Body</strong></p>
+<p>Schema: boolean</p>
+<pre><code class="language-json">true
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-apiv1extendsession"><code>GET /api/v1/ExtendSession</code></h3>
+<p><em>Extends life of an existing Mesh session.</em></p>
+<p>GET /api/v1/ExtendSession
+{
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5"
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to extend.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response Body</strong></p>
+<p>Schema: boolean</p>
+<pre><code class="language-json">true
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-apiv1readtimeseriesvaluesraw"><code>GET /api/v1/ReadTimeSeriesValuesRaw</code></h3>
+<p><em>Read raw time series values from Mesh for a specific time series.</em></p>
+<p>GET /api/v1/ReadTimeSeriesValuesRaw
+{
+  "timeSeriesPath": "Model/Company/Mesh.To_Areas/AREA1.To_HydMetStations/HydMetStations.To_HydMetWatercourse/STATION1.To_ForecastType/RadarMeteo.To_ForecastPoint/UNIT1.Temperature",
+  "timeSeriesId": null,
+  "timeSeriesKey": null,
+  "valuesFrom": "2023-01-01T00:00:00Z",
+  "valuesTo": "2023-01-02T00:00:00Z",
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5"
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>timeSeriesPath</code></td>
+<td>query</td>
+<td>No</td>
+<td>Full Mesh path to the wanted time series.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>timeSeriesId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Id to the wanted time series.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>timeSeriesKey</code></td>
+<td>query</td>
+<td>No</td>
+<td>Key to the wanted time series.</td>
+<td>integer</td>
+</tr>
+<tr>
+<td><code>valuesFrom</code></td>
+<td>query</td>
+<td>No</td>
+<td>Start of the time interval to fetch values from.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>valuesTo</code></td>
+<td>query</td>
+<td>No</td>
+<td>End of the time interval to fetch values from.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use when reading values.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response Body</strong></p>
+<p>Schema: <a href="#meshtimeseriesvalues">MeshTimeseriesValues</a></p>
+<pre><code class="language-json">{
+  &quot;id&quot;: {
+    &quot;id&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,
+    &quot;path&quot;: &quot;string&quot;,
+    &quot;timeseriesKey&quot;: 0
+  },
+  &quot;resolution&quot;: &quot;Unspecified&quot;,
+  &quot;interval&quot;: {
+    &quot;startTime&quot;: &quot;2025-10-29T07:26:12.788Z&quot;,
+    &quot;endTime&quot;: &quot;2025-10-29T07:26:12.788Z&quot;
+  },
+  &quot;values&quot;: [
+    {
+      &quot;date&quot;: &quot;2025-10-29T07:26:12.788Z&quot;,
+      &quot;value&quot;: 0,
+      &quot;status&quot;: 0
+    }
+  ]
+}
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-apiv1readtimeseriesvalues"><code>GET /api/v1/ReadTimeSeriesValues</code></h3>
+<p><em>Read time series values from Mesh for a specific time series. The values can be transformed to a different resolution and time zone than the values stored in Mesh.</em></p>
+<p>GET /api/v1/ReadTimeSeriesValues
+{
+  "timeSeriesPath": "Model/Company/Mesh.To_Areas/AREA1.To_HydMetStations/HydMetStations.To_HydMetWatercourse/STATION1.To_ForecastType/RadarMeteo.To_ForecastPoint/UNIT1.Temperature",
+  "timeSeriesId": null,
+  "timeSeriesKey": null,
+  "valuesFrom": "2023-01-01T00:00:00Z",
+  "valuesTo": "2023-01-02T00:00:00Z",
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5",
+  "resolution": "Hour",
+  "accFunc": "AccDefault",
+  "timeZone": "Standard"
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>timeSeriesPath</code></td>
+<td>query</td>
+<td>No</td>
+<td>Full Mesh path to the wanted time series.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>timeSeriesId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Id to the wanted time series.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>timeSeriesKey</code></td>
+<td>query</td>
+<td>No</td>
+<td>Key to the wanted time series.</td>
+<td>integer</td>
+</tr>
+<tr>
+<td><code>valuesFrom</code></td>
+<td>query</td>
+<td>No</td>
+<td>Start of the time interval to fetch values from.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>valuesTo</code></td>
+<td>query</td>
+<td>No</td>
+<td>End of the time interval to fetch values from.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use when reading values.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>resolution</code></td>
+<td>query</td>
+<td>No</td>
+<td>The resolution that the data is wanted for.</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>accFunc</code></td>
+<td>query</td>
+<td>No</td>
+<td>Specifies how data are aggregated to longer time intervals.</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>timeZone</code></td>
+<td>query</td>
+<td>No</td>
+<td>Specifies the time zone of the returned time points.</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response Body</strong></p>
+<p>Schema: <a href="#meshtimeseriesvalues">MeshTimeseriesValues</a></p>
+<pre><code class="language-json">{
+  &quot;id&quot;: {
+    &quot;id&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,
+    &quot;path&quot;: &quot;string&quot;,
+    &quot;timeseriesKey&quot;: 0
+  },
+  &quot;resolution&quot;: &quot;Unspecified&quot;,
+  &quot;interval&quot;: {
+    &quot;startTime&quot;: &quot;2025-10-29T07:26:36.871Z&quot;,
+    &quot;endTime&quot;: &quot;2025-10-29T07:26:36.871Z&quot;
+  },
+  &quot;values&quot;: [
+    {
+      &quot;date&quot;: &quot;2025-10-29T07:26:36.871Z&quot;,
+      &quot;value&quot;: 0,
+      &quot;status&quot;: 0
+    }
+  ]
+}
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-apiv1readtimeseriesvaluesmultiraw"><code>POST /api/v1/ReadTimeSeriesValuesMultiRaw</code></h3>
+<p><em>Read raw time series values from Mesh for several specific time series.</em></p>
+<p>POST /api/v1/ReadTimeSeriesValuesMultiRaw
+{
+  "timeSeries": [
+    {
+      "Path": "Model/Company/Mesh.To_Areas/AREA1.To_HydMetStations/HydMetStations.To_HydMetWatercourse/STATION1.To_ForecastType/RadarMeteo.To_ForecastPoint/UNIT1.Temperature",
+      "Id": null,
+      "TimeseriesKey": null
+    },
+    {
+      "Path": "Model/Company/Mesh.To_Areas/AREA2.To_HydMetStations/HydMetStations.To_HydMetWatercourse/STATION2.To_ForecastType/RadarMeteo.To_ForecastPoint/UNIT2.Temperature",
+      "Id": null,
+      "TimeseriesKey": null
+    }
+  ],
+  "valuesFrom": "2023-01-01T00:00:00Z",
+  "valuesTo": "2023-01-02T00:00:00Z",
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5"
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>valuesFrom</code></td>
+<td>query</td>
+<td>No</td>
+<td>Start of the time interval to fetch values from.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>valuesTo</code></td>
+<td>query</td>
+<td>No</td>
+<td>End of the time interval to fetch values from.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use when reading values.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Request Body</strong></p>
+<p>List of MeshTsId references to the wanted number of time series.</p>
+<p>Schema: <a href="#meshtsid">[MeshTsId]</a></p>
+<pre><code class="language-json">[
+  {
+    &quot;id&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,
+    &quot;path&quot;: &quot;string&quot;,
+    &quot;timeseriesKey&quot;: 0
+  }
+]
+</code></pre>
+<p><strong>Response Body</strong></p>
+<p>Schema: <a href="#meshtimeseriesvalues">[MeshTimeseriesValues]</a></p>
+<pre><code class="language-json">[
+  {
+    &quot;id&quot;: {
+      &quot;id&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,
+      &quot;path&quot;: &quot;string&quot;,
+      &quot;timeseriesKey&quot;: 0
+    },
+    &quot;resolution&quot;: &quot;Unspecified&quot;,
+    &quot;interval&quot;: {
+      &quot;startTime&quot;: &quot;2025-10-29T07:26:56.514Z&quot;,
+      &quot;endTime&quot;: &quot;2025-10-29T07:26:56.514Z&quot;
+    },
+    &quot;values&quot;: [
+      {
+        &quot;date&quot;: &quot;2025-10-29T07:26:56.514Z&quot;,
+        &quot;value&quot;: 0,
+        &quot;status&quot;: 0
+      }
+    ]
+  }
+]
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-apiv1readtimeseriesvaluesmulti"><code>POST /api/v1/ReadTimeSeriesValuesMulti</code></h3>
+<p><em>Read time series values from Mesh for a list of specific time series. The values can be transformed to a different resolution and time zone than the values stored in Mesh.</em></p>
+<p>POST /api/v1/ReadTimeSeriesValuesMulti
+{
+  "timeSeries": [
+    {
+      "Path": "Model/Company/Mesh.To_Areas/AREA1.To_HydMetStations/HydMetStations.To_HydMetWatercourse/STATION1.To_ForecastType/RadarMeteo.To_ForecastPoint/UNIT1.Temperature",
+      "Id": null,
+      "TimeseriesKey": null
+    },
+    {
+      "Path": "Model/Company/Mesh.To_Areas/AREA2.To_HydMetStations/HydMetStations.To_HydMetWatercourse/STATION2.To_ForecastType/RadarMeteo.To_ForecastPoint/UNIT2.Temperature",
+      "Id": null,
+      "TimeseriesKey": null
+    }
+  ],
+  "valuesFrom": "2023-01-01T00:00:00Z",
+  "valuesTo": "2023-01-02T00:00:00Z",
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5",
+  "resolution": "Hour",
+  "accFunc": "AccDefault",
+  "timeZone": "Standard"
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>valuesFrom</code></td>
+<td>query</td>
+<td>No</td>
+<td>Start of the time interval to fetch values from.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>valuesTo</code></td>
+<td>query</td>
+<td>No</td>
+<td>End of the time interval to fetch values from.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use when reading values.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>resolution</code></td>
+<td>query</td>
+<td>No</td>
+<td>The resolution that the data is wanted for.</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>accFunc</code></td>
+<td>query</td>
+<td>No</td>
+<td>Specifies how data are aggregated to longer time intervals.</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>timeZone</code></td>
+<td>query</td>
+<td>No</td>
+<td>Specifies the time zone of the returned time points.</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Request Body</strong></p>
+<p>List of MeshTsId references to the wanted number of time series.</p>
+<p>Schema: <a href="#meshtsid">[MeshTsId]</a></p>
+<pre><code class="language-json">[
+  {
+    &quot;id&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,
+    &quot;path&quot;: &quot;string&quot;,
+    &quot;timeseriesKey&quot;: 0
+  }
+]
+</code></pre>
+<p><strong>Response Body</strong></p>
+<p>Schema: <a href="#meshtimeseriesvalues">[MeshTimeseriesValues]</a></p>
+<pre><code class="language-json">[
+  {
+    &quot;id&quot;: {
+      &quot;id&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,
+      &quot;path&quot;: &quot;string&quot;,
+      &quot;timeseriesKey&quot;: 0
+    },
+    &quot;resolution&quot;: &quot;Unspecified&quot;,
+    &quot;interval&quot;: {
+      &quot;startTime&quot;: &quot;2025-10-29T08:00:11.393Z&quot;,
+      &quot;endTime&quot;: &quot;2025-10-29T08:00:11.393Z&quot;
+    },
+    &quot;values&quot;: [
+      {
+        &quot;date&quot;: &quot;2025-10-29T08:00:11.393Z&quot;,
+        &quot;value&quot;: 0,
+        &quot;status&quot;: 0
+      }
+    ]
+  }
+]
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-apiv1writetimeseriesvaluesmultiraw"><code>POST /api/v1/WriteTimeSeriesValuesMultiRaw</code></h3>
+<p><em>Write raw time series values to Mesh for one or more specific time series</em></p>
+<p><strong><em>Note!</em></strong> <em>The <code>interval</code> for a time series must contain the value period for all value dates in <code>values</code>, and all values within the <code>interval</code> period are deleted before storing the values.</em></p>
+<p>POST /api/v1/WriteTimeSeriesValuesMultiRaw
+[
+  {
+    "id": {
+      "id": null,
+      "path": "Model/Company/Mesh.To_Areas/AREA.To_HydMetStations/HydMetStations.To_HydMetWatercourse/WATERROUTE1.To_ForecastType/RadarMeteo.To_ForecastPoint/AREA1.Temperature",
+      "timeseriesKey": null
+    },
+    "resolution": "Hour",
+    "interval": {
+      "startTime": "2023-01-01T00:00:00+01:00",
+      "endTime": "2023-01-01T01:00:00+01:00"
+    },
+    "values": [
+      {
+        "date": "2023-01-01T00:00:00+01:00",
+        "value": 123.1,
+        "status": 0
+      }
+    ]
+  }
+]'</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use when reading values.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Request Body</strong></p>
+<p>Values to be stored on the specified time series.</p>
+<p>Schema: <a href="#meshtimeseriesvalues">[MeshTimeseriesValues]</a></p>
+<pre><code class="language-json">[
+  {
+    &quot;id&quot;: {
+      &quot;id&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,
+      &quot;path&quot;: &quot;string&quot;,
+      &quot;timeseriesKey&quot;: 0
+    },
+    &quot;resolution&quot;: &quot;Unspecified&quot;,
+    &quot;interval&quot;: {
+      &quot;startTime&quot;: &quot;2025-10-29T08:02:45.857Z&quot;,
+      &quot;endTime&quot;: &quot;2025-10-29T08:02:45.857Z&quot;
+    },
+    &quot;values&quot;: [
+      {
+        &quot;date&quot;: &quot;2025-10-29T08:02:45.857Z&quot;,
+        &quot;value&quot;: 0,
+        &quot;status&quot;: 0
+      }
+    ]
+  }
+]
+</code></pre>
+<p><strong>Response Body</strong></p>
+<p>Schema: [boolean]</p>
+<pre><code class="language-json">[
+  true
+]
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h4 id="delete-values-from-a-time-series">Delete values from a time series</h4>
+<p>Deleting values are done automatically as part of the write process using the <code>WriteTimeSeriesValuesMultiRaw</code> function specifying the <code>interval</code> part for a time series to identify the period that should be replaced with the information in the <code>values</code> part.</p>
+<p><em><strong>Note!</strong></em> For versions before 2026.1, there must be at least one value in the values part, but this can either be the last value before or after the period to delete, or a <code>0</code> value with <code>MISSING</code> status (=67108864).</p>
+<p><strong>Example</strong></p>
+<p>Values before (from <code>ReadTimeSeriesValuesRaw</code>):</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: {
+    &quot;id&quot;: &quot;e91f1ffd-e5ea-4916-a3ef-b35ee5ca3b95&quot;,
+    &quot;path&quot;: &quot;[Full path to the time series]&quot;,
+    &quot;timeseriesKey&quot;: 131854
+  },
+  &quot;resolution&quot;: &quot;Min15&quot;,
+  &quot;interval&quot;: {
+    &quot;startTime&quot;: &quot;2025-05-01T00:45:00Z&quot;,
+    &quot;endTime&quot;: &quot;2025-05-01T01:45:00Z&quot;
+  },
+  &quot;values&quot;: [
+    {
+      &quot;date&quot;: &quot;2025-05-01T00:45:00Z&quot;,
+      &quot;value&quot;: 15,
+      &quot;status&quot;: 167772160
+    },
+    {
+      &quot;date&quot;: &quot;2025-05-01T01:00:00Z&quot;,
+      &quot;value&quot;: 0,
+      &quot;status&quot;: 167772160
+    },
+    {
+      &quot;date&quot;: &quot;2025-05-01T01:15:00Z&quot;,
+      &quot;value&quot;: 0,
+      &quot;status&quot;: 167772160
+    },
+    {
+      &quot;date&quot;: &quot;2025-05-01T01:30:00Z&quot;,
+      &quot;value&quot;: 4,
+      &quot;status&quot;: 167772160
+    }
+  ]
+}
+</code></pre>
+<p>Delete operation of the period between <code>01:00</code> (inclusive) and <code>01:30</code> (exclusive) using <code>WriteTimeSeriesValuesMultiRaw</code>:</p>
+<pre><code class="language-json">[
+  {
+    &quot;id&quot;: {
+      &quot;id&quot;: null,
+      &quot;path&quot;: &quot;[Full path to the time series]&quot;,
+      &quot;timeseriesKey&quot;: null
+    },
+    &quot;interval&quot;: {
+      &quot;startTime&quot;: &quot;2025-05-01T01:00:00Z&quot;,
+      &quot;endTime&quot;: &quot;2025-05-01T01:30:00Z&quot;
+    }
+  }
+]
+</code></pre>
+<p>And the result is (from <code>ReadTimeSeriesValuesRaw</code>):</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: {
+    &quot;id&quot;: &quot;e91f1ffd-e5ea-4916-a3ef-b35ee5ca3b95&quot;,
+    &quot;path&quot;: &quot;[Full path to the time series]&quot;,
+    &quot;timeseriesKey&quot;: 131854
+  },
+  &quot;resolution&quot;: &quot;Min15&quot;,
+  &quot;interval&quot;: {
+    &quot;startTime&quot;: &quot;2025-05-01T00:45:00Z&quot;,
+    &quot;endTime&quot;: &quot;2025-05-01T01:45:00Z&quot;
+  },
+  &quot;values&quot;: [
+    {
+      &quot;date&quot;: &quot;2025-05-01T00:45:00Z&quot;,
+      &quot;value&quot;: 15,
+      &quot;status&quot;: 167772160
+    },
+    {
+      &quot;date&quot;: &quot;2025-05-01T01:00:00Z&quot;,
+      &quot;value&quot;: null,
+      &quot;status&quot;: 67108864 // status is missing
+    },
+    {
+      &quot;date&quot;: &quot;2025-05-01T01:15:00Z&quot;,
+      &quot;value&quot;: null, 
+      &quot;status&quot;: 67108864 // status is missing
+    },
+    {
+      &quot;date&quot;: &quot;2025-05-01T01:30:00Z&quot;,
+      &quot;value&quot;: 4,
+      &quot;status&quot;: 167772160
+    }
+  ]
+}
+</code></pre>
+<h3 id="post-apiv1createphysicaltimeseries"><code>POST /api/v1/CreatePhysicalTimeSeries</code></h3>
+<p><em>Creates a physical time series in the database.</em></p>
+<p>POST /api/v1/CreatePhysicalTimeSeries
+{
+  "path": "/Path/to/the/timeseries/",
+  "name": "NameOfTheTimeSeries",
+  "curveType": "Linear",
+  "resolution": "Hour",
+  "unitOfMeasurement": "kWh",
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5"
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>path</code></td>
+<td>query</td>
+<td>No</td>
+<td>Path of the time series. <em><strong>Note!</strong></em> The path will automatically be prepended with "Resource".</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>query</td>
+<td>No</td>
+<td>Name of the time series. <em><strong>Note!</strong></em> The concatenated string of path and name must be unique in the database.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>curveType</code></td>
+<td>query</td>
+<td>No</td>
+<td>Curve type of the time series.</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>resolution</code></td>
+<td>query</td>
+<td>No</td>
+<td>Resolution of the time series.</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>unitOfMeasurement</code></td>
+<td>query</td>
+<td>No</td>
+<td>Name of the unit of measurement to use for the time series. <em><strong>Note!</strong></em> This string must match an existing unit in Mesh.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use in the search.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response Body</strong></p>
+<p>Schema: <a href="#meshtimeseriesresource">MeshTimeseriesResource</a></p>
+<pre><code class="language-json">{
+  &quot;timeseriesKey&quot;: 0,
+  &quot;path&quot;: &quot;string&quot;,
+  &quot;name&quot;: &quot;string&quot;,
+  &quot;temporary&quot;: true,
+  &quot;curveType&quot;: &quot;Unknown&quot;,
+  &quot;resolution&quot;: &quot;Unspecified&quot;,
+  &quot;unitOfMeasurement&quot;: &quot;string&quot;,
+  &quot;virtualTimeseriesExpression&quot;: &quot;string&quot;
+}
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-apiv1listmodels"><code>GET /api/v1/ListModels</code></h3>
+<p><em>List path of existing models in Mesh.</em></p>
+<p>GET /api/v1/ListModels
+{
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5"
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response Body</strong></p>
+<p>Schema: [string]</p>
+<pre><code class="language-json">[
+  &quot;string&quot;
+]
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-apiv1searchforobjects"><code>GET /api/v1/SearchForObjects</code></h3>
+<p><em>Search for objects in the Mesh model.</em></p>
+<p>GET /api/v1/SearchForObjects
+{
+  "startObjectPath": "Model/Company/Mesh",
+  "query": "*[.Type=HydroPlant]",
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5",
+  "maxNum": 10
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>startObjectPath</code></td>
+<td>query</td>
+<td>No</td>
+<td>Path to the object where the search is started from.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>query</code></td>
+<td>query</td>
+<td>No</td>
+<td>The search query.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use in the search.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>maxNum</code></td>
+<td>query</td>
+<td>No</td>
+<td>Maximum number of objects to return in the query, 0 means all.</td>
+<td>integer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response Body</strong></p>
+<p>Schema: <a href="#meshobjectsimple">[MeshObjectSimple]</a></p>
+<pre><code class="language-json">[
+  {
+    &quot;id&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,
+    &quot;name&quot;: &quot;string&quot;,
+    &quot;typeName&quot;: &quot;string&quot;,
+    &quot;path&quot;: &quot;string&quot;,
+    &quot;ownerId&quot;: {
+      &quot;id&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,
+      &quot;path&quot;: &quot;string&quot;,
+      &quot;timeseriesKey&quot;: 0
+    }
+  }
+]
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-apiv1getobject"><code>GET /api/v1/GetObject</code></h3>
+<p><em>Get complete information of a given object in Mesh.</em></p>
+<p>GET /api/v1/GetObject
+{
+  "objectPath": "Model/Company/Mesh.To_Areas/AREA1.To_HydroProduction/HydroAssets.To_WaterCourses/Asset1.To_HydroPlants/Unit1",
+  "objectId": null,
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5"
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>objectPath</code></td>
+<td>query</td>
+<td>No</td>
+<td>Full path to the object in Mesh.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>objectId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Id to the object in Mesh.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use in the search. If this parameter is not specified or is Guid.Empty a new session will be created and closed for this request.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response Body</strong></p>
+<p>Schema: <a href="#meshobject">MeshObject</a></p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,
+  &quot;name&quot;: &quot;string&quot;,
+  &quot;typeName&quot;: &quot;string&quot;,
+  &quot;path&quot;: &quot;string&quot;,
+  &quot;ownerId&quot;: {
+    &quot;id&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,
+    &quot;path&quot;: &quot;string&quot;,
+    &quot;timeseriesKey&quot;: 0
+  },
+  &quot;attributes&quot;: [
+    {
+      &quot;id&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,
+      &quot;name&quot;: &quot;string&quot;,
+      &quot;path&quot;: &quot;string&quot;,
+      &quot;valueType&quot;: &quot;Unspecified&quot;,
+      &quot;valueTypeCollection&quot;: true,
+      &quot;value&quot;: [
+        {
+          &quot;intValue&quot;: 0,
+          &quot;doubleValue&quot;: 0,
+          &quot;boolValue&quot;: true,
+          &quot;stringValue&quot;: &quot;string&quot;,
+          &quot;dateTimeValue&quot;: &quot;2025-10-29T08:07:25.152Z&quot;,
+          &quot;timeSeriesValue&quot;: {
+            &quot;timeseriesResource&quot;: {
+              &quot;timeseriesKey&quot;: 0,
+              &quot;path&quot;: &quot;string&quot;,
+              &quot;name&quot;: &quot;string&quot;,
+              &quot;temporary&quot;: true,
+              &quot;curveType&quot;: &quot;Unknown&quot;,
+              &quot;resolution&quot;: &quot;Unspecified&quot;,
+              &quot;unitOfMeasurement&quot;: &quot;string&quot;,
+              &quot;virtualTimeseriesExpression&quot;: &quot;string&quot;
+            },
+            &quot;expression&quot;: &quot;string&quot;,
+            &quot;isLocalExpression&quot;: true
+          },
+          &quot;ownershipRelationValue&quot;: {
+            &quot;targetObjectId&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;
+          },
+          &quot;linkRelationValue&quot;: {
+            &quot;targetObjectId&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;
+          },
+          &quot;versionedLinkRelationValue&quot;: {
+            &quot;versions&quot;: [
+              {
+                &quot;targetObjectId&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,
+                &quot;validFromTime&quot;: &quot;2025-10-29T08:07:25.152Z&quot;
+              }
+            ]
+          },
+          &quot;valueOneofCase&quot;: &quot;Unspecified&quot;
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-apiv1createobject"><code>POST /api/v1/CreateObject</code></h3>
+<p><em>Create an object in the Mesh model below a given owner object.</em></p>
+<p>POST /api/v1/CreateObject
+{
+  "Name": "STATION2",
+  "OwnerPath": "Model/Company/Mesh.To_Areas/AREA2.To_HydMetStations/HydMetStations.To_HydMetWatercourse",
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5"
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>query</td>
+<td>No</td>
+<td>Name of the object to create</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>ownerPath</code></td>
+<td>query</td>
+<td>No</td>
+<td>Full path to the object that will be the owner of the new object.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use when reading values.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response Body</strong></p>
+<p>Schema: <a href="#meshobject">MeshObject</a></p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,
+  &quot;name&quot;: &quot;string&quot;,
+  &quot;typeName&quot;: &quot;string&quot;,
+  &quot;path&quot;: &quot;string&quot;,
+  &quot;ownerId&quot;: {
+    &quot;id&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,
+    &quot;path&quot;: &quot;string&quot;,
+    &quot;timeseriesKey&quot;: 0
+  },
+  &quot;attributes&quot;: [
+    {
+      &quot;id&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,
+      &quot;name&quot;: &quot;string&quot;,
+      &quot;path&quot;: &quot;string&quot;,
+      &quot;valueType&quot;: &quot;Unspecified&quot;,
+      &quot;valueTypeCollection&quot;: true,
+      &quot;value&quot;: [
+        {
+          &quot;intValue&quot;: 0,
+          &quot;doubleValue&quot;: 0,
+          &quot;boolValue&quot;: true,
+          &quot;stringValue&quot;: &quot;string&quot;,
+          &quot;dateTimeValue&quot;: &quot;2025-10-29T08:08:28.339Z&quot;,
+          &quot;timeSeriesValue&quot;: {
+            &quot;timeseriesResource&quot;: {
+              &quot;timeseriesKey&quot;: 0,
+              &quot;path&quot;: &quot;string&quot;,
+              &quot;name&quot;: &quot;string&quot;,
+              &quot;temporary&quot;: true,
+              &quot;curveType&quot;: &quot;Unknown&quot;,
+              &quot;resolution&quot;: &quot;Unspecified&quot;,
+              &quot;unitOfMeasurement&quot;: &quot;string&quot;,
+              &quot;virtualTimeseriesExpression&quot;: &quot;string&quot;
+            },
+            &quot;expression&quot;: &quot;string&quot;,
+            &quot;isLocalExpression&quot;: true
+          },
+          &quot;ownershipRelationValue&quot;: {
+            &quot;targetObjectId&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;
+          },
+          &quot;linkRelationValue&quot;: {
+            &quot;targetObjectId&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;
+          },
+          &quot;versionedLinkRelationValue&quot;: {
+            &quot;versions&quot;: [
+              {
+                &quot;targetObjectId&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,
+                &quot;validFromTime&quot;: &quot;2025-10-29T08:08:28.339Z&quot;
+              }
+            ]
+          },
+          &quot;valueOneofCase&quot;: &quot;Unspecified&quot;
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-apiv1updateobject"><code>POST /api/v1/UpdateObject</code></h3>
+<p><em>Update name and/or owner of an existing object in Mesh.</em></p>
+<p>POST /api/v1/UpdateObject
+{
+  "objectPath": "Model/Company/Mesh.To_Areas/AREA1.To_HydMetStations/HydMetStations.To_HydMetWatercourse/STATION1",
+  "objectId": null,
+  "newName": "STATION2",
+  "newOwnerPath": "Model/Company/Mesh.To_Areas/AREA2.To_HydMetStations/HydMetStations.To_HydMetWatercourse",
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5"
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>objectPath</code></td>
+<td>query</td>
+<td>No</td>
+<td>Full path to the object to update.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>objectId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Id to the object to update.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>newName</code></td>
+<td>query</td>
+<td>No</td>
+<td>New name of this object. null means keep the existing name.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>newOwnerPath</code></td>
+<td>query</td>
+<td>No</td>
+<td>Full path to the new owner of this object. null means keep the existing owner.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use when reading values.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response Body</strong></p>
+<p>Schema: boolean</p>
+<pre><code class="language-json">true
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-apiv1deleteobject"><code>POST /api/v1/DeleteObject</code></h3>
+<p><em>Delete an object in the Mesh model by specifying either full path or id to the object.</em></p>
+<p>POST /api/v1/DeleteObject
+{
+  "objectPath": "Model/Company/Mesh.To_Areas/AREA1.To_HydMetStations/HydMetStations.To_HydMetWatercourse/STATION1.To_ForecastType/RadarMeteo.To_ForecastPoint/UNIT1",
+  "objectId": null,
+  "recursiveDelete": true,
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5"
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>objectPath</code></td>
+<td>query</td>
+<td>No</td>
+<td>Full path to the object to delete.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>objectId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Id to the object to delete.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>recursiveDelete</code></td>
+<td>query</td>
+<td>No</td>
+<td>Flag to signal if the deletion should be recursive or not.</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use when reading values.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response Body</strong></p>
+<p>Schema: boolean</p>
+<pre><code class="language-json">true
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-apiv1searchforattributes"><code>GET /api/v1/SearchForAttributes</code></h3>
+<p><em>Search for attributes of a given type within the Mesh model.</em></p>
+<p>GET /api/v1/SearchForAttributes
+{
+  "startObjectPath": "Model/Company/Mesh",
+  "query": "*[.Type=HydroPlant].ActivePower",
+  "valueType": "Timeseries",
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5",
+  "maxNum": 10
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>startObjectPath</code></td>
+<td>query</td>
+<td>No</td>
+<td>Path to the object where the search is started from.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>query</code></td>
+<td>query</td>
+<td>No</td>
+<td>The search query.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>valueType</code></td>
+<td>query</td>
+<td>No</td>
+<td>The type of attribute that the search is for.</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use in the search.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>maxNum</code></td>
+<td>query</td>
+<td>No</td>
+<td>Maximum number of time series attributes to return in the query, 0 means all.</td>
+<td>integer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response Body</strong></p>
+<p>Schema: <a href="#meshattributesimple">[MeshAttributeSimple]</a></p>
+<pre><code class="language-json">[
+  {
+    &quot;id&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,
+    &quot;name&quot;: &quot;string&quot;,
+    &quot;path&quot;: &quot;string&quot;,
+    &quot;valueType&quot;: &quot;Unspecified&quot;
+  }
+]
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-apiv1getattribute"><code>GET /api/v1/GetAttribute</code></h3>
+<p><em>Get the main references to the specified attribute. Either attributePath or attributeId must be specified.</em></p>
+<p>GET /api/v1/GetAttribute
+{
+  "attributePath": null,
+  "attributeId": "4DAE6C79-62AB-4D0D-931E-CC59A18CA7DE",
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5"
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>attributePath</code></td>
+<td>query</td>
+<td>No</td>
+<td>The full path to the wanted attribute.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>attributeId</code></td>
+<td>query</td>
+<td>No</td>
+<td>The id of the wanted attribute.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use in the search.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response Body</strong></p>
+<p>Schema: <a href="#meshattribute">MeshAttribute</a></p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,
+  &quot;name&quot;: &quot;string&quot;,
+  &quot;path&quot;: &quot;string&quot;,
+  &quot;valueType&quot;: &quot;Unspecified&quot;,
+  &quot;valueTypeCollection&quot;: true,
+  &quot;value&quot;: [
+    {
+      &quot;intValue&quot;: 0,
+      &quot;doubleValue&quot;: 0,
+      &quot;boolValue&quot;: true,
+      &quot;stringValue&quot;: &quot;string&quot;,
+      &quot;dateTimeValue&quot;: &quot;2025-10-29T08:10:50.725Z&quot;,
+      &quot;timeSeriesValue&quot;: {
+        &quot;timeseriesResource&quot;: {
+          &quot;timeseriesKey&quot;: 0,
+          &quot;path&quot;: &quot;string&quot;,
+          &quot;name&quot;: &quot;string&quot;,
+          &quot;temporary&quot;: true,
+          &quot;curveType&quot;: &quot;Unknown&quot;,
+          &quot;resolution&quot;: &quot;Unspecified&quot;,
+          &quot;unitOfMeasurement&quot;: &quot;string&quot;,
+          &quot;virtualTimeseriesExpression&quot;: &quot;string&quot;
+        },
+        &quot;expression&quot;: &quot;string&quot;,
+        &quot;isLocalExpression&quot;: true
+      },
+      &quot;ownershipRelationValue&quot;: {
+        &quot;targetObjectId&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;
+      },
+      &quot;linkRelationValue&quot;: {
+        &quot;targetObjectId&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;
+      },
+      &quot;versionedLinkRelationValue&quot;: {
+        &quot;versions&quot;: [
+          {
+            &quot;targetObjectId&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,
+            &quot;validFromTime&quot;: &quot;2025-10-29T08:10:50.726Z&quot;
+          }
+        ]
+      },
+      &quot;valueOneofCase&quot;: &quot;Unspecified&quot;
+    }
+  ]
+}
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-apiv1gettimeseriesresource"><code>GET /api/v1/GetTimeseriesResource</code></h3>
+<p><em>Get the time series resource for a given timeseriesKey.</em></p>
+<p>GET /api/v1/GetTimeseriesResource
+{
+  "timeseriesKey": 12345,
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5"
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>timeseriesKey</code></td>
+<td>query</td>
+<td>No</td>
+<td>The key to the wanted time series resource.</td>
+<td>integer</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use in the search.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response Body</strong></p>
+<p>Schema: <a href="#meshattribute">MeshAttribute</a></p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,
+  &quot;name&quot;: &quot;string&quot;,
+  &quot;path&quot;: &quot;string&quot;,
+  &quot;valueType&quot;: &quot;Unspecified&quot;,
+  &quot;valueTypeCollection&quot;: true,
+  &quot;value&quot;: [
+    {
+      &quot;intValue&quot;: 0,
+      &quot;doubleValue&quot;: 0,
+      &quot;boolValue&quot;: true,
+      &quot;stringValue&quot;: &quot;string&quot;,
+      &quot;dateTimeValue&quot;: &quot;2025-10-29T08:11:41.574Z&quot;,
+      &quot;timeSeriesValue&quot;: {
+        &quot;timeseriesResource&quot;: {
+          &quot;timeseriesKey&quot;: 0,
+          &quot;path&quot;: &quot;string&quot;,
+          &quot;name&quot;: &quot;string&quot;,
+          &quot;temporary&quot;: true,
+          &quot;curveType&quot;: &quot;Unknown&quot;,
+          &quot;resolution&quot;: &quot;Unspecified&quot;,
+          &quot;unitOfMeasurement&quot;: &quot;string&quot;,
+          &quot;virtualTimeseriesExpression&quot;: &quot;string&quot;
+        },
+        &quot;expression&quot;: &quot;string&quot;,
+        &quot;isLocalExpression&quot;: true
+      },
+      &quot;ownershipRelationValue&quot;: {
+        &quot;targetObjectId&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;
+      },
+      &quot;linkRelationValue&quot;: {
+        &quot;targetObjectId&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;
+      },
+      &quot;versionedLinkRelationValue&quot;: {
+        &quot;versions&quot;: [
+          {
+            &quot;targetObjectId&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,
+            &quot;validFromTime&quot;: &quot;2025-10-29T08:11:41.574Z&quot;
+          }
+        ]
+      },
+      &quot;valueOneofCase&quot;: &quot;Unspecified&quot;
+    }
+  ]
+}
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-apiv1getratingcurveversions"><code>GET /api/v1/GetRatingCurveVersions</code></h3>
+<p><em>Get rating curve version(s) from a rating curve attribute (<code>RatingCurveAttribute</code>).</em></p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>attributePath</code></td>
+<td>query</td>
+<td>No</td>
+<td>The full path to the wanted attribute.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>attributeId</code></td>
+<td>query</td>
+<td>No</td>
+<td>The id of the wanted attribute.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>fromDate</code></td>
+<td>query</td>
+<td>No</td>
+<td>Retrieve all versions that apply in the interval starting with fromDate. This may include one version with a <code>from</code> before the interval.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>toDate</code></td>
+<td>query</td>
+<td>No</td>
+<td>Retrieve all versions that apply in the interval ending with toDate.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>versionsOnly</code></td>
+<td>query</td>
+<td>No</td>
+<td>If set to true, just return the from value, and not the x_range_from and x_value_segments.</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use in the search.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response Body</strong></p>
+<p>Schema: <a href="#meshratingcurveversion">[MeshRatingCurveVersion]</a></p>
+<pre><code class="language-json">[
+  {
+    &quot;from&quot;: &quot;2025-10-29T08:13:10.686Z&quot;,
+    &quot;xRangeFrom&quot;: 0,
+    &quot;segments&quot;: [
+      {
+        &quot;xRangeUntil&quot;: 0,
+        &quot;factorA&quot;: 0,
+        &quot;factorB&quot;: 0,
+        &quot;factorC&quot;: 0
+      }
+    ]
+  }
+]
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-apiv1getxysets"><code>GET /api/v1/GetXySets</code></h3>
+<p><em>Get zero or more <code>XySet</code>s from an XY-set attribute (<code>XYSetAttribute</code>) or
+a versioned XY-set attribute (<code>XYZSeriesAttribute</code>).</em></p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>attributePath</code></td>
+<td>query</td>
+<td>No</td>
+<td>The full path to the wanted attribute.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>attributeId</code></td>
+<td>query</td>
+<td>No</td>
+<td>The id of the wanted attribute.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>fromDate</code></td>
+<td>query</td>
+<td>No</td>
+<td>For versioned XY sets (<code>XYZSeriesAttribute</code>) retrieve all versions that apply in the interval beginning with fromDate. This may include one version with a <code>valid_from_time</code> before fromDate. For non-versioned XY-set attributes (<code>XYSetAttribute</code>) fromDate must be null.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>toDate</code></td>
+<td>query</td>
+<td>No</td>
+<td>For versioned XY sets (<code>XYZSeriesAttribute</code>) retrieve all versions that apply in the interval ending with toDate. For non-versioned XY-set attributes (<code>XYSetAttribute</code>) toDate must be null.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>versionsOnly</code></td>
+<td>query</td>
+<td>No</td>
+<td>When set to true, the response only returns the periods of the found versions and not curves in the XyCurves.</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use in the search.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response Body</strong></p>
+<p>Schema: <a href="#meshxyset">[MeshXySets]</a></p>
+<pre><code class="language-json">[
+  {
+    &quot;validFromTime&quot;: &quot;2025-10-29T08:14:18.244Z&quot;,
+    &quot;xyCurves&quot;: [
+      {
+        &quot;referenceValue&quot;: 0,
+        &quot;xValues&quot;: [
+          0
+        ],
+        &quot;yValues&quot;: [
+          0
+        ]
+      }
+    ]
+  }
+]
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-apiv1updateintattribute"><code>POST /api/v1/UpdateIntAttribute</code></h3>
+<p><em>Change value for an integer attribute on an object. The value to update may be null or a single value.</em></p>
+<p>POST /api/v1/UpdateIntParameter
+{
+  "attributePath": "Model/Company/Mesh.To_Areas/AREA1.To_HydMetStations/HydMetStations.To_HydMetWatercourse/STATION1.To_ForecastType/RadarMeteo.To_ForecastPoint/UNIT1/Attribute1",
+  "value": 123,
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5"
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>attributePath</code></td>
+<td>query</td>
+<td>No</td>
+<td>Full path to the attribute to change.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>attributeId</code></td>
+<td>query</td>
+<td>No</td>
+<td>The id of the attribute to change.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td>query</td>
+<td>No</td>
+<td>The value to use to change the attribute. This may null to nullify the value or a value to update the attribute with.</td>
+<td>integer</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use when reading values.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response Body</strong></p>
+<p>Schema: boolean</p>
+<pre><code class="language-json">true
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-apiv1updatedoubleattribute"><code>POST /api/v1/UpdateDoubleAttribute</code></h3>
+<p><em>Change value for a double attribute on an object. The value to update may be null or a single value.</em></p>
+<p>POST /api/v1/UpdateDoubleParameter
+{
+  "attributePath": "Model/Company/Mesh.To_Areas/AREA1.To_HydMetStations/HydMetStations.To_HydMetWatercourse/STATION1.To_ForecastType/RadarMeteo.To_ForecastPoint/UNIT1/Attribute1",
+  "attributeId": null,
+  "value": 123.1,
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5"
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>attributePath</code></td>
+<td>query</td>
+<td>No</td>
+<td>Full path to the attribute to change.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>attributeId</code></td>
+<td>query</td>
+<td>No</td>
+<td>The id of the attribute to change.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td>query</td>
+<td>No</td>
+<td>The value to use to change the attribute. This may null to nullify the value or a value to update the attribute with.</td>
+<td>number</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use when reading values.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response Body</strong></p>
+<p>Schema: boolean</p>
+<pre><code class="language-json">true
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-apiv1updateboolattribute"><code>POST /api/v1/UpdateBoolAttribute</code></h3>
+<p><em>Change value for a bool attribute on an object. The value to update may be null or a single value.</em></p>
+<p>POST /api/v1/UpdateBoolParameter
+{
+  "attributePath": "Model/Company/Mesh.To_Areas/AREA1.To_HydMetStations/HydMetStations.To_HydMetWatercourse/STATION1.To_ForecastType/RadarMeteo.To_ForecastPoint/UNIT1/Attribute1",
+  "attributeId": null,
+  "value": true,
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5"
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>attributePath</code></td>
+<td>query</td>
+<td>No</td>
+<td>Full path to the attribute to change.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>attributeId</code></td>
+<td>query</td>
+<td>No</td>
+<td>The id of the attribute to change.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td>query</td>
+<td>No</td>
+<td>The value to use to change the attribute. This may null to nullify the value or a value to update the attribute with.</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use when reading values.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response Body</strong></p>
+<p>Schema: boolean</p>
+<pre><code class="language-json">true
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-apiv1updatestringattribute"><code>POST /api/v1/UpdateStringAttribute</code></h3>
+<p><em>Change value for a string attribute on an object. The value to update may be null or a single value.</em></p>
+<p>POST /api/v1/UpdateStringParameter
+{
+  "attributePath": "Model/Company/Mesh.To_Areas/AREA1.To_HydMetStations/HydMetStations.To_HydMetWatercourse/STATION1.To_ForecastType/RadarMeteo.To_ForecastPoint/UNIT1/Attribute1",
+  "attributeId": null,
+  "value": "This is a test",
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5"
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>attributePath</code></td>
+<td>query</td>
+<td>No</td>
+<td>Full path to the attribute to change.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>attributeId</code></td>
+<td>query</td>
+<td>No</td>
+<td>The id of the attribute to change.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td>query</td>
+<td>No</td>
+<td>The value to use to change the attribute. This may null to nullify the value or a value to update the attribute with.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use when reading values.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response Body</strong></p>
+<p>Schema: boolean</p>
+<pre><code class="language-json">true
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-apiv1updatedatetimeattribute"><code>POST /api/v1/UpdateDateTimeAttribute</code></h3>
+<p><em>Change value for a date time attribute on an object. The value to update may be null or a single value.</em></p>
+<p>POST /api/v1/UpdateDateTimeParameter
+{
+  "attributePath": "Model/Company/Mesh.To_Areas/AREA1.To_HydMetStations/HydMetStations.To_HydMetWatercourse/STATION1.To_ForecastType/RadarMeteo.To_ForecastPoint/UNIT1/Attribute1",
+  "attributeId": null,
+  "value": "2023-12-10T12:23:14+02:00",
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5"
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>attributePath</code></td>
+<td>query</td>
+<td>No</td>
+<td>Full path to the attribute to change.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>attributeId</code></td>
+<td>query</td>
+<td>No</td>
+<td>The id of the attribute to change.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td>query</td>
+<td>No</td>
+<td>The value to use to change the attribute. This may null to nullify the value or a value to update the attribute with.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use when reading values.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response Body</strong></p>
+<p>Schema: boolean</p>
+<pre><code class="language-json">true
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-apiv1updatetimeseriesattribute"><code>POST /api/v1/UpdateTimeSeriesAttribute</code></h3>
+<p><em>Change the time series definition for an attribute on an object. The values to update are either a time series resource or a local expression.</em></p>
+<p>POST /api/v1/UpdateTimeSeriesAttribute
+{
+  "attributePath": "Model/Company/Mesh.To_Areas/AREA1.To_HydMetStations/HydMetStations.To_HydMetWatercourse/STATION1.To_ForecastType/RadarMeteo.To_ForecastPoint/UNIT1",
+  "attributeId": null,
+  "newLocalExpression": null,
+  "newTimeSeriesKey": 12345,
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5"
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>attributePath</code></td>
+<td>query</td>
+<td>No</td>
+<td>Full path to the attribute to change.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>attributeId</code></td>
+<td>query</td>
+<td>No</td>
+<td>The id of the attribute to change.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>newLocalExpression</code></td>
+<td>query</td>
+<td>No</td>
+<td>The new local expression to set on the time series attribute. Specified as null means to keep the existing expression, specified as a string with just spaces means to delete the existing expression.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>newTimeSeriesKey</code></td>
+<td>query</td>
+<td>No</td>
+<td>Reference (as TIMESER.TIMS_KEY) to the new time series resource to set on the time series attribute. Specified as null means to keep the existing value, specified as 0 means to delete the existing value.</td>
+<td>integer</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use when reading values.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response Body</strong></p>
+<p>Schema: boolean</p>
+<pre><code class="language-json">true
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-apiv1updatelinkrelationattribute"><code>POST /api/v1/UpdateLinkRelationAttribute</code></h3>
+<p><em>Update the link relation for an attribute on an object. The values to update are either a time series resource or a local expression.</em></p>
+<p>POST /api/v1/UpdateTimeSeriesAttribute
+{
+  "attributePath": "Model/Company/Mesh.To_Areas/AREA1.To_HydMetStations/HydMetStations.To_HydMetWatercourse/STATION1.To_ForecastType/RadarMeteo.To_ForecastPoint/UNIT1",
+  "attributeId": null,
+  "newTargets": [{
+    "Path": null,
+    "Id": "1236532d-472d-46b3-8996-1c414398c103",
+    "TimeseriesKey": null
+  }]
+  "newLocalExpression": null,
+  "newTimeSeriesResourceKey": 12345,
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5"
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>attributePath</code></td>
+<td>query</td>
+<td>No</td>
+<td>Full path to the attribute to change.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>attributeId</code></td>
+<td>query</td>
+<td>No</td>
+<td>The id of the attribute to change.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>append</code></td>
+<td>query</td>
+<td>No</td>
+<td>Flag to signal if the new object links (true) shall be added to the existing links or (false) replace the existing links.</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use when reading values.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Request Body</strong></p>
+<p>List of objects references to the objects to add links to.</p>
+<p>Schema: [[MeshTsId]]</p>
+<pre><code class="language-json">[
+  {
+    &quot;id&quot;: &quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,
+    &quot;path&quot;: &quot;string&quot;,
+    &quot;timeseriesKey&quot;: 0
+  }
+]
+</code></pre>
+<p><strong>Response Body</strong></p>
+<p>Schema: boolean</p>
+<pre><code class="language-json">true
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-apiv1updateratingcurveversions"><code>POST /api/v1/UpdateRatingCurveVersions</code></h3>
+<p><em>Create, update, and/or delete rating curve versions in a rating curve attribute (<code>RatingCurveAttribute</code>).</em></p>
+<p>POST /api/v1/UpdateRatingCurveVersions
+{
+  "attributePath": "Model/Company/Mesh.To_Areas/AREA1.To_HydMetStations/HydMetStations.To_HydMetWatercourse/STATION1.To_ForecastType/RadarMeteo.To_ForecastPoint/RatingCurve",
+  "attributeId": null,
+  "fromDate": "2023-01-01T00:00:00+01:00",
+  "toDate": "2024-01-01T00:00:00+01:00",
+  "versions": [{
+  }],
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5"
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>attributePath</code></td>
+<td>query</td>
+<td>No</td>
+<td>Full path to the attribute to change.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>attributeId</code></td>
+<td>query</td>
+<td>No</td>
+<td>The id of the attribute to change.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>fromDate</code></td>
+<td>query</td>
+<td>No</td>
+<td>All existing rating curve versions inside the interval will be deleted. fromDate specifies the start of the interval.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>toDate</code></td>
+<td>query</td>
+<td>No</td>
+<td>All existing rating curve versions inside the interval will be deleted. toDate specifies the end of the interval.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use when reading values.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Request Body</strong></p>
+<p>Update rating curve versions for rating curve attribute. The <code>from</code> of all versions must be inside the interval. All versions must be sorted by <code>from</code>.</p>
+<pre><code class="language-json">[
+  {
+    &quot;from&quot;: &quot;2025-10-29T08:18:56.941Z&quot;,
+    &quot;xRangeFrom&quot;: 0,
+    &quot;segments&quot;: [
+      {
+        &quot;xRangeUntil&quot;: 0,
+        &quot;factorA&quot;: 0,
+        &quot;factorB&quot;: 0,
+        &quot;factorC&quot;: 0
+      }
+    ]
+  }
+]
+</code></pre>
+<p><strong>Response Body</strong></p>
+<p>Schema: boolean</p>
+<pre><code class="language-json">true
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-apiv1updatexysets"><code>POST /api/v1/UpdateXySets</code></h3>
+<p><em>Create, update, and/or delete <code>XySet</code>s in an XY-set attribute (<code>XYZAttribute</code>) or a versioned XY-set attribute (<code>XYZSeriesAttribute</code>).</em></p>
+<p>POST /api/v1/UpdateXySets
+ {
+   "attributePath": "Model/Company/Mesh.To_Areas/AREA1.To_HydMetStations/HydMetStations.To_HydMetWatercourse/STATION1.To_ForecastType/RadarMeteo.To_ForecastPoint/XYset",
+   "attributeId": null,
+   "fromDate": "2023-01-01T00:00:00+01:00",
+   "toDate": "2024-01-01T00:00:00+01:00",
+   "xySets": [{
+   }],
+   "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5"
+ }</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>attributePath</code></td>
+<td>query</td>
+<td>No</td>
+<td>Full path to the attribute to change.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>attributeId</code></td>
+<td>query</td>
+<td>No</td>
+<td>The id of the attribute to change.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>fromDate</code></td>
+<td>query</td>
+<td>No</td>
+<td>For versioned XY-sets all existing XY-sets inside the interval will be deleted, fromDate specifies the start of the interval. For non-versioned XY-sets (<code>XYSetAttribute</code>) this must be null.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>toDate</code></td>
+<td>query</td>
+<td>No</td>
+<td>For versioned XY-sets all existing XY-sets inside the interval will be deleted, fromDate specifies the start of the interval. For non-versioned XY-sets (<code>XYSetAttribute</code>) this must be null.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use when reading values.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Request Body</strong></p>
+<p>If updating a versioned XY-set attribute (<code>XYZSeriesAttribute</code>) the <code>XySet</code>s in xySets will be inserted in the XY-set series. The validFromTime of all XY-sets must be inside the interval.</p>
+<p><em><strong>Note!</strong></em> If updating a non-versioned XY-set attribute (<code>XYSetAttribute</code>) this must contain zero or one <code>XySet</code>.</p>
+<p>Schema: <a href="#meshxyset">[MeshXySet]</a></p>
+<pre><code class="language-json">[
+  {
+    &quot;validFromTime&quot;: &quot;2025-10-29T08:20:42.431Z&quot;,
+    &quot;xyCurves&quot;: [
+      {
+        &quot;referenceValue&quot;: 0,
+        &quot;xValues&quot;: [
+          0
+        ],
+        &quot;yValues&quot;: [
+          0
+        ]
+      }
+    ]
+  }
+]
+</code></pre>
+<p><strong>Response Body</strong></p>
+<p>Schema: boolean</p>
+<pre><code class="language-json">true
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-apiv1importmultistepwatervaluefunctions"><code>POST /api/v1/ImportMultistepWaterValueFunctions</code></h3>
+<p>*Import a multistep water value function into the Mesh model.</p>
+<p><em><strong>Note!</strong></em> In order to ensure efficient data management, this method will also automatically delete old water value functions which have the same structure as the one you import, and which are older than a specific retention period specified as <code>DeleteWaterValuesOlderThanDays</code> in the API configuration.</p>
+<p>POST /api/v1/ImportMultistepWaterValueFunctions
+{
+  "waterCoursePath": "Model/Company/Mesh.To_Areas/AREA1.To_HydroProduction/HydroAssets.To_WaterCourses/WATERCOURSE1",
+  "waterCourseId": null,
+  "wvfMainPath": "Model/Company/Mesh.To_Areas/AREA1.To_HydroProduction/HydroAssets.has_WaterValueFunctionsMain/WaterValueFunctionMain",
+  "wvfMainId": null,
+  "waterValueDate": "2024-08-15T12:45:00Z",
+  "wvfName": "WATERCOURSE1-2024-08-15T12:45",
+  "cutGroupName": "WATERCOURSE1",
+  "multiStepWaterValuesList": [{
+      "reservoirName": "RESERVOIR1",
+      "volumesInMm3": [ 0.000, 105.600, 119.690, ..., 146.230, 172.020 ],
+      "valuesInEuroPerMm3": [ 8176.960, 8152.450, 8127.940, ..., 7466.140, 0.000 ]
+    },{
+      "reservoirName": "RESERVOIR2",
+      "volumesInMm3": [ 0.000, 0.001, 0.796, ..., 0.805, 1.380 ],
+      "valuesInEuroPerMm3: [ 84600.000, 84599.999, 76148.460, 84.601, 0.000 ]
+    }],
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5"
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>waterCoursePath</code></td>
+<td>query</td>
+<td>No</td>
+<td>Full path to the water course object where the reservoirs exist below.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>waterCourseId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Id of the water course object where the reservoirs exist below.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>wvfMainPath</code></td>
+<td>query</td>
+<td>No</td>
+<td>Full path to the main water value function object.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>wvfMainId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Id of the main water value function object.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>wvfName</code></td>
+<td>query</td>
+<td>No</td>
+<td>Name of the water value function to create.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>waterValueDate</code></td>
+<td>query</td>
+<td>No</td>
+<td>Date and time that the water values were created for.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use when reading values.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Request Body</strong></p>
+<p>Schema: <a href="#multistepwatervalues">[MultiStepWaterValues]</a></p>
+<p>The list of multi step water values to use.</p>
+<pre><code class="language-json">[
+  {
+    &quot;reservoirName&quot;: &quot;string&quot;,
+    &quot;volumesInMm3&quot;: [
+      0
+    ],
+    &quot;valuesInEuroPerMm3&quot;: [
+      0
+    ]
+  }
+]
+</code></pre>
+<p><strong>Response Body</strong></p>
+<p>Schema: boolean</p>
+<pre><code class="language-json">true
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-apiv1identifyvirtualtsusage"><code>POST /api/v1/IdentifyVirtualTSusage</code></h3>
+<p><em>List all usage of SmG virtual time series in the given object types below the given start object.</em></p>
+<p>POST /api/v1/IdentifyVirtualTSusage
+{
+  "modePath": "Model/Company",
+  "objectTypes": [ "HydroPlant" ]
+  "sessionId": "AC51A5CF-786B-4C19-ADF9-BC1073718DE5"
+}</p>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>modelPath</code></td>
+<td>query</td>
+<td>No</td>
+<td>Path to the start object for the search.</td>
+<td>string</td>
+</tr>
+<tr>
+<td><code>sessionId</code></td>
+<td>query</td>
+<td>No</td>
+<td>Guid of the Mesh session to use when reading values.</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Request Body</strong></p>
+<p>List of object types to search for vts usage in.</p>
+<p>Schema: [string]</p>
+<pre><code class="language-json">[
+  &quot;string&quot;
+]
+</code></pre>
+<p><strong>Response Body</strong></p>
+<p>Schema: <a href="#virtualtsinfo">[VirtualTSinfo]</a></p>
+<pre><code class="language-json">[
+  {
+    &quot;attributePath&quot;: &quot;string&quot;,
+    &quot;timeseriesKey&quot;: 0,
+    &quot;virtualExpression&quot;: &quot;string&quot;
+  }
+]
+</code></pre>
+<p><strong>Returned Status Codes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>499</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody>
+</table>
+<h2 id="version-v1-schemas">Version <strong>v1</strong> Schemas</h2>
+<h3 id="meshaccumulationenum">MeshAccumulationEnum</h3>
+<p><em>Describes how accumulation to a longer resolution shall be performed.</em></p>
+<ul>
+<li><code>AccDefault</code> - Use the default accumulation method as defined by Mesh and depends on measuring unit, time series type and resolution.</li>
+<li><code>AccSum</code> - Accumulate using sum of the values.</li>
+<li><code>AccAverage</code> - Accumulate using the average value.</li>
+<li><code>AccFirst</code> - Accumulate using the first value.</li>
+<li><code>AccLast</code> - Accumulate using the last value.</li>
+</ul>
+<p>Type: string
+Enum: [AccSum, AccAverage, AccFirst, AccLast]</p>
+<h3 id="meshattribute">MeshAttribute</h3>
+<p><em>The complete description of a specific attribute in Mesh.</em></p>
+<p>Type: object</p>
+<p>Properties:</p>
+<ul>
+<li><code>id</code>: The Id as GUID of this attribute.</li>
+<li>type: string</li>
+<li>format: uuid</li>
+<li>nullable: true</li>
+<li><code>name</code>: The name of this attribute.</li>
+<li>type: string</li>
+<li>nullable: true</li>
+<li><code>path</code>: The complete path within Mesh to this attribute.</li>
+<li>type: string</li>
+<li>nullable: true</li>
+<li><code>valueType</code>: The value type of this attribute.</li>
+<li>type: string</li>
+<li>nullable: true</li>
+<li>Enum: <a href="#meshattributevalueenum">MeshAttributeValueEnum</a></li>
+<li><code>valueTypeCollection</code>: Flag to signal that the value is a collection list.</li>
+<li>type: boolean</li>
+<li>nullable: true</li>
+<li><code>value</code>: The list of values.</li>
+<li>type: array of <a href="#meshattributevalue">MeshAttributeValue</a></li>
+<li>nullable: true</li>
+</ul>
+<h3 id="meshattributesimple">MeshAttributeSimple</h3>
+<p><em>The minimal description of a specific attribute in Mesh.</em></p>
+<p>Type: object</p>
+<p>Properties:</p>
+<ul>
+<li><code>id</code>: The Id as GUID of this attribute.</li>
+<li>type: string</li>
+<li>format: uuid</li>
+<li>nullable: true</li>
+<li><code>name</code>: The name of this attribute.</li>
+<li>type: string</li>
+<li>nullable: true</li>
+<li><code>path</code>: The complete path within Mesh to this attribute.</li>
+<li>type: string</li>
+<li>nullable: true</li>
+<li><code>valueType</code>: Type of the attribute.</li>
+<li>type: <a href="#meshattributevalueenum">MeshAttributeValueEnum</a></li>
+<li>nullable: true</li>
+</ul>
+<h3 id="meshattributevalue">MeshAttributeValue</h3>
+<p><em>The object containing an attribute value.</em></p>
+<p>Type: object</p>
+<p>Properties:</p>
+<ul>
+<li><code>intValue</code>: The integer value.</li>
+<li>type: integer</li>
+<li>format: int64</li>
+<li>nullable: true</li>
+<li><code>doubleValue</code>: The floating point value.</li>
+<li>type: number</li>
+<li>format: double</li>
+<li>nullable: true</li>
+<li><code>boolValue</code>: The boolean value.</li>
+<li>type: boolean</li>
+<li>nullable: true</li>
+<li><code>stringValue</code>: The string value.</li>
+<li>type: string</li>
+<li>nullable: true</li>
+<li><code>dateTimeValue</code>: The date time value.</li>
+<li>type: string</li>
+<li>format: date-time</li>
+<li>nullable: true</li>
+<li><code>timeSeriesValue</code>: The time series reference value.</li>
+<li>type: <a href="#meshtimeseries">MeshTimeseries</a></li>
+<li>nullable: true</li>
+<li><code>ownershipRelationValue</code>: The ownership relation value.</li>
+<li>type: <a href="#meshownershiprelation">MeshOwnershipRelation</a></li>
+<li>nullable: true</li>
+<li><code>linkRelationValue</code>: The link relation value.</li>
+<li>type: <a href="#meshlinkrelation">MeshLinkRelation</a></li>
+<li>nullable: true</li>
+<li><code>versionedLinkRelationValue</code>: The time dependent link relation value.</li>
+<li>type: <a href="#meshversionedlinkrelation">MeshVersionedLinkRelation</a></li>
+<li>nullable: true</li>
+<li><code>valueOneofCase</code>: Describing which of the value types that this attribute is containing.</li>
+<li>type: <a href="#meshattributevalueenum">MeshAttributeValueEnum</a></li>
+<li>nullable: true</li>
+</ul>
+<h3 id="meshattributevalueenum">MeshAttributeValueEnum</h3>
+<p><em>Type of attribute values.</em></p>
+<ul>
+<li><code>Unspecified</code> - value type is not specified.</li>
+<li><code>Int</code> - value is an integer.</li>
+<li><code>Double</code> - value is floating number.</li>
+<li><code>Bool</code> - value is a boolean flag.</li>
+<li><code>String</code> - value is a string.</li>
+<li><code>UtcTime</code> - value is a date time.</li>
+<li><code>Timeseries</code> - value is a time series.</li>
+<li><code>OwnershipRelation</code> - value is an ownership relation.</li>
+<li><code>LinkRelation</code> - value is a link relation.</li>
+<li><code>VersionedLinkRelation</code> - value is a time dependent link relation.</li>
+</ul>
+<p>Type: string</p>
+<p>Enum: [Unspecified,Int,Double,Bool,String,UtcTime,Timeseries,OwnershipRelation,LinkRelation,VersionedLinkRelation,RatingCurve,XySet]</p>
+<h3 id="meshcurvetypeenum">MeshCurveTypeEnum</h3>
+<p><em>The valid curve types used by Mesh:</em></p>
+<ul>
+<li><code>Unknown</code> - Curve type is not defined.</li>
+<li><code>Staircasestartofstep</code> - Curve type is a staircase which start at the start of the period between two values.</li>
+<li><code>Piecewiselinear</code> - Curve type is linear between two values.</li>
+<li><code>Staircase</code> - Curve type is a staircase which start at the end of the period between two values.</li>
+</ul>
+<p>Type: string</p>
+<p>Enum: [Unknown,Staircasestartofstep,Piecewiselinear,Staircase]</p>
+<h3 id="meshinterval">MeshInterval</h3>
+<p><em>Definition of a time interval.</em></p>
+<p>Type: object</p>
+<p>Properties:</p>
+<ul>
+<li><code>startTime</code>: Date time of the start of the interval.</li>
+<li>type: string</li>
+<li>format: date-time</li>
+<li>nullable: true</li>
+<li><code>endTime</code>: Date time of the end of the interval.</li>
+<li>type: string</li>
+<li>format: date-time</li>
+<li>nullable: true</li>
+</ul>
+<h3 id="meshlinkrelation">MeshLinkRelation</h3>
+<p><em>Definition of a link relation in Mesh.</em></p>
+<p>Type: object</p>
+<p>Properties:</p>
+<ul>
+<li><code>targetObjectId</code>: The identity of the object that is linked to by the current object.</li>
+<li>type: string</li>
+<li>format: uuid</li>
+</ul>
+<h3 id="meshlinkrelationversion">MeshLinkRelationVersion</h3>
+<p><em>Definition of a versioned link relation in Mesh.</em></p>
+<p>Type: object</p>
+<p>Properties:</p>
+<ul>
+<li><code>targetObjectId</code>: The identity of the object that is linked to by the current object in this version.</li>
+<li>type: string</li>
+<li>format: uuid</li>
+<li>nullable: true</li>
+<li><code>validFromTime</code>: The date time when this version is valid from.</li>
+<li>type: string</li>
+<li>format: date-time</li>
+</ul>
+<h3 id="meshobject">MeshObject</h3>
+<p><em>The complete description of a specific Mesh object.</em></p>
+<p>Type: object</p>
+<p>Properties:</p>
+<ul>
+<li><code>id</code>: The Id as GUID of this object.</li>
+<li>type: string</li>
+<li>format: uuid</li>
+<li>nullable: true</li>
+<li><code>name</code>: The name of this object.</li>
+<li>type: string</li>
+<li>nullable: true</li>
+<li><code>typeName</code>: The type name of this object.</li>
+<li>type: string</li>
+<li>nullable: true</li>
+<li><code>path</code>: The complete path within Mesh to this object.</li>
+<li>type: string</li>
+<li>nullable: true</li>
+<li><code>ownerId</code>: The reference to the object that is owning this object.</li>
+<li>type: <a href="#meshreferencedobject">MeshReferencedObject</a></li>
+<li>nullable: true</li>
+<li><code>attributes</code>: The list of attributes describing this object.</li>
+<li>type: array of <a href="#meshattribute">MeshAttribute</a></li>
+<li>nullable: true</li>
+</ul>
+<h3 id="meshobjectsimple">MeshObjectSimple</h3>
+<p><em>The minimal information of a specific Mesh object.</em></p>
+<p>Type: object</p>
+<p>Properties:</p>
+<ul>
+<li><code>id</code>: The Id as GUID of this object.</li>
+<li>type: string</li>
+<li>format: uuid</li>
+<li>nullable: true</li>
+<li><code>name</code>: The name of this object.</li>
+<li>type: string</li>
+<li>nullable: true</li>
+<li><code>typeName</code>: The type name of this object.</li>
+<li>type: string</li>
+<li>nullable: true</li>
+<li><code>path</code>: The complete path within Mesh to this object.</li>
+<li>type: string</li>
+<li>nullable: true</li>
+<li><code>ownerId</code>: The reference to the object that is owning this object.</li>
+<li>type: <a href="#meshreferencedobject">MeshReferencedObject</a></li>
+<li>nullable: true</li>
+</ul>
+<h3 id="meshownershiprelation">MeshOwnershipRelation</h3>
+<p><em>Definition of a ownership relation in Mesh.</em></p>
+<p>Type: object</p>
+<p>Properties:</p>
+<ul>
+<li><code>targetObjectId</code>: The identity of the object that is owned by the current object.</li>
+<li>type: string</li>
+<li>format: uuid</li>
+</ul>
+<h3 id="meshratingcurvesegment">MeshRatingCurveSegment</h3>
+<p><em>Definition of a rating curve segment.</em></p>
+<p>Type: object</p>
+<p>Properties:</p>
+<ul>
+<li><code>xRangeUntil</code>: X value which the curve segment is valid until.</li>
+<li>type: number</li>
+<li>format: double</li>
+<li><code>factorA</code>: Factor A of the curve segment.</li>
+<li>type: number</li>
+<li>format: double</li>
+<li><code>factorB</code>: Factor B of the curve segment.</li>
+<li>type: number</li>
+<li>format: double</li>
+<li><code>factorC</code>: Factor C of the curve segment.</li>
+<li>type: number</li>
+<li>format: double</li>
+</ul>
+<h3 id="meshratingcurveversion">MeshRatingCurveVersion</h3>
+<p><em>Definition of a rating curve version.</em></p>
+<p>Type: object</p>
+<p>Properties:</p>
+<ul>
+<li><code>from</code>: Date time when the rating curve is valid from.</li>
+<li>type: string</li>
+<li>format: date-time</li>
+<li><code>xRangeFrom</code>: X value which the curve is valid from.</li>
+<li>type: number</li>
+<li>format: double</li>
+<li><code>segments</code>: List of rating curve segments.</li>
+<li>type: array of <a href="#meshratingcurvesegment">MeshRatingCurveSegment</a></li>
+</ul>
+<h3 id="meshreferencedobject">MeshReferencedObject</h3>
+<p><em>The reference to a specific object in Mesh.</em></p>
+<p>Type: object</p>
+<p>Properties:</p>
+<ul>
+<li><code>id</code>: The Id as GUID of this object.</li>
+<li>type: string</li>
+<li>format: uuid</li>
+<li>nullable: true</li>
+<li><code>path</code>: The complete path within Mesh to this object.</li>
+<li>type: string</li>
+<li>nullable: true</li>
+<li><code>timeseriesKey</code>: The key to the time series in the Oracle database. <em><strong>Note!</strong></em> Only if it is a time series stored in the database.</li>
+<li>type: integer</li>
+<li>format: int64</li>
+<li>nullable: true</li>
+</ul>
+<h3 id="meshresolutionenum">MeshResolutionEnum</h3>
+<p><em>Definition of the time series resolution (that is the time distance between each value).</em></p>
+<ul>
+<li><code>Unspecified</code> - resolution is not set. This enum value is used only in cases where no resolution is set. Very limited usage.</li>
+<li><code>Undefined</code> - resolution is undefined. This resolution is returned from Mesh only in edge cases, like no values or single NaN value.</li>
+<li><code>Breakpoint</code> - resolution may vary between each value.</li>
+<li><code>Min15</code> - resolution is 15 minutes between each value.</li>
+<li><code>Min30</code> - resolution is 30 minutes between each value.</li>
+<li><code>Hour</code> - resolution is 1 hour (60 minutes) between each value.</li>
+<li><code>Day</code> - resolution is 1 day between each value.</li>
+<li><code>Week</code> - resolution is 1 week (7 days) between each value.</li>
+<li><code>Month</code> - resolution is 1 month between each value.</li>
+<li><code>Year</code> - resolution is 1 year between each value.</li>
+</ul>
+<p><em><strong>Note!</strong></em> For intervals larger than 1 hour, the number of hours may depend on the time zone used.</p>
+<p>Type: string</p>
+<p>Enum: [Unspecified,Breakpoint,Min15,Hour,Day,Week,Month,Year,Min30,Undefined]</p>
+<h3 id="meshtimezonealignmentenum">MeshTimeZoneAlignmentEnum</h3>
+<p><em>Definition of how to align time stamps and resolution to different time zones.</em></p>
+<ul>
+<li><code>UTC</code> - time stamps and intervals are UTC aligned.</li>
+<li><code>Standard</code> - time stamps and intervals are aligned to the local time zone.</li>
+<li><code>StandardWoDST</code> - time stamps and intervals are aligned to the local time zone without DST adjustment.</li>
+</ul>
+<p>Type: string</p>
+<p>Enum: [UTC,Standard,StandardWoDST]</p>
+<h3 id="meshtimeseries">MeshTimeseries</h3>
+<p><em>Definition of a time series in Mesh.</em></p>
+<p>Type: object</p>
+<p>Properties:</p>
+<ul>
+<li><code>timeseriesResource</code>: Path to the time series in the Resources definition.</li>
+<li>type: <a href="#meshtimeseriesresource">MeshTimeseriesResource</a></li>
+<li>nullable: true</li>
+<li><code>expression</code>: Expression that describes the calculation for this time series.</li>
+<li>type: string</li>
+<li>nullable: true</li>
+<li><code>isLocalExpression</code>: Flag to signal if this expression is local (true) or coming from the template (false).</li>
+<li>type: boolean</li>
+<li>nullable: true</li>
+</ul>
+<h3 id="meshtimeseriesresource">MeshTimeseriesResource</h3>
+<p><em>Definition of a time series in the Resource catalogue.</em></p>
+<p>Type: object</p>
+<p>Properties:</p>
+<ul>
+<li><code>timeseriesKey</code>: The key to the time series in the Oracle database.</li>
+<li>type: integer</li>
+<li>format: int64</li>
+<li><code>path</code>: The path to the time series in the Resource catalogue.</li>
+<li>type: string</li>
+<li>nullable: true</li>
+<li><code>name</code>: The name of the time series in the catalogue.</li>
+<li>type: string</li>
+<li>nullable: true</li>
+<li><code>temporary</code>: Flag to signal that this time series is not stored in the database.</li>
+<li>type: boolean</li>
+<li><code>curveType</code>: The curve type to use when presenting/use this time series.</li>
+<li>type: <a href="#meshcurvetypeenum">MeshCurveTypeEnum</a></li>
+<li>nullable: true</li>
+<li><code>resolution</code>: The resolution (time period between each value) of this time series</li>
+<li>type: <a href="#meshresolutionenum">MeshResolutionEnum</a></li>
+<li>nullable: true</li>
+<li><code>unitOfMeasurement</code>: The unit of measurement for the values of this time series.</li>
+<li>type: string</li>
+<li>nullable: true</li>
+<li><code>virtualTimeseriesExpression</code>: The calculation expression if this time series is a virtual time series (that is: the values are calculated based on other time series).</li>
+<li>type: string</li>
+<li>nullable: true</li>
+</ul>
+<h3 id="meshtimeseriesvalues">MeshTimeseriesValues</h3>
+<p><em>Definition of the values of a specific time series in Mesh.</em></p>
+<p>Type: object</p>
+<p>Properties:</p>
+<ul>
+<li><code>id</code>: Identity of this time series in Mesh.</li>
+<li>type: <a href="#meshtsid">MeshTsId</a></li>
+<li>nullable: true</li>
+<li><code>resolution</code>: Resolution of the time series values.</li>
+<li>type: <a href="#meshresolutionenum">MeshResolutionEnum</a></li>
+<li>nullable: true</li>
+<li><code>interval</code>: The time interval that the values are defined within. Values are time stamped at the beginning of the time interval it is describing, which means that the Interval is one time resolution interval longer than the date time of the last value in the interval.</li>
+<li>type: <a href="#meshinterval">MeshInterval</a></li>
+<li>nullable: true</li>
+<li><code>values</code>: List of values for this time series.</li>
+<li>type: array of <a href="#meshvalue">MeshValue</a></li>
+<li>nullable: true</li>
+</ul>
+<h3 id="meshtsid">MeshTsId</h3>
+<p><em>The identity of a specific time series in Mesh.</em></p>
+<p>Type: object</p>
+<p>Properties:</p>
+<ul>
+<li><code>id</code>: The Id (as a GUID) of this time series.</li>
+<li>type: string</li>
+<li>format: uuid</li>
+<li>nullable: true</li>
+<li><code>path</code>: The complete path to this time series within the Mesh model.</li>
+<li>type: string</li>
+<li>nullable: true</li>
+<li><code>timeseriesKey</code>: The key to this time series if it is stored in the Oracle database.</li>
+<li>type: integer</li>
+<li>format: int64</li>
+<li>nullable: true</li>
+</ul>
+<h3 id="meshuseridentityinfo">MeshUserIdentityInfo</h3>
+<p><em>Information related to the running Mesh service and the used REST API.</em></p>
+<p>Type: object</p>
+<p>Properties:</p>
+<ul>
+<li><code>displayName</code>: A human readable name identifying this user. This name should not be used as an unique identifier for the user as it may be identical between users and change over time.</li>
+<li>type: string</li>
+<li>nullable: true</li>
+<li><code>source</code>: Security package name where the user identity came from. It is not an unique identifier of the security package instance.</li>
+<li>type: string</li>
+<li>nullable: true</li>
+<li><code>identifier</code>: An identifier that uniquely identifies the user within given <code>source</code> instance, but not necessarily globally. Combining <code>source</code> and <code>identifier</code> does not guarantee to get globally unique identifier for the user as there may be different Active Directories using the same security packages (<code>source</code>) with  duplicated user identifiers. However such situation is rather unlikely.</li>
+<li>type: string</li>
+<li>nullable: true</li>
+</ul>
+<h3 id="meshvalue">MeshValue</h3>
+<p><em>Definition of a value point in Mesh.</em></p>
+<p>Type: object</p>
+<p>Properties:</p>
+<ul>
+<li><code>date</code>: Date time of the value point.</li>
+<li>type: string</li>
+<li>format: date-time</li>
+<li>nullable: true</li>
+<li><code>value</code>: The value of the value point.</li>
+<li>type: number</li>
+<li>format: double</li>
+<li>nullable: true</li>
+<li><code>status</code>: Quality status of the value point.</li>
+<li>type: integer</li>
+<li>format: int32</li>
+<li>nullable: true</li>
+</ul>
+<h3 id="meshversioninfo">MeshVersionInfo</h3>
+<p><em>Information related to the running Mesh service and the used REST API.</em></p>
+<p>Type: object</p>
+<p>Properties:</p>
+<ul>
+<li><code>meshVersion</code>: The Mesh version string.</li>
+<li>type: string</li>
+<li>nullable: true</li>
+<li><code>apiVersion</code>: The version of the Mesh REST API that is used.</li>
+<li>type: string</li>
+<li>nullable: true</li>
+</ul>
+<h3 id="meshversionedlinkrelation">MeshVersionedLinkRelation</h3>
+<p><em>Definition of a time dependent link relation in Mesh.</em></p>
+<p>Type: object</p>
+<p>Properties:</p>
+<ul>
+<li><code>versions</code>: List of versions of links to another object from the current object.</li>
+<li>type: array of <a href="#meshlinkrelationversion">MeshLinkRelationVersion</a></li>
+<li>nullable: true</li>
+</ul>
+<h3 id="meshxycurve">MeshXyCurve</h3>
+<p><em>A <code>MeshXyCurve</code> is defined by a reference value (z value) and a set of (x,y) points.</em></p>
+<p>Type: object</p>
+<p>Properties:</p>
+<ul>
+<li><code>referenceValue</code>: The reference value (z value) for this <code>MeshXyCurve</code>.</li>
+<li>type: number</li>
+<li>format: double</li>
+<li><code>xValues</code>: The x values for this <code>MeshXyCurve</code>. Must have the same length as <code>y_values</code>.</li>
+<li>type: array of (type: number, format: double)</li>
+<li>nullable: true</li>
+<li><code>yValues</code>: The y values for this <code>MeshXyCurve</code>. Must have the same length as <code>x_values</code>.</li>
+<li>type: array of (type: number, format: double)</li>
+<li>nullable: true</li>
+</ul>
+<h3 id="meshxyset">MeshXySet</h3>
+<p><em>A <code>MeshXySet</code> is a set of <code>MeshXyCurve</code>s indexed by reference values, also known as z values.</em></p>
+<p>Type: object</p>
+<p>Properties:</p>
+<ul>
+<li>validFromTime": If this <code>MeshXySet</code> is a part of a versioned XY set attribute in Mesh <code>valid_from_time</code> will contain the start of the active period for this <code>MeshXySet</code>. Otherwise <code>valid_from_time</code> will be null.</li>
+<li>type: string</li>
+<li>format: date-time</li>
+<li><code>xyCurves</code>: A list of <code>MeshXyCurve</code>s in this <code>MeshXySet</code>. Always sorted by <code>reference_value</code>.</li>
+<li>type: array of <a href="#meshxycurve">MeshXyCurve</a></li>
+<li>nullable: true</li>
+</ul>
+<h3 id="multistepwatervalues">MultiStepWaterValues</h3>
+<p><em>Water values information, combinations of water volume and price, related to a specific reservoir in the Mesh model.</em></p>
+<p>Type: object</p>
+<p>Properties:</p>
+<ul>
+<li><code>reservoirName</code>: The name of a reservoir in the Mesh model.</li>
+<li>type: string</li>
+<li>nullable: true</li>
+<li><code>volumesInMm3</code>: List of reservoir volumes in Mm3 (million cubic meter). Must have the same length as <code>valuesInEuroPerMm3</code>.</li>
+<li>type: array of (type: number, format: double)</li>
+<li>nullable: true</li>
+<li><code>valuesInEuroPerMm3</code>: List of values in Euro/Mm3. Must have the same length as <code>volumesInMm3</code>.</li>
+<li>type: array of (type: number, format: double)</li>
+<li>nullable: true</li>
+</ul>
+<h3 id="virtualtsinfo">VirtualTSinfo</h3>
+<p><em>Attribute that references a virtual time series in the database.</em></p>
+<p>Type: object</p>
+<p>Properties:</p>
+<ul>
+<li><code>attributePath</code>: Full path to the attribute that references the virtual time series.</li>
+<li>type: string</li>
+<li>nullable: true</li>
+<li><code>timeseriesKey</code>: Database key tom the virtual time series.</li>
+<li>type: integer</li>
+<li>format: int64</li>
+<li><code>virtualExpression</code>: The calculation expression of the virtual time series.</li>
+<li>type: string</li>
+<li>nullable: true</li>
+</ul>
+              
+            </div>
+          </div><footer>
+      <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+          <a href="../changelog/" class="btn btn--outline btn--success float-left" title="Changelog"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+          <a href="../generate-c%23-api-from-swagger-json/" class="btn btn--outline btn--success float-right" title="Generate C# API from swagger.json">Next <span class="icon icon-circle-arrow-right"></span></a>
+      </div>
+  
+    <hr/>
+  
+    <div role="contentinfo">
+      <!-- Copyright etc -->
+    </div>
+  
+    Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  </footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version is-active">
+      
+      
+        <span><a href="../changelog/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      
+      
+        <span><a href="../generate-c%23-api-from-swagger-json/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+  </div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../../../search/main.js"></script>
+      <script src="../../../js/version-select.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
