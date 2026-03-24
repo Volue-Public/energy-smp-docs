@@ -198,7 +198,7 @@ Both alternatives support nested operations, i.e. :
 - there might be another ternary operator inside the true_value or false_value
 - there might be nested `IF test THEN ... ENDIF` blocks.
 
-Unfortunately the block execution does not support `ELSE` and `ELSEIF` sections.
+The block execution does not support `ELSE` and `ELSEIF` sections.
 
 ### Ternary operator
 
