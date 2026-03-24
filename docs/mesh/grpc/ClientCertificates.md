@@ -59,8 +59,8 @@ system trusted roots, then gRPC runtime will load it automatically and nothing
 extra is required. **Windows certificate store is not supported at the time of
 writing this document: gRPC 1.59.0.**
 
-gRPC core implementation also comes with its own list of trusted roots, see:
-https://github.com/grpc/grpc/blob/master/etc/roots.pem
+gRPC core implementation also comes with its own list of trusted roots, see
+[gRPC trusted roots](https://github.com/grpc/grpc/blob/master/etc/roots.pem).
 
 If the certificate issuer[^1] is in that list then nothing extra is required.
 

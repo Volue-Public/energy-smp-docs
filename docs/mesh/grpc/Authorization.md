@@ -123,15 +123,13 @@ To test the access token you can also use one of the Python SDK's
 You can also extend the example script with e.g. MSAL library to acquire the
 access token in the background.
 
-See documentation on how to connect and authorize using Mesh Python SDK to
-a Mesh server that is using OAuth authorization:
-https://volue-public.github.io/energy-mesh-python/external_auth.html
+See [documentation on how to connect and authorize using Mesh Python SDK to
+a Mesh server that is using OAuth authorization](https://volue-public.github.io/energy-mesh-python/external_auth.html).
 
 
 ## Kerberos
 
 ### Python SDK
 
-See documentation on how to connect and authorize using Mesh Python SDK to
-a Mesh server that is using Kerberos authentication:
-https://volue-public.github.io/energy-mesh-python/kerberos.html
+See [documentation on how to connect and authorize using Mesh Python SDK to
+a Mesh server that is using Kerberos authentication](https://volue-public.github.io/energy-mesh-python/kerberos.html).
