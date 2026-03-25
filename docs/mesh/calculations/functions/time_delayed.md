@@ -25,8 +25,6 @@ For each time step `i` in the input series:
 3. Produce a set of `(offset, fraction)` pairs from the corresponding XY curve.
 4. For each pair, add `v * fraction` to the output at time step `i + offset`.
 
-Because the output at any given time step can receive delayed contributions from multiple earlier input values, the function internally extends the evaluation interval backwards by the maximum delay in the XY set. This ensures that flow that started before the requested period but arrives within it is correctly accounted for.
-
 `NaN` values in the input are treated as 0 (they produce no delayed contribution).
 
 ### Syntax
