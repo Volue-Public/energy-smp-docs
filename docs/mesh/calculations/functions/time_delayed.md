@@ -4,7 +4,9 @@
 
 This function uses an [XY set](../../concepts/modelling/xy-sets.md) to calculate a time-delayed output based on an input time series. A typical use case is simulating how water discharge at one point arrives downstream over time: a sudden increase in flow does not appear instantly at the output; instead, it spreads out over several time steps, with some fractions arriving early and the rest arriving progressively later.
 
-The function takes each value in the input time series and distributes it forward in time according to a delay distribution curve stored in the XY set. Note that the distribution preserves the total volume; i.e. volume in equals volume out. When several input values contribute to the same output time step, their delayed contributions are summed, which can produce transient peaks or dips in the output (e.g., when a fast-flow "front" catches up with the tail of an earlier slow-flow period).
+The function takes each value in the input time series and distributes it forward in time according to a delay distribution curve stored in the XY set.
+
+**_Note!_** The distribution preserves the total volume - i.e. volume in equals volume out. When several input values contribute to the same output time step, their delayed contributions are summed, which can produce transient peaks or dips in the output (e.g., when a fast-flow "front" catches up with the tail of an earlier slow-flow period).
 
 #### The XY set
 
