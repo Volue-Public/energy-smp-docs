@@ -6,7 +6,7 @@ This function uses an [XY set](../../concepts/modelling/xy-sets.md) to calculate
 
 The function takes each value in the input time series and distributes it forward in time according to a delay distribution curve stored in the XY set.
 
-**_Note!_** The distribution preserves the total volume - i.e. volume in equals volume out. When several input values contribute to the same output time step, their delayed contributions are summed, which can produce transient peaks or dips in the output (e.g., when a fast-flow "front" catches up with the tail of an earlier slow-flow period).
+**_Note!_** The distribution preserves the total volume; i.e. volume in equals volume out. When several input values contribute to the same output time step, their delayed contributions are summed, which can produce transient peaks or dips in the output (e.g., when a fast-flow "front" catches up with the tail of an earlier slow-flow period).
 
 #### The XY set
 
