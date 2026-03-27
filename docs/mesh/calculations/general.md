@@ -223,7 +223,7 @@ Mask = @TimeMask('DAY',{'DAY+8h','DAY+16h'},{1,0})
 ## = Mask ? @t('.Cost') : @t('.Cost') *1.5 
 ```
 Let's assume the `Cost` time series has hourly resolution.
-The `Mask` series produced by `TimeMask` function is a breakpoint series.
+The `Mask` series produced by the `TimeMask` function is a breakpoint series.
 The result is an hourly series with result equal `Cost` series for all hours from 08 (inclusive) until 16,
 else the values are the `Cost` value multiplied with a factor (1.5).
 
