@@ -239,7 +239,7 @@ IF test_statement THEN
 ENDIF
 ```
 
-If the test_statement is a evaluated to a time series, then **all** values within requested calculation time period
+If the test_statement is evaluated to a time series, then **all** values within requested calculation time period
 on this time series must be not equal to 0 in order to execute statement1...N. You may have to turn the test time series to a logical series having either 1 or 0 as values. 1 is true, 0 is false. This can be done by using the [BOOL function](./functions/bool.md)
 
 
