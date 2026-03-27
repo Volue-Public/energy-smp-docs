@@ -229,7 +229,7 @@ else the values are the `Cost` value multiplied with a factor (1.5).
 
 ### Block statements
 
-The other flow control approach is like this:
+The remaining flow control approach is like this:
 
 ```
 IF test_statement THEN
