@@ -96,7 +96,8 @@ have values every hour.
 
 The argument to a function can be the result of another function.
 
-For more information about Mesh calculation functions, see [Calculations in Mesh - introduction](./functions/introduction.md).
+For more information about Mesh calculation functions, see
+[Calculations in Mesh - introduction](./functions/introduction.md).
 
 
 ## Calculation expression definition
@@ -213,8 +214,9 @@ All 3 parts may be a fixed value or expressions.
 ```
 ## = @d('.DoSum') ? @SUM(@T('has_Units.TS')) : @MEAN(@T('has_Units.TS'))
 ```
-The numeric value of the `DoSum`attribute is treated as a true/false value. If true,
-the result is calculated based on the `SUM` function, else the average is calculated using the `MEAN` function.
+The numeric value of the `DoSum` attribute is treated as a true/false value. If
+true, the result is calculated based on the `SUM` function, else the average is
+calculated using the `MEAN` function.
 
 **Example 2**
 
@@ -224,8 +226,9 @@ Mask = @TimeMask('DAY',{'DAY+8h','DAY+16h'},{1,0})
 ```
 Let's assume the `Cost` time series has hourly resolution.
 The `Mask` series produced by the `TimeMask` function is a breakpoint series.
-The result is an hourly series with result equal the `Cost` series for all hours from 08 (inclusive) until 16,
-else the values are the `Cost` value multiplied with a factor (1.5).
+The result is an hourly series with result equal the `Cost` series for all hours
+from 08 (inclusive) until 16, else the values are the `Cost` value multiplied
+with a factor (1.5).
 
 ### Block statements
 
@@ -239,33 +242,44 @@ IF test_statement THEN
 ENDIF
 ```
 
-If the test_statement is evaluated to a time series, then **all** values within requested calculation time period
-on this time series must be not equal to 0 in order to execute statement1...N. You may have to turn the test time series to a logical series having either 1 or 0 as values. 1 is true, 0 is false. This can be done by using the [BOOL function](./functions/bool.md)
+If the test_statement is evaluated to a time series, then **any** value within
+requested calculation time period on this time series must be not equal to 0 in
+order to execute statement1...N. You may have to turn the test time series to a
+logical series having either 1 or 0 as values. 1 is true, 0 is false. This can
+be done by using the [BOOL](./functions/bool.md) function.
 
+**_Note!_** NaN is also not equal to 0, hence it evaluates to `true`. Evaluating
+NaN as `false` might require the usage of the [BOOL](./functions/bool.md)
+function.
 
 **Example 1**
 
 ```
 ## = @t('.Measurement')
-IF @OUTSIDE(@t('.LowerLimit'),@t('.Measurement'),@t('.UpperLimit'))  THEN
+IF @OUTSIDE(@t('.LowerLimit'),@t('.Measurement'),@t('.UpperLimit')) THEN
   Validated = @ValidateAbsLimit(@t('.Measurement'),@t('.LowerLimit'),@t('.UpperLimit'))
   ## = @CorrectInterpolate(Validated,5,'FALSE')
-ENDIF 
+ENDIF
 ```
-If there are some values outside of limits, do corrective action. The [OUTSIDE function](./functions/outside.md) function returns a logical time series with values 1 or 0. In some cases you may have to apply the BOOL function on the test series to convert it to a logical series.  
+If there are some values outside of limits, do corrective action. The
+[OUTSIDE](./functions/outside.md) function returns a logical time series with
+values 1 or 0. In some cases you may have to apply the BOOL function on the
+test series to convert it to a logical series.
 
-**_Note!_** In a real setup there would be more validation and correction methods in use.
+**_Note!_** In a real setup there would be more validation and correction
+methods in use.
 
 **Example 2**
 
 ```
 ## = @t('.Measurement')
-IF @d('.DoCorrection')  THEN
+IF @d('.DoCorrection') THEN
   Validated = @ValidateAbsLimit(@t('.Measurement'),@t('.LowerLimit'),@t('.UpperLimit'))
   ## = @CorrectInterpolate(Validated,5,'FALSE')
-ENDIF 
+ENDIF
 ```
-If the `DoCorrection` is enabled by setting a value not equal to zero, do corrective action.
+If the `DoCorrection` is enabled by setting a value not equal to zero, do
+corrective action.
 
 
 ## Time zones
@@ -275,18 +289,18 @@ There are situations where other time zones are involved:
 - Volue database, currently the owner of the time series data in Volue context,
   is using a concept of a database zone. In our European context this is UTC+1.
 
-- Default time zone in calculation context is, due to backwards compatibility, the
-  same as DB zone - UTC+1.
+- Default time zone in calculation context is, due to backwards compatibility,
+  the same as DB zone - UTC+1.
 
 - Some calculation operations are explicitly related to time zones. For example,
   a transformation of a time series from higher resolution to lower resolution
   often needs to have a definition of the zone. A fixed interval hour series
-  transformed to a day series needs to know which zone this day is related to. See
-  discussion of a @TRANSFORM example below.
+  transformed to a day series needs to know which zone this day is related to.
+  See discussion of a @TRANSFORM example below.
 
 - In some cases, the function arguments are time point macros, they will also
-  need a time zone context to have a precise meaning. See the separate chapter on
-  [time macros](./timepoint-macros.md).
+  need a time zone context to have a precise meaning. See the separate chapter
+  on [time macros](./timepoint-macros.md).
 
 ### Using `@TRANSFORM` calculation functions
 
