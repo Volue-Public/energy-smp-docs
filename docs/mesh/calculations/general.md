@@ -18,7 +18,7 @@ available time series. Some characteristics on the language:
   language. See example.
 - Standard operators and operator precedence are supported (+,-,*,/).
 - There are built-in functions covering a wide range of operations.
-- There is an `if then else` operator and `IF THEN ENDIF` statement blocks. 
+- There are an `if then else` operator and `IF THEN ENDIF` statement blocks. 
 
 
 ### Example 1
