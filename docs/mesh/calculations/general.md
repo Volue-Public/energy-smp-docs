@@ -213,8 +213,8 @@ All 3 parts may be a fixed value or expressions.
 ```
 ## = @d('.DoSum') ? @SUM(@T('has_Units.TS')) : @MEAN(@T('has_Units.TS'))
 ```
-The numeric value of `DoSum`attribute is treated as a true/false value. If true,
-the result is calculated based on `SUM` function, else the average is calculated using `MEAN` function.
+The numeric value of the `DoSum`attribute is treated as a true/false value. If true,
+the result is calculated based on the `SUM` function, else the average is calculated using the `MEAN` function.
 
 **Example 2**
 
