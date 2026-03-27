@@ -254,7 +254,7 @@ ENDIF
 ```
 If there are some values outside of limits, do corrective action. The [OUTSIDE function](./functions/outside.md) function returns a logical time series with values 1 or 0. In some cases you may have to apply the BOOL function on the test series to convert it to a logical series.  
 
-__Note!__ In a real setup there would be more validation and correction methods in use.
+**_Note!_** In a real setup there would be more validation and correction methods in use.
 
 **Example 2**
 
