@@ -265,7 +265,7 @@ IF @d('.DoCorrection')  THEN
   ## = @CorrectInterpolate(Validated,5,'FALSE')
 ENDIF 
 ```
-If the `DoCorrection` is enabled by setting a value not equal to zero, then do corrective action.
+If the `DoCorrection` is enabled by setting a value not equal to zero, do corrective action.
 
 
 ## Time zones
