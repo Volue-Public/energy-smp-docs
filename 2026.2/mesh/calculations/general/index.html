@@ -109,6 +109,14 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#if-then-else-endif-flow-control">IF THEN ELSE ENDIF flow control</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#ternary-operator">Ternary operator</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#block-statements">Block statements</a>
+    </li>
+        </ul>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#time-zones">Time zones</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#using-transform-calculation-functions">Using @TRANSFORM calculation functions</a>
@@ -524,6 +532,7 @@ available time series. Some characteristics on the language:</p>
   language. See example.</li>
 <li>Standard operators and operator precedence are supported (+,-,*,/).</li>
 <li>There are built-in functions covering a wide range of operations.</li>
+<li>There are an <code>if then else</code> operator and <code>IF THEN ENDIF</code> statement blocks. </li>
 </ul>
 <h3 id="example-1">Example 1</h3>
 <p>Assuming we have an expression on a Mesh object type <em>HydroPlant</em> that is
@@ -588,7 +597,8 @@ series given as arguments may have different resolutions. Ref. example above:
 the Production series may have values every 15 minutes and the Price series may
 have values every hour.</p>
 <p>The argument to a function can be the result of another function.</p>
-<p>For more information about Mesh calculation functions, see <a href="../functions/introduction/">Calculations in Mesh - introduction</a>.</p>
+<p>For more information about Mesh calculation functions, see
+<a href="../functions/introduction/">Calculations in Mesh - introduction</a>.</p>
 <h2 id="calculation-expression-definition">Calculation expression definition</h2>
 <p>The time series calculation definitions are in general associated with the
 Mesh model definition. This means that the calculations are defined as part
@@ -647,6 +657,75 @@ day, i.e to the next day relative to the requested time interval.</p>
 <pre><code>    ......============
 </code></pre>
 <p>Here the dots represent 1 day and the requested time interval 2 days.</p>
+<h2 id="if-then-else-endif-flow-control">IF THEN ELSE ENDIF flow control</h2>
+<p>These operations are supported:</p>
+<ul>
+<li>Ternary <code>if-then-else</code> operator</li>
+<li><code>IF THEN ENDIF</code> execution blocks</li>
+</ul>
+<p>Both alternatives support nested operations, i.e. :</p>
+<ul>
+<li>there might be another ternary operator inside the true_value or false_value</li>
+<li>there might be nested <code>IF test THEN ... ENDIF</code> blocks.</li>
+</ul>
+<p>The block execution does not support <code>ELSE</code> and <code>ELSEIF</code> sections.</p>
+<h3 id="ternary-operator">Ternary operator</h3>
+<p>Operations using this construct have this structure:</p>
+<p><code>Result = test_statement ? true_value : false_value</code></p>
+<p>All 3 parts may be a fixed value or expressions.</p>
+<p><strong>Example 1</strong></p>
+<pre><code>## = @d('.DoSum') ? @SUM(@T('has_Units.TS')) : @MEAN(@T('has_Units.TS'))
+</code></pre>
+<p>The numeric value of the <code>DoSum</code> attribute is treated as a true/false value. If
+true, the result is calculated based on the <code>SUM</code> function, else the average is
+calculated using the <code>MEAN</code> function.</p>
+<p><strong>Example 2</strong></p>
+<pre><code>Mask = @TimeMask('DAY',{'DAY+8h','DAY+16h'},{1,0})
+## = Mask ? @t('.Cost') : @t('.Cost') *1.5 
+</code></pre>
+<p>Let's assume the <code>Cost</code> time series has hourly resolution.
+The <code>Mask</code> series produced by the <code>TimeMask</code> function is a breakpoint series.
+The result is an hourly series with result equal the <code>Cost</code> series for all hours
+from 08 (inclusive) until 16, else the values are the <code>Cost</code> value multiplied
+with a factor (1.5).</p>
+<h3 id="block-statements">Block statements</h3>
+<p>The remaining flow control approach is like this:</p>
+<pre><code>IF test_statement THEN
+  statement1
+  statement2
+  statementN
+ENDIF
+</code></pre>
+<p>If the test_statement is evaluated to a time series, then <strong>any</strong> value within
+requested calculation time period on this time series must be not equal to 0 in
+order to execute statement1...N. You may have to turn the test time series to a
+logical series having either 1 or 0 as values. 1 is true, 0 is false. This can
+be done by using the <a href="../functions/bool/">BOOL</a> function.</p>
+<p><strong><em>Note!</em></strong> NaN is also not equal to 0, hence it evaluates to <code>true</code>. Evaluating
+NaN as <code>false</code> might require the usage of the <a href="../functions/bool/">BOOL</a>
+function.</p>
+<p><strong>Example 1</strong></p>
+<pre><code>## = @t('.Measurement')
+IF @OUTSIDE(@t('.LowerLimit'),@t('.Measurement'),@t('.UpperLimit')) THEN
+  Validated = @ValidateAbsLimit(@t('.Measurement'),@t('.LowerLimit'),@t('.UpperLimit'))
+  ## = @CorrectInterpolate(Validated,5,'FALSE')
+ENDIF
+</code></pre>
+<p>If there are some values outside of limits, do corrective action. The
+<a href="../functions/outside/">OUTSIDE</a> function returns a logical time series with
+values 1 or 0. In some cases you may have to apply the BOOL function on the
+test series to convert it to a logical series.</p>
+<p><strong><em>Note!</em></strong> In a real setup there would be more validation and correction
+methods in use.</p>
+<p><strong>Example 2</strong></p>
+<pre><code>## = @t('.Measurement')
+IF @d('.DoCorrection') THEN
+  Validated = @ValidateAbsLimit(@t('.Measurement'),@t('.LowerLimit'),@t('.UpperLimit'))
+  ## = @CorrectInterpolate(Validated,5,'FALSE')
+ENDIF
+</code></pre>
+<p>If the <code>DoCorrection</code> is enabled by setting a value not equal to zero, do
+corrective action.</p>
 <h2 id="time-zones">Time zones</h2>
 <p>There are situations where other time zones are involved:</p>
 <ul>
@@ -655,20 +734,20 @@ day, i.e to the next day relative to the requested time interval.</p>
   is using a concept of a database zone. In our European context this is UTC+1.</p>
 </li>
 <li>
-<p>Default time zone in calculation context is, due to backwards compatibility, the
-  same as DB zone - UTC+1.</p>
+<p>Default time zone in calculation context is, due to backwards compatibility,
+  the same as DB zone - UTC+1.</p>
 </li>
 <li>
 <p>Some calculation operations are explicitly related to time zones. For example,
   a transformation of a time series from higher resolution to lower resolution
   often needs to have a definition of the zone. A fixed interval hour series
-  transformed to a day series needs to know which zone this day is related to. See
-  discussion of a @TRANSFORM example below.</p>
+  transformed to a day series needs to know which zone this day is related to.
+  See discussion of a @TRANSFORM example below.</p>
 </li>
 <li>
 <p>In some cases, the function arguments are time point macros, they will also
-  need a time zone context to have a precise meaning. See the separate chapter on
-  <a href="../timepoint-macros/">time macros</a>.</p>
+  need a time zone context to have a precise meaning. See the separate chapter
+  on <a href="../timepoint-macros/">time macros</a>.</p>
 </li>
 </ul>
 <h3 id="using-transform-calculation-functions">Using <code>@TRANSFORM</code> calculation functions</h3>
