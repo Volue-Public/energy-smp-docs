@@ -257,7 +257,7 @@ Examples:
 
 If the **Format** column is blank, the date/time returned from the database is presented as is.
 
-The **T** column will display an ***** if there is valid information in **Where** and **Format** columns. If there is information in the **Format** column but not in the **Where** column, the column will display an **!**.
+The **T** column will display an **`*`** if there is valid information in **Where** and **Format** columns. If there is information in the **Format** column but not in the **Where** column, the column will display an **!**.
 
 #### Different period (LoadFromDB)
 
@@ -296,7 +296,7 @@ Example of call formula:
 
 Remember that Excel can calculate with dates. The **From date/time** in the heading is a named cell: `FromDate`. Last week can be calculated as `=FromDate – 7`.
 
-The **P** column will display an ***** if there is valid information in the two dates. If there is information in one date and blank the other one column will display an **!**.
+The **P** column will display an **`*`** if there is valid information in the two dates. If there is information in one date and blank the other one column will display an **!**.
 
 #### Comments
 
@@ -306,7 +306,7 @@ If you want to display comments stored with the time series, select **What** to 
 
 You can select to display only the comment or the comment together with the user who entered it and the time it was entered. The comment can be shown as an Excel comment (red triangle in upper right corner) or in the cell to the right of or under the value.
 
-The **C** column will display an ***** if there is valid information.
+The **C** column will display an **`*`** if there is valid information.
 
 #### Status codes
 
@@ -333,7 +333,7 @@ The status codes are:
 
 Default handling is exclude `!-` (`!` not OK, `-` missing).
 
-The column **St** will display an ***** if there is valid information.
+The column **St** will display an **`*`** if there is valid information.
 
 #### Where to store loaded data
 
@@ -365,7 +365,7 @@ The **DST** column is used when data is presented in local time. Select one of t
 
 ***Note!*** **Operation** other than **=**, **+** or blank together with **DST** **Blank/Double** will not work for the double hour in the autumn.
 
-The column **W** will contain **!!** if there is no information given for time series that should be presented, an **!** if there are missing values and an ***** if valid information is provided.
+The column **W** will contain **!!** if there is no information given for time series that should be presented, an **!** if there are missing values and an **`*`** if valid information is provided.
 
 #### Data function
 
@@ -389,7 +389,7 @@ In the **Profile** column you can specify if the time series should be used to g
 
 The last column is useful to ensure that the data area is blanked before new values are presented. The value specified in **# Values** defines how many cells that will be blanked before the presentation is done.
 
-The **F** column will display an ***** if there is any valid information specified.
+The **F** column will display an **`*`** if there is any valid information specified.
 
 #### Bulk group
 
@@ -446,13 +446,13 @@ In the **LT/NT** column you can specify if the date/time is given in local or st
 
 If you want a different **From date/time**, specify it in this column. Values in this column will be used instead of the values in the heading.
 
-The **P** column will display an ***** if there is valid information here.
+The **P** column will display an **`*`** if there is valid information here.
 
 #### Where to store data to save
 
-This part is the same as the **Where to store** part in the **LoadFromDB** worksheet, [Where to store](#where-to-store-loaded-data). The only difference is that the saving of values expects that data are saved as **Continuous** for **DST**. If you present data with **DST** specified as **Blank/Double**, the save will stop on the missing hour in the spring or at the 25th hour in the autumn.
+This part is the same as the **Where to store** part in the **LoadFromDB** worksheet, [Where to store loaded data](#where-to-store-loaded-data). The only difference is that the saving of values expects that data are saved as **Continuous** for **DST**. If you present data with **DST** specified as **Blank/Double**, the save will stop on the missing hour in the spring or at the 25th hour in the autumn.
 
-The column **W** will contain **!!** if there is no information given for time series that should be saved, an **!** if there are missing values and an ***** if valid information is given.
+The column **W** will contain **!!** if there is no information given for time series that should be saved, an **!** if there are missing values and an **`*`** if valid information is given.
 
 #### Save values
 
@@ -476,13 +476,13 @@ If you set **Locked** status on a value, you cannot unlock the value from the **
 
 If you set **Missing** status on a value, the value is treated as not existing in the system.
 
-The **S** column will display an ***** if there is any information given in **Method** and/or **Status code**.
+The **S** column will display an **`*`** if there is any information given in **Method** and/or **Status code**.
 
 #### Function
 
 In the **Function** part you can specify a **Scale** factor that will be used when storing values. The default value is **1**.
 
-The **F** column will display an ***** if there is specified any scale factor.
+The **F** column will display an **`*`** if there is specified any scale factor.
 
 #### Resolution
 
@@ -494,7 +494,7 @@ The **Shown as** column specifies the interval between the values in the Excel s
 
 The **Function** part contains the function to be used when transforming values before saving. With the **ave** (average) function the same value is stored in all sub-values (storing an hour series in 15 minutes resolution will give 4 sub-values per value). With the **sum** function the sub-values will be the same values but the sum of them will the original value. The default value is **sum**.
 
-The **R** column will display an ***** in there are values in all three columns, a **blank** if no values are specified and an **!** otherwise.
+The **R** column will display an **`*`** in there are values in all three columns, a **blank** if no values are specified and an **!** otherwise.
 
 #### Criteria
 
@@ -502,7 +502,7 @@ In this part you define when to stop reading values to save. The possibilities a
 
 In addition, you can specify a maximum number of values that will be read from Excel.
 
-The **C** column displays an ***** if there is selected a stop criterion.
+The **C** column displays an **`*`** if there is selected a stop criterion.
 
 #### Message (SaveToDB)
 
