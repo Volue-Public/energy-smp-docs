@@ -2,7 +2,7 @@
 
 ### About the function
 
-Used to retrieve a time series as it was at a given historical time.
+Used to retrieve a physical time series as it was at a given historical time.
 
 Returns a time series or an array of time series, depending on the value of
 parameter number two.
@@ -21,13 +21,16 @@ the relevant period) then the function returns NaN values.
 
 | # | Type | Description |
 |---|---|---|
-| 1 | t | Time series. |
+| 1 | t | A physical time series. |
 | 2 | s, d, S or D | s: Time as symbol. d: Time as number (number of ticks). S: List of time points (symbol). D: List of time points (ticks). |
 | 3 | s | Optional. Possible values: 'Delta', ‘DeltaNaNIsNaN’, 'ExactTime'. For Delta codes the function returns the difference between the current time series values and historical time series values. For DeltaNaNIsNaN the delta value is NaN (Not a number / empty) when one of the values is empty. The code ExactTime returns only those values that were written at the specified time, normally used together with GetTsAuditTimes. |
 
 Time point as a symbol is using the format as described [here](../timepoint-macros.md).
 
 A tick is 100 nanoseconds, i.e. there are 10,000 ticks in a millisecond. Reference value is UTC `January 1, 0001 00:00:00`.
+
+If a reference to a time series calculation is passed in the first argument, as
+in `@GetTsAsOfTime(@t('.Calc'), t)`, the calculation will fail with an error.
 
 ### Examples
 
