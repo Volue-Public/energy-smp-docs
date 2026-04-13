@@ -21,8 +21,7 @@ import "type/resources.proto";
 //
 // Additionally advanced restriction exists to represent objects availability
 // using timeseries calculation.
-
-
+//
 service AvailabilityService {
   // Create revision for given object.
   // Each revision can have multiple `RevisionRecurrence`. To create those use
