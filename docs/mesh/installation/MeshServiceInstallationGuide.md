@@ -735,7 +735,7 @@ Below is the complete `mesh.json` listed with all options with default values.
 
 ```json
 {
-  "FailOnSyncErrors": false,
+  "FailOnSynchErrors": false,  // Specifies whether Mesh should shut down after 3 repeatable synchronisation errors
   "SerializationVersion": 25,
   "ComputerName": "localhost",
   "Log": {
