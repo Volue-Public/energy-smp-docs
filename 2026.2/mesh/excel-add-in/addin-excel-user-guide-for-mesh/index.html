@@ -539,9 +539,11 @@
                 <h1 id="excel-addin-for-mesh-user-guide">Excel AddIn for Mesh User Guide</h1>
 <h2 id="introduction">Introduction</h2>
 <p><strong>Excel AddIn for Mesh</strong> is an add-in to Microsoft Excel and a part of the Smart Power portfolio. Excel AddIn for Mesh provides easy reporting to Microsoft Excel with the Mesh REST API from the Mesh service. It ensures a consistent use of the Mesh REST API and will make it easier to make new reports for the users. Updates/upgrades of the Smart Power software will contain tested versions of the Excel AddIn for Mesh.</p>
-<p>Excel AddIn for Mesh includes two Excel workbooks:
-- <strong>FlexibleLoadStore</strong> 
-- <strong>PowelAddIn</strong></p>
+<p>Excel AddIn for Mesh includes two Excel workbooks:</p>
+<ul>
+<li><strong>FlexibleLoadStore</strong></li>
+<li><strong>PowelAddIn</strong></li>
+</ul>
 <p>The <strong>FlexibleLoadStore</strong> workbook consists of 3 worksheets and the <strong>PowelAddIn</strong> workbook has the code in VBA (Visual Basic for Application).</p>
 <p>The skeleton can be used as a starting point for a report or can be imported into an existing report and replace the existing use of TsApi in code and cell references. Excel AddIn for Mesh can also be used as input to the Mesh service and database.</p>
 <p>The <strong>FlexibleLoadStore</strong> workbook has three worksheets:</p>
@@ -640,10 +642,12 @@
 <p>The <strong>Status codes and colours</strong> setup looks like this:</p>
 <p><img alt="Status codes and colours setup" src="../assets/images/status-codes-and-colours-setup.png" /></p>
 <p>All the possible status codes are listed and in the column <strong>ColorIndex</strong> you can specify an index of the colour palette for Excel (value from 0 to 56, 0 is the default which is no background colour and black font). Choose  <strong>Show colors</strong>  and the colours will be shown as background colours.</p>
-<p>In the <strong>Show</strong> column you can specify how each status will be shown in the presentation if you choose <strong>As color</strong> in the status part (see the <a href="#status-part">Status part</a> later on). The possible values in the <strong>Show</strong> column are:
-- <strong>Cell</strong>: The background colour is set to the selected colour
-- <strong>Font</strong>: The font colour is set
-- <strong>None</strong>: The status will not be presented at all</p>
+<p>In the <strong>Show</strong> column you can specify how each status will be shown in the presentation if you choose <strong>As color</strong> in the status part (see the <a href="#status-codes">Status codes</a> later on). The possible values in the <strong>Show</strong> column are:</p>
+<ul>
+<li><strong>Cell</strong>: The background colour is set to the selected colour</li>
+<li><strong>Font</strong>: The font colour is set</li>
+<li><strong>None</strong>: The status will not be presented at all</li>
+</ul>
 <h3 id="time-series-search">Time series search</h3>
 <p>The time series search part looks like this:</p>
 <p><img alt="Time series search" src="../assets/images/time-series-search.png" /></p>
@@ -658,10 +662,12 @@
 <p>The report setup has a heading where a period and type of report can be specified and a detailed part where each time series is specified. For each time series there are 10 sections of information, each one will be described.</p>
 <p><img alt="Time series report setup" src="../assets/images/time-series-report-setup.png" /></p>
 <p><strong>From date/time</strong> gives the starting point of the period, and <strong>To date/time</strong> specifies the end time. The <strong>From date/time</strong> is including the time specified, but the <strong>To date/time</strong> is up to but not including. This means that the example above specifies seven days of values.</p>
-<p><strong><em>Note!</em></strong> In the detailed part there are three values that must be filled in:
-- <strong>Full name/TS Code</strong>
-- <strong>Information to be shown</strong>
-- <strong>Where to store</strong></p>
+<p><strong><em>Note!</em></strong> In the detailed part there are three values that must be filled in:</p>
+<ul>
+<li><strong>Full name/TS Code</strong></li>
+<li><strong>Information to be shown</strong></li>
+<li><strong>Where to store</strong></li>
+</ul>
 <p>The other parts are used to refine the presentation.</p>
 <h4 id="full-namets-code">Full name/TS Code</h4>
 <p>The detailed part starts with the time series <strong>Full name/TS Code</strong>. The result from the time series search is used as a pick list for the cell or you can just copy the paths from the returned list (or somewhere else).</p>
@@ -670,10 +676,12 @@
 <p><img alt="Information part" src="../assets/images/information-part.png" /></p>
 <p>Enter <code>X</code> in the <strong>Data</strong> column if the time series is to be shown. If the <strong>Data</strong> column is blank, the information in <strong>Full Name/TS Code</strong> is ignored. The <code>X</code> in the <strong>Data</strong> column can be a user defined code to get time series loaded in different actions. (For details, see: <a href="#hide-the-worksheets-loadfromdb-and-savetodb">Hide the worksheets LoadFromDB and SaveToDB</a>.)</p>
 <p>Enter <code>X</code> in the <strong>TS Code</strong> column to get the <strong>Full name/TS Code</strong> presented. The name/code is presented over or to the left of the data depending on the direction in which the data is presented.</p>
-<p>The column <strong>DB/LT/NT</strong> is a drop-down box where you can select the time zone used when presenting the data. 
-- <strong>LT</strong>: Local time
-- <strong>NT</strong>: Standard time
-- <strong>DB</strong>: Database time</p>
+<p>The column <strong>DB/LT/NT</strong> is a drop-down box where you can select the time zone used when presenting the data.</p>
+<ul>
+<li><strong>LT</strong>: Local time</li>
+<li><strong>NT</strong>: Standard time</li>
+<li><strong>DB</strong>: Database time</li>
+</ul>
 <p>The default value is <strong>DB</strong>.</p>
 <p><strong><em>Note!</em></strong> Due to the way values are stored on time series with resolution day, week, month and year, the selection in <strong>DB/LT/NT</strong> is overridden and set to <strong>NT</strong>.</p>
 <h4 id="show-datetime">Show date/time</h4>
@@ -709,7 +717,7 @@
 <li><code>$.3w %02D/%02M</code> - Sun 17/05</li>
 </ul>
 <p>If the <strong>Format</strong> column is blank, the date/time returned from the database is presented as is.</p>
-<p>The <strong>T</strong> column will display an __<em>__ if there is valid information in </em><em>Where</em><em> and </em><em>Format</em><em> columns. If there is information in the </em><em>Format</em><em> column but not in the </em><em>Where</em><em> column, the column will display an </em><em>!</em>*.</p>
+<p>The <strong>T</strong> column will display an <strong><code>*</code></strong> if there is valid information in <strong>Where</strong> and <strong>Format</strong> columns. If there is information in the <strong>Format</strong> column but not in the <strong>Where</strong> column, the column will display an <strong>!</strong>.</p>
 <h4 id="different-period-loadfromdb">Different period (LoadFromDB)</h4>
 <p><img alt="Different period part" src="../assets/images/different-period-part.png" /></p>
 <p>If you wish to display information from a different period than specified in the <strong>From date/time</strong> and <strong>To date/time</strong> columns in the heading, you can fill in a period here. If there is information in this part, the date/time from here will be used instead of the period in the heading.</p>
@@ -743,22 +751,22 @@
 <li>=dateYMD(1999,3,31)</li>
 </ul>
 <p>Remember that Excel can calculate with dates. The <strong>From date/time</strong> in the heading is a named cell: <code>FromDate</code>. Last week can be calculated as <code>=FromDate – 7</code>.</p>
-<p>The <strong>P</strong> column will display an __<em>__ if there is valid information in the two dates. If there is information in one date and blank the other one column will display an </em><em>!</em>*.</p>
+<p>The <strong>P</strong> column will display an <strong><code>*</code></strong> if there is valid information in the two dates. If there is information in one date and blank the other one column will display an <strong>!</strong>.</p>
 <h4 id="comments">Comments</h4>
 <p><img alt="Comments part" src="../assets/images/comments-part.png" /></p>
 <p>If you want to display comments stored with the time series, select <strong>What</strong> to display and where to <strong>Show Info</strong>.</p>
 <p>You can select to display only the comment or the comment together with the user who entered it and the time it was entered. The comment can be shown as an Excel comment (red triangle in upper right corner) or in the cell to the right of or under the value.</p>
-<p>The <strong>C</strong> column will display an <strong>*</strong> if there is valid information.</p>
+<p>The <strong>C</strong> column will display an <strong><code>*</code></strong> if there is valid information.</p>
 <h4 id="status-codes">Status codes</h4>
 <p><img alt="Status part" src="../assets/images/status-part.png" /></p>
 <p>If you want to be specific about which values that are returned based on status codes, the <strong>Status codes</strong> part allows you to specify which status codes to be included as values and which status codes are excluded and will be returned as <code>-1,#IND/-1.#IND</code> and displayed as blank.</p>
 <p>In the <strong>Show</strong> column, you specify how the status values can be displayed:</p>
 <ul>
-<li><strong>As color</strong>: Background colour/font colour is selected in the <a href="#status-codes-and-colours-setup">Status codes and colours setup</a></li>
-<li><strong>In cell</strong>: In the cell to the right of or under the value. </li>
+<li><strong>As color</strong>: Background colour/font colour is selected in the <a href="#configure-status-codes-and-colours">Configure status codes and colours</a></li>
+<li><strong>In cell</strong>: In the cell to the right of or under the value.</li>
 <li><strong>In comment</strong>:  As Excel comment (concatenated with any comments)</li>
 </ul>
-<p>The status codes to be marked is configured in the <a href="#status-codes-and-colours-setup">Status codes and colours setup</a> section.</p>
+<p>The status codes to be marked is configured in the <a href="#configure-status-codes-and-colours">Configure status codes and colours</a> section.</p>
 <p>The status codes are:</p>
 <ul>
 <li><code>m</code> - manual</li>
@@ -769,26 +777,30 @@
 <li><code>-</code> - missing</li>
 </ul>
 <p>Default handling is exclude <code>!-</code> (<code>!</code> not OK, <code>-</code> missing).</p>
-<p>The column <strong>St</strong> will display an <strong>*</strong> if there is valid information.</p>
-<h4 id="where-to-store">Where to store</h4>
+<p>The column <strong>St</strong> will display an <strong><code>*</code></strong> if there is valid information.</p>
+<h4 id="where-to-store-loaded-data">Where to store loaded data</h4>
 <p><img alt="Where to store part" src="../assets/images/where-to-store-part.png" /></p>
 <p>The <strong>Where to store</strong> part must be filled in to specify where the data are stored in the workbook. In the <strong>Sheet</strong> column you must fill in the worksheet where the presentation should be presented.</p>
-<p>The <strong>Row</strong>/<strong>Column</strong>/<strong>Name</strong> columns specify which cell the presentation should start in, and the <strong>Direction</strong> column specifies how the data should be presented. Possible values are:
-- <strong>Column</strong> - one column
-- <strong>ColumnDays</strong> - one column per day
-- <strong>Row</strong> - one row
-- <strong>RowDays</strong> - one row per day
-- <strong>WeekMatrix</strong> - a week matrix (one column per day).</p>
+<p>The <strong>Row</strong>/<strong>Column</strong>/<strong>Name</strong> columns specify which cell the presentation should start in, and the <strong>Direction</strong> column specifies how the data should be presented. Possible values are:</p>
+<ul>
+<li><strong>Column</strong> - one column</li>
+<li><strong>ColumnDays</strong> - one column per day</li>
+<li><strong>Row</strong> - one row</li>
+<li><strong>RowDays</strong> - one row per day</li>
+<li><strong>WeekMatrix</strong> - a week matrix (one column per day).</li>
+</ul>
 <p>In the <strong>Name</strong> column you can specify a named Excel range. The <strong>Row</strong>, <strong>Column</strong> and <strong>Name</strong> columns are alternatives to specifying the start cell. The <strong>Row</strong> and <strong>Column</strong> values are only used if <strong>Name</strong> is not specified.</p>
 <p>The <strong>Direction</strong> column also determines if information like <strong>Full name/TS</strong> code, <strong>Date/time</strong>, <strong>Comments</strong> and <strong>Status</strong> will be shown to the left/right of the values (<strong>Direction</strong> = <strong>Column</strong>) or over/under the value (<strong>Direction</strong> = <strong>Row</strong>).</p>
 <p>The <strong>Operation</strong> column is used to do calculations with the already existing information in a cell. If a time series is presented at the same location as another time series, the first time series will be overwritten if there is no <strong>Operation</strong> specified. If you specify <strong>+</strong>, the new value will be added to the value already in the cell.</p>
 <p><strong><em>Note!</em></strong> If you specify a + operation for one time series alone, the time series will be added to itself each time you load a time series.</p>
-<p>The <strong>DST</strong> column is used when data is presented in local time. Select one of the values: 
-- <strong>Continuous</strong>: Present the time series with continuous values even in the transition days.
-- <strong>Blank/Double</strong>: Present the data with an empty hour in the spring and double value in the autumn. This is special useful for week presentations.
-- <strong>Cont/Average</strong>: Present data continuously based on the average of the values before/after transition.</p>
+<p>The <strong>DST</strong> column is used when data is presented in local time. Select one of the values:</p>
+<ul>
+<li><strong>Continuous</strong>: Present the time series with continuous values even in the transition days.</li>
+<li><strong>Blank/Double</strong>: Present the data with an empty hour in the spring and double value in the autumn. This is special useful for week presentations.</li>
+<li><strong>Cont/Average</strong>: Present data continuously based on the average of the values before/after transition.</li>
+</ul>
 <p><strong><em>Note!</em></strong> <strong>Operation</strong> other than <strong>=</strong>, <strong>+</strong> or blank together with <strong>DST</strong> <strong>Blank/Double</strong> will not work for the double hour in the autumn.</p>
-<p>The column <strong>W</strong> will contain <strong>!!</strong> if there is no information given for time series that should be presented, an <strong>!</strong> if there are missing values and an <strong>*</strong> if valid information is provided.</p>
+<p>The column <strong>W</strong> will contain <strong>!!</strong> if there is no information given for time series that should be presented, an <strong>!</strong> if there are missing values and an <strong><code>*</code></strong> if valid information is provided.</p>
 <h4 id="data-function">Data function</h4>
 <p><img alt="Data function part" src="../assets/images/data-function-part.png" /></p>
 <p>The <strong>Data function</strong> part can be used to specify aggregation of values to a longer period that the interval on the time series or distribution of values to a shorter period (<strong>Aggregate</strong>). The <strong>Function</strong> to be used is important if you specify a different period that the interval of the time series.</p>
@@ -800,7 +812,7 @@
 <p>In the <strong>Scale</strong> column you can specify any factor to scale the read values before presenting them. For instence useful for presenting kWh from a MWh time series.</p>
 <p>In the <strong>Profile</strong> column you can specify if the time series should be used to generate a profile based on the values selected. The profile can be calculated as a <strong>Day</strong> profile (24 hours) with 15 minutes or hourly resolution or as a <strong>Week</strong> profile with 15 minutes, hourly or daily resolution. The resolution is given in the <strong>Aggregate</strong> column. Each time step is calculated as an average based on the selected values.</p>
 <p>The last column is useful to ensure that the data area is blanked before new values are presented. The value specified in <strong># Values</strong> defines how many cells that will be blanked before the presentation is done.</p>
-<p>The <strong>F</strong> column will display an <strong>*</strong> if there is any valid information specified.</p>
+<p>The <strong>F</strong> column will display an <strong><code>*</code></strong> if there is any valid information specified.</p>
 <h4 id="bulk-group">Bulk group</h4>
 <p>To read series by bulk, the series must be located together in the Excel-sheet and belong to the same bulk group (the same value in the column <strong>Bulk group</strong>). Layout version must be <strong>T107</strong> and <strong>Emulated TsApi (TSS)</strong> must be used. Every time series in a bulk group must have the same interval type and same period. The first row with a value in the <strong>Show date/time</strong>, <strong>Data function</strong>, <strong>Different period</strong>, <strong>Comments</strong> or <strong>Status codes</strong> columns must have a new group. If using bulk, all series should have bulk. If not, the result of the read can fail.</p>
 <h4 id="message-loadfromdb">Message (LoadFromDB)</h4>
@@ -831,10 +843,10 @@
 <p>In the <strong>LT/NT</strong> column you can specify if the date/time is given in local or standard/normal time.</p>
 <h4 id="different-period-savetodb">Different period (SaveToDB)</h4>
 <p>If you want a different <strong>From date/time</strong>, specify it in this column. Values in this column will be used instead of the values in the heading.</p>
-<p>The <strong>P</strong> column will display an <strong>*</strong> if there is valid information here.</p>
-<h4 id="where-to-store_1">Where to store</h4>
-<p>This part is the same as the <strong>Where to store</strong> part in the <strong>LoadFromDB</strong> worksheet, <a href="#where-to-store">Where to store</a>. The only difference is that the saving of values expects that data are saved as <strong>Continuous</strong> for <strong>DST</strong>. If you present data with <strong>DST</strong> specified as <strong>Blank/Double</strong>, the save will stop on the missing hour in the spring or at the 25th hour in the autumn.</p>
-<p>The column <strong>W</strong> will contain <strong>!!</strong> if there is no information given for time series that should be saved, an <strong>!</strong> if there are missing values and an <strong>*</strong> if valid information is given.</p>
+<p>The <strong>P</strong> column will display an <strong><code>*</code></strong> if there is valid information here.</p>
+<h4 id="where-to-store-data-to-save">Where to store data to save</h4>
+<p>This part is the same as the <strong>Where to store</strong> part in the <strong>LoadFromDB</strong> worksheet, <a href="#where-to-store-loaded-data">Where to store loaded data</a>. The only difference is that the saving of values expects that data are saved as <strong>Continuous</strong> for <strong>DST</strong>. If you present data with <strong>DST</strong> specified as <strong>Blank/Double</strong>, the save will stop on the missing hour in the spring or at the 25th hour in the autumn.</p>
+<p>The column <strong>W</strong> will contain <strong>!!</strong> if there is no information given for time series that should be saved, an <strong>!</strong> if there are missing values and an <strong><code>*</code></strong> if valid information is given.</p>
 <h4 id="save-values">Save values</h4>
 <p>In the <strong>Save values</strong> part you can decide which values that will be saved (<strong>All</strong> or <strong>Only changed</strong>) and set the <strong>Status</strong> of the value in the database. The default values are that <strong>Only changed</strong> values are saved with <strong>OK</strong> status.</p>
 <p>In addition, you can specify a comment to be saved together with the values. The comment is stored for the whole period and not for each hour that is saved. When saving comments, you can decide if the last comment should be added (Insert) to existing comments or the last should replace all comments in the given period.</p>
@@ -852,20 +864,20 @@
 </ul>
 <p>If you set <strong>Locked</strong> status on a value, you cannot unlock the value from the <strong>FlexibleLoadStore.xls</strong> (unavailable in the TsApi).</p>
 <p>If you set <strong>Missing</strong> status on a value, the value is treated as not existing in the system.</p>
-<p>The <strong>S</strong> column will display an __<em>__ if there is any information given in </em><em>Method</em><em> and/or </em><em>Status code</em>*.</p>
+<p>The <strong>S</strong> column will display an <strong><code>*</code></strong> if there is any information given in <strong>Method</strong> and/or <strong>Status code</strong>.</p>
 <h4 id="function">Function</h4>
 <p>In the <strong>Function</strong> part you can specify a <strong>Scale</strong> factor that will be used when storing values. The default value is <strong>1</strong>.</p>
-<p>The <strong>F</strong> column will display an <strong>*</strong> if there is specified any scale factor.</p>
+<p>The <strong>F</strong> column will display an <strong><code>*</code></strong> if there is specified any scale factor.</p>
 <h4 id="resolution">Resolution</h4>
 <p>In the <strong>Resolution</strong> part it is possible to specify that values should be stored with a different resolution than shown. Especially when saving breakpoint time this part is of interest. You can skip this part if no transformation between resolutions is needed.</p>
 <p>The <strong>Stored as</strong> column must have the same resolution as the time series. Only <strong>bp</strong> (breakpoint) and <strong>15min</strong> are allowed values.</p>
 <p>The <strong>Shown as</strong> column specifies the interval between the values in the Excel sheet. For time series with 15 minutes resolution, only <strong>15min</strong>, <strong>30min</strong> and <strong>Hour</strong> are allowed, for breakpoint time series all other options are allowed.</p>
 <p>The <strong>Function</strong> part contains the function to be used when transforming values before saving. With the <strong>ave</strong> (average) function the same value is stored in all sub-values (storing an hour series in 15 minutes resolution will give 4 sub-values per value). With the <strong>sum</strong> function the sub-values will be the same values but the sum of them will the original value. The default value is <strong>sum</strong>.</p>
-<p>The <strong>R</strong> column will display an __<em>__ in there are values in all three columns, a </em><em>blank</em><em> if no values are specified and an </em><em>!</em>* otherwise.</p>
+<p>The <strong>R</strong> column will display an <strong><code>*</code></strong> in there are values in all three columns, a <strong>blank</strong> if no values are specified and an <strong>!</strong> otherwise.</p>
 <h4 id="criteria">Criteria</h4>
 <p>In this part you define when to stop reading values to save. The possibilities are <strong>Blank</strong> (stops with the first blank cell), <strong>NotANumber</strong> (will accept blank cells, but stops at the first text cell) or <strong>Both</strong> (stops with the first blank or text cell). The default value is <strong>Both</strong>.</p>
 <p>In addition, you can specify a maximum number of values that will be read from Excel.</p>
-<p>The <strong>C</strong> column displays an <strong>*</strong> if there is selected a stop criterion.</p>
+<p>The <strong>C</strong> column displays an <strong><code>*</code></strong> if there is selected a stop criterion.</p>
 <h4 id="message-savetodb">Message (SaveToDB)</h4>
 <p>The <strong>Message</strong> part displays the result of the save or any problems with the time series or database.</p>
 <h3 id="save-data">Save data</h3>
@@ -922,7 +934,7 @@ End Sub
 </ul>
 <p>It is not necessary to copy the <strong>SaveToDB</strong> sheet if you do not want to save data in the workbook.</p>
 <h3 id="configure-the-times-series-to-report">Configure the Times series to report</h3>
-<p>See <a href="#loadfromdb-worksheet">LoadFromDB worksheet</a> and  <a href="#savetodb-worksheet">SaveToDB worksheet</a>.</p>
+<p>See <a href="#the-loadfromdb-worksheet">The LoadFromDB worksheet</a> and <a href="#the-savetodb-worksheet">The SaveToDB worksheet</a>.</p>
 <h2 id="updates-to-poweladdinxls">Updates to PowelAddIn.xls</h2>
 <p>New updates to <strong>PowelAddIn.xls</strong> are installed the same way as the first time. Remember to deselect the add-in in Excel, save the new version as an Excel Add-In and reselect as add-in.</p>
 <h2 id="updates-to-worksheets">Updates to worksheets</h2>

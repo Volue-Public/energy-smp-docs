@@ -483,6 +483,16 @@
 <p>The <em>Mesh Data Transfer</em> service enables users to perform time series and availability data exports and imports from a <code>Mesh</code> server. It uses the AMQP protocol as an external communication method to guarantee high level of reliability and versatility.</p>
 <p>Mesh Data Transfer offers HTTP endpoints for creating both availability and time series export orders (used by certain Volue products, e.g. Participant, Nimbus). Imports are requested via queues (AMQP 1.0 or Azure Service Bus) and the outcomes of the import operations are sent to AMQP reply queues. The export results are stored as files or sent to an AMQP queue, depending on the configuration. Mesh Data Transfer is also responsible for saving export status to the <code>Message Log</code> (in the case of imports it is done by Mesh).</p>
 <h2 id="usage">Usage</h2>
+<h3 id="api-documentation-swagger">API Documentation (Swagger)</h3>
+<p>Mesh Data Transfer provides interactive API documentation using Swagger/OpenAPI. The Swagger UI is available at:</p>
+<pre><code>http://localhost:7000/swagger
+</code></pre>
+<p><strong>Configuration:</strong> Swagger can be enabled via appsettings.json:</p>
+<p><code>json
+   "ApiSettings": {
+     "EnableSwagger": true
+   }</code></p>
+<p>The Swagger UI provides interactive documentation for all available endpoints, allowing you to explore the API and test requests directly from your browser.</p>
 <h3 id="time-series-export">Time series export</h3>
 <p>To invoke a Mesh time series export, you post an HTTP request to one of Mesh Data Transfer's export endpoints.</p>
 <h4 id="order-endpoint"><strong>"Order"</strong> endpoint</h4>
@@ -543,6 +553,10 @@ Invoke-WebRequest -Uri &quot;http://localhost:7000/RegularOrder&quot; -Method Po
 <tr>
 <td>139</td>
 <td>MSCONS</td>
+</tr>
+<tr>
+<td>141</td>
+<td>MeshTimeSeriesJson</td>
 </tr>
 </tbody>
 </table>
