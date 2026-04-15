@@ -224,8 +224,8 @@ This feature is particularly useful in multi-tenant or multi-source scenarios wh
 
 Mesh Data Transfer supports three authentication types for the Mesh gRPC connection:
 - `None` - No authentication (default)
-- `Kerberos` - Kerberos / Windows integrated authentication
-- `EntraId` - Microsoft EntraId (Azure AD) OAuth 2.0 authentication
+- `Kerberos` - Windows/Kerberos authentication
+- `EntraId` - Entra ID/OAuth authentication
 
 Set `HttpEndpoints:Mesh:AuthType` to the desired authentication method.
 
@@ -737,8 +737,6 @@ There are two main approaches to configure data-transfer services:
 Then, it is required to set the authorisation scopes in the Mesh groups file (defined in the `GroupsFile` authorisation setting of Mesh).
 When data-transfer is running as `LocalSystem`, use the group name `System`.
 Otherwise, use the dedicated group name.
-
-## Running automatic end to end tests locally
 
 ### Installation dependencies
 
