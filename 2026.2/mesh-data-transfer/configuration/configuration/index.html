@@ -431,20 +431,62 @@
     <li class="toctree-l2"><a class="reference internal" href="#logging">Logging</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#brokers-configuration">Brokers Configuration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#queue-durability-configuration">Queue Durability Configuration</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#queues-configuration">Queues Configuration</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#kestrel-configuration">Kestrel Configuration</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#mesh-connection-configuration">Mesh connection configuration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#authentication-configuration">Authentication Configuration</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#kerberos-authentication">Kerberos Authentication</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#entraid-authentication">EntraId Authentication</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mdt-rest-api-authentication">MDT REST API Authentication</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#no-authentication-default">No Authentication (default)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#kerberos-windows-integrated-authentication">Kerberos (Windows integrated authentication)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#entraid-oauth-20">EntraId (OAuth 2.0)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#other-mesh-configuration-options">Other Mesh Configuration Options</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#database-configuration">Database Configuration</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#import-and-export-common-configuration">Import and export common configuration</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#json-time-series-import">JSON time series import</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#amqp-message-type-annotation">AMQP message type annotation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#quality-flags">Quality flags</a>
+    </li>
+        </ul>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#import-specific-configuration">Import specific configuration</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#export-specific-configuration">Export specific configuration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#meshtimeseriesjson-export-to-azure-blob-storage">MeshTimeSeriesJson export to Azure Blob Storage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#azure-service-bus-and-blob-storage-entra-id">Azure Service Bus and Blob Storage Entra ID</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#azure-blob-storage-for-large-messages">Azure Blob Storage for Large Messages</a>
+    </li>
+        </ul>
     </li>
     </ul>
                   </li>
@@ -567,6 +609,24 @@ If the sections or any parameters within the section is not present, they are ig
     }
   },
 </code></pre>
+<h4 id="queue-durability-configuration">Queue Durability Configuration</h4>
+<p>The <code>Durable</code> parameter allows you to configure queue persistence for AMQP/RabbitMQ connections. This setting determines whether queues survive broker restarts.</p>
+<p><strong>Note:</strong> This parameter applies only to AMQP/RabbitMQ connections and is ignored for Azure Service Bus.</p>
+<pre><code class="language-json">  &quot;BrokersConfiguration&quot;: {
+    &quot;B1&quot;: {
+      &quot;ConnectionStrings&quot;: [
+        &quot;amqp://localhost:5672&quot;
+      ],
+      &quot;VirtualHost&quot;: &quot;Virtus&quot;,
+      &quot;Durable&quot;: 1
+    }
+  },
+</code></pre>
+<p>Valid values for <code>Durable</code>:
+- <code>0</code> - <strong>Non-durable</strong> (default): Transient link. Does not persist across broker restarts.
+- <code>1</code> - <strong>Durable</strong>: Persistent link. Broker retains state and messages after restart.
+- <code>2</code> - <strong>Transient</strong>: Temporary link optimized for short-lived sessions. No persistence.</p>
+<p>If not specified, the default value is <code>0</code> (non-durable).</p>
 <h3 id="queues-configuration">Queues Configuration</h3>
 <p>Mesh Data Transfer allows a configuration of queues that can be later assigned to various components.
 Each json object in <code>Queues Configuration</code> describes a single queue. It can have any name that is unique within <code>Queues Configuration</code>.</p>
@@ -587,6 +647,41 @@ Each json object in <code>Queues Configuration</code> describes a single queue. 
 <pre><code class="language-json">      &quot;Subscription&quot;: &quot;Sub1&quot;
 </code></pre>
 <p><code>Subscription</code> enables the use of Azure Service Bus Topics feature. When <code>Subscription</code> is provided, the <code>QueueName</code> parameters serves as the topic name. <code>Subscription</code> is only valid for queues with the <code>Receive</code> role. For the <code>Sender</code> role, <code>QueueName</code> can serve both as the queue name and the topic name.</p>
+<pre><code class="language-json">      &quot;ReplyQueueName&quot;: &quot;ReplyQueue1&quot;,
+      &quot;FailureQueueName&quot;: &quot;FailureQueue1&quot;
+</code></pre>
+<p><code>ReplyQueueName</code> and <code>FailureQueueName</code> are optional properties that specify which reply and failure queues should be used for a specific receiver queue. These properties enable source-specific message routing in import operations:</p>
+<ul>
+<li><strong><code>ReplyQueueName</code></strong>: References a queue (by its identifier in <code>QueuesConfiguration</code>) with <code>Sender</code> role that will receive import reply messages for this receiver queue</li>
+<li><strong><code>FailureQueueName</code></strong>: References a queue (by its identifier in <code>QueuesConfiguration</code>) with <code>Failure</code> role that will receive failed messages for this receiver queue</li>
+</ul>
+<p><strong>Configuration Scenarios:</strong>
+1. <strong>Explicit Configuration</strong>: Directly reference existing queues to establish dedicated reply/failure channels
+2. <strong>Auto-creation</strong>: If not specified and no suitable queues are found, MDT automatically creates queues with naming pattern: <code>{receiver-queue-name}-reply</code> and <code>{receiver-queue-name}-failure</code>
+3. <strong>Shared Queues</strong>: Multiple receiver queues can reference the same reply or failure queue for consolidated processing
+4. <strong>Fallback</strong>: Receiver queues without explicit configuration will use any available <code>Sender</code> or <code>Failure</code> role queues as fallback</p>
+<p><strong>Example Configuration:</strong></p>
+<pre><code class="language-json">&quot;QueuesConfiguration&quot;: {
+  &quot;SourceAReceiver&quot;: {
+    &quot;Broker&quot;: &quot;B1&quot;,
+    &quot;QueueName&quot;: &quot;source-a-input&quot;,
+    &quot;Role&quot;: &quot;Receiver&quot;,
+    &quot;ReplyQueueName&quot;: &quot;SourceAReply&quot;,
+    &quot;FailureQueueName&quot;: &quot;CommonFailure&quot;
+  },
+  &quot;SourceAReply&quot;: {
+    &quot;Broker&quot;: &quot;B1&quot;,
+    &quot;QueueName&quot;: &quot;source-a-replies&quot;,
+    &quot;Role&quot;: &quot;Sender&quot;
+  },
+  &quot;CommonFailure&quot;: {
+    &quot;Broker&quot;: &quot;B1&quot;,
+    &quot;QueueName&quot;: &quot;all-failures&quot;,
+    &quot;Role&quot;: &quot;Failure&quot;
+  }
+}
+</code></pre>
+<p>This feature is particularly useful in multi-tenant or multi-source scenarios where different import sources require isolated reply channels.</p>
 <h3 id="kestrel-configuration">Kestrel Configuration</h3>
 <p><code>Kestrel</code> is an HTTP server used by Mesh Data Transfer in order to expose the endpoint for receiving the orders and for the health endpoint.</p>
 <pre><code class="language-json">&quot;Kestrel&quot;: {
@@ -599,6 +694,7 @@ Each json object in <code>Queues Configuration</code> describes a single queue. 
 <pre><code class="language-json">&quot;HttpEndpoints&quot;: {
   &quot;Mesh&quot;: {
     &quot;Uri&quot;: &quot;https://localhost:50001/mesh&quot;,
+    &quot;AuthType&quot;: &quot;Kerberos&quot;,
     &quot;ServerPrincipal&quot;: &quot;HOST/server.mydomain.com&quot;,
     &quot;TokenRefreshIntervalMinutes&quot;: 30,
     &quot;RequestTimeout&quot;: 60,
@@ -607,11 +703,117 @@ Each json object in <code>Queues Configuration</code> describes a single queue. 
   }
 },
 </code></pre>
-<p><code>HttpEndpoints:Mesh:Uri</code> contains the address of <code>Mesh</code> server endpoint that is used for all the exports and imports of data.
-Use <code>https</code> in the <code>Uri</code> to enable Transport Layer Security (TLS) and communicate with Mesh over secure channel.</p>
-<p><code>HttpEndpoints:Mesh:ServerPrincipal</code> field should be set if the user wants to enable Kerberos authentication.
-The value should be set to Kerberos server principal of the Mesh server.
-<code>HttpEndpoints:Mesh:TokenRefreshIntervalMinutes</code> is the refresh period of the Kerberos token. By default it is set to 30 minutes.</p>
+<h4 id="authentication-configuration">Authentication Configuration</h4>
+<p>Mesh Data Transfer supports three authentication types for the Mesh gRPC connection:
+- <code>None</code> - No authentication (default)
+- <code>Kerberos</code> - Windows/Kerberos authentication
+- <code>EntraId</code> - Entra ID/OAuth authentication</p>
+<p>Set <code>HttpEndpoints:Mesh:AuthType</code> to the desired authentication method.</p>
+<p>The same <code>AuthType</code> also controls authentication for the <strong>MDT REST API</strong> (see <a href="#mdt-rest-api-authentication">MDT REST API Authentication</a> below).</p>
+<h5 id="kerberos-authentication">Kerberos Authentication</h5>
+<p>For Kerberos authentication, set:
+- <code>AuthType</code> to <code>"Kerberos"</code>
+- <code>ServerPrincipal</code> to the Kerberos server principal of the Mesh server (e.g., <code>"HOST/server.mydomain.com"</code>)</p>
+<pre><code class="language-json">&quot;HttpEndpoints&quot;: {
+  &quot;Mesh&quot;: {
+    &quot;Uri&quot;: &quot;https://localhost:50001/mesh&quot;,
+    &quot;AuthType&quot;: &quot;Kerberos&quot;,
+    &quot;ServerPrincipal&quot;: &quot;HOST/server.mydomain.com&quot;,
+    &quot;TokenRefreshIntervalMinutes&quot;: 30
+  }
+}
+</code></pre>
+<p><strong>Note:</strong> For backward compatibility, if <code>ServerPrincipal</code> is set without <code>AuthType</code>, Kerberos authentication will be used automatically.</p>
+<h5 id="entraid-authentication">EntraId Authentication</h5>
+<p>EntraId credentials are configured in a dedicated top-level <code>EntraId</code> section (not under <code>HttpEndpoints:Mesh</code>).</p>
+<p><strong>With client secret:</strong></p>
+<pre><code class="language-json">&quot;HttpEndpoints&quot;: {
+  &quot;Mesh&quot;: {
+    &quot;Uri&quot;: &quot;https://localhost:50001/mesh&quot;,
+    &quot;AuthType&quot;: &quot;EntraId&quot;,
+    &quot;TokenRefreshIntervalMinutes&quot;: 30
+  }
+},
+&quot;EntraId&quot;: {
+  &quot;TenantId&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+  &quot;ClientId&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+  &quot;ClientSecret&quot;: &quot;your-client-secret&quot;,
+  &quot;Scopes&quot;: [
+    { &quot;Role&quot;: &quot;Mesh&quot;, &quot;Value&quot;: &quot;api://mesh/.default&quot; }
+  ]
+}
+</code></pre>
+<p><strong>With certificate file (.pfx/.pem):</strong></p>
+<pre><code class="language-json">&quot;EntraId&quot;: {
+  &quot;TenantId&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+  &quot;ClientId&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+  &quot;CertificatePath&quot;: &quot;/path/to/certificate.pfx&quot;,
+  &quot;CertificatePassword&quot;: &quot;certificate-password&quot;,
+  &quot;Scopes&quot;: [
+    { &quot;Role&quot;: &quot;Mesh&quot;, &quot;Value&quot;: &quot;api://mesh/.default&quot; }
+  ]
+}
+</code></pre>
+<p><strong>With certificate from Windows certificate store:</strong></p>
+<pre><code class="language-json">&quot;EntraId&quot;: {
+  &quot;TenantId&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+  &quot;ClientId&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+  &quot;CertificateThumbprint&quot;: &quot;1234567890ABCDEF1234567890ABCDEF12345678&quot;,
+  &quot;CertificateStoreLocation&quot;: &quot;CurrentUser&quot;,
+  &quot;CertificateStoreName&quot;: &quot;My&quot;,
+  &quot;Scopes&quot;: [
+    { &quot;Role&quot;: &quot;Mesh&quot;, &quot;Value&quot;: &quot;api://mesh/.default&quot; }
+  ]
+}
+</code></pre>
+<p>The <code>Mesh</code> scope is used for the gRPC connection to the Mesh server. Additional roles (<code>Api</code>, <code>ServiceBus</code>, <code>Storage</code>) can be added to the <code>Scopes</code> list to enable Entra ID authentication for the HTTP API, Azure Service Bus, and Azure Blob Storage respectively — see the <a href="#azure-service-bus-and-blob-storage-entra-id">Azure Service Bus and Blob Storage</a> section.</p>
+<p><strong>Security Note:</strong> Store sensitive credentials like <code>ClientSecret</code> and <code>CertificatePassword</code> securely using Azure Key Vault, environment variables, or other secure configuration providers. Do not commit secrets to source control.</p>
+<h4 id="mdt-rest-api-authentication">MDT REST API Authentication</h4>
+<p>MDT REST API endpoints can be independently secured using <code>ApiSettings:RequireAuthentication</code>. When enabled, all endpoints except <code>/health</code> require authentication. The <code>AuthType</code> set in <code>HttpEndpoints:Mesh</code> determines the scheme used.</p>
+<pre><code class="language-json">&quot;ApiSettings&quot;: {
+  &quot;EnableSwagger&quot;: true,
+  &quot;RequireAuthentication&quot;: true
+}
+</code></pre>
+<h5 id="no-authentication-default">No Authentication (default)</h5>
+<pre><code class="language-json">{
+  &quot;HttpEndpoints&quot;: { &quot;Mesh&quot;: { &quot;Uri&quot;: &quot;...&quot;, &quot;AuthType&quot;: &quot;None&quot; } },
+  &quot;ApiSettings&quot;: { &quot;RequireAuthentication&quot;: false }
+}
+</code></pre>
+<h5 id="kerberos-windows-integrated-authentication">Kerberos (Windows integrated authentication)</h5>
+<pre><code class="language-json">{
+  &quot;HttpEndpoints&quot;: {
+    &quot;Mesh&quot;: { &quot;Uri&quot;: &quot;...&quot;, &quot;AuthType&quot;: &quot;Kerberos&quot;, &quot;ServerPrincipal&quot;: &quot;HOST/server.mydomain.com&quot; }
+  },
+  &quot;ApiSettings&quot;: { &quot;RequireAuthentication&quot;: true }
+}
+</code></pre>
+<p>Swagger UI will prompt for Windows credentials using the Negotiate scheme.</p>
+<h5 id="entraid-oauth-20">EntraId (OAuth 2.0)</h5>
+<pre><code class="language-json">{
+  &quot;HttpEndpoints&quot;: { &quot;Mesh&quot;: { &quot;Uri&quot;: &quot;...&quot;, &quot;AuthType&quot;: &quot;EntraId&quot; } },
+  &quot;EntraId&quot;: {
+    &quot;TenantId&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+    &quot;ClientId&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+    &quot;ClientSecret&quot;: &quot;your-client-secret&quot;,
+    &quot;Scopes&quot;: [
+      { &quot;Role&quot;: &quot;Mesh&quot;, &quot;Value&quot;: &quot;api://mesh/.default&quot; },
+      { &quot;Role&quot;: &quot;Api&quot;,  &quot;Value&quot;: &quot;api://&lt;this-app-id&gt;/.default&quot; }
+    ]
+  },
+  &quot;ApiSettings&quot;: { &quot;RequireAuthentication&quot;: true }
+}
+</code></pre>
+<p>When <code>AuthType</code> is <code>EntraId</code>, Swagger UI is automatically configured with an OAuth 2.0 Authorization Code + PKCE flow:</p>
+<ol>
+<li>Navigate to Swagger UI (e.g., <code>http://localhost:7000/swagger</code>)</li>
+<li>Click the <strong>Authorize</strong> button</li>
+<li>Complete the Microsoft login flow and consent to requested permissions</li>
+<li>The access token is automatically included in subsequent API requests</li>
+</ol>
+<h4 id="other-mesh-configuration-options">Other Mesh Configuration Options</h4>
+<p><code>HttpEndpoints:Mesh:TokenRefreshIntervalMinutes</code> is the refresh period for authentication tokens. Defaults to 30 minutes.</p>
 <p><code>HttpEndpoints:Mesh:MaxReceiveMessageSizeInBytes</code> is an optional size limit for the messages received from Mesh (e.g. time series export response). Defaults to 4 MB (4194304 bytes) when not provided. The example extends the received message size limit to 16 MB.</p>
 <p><code>HttpEndpoints:Mesh:MaxRetryAttempts</code> is an optional retry count for messages that fail to reach Mesh due to transient errors (when Mesh is not accessible). Defaults to 5 attempts.</p>
 <p><code>HttpEndpoints:Mesh</code> can specify an optional <code>RequestTimeout</code> attribute (defaults to <code>60</code>).</p>
@@ -656,6 +858,43 @@ Otherwise the application tries to put the message back on the queue to process 
   &quot;FrameTracingEnabled&quot;: false
 }
 </code></pre>
+<h3 id="json-time-series-import">JSON time series import</h3>
+<p>Mesh Data Transfer supports importing time series data sent as Volue time series JSON AMQP messages. The message contains a header (origin, document identification, creation date) and one or more time series, each with a <code>TSReference</code> path pointing to the target Mesh time series, a time interval, and a list of value points.</p>
+<h4 id="amqp-message-type-annotation">AMQP message type annotation</h4>
+<p>To have the message recognized and processed as a Volue time series JSON import, the AMQP message must include a message annotation with the key <code>Action</code> set to <code>MeshTimeSeriesJson</code>:</p>
+<pre><code>Message annotation key:   Action
+Message annotation value: MeshTimeSeriesJson
+</code></pre>
+<p>Messages without this annotation are treated as standard XML time series imports.</p>
+<h4 id="quality-flags">Quality flags</h4>
+<p>Each value point may include a quality string. Supported values are:</p>
+<table>
+<thead>
+<tr>
+<th>Quality</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OK</code></td>
+<td>Good quality — no quality bits set</td>
+</tr>
+<tr>
+<td><code>Temporary</code></td>
+<td>Value is provisional</td>
+</tr>
+<tr>
+<td><code>Suspect</code></td>
+<td>Value is suspect</td>
+</tr>
+<tr>
+<td><code>Missing</code></td>
+<td>Value is missing</td>
+</tr>
+</tbody>
+</table>
+<p>Quality strings are mapped to Mesh flag bits using the status mapping defined for the transfer definition in the database (<code>tsstatus</code> table). If no quality is specified, or the value is <code>OK</code>, no quality bits are set. If a quality string is not found in the database mapping, the point is flagged as <code>Suspect</code> to avoid silently treating uncertain data as good quality.</p>
 <h3 id="import-specific-configuration">Import specific configuration</h3>
 <p><code>ImportWorker</code> is used to handle import requests. </p>
 <pre><code class="language-json">  &quot;ImportWorker&quot;: {
@@ -665,7 +904,7 @@ Otherwise the application tries to put the message back on the queue to process 
       &quot;FailureQ&quot;
     ],
     &quot;ICC_TRANSLOG_DIR&quot;: &quot;C:\\ICC_TRANSLOG_DIR\\&quot;,
-    &quot;ReimportEnabled&quot;: false,
+    &quot;CreateTransLogFile&quot;: true,
     &quot;PartialImportSuccess&quot;: false,
     &quot;Delay&quot;: 100,
     &quot;DisableImportReply&quot;: false,
@@ -673,8 +912,15 @@ Otherwise the application tries to put the message back on the queue to process 
   },
 </code></pre>
 <p>In order to work properly it needs <code>Queues</code> to contain a list of queues from <code>QueuesConfiguration</code>. One of the queues needs to be a <code>Receiver</code> queue which will be used to receive import orders. Another queue needs to be a <code>Sender</code> queue, used for sending import status data.
-The third, optional queue, needs to be a <code>Failure</code> queue. Its use depends on <code>FailedMessages</code> node below.
-If <code>ReimportEnabled</code> flag is set to <code>true</code>, <code>ICC_TRANSLOG_DIR</code> is a directory where received import requests are kept for potential reimports.
+The third, optional queue, needs to be a <code>Failure</code> queue. Its use depends on <code>FailedMessages</code> node below.</p>
+<p><strong>Reply and Failure Queue Routing:</strong>
+- If receiver queues specify <code>ReplyQueueName</code> or <code>FailureQueueName</code> properties, those specific queues will be used for reply/failure messages
+- If not specified, <code>ImportWorker</code> will:
+  1. Look for queues with <code>Sender</code> role (for replies) or <code>Failure</code> role (for failures) in the <code>Queues</code> list
+  2. Automatically create source-specific queues with naming pattern <code>{receiver-queue}-reply</code> and <code>{receiver-queue}-failure</code> if needed
+- Multiple receiver queues can share the same reply or failure queue by referencing the same queue identifier
+- This enables proper message routing in multi-tenant or multi-source scenarios</p>
+<p><code>CreateTransLogFile</code> is an optional flag which default value is set to true. If <code>CreateTransLogFile</code> flag is set to <code>true</code>, <code>ICC_TRANSLOG_DIR</code> is a directory where received import requests are kept for potential reimports. If <code>CreateTransLogFile</code> flag is set to <code>false</code>, files will not be created and <code>reimport</code> will not be available.
 <code>PartialImportSuccess</code> is an optional flag that makes Mesh Data Transfer include <code>&lt;ImportSuccess&gt;true&lt;/ImportSuccess&gt;</code> in the time series import reply when the import was partially successful. The default value is <code>false</code>, which means <code>ImportSuccess</code> is <code>true</code> only when all of the requested time series were imported correctly.
 The <code>Delay</code> parameter is used to control the timeout between the import requests.
 <code>DisableImportReply</code> is an optional flag used to disable the confirmation reply when the import request was processed successfully and an error reply when the import request had invalid syntax and could not be deserialized. It doesn't affect failure queue replies. Defaults to false.
@@ -737,6 +983,55 @@ When the <code>DestinationQueues</code> contains a key equal to an export receiv
 If the <code>DestinationQueues</code> mapping does not provide target queue information needed, <code>DefaultQueues</code> values are used as target queues.</p>
 <p>It is allowed to have one of (<code>DestinationQueues</code>, <code>DefaultQueues</code>) empty, but not both.</p>
 <p>Another parameter for <code>StoragePerProtocol</code> nodes is <code>DefaultDecimals</code>. It defines the number of decimals that is saved in the exported time series values if the decimals parameter is not defined in the time series export definition. It is optional and currently it is only supported for EDIEL DELFOR, ExcelCSV and GS2 export types.</p>
+<h4 id="meshtimeseriesjson-export-to-azure-blob-storage">MeshTimeSeriesJson export to Azure Blob Storage</h4>
+<p>The <code>MeshTimeSeriesJson</code> protocol (ID 141) exports raw JSON directly to Azure Blob Storage and sends a lightweight notification containing the blob SAS URL to the configured AMQP queue.</p>
+<p>Minimum configuration in <code>Storage:StoragePerProtocol</code>:</p>
+<pre><code class="language-json">&quot;MeshTimeSeriesJson&quot;: {
+  &quot;StorageKinds&quot;: [ &quot;Queue&quot; ],
+  &quot;DefaultQueues&quot;: [ &quot;ExportReplyQueue&quot; ],
+  &quot;BlobContainer&quot;: &quot;meshjson-exports&quot;
+}
+</code></pre>
+<p>The blob container is created automatically on first use. The queue notification carries the SAS URL in the <code>BlobPath</code> AMQP message annotation.</p>
+<p>For local development with <a href="https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite">Azurite</a>, set <code>Storage:BlobConnectionString</code> to the Azurite connection string:</p>
+<pre><code class="language-json">&quot;Storage&quot;: {
+  &quot;BlobConnectionString&quot;: &quot;DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=&lt;key&gt;;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;&quot;
+}
+</code></pre>
+<p>For production with Entra ID passwordless authentication, see the <a href="#azure-service-bus-and-blob-storage-entra-id">Azure Service Bus and Blob Storage Entra ID section</a> below.</p>
+<h4 id="azure-service-bus-and-blob-storage-entra-id">Azure Service Bus and Blob Storage Entra ID</h4>
+<p>Both Azure Service Bus (broker transport) and Azure Blob Storage (blob uploads) support passwordless Entra ID authentication using the shared <code>EntraId</code> configuration section.</p>
+<p>Add the relevant scopes to <code>EntraId:Scopes</code>:</p>
+<pre><code class="language-json">&quot;EntraId&quot;: {
+  &quot;TenantId&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+  &quot;ClientId&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+  &quot;ClientSecret&quot;: &quot;your-client-secret&quot;,
+  &quot;Scopes&quot;: [
+    { &quot;Role&quot;: &quot;Mesh&quot;,       &quot;Value&quot;: &quot;api://&lt;mesh-app-id&gt;/.default&quot; },
+    { &quot;Role&quot;: &quot;Api&quot;,        &quot;Value&quot;: &quot;api://&lt;this-app-id&gt;/.default&quot; },
+    { &quot;Role&quot;: &quot;ServiceBus&quot;, &quot;Value&quot;: &quot;https://servicebus.azure.net/.default&quot; },
+    { &quot;Role&quot;: &quot;Storage&quot;,    &quot;Value&quot;: &quot;https://storage.azure.com/.default&quot; }
+  ]
+}
+</code></pre>
+<p><strong>Azure Service Bus</strong>: Set the broker connection string to an <code>Endpoint=sb://...</code> string without <code>SharedAccessKey</code>. The application passes a <code>TokenCredential</code> into the Azure Service Bus SDK, which internally requests the appropriate scope (for example, <code>https://servicebus.azure.net/.default</code>); the <code>ServiceBus</code> scope entry in <code>EntraId:Scopes</code> is not used by the current implementation. The app registration must be assigned the <strong>Azure Service Bus Data Owner</strong> role on the namespace.</p>
+<p><strong>Azure Blob Storage</strong>: Set <code>Storage:BlobConnectionString</code> to the blob service endpoint URI (no <code>AccountKey</code>). The application passes a <code>TokenCredential</code> into the Azure Storage SDK, which internally requests the appropriate scope (for example, <code>https://storage.azure.com/.default</code>); the <code>Storage</code> scope entry in <code>EntraId:Scopes</code> is not used by the current implementation. The app registration must be assigned the <strong>Storage Blob Data Contributor</strong> role on the storage account:</p>
+<pre><code class="language-json">&quot;Storage&quot;: {
+  &quot;BlobConnectionString&quot;: &quot;https://&lt;account&gt;.blob.core.windows.net/&quot;
+}
+</code></pre>
+<p>When <code>BlobConnectionString</code> contains an <code>AccountKey</code>, key-based authentication is used automatically (Azurite / development scenarios). Entra ID is only activated when the key is absent.</p>
+<h4 id="azure-blob-storage-for-large-messages">Azure Blob Storage for Large Messages</h4>
+<p>When using Azure Service Bus, there is a message size limit that may be exceeded by large export files. To handle this, you can configure Azure Blob Storage:</p>
+<ul>
+<li><strong><code>BlobContainer</code></strong> (per protocol): When specified in a protocol configuration, export messages are uploaded to Azure Blob Storage instead of being sent directly through the queue. The queue receives only a SAS token URL pointing to the blob.</li>
+<li><strong><code>BlobConnectionString</code></strong> (global): Required when any protocol uses <code>BlobContainer</code>. This is the connection string to your Azure Storage account.</li>
+</ul>
+<p>When a message is stored in blob storage:
+1. The export content is uploaded to the specified container with optional compression
+2. A SAS token with 1-year expiry is generated
+3. The queue message contains only the blob URL in the <code>BlobPath</code> annotation
+4. On import, the content is automatically downloaded from the blob storage</p>
 <p><code>ICC_TRANSLOG_DIR</code> is a directory where export files are kept in order to look them up from MessageLog application.
 Please make sure that these directories are created.
 <code>AvailabilityExportQueue</code> is a reference to one of the queues defined in <code>QueuesConfiguration</code> item.
@@ -749,6 +1044,7 @@ If the sections or any parameters within the section is not present, they are ig
         &quot;1&quot;: [ &quot;exportReplyQueue&quot; ],
         &quot;13&quot;: [ &quot;exportReplyQueue&quot;, &quot;someOtherQueue&quot; ]
       },
+      &quot;BlobContainer&quot;: &quot;pvplan-exports&quot; // Optional: Use blob storage for large messages
       &quot;DefaultQueues&quot;: [ &quot;exportReplyQueue&quot; ]
     },
     &quot;PVPLAN2023&quot;: {
@@ -793,7 +1089,8 @@ If the sections or any parameters within the section is not present, they are ig
   },
   &quot;ICC_TRANSLOG_DIR&quot;: &quot;C:\\ICC_TRANSLOG_DIR\\&quot;,
   &quot;AvailabilityExportQueue&quot;: &quot;Q&quot;,
-  &quot;PvPlan2023&quot;: false
+  &quot;PvPlan2023&quot;: false,
+  &quot;BlobConnectionString&quot;: &quot;DefaultEndpointsProtocol=https;AccountName=mystorageaccount;AccountKey=***;EndpointSuffix=core.windows.net&quot;,
 }
 </code></pre>
 <p>The Time Series Volumes Web Service export can be configured in the <code>TsVolumesWebServiceExport</code> section:</p>
@@ -812,6 +1109,63 @@ If the sections or any parameters within the section is not present, they are ig
 <p>Then, it is required to set the authorisation scopes in the Mesh groups file (defined in the <code>GroupsFile</code> authorisation setting of Mesh).
 When data-transfer is running as <code>LocalSystem</code>, use the group name <code>System</code>.
 Otherwise, use the dedicated group name.</p>
+<h3 id="installation-dependencies">Installation dependencies</h3>
+<ul>
+<li>Install Python proton package
+  <code>powershell
+  python -m pip install python-qpid-proton</code></li>
+<li>TestWrapper requires Pester 5.0.0+ and jq package
+  <code>powershell
+  Get-Module -ListAvailable Pester
+  Install-Module -Name Pester -Force -SkipPublisherCheck
+  choco install jq</code></li>
+<li>Use PowerShell version 7
+  <code>powershell
+  $PSVersionTable</code></li>
+</ul>
+<h3 id="required-running-services">Required running services</h3>
+<ul>
+<li>Have DB container running on the PC before starting tests, connection details:
+  <code>json
+  "User": "energy",
+  "Password": "energy",
+  "DataSource": "localhost:1600/energy"</code>
+  If running the db on a different port: 
+  <code>powershell
+  $DBPort = 11521</code></li>
+<li>Use the ENEL DB: enel:20230815</li>
+<li>If the tests have been run, recreate the existing docker container:<ul>
+<li>Stop the Mesh service</li>
+<li>Stop the database container.</li>
+<li>Delete the container, and confirm by pressing the <code>Delete forever</code> button.</li>
+<li>Install the database docker image as described in https://github.com/Volue/energy-test-framework/tree/main/docker
+  <code>powershell
+  docker run -d -p 1600:1521 --ulimit nofile=1024:65536 --ulimit nproc=2047:16384 --ulimit stack=10485760:33554432 --ulimit memlock=3221225472 --tmpfs "/dev/shm:exec,dev,suid" tdtrhatfdb01.voluead.volue.com/db/enel:20230815</code></li>
+<li>Start the Mesh service</li>
+<li>NB! Check that the Mesh service is ready with the startup process before starting a new test run:
+  <code>powershell
+  Invoke-WebRequest -Uri "http://localhost:20000/meshHealth/health" -Method Get</code></li>
+</ul>
+</li>
+<li>The following services must be configured correctly and be running:</li>
+<li>Mesh</li>
+<li>Mesh Data Transfer</li>
+<li>Optionally one can set up a message broker like RabbitMQ or Apache QPID AMQP broker.<ul>
+<li>Installing RabbitMQ with AMQP 1.0 support</li>
+</ul>
+</li>
+</ul>
+<p><code>powershell
+  choco install rabbitmq
+  C:\Program Files\RabbitMQ Server\rabbitmq_server-3.12.10\sbin&gt;rabbitmq-plugins.bat list
+  C:\Program Files\RabbitMQ Server\rabbitmq_server-3.12.10\sbin&gt;rabbitmq-plugins.bat enable rabbitmq_amqp1_0</code>
+* For export tests, make <code>export_files</code> directory in Mesh Data Transfer folder (f.ex. <code>C:\Dev\energy-mesh-data-transfer\src\MeshDataTransfer\bin\Release\net8.0\export_files</code>)</p>
+<h3 id="running-tests">Running tests</h3>
+<ul>
+<li>Starting tests from <code>C:\Dev\energy-test-framework\tests</code> folder:
+  <code>powershell
+  .\TestRunner.ps1 -ContextName mesh_datatransfer -dbg</code></li>
+</ul>
               
             </div>
           </div><footer>
