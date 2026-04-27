@@ -487,6 +487,7 @@ operation is the important part rather than the returned values.</p>
 <h3 id="syntax">Syntax</h3>
 <ul>
 <li>CopyTs(s,s,s)</li>
+<li>CopyTs(s,s,s,s)</li>
 </ul>
 <p><strong>Description</strong></p>
 <table>
@@ -499,23 +500,54 @@ operation is the important part rather than the returned values.</p>
 <tbody>
 <tr>
 <td>s</td>
-<td>Attribute name that determines the match between source and target series. <br>It is assumed to be available at the object where the source series <br>is found and where the target series is found. <br>The built-in attribute called Name can also be used to decide match.</td>
+<td>Attribute name that determines the match between source and target series. It is assumed to be available at the object where the source series is found and where the target series is found. The built-in attribute called Name can also be used to decide match. For double attributes, a fuzzy comparison (tolerance 0.0001) is used. For integer and string attributes, an exact comparison is used. For other attribute kinds, the match always succeeds.</td>
 </tr>
 <tr>
 <td>s</td>
-<td>Search expression for getting source time series.</td>
+<td>Search expression for getting source time series. By default relative to the object where the @CopyTs() calculation is found. Prefix with "Model:" to make the search relative to model root. This part is removed before applying the search.</td>
 </tr>
 <tr>
 <td>s</td>
-<td>Search expression for getting target time series.</td>
+<td>Search expression for getting target time series. By default relative to the object where the @CopyTs() calculation is found. Prefix with "Model:" to make the search relative to model root. This part is removed before applying the search.</td>
+</tr>
+<tr>
+<td>s</td>
+<td>(optional) Execution mode: <code>Strict</code>, <code>Pragmatic</code>, <code>AllSources</code>, or <code>AllTargets</code>. Defaults to <code>Pragmatic</code> when omitted (3-argument form).</td>
 </tr>
 </tbody>
 </table>
-<p>The function returns 0 if success, else a negative error code.</p>
-<p>The search expression in the two last arguments are by default relative to the
-object where the @CopyTs() calculation is found. It is possible to make the
-search expression relative to model root by adding a prefix "Model:" to the
-search expression. This part is removed before applying the search.</p>
+<p><strong>Execution modes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strict</td>
+<td>All source series must be copied to a matching target series and all target series must receive values (1:1 matching required).</td>
+</tr>
+<tr>
+<td>Pragmatic</td>
+<td>Copy those source series that have a matching target. No strict requirements on unmatched sources or targets. This is the default.</td>
+</tr>
+<tr>
+<td>AllSources</td>
+<td>All source series must find at least one matching target.</td>
+</tr>
+<tr>
+<td>AllTargets</td>
+<td>All target series must receive values from a source.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return value</strong></p>
+<p>The function returns a non-negative value representing the number of target time
+series that were successfully copied to. A negative value indicates an error.</p>
+<p>A target time series can only receive values from one source. If multiple
+sources match the same target, the function returns an error.</p>
 <h3 id="example">Example</h3>
 <p><code>## = @CopyTs('Ident', '*[.Type=TypeB].Ts1','Model:*[.Name=A1_3_New]/[.Type=TypeB].Ts1')</code></p>
 <p>The function uses the value on the attribute <code>Ident</code> as criterion for making
@@ -531,9 +563,9 @@ pairs.</p>
 <p>In both examples the target search is done with model as start point (prefix
 <code>Model:</code>). The source series search is relative to the point in model where this
 calculation expression is found.</p>
-<p>The function will not do the copy operation if not all series identified by
-source search definition (argument 2) have a matching partner from the targets
-list.</p>
+<p><code>## = @CopyTs('Name', '*[.Type=TypeB].Ts1','Model:*[.Name=A1_3_New]/[.Type=TypeB].Ts1', 'Strict')</code></p>
+<p>Same as above, but using <code>Strict</code> execution mode which requires all sources and
+all targets to have exactly one match.</p>
               
             </div>
           </div><footer>
