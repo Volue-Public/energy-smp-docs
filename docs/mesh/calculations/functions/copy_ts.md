@@ -7,21 +7,33 @@ operation is the important part rather than the returned values.
 ### Syntax
 
 - CopyTs(s,s,s)
+- CopyTs(s,s,s,s)
 
 **Description**
 
 | Type | Description |
 |---|---|
-| s | Attribute name that determines the match between source and target series. <br>It is assumed to be available at the object where the source series <br>is found and where the target series is found. <br>The built-in attribute called Name can also be used to decide match. |
-| s | Search expression for getting source time series. |
-| s | Search expression for getting target time series. |
+| s | Attribute name that determines the match between source and target series. It is assumed to be available at the object where the source series is found and where the target series is found. The built-in attribute called Name can also be used to decide match. For double attributes, a fuzzy comparison (tolerance 0.0001) is used. For integer and string attributes, an exact comparison is used. For other attribute kinds, the match always succeeds. |
+| s | Search expression for getting source time series. By default relative to the object where the @CopyTs() calculation is found. Prefix with "Model:" to make the search relative to model root. This part is removed before applying the search. |
+| s | Search expression for getting target time series. By default relative to the object where the @CopyTs() calculation is found. Prefix with "Model:" to make the search relative to model root. This part is removed before applying the search. |
+| s | (optional) Execution mode: `Strict`, `Pragmatic`, `AllSources`, or `AllTargets`. Defaults to `Pragmatic` when omitted (3-argument form). |
 
-The function returns 0 if success, else a negative error code.
+**Execution modes**
 
-The search expression in the two last arguments are by default relative to the
-object where the @CopyTs() calculation is found. It is possible to make the
-search expression relative to model root by adding a prefix "Model:" to the
-search expression. This part is removed before applying the search.
+| Mode | Description |
+|---|---|
+| Strict | All source series must be copied to a matching target series and all target series must receive values (1:1 matching required). |
+| Pragmatic | Copy those source series that have a matching target. No strict requirements on unmatched sources or targets. This is the default. |
+| AllSources | All source series must find at least one matching target. |
+| AllTargets | All target series must receive values from a source. |
+
+**Return value**
+
+The function returns a non-negative value representing the number of target time
+series that were successfully copied to. A negative value indicates an error.
+
+A target time series can only receive values from one source. If multiple
+sources match the same target, the function returns an error.
 
 ### Example
 
@@ -44,6 +56,7 @@ In both examples the target search is done with model as start point (prefix
 `Model:`). The source series search is relative to the point in model where this
 calculation expression is found.
 
-The function will not do the copy operation if not all series identified by
-source search definition (argument 2) have a matching partner from the targets
-list.
+`## = @CopyTs('Name', '*[.Type=TypeB].Ts1','Model:*[.Name=A1_3_New]/[.Type=TypeB].Ts1', 'Strict')`
+
+Same as above, but using `Strict` execution mode which requires all sources and
+all targets to have exactly one match.
