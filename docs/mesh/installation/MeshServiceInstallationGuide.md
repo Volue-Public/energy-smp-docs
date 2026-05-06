@@ -620,18 +620,21 @@ It is possible to limit/control the memory usage by the cache by adding the foll
 
 ```json
   "SharedPointCache": {
-    "LimitMb": 1000,
-    "DefaultIntervalDays": 20,
+    "LimitMb": 1000, // -1 means no limit, valid range is [0, 1048576]
+    "DefaultIntervalDays": 20, // -1 means no limit, valid range is [1, 20000]
     "PreloadAllTimeSeries": false,
     "PreloadPreviousState": false,
     "CacheStateFileDirectory": "<path>"
   },
 ```
 
+Note: this is just an example. Specific values must be fine-tuned depending on
+your workloads and hardware parameters.
+
 Parameters:
 
-- `LimitMb` - the maximum number of megabytes allowed in the shared point cache.
-- `DefaultIntervalDays` - when the preloading is enabled Mesh will not preload points before now minus the configured number of days.
+- `LimitMb` - the maximum number of megabytes allowed in the shared point cache. The default value is `-1` (no limit). Valid range is `-1` or `[0, 1048576]`.
+- `DefaultIntervalDays` - when the preloading is enabled Mesh will not preload points before now minus the configured number of days. The default value is `-1` (no limit). Valid range is `-1` or `[1, 20000]`.
 - `PreloadAllTimeSeries` - if set to `true`, Mesh will preload all physical time series points on startup.
 - `PreloadPreviousState` - if set to `true`, Mesh will preload previous cache state on startup. If both PreloadAllTimeSeries and PreloadPreviousState is set to true at the same time, Mesh will first preload the previous cache state and then the other time series values.
 - `CacheStateFileDirectory` - path to the directory where Mesh persists the cache state.
@@ -640,6 +643,60 @@ Parameters:
 
 For security reasons, access to `CacheStateFileDirectory` should be restricted at the operating-system level.
 Grant permissions only to the specific users or groups that require access (principle of least privilege).
+
+#### Monitoring and tuning the cache
+
+When `LimitMb` is set, you may monitor the state of the cache via the following
+new fields in the Mesh health endpoint, in the group `metrics/pointCache/`.
+
+- `hits` is the number of times Mesh successfully retrieved points from the cache.
+- `misses` is the number of times Mesh failed to retrieve points from the cache
+  and had to access the database.
+- `series` is the number of time series in the cache.
+- `points` is the number of time series points in the cache.
+- `evictedSeries` is the number of times a time series has been evicted from the
+  cache because the cache was full.
+- `evictedPoints` is the number of time series points that have been evicted
+  from the cache.
+- `inserts` is the number of times a time series has been inserted into the
+  cache.
+- `updates` is the number of updates to individual time series that have been
+  performed. This only counts updates that hit the cache, updates to time
+  series not in the cache are not counted.
+- `stalls` is the number of times cache retrieval has stalled because of high
+  cache pressure.
+- `pointLimit` is the approximate maximum number of points in the cache based
+  on the `LimitMb` configuration.
+- `expansions` is the number of times Mesh had to fetch additional points for a
+  time series that already had some points cached. Useful for tuning `DefaultIntervalDays`.
+- `estimatedMemoryKb` is approximately how many KB the cache is using.
+
+When monitoring these values and tuning cache performance you should watch for
+a few problematic scenarios.
+
+1. A continuous "rapid" increase in `evictedSeries` and `misses` may indicate
+   that the cache is too small for the existing workload. The ratio of increase
+   of hits to increase of misses is a good indication of how bad the issue is.
+
+2. `stalls` should not happen in normal usage. A two digit increase in stalls
+   every now and then is fine, but if `stalls` are happening often they should
+   be reported to the development team as they may indicate a current or future
+   performance issue.
+
+#### How the cache works
+
+The cache is implemented as a least recently used (LRU) cache. This means that
+when the cache is over-full the time series that are evicted are those that
+were least recently accessed. While this pattern is simple to implement and
+understand it is one that struggles when the cache is too small. For example
+if the cache has space for 100 entires but there's a repeating workload
+accessing 101 entries in a sequence the cache will always evict the next
+item to be accessed.
+
+This is why it's important to monitor `evictedSeries` and `misses` and to
+increase the cache size if these indicate that the cache is too small.
+Additionally, it is worth to monitor `expansions`, as it is useful for
+tuning `DefaultIntervalDays`.
 
 <div style="page-break-after: always;"></div>
 
@@ -744,12 +801,12 @@ Below is the complete `mesh.json` listed with all options with default values.
     "Directory": "C:\\Powel\\Mesh\\logs", // Log to the given directory
     "Level": "info", // One of "trace", "debug", "info", "warning", "error", default "info"
     "RequestLogging": true,
-    "MaxLogFiles": 10,           // Maximum number of log files
-    "MaxLogSizeMb": 10,          // Maximum size of each log file in MB
-    "MaxRequestLogFiles": 10,    // Maximum number of request log files
-    "MaxRequestLogSizeMb": 10    // Maximum size of each request log file in MB
+    "MaxLogFiles": 10,           // Maximum number of log files, valid range is [1, 1000]
+    "MaxLogSizeMb": 10,          // Maximum size of each log file in MB, valid range is [10, 1000]
+    "MaxRequestLogFiles": 10,    // Maximum number of request log files, valid range is [1, 1000]
+    "MaxRequestLogSizeMb": 10    // Maximum size of each request log file in MB, valid range is [10, 1000]
   },
-  "SynchronizationIntervalSeconds": 30,
+  "SynchronizationIntervalSeconds": 30, // How often Mesh synchronises with the database
   "Audit": {
     "Directory": "",
     "CircularLog": true
@@ -762,7 +819,8 @@ Below is the complete `mesh.json` listed with all options with default values.
     "Server": "",
     "Username": "",
     "Password": "",
-    "TimeseriesPointsSplit": 8000000
+    "SynchronizationTimeoutMs": 600000,
+    "TimeSeriesPointsSplit": 8000000 // Maximum number of time series points per database write batch. Splits large commits to avoid Oracle buffer limits.
   },
   "HighAvailability": {
     "KillProcessOnSwitchingToInactiveMode": true,
@@ -775,10 +833,10 @@ Below is the complete `mesh.json` listed with all options with default values.
     "PingPongMaxStartAttemptsWithinInterval": 2,
     "ServiceName": "Mesh"
   },
-  "HttpConfig": {
+  "Http": {
     "Port": 20000,
     "Kerberos": true,
-    "HealthEnabled": true
+    "Health": true
   },
   "Grpc": {
     "Kerberos": true,
@@ -806,13 +864,12 @@ Below is the complete `mesh.json` listed with all options with default values.
     "Port": 40321
   },
   "SharedPointCache": {
-    "LimitMb": 1000,
-    "DefaultIntervalDays": 20,
-    "PreloadAllTimeSeries": true,
-    "PreloadPreviousState": true,
+    "LimitMb": -1,              // -1 means no limit, valid range is [0, 1048576]
+    "DefaultIntervalDays": -1,  // -1 means no limit, valid range is [1, 20000]
+    "PreloadAllTimeSeries": false,
+    "PreloadPreviousState": false,
     "CacheStateFileDirectory": "<path>"
-  },
-  "configPath": ""
+  }
 }
 ```
 
