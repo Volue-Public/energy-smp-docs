@@ -105,3 +105,5 @@ A search expression `[.Type=A]+` with a start point set to `Model` yields `A2`, 
 A search expression `[.Type=A]{+}` with a start point set to `Model` yields `A1`, `A2`, `A3` and `A4`. The `{+}` part in the expression recursively applies the search and outputs the intermediate matches such as `A1`.
 
 A search expression `+[.Type=A]+` with a start point set to `Model` yields `A2`, `A4` and `A5`. It recursively drills down into the model to find all leaf objects of type `A`.
+
+A search expression `+[.Type=A]{+}` with a start point set to `Model` yields `A1`, `A2`, `A3`, `A4` and `A5`. It recursively drills down into the model to find all leaf objects of type `A` and adds intermediate `A` objects to the result set.
