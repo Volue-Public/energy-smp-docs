@@ -624,8 +624,8 @@ It is possible to limit/control the memory usage by the cache by adding the foll
 
 ```json
   "SharedPointCache": {
-    "LimitMb": 1000, // -1 means no limit, valid range is [0, 1048576]
-    "DefaultIntervalDays": 20, // -1 means no limit, valid range is [1, 20000]
+    "LimitMb": 1000, // null means no limit, valid range is [0, 1048576]
+    "DefaultIntervalDays": 20, // null means no limit, valid range is [1, 20000]
     "PreloadAllTimeSeries": false,
     "PreloadPreviousState": false,
     "CacheStateFileDirectory": "<path>"
@@ -637,8 +637,8 @@ your workloads and hardware parameters.
 
 Parameters:
 
-- `LimitMb` - the maximum number of megabytes allowed in the shared point cache. The default value is `-1` (no limit). Valid range is `-1` or `[0, 1048576]`.
-- `DefaultIntervalDays` - when the preloading is enabled Mesh will not preload points before now minus the configured number of days. The default value is `-1` (no limit). Valid range is `-1` or `[1, 20000]`.
+- `LimitMb` - the maximum number of megabytes allowed in the shared point cache. The default value is `null` (no limit). Valid range is `null` or `[0, 1048576]`.
+- `DefaultIntervalDays` - when the preloading is enabled Mesh will not preload points before now minus the configured number of days. The default value is `null` (no limit). Valid range is `null` or `[1, 20000]`.
 - `PreloadAllTimeSeries` - if set to `true`, Mesh will preload all physical time series points on startup.
 - `PreloadPreviousState` - if set to `true`, Mesh will preload previous cache state on startup. If both PreloadAllTimeSeries and PreloadPreviousState is set to true at the same time, Mesh will first preload the previous cache state and then the other time series values.
 - `CacheStateFileDirectory` - path to the directory where Mesh persists the cache state.
@@ -651,7 +651,7 @@ Grant permissions only to the specific users or groups that require access (prin
 #### Monitor and tune the cache
 
 When `LimitMb` is set, you may monitor the state of the cache via the following
-new fields in the Mesh health endpoint, in the group `metrics/pointCache/`.
+fields in the Mesh health endpoint, in the group `metrics/pointCache/`.
 
 - `hits` is the number of times Mesh successfully retrieved points from the cache.
 - `misses` is the number of times Mesh failed to retrieve points from the cache
@@ -868,8 +868,8 @@ Below is the complete `mesh.json` listed with all options with default values.
     "Port": 40321
   },
   "SharedPointCache": {
-    "LimitMb": -1,              // -1 means no limit, valid range is [0, 1048576]
-    "DefaultIntervalDays": -1,  // -1 means no limit, valid range is [1, 20000]
+    "LimitMb": null,              // null means no limit, valid range is [0, 1048576]
+    "DefaultIntervalDays": null,  // null means no limit, valid range is [1, 20000]
     "PreloadAllTimeSeries": false,
     "PreloadPreviousState": false,
     "CacheStateFileDirectory": "<path>"
