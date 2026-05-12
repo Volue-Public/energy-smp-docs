@@ -150,6 +150,12 @@
     <li class="toctree-l3"><a class="reference internal" href="#authorisation">Authorisation</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#limit-time-series-cache-usage">Limit time series cache usage</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#monitor-and-tune-the-cache">Monitor and tune the cache</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#how-the-cache-works">How the cache works</a>
+    </li>
+        </ul>
     </li>
         </ul>
     </li>
@@ -626,7 +632,11 @@
 </ul>
 </li>
 <li><a href="#authorisation">Authorisation</a></li>
-<li><a href="#limit-time-series-cache-usage">Limit time series cache usage</a></li>
+<li><a href="#limit-time-series-cache-usage">Limit time series cache usage</a><ul>
+<li><a href="#monitor-and-tune-the-cache">Monitor and tune the cache</a></li>
+<li><a href="#how-the-cache-works">How the cache works</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#verify-the-installation">Verify the installation</a></li>
@@ -636,7 +646,11 @@
 <li><a href="#problems-related-to-oracle-19">Problems related to Oracle 19</a></li>
 </ul>
 </li>
-<li><a href="#security-considerations">Security considerations</a></li>
+<li><a href="#security-considerations">Security considerations</a><ul>
+<li><a href="#file-system">File system</a></li>
+<li><a href="#database">Database</a></li>
+</ul>
+</li>
 <li><a href="#version-compatibility">Version compatibility</a><ul>
 <li><a href="#mesh-python-sdk-compatibility-matrix">Mesh Python SDK compatibility matrix</a></li>
 </ul>
@@ -1165,17 +1179,19 @@ Grant permissions only to the specific users or groups that require access (prin
 <p>By default, Mesh will read into memory all time series values found in the database for the requested time series and these values will stay in memory as long as the service is running.</p>
 <p>It is possible to limit/control the memory usage by the cache by adding the following configuration:</p>
 <pre><code class="language-json">  &quot;SharedPointCache&quot;: {
-    &quot;LimitMb&quot;: 1000,
-    &quot;DefaultIntervalDays&quot;: 20,
+    &quot;LimitMb&quot;: 1000, // null means no limit, valid range is [0, 1048576]
+    &quot;DefaultIntervalDays&quot;: 20, // null means no limit, valid range is [1, 20000]
     &quot;PreloadAllTimeSeries&quot;: false,
     &quot;PreloadPreviousState&quot;: false,
     &quot;CacheStateFileDirectory&quot;: &quot;&lt;path&gt;&quot;
   },
 </code></pre>
+<p><strong>Note!</strong> This is just an example. Specific values must be fine-tuned depending on
+your workloads and hardware parameters.</p>
 <p>Parameters:</p>
 <ul>
-<li><code>LimitMb</code> - the maximum number of megabytes allowed in the shared point cache.</li>
-<li><code>DefaultIntervalDays</code> - when the preloading is enabled Mesh will not preload points before now minus the configured number of days.</li>
+<li><code>LimitMb</code> - the maximum number of megabytes allowed in the shared point cache. The default value is <code>null</code> (no limit). Valid range is <code>null</code> or <code>[0, 1048576]</code>.</li>
+<li><code>DefaultIntervalDays</code> - when the preloading is enabled Mesh will not preload points before now minus the configured number of days. The default value is <code>null</code> (no limit). Valid range is <code>null</code> or <code>[1, 20000]</code>.</li>
 <li><code>PreloadAllTimeSeries</code> - if set to <code>true</code>, Mesh will preload all physical time series points on startup.</li>
 <li><code>PreloadPreviousState</code> - if set to <code>true</code>, Mesh will preload previous cache state on startup. If both PreloadAllTimeSeries and PreloadPreviousState is set to true at the same time, Mesh will first preload the previous cache state and then the other time series values.</li>
 <li><code>CacheStateFileDirectory</code> - path to the directory where Mesh persists the cache state.</li>
@@ -1183,6 +1199,59 @@ Grant permissions only to the specific users or groups that require access (prin
 <p><strong>Note!</strong> Most installations should not have to change the default configuration, except the CacheStateFileDirectory field, as it is related to the memory/performance tuning.</p>
 <p>For security reasons, access to <code>CacheStateFileDirectory</code> should be restricted at the operating-system level.
 Grant permissions only to the specific users or groups that require access (principle of least privilege).</p>
+<h4 id="monitor-and-tune-the-cache">Monitor and tune the cache</h4>
+<p>When <code>LimitMb</code> is set, you may monitor the state of the cache via the following
+fields in the Mesh health endpoint, in the group <code>metrics/pointCache/</code>.</p>
+<ul>
+<li><code>hits</code> is the number of times Mesh successfully retrieved points from the cache.</li>
+<li><code>misses</code> is the number of times Mesh failed to retrieve points from the cache
+  and had to access the database.</li>
+<li><code>series</code> is the number of time series in the cache.</li>
+<li><code>points</code> is the number of time series points in the cache.</li>
+<li><code>evictedSeries</code> is the number of times a time series has been evicted from the
+  cache because the cache was full.</li>
+<li><code>evictedPoints</code> is the number of time series points that have been evicted
+  from the cache.</li>
+<li><code>inserts</code> is the number of times a time series has been inserted into the
+  cache.</li>
+<li><code>updates</code> is the number of updates to individual time series that have been
+  performed. This only counts updates that hit the cache, updates to time
+  series not in the cache are not counted.</li>
+<li><code>stalls</code> is the number of times cache retrieval has stalled because of high
+  cache pressure.</li>
+<li><code>pointLimit</code> is the approximate maximum number of points in the cache based
+  on the <code>LimitMb</code> configuration.</li>
+<li><code>expansions</code> is the number of times Mesh had to fetch additional points for a
+  time series that already had some points cached. Useful for tuning <code>DefaultIntervalDays</code>.</li>
+<li><code>estimatedMemoryKb</code> is approximately how many KB the cache is using.</li>
+</ul>
+<p>When monitoring these values and tuning cache performance you should watch for
+a few problematic scenarios.</p>
+<ol>
+<li>
+<p>A continuous "rapid" increase in <code>evictedSeries</code> and <code>misses</code> may indicate
+   that the cache is too small for the existing workload. The ratio of increase
+   of hits to increase of misses is a good indication of how bad the issue is.</p>
+</li>
+<li>
+<p><code>stalls</code> should not happen in normal usage. A two digit increase in stalls
+   every now and then is fine, but if <code>stalls</code> are happening often, they should
+   be reported to Volue support as they may indicate a current or future
+   performance issue.</p>
+</li>
+</ol>
+<h4 id="how-the-cache-works">How the cache works</h4>
+<p>The cache is implemented as a least recently used (LRU) cache. This means that
+when the cache is over-full, the time series that are evicted are those that
+were least recently accessed. While this pattern is simple to implement and
+understand it is one that struggles when the cache is too small. For example
+if the cache has space for 100 entries but there is a repeating workload
+accessing 101 entries in a sequence, the cache will always evict the next
+item to be accessed.</p>
+<p>This is why it is important to monitor <code>evictedSeries</code> and <code>misses</code> and to
+increase the cache size if these indicate that the cache is too small.
+Additionally, it is worth to monitor <code>expansions</code>, as it is useful for
+tuning <code>DefaultIntervalDays</code>.</p>
 <div style="page-break-after: always;"></div>
 
 <h2 id="verify-the-installation">Verify the installation</h2>
@@ -1317,12 +1386,12 @@ This ensures that sensitive data, including credentials and queries, is protecte
     &quot;Directory&quot;: &quot;C:\\Powel\\Mesh\\logs&quot;, // Log to the given directory
     &quot;Level&quot;: &quot;info&quot;, // One of &quot;trace&quot;, &quot;debug&quot;, &quot;info&quot;, &quot;warning&quot;, &quot;error&quot;, default &quot;info&quot;
     &quot;RequestLogging&quot;: true,
-    &quot;MaxLogFiles&quot;: 10,           // Maximum number of log files
-    &quot;MaxLogSizeMb&quot;: 10,          // Maximum size of each log file in MB
-    &quot;MaxRequestLogFiles&quot;: 10,    // Maximum number of request log files
-    &quot;MaxRequestLogSizeMb&quot;: 10    // Maximum size of each request log file in MB
+    &quot;MaxLogFiles&quot;: 10,           // Maximum number of log files, valid range is [1, 1000]
+    &quot;MaxLogSizeMb&quot;: 10,          // Maximum size of each log file in MB, valid range is [10, 1000]
+    &quot;MaxRequestLogFiles&quot;: 10,    // Maximum number of request log files, valid range is [1, 1000]
+    &quot;MaxRequestLogSizeMb&quot;: 10    // Maximum size of each request log file in MB, valid range is [10, 1000]
   },
-  &quot;SynchronizationIntervalSeconds&quot;: 30,
+  &quot;SynchronizationIntervalSeconds&quot;: 30, // How often Mesh synchronises with the database
   &quot;Audit&quot;: {
     &quot;Directory&quot;: &quot;&quot;,
     &quot;CircularLog&quot;: true
@@ -1335,7 +1404,8 @@ This ensures that sensitive data, including credentials and queries, is protecte
     &quot;Server&quot;: &quot;&quot;,
     &quot;Username&quot;: &quot;&quot;,
     &quot;Password&quot;: &quot;&quot;,
-    &quot;TimeseriesPointsSplit&quot;: 8000000
+    &quot;SynchronizationTimeoutMs&quot;: 600000,
+    &quot;TimeSeriesPointsSplit&quot;: 8000000 // Maximum number of time series points per database write batch. Splits large commits to avoid Oracle buffer limits.
   },
   &quot;HighAvailability&quot;: {
     &quot;KillProcessOnSwitchingToInactiveMode&quot;: true,
@@ -1348,10 +1418,10 @@ This ensures that sensitive data, including credentials and queries, is protecte
     &quot;PingPongMaxStartAttemptsWithinInterval&quot;: 2,
     &quot;ServiceName&quot;: &quot;Mesh&quot;
   },
-  &quot;HttpConfig&quot;: {
+  &quot;Http&quot;: {
     &quot;Port&quot;: 20000,
     &quot;Kerberos&quot;: true,
-    &quot;HealthEnabled&quot;: true
+    &quot;Health&quot;: true
   },
   &quot;Grpc&quot;: {
     &quot;Kerberos&quot;: true,
@@ -1379,13 +1449,12 @@ This ensures that sensitive data, including credentials and queries, is protecte
     &quot;Port&quot;: 40321
   },
   &quot;SharedPointCache&quot;: {
-    &quot;LimitMb&quot;: 1000,
-    &quot;DefaultIntervalDays&quot;: 20,
-    &quot;PreloadAllTimeSeries&quot;: true,
-    &quot;PreloadPreviousState&quot;: true,
+    &quot;LimitMb&quot;: null,              // null means no limit, valid range is [0, 1048576]
+    &quot;DefaultIntervalDays&quot;: null,  // null means no limit, valid range is [1, 20000]
+    &quot;PreloadAllTimeSeries&quot;: false,
+    &quot;PreloadPreviousState&quot;: false,
     &quot;CacheStateFileDirectory&quot;: &quot;&lt;path&gt;&quot;
-  },
-  &quot;configPath&quot;: &quot;&quot;
+  }
 }
 </code></pre>
 <div style="page-break-after: always;"></div>
