@@ -54,7 +54,7 @@ You may specify options for the criteria within suffix curly brackets `{}`, for 
 | Contains criteria | `~` | Used with text inside a square bracket. The string on the right-hand side is contained in the string on the left-hand side. | `[.Type=Pupil&&.Name~ok]` |
 | Logic AND operator | `&&` | Combines sub-criteria. All criteria must evaluate to true to get a result. | `[.Type=Pupil&&.Siblings>1]` |
 | Existence criteria | `search` | Checks if the search result is not empty. | <ul><li>`[.Siblings&&!.Age]` (objects with `Siblings` attribute, but not `Age` attribute)</li><li>`[.Siblings&&!...Age]` (objects with `Siblings` attribute, but whose parent has no `Age` attribute) |
-| Logic OR operator | `\|\|` | Has lower precedence than the AND operator. Can be controlled by grouping criteria parts in brackets `()`.| `[.Name=Anita\|\|.Name=Beate]` |
+| Logic OR operator | <code>&#124;&#124;</code> | Has lower precedence than the AND operator. Can be controlled by grouping criteria parts in brackets `()`.| <code>[.Name=Anita &#124;&#124; .Name=Beate]</code> |
 | Logic NOT operator | `!` | Inverts the input.| `[!.Age=27]` |
 | Match criteria | `#` | Regular expression. Only for text attributes (not numerical values). | <ul><li>`[.Name#.*nen]` (Names that ends with "nen". `.` matches any character, `.*` matches all characters.)</li><li>`[.Name#[A-C\\].*]` (Searches for objects with a name starting with A, B or C. It is a range based expression `[A-C]` followed by `.*` which means all characters. Note: A part regular expression needs a double back slash quote at the end). |
 
