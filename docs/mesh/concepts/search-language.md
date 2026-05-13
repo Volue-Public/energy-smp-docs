@@ -26,7 +26,7 @@ A traversal describes a set of relative paths in the Mesh object structure. It t
 | Intersection | `&` | Combines several separate searches into a collection of objects that are part of ALL separate search results.| `[.Type=School]&[.Name=Berg]`|
 | Union | <code>&#124;</code> | Combines several separate searches into a unique collection.| <code>[.Name=Eng-1]&#124;[.Type=Pupil]</code> |
 | Repeater | `<Search>+` | Repeats a search recursively one or more times, using the search output as the new starting points. Returns the most nested matches. [See more](#predicated-child-walks-with-a-repeater).|`[.Name=Berg]+`|
-| Memoizing repeater | `<Search>{+}` | Repeats a search recursively one or more times, using the search output as the new start points. Returns the most nested matches combined with the results of each repetition. [See more](#predicated-child-walks-with-a-repeater).| `[.Name=Berg]{+}`|
+| Memoizing repeater | `<Search>{+}` | Repeats a search recursively one or more times, using the search output as the new starting points. Returns the most nested matches combined with the results of each repetition. [See more](#predicated-child-walks-with-a-repeater).| `[.Name=Berg]{+}`|
 | Self step | `@` | The output is the same as the input. This is useful when composing unions.|`@`|
 | Filter | `@[<criteria expression>]` | Filters with help of example input object that matches criteria.| `@[.Name~a]`|
 | Child walk | `*` | Outputs the leaf (lowest level) objects found when descending from the provided start point. If the start point is a leaf, it is included in the result.| `*`|
