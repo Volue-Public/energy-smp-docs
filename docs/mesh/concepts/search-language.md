@@ -100,7 +100,7 @@ sign excludes the start point from the search.
 
 ### Predicated child walks with a repeater
 
-A search expression `[.Type=A]+` with a start point set to `Model` yields `A2`, `A3` and `A4`. It recursively applies the `[.Type=A]` part of the expression, using the output of the previous step as input. For example, when the search finds object `A1`, it looks for its direct children of type `A` to find object `A4` which ends up in the result set. When the search finds object `A3`, it looks for its direct children of type `A` but there are none - `A3` ends up in the result set.
+A search expression `[.Type=A]+` with a starting point set to `Model` yields `A2`, `A3` and `A4`. It recursively applies the `[.Type=A]` part of the expression, using the output of the previous step as input. For example, when the search finds object `A1`, it looks for its direct children of type `A` to find object `A4` which ends up in the result set. When the search finds object `A3`, it looks for its direct children of type `A` but there are none - `A3` ends up in the result set.
 
 A search expression `[.Type=A]{+}` with a start point set to `Model` yields `A1`, `A2`, `A3` and `A4`. The `{+}` part in the expression recursively applies the search and outputs the intermediate matches such as `A1`.
 
