@@ -24,18 +24,18 @@ A traversal describes a set of relative paths in the Mesh object structure. It t
 | Predicated child step     | `[<criteria expression>]` | Outputs children that match the criteria. | `[.Type=Teacher&&.Name=Berg]` |
 | Composer | `Search1/Search2` | Use slash, /, to combine searches. | `operate_school/school_has_classes`|
 | Intersection | `&` | Combines several separate searches into a collection of objects that are part of ALL separate search results.| `[.Type=School]&[.Name=Berg]`|
-| Union | `\|` | Combines several separate searches into a unique collection.| `[.Name=Eng-1]\|[.Type=Pupil]`|
-| Repeater | `<Search>+` | Repeats a search recursively one or more times, using the search output as the new start points.|`[.Name=Berg]+`|
-| Memoizing repeater | `<Search>{+}` | Repeats a search recursively one or more times, using the search output as the new start points. It will also output intermediate results.| `[.Name=Berg]{+}`|
+| Union | <code>&#124;</code> | Combines several separate searches into a unique collection.| <code>[.Name=Eng-1]&#124;[.Type=Pupil]</code> |
+| Repeater | `<Search>+` | Repeats a search recursively one or more times, using the search output as the new start points. Returns the most nested matches. [See more](#predicated-child-walks-with-a-repeater).|`[.Name=Berg]+`|
+| Memoizing repeater | `<Search>{+}` | Repeats a search recursively one or more times, using the search output as the new start points. Returns the most nested matches combined with the results of each repetition. [See more](#predicated-child-walks-with-a-repeater).| `[.Name=Berg]{+}`|
 | Self step | `@` | The output is the same as the input. This is useful when composing unions.|`@`|
 | Filter | `@[<criteria expression>]` | Filters with help of example input object that matches criteria.| `@[.Name~a]`|
-| Child walk | `*` | Outputs all the leaf (lowest level) objects in the model. If the start point is a leaf, it is included in the result.| `*`|
-| Predicated child walk | `*[<criteria expression>]` | Searches down until it finds an object matching the criteria. If the start object matches the criteria, it is returned as a result. If the star sign is in curly braces, it will also output intermediate results. | <ul><li>`*[.Type=Pupil]`</li> <li>`{*}[.Type=Pupil]`</li>|
-| Strict child walk | `+` | Outputs all the leaf (lowest level) objects in the model. If the start point is a leaf, it is not included in the result.| `+`|
-| Predicated strict child walk | `+[<criteria expression>]` | Searches down until it finds an object matching the criteria. Does not take the start object into account when searching. If the plus sign is in curly braces, it will also output intermediate results.| <ul><li>`+[.Type=Pupil]`</li> <li>`{+}[.Type=Pupil]`</li></ul>|
+| Child walk | `*` | Outputs the leaf (lowest level) objects found when descending from the provided start point. If the start point is a leaf, it is included in the result.| `*`|
+| Predicated child walk | `*[<criteria expression>]` | Searches down until it finds the first object matching the criteria for every visited branch. If the start point matches the criteria, it is returned as a result. If the star sign is in curly braces, it will also output objects visited on the way to the result. [See more](#predicated-child-walks). | <ul><li>`*[.Type=Pupil]`</li> <li>`{*}[.Type=Pupil]`</li>|
+| Strict child walk | `+` | Outputs the leaf (lowest level) objects found when descending from the provided start point. If the start point is a leaf, it is not included in the result.| `+`|
+| Predicated strict child walk | `+[<criteria expression>]` | Searches down until it finds the first object matching the criteria for every visited branch. Does not take the start point into account when searching. If the plus sign is in curly braces, it will also output objects visited on the way to the result. [See more](#predicated-child-walks).| <ul><li>`+[.Type=Pupil]`</li> <li>`{+}[.Type=Pupil]`</li></ul>|
 | Parent step | `..` | Returns parents of input objects. | <ul><li>`..`</li> <li>`*[.Name=Berg]/..`</li></ul>|
-| Parent walk | `..*[<criteria expression>]` | Outputs the input object if it matches the criteria. Otherwise, it outputs the first ancestor that matches the criteria. If the star sign is in curly braces, it will also output intermediate results. | `..*[.Name="Olav"]`|
-| Strict parent walk | `..+[<criteria expression>]` | Outputs the first ancestor that matches the criteria. If the plus sign is in curly braces, it will also output intermediate results. | `..+[.Name="Olav"]`|
+| Parent walk | `..*[<criteria expression>]` | Outputs the input object if it matches the criteria. Otherwise, it outputs the first ancestor that matches the criteria. If the star sign is in curly braces, it will also output objects visited on the way to the result. | `..*[.Name="Olav"]`|
+| Strict parent walk | `..+[<criteria expression>]` | Outputs the first ancestor that matches the criteria. If the plus sign is in curly braces, it will also output objects visited on the way to the result. | `..+[.Name="Olav"]`|
 | Link walk | `~` | Traverses by link relations. Yields all objects which current object links to. | `~[.Type=School]` |
 | Reverse link walk | `~~` | Reverse link traversal. Yields all objects which link to current object. | `~~[.Type=School]` | 
 
