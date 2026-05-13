@@ -95,7 +95,7 @@ A search expression `*[.Type=A]` with a starting point set to `Model` yields `A1
 
 A search expression `*[.Type=A]` with a starting point set to `A1` yields `A1`. The expression matches the starting point and the search does not look for further matches.
 
-A search expression `+[.Type=A]` with a start point set to `A1` yields `A4`. The `+`
+A search expression `+[.Type=A]` with a starting point set to `A1` yields `A4`. The `+`
 sign excludes the start point from the search.
 
 ### Predicated child walks with a repeater
