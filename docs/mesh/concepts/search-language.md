@@ -91,7 +91,7 @@ Composing search expressions in this case requires special attention.
 
 ### Predicated child walks
 
-A search expression `*[.Type=A]` with a start point set to `Model` yields `A1`, `A2` and `A3`. Note that the search will not drill down to find `A4` and `A5`.
+A search expression `*[.Type=A]` with a starting point set to `Model` yields `A1`, `A2` and `A3`. **_Note!_** The search will not drill down to find `A4` and `A5`.
 
 A search expression `*[.Type=A]` with a start point set to `A1` yields `A1`. The expression matches the starting point and the search does not look for further matches.
 
