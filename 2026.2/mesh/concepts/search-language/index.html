@@ -85,6 +85,16 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#combining-multiple-search-operations">Combining multiple search operations</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#searching-self-similar-models">Searching self-similar models</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#example-model">Example model</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#predicated-child-walks">Predicated child walks</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#predicated-child-walks-with-a-repeater">Predicated child walks with a repeater</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../sessions/">Sessions</a>
@@ -502,7 +512,7 @@ and produces a set of objects or attributes as output (the result). If the
 attribute access is specified, the result objects are all attributes (attribute
 search), otherwise they are all objects (object search).</p>
 <h3 id="traversal">Traversal</h3>
-<p>A traversal describes a set of relative paths in the Mesh object structure. It takes a set of objects as an input (the start points) and produces a set of objects as an output (the result) by following the paths from each start point and collecting end points. The start point is used to form a set and input into the traversal. The attribute access is applied to the output of the traversal. Some of the traversals are parametrised on criteria (e.g. <code>[Criteria]</code> or <code>\*[Criteria]</code>). For example, the traversal <code>..</code> will output the parent, if it exists, for each input object. Traversals can be combined with operators to form new traversals.</p>
+<p>A traversal describes a set of relative paths in the Mesh object structure. It takes a set of objects as an input (the start points) and produces a set of objects as an output (the result) by following the paths from each start point and collecting end points. The start point is used as an input for the traversal. The attribute access is applied to the output of the traversal. Some of the traversals are parametrised on criteria (e.g. <code>[Criteria]</code> or <code>*[Criteria]</code>). For example, the traversal <code>..</code> will output the parent, if it exists, for each input object. Traversals can be combined with operators to form new traversals.</p>
 <table>
 <thead>
 <tr>
@@ -523,7 +533,7 @@ search), otherwise they are all objects (object search).</p>
 <td>Predicated child step</td>
 <td><code>[&lt;criteria expression&gt;]</code></td>
 <td>Outputs children that match the criteria.</td>
-<td><code>[.Type=Teacher&amp;&amp;School.Name=Berg]</code></td>
+<td><code>[.Type=Teacher&amp;&amp;.Name=Berg]</code></td>
 </tr>
 <tr>
 <td>Composer</td>
@@ -539,26 +549,26 @@ search), otherwise they are all objects (object search).</p>
 </tr>
 <tr>
 <td>Union</td>
-<td><code>\|</code></td>
+<td><code>&#124;</code></td>
 <td>Combines several separate searches into a unique collection.</td>
-<td><code>[.Name=Eng-1]\|[.Type=Pupil]</code></td>
+<td><code>[.Name=Eng-1]&#124;[.Type=Pupil]</code></td>
 </tr>
 <tr>
 <td>Repeater</td>
-<td><code>&lt;Search&gt;*</code></td>
-<td>Repeats a search one or more times. If the star is in curly braces, it will also output intermediate results.</td>
-<td><code>[*.Name=1]</code></td>
+<td><code>&lt;Search&gt;+</code></td>
+<td>Repeats a search recursively one or more times, using the search output as the new starting points. Returns the most nested matches. <a href="#predicated-child-walks-with-a-repeater">See more</a>.</td>
+<td><code>[.Name=Berg]+</code></td>
 </tr>
 <tr>
-<td>Strict repeater</td>
-<td><code>&lt;Search&gt;+</code></td>
-<td>Repeats a search one or more times. If the plus is in curly braces, it will also output intermediate results.</td>
-<td><code>[.Name=1]+</code></td>
+<td>Memoizing repeater</td>
+<td><code>&lt;Search&gt;{+}</code></td>
+<td>Repeats a search recursively one or more times, using the search output as the new starting points. Returns the most nested matches combined with the results of each repetition. <a href="#predicated-child-walks-with-a-repeater">See more</a>.</td>
+<td><code>[.Name=Berg]{+}</code></td>
 </tr>
 <tr>
 <td>Self step</td>
 <td><code>@</code></td>
-<td>Outputs the same as input. This is useful when composing unions.</td>
+<td>The output is the same as the input. This is useful when composing unions.</td>
 <td><code>@</code></td>
 </tr>
 <tr>
@@ -570,43 +580,43 @@ search), otherwise they are all objects (object search).</p>
 <tr>
 <td>Child walk</td>
 <td><code>*</code></td>
-<td>Outputs all child nodes (lowest objects in tree structure).</td>
+<td>Outputs the leaf (lowest level) objects found when descending from the provided starting point. If the start point is a leaf, it is included in the result.</td>
 <td><code>*</code></td>
 </tr>
 <tr>
 <td>Predicated child walk</td>
 <td><code>*[&lt;criteria expression&gt;]</code></td>
-<td>Searches down until it finds an object matching criteria. If enclosed in curly braces, <code>{*\}</code>, it will also output intermediate objects.</td>
-<td><code>*[type=Pupil]</code> <code>{*\}[type=Pupil]</code></td>
+<td>Searches down until it finds the first object matching the criteria for every visited branch. If the starting point matches the criteria, it is returned as a result. If the star sign is in curly braces, it will also output objects visited on the way to the result. <a href="#predicated-child-walks">See more</a>.</td>
+<td><ul><li><code>*[.Type=Pupil]</code></li> <li><code>{*}[.Type=Pupil]</code></li></td>
 </tr>
 <tr>
 <td>Strict child walk</td>
 <td><code>+</code></td>
-<td>Almost same as child walk (see above). If start node has an empty set, this walk returns null result and returns back to start.</td>
+<td>Outputs the leaf (lowest level) objects found when descending from the provided starting point. If the starting point is a leaf, it is not included in the result.</td>
 <td><code>+</code></td>
 </tr>
 <tr>
-<td>Predicated Strict child walk</td>
+<td>Predicated strict child walk</td>
 <td><code>+[&lt;criteria expression&gt;]</code></td>
-<td>Almost same as predicated child walk (see above). If an input object matches the criteria, and it has no descendants matching the criteria, strict child walk returns an empty result, whereas child walk returns the input object.</td>
-<td><ul><li><code>+[.Type=Pupil]</code></li> <li><code>{*}[.Type=Pupil]</code></li></ul></td>
+<td>Searches down until it finds the first object matching the criteria for every visited branch. Does not take the starting point into account when searching. If the plus sign is in curly braces, it will also output objects visited on the way to the result. <a href="#predicated-child-walks">See more</a>.</td>
+<td><ul><li><code>+[.Type=Pupil]</code></li> <li><code>{+}[.Type=Pupil]</code></li></ul></td>
 </tr>
 <tr>
 <td>Parent step</td>
 <td><code>..</code></td>
 <td>Returns parents of input objects.</td>
-<td><code>../Olav</code></td>
+<td><ul><li><code>..</code></li> <li><code>*[.Name=Berg]/..</code></li></ul></td>
 </tr>
 <tr>
 <td>Parent walk</td>
 <td><code>..*[&lt;criteria expression&gt;]</code></td>
-<td>Outputs the input object if it matches the criteria. Otherwise, it outputs the first ancestor that matches the criteria. Can be enclosed in <code>{*}</code> to also output intermediate objects.</td>
+<td>Outputs the input object if it matches the criteria. Otherwise, it outputs the first ancestor that matches the criteria. If the star sign is in curly braces, it will also output objects visited on the way to the result.</td>
 <td><code>..*[.Name="Olav"]</code></td>
 </tr>
 <tr>
 <td>Strict parent walk</td>
 <td><code>..+[&lt;criteria expression&gt;]</code></td>
-<td>Outputs the first ancestor that matches the criteria. Can be enclosed in <code>{+}</code> to also output intermediate objects.</td>
+<td>Outputs the first ancestor that matches the criteria. If the plus sign is in curly braces, it will also output objects visited on the way to the result.</td>
 <td><code>..+[.Name="Olav"]</code></td>
 </tr>
 <tr>
@@ -624,9 +634,9 @@ search), otherwise they are all objects (object search).</p>
 </tbody>
 </table>
 <h3 id="criteria">Criteria</h3>
-<p>Some traversals are parametrised on criteria (see predicated child walk and child step). The criteria control which objects the traversal will accept as output, and will either accept an object by outputting true or reject it by outputting false. You can combine criteria with operators to form new criteria (see AND, OR). For example, the traversal ‘[.Name=N]’ will for each input object, output the set of child objects whose name equals ‘N’. The traversal ‘*[.Name=N]’ will for each input object output the set of closest descendant objects whose name is ‘N’.</p>
-<p>Criteria are always enclosed in square brackets, [].</p>
-<p>You may specify options for the criteria within suffix curly brackets {}, for example to ignore case sensitivity on text based comparison. {i} means the search is case insensitive.</p>
+<p>Some traversals are parametrised on criteria (see predicated child walk and child step). The criteria control which objects the traversal will accept as output, and will either accept an object by outputting true or reject it by outputting false. You can combine criteria with operators to form new criteria (see AND, OR). For example, the traversal <code>[.Name=N]</code> will for each input object, output the set of child objects whose name equals <code>N</code>. The traversal <code>*[.Name=N]</code> will for each input object output the set of closest descendant objects whose name is <code>N</code>.</p>
+<p>Criteria are always enclosed in square brackets, <code>[]</code>.</p>
+<p>You may specify options for the criteria within suffix curly brackets <code>{}</code>, for example to ignore case sensitivity on text-based comparison. <code>{i}</code> means the search is case insensitive.</p>
 <table>
 <thead>
 <tr>
@@ -653,7 +663,7 @@ search), otherwise they are all objects (object search).</p>
 <td>Contains criteria</td>
 <td><code>~</code></td>
 <td>Used with text inside a square bracket. The string on the right-hand side is contained in the string on the left-hand side.</td>
-<td><code>[.Type=Pupil&amp;&amp;.Name~ok]]</code></td>
+<td><code>[.Type=Pupil&amp;&amp;.Name~ok]</code></td>
 </tr>
 <tr>
 <td>Logic AND operator</td>
@@ -665,13 +675,13 @@ search), otherwise they are all objects (object search).</p>
 <td>Existence criteria</td>
 <td><code>search</code></td>
 <td>Checks if the search result is not empty.</td>
-<td><ul><li><code>[.Siblings&amp;&amp;!.Age]]</code> (objects with <code>Siblings</code> attribute, but not <code>Age</code> attribute)</li><li><code>[.Siblings&amp;&amp;!...Age]</code> (objects with <code>Siblings</code> attribute, but whose parent has no <code>Age</code> attribute)</td>
+<td><ul><li><code>[.Siblings&amp;&amp;!.Age]</code> (objects with <code>Siblings</code> attribute, but not <code>Age</code> attribute)</li><li><code>[.Siblings&amp;&amp;!...Age]</code> (objects with <code>Siblings</code> attribute, but whose parent has no <code>Age</code> attribute)</td>
 </tr>
 <tr>
 <td>Logic OR operator</td>
-<td><code>\|\|</code></td>
+<td><code>&#124;&#124;</code></td>
 <td>Has lower precedence than the AND operator. Can be controlled by grouping criteria parts in brackets <code>()</code>.</td>
-<td><code>[..Name=Anita\|\|..Name=Beate]</code></td>
+<td><code>[.Name=Anita &#124;&#124; .Name=Beate]</code></td>
 </tr>
 <tr>
 <td>Logic NOT operator</td>
@@ -683,7 +693,7 @@ search), otherwise they are all objects (object search).</p>
 <td>Match criteria</td>
 <td><code>#</code></td>
 <td>Regular expression. Only for text attributes (not numerical values).</td>
-<td><ul><li><code>[.Name#.*nen]</code> (Names that ends on "nen". <code>.</code> matches any character, <code>.*</code> matches all characters.)</li><li><code>[.Name#[A-C\\].*]</code> (Searches for objects with a name starting with A, B or C. It is a range based expression <code>[A-C]</code> followed by <code>.*</code> which means all characters. Note: A part regular expression needs a double back slash quote at the end).</td>
+<td><ul><li><code>[.Name#.*nen]</code> (Names that ends with "nen". <code>.</code> matches any character, <code>.*</code> matches all characters.)</li><li><code>[.Name#[A-C\\].*]</code> (Searches for objects with a name starting with A, B or C. It is a range based expression <code>[A-C]</code> followed by <code>.*</code> which means all characters. Note: A part regular expression needs a double back slash quote at the end).</td>
 </tr>
 </tbody>
 </table>
@@ -706,9 +716,29 @@ search), otherwise they are all objects (object search).</p>
 <li>Uses the output from Search1 as input to Search2.</li>
 <li>Syntax: <em>Search1/Search2</em></li>
 </ul>
-<p>When using INTERSECTION and UNION between searches, you only use a single character, &amp; or |, respectively. Inside an object criteria, you use double character to specify a logic AND, &amp;&amp;, or logic OR, ||, respectively</p>
+<p>When using INTERSECTION and UNION between searches, you only use a single character, &amp; or |, respectively. Inside an object criteria, you use double character to specify a logic AND, &amp;&amp;, or logic OR, ||, respectively.</p>
 </li>
 </ul>
+<h2 id="searching-self-similar-models">Searching self-similar models</h2>
+<p>It is possible to create a model where an object of a certain type has a child of the same type. For example, an object <code>A1</code> owns an object called <code>A2</code> and both objects are of type <code>A</code>.
+Composing search expressions in this case requires special attention.</p>
+<h3 id="example-model">Example model</h3>
+<pre><code>     Model
+     |-- A1 -- A4
+     |-- A2
+     |-- A3
+         |-- B3 -- A5
+</code></pre>
+<h3 id="predicated-child-walks">Predicated child walks</h3>
+<p>A search expression <code>*[.Type=A]</code> with a starting point set to <code>Model</code> yields <code>A1</code>, <code>A2</code> and <code>A3</code>. <strong><em>Note!</em></strong> The search will not drill down to find <code>A4</code> and <code>A5</code>.</p>
+<p>A search expression <code>*[.Type=A]</code> with a starting point set to <code>A1</code> yields <code>A1</code>. The expression matches the starting point and the search does not look for further matches.</p>
+<p>A search expression <code>+[.Type=A]</code> with a starting point set to <code>A1</code> yields <code>A4</code>. The <code>+</code>
+sign excludes the start point from the search.</p>
+<h3 id="predicated-child-walks-with-a-repeater">Predicated child walks with a repeater</h3>
+<p>A search expression <code>[.Type=A]+</code> with a starting point set to <code>Model</code> yields <code>A2</code>, <code>A3</code> and <code>A4</code>. It recursively applies the <code>[.Type=A]</code> part of the expression, using the output of the previous step as input. For example, when the search finds object <code>A1</code>, it looks for its direct children of type <code>A</code> to find object <code>A4</code> which ends up in the result set. When the search finds object <code>A3</code>, it looks for its direct children of type <code>A</code> but there are none - <code>A3</code> ends up in the result set.</p>
+<p>A search expression <code>[.Type=A]{+}</code> with a starting point set to <code>Model</code> yields <code>A1</code>, <code>A2</code>, <code>A3</code> and <code>A4</code>. The <code>{+}</code> part in the expression recursively applies the search and outputs the intermediate matches such as <code>A1</code>.</p>
+<p>A search expression <code>+[.Type=A]+</code> with a starting point set to <code>Model</code> yields <code>A2</code>, <code>A4</code> and <code>A5</code>. It recursively drills down into the model to find all leaf objects of type <code>A</code>.</p>
+<p>A search expression <code>+[.Type=A]{+}</code> with a starting point set to <code>Model</code> yields <code>A1</code>, <code>A2</code>, <code>A3</code>, <code>A4</code> and <code>A5</code>. It recursively drills down into the model to find all leaf objects of type <code>A</code> and adds intermediate <code>A</code> objects to the result set.</p>
               
             </div>
           </div><footer>
