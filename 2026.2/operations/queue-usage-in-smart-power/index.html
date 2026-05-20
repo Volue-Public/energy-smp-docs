@@ -16,8 +16,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Macros";
-        var mkdocs_page_input_path = "timeseries-reports/macros.md";
+        var mkdocs_page_name = "Queue usage in Smart Power";
+        var mkdocs_page_input_path = "operations/queue-usage-in-smart-power.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -440,31 +440,25 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Operations</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../operations/queue-usage-in-smart-power/">Queue usage in Smart Power</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../operations/monitoring/">Monitor services</a>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../reports_intro/">General</a>
-                  </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Macros</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Queue usage in Smart Power</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#which-report-attributes-support-macros">Which report attributes support macros</a>
+    <li class="toctree-l2"><a class="reference internal" href="#current-usage-in-existing-smp-applications">Current usage in existing SmP applications</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#the-syntax-of-report-attribute-macros">The syntax of report attribute macros</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#predefined-macros">Predefined macros</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a>
+    <li class="toctree-l2"><a class="reference internal" href="#queue-definitions-per-smart-power-application">Queue definitions per Smart Power application</a>
     </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../sort_contents/">Sorted layout</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitor services</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Time series reports</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../timeseries-reports/reports_intro/">General</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../timeseries-reports/macros/">Macros</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../timeseries-reports/sort_contents/">Sorted layout</a>
                   </li>
               </ul>
       </div>
@@ -481,8 +475,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Time series reports</li>
-      <li class="breadcrumb-item active">Macros</li>
+          <li class="breadcrumb-item">Operations</li>
+      <li class="breadcrumb-item active">Queue usage in Smart Power</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -491,76 +485,36 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="macros-in-mesh-template-reports">Macros in Mesh template reports</h2>
-<p>Mesh has taken the template report concept to a new level. See <a href="../reports_intro/">a general introduction</a> for more background info.</p>
-<p>We utilize macros in order to make a generic report definition adapt to the specific information. These macros
-are expanded with current Mesh object as the context. Current object is the "node" that owns the time series attribute where the actual time series is found.</p>
-<h3 id="which-report-attributes-support-macros">Which report attributes support macros</h3>
-<p>Macros can be used as part of the value for these report attributes:</p>
+                <h1 id="queue-usage-in-smart-power">Queue usage in Smart Power</h1>
+<p>In Smart Power message queues are the standard technology to use in asynchronous integrations with both internal and external applications. These are integrations that in SmG would have been implemented using file based exchange of information.</p>
+<h2 id="current-usage-in-existing-smp-applications">Current usage in existing SmP applications</h2>
 <ul>
-<li>GROUP - defines hierarchical group membership</li>
-<li>GROUP_MGR - defines the "manager" of a hierarchical group, i.e. the only visible member when the given group is closed.</li>
-<li>PAGES - defines one or more logical pages that this time series is part of.</li>
-<li>GRAPHAXIS - general attribute that defines a named axis with info about min,max,legend etc.</li>
-<li>GRAPHUSEAXIS - defines the association with a named axis from actual time series</li>
-<li>WIDTH - defines the visual width of a time series column</li>
-<li>GRAPHWIDTH - defines the width of the graphical presentation of a time series</li>
-<li>GRAPHTYPE - defines the type of graph.</li>
-<li>GRAPHSTYLE - defines the style of a graph.</li>
-<li>GRAPHCOLOR - defines the colour of the graph.</li>
-<li>DESCRIPTION - defines a text that describes the time series. It is mapped to a tooltip text activated when hovering over the object on report visualisation.</li>
-<li>COLOR_VALUE - defines the color dependent of time series values.</li>
-<li>COLOR_CELL - defines the background color of table view cells.</li>
-<li>COLOR_HEAD - defines the colour used in table column header.</li>
-<li>COLOR - defines the general colour for numeric values.</li>
-<li>TEXT - defines the column header description.</li>
-<li>GRAPHTEXT - defines the legend attached to graph.</li>
-<li>INFO - contributes to the window header description.</li>
+<li>Imports to and exports from Mesh Data Transfer from and to external applications/systems.</li>
+<li>Activation plans and heartbeats from Activation Request to SCADA Gateway and Mesh Data Transfer.</li>
+<li>Acknowledgements from SCADA Gateway to Activation Request.</li>
+<li>Production plans from Mesh Data Transfer to SCADA Gateway.</li>
 </ul>
-<h3 id="the-syntax-of-report-attribute-macros">The syntax of report attribute macros</h3>
-<p>The syntax is:</p>
+<h2 id="queue-definitions-per-smart-power-application">Queue definitions per Smart Power application</h2>
 <ul>
-<li>$&lt;<em>definition</em>&gt;</li>
-<li><em>definition</em> can have simple format or a general search format<ul>
-<li>simple format is just referring to a name of an attribute on the current Mesh object.</li>
-<li>The attribute have to be either one of these types: string, bool or numeric.</li>
-<li>general format starts with <strong>another $</strong> followed by a search specification</li>
+<li><strong>Mesh Data Transfer</strong> to/from external applications/systems:</li>
+<li><strong>ImportQueue</strong> - contains messages to be imported. There may be several queues with different priorities.</li>
+<li><strong>ImportReplyQueue</strong> - contains reply message on each import message.</li>
+<li><strong>ImportFailureQueue</strong> - contains import messages that have failed.</li>
+<li><strong>ExportQueue</strong> - contains exported messages. There may be several queues related to different receivers.</li>
+<li><strong>ExportReplyQueue</strong> - contains reply messages on exported messages.</li>
+<li><strong>ExportFailureQueue</strong> - contains messages that failed during export.</li>
+<li><strong>TriggerQueue</strong> - contains messages that trigger exports.</li>
+<li><strong>Activation Request</strong> to/from SCADA Gateway and Mesh Data Transfer:</li>
+<li><strong>TimeSeries2ScadaQueue</strong> - contains activation and heartbeat messages to SCADA Gateway/SCADA.</li>
+<li><strong>AcknowledgeQueue</strong> - contains acknowledgement messages from SCADA/SCADA Gateway.</li>
+<li><strong>TimeSeries2MeshQueue</strong> - contains activation messages to Mesh Data Transfer.</li>
 </ul>
-</li>
-<li>alternatively, a set of predefined macros are available. See below.</li>
-</ul>
-<p>A macro can be located in the middle of a static string value and therefore the general format is having a prefix and <code>&lt; &gt;</code> scope delimiters.</p>
-<h4 id="predefined-macros">Predefined macros</h4>
-<ul>
-<li>$ObjName - the name of current Mesh object.</li>
-<li>There might be one or more <code>../</code> between $ and ObjName.<br />
-    Like $../ObjName and $../..ObjName referring to the name of parent of or grandparent of<br />
-    current object.</li>
-<li>$FullObjName - path to current object. Only node names are included, so it is not a general
-  path description described <a href="../../mesh/concepts/modelling/general/#objects-and-attributes-paths">here</a></li>
-<li>$Type - the type name of current object</li>
-<li>$AttrName - the time series attribute name where where current time series is connected</li>
-<li>$RootObjName - the name of the object from where the search operations (<code>TS_BINDING</code>) are done.</li>
-<li>$StartPointName - same value as $RootObjName but only applicable for the <code>PAGES</code> attribute.</li>
-<li>$StartPage - defines the name of the initial page that is activated. It has limited scope, contributes to the window title through the <code>INFO</code> attribute.</li>
-<li>$ReportName - the name of the report definition for the activated report. Applicable to <code>INFO</code> attribute.</li>
-<li>$FullReportName - the full path the report definition for the activated report. Applicable to <code>INFO</code> attribute.</li>
-</ul>
-<h3 id="examples">Examples</h3>
-<ul>
-<li>TEXT <code>$ObjName#Level#Max $&lt;HRWL&gt;#masl</code></li>
-<li>If attribute HRWL exist on current object then <code>$&lt;HRWL&gt;</code> is replaced by the value 451.50, the value of this double attribute.</li>
-<li>In this case we use the simple format. The same result we get if the general search format <code>$&lt;$.HRWL&gt;</code> is used. Here the <em>definition</em> starts with a $ and search is simply saying get <code>HRWL</code>from current object referred by <code>.</code> in front.</li>
-<li>COLOR_CELL <code>$&lt;$..*/[.Type=CellColors].ResultCell&gt;</code></li>
-<li>This example refers to a string attribute <code>ResultCell</code> at an object of type <code>CellColors</code> found by searching upwards relative to current object.</li>
-</ul>
-<p>The search syntax are described <a href="../../mesh/concepts/search-language/">here</a>.</p>
               
             </div>
           </div><footer>
       <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-          <a href="../reports_intro/" class="btn btn--outline btn--success float-left" title="General"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-          <a href="../sort_contents/" class="btn btn--outline btn--success float-right" title="Sorted layout">Next <span class="icon icon-circle-arrow-right"></span></a>
+          <a href="../../mesh-data-transfer/use-cases/import-of-availability-events-using-mdt/" class="btn btn--outline btn--success float-left" title="Import of availability events"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+          <a href="../monitoring/" class="btn btn--outline btn--success float-right" title="Monitor services">Next <span class="icon icon-circle-arrow-right"></span></a>
       </div>
   
     <hr/>
@@ -583,10 +537,10 @@ are expanded with current Mesh object as the context. Current object is the "nod
     <span class="rst-current-version" data-toggle="rst-current-version is-active">
       
       
-        <span><a href="../reports_intro/" style="color: #fcfcfc">&laquo; Previous</a></span>
+        <span><a href="../../mesh-data-transfer/use-cases/import-of-availability-events-using-mdt/" style="color: #fcfcfc">&laquo; Previous</a></span>
       
       
-        <span><a href="../sort_contents/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span><a href="../monitoring/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
   </div>
