@@ -185,6 +185,7 @@ nav:
             - Export of time series values: mesh-data-transfer/use-cases/export-of-time-series-values-using-mdt.md
             - Import of availability events: mesh-data-transfer/use-cases/import-of-availability-events-using-mdt.md
     - Operations:
+          - Queue usage in Smart Power: operations/queue-usage-in-smart-power.md
           - Monitor services: operations/monitoring.md
     - Time series reports:
           - General: timeseries-reports/reports_intro.md
