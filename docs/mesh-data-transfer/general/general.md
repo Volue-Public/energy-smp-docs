@@ -6,6 +6,25 @@ Mesh Data Transfer offers HTTP endpoints for creating both availability and time
 
 ## Usage
 
+### API Documentation (Swagger)
+
+Mesh Data Transfer provides interactive API documentation using Swagger/OpenAPI. The Swagger UI is available at:
+
+```
+http://localhost:7000/swagger
+```
+
+**Configuration:** Swagger can be enabled via appsettings.json:
+   
+   ```json
+   "ApiSettings": {
+     "EnableSwagger": true
+   }
+   ```
+
+
+The Swagger UI provides interactive documentation for all available endpoints, allowing you to explore the API and test requests directly from your browser.
+
 ### Time series export
 
 To invoke a Mesh time series export, you post an HTTP request to one of Mesh Data Transfer's export endpoints.
@@ -49,6 +68,7 @@ Invoke-WebRequest -Uri "http://localhost:7000/RegularOrder" -Method Post -Conten
 | 137 | Excel CSV                     |
 | 138 | TS Volumes Web Service export |
 | 139 | MSCONS                        |
+| 141 | MeshTimeSeriesJson            |
 
 `ExportMethod` is an integer key (`tstr_key`) of the transfer definition used by the receiver for a specific time series.
 

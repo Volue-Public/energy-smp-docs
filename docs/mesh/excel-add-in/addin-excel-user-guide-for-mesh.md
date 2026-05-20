@@ -5,7 +5,8 @@
 **Excel AddIn for Mesh** is an add-in to Microsoft Excel and a part of the Smart Power portfolio. Excel AddIn for Mesh provides easy reporting to Microsoft Excel with the Mesh REST API from the Mesh service. It ensures a consistent use of the Mesh REST API and will make it easier to make new reports for the users. Updates/upgrades of the Smart Power software will contain tested versions of the Excel AddIn for Mesh.
 
 Excel AddIn for Mesh includes two Excel workbooks:
-- **FlexibleLoadStore** 
+
+- **FlexibleLoadStore**
 - **PowelAddIn**
 
 The **FlexibleLoadStore** workbook consists of 3 worksheets and the **PowelAddIn** workbook has the code in VBA (Visual Basic for Application).
@@ -105,7 +106,7 @@ If a user by mistake answers **Yes** to the question and has a private copy of E
 
 To upgrade the add-in to a newer version, you must ensure that nobody has Excel open with the **Add-In Powel TsApi wrapping** activated.
 
-**_Note!_** Remember that you must deselect the add-in yourself, too.
+***Note!*** Remember that you must deselect the add-in yourself, too.
 
 Follow the procedure above for installing Excel AddIn for Mesh.
 
@@ -131,7 +132,7 @@ The logon setup looks like this:
 
 ![Logon setup](assets/images/logon-setup.png)
 
-**_Note!_** the **Layout version** cell is used to ensure that the correct parts of the TsApi are used. Do not change the value, if you do, the code behind can give unwanted results.
+***Note!*** the **Layout version** cell is used to ensure that the correct parts of the TsApi are used. Do not change the value, if you do, the code behind can give unwanted results.
 
 ***Note!*** For bulk functionality, **Layout version** must be "T107".
 
@@ -153,7 +154,8 @@ The **Status codes and colours** setup looks like this:
 
 All the possible status codes are listed and in the column **ColorIndex** you can specify an index of the colour palette for Excel (value from 0 to 56, 0 is the default which is no background colour and black font). Choose  **Show colors**  and the colours will be shown as background colours.
 
-In the **Show** column you can specify how each status will be shown in the presentation if you choose **As color** in the status part (see the [Status part](#status-part) later on). The possible values in the **Show** column are:
+In the **Show** column you can specify how each status will be shown in the presentation if you choose **As color** in the status part (see the [Status codes](#status-codes) later on). The possible values in the **Show** column are:
+
 - **Cell**: The background colour is set to the selected colour
 - **Font**: The font colour is set
 - **None**: The status will not be presented at all
@@ -187,6 +189,7 @@ The report setup has a heading where a period and type of report can be specifie
 **From date/time** gives the starting point of the period, and **To date/time** specifies the end time. The **From date/time** is including the time specified, but the **To date/time** is up to but not including. This means that the example above specifies seven days of values.
 
 ***Note!*** In the detailed part there are three values that must be filled in:
+
 - **Full name/TS Code**
 - **Information to be shown**
 - **Where to store**
@@ -207,14 +210,15 @@ Enter `X` in the **Data** column if the time series is to be shown. If the **Dat
 
 Enter `X` in the **TS Code** column to get the **Full name/TS Code** presented. The name/code is presented over or to the left of the data depending on the direction in which the data is presented.
 
-The column **DB/LT/NT** is a drop-down box where you can select the time zone used when presenting the data. 
+The column **DB/LT/NT** is a drop-down box where you can select the time zone used when presenting the data.
+
 - **LT**: Local time
 - **NT**: Standard time
 - **DB**: Database time
 
 The default value is **DB**.
 
-**_Note!_** Due to the way values are stored on time series with resolution day, week, month and year, the selection in **DB/LT/NT** is overridden and set to **NT**.
+***Note!*** Due to the way values are stored on time series with resolution day, week, month and year, the selection in **DB/LT/NT** is overridden and set to **NT**.
 
 #### Show date/time
 
@@ -253,7 +257,7 @@ Examples:
 
 If the **Format** column is blank, the date/time returned from the database is presented as is.
 
-The **T** column will display an __*__ if there is valid information in **Where** and **Format** columns. If there is information in the **Format** column but not in the **Where** column, the column will display an **!**.
+The **T** column will display an **`*`** if there is valid information in **Where** and **Format** columns. If there is information in the **Format** column but not in the **Where** column, the column will display an **!**.
 
 #### Different period (LoadFromDB)
 
@@ -292,7 +296,7 @@ Example of call formula:
 
 Remember that Excel can calculate with dates. The **From date/time** in the heading is a named cell: `FromDate`. Last week can be calculated as `=FromDate – 7`.
 
-The **P** column will display an __*__ if there is valid information in the two dates. If there is information in one date and blank the other one column will display an **!**.
+The **P** column will display an **`*`** if there is valid information in the two dates. If there is information in one date and blank the other one column will display an **!**.
 
 #### Comments
 
@@ -302,7 +306,7 @@ If you want to display comments stored with the time series, select **What** to 
 
 You can select to display only the comment or the comment together with the user who entered it and the time it was entered. The comment can be shown as an Excel comment (red triangle in upper right corner) or in the cell to the right of or under the value.
 
-The **C** column will display an __*__ if there is valid information.
+The **C** column will display an **`*`** if there is valid information.
 
 #### Status codes
 
@@ -312,11 +316,11 @@ If you want to be specific about which values that are returned based on status 
 
 In the **Show** column, you specify how the status values can be displayed:
 
-- **As color**: Background colour/font colour is selected in the [Status codes and colours setup](#status-codes-and-colours-setup)
-- **In cell**: In the cell to the right of or under the value. 
+- **As color**: Background colour/font colour is selected in the [Configure status codes and colours](#configure-status-codes-and-colours)
+- **In cell**: In the cell to the right of or under the value.
 - **In comment**:  As Excel comment (concatenated with any comments)
 
-The status codes to be marked is configured in the [Status codes and colours setup](#status-codes-and-colours-setup) section.
+The status codes to be marked is configured in the [Configure status codes and colours](#configure-status-codes-and-colours) section.
 
 The status codes are:
 
@@ -329,15 +333,16 @@ The status codes are:
 
 Default handling is exclude `!-` (`!` not OK, `-` missing).
 
-The column **St** will display an __*__ if there is valid information.
+The column **St** will display an **`*`** if there is valid information.
 
-#### Where to store
+#### Where to store loaded data
 
 ![Where to store part](assets/images/where-to-store-part.png)
 
 The **Where to store** part must be filled in to specify where the data are stored in the workbook. In the **Sheet** column you must fill in the worksheet where the presentation should be presented.
 
 The **Row**/**Column**/**Name** columns specify which cell the presentation should start in, and the **Direction** column specifies how the data should be presented. Possible values are:
+
 - **Column** - one column
 - **ColumnDays** - one column per day
 - **Row** - one row
@@ -350,16 +355,17 @@ The **Direction** column also determines if information like **Full name/TS** co
 
 The **Operation** column is used to do calculations with the already existing information in a cell. If a time series is presented at the same location as another time series, the first time series will be overwritten if there is no **Operation** specified. If you specify **+**, the new value will be added to the value already in the cell.
 
-**_Note!_** If you specify a + operation for one time series alone, the time series will be added to itself each time you load a time series.
+***Note!*** If you specify a + operation for one time series alone, the time series will be added to itself each time you load a time series.
 
-The **DST** column is used when data is presented in local time. Select one of the values: 
+The **DST** column is used when data is presented in local time. Select one of the values:
+
 - **Continuous**: Present the time series with continuous values even in the transition days.
 - **Blank/Double**: Present the data with an empty hour in the spring and double value in the autumn. This is special useful for week presentations.
 - **Cont/Average**: Present data continuously based on the average of the values before/after transition.
 
-**_Note!_** **Operation** other than **=**, **+** or blank together with **DST** **Blank/Double** will not work for the double hour in the autumn.
+***Note!*** **Operation** other than **=**, **+** or blank together with **DST** **Blank/Double** will not work for the double hour in the autumn.
 
-The column **W** will contain **!!** if there is no information given for time series that should be presented, an **!** if there are missing values and an __*__ if valid information is provided.
+The column **W** will contain **!!** if there is no information given for time series that should be presented, an **!** if there are missing values and an **`*`** if valid information is provided.
 
 #### Data function
 
@@ -383,7 +389,7 @@ In the **Profile** column you can specify if the time series should be used to g
 
 The last column is useful to ensure that the data area is blanked before new values are presented. The value specified in **# Values** defines how many cells that will be blanked before the presentation is done.
 
-The **F** column will display an __*__ if there is any valid information specified.
+The **F** column will display an **`*`** if there is any valid information specified.
 
 #### Bulk group
 
@@ -440,13 +446,13 @@ In the **LT/NT** column you can specify if the date/time is given in local or st
 
 If you want a different **From date/time**, specify it in this column. Values in this column will be used instead of the values in the heading.
 
-The **P** column will display an __*__ if there is valid information here.
+The **P** column will display an **`*`** if there is valid information here.
 
-#### Where to store
+#### Where to store data to save
 
-This part is the same as the **Where to store** part in the **LoadFromDB** worksheet, [Where to store](#where-to-store). The only difference is that the saving of values expects that data are saved as **Continuous** for **DST**. If you present data with **DST** specified as **Blank/Double**, the save will stop on the missing hour in the spring or at the 25th hour in the autumn.
+This part is the same as the **Where to store** part in the **LoadFromDB** worksheet, [Where to store loaded data](#where-to-store-loaded-data). The only difference is that the saving of values expects that data are saved as **Continuous** for **DST**. If you present data with **DST** specified as **Blank/Double**, the save will stop on the missing hour in the spring or at the 25th hour in the autumn.
 
-The column **W** will contain **!!** if there is no information given for time series that should be saved, an **!** if there are missing values and an __*__ if valid information is given.
+The column **W** will contain **!!** if there is no information given for time series that should be saved, an **!** if there are missing values and an **`*`** if valid information is given.
 
 #### Save values
 
@@ -470,13 +476,13 @@ If you set **Locked** status on a value, you cannot unlock the value from the **
 
 If you set **Missing** status on a value, the value is treated as not existing in the system.
 
-The **S** column will display an __*__ if there is any information given in **Method** and/or **Status code**.
+The **S** column will display an **`*`** if there is any information given in **Method** and/or **Status code**.
 
 #### Function
 
 In the **Function** part you can specify a **Scale** factor that will be used when storing values. The default value is **1**.
 
-The **F** column will display an __*__ if there is specified any scale factor.
+The **F** column will display an **`*`** if there is specified any scale factor.
 
 #### Resolution
 
@@ -488,7 +494,7 @@ The **Shown as** column specifies the interval between the values in the Excel s
 
 The **Function** part contains the function to be used when transforming values before saving. With the **ave** (average) function the same value is stored in all sub-values (storing an hour series in 15 minutes resolution will give 4 sub-values per value). With the **sum** function the sub-values will be the same values but the sum of them will the original value. The default value is **sum**.
 
-The **R** column will display an __*__ in there are values in all three columns, a **blank** if no values are specified and an **!** otherwise.
+The **R** column will display an **`*`** in there are values in all three columns, a **blank** if no values are specified and an **!** otherwise.
 
 #### Criteria
 
@@ -496,7 +502,7 @@ In this part you define when to stop reading values to save. The possibilities a
 
 In addition, you can specify a maximum number of values that will be read from Excel.
 
-The **C** column displays an __*__ if there is selected a stop criterion.
+The **C** column displays an **`*`** if there is selected a stop criterion.
 
 #### Message (SaveToDB)
 
@@ -519,7 +525,6 @@ When you hide the worksheets, the buttons to load and save data will also be hid
 Set the work sheet in **Design mode** and select the **Command** button and use the mouse to place the command button in the worksheet.
 
 Open the properties and set the **Caption** (button text) and the **Font**. See the **Properties** dialog below.
-
 
 ![Command button properties](assets/images/commandbutton-properties.png)
 
@@ -582,7 +587,7 @@ It is not necessary to copy the **SaveToDB** sheet if you do not want to save da
 
 ### Configure the Times series to report
 
-See [LoadFromDB worksheet](#loadfromdb-worksheet) and  [SaveToDB worksheet](#savetodb-worksheet).
+See [The LoadFromDB worksheet](#the-loadfromdb-worksheet) and [The SaveToDB worksheet](#the-savetodb-worksheet).
 
 ## Updates to PowelAddIn.xls
 
