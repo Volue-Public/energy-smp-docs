@@ -114,6 +114,262 @@ Valid values for `Durable`:
 
 If not specified, the default value is `0` (non-durable).
 
+#### Azure Service Bus Authentication
+
+This section describes how to configure authentication between MDT and Azure Service Bus. It covers Shared Access Signature (SAS key) authentication and Entra ID (passwordless) authentication.
+
+---
+
+#### Authentication options overview
+
+| Option | When to use | Secrets in config |
+|---|---|---|
+| SAS key | Simple setups, on-premises MDT, dev/test | Yes — key in connection string |
+| Entra ID — client secret | MDT running outside Azure (on-prem), or when managed identity is not available | Yes — client secret |
+| Entra ID — managed identity | MDT running in Azure (AKS, App Service, VM) | No — fully passwordless |
+
+Entra ID authentication (options 2 and 3) is preferred for production deployments as it removes long-lived shared secrets from configuration files.
+
+---
+
+#### Option 1: Shared Access Signature (SAS key)
+
+##### Finding the connection string in the Azure portal
+
+1. Open the [Azure portal](https://portal.azure.com) and navigate to your **Service Bus namespace**.
+2. In the left menu, select **Settings → Shared access policies**.
+3. Click the policy you want to use (e.g. `RootManageSharedAccessKey`), or create a new one:
+   - Click **+ Add** to create a dedicated policy for MDT.
+   - Give it a name (e.g. `MeshDataTransfer`).
+   - Tick **Manage** (required — MDT creates queues and topics automatically on startup).
+   - Click **Create**.
+4. Click the policy name to open it. Copy the **Primary Connection String** — it looks like:
+   ```
+   Endpoint=sb://myns.servicebus.windows.net/;SharedAccessKeyName=MeshDataTransfer;SharedAccessKey=abc123...
+   ```
+
+##### MDT configuration (SAS) {#mdt-configuration-sas}
+
+Paste the connection string directly into `BrokersConfiguration`:
+
+```json
+"BrokersConfiguration": {
+  "ServiceBus1": {
+    "ConnectionStrings": [
+      "Endpoint=sb://myns.servicebus.windows.net/;SharedAccessKeyName=MeshDataTransfer;SharedAccessKey=<primary-key>"
+    ]
+  }
+}
+```
+
+For failover, add the secondary connection string as a second entry:
+
+```json
+"BrokersConfiguration": {
+  "ServiceBus1": {
+    "ConnectionStrings": [
+      "Endpoint=sb://myns.servicebus.windows.net/;SharedAccessKeyName=MeshDataTransfer;SharedAccessKey=<primary-key>",
+      "Endpoint=sb://myns.servicebus.windows.net/;SharedAccessKeyName=MeshDataTransfer;SharedAccessKey=<secondary-key>"
+    ]
+  }
+}
+```
+
+MDT will automatically fall back to the next connection string in the list if the active connection fails.
+
+---
+
+#### Option 2: Entra ID with client secret (app registration)
+
+Use this option when MDT runs outside Azure (e.g. on-premises Windows server) and a managed identity is not available.
+
+##### Step 1 — Create an app registration
+
+1. In the Azure portal, open **Microsoft Entra ID** (formerly Azure Active Directory).
+2. Select **App registrations → + New registration**.
+3. Fill in:
+   - **Name**: e.g. `mesh-data-transfer-prod`
+   - **Supported account types**: *Accounts in this organizational directory only (Single tenant)*
+   - **Redirect URI**: leave blank
+4. Click **Register**.
+5. On the app overview page, note down:
+   - **Application (client) ID** — this is `ClientId` in MDT config
+   - **Directory (tenant) ID** — this is `TenantId` in MDT config
+
+##### Step 2 — Create a client secret
+
+1. In the app registration, go to **Certificates & secrets → Client secrets → + New client secret**.
+2. Set a description (e.g. `mdt-servicebus`) and an expiry period.
+3. Click **Add**.
+4. **Copy the secret value immediately** — it is shown only once.
+
+Store the secret securely (Azure Key Vault, environment variable, or a secrets manager). Do not commit it to source control.
+
+##### Step 3 — Assign the Service Bus role
+
+MDT needs the **Azure Service Bus Data Owner** role on the namespace so it can create queues and topic subscriptions automatically on startup.
+
+1. Navigate to your **Service Bus namespace** in the Azure portal.
+2. In the left menu, select **Access control (IAM)**.
+3. Click **+ Add → Add role assignment**.
+4. On the **Role** tab, search for and select **Azure Service Bus Data Owner**.
+5. Click **Next**.
+6. On the **Members** tab:
+   - **Assign access to**: *User, group, or service principal*
+   - Click **+ Select members**, search for the app registration name (e.g. `mesh-data-transfer-prod`), select it, and click **Select**.
+7. Click **Review + assign** twice to confirm.
+
+The role assignment takes effect within a few minutes.
+
+##### MDT configuration (client secret) {#mdt-configuration-client-secret}
+
+Use just the namespace hostname (no `Endpoint=sb://` prefix, no trailing slash) as the connection string:
+
+```json
+"BrokersConfiguration": {
+  "ServiceBus1": {
+    "ConnectionStrings": [
+      "myns.servicebus.windows.net"
+    ]
+  }
+},
+"EntraId": {
+  "TenantId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  "ClientId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  "ClientSecret": "<secret-value>",
+  "Scopes": [
+    { "Role": "Mesh", "Value": "api://<mesh-app-id>/.default" }
+  ]
+}
+```
+
+The `Scopes` array must contain the `Mesh` scope for the gRPC connection. The `ServiceBus` scope entry is **not required** — the Azure Service Bus SDK acquires its own token internally using the `TenantId`/`ClientId`/`ClientSecret` credentials above.
+
+---
+
+#### Option 3: Entra ID with managed identity
+
+Use this option when MDT runs inside Azure (e.g. on an Azure Kubernetes Service pod, Azure App Service, or Azure VM). Managed identity eliminates all secrets from the configuration.
+
+##### System-assigned managed identity
+
+A system-assigned identity is tied to the lifecycle of the Azure resource (deleted when the resource is deleted).
+
+**For an Azure VM:**
+1. Navigate to the VM in the Azure portal.
+2. In the left menu, select **Security → Identity**.
+3. On the **System assigned** tab, set **Status** to **On** and click **Save**.
+4. After saving, the **Object (principal) ID** is shown — note it down for the role assignment step.
+
+**For an AKS workload** use Workload Identity Federation instead (see below).
+
+##### User-assigned managed identity
+
+A user-assigned identity exists independently of any single resource and can be assigned to multiple resources.
+
+1. In the Azure portal, search for **Managed Identities** and click **+ Create**.
+2. Fill in the subscription, resource group, region, and a name (e.g. `mdt-identity`).
+3. Click **Review + create → Create**.
+4. Open the created identity and note:
+   - **Client ID** — needed for AKS Workload Identity config
+   - **Object (principal) ID** — needed for role assignment
+
+**Assign the identity to your Azure resource:**
+- **VM**: In the VM → **Security → Identity → User assigned** tab, click **+ Add** and select the identity.
+- **AKS**: Configure via Workload Identity Federation (annotate the Kubernetes `ServiceAccount` with the client ID and create a federated credential on the managed identity — see [Azure Workload Identity docs](https://azure.github.io/azure-workload-identity/docs/)).
+
+##### Assign the Service Bus role to the managed identity
+
+Follow the same steps as in [Step 3](#step-3--assign-the-service-bus-role) above, but on the **Members** tab:
+- **Assign access to**: *Managed identity*
+- Click **+ Select members**, choose the subscription, select the managed identity type and name, and click **Select**.
+
+##### MDT configuration (managed identity) {#mdt-configuration-managed-identity}
+
+When MDT's `EntraId` section does not contain a `ClientSecret`, MDT uses `DefaultAzureCredential`, which automatically picks up the managed identity at runtime. No secrets are needed in configuration:
+
+```json
+"BrokersConfiguration": {
+  "ServiceBus1": {
+    "ConnectionStrings": [
+      "myns.servicebus.windows.net"
+    ]
+  }
+},
+"EntraId": {
+  "TenantId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  "ClientId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  "Scopes": [
+    { "Role": "Mesh", "Value": "api://<mesh-app-id>/.default" }
+  ]
+}
+```
+
+`DefaultAzureCredential` tries the following credential sources in order until one succeeds:
+
+1. Environment variables (`AZURE_CLIENT_ID`, `AZURE_CLIENT_SECRET`, `AZURE_TENANT_ID`)
+2. Workload Identity (AKS)
+3. Managed Identity (VM, App Service, AKS with pod identity)
+4. Azure CLI (useful for local developer machines)
+5. Azure PowerShell
+6. Azure Developer CLI
+
+For a **user-assigned managed identity**, specify `AZURE_CLIENT_ID` as an environment variable set to the managed identity's client ID, or ensure the AKS `ServiceAccount` annotation is in place — `DefaultAzureCredential` will use it automatically.
+
+For **local development**, run `az login` on the developer's machine. `DefaultAzureCredential` will pick up the Azure CLI session, so no secrets are needed in `appsettings.json` during development either.
+
+---
+
+#### How MDT selects the authentication mode
+
+MDT inspects each broker connection string at startup to decide which mode to use:
+
+| Connection string format | Authentication mode |
+|---|---|
+| Starts with `Endpoint=sb:` and contains `SharedAccessKey=` | SAS key — no Entra ID config needed |
+| Ends with `.servicebus.windows.net` | Entra ID — credential built from `EntraId` section |
+| Starts with `amqp://` or `amqps://` | AMQP (RabbitMQ / AMQP 1.0) |
+
+When Entra ID mode is active, the credential is selected as follows:
+- `EntraId.TenantId` + `ClientId` + `ClientSecret` all present → `ClientSecretCredential`
+- Otherwise → `DefaultAzureCredential`
+
+**Important:** Certificate authentication (`CertificatePath` / `CertificateThumbprint`) is supported only for the Mesh gRPC connection, not for Azure Service Bus. Use a client secret or managed identity for Service Bus Entra ID auth.
+
+---
+
+#### Required Azure RBAC role
+
+Regardless of the Entra ID credential type, the identity must be assigned the **Azure Service Bus Data Owner** role on the Service Bus namespace (not just on individual queues).
+
+This role is required because MDT automatically creates queues and topic subscriptions via the Azure Service Bus Administration API on startup if they do not already exist. The lesser roles (`Azure Service Bus Data Sender`, `Azure Service Bus Data Receiver`) do not grant administration permissions and will cause MDT to fail at startup with an authorization error.
+
+To verify the role assignment is in effect:
+1. Navigate to the Service Bus namespace → **Access control (IAM) → Role assignments**.
+2. Confirm the app registration or managed identity appears with the **Azure Service Bus Data Owner** role.
+
+---
+
+#### Azure Service Bus Troubleshooting
+
+**`AuthorizationFailedException` on startup**
+The identity is missing the `Azure Service Bus Data Owner` role on the namespace, or the role assignment has not yet propagated (wait a few minutes after assigning).
+
+**`CredentialUnavailableException`**
+`DefaultAzureCredential` could not find any usable credential. On Azure VMs, confirm that the managed identity is enabled. On AKS, verify the Workload Identity `ServiceAccount` annotation. Locally, run `az login`.
+
+**`AuthenticationFailedException` / `AADSTS700016`**
+The `ClientId` in `EntraId` config does not match an app registration in the specified `TenantId`, or the app registration has been deleted.
+
+**`ClientSecretCredential` fails after secret rotation**
+Update `EntraId.ClientSecret` in `appsettings.json` (or the Key Vault reference) to the new secret value and restart MDT. Consider using managed identity to avoid this entirely.
+
+**Queues not created on startup**
+MDT logs an error like `Failed to create the queue: <name>`. This means the identity has messaging permissions but lacks administration permissions — upgrade the role to `Azure Service Bus Data Owner`.
+
+**Wrong namespace hostname format**
+Make sure the connection string is exactly `myns.servicebus.windows.net` with no leading `https://`, no `Endpoint=sb://` prefix, and no trailing `/`. Any deviation causes MDT to misidentify the connection type.
+
 ### Queues Configuration
 
 Mesh Data Transfer allows a configuration of queues that can be later assigned to various components.
