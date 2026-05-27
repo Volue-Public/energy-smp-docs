@@ -163,6 +163,28 @@ $MeshGroupsDesired = @(
 # Smart Power apps + their role names (match the docs examples)
 $SmartApps = @(
   @{
+    Key="OptimalGateway"
+    DisplayName=("${NamePrefix}optimal-gateway${EnvSuffix}")
+    AppType="Application"
+    Roles=@(
+      @{ DisplayName="OptimalGwAdmin";  Value="OptimalGwAdmin";  MemberType="User"; Description="Full access including delete and config"                                              },
+      @{ DisplayName="OptimalGwEditor"; Value="OptimalGwEditor"; MemberType="User"; Description="Read + create/update (no delete)"                                                     },
+      @{ DisplayName="OptimalGwViewer"; Value="OptimalGwViewer"; MemberType="User"; Description="Read only access (GET endpoints only)"                                                },
+      @{ DisplayName="OptimalGwServiceAccount"; Value="OptimalGwServiceAccount"; MemberType="Application"; Description="Machine/daemon clients, used for background jobs or interface" },
+      @{ DisplayName="Daemon"; Value="Daemon"; MemberType="Application"; Description="Mesh daemon access"                                                                              }
+    )
+    Groups=@(
+      @{ DisplayName="HteDelete"; ObjectType="Group"; RoleAssigned="OptimalGwAdmin"  },
+      @{ DisplayName="HteWrite";  ObjectType="Group"; RoleAssigned="OptimalGwEditor" },
+      @{ DisplayName="HteRead";   ObjectType="Group"; RoleAssigned="OptimalGwViewer" }
+    )
+    ScopeValue="Optimal.Gateway"
+    MeshPermissions=@(
+      @{ PermissionType="Scope" },
+      @{ PermissionType="Role" }
+    )
+  },
+  @{
     Key="AssetManager"
     DisplayName=("${NamePrefix}asset-manager${EnvSuffix}")
     AppType="Application"
@@ -238,6 +260,9 @@ $SmartApps = @(
     MeshPermissions=@(
       @{ PermissionType="Scope" }
     )
+    OptimalGatewayPermissions=@(
+      @{ PermissionType="Scope" }
+    )
   },
   @{
     Key="MarginalCost"
@@ -254,27 +279,6 @@ $SmartApps = @(
     ScopeValue="user_impersonation"
     MeshPermissions=@(
       @{ PermissionType="Scope" }
-    )
-  },
-  @{
-    Key="OptimalGateway"
-    DisplayName=("${NamePrefix}optimal-gateway${EnvSuffix}")
-    AppType="Application"
-    Roles=@(
-      @{ DisplayName="OptimalGwAdmin";  Value="OptimalGwAdmin";  MemberType="User"; Description="Full access including delete and config"                                              },
-      @{ DisplayName="OptimalGwEditor"; Value="OptimalGwEditor"; MemberType="User"; Description="Read + create/update (no delete)"                                                     },
-      @{ DisplayName="OptimalGwViewer"; Value="OptimalGwViewer"; MemberType="User"; Description="Read only access (GET endpoints only)"                                                },
-      @{ DisplayName="OptimalGwServiceAccount"; Value="OptimalGwServiceAccount"; MemberType="Application"; Description="Machine/daemon clients, used for background jobs or interface" }
-    )
-    Groups=@(
-      @{ DisplayName="HteDelete"; ObjectType="Group"; RoleAssigned="OptimalGwAdmin"  },
-      @{ DisplayName="HteWrite";  ObjectType="Group"; RoleAssigned="OptimalGwEditor" },
-      @{ DisplayName="HteRead";   ObjectType="Group"; RoleAssigned="OptimalGwViewer" }
-    )
-    ScopeValue="user_impersonation"
-    MeshPermissions=@(
-      @{ PermissionType="Scope" },
-      @{ PermissionType="Role" }
     )
   },
   @{
@@ -825,9 +829,25 @@ foreach ($appDef in $SmartApps) {
       # Ensure app scope by value
       $scope = Ensure-ApiScopeByValue -appObjectId $app.Id -scopeValue $appDef.ScopeValue -displayNameForConsent $appDef.DisplayName
       $appScopeId = [guid]$scope.Id
+      # Ensure OptimalGateway scope by value
+      if ($appDef.Key -eq "OptimalGateway") {
+        $optGwScopeIdEffective = [guid]$scope.Id
+        $optGwApp = $app
+        $OptGwAppDisplayName = "${NamePrefix}${appDef.Name}${EnvSuffix}"
+        Write-Log "optGwScopeIdEffective=$optGwScopeIdEffective, optGwAppId=$optGwAppId" DEBUG
+      }
 
       # Ensure app roles by value (merge with any unmanaged roles)
       $rolesEffective = Ensure-AppRolesByValue -appObjectId $app.Id -desiredRoles $appDef.Roles
+      if ($appDef.Key -eq "OptimalGateway") {
+        # Ensure OptimalGateway app roles by value
+        $optGwRolesEffective = $rolesEffective
+        $optGwRolesEffectiveJson = $optGwRolesEffective | ConvertTo-Json -Depth 10
+        Write-Log "optGwRolesEffective=$optGwRolesEffectiveJson" TRACE
+        $optGwDaemonRole = $optGwRolesEffective | Where-Object { $_.DisplayName -eq "Daemon" } | Select-Object -First 1
+        $optGwDaemonRoleId = [guid]$optGwDaemonRole.Id
+        Write-Log "optGwDaemonRoleId=$optGwDaemonRoleId" DEBUG
+      }
     }
 
     # Ensure groups exist + assignments exist (idempotent)
@@ -854,6 +874,17 @@ foreach ($appDef in $SmartApps) {
     }
     End-Step $permStep $true
 
+    if (-not ([string]::IsNullOrWhiteSpace($appDef.OptimalGatewayPermissions))) {
+      # Ensure delegated permission to Optimal.Gateway (requiredResourceAccess) - idempotent merge
+      $gwPermStep = Start-Step "Ensure Optimal.Gateway delegated permission on $($appDef.DisplayName)"
+      foreach ($p in $appDef.OptimalGatewayPermissions) {
+        $permissionId = if ($p.PermissionType -eq "Scope") { $optGwScopeIdEffective } else { $optGwDaemonRoleId }
+        Write-Log "permissionId=$permissionId, "
+        Ensure-RequiredResourceAccess -appObjectId $app.Id -resourceAppId $optGwApp.AppId -permissionId $permissionId -permissionType $p.PermissionType | Out-Null
+      }
+      End-Step $gwPermStep $true
+    }
+
     if ($appRef.AppType -eq "Application") {
       # Ensure admin consent grant (may be blocked by policy)
       $consentStep = Start-Step "Ensure admin consent (oauth2PermissionGrant) for Mesh on $($appDef.DisplayName)"
@@ -866,6 +897,18 @@ foreach ($appDef in $SmartApps) {
         End-Step $consentStep $false "May require privileged role/policy. Continuing."
         Write-Log "Admin consent step failed or blocked by policy for $($appDef.DisplayName)." WARN
       }
+      if (-not ([string]::IsNullOrWhiteSpace($appDef.OptimalGatewayPermissions))) {
+        $optGwConsentStep = Start-Step "Ensure admin consent (oauth2PermissionGrant) for OptimalGateway on $($appDef.DisplayName)"
+        try {
+          $clientSp   = Ensure-ServicePrincipalForApp $app.AppId $appDef.DisplayName
+          $resourceSp = Ensure-ServicePrincipalForApp $optGwApp.AppId $OptGwAppDisplayName
+          Ensure-OAuth2PermissionGrant -clientSpId $clientSp.Id -resourceSpId $resourceSp.Id -scopeValue $optGwScopeValueEffective
+          End-Step $optGwConsentStep $true
+        } catch {
+          End-Step $optGwConsentStep $false "May require privileged role/policy. Continuing."
+          Write-Log "Admin consent step failed or blocked by policy for $($appDef.DisplayName)." WARN
+        }
+      }
     } else {
       # Grant the role on the resource service principal (this is the important part)
       $consentStep = Start-Step "Grant the role for Mesh on $($appDef.DisplayName)"
@@ -875,6 +918,18 @@ foreach ($appDef in $SmartApps) {
       } catch {
         End-Step $consentStep $false
         Write-Log "Grant role step failed or blocked by policy for $($appDef.DisplayName)." WARN
+      }
+      if (-not ([string]::IsNullOrWhiteSpace($appDef.OptimalGatewayPermissions))) {
+        $optGwConsentStep = Start-Step "Grant the role for OptimalGateway on $($appDef.DisplayName)"
+        try {
+          $clientSp   = Ensure-ServicePrincipalForApp $app.AppId $appDef.DisplayName
+          $resourceSp = Ensure-ServicePrincipalForApp $optGwApp.AppId $OptGwAppDisplayName
+          Ensure-OAuth2PermissionGrant -clientSpId $clientSp.Id -resourceSpId $resourceSp.Id -appRoleId $optGwDaemonRoleId -RoleValue "Daemon"
+          End-Step $optGwConsentStep $true
+        } catch {
+          End-Step $optGwConsentStep $false "May require privileged role/policy. Continuing."
+          Write-Log "Admin consent step failed or blocked by policy for $($appDef.DisplayName)." WARN
+        }
       }
     }
 
@@ -900,7 +955,7 @@ foreach ($appDef in $SmartApps) {
       RedirectUri  = $redirect
       ExposedScope = if ($appDef.ScopeValue) { "api://$($app.AppId)/$($appDef.ScopeValue)" } else { "" }
       SecretName   = $secretName
-      KeyVaultId   = $secretResult.KeyVaultId
+      KeyVaultId   = if ($Global:StoreSecretsInKeyVault) { $secretResult.KeyVaultId } else { $secretResult.SecretText }
       MeshScope    = "api://$($meshApp.AppId)/$meshScopeValueEffective"
     }
     End-Step $step $true
