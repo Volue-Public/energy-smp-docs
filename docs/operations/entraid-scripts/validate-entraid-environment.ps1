@@ -14,7 +14,7 @@ Idempotent behavior:
 #>
 
 # ----------------------------
-# 0) LOGGING CONFIG + HELPERS
+# 0) LOGGING CONFIG
 # ----------------------------
 $Global:RunId          = [guid]::NewGuid()
 $Global:LogLevel       = "DEBUG"     # TRACE, DEBUG, INFO, WARN, ERROR
@@ -30,6 +30,223 @@ $Global:EmitSecretsToConsole = $true   # secure default (do NOT print secretText
 $Global:StoreSecretsInKeyVault = $false  # set to $false if you only want manual handling
 $Global:KeyVaultName = "kv-smartpower-auto"              # e.g. "kv-smartpower-dev" (leave empty to disable KV store)
 $Global:KeyVaultSecretPrefix = "smartpower"  # name prefix for secrets in KV
+
+# ----------------------------
+# 1) CONFIG (edit these)
+# ----------------------------
+
+$NamePrefix = "energy-"
+$EnvSuffix  = "-auto"  # set "" if you don't want environment suffix
+
+$Fqdn = "localhost"
+$AppPorts = @{
+  AssetManager        = "1234"
+  AvailabilityPlanner = "1235"
+  MeshConfigurator    = "1236"
+}
+
+# Scope "values" (strings). Script reuses existing scope IDs if these exist.
+##$SmartAppScopeValue = "user_impersonation"
+$MeshScopeValue     = "Mesh.Grpc"
+
+# Type definitions:
+#   MemberType - defines the member type of a role, legal values: User, Application
+#   ObjectType - defines the access group type, legal values: Group
+#   PermissionType - defines the API permission type, legal values: Scope, Role
+#   AppType - defines type of application, legal values: Application, Daemon
+
+# Mesh roles (examples)
+$MeshRolesDesired = @(
+  @{ DisplayName="ModelReader"; Value="ModelReader"; MemberType="User"; Description="Mesh model read access"                  },
+  @{ DisplayName="ModelWriter"; Value="ModelWriter"; MemberType="User"; Description="Mesh model write access"                 },
+  @{ DisplayName="TimeSeriesReader"; Value="TimeSeriesReader"; MemberType="User"; Description="Mesh time series read access"  },
+  @{ DisplayName="TimeSeriesWriter"; Value="TimeSeriesWriter"; MemberType="User"; Description="Mesh time series write access" },
+  @{ DisplayName="Daemon"; Value="Daemon"; MemberType="Application"; Description="Mesh daemon access"                         }
+)
+$MeshGroupsDesired = @(
+  @{ DisplayName="HteWrite"; ObjectType="Group"; RoleAssigned="ModelWriter"      },
+  @{ DisplayName="HteWrite"; ObjectType="Group"; RoleAssigned="TimeSeriesWriter" },
+  @{ DisplayName="HteRead";  ObjectType="Group"; RoleAssigned="ModelReader"      },
+  @{ DisplayName="HteRead";  ObjectType="Group"; RoleAssigned="ModelReader"      }
+)
+
+# Smart Power apps + their role names
+$SmartApps = @(
+  @{
+    Key="OptimalLog"
+    DisplayName=("${NamePrefix}optimal-log${EnvSuffix}")
+    AppType="Application"
+    Roles=@(
+      @{ DisplayName="OptimalLogAdmin";  Value="OptimalLogAdmin";  MemberType="User"; Description="Full access including delete and config"                                              },
+      @{ DisplayName="OptimalLogEditor"; Value="OptimalLogEditor"; MemberType="User"; Description="Read + create/update (no delete)"                                                     },
+      @{ DisplayName="OptimalLogViewer"; Value="OptimalLogViewer"; MemberType="User"; Description="Read only access (GET endpoints only)"                                                },
+      @{ DisplayName="Daemon"; Value="Daemon"; MemberType="Application"; Description="Mesh daemon access"                                                                              }
+    )
+    Groups=@(
+      @{ DisplayName="HteDelete"; ObjectType="Group"; RoleAssigned="OptimalLogAdmin"  },
+      @{ DisplayName="HteWrite";  ObjectType="Group"; RoleAssigned="OptimalLogEditor" },
+      @{ DisplayName="HteRead";   ObjectType="Group"; RoleAssigned="OptimalLogViewer" }
+    )
+    ScopeValue="Optimal.Log"
+    # MeshPermissions=@(
+    #   @{ PermissionType="Scope" },
+    #   @{ PermissionType="Role" }
+    # )
+  },
+  @{
+    Key="OptimalGateway"
+    DisplayName=("${NamePrefix}optimal-gateway${EnvSuffix}")
+    AppType="Application"
+    Roles=@(
+      @{ DisplayName="OptimalGwAdmin";  Value="OptimalGwAdmin";  MemberType="User"; Description="Full access including delete and config"                                              },
+      @{ DisplayName="OptimalGwEditor"; Value="OptimalGwEditor"; MemberType="User"; Description="Read + create/update (no delete)"                                                     },
+      @{ DisplayName="OptimalGwViewer"; Value="OptimalGwViewer"; MemberType="User"; Description="Read only access (GET endpoints only)"                                                },
+      @{ DisplayName="OptimalGwServiceAccount"; Value="OptimalGwServiceAccount"; MemberType="Application"; Description="Machine/daemon clients, used for background jobs or interface" },
+      @{ DisplayName="Daemon"; Value="Daemon"; MemberType="Application"; Description="Mesh daemon access"                                                                              }
+    )
+    Groups=@(
+      @{ DisplayName="HteDelete"; ObjectType="Group"; RoleAssigned="OptimalGwAdmin"  },
+      @{ DisplayName="HteWrite";  ObjectType="Group"; RoleAssigned="OptimalGwEditor" },
+      @{ DisplayName="HteRead";   ObjectType="Group"; RoleAssigned="OptimalGwViewer" }
+    )
+    ScopeValue="Optimal.Gateway"
+    MeshPermissions=@(
+      @{ PermissionType="Scope" },
+      @{ PermissionType="Role" }
+    )
+    OptimalLogPermissions=@(
+      @{ PermissionType="Scope" }
+    )
+  },
+  # @{
+  #   Key="AssetManager"
+  #   DisplayName=("${NamePrefix}asset-manager${EnvSuffix}")
+  #   AppType="Application"
+  #   Roles=@(
+  #     @{ DisplayName="AssetManagerRead";   Value="AssetManagerRead";   MemberType="User"; Description="Asset Manager read access"       },
+  #     @{ DisplayName="AssetManagerWrite";  Value="AssetManagerWrite";  MemberType="User"; Description="Asset Manager modify access"     },
+  #     @{ DisplayName="AssetManagerDelete"; Value="AssetManagerDelete"; MemberType="User"; Description="Asset Manager add/delete access" }
+  #   )
+  #   Groups=@(
+  #     @{ DisplayName="HteRead";   ObjectType="Group"; RoleAssigned="AssetManagerRead"   },
+  #     @{ DisplayName="HteWrite";  ObjectType="Group"; RoleAssigned="AssetManagerWrite"  },
+  #     @{ DisplayName="HteDelete"; ObjectType="Group"; RoleAssigned="AssetManagerDelete" }
+  #   )
+  #   ScopeValue="user_impersonation"
+  #   MeshPermissions=@(
+  #     @{ PermissionType="Scope" }
+  #   )
+  # },
+  # @{
+  #   Key="AvailabilityPlanner"
+  #   DisplayName=("${NamePrefix}availability-planner${EnvSuffix}")
+  #   AppType="Application"
+  #   Roles=@(
+  #     @{ DisplayName="AvailabilityRead";  Value="AvailabilityRead";  MemberType="User"; Description="Availability Planner read access"   },
+  #     @{ DisplayName="AvailabilityWrite"; Value="AvailabilityWrite"; MemberType="User"; Description="Availability Planner modify access" },
+  #     @{ DisplayName="AvailabilityAdmin"; Value="AvailabilityAdmin"; MemberType="User"; Description="Availability Planner admin access"  }
+  #   )
+  #   Groups=@(
+  #     @{ DisplayName="Availabilityadmin"; ObjectType="Group"; RoleAssigned="AvailabilityAdmin" },
+  #     @{ DisplayName="Availabilityread";  ObjectType="Group"; RoleAssigned="AvailabilityRead"  },
+  #     @{ DisplayName="Availabilitywrite"; ObjectType="Group"; RoleAssigned="AvailabilityWrite" },
+  #     @{ DisplayName="HteRead";           ObjectType="Group"; RoleAssigned="AvailabilityRead"  },
+  #     @{ DisplayName="HteWrite";          ObjectType="Group"; RoleAssigned="AvailabilityWrite" },
+  #     @{ DisplayName="HteDelete";         ObjectType="Group"; RoleAssigned="AvailabilityAdmin" }
+  #   )
+  #   ScopeValue="user_impersonation"
+  #   MeshPermissions=@(
+  #     @{ PermissionType="Scope" }
+  #   )
+  # },
+  # @{
+  #   Key="MeshConfigurator"
+  #   DisplayName=("${NamePrefix}mesh-configurator${EnvSuffix}")
+  #   AppType="Application"
+  #   Roles=@(
+  #     @{ DisplayName="MeshConfiguratorRead";  Value="MeshConfiguratorRead";  MemberType="User"; Description="Mesh Configurator read access"   },
+  #     @{ DisplayName="MeshConfiguratorWrite"; Value="MeshConfiguratorWrite"; MemberType="User"; Description="Mesh Configurator modify access" }
+  #   )
+  #   Groups=@(
+  #     @{ DisplayName="Availabilityread"; ObjectType="Group"; RoleAssigned="MeshConfiguratorRead"  },
+  #     @{ DisplayName="HteRead";          ObjectType="Group"; RoleAssigned="MeshConfiguratorRead"  },
+  #     @{ DisplayName="HteWrite";         ObjectType="Group"; RoleAssigned="MeshConfiguratorRead"  },
+  #     @{ DisplayName="HteDelete";        ObjectType="Group"; RoleAssigned="MeshConfiguratorWrite" }
+  #   )
+  #   ScopeValue="user_impersonation"
+  #   MeshPermissions=@(
+  #     @{ PermissionType="Scope" }
+  #   )
+  # },
+  @{
+    Key="Nimbus"
+    DisplayName=("${NamePrefix}nimbus${EnvSuffix}")
+    AppType="Application"
+    Roles=@(
+      @{ DisplayName="NimbusRead";  Value="NimbusRead";  MemberType="User"; Description="Nimbus read access"   },
+      @{ DisplayName="NimbusWrite"; Value="NimbusWrite"; MemberType="User"; Description="Nimbus modify access" }
+    )
+    Groups=@(
+      @{ DisplayName="HteRead";  ObjectType="Group"; RoleAssigned="NimbusRead"  },
+      @{ DisplayName="HteWrite"; ObjectType="Group"; RoleAssigned="NimbusWrite" }
+    )
+    ScopeValue="user_impersonation"
+    MeshPermissions=@(
+      @{ PermissionType="Scope" }
+    )
+    OptimalGatewayPermissions=@(
+      @{ PermissionType="Scope" }
+    )
+    OptimalLogPermissions=@(
+      @{ PermissionType="Scope" }
+    )
+  },
+  # @{
+  #   Key="MarginalCost"
+  #   DisplayName=("${NamePrefix}marginal-cost${EnvSuffix}")
+  #   AppType="Application"
+  #   Roles=@(
+  #     @{ DisplayName="MarginalCostRead";  Value="MarginalCostRead";  MemberType="User"; Description="Marginal Cost read access"   },
+  #     @{ DisplayName="MarginalCostWrite"; Value="MarginalCostWrite"; MemberType="User"; Description="Marginal Cost modify access" }
+  #   )
+  #   Groups=@(
+  #     @{ DisplayName="HteRead";  ObjectType="Group"; RoleAssigned="MarginalCostRead"  },
+  #     @{ DisplayName="HteWrite"; ObjectType="Group"; RoleAssigned="MarginalCostWrite" }
+  #   )
+  #   ScopeValue="user_impersonation"
+  #   MeshPermissions=@(
+  #     @{ PermissionType="Scope" }
+  #   )
+  # },
+  @{
+    Key="MeshDataTransfer"
+    DisplayName=("${NamePrefix}mesh-data-transfer${EnvSuffix}")
+    AppType="Daemon"
+    #Roles=@(
+    #  @{ DisplayName="OptimalGwAdmin";  Value="OptimalGwAdmin";  MemberType="User"; Description="Full access including delete and config"                                              },
+    #  @{ DisplayName="OptimalGwEditor"; Value="OptimalGwEditor"; MemberType="User"; Description="Read + create/update (no delete)"                                                     },
+    #  @{ DisplayName="OptimalGwViewer"; Value="OptimalGwViewer"; MemberType="User"; Description="Read only access (GET endpoints only)"                                                },
+    #  @{ DisplayName="OptimalGwServiceAccount"; Value="OptimalGwServiceAccount"; MemberType="Application"; Description="Machine/daemon clients, used for background jobs or interface" }
+    #)
+    #Groups=@(
+    #  @{ DisplayName="HteDelete"; ObjectType="Group"; RoleAssigned="OptimalGwAdmin"  },
+    #  @{ DisplayName="HteWrite";  ObjectType="Group"; RoleAssigned="OptimalGwEditor" },
+    #  @{ DisplayName="HteRead";   ObjectType="Group"; RoleAssigned="OptimalGwViewer" }
+    #)
+    #ScopeValue="user_impersonation"
+    MeshPermissions=@(
+      @{ PermissionType="Role" }
+    )
+  }
+)
+
+$MeshAppDisplayName = "${NamePrefix}mesh${EnvSuffix}"
+
+$Global:StepsTotalHint = 12 + ($SmartApps.Count * 10) + ($MeshRolesDesired.Count * 3)
+
+# ----------------------------
+# 2) Log HELPERS
+# ----------------------------
 
 function _LevelRank([string]$Level) {
   switch ($Level.ToUpper()) {
@@ -118,200 +335,13 @@ function Fail-Fast {
   throw $ErrorRecord
 }
 
+# ----------------------------
+# 3) CONNECT TO GRAPH
+# ----------------------------
+
 Write-Log "Provisioning started. LogFile=$($Global:LogFile), LogLevel=$($Global:LogLevel)" INFO
 Write-Log "RunId=$($Global:RunId)" INFO
-
-# ----------------------------
-# 1) CONFIG (edit these)
-# ----------------------------
-
-$NamePrefix = "energy-"
-$EnvSuffix  = "-auto"  # set "" if you don't want environment suffix
-
-$Fqdn = "localhost"
-$AppPorts = @{
-  AssetManager        = "1234"
-  AvailabilityPlanner = "1235"
-  MeshConfigurator    = "1236"
-}
-
-# Scope "values" (strings). Script reuses existing scope IDs if these exist.
-##$SmartAppScopeValue = "user_impersonation"
-$MeshScopeValue     = "Mesh.Grpc"
-
-# Type definitions:
-#   MemberType - defines the member type of a role, legal values: User, Application
-#   ObjectType - defines the access group type, legal values: Group
-#   PermissionType - defines the API permission type, legal values: Scope, Role
-#   AppType - defines type of application, legal values: Application, Daemon
-
-# Mesh roles (examples)
-$MeshRolesDesired = @(
-  @{ DisplayName="ModelReader"; Value="ModelReader"; MemberType="User"; Description="Mesh model read access"                  },
-  @{ DisplayName="ModelWriter"; Value="ModelWriter"; MemberType="User"; Description="Mesh model write access"                 },
-  @{ DisplayName="TimeSeriesReader"; Value="TimeSeriesReader"; MemberType="User"; Description="Mesh time series read access"  },
-  @{ DisplayName="TimeSeriesWriter"; Value="TimeSeriesWriter"; MemberType="User"; Description="Mesh time series write access" },
-  @{ DisplayName="Daemon"; Value="Daemon"; MemberType="Application"; Description="Mesh daemon access"                         }
-)
-$MeshGroupsDesired = @(
-  @{ DisplayName="HteWrite"; ObjectType="Group"; RoleAssigned="ModelWriter"      },
-  @{ DisplayName="HteWrite"; ObjectType="Group"; RoleAssigned="TimeSeriesWriter" },
-  @{ DisplayName="HteRead";  ObjectType="Group"; RoleAssigned="ModelReader"      },
-  @{ DisplayName="HteRead";  ObjectType="Group"; RoleAssigned="ModelReader"      }
-)
-
-# Smart Power apps + their role names (match the docs examples)
-$SmartApps = @(
-  @{
-    Key="OptimalGateway"
-    DisplayName=("${NamePrefix}optimal-gateway${EnvSuffix}")
-    AppType="Application"
-    Roles=@(
-      @{ DisplayName="OptimalGwAdmin";  Value="OptimalGwAdmin";  MemberType="User"; Description="Full access including delete and config"                                              },
-      @{ DisplayName="OptimalGwEditor"; Value="OptimalGwEditor"; MemberType="User"; Description="Read + create/update (no delete)"                                                     },
-      @{ DisplayName="OptimalGwViewer"; Value="OptimalGwViewer"; MemberType="User"; Description="Read only access (GET endpoints only)"                                                },
-      @{ DisplayName="OptimalGwServiceAccount"; Value="OptimalGwServiceAccount"; MemberType="Application"; Description="Machine/daemon clients, used for background jobs or interface" },
-      @{ DisplayName="Daemon"; Value="Daemon"; MemberType="Application"; Description="Mesh daemon access"                                                                              }
-    )
-    Groups=@(
-      @{ DisplayName="HteDelete"; ObjectType="Group"; RoleAssigned="OptimalGwAdmin"  },
-      @{ DisplayName="HteWrite";  ObjectType="Group"; RoleAssigned="OptimalGwEditor" },
-      @{ DisplayName="HteRead";   ObjectType="Group"; RoleAssigned="OptimalGwViewer" }
-    )
-    ScopeValue="Optimal.Gateway"
-    MeshPermissions=@(
-      @{ PermissionType="Scope" },
-      @{ PermissionType="Role" }
-    )
-  },
-  @{
-    Key="AssetManager"
-    DisplayName=("${NamePrefix}asset-manager${EnvSuffix}")
-    AppType="Application"
-    Roles=@(
-      @{ DisplayName="AssetManagerRead";   Value="AssetManagerRead";   MemberType="User"; Description="Asset Manager read access"       },
-      @{ DisplayName="AssetManagerWrite";  Value="AssetManagerWrite";  MemberType="User"; Description="Asset Manager modify access"     },
-      @{ DisplayName="AssetManagerDelete"; Value="AssetManagerDelete"; MemberType="User"; Description="Asset Manager add/delete access" }
-    )
-    Groups=@(
-      @{ DisplayName="HteRead";   ObjectType="Group"; RoleAssigned="AssetManagerRead"   },
-      @{ DisplayName="HteWrite";  ObjectType="Group"; RoleAssigned="AssetManagerWrite"  },
-      @{ DisplayName="HteDelete"; ObjectType="Group"; RoleAssigned="AssetManagerDelete" }
-    )
-    ScopeValue="user_impersonation"
-    MeshPermissions=@(
-      @{ PermissionType="Scope" }
-    )
-  },
-  @{
-    Key="AvailabilityPlanner"
-    DisplayName=("${NamePrefix}availability-planner${EnvSuffix}")
-    AppType="Application"
-    Roles=@(
-      @{ DisplayName="AvailabilityRead";  Value="AvailabilityRead";  MemberType="User"; Description="Availability Planner read access"   },
-      @{ DisplayName="AvailabilityWrite"; Value="AvailabilityWrite"; MemberType="User"; Description="Availability Planner modify access" },
-      @{ DisplayName="AvailabilityAdmin"; Value="AvailabilityAdmin"; MemberType="User"; Description="Availability Planner admin access"  }
-    )
-    Groups=@(
-      @{ DisplayName="Availabilityadmin"; ObjectType="Group"; RoleAssigned="AvailabilityAdmin" },
-      @{ DisplayName="Availabilityread";  ObjectType="Group"; RoleAssigned="AvailabilityRead"  },
-      @{ DisplayName="Availabilitywrite"; ObjectType="Group"; RoleAssigned="AvailabilityWrite" },
-      @{ DisplayName="HteRead";           ObjectType="Group"; RoleAssigned="AvailabilityRead"  },
-      @{ DisplayName="HteWrite";          ObjectType="Group"; RoleAssigned="AvailabilityWrite" },
-      @{ DisplayName="HteDelete";         ObjectType="Group"; RoleAssigned="AvailabilityAdmin" }
-    )
-    ScopeValue="user_impersonation"
-    MeshPermissions=@(
-      @{ PermissionType="Scope" }
-    )
-  },
-  @{
-    Key="MeshConfigurator"
-    DisplayName=("${NamePrefix}mesh-configurator${EnvSuffix}")
-    AppType="Application"
-    Roles=@(
-      @{ DisplayName="MeshConfiguratorRead";  Value="MeshConfiguratorRead";  MemberType="User"; Description="Mesh Configurator read access"   },
-      @{ DisplayName="MeshConfiguratorWrite"; Value="MeshConfiguratorWrite"; MemberType="User"; Description="Mesh Configurator modify access" }
-    )
-    Groups=@(
-      @{ DisplayName="Availabilityread"; ObjectType="Group"; RoleAssigned="MeshConfiguratorRead"  },
-      @{ DisplayName="HteRead";          ObjectType="Group"; RoleAssigned="MeshConfiguratorRead"  },
-      @{ DisplayName="HteWrite";         ObjectType="Group"; RoleAssigned="MeshConfiguratorRead"  },
-      @{ DisplayName="HteDelete";        ObjectType="Group"; RoleAssigned="MeshConfiguratorWrite" }
-    )
-    ScopeValue="user_impersonation"
-    MeshPermissions=@(
-      @{ PermissionType="Scope" }
-    )
-  },
-  @{
-    Key="Nimbus"
-    DisplayName=("${NamePrefix}nimbus${EnvSuffix}")
-    AppType="Application"
-    Roles=@(
-      @{ DisplayName="NimbusRead";  Value="NimbusRead";  MemberType="User"; Description="Nimbus read access"   },
-      @{ DisplayName="NimbusWrite"; Value="NimbusWrite"; MemberType="User"; Description="Nimbus modify access" }
-    )
-    Groups=@(
-      @{ DisplayName="HteRead";  ObjectType="Group"; RoleAssigned="NimbusRead"  },
-      @{ DisplayName="HteWrite"; ObjectType="Group"; RoleAssigned="NimbusWrite" }
-    )
-    ScopeValue="user_impersonation"
-    MeshPermissions=@(
-      @{ PermissionType="Scope" }
-    )
-    OptimalGatewayPermissions=@(
-      @{ PermissionType="Scope" }
-    )
-  },
-  @{
-    Key="MarginalCost"
-    DisplayName=("${NamePrefix}marginal-cost${EnvSuffix}")
-    AppType="Application"
-    Roles=@(
-      @{ DisplayName="MarginalCostRead";  Value="MarginalCostRead";  MemberType="User"; Description="Marginal Cost read access"   },
-      @{ DisplayName="MarginalCostWrite"; Value="MarginalCostWrite"; MemberType="User"; Description="Marginal Cost modify access" }
-    )
-    Groups=@(
-      @{ DisplayName="HteRead";  ObjectType="Group"; RoleAssigned="MarginalCostRead"  },
-      @{ DisplayName="HteWrite"; ObjectType="Group"; RoleAssigned="MarginalCostWrite" }
-    )
-    ScopeValue="user_impersonation"
-    MeshPermissions=@(
-      @{ PermissionType="Scope" }
-    )
-  },
-  @{
-    Key="MeshDataTransfer"
-    DisplayName=("${NamePrefix}mesh-data-transfer${EnvSuffix}")
-    AppType="Daemon"
-    #Roles=@(
-    #  @{ DisplayName="OptimalGwAdmin";  Value="OptimalGwAdmin";  MemberType="User"; Description="Full access including delete and config"                                              },
-    #  @{ DisplayName="OptimalGwEditor"; Value="OptimalGwEditor"; MemberType="User"; Description="Read + create/update (no delete)"                                                     },
-    #  @{ DisplayName="OptimalGwViewer"; Value="OptimalGwViewer"; MemberType="User"; Description="Read only access (GET endpoints only)"                                                },
-    #  @{ DisplayName="OptimalGwServiceAccount"; Value="OptimalGwServiceAccount"; MemberType="Application"; Description="Machine/daemon clients, used for background jobs or interface" }
-    #)
-    #Groups=@(
-    #  @{ DisplayName="HteDelete"; ObjectType="Group"; RoleAssigned="OptimalGwAdmin"  },
-    #  @{ DisplayName="HteWrite";  ObjectType="Group"; RoleAssigned="OptimalGwEditor" },
-    #  @{ DisplayName="HteRead";   ObjectType="Group"; RoleAssigned="OptimalGwViewer" }
-    #)
-    #ScopeValue="user_impersonation"
-    MeshPermissions=@(
-      @{ PermissionType="Role" }
-    )
-  }
-)
-
-$MeshAppDisplayName = "${NamePrefix}mesh${EnvSuffix}"
-
-$Global:StepsTotalHint = 12 + ($SmartApps.Count * 10) + ($MeshRolesDesired.Count * 3)
-
 Write-Log "Config: Mesh=$MeshAppDisplayName, Apps=$($SmartApps.DisplayName -join ', ')" DEBUG
-
-# ----------------------------
-# 2) CONNECT TO GRAPH
-# ----------------------------
 
 $step = Start-Step "Ensure Microsoft.Graph module + Connect-MgGraph"
 try {
@@ -343,7 +373,7 @@ try {
 }
 
 # ----------------------------
-# 3) GENERIC HELPERS (IDEMPOTENT PATCHES)
+# 4) GENERIC HELPERS (IDEMPOTENT PATCHES)
 # ----------------------------
 
 function New-Guid { [guid]::NewGuid() }
@@ -634,8 +664,8 @@ function Ensure-RequiredResourceAccess{
   return (Patch-ApplicationIfChanged $appObjectId @{ requiredResourceAccess = $rra } "Ensure requiredResourceAccess ($permissionType)")
 }
 
-function Ensure-PreAuthorizedApplication([string]$meshAppObjectId, [string]$clientAppId, [guid]$delegatedPermissionId) {
-  $mesh = Get-Application $meshAppObjectId
+function Ensure-PreAuthorizedApplication([string]$appName, [string]$appObjectId, [string]$clientAppId, [guid]$delegatedPermissionId) {
+  $mesh = Get-Application $appObjectId
   $api = $mesh.api
   if (-not $api) { $api = @{ requestedAccessTokenVersion = 2; oauth2PermissionScopes=@(); preAuthorizedApplications=@() } }
 
@@ -647,7 +677,7 @@ function Ensure-PreAuthorizedApplication([string]$meshAppObjectId, [string]$clie
     $ids = @()
     if ($existing.delegatedPermissionIds) { $ids = @($existing.delegatedPermissionIds) }
     if ($ids -contains $delegatedPermissionId) {
-      Write-Log "Mesh preAuthorizedApplications already contains client=$clientAppId -> skip" DEBUG
+      Write-Log "$appName preAuthorizedApplications already contains client=$clientAppId -> skip" DEBUG
       return $false
     }
     $existing.delegatedPermissionIds = (@($ids + $delegatedPermissionId) | Select-Object -Unique)
@@ -659,7 +689,7 @@ function Ensure-PreAuthorizedApplication([string]$meshAppObjectId, [string]$clie
   }
 
   $api.preAuthorizedApplications = $pre
-  return (Patch-ApplicationIfChanged $meshAppObjectId @{ api = $api } "Ensure Mesh preAuthorizedApplications")
+  return (Patch-ApplicationIfChanged $appObjectId @{ api = $api } "Ensure $appName preAuthorizedApplications")
 }
 
 function Ensure-ClientSecret {
@@ -748,7 +778,7 @@ function Store-SecretInKeyVault {
 }
 
 # ----------------------------
-# 4) CREATE / CONFIGURE MESH APP (IDEMPOTENT)
+# 5) CREATE / CONFIGURE MESH APP (IDEMPOTENT)
 # ----------------------------
 # ----------------------------
 
@@ -806,7 +836,8 @@ try {
 }
 
 # ----------------------------
-# 5) CREATE / CONFIGURE SMART POWER APPS (IDEMPOTENT)
+# 6) CREATE / CONFIGURE SMART POWER APPS (IDEMPOTENT)
+# ----------------------------
 
 foreach ($appDef in $SmartApps) {
 
@@ -828,13 +859,20 @@ foreach ($appDef in $SmartApps) {
 
       # Ensure app scope by value
       $scope = Ensure-ApiScopeByValue -appObjectId $app.Id -scopeValue $appDef.ScopeValue -displayNameForConsent $appDef.DisplayName
-      $appScopeId = [guid]$scope.Id
       # Ensure OptimalGateway scope by value
       if ($appDef.Key -eq "OptimalGateway") {
-        $optGwScopeIdEffective = [guid]$scope.Id
-        $optGwApp = $app
-        $OptGwAppDisplayName = "${NamePrefix}${appDef.Name}${EnvSuffix}"
-        Write-Log "optGwScopeIdEffective=$optGwScopeIdEffective, optGwAppId=$optGwAppId" DEBUG
+        $optGwScopeIdEffective    = [guid]$scope.Id
+        $optGwScopeValueEffective = $scope.Value
+        $optGwApp                 = $app
+        $OptGwAppDisplayName      = $appDef.DisplayName
+        Write-Log "optGwScopeIdEffective=$optGwScopeIdEffective, optGwAppId=$($optGwApp.Id)" DEBUG
+      }
+      if ($appDef.Key -eq "OptimalLog") {
+        $optLogScopeIdEffective    = [guid]$scope.Id
+        $optLogScopeValueEffective = $scope.Value
+        $optLogApp                 = $app
+        $OptLogAppDisplayName      = $appDef.DisplayName
+        Write-Log "optLogScopeIdEffective=$optLogScopeIdEffective" DEBUG
       }
 
       # Ensure app roles by value (merge with any unmanaged roles)
@@ -861,7 +899,7 @@ foreach ($appDef in $SmartApps) {
       if ($role) {
         Ensure-GroupAppRoleAssignment -groupId $g.Id -resourceSpId $spRefFull.Id -appRoleId ([guid]$role.Id) -RoleValue $r.DisplayName
       } else {
-        Write-Log "Role '$($r.Value)' not found on SP for '$($appDef.DisplayName)'" WARN
+        Write-Log "Role '$($r.RoleAssigned)' not found on SP for '$($appDef.DisplayName)'" WARN
       }
     }
     End-Step $rolesStep $true
@@ -879,19 +917,31 @@ foreach ($appDef in $SmartApps) {
       $gwPermStep = Start-Step "Ensure Optimal.Gateway delegated permission on $($appDef.DisplayName)"
       foreach ($p in $appDef.OptimalGatewayPermissions) {
         $permissionId = if ($p.PermissionType -eq "Scope") { $optGwScopeIdEffective } else { $optGwDaemonRoleId }
-        Write-Log "permissionId=$permissionId, "
+        Write-Log "permissionId=$permissionId" DEBUG
         Ensure-RequiredResourceAccess -appObjectId $app.Id -resourceAppId $optGwApp.AppId -permissionId $permissionId -permissionType $p.PermissionType | Out-Null
       }
       End-Step $gwPermStep $true
     }
 
-    if ($appRef.AppType -eq "Application") {
+    if ($appDef.OptimalLogPermissions) {
+      # Ensure delegated permission to Optimal.Log (requiredResourceAccess) - idempotent merge
+      $logPermStep = Start-Step "Ensure Optimal.Log delegated permission on $($appDef.DisplayName)"
+      foreach ($p in $appDef.OptimalLogPermissions) {
+        $permissionId = if ($p.PermissionType -eq "Scope") { $optLogScopeIdEffective } else { $null }
+        Ensure-RequiredResourceAccess -appObjectId $app.Id -resourceAppId $optLogApp.AppId -permissionId $permissionId -permissionType $p.PermissionType | Out-Null
+      }
+      End-Step $logPermStep $true
+    }
+
+    if ($appDef.AppType -eq "Application") {
       # Ensure admin consent grant (may be blocked by policy)
       $consentStep = Start-Step "Ensure admin consent (oauth2PermissionGrant) for Mesh on $($appDef.DisplayName)"
       try {
-        $clientSp   = Ensure-ServicePrincipalForApp $app.AppId $appDef.DisplayName
-        $resourceSp = Ensure-ServicePrincipalForApp $meshApp.AppId $MeshAppDisplayName
-        Ensure-OAuth2PermissionGrant -clientSpId $clientSp.Id -resourceSpId $resourceSp.Id -scopeValue $meshScopeValueEffective
+        if ($appDef.MeshPermissions) {
+          $clientSp   = Ensure-ServicePrincipalForApp $app.AppId $appDef.DisplayName
+          $resourceSp = Ensure-ServicePrincipalForApp $meshApp.AppId $MeshAppDisplayName
+          Ensure-OAuth2PermissionGrant -clientSpId $clientSp.Id -resourceSpId $resourceSp.Id -scopeValue $meshScopeValueEffective
+        }
         End-Step $consentStep $true
       } catch {
         End-Step $consentStep $false "May require privileged role/policy. Continuing."
@@ -906,6 +956,18 @@ foreach ($appDef in $SmartApps) {
           End-Step $optGwConsentStep $true
         } catch {
           End-Step $optGwConsentStep $false "May require privileged role/policy. Continuing."
+          Write-Log "Admin consent step failed or blocked by policy for $($appDef.DisplayName)." WARN
+        }
+      }
+      if ($appDef.OptimalLogPermissions) {
+        $optLogConsentStep = Start-Step "Ensure admin consent (oauth2PermissionGrant) for OptimalLog on $($appDef.DisplayName)"
+        try {
+          $clientSp   = Ensure-ServicePrincipalForApp $app.AppId $appDef.DisplayName
+          $resourceSp = Ensure-ServicePrincipalForApp $optLogApp.AppId $OptLogAppDisplayName
+          Ensure-OAuth2PermissionGrant -clientSpId $clientSp.Id -resourceSpId $resourceSp.Id -scopeValue $optLogScopeValueEffective
+          End-Step $optLogConsentStep $true
+        } catch {
+          End-Step $optLogConsentStep $false "May require privileged role/policy. Continuing."
           Write-Log "Admin consent step failed or blocked by policy for $($appDef.DisplayName)." WARN
         }
       }
@@ -928,6 +990,18 @@ foreach ($appDef in $SmartApps) {
           End-Step $optGwConsentStep $true
         } catch {
           End-Step $optGwConsentStep $false "May require privileged role/policy. Continuing."
+          Write-Log "Admin consent step failed or blocked by policy for $($appDef.DisplayName)." WARN
+        }
+      }
+      if ($appDef.OptimalLogPermissions) {
+        $optLogConsentStep = Start-Step "Grant the role for OptimalLog on $($appDef.DisplayName)"
+        try {
+          $clientSp   = Ensure-ServicePrincipalForApp $app.AppId $appDef.DisplayName
+          $resourceSp = Ensure-ServicePrincipalForApp $optLogApp.AppId $optLogAppDisplayName
+          Ensure-OAuth2PermissionGrant -clientSpId $clientSp.Id -resourceSpId $resourceSp.Id -scopeValue $optLogScopeValueEffective
+          End-Step $optLogConsentStep $true
+        } catch {
+          End-Step $optLogConsentStep $false "May require privileged role/policy. Continuing."
           Write-Log "Admin consent step failed or blocked by policy for $($appDef.DisplayName)." WARN
         }
       }
@@ -966,7 +1040,7 @@ foreach ($appDef in $SmartApps) {
 }
 
 # ----------------------------
-# 6) PRE-AUTHORIZE APPS IN MESH (IDEMPOTENT MERGE)
+# 7) PRE-AUTHORIZE APPS IN MESH (IDEMPOTENT MERGE)
 # ----------------------------
 
 $step = Start-Step "Ensure Mesh preAuthorizedApplications (idempotent)"
@@ -974,7 +1048,7 @@ try {
   foreach ($appDef in $SmartApps) {
     $a = Get-ApplicationByDisplayName $appDef.DisplayName
     if ($a) {
-      Ensure-PreAuthorizedApplication -meshAppObjectId $meshApp.Id -clientAppId $a.AppId -delegatedPermissionId $meshScopeIdEffective | Out-Null
+      Ensure-PreAuthorizedApplication -appName $meshApp.DisplayName -appObjectId $meshApp.Id -clientAppId $a.AppId -delegatedPermissionId $meshScopeIdEffective | Out-Null
     } else {
       Write-Log "Could not resolve app for pre-authorization: $($appDef.DisplayName)" WARN
     }
@@ -986,31 +1060,35 @@ try {
 }
 
 # ----------------------------
-# 6b) PRE-AUTHORIZE APPS IN OPTIMAL GATEWAY (IDEMPOTENT)
+# 8) PRE-AUTHORIZE APPS IN OPTIMAL GATEWAY (IDEMPOTENT)
 # ----------------------------
 
-$step = Start-Step "Ensure OptimalGateway preAuthorizedApplications (idempotent)"
-try {
-  if ($optGwApp -and $optGwScopeIdEffective) {
-    foreach ($appDef in ($SmartApps | Where-Object { $_.OptimalGatewayPermissions })) {
-      $a = Get-ApplicationByDisplayName $appDef.DisplayName
-      if ($a) {
-        Ensure-PreAuthorizedApplication -meshAppObjectId $optGwApp.Id -clientAppId $a.AppId -delegatedPermissionId $optGwScopeIdEffective | Out-Null
-      } else {
-        Write-Log "Could not resolve app for OptimalGateway pre-authorization: $($appDef.DisplayName)" WARN
+$step = Start-Step "Ensure OptimalGateway and OptimalLog preAuthorizedApplications (idempotent)"
+$defs = $($SmartApps | Where-Object { $_.OptimalGatewayPermissions -or $_.OptimalLogPermissions })
+$defsString = $defs | ConvertTo-Json
+Write-Log "defs=$defsString" DEBUG
+try {    
+  foreach ($appDef in $defs) {
+    $a = Get-ApplicationByDisplayName $appDef.DisplayName
+    if ($a) {
+      if ($appDef.OptimalGatewayPermissions) {
+        Ensure-PreAuthorizedApplication -appName $optGwApp.DisplayName -appObjectId $optGwApp.Id -clientAppId $a.AppId -delegatedPermissionId $optGwScopeIdEffective | Out-Null
       }
+      if ($appDef.OptimalLogPermissions) {
+        Ensure-PreAuthorizedApplication -appName $optLogApp.DisplayName -appObjectId $optLogApp.Id -clientAppId $a.AppId -delegatedPermissionId $optLogScopeIdEffective | Out-Null
+      }
+    } else {
+      Write-Log "Could not resolve app for OptimalGateway pre-authorization: $($appDef.DisplayName)" WARN
     }
-  } else {
-    Write-Log "OptimalGateway app or scope not available — skipping pre-authorization" WARN
   }
   End-Step $step $true
 } catch {
   End-Step $step $false
-  Fail-Fast "Pre-authorization in OptimalGateway failed" $_
+  Fail-Fast "Pre-authorization in OptimalGateway or OptimalLog failed" $_
 }
 
 # ----------------------------
-# 7) OUTPUT SUMMARY (save secrets now!)
+# 9) OUTPUT SUMMARY (save secrets now!)
 # ----------------------------
 
 Write-Progress -Activity "Smart Power Provisioning" -Status "Completed" -Completed
