@@ -966,7 +966,7 @@ foreach ($appDef in $SmartApps) {
 }
 
 # ----------------------------
-# 6) PRE-AUTHORIZE SMART APPS IN MESH (IDEMPOTENT MERGE)
+# 6) PRE-AUTHORIZE APPS IN MESH (IDEMPOTENT MERGE)
 # ----------------------------
 
 $step = Start-Step "Ensure Mesh preAuthorizedApplications (idempotent)"
@@ -983,6 +983,30 @@ try {
 } catch {
   End-Step $step $false
   Fail-Fast "Pre-authorization in Mesh failed" $_
+}
+
+# ----------------------------
+# 6b) PRE-AUTHORIZE APPS IN OPTIMAL GATEWAY (IDEMPOTENT)
+# ----------------------------
+
+$step = Start-Step "Ensure OptimalGateway preAuthorizedApplications (idempotent)"
+try {
+  if ($optGwApp -and $optGwScopeIdEffective) {
+    foreach ($appDef in ($SmartApps | Where-Object { $_.OptimalGatewayPermissions })) {
+      $a = Get-ApplicationByDisplayName $appDef.DisplayName
+      if ($a) {
+        Ensure-PreAuthorizedApplication -meshAppObjectId $optGwApp.Id -clientAppId $a.AppId -delegatedPermissionId $optGwScopeIdEffective | Out-Null
+      } else {
+        Write-Log "Could not resolve app for OptimalGateway pre-authorization: $($appDef.DisplayName)" WARN
+      }
+    }
+  } else {
+    Write-Log "OptimalGateway app or scope not available — skipping pre-authorization" WARN
+  }
+  End-Step $step $true
+} catch {
+  End-Step $step $false
+  Fail-Fast "Pre-authorization in OptimalGateway failed" $_
 }
 
 # ----------------------------
