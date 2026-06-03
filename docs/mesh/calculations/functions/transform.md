@@ -44,9 +44,9 @@ table, as does the `@TRANSFORM(t, t, s)` function.
 
 | Symbol | Description |
 | ------ | - |
-| SUM    | The sum of the values included in the base for this value.<br/><br/>Does not consider how long the values are valid, i.e. a break point series with two values in the current interval that will give the sum of these two values. |
-| SUMI   | Integral based sum with resolution second. Calculates the sum of value multiplied with number of seconds each value is valid.<br/><br/>Value equal 1 at the start of the day will give 86400 as day value if the base is one break point series and 3600 if this is an hour series with only one value on first hour. |
-| AVG    | For fixed interval series. Sum of all values in accumulation period divided by number of values in the accumulation period (24 for hour series that is transformed to day series).<br/><br/>For break point series: Mean value of the values included in the base for this value. Does not consider how long the values are valid, i.e. a break point series with two values in the current interval that will give the mean value of these two values. |
+| SUM    | The sum of the values included in the base for this value.<br/><br/>Does not consider how long the values are valid, i.e. a breakpoint series with two values in the current interval that will give the sum of these two values. |
+| SUMI   | Integral based sum with resolution second. Calculates the sum of value multiplied with number of seconds each value is valid.<br/><br/>Value equal 1 at the start of the day will give 86400 as day value if the base is one breakpoint series and 3600 if this is an hour series with only one value on first hour. |
+| AVG    | For fixed interval series. Sum of all values in accumulation period divided by number of values in the accumulation period (24 for hour series that is transformed to day series).<br/><br/>For breakpoint series: Mean value of the values included in the base for this value. Does not consider how long the values are valid, i.e. a breakpoint series with two values in the current interval will give the mean value of these two values. |
 | AVGI   | Integral based mean value, i.e. considers how much of the accumulation period that a given value is valid (to next value that can be NaN for a fixed interval series). This value is presented as mean value in the summary part of the presentation in Table. |
 | FIRST  | First value in the accumulation period. This is the functional value at the start of the accumulation period, unless there exists an explicit value. |
 | LAST   | Last value in the accumulation period. This is the functional value at the end of the accumulation period, unless there exists an explicit value. |
@@ -67,10 +67,10 @@ the implementation chooses `SUM` if the method string contains (case insensitive
 a future version, preceded by tooling to identify erroneous cases. We strongly
 recommend using `SUM` or `AVG` instead of for example `SUMV` or `AVERAGE`.
 
-If the input time series is time zone aware we only allow `SUM` or `AVG`.
+If the input time series is time zone aware, we only allow `SUM` or `AVG`.
 
 
-## `TRANSFORM(t, s, s)`
+## TRANSFORM(t, s, s)
 
 This is the most common conversion function. You can use it to convert both
 ways, i.e. both from finer to coarser resolution, and the other way. The most
@@ -129,7 +129,7 @@ transformation methods are available for this latter use.
   ![](assets/images/ex_TRANSFORM-nimbustable7.png)
 
 
-## `TRANSFORM(t, t, s)`
+## TRANSFORM(t, t, s)
 
 Conversion to periods given by points of time on the series given as argument 2.
 The result is a break point series. This function enables periods that are not
@@ -156,7 +156,7 @@ this:
   Res is a result series with break point resolution.
 
 
-## `TRANSFORM(t, d, s)`
+## TRANSFORM(t, d, s)
 
 Conversions given by the number given as argument 2. The number represents
 number of seconds in the period.
@@ -172,7 +172,7 @@ number of seconds in the period.
 If d is defined as the value 864000 this means a period of 10 days
 (60*60*24*10). The result is a break point series.
 
-## `TRANSFORM(t, s, s, s)`
+## TRANSFORM(t, s, s, s)
 
 Corresponding functionality as in [`TRANSFORM(t, s, s)`](#transformt-s-s), but
 with an additional argument that decides which time zone that is the base for
