@@ -21,8 +21,8 @@ Daylight Saving Time enabled is used.
 | MIN    | Fixed 1 minute interval   |
 | MIN5   | Fixed 5 minute interval   |
 | MIN10  | Fixed 10 minute interval  |
-| MIN15  | Fixed 15 minutes interval |
-| MIN30  | Fixed 30 minutes interval |
+| MIN15  | Fixed 15 minute interval  |
+| MIN30  | Fixed 30 minute interval  |
 | HOUR   | Fixed hour interval       |
 | DAY    | Fixed day interval        |
 | WEEK   | Fixed week interval       |
@@ -32,7 +32,7 @@ Daylight Saving Time enabled is used.
 
 ## Transformation methods
 
-All the `TRANSFORM` functions take a a transformation method argument which
+All the `TRANSFORM` functions take a transformation method argument which
 determines the values and flags of the output time series. The following
 subsections document the valid transformation methods.
 
