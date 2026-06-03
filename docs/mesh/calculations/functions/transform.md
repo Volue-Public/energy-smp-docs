@@ -82,8 +82,8 @@ transformation methods are available for this latter use.
 | # | Type | Description |
 |---|---|---|
 | 1 | t | Time series to be converted. |
-| 2 | s | Time resolution of the result, given as a RESOLUTION symbol (see separate table). |
-| 3 | s | Conversion method, given as a TRANSMETHOD symbol (see separate table). |
+| 2 | s | Output resolution, see [accepted values](#output-resolution). |
+| 3 | s | Conversion method, see [accepted values](#transformation-methods). |
 
 
 ### Example
@@ -140,8 +140,8 @@ standard calendar units, e.g. 3 hours, 10 days, etc.
 | # | Type | Description |
 |---|---|---|
 | 1 | t | Time series to be converted. |
-| 2 | t | Time resolution on result, given as a break point series. The result series contains values on the points of time that exist on this series for current period. The values on this series are not used. |
-| 3 | s | Conversion method, given as a TRANSMETHOD symbol. |
+| 2 | t | Output resolution, given as a break point series. The result series contains values on the points of time that exist on this series for current period. The values on this series are not used. |
+| 3 | s | Conversion method, see [accepted values](#transformation-methods). |
 
 ### Example
 If you want to create an 8 hour accumulation for a time series you may do like
@@ -165,8 +165,8 @@ number of seconds in the period.
 | # | Type | Description |
 |---|---|---|
 | 1 | t | Time series to be converted. |
-| 2 | d | Time resolution on the result, given as number of seconds in each period. |
-| 3 | s | Conversion method, given as a TRANSMETHOD symbol. |
+| 2 | d | Output resolution, given as number of seconds in each period. |
+| 3 | s | Conversion method, see [accepted values](#transformation-methods). |
 
 ### Example
 If d is defined as the value 864000 this means a period of 10 days
@@ -184,8 +184,8 @@ from the rest of the environment.
 | # | Type | Description |
 |---|---|---|
 | 1 | t | Time series to be converted. |
-| 2 | s | Time resolution on result, given as a RESOLUTION symbol. |
-| 3 | s | Conversion method, given as a TRANSMETHOD symbol. |
+| 2 | s | Output resolution, see [accepted values](#output-resolution). |
+| 3 | s | Conversion method, see [accepted values](#transformation-methods). |
 | 4 | s | Symbol stating time zone. 'LOCAL', 'LOKAL' and 'LT' give local time zone, 'NORMAL', 'STANDARD' and 'NT' gives normal time zone. Otherwise, the system will perform a lookup and see whether the value of the symbol is the name on an explicitly stated time zone in the system. Unknown zone equals no zone and then normal time zone is used. |
 
 ### Example
