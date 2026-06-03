@@ -26,6 +26,7 @@ nav:
                 - Search language: mesh/concepts/search-language.md
                 - Sessions: mesh/concepts/sessions.md
                 - Time series: mesh/concepts/time-series.md
+                      - Time zone-aware time series: mesh/concepts/time-zone-aware-time-series.md
           - Installation: mesh/installation/MeshServiceInstallationGuide.md
           - Calculations:
                 - General: mesh/calculations/general.md

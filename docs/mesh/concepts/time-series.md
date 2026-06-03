@@ -30,6 +30,10 @@ timestamps.
 
 ![Mesh time series resolution example](./assets/images/time-series-resolution.png)
 
+For physical time series with a daily or coarser resolution, a time zone can be
+associated with the series so that point intervals respect local time and
+daylight saving time. See [Time zone-aware time series](./time-zone-aware-time-series.md).
+
 ## Types
 
 There are 3 main types of time series in Mesh.
