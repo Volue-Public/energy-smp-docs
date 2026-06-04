@@ -130,7 +130,7 @@ The current allowed usage is as follows:
     holding a time series. I.e. `@TRANSFORM(@t, ...)` is supported,
     but not `@TRANSFORM(var, ...)`.
   - The `s` resolution argument must be `MIN`, `MIN5`, `MIN10`, `MIN15`, `MIN30`, or `HOUR`.
-  - For the `d` overload, the resolution must be less than 24 hours and divide evently into it
+  - For the `d` overload, the resolution must be less than 24 hours and divide evenly into it
     (`d < 24 hours` and `24 hours % d == 0`).
   - The transformation method argument must be `SUM` or `AVG`.
 
