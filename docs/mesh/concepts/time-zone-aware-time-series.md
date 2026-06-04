@@ -116,9 +116,46 @@ See also the following examples:
 
 ## Time zone-aware time series in calculations
 
-<TODO>
+Mesh currently allows only a limited usage of time zone-aware time series in
+calculations. This functionality will be expanded and improved over time.
 
+The current allowed usage is as follows:
 
+* As a return value of `@t()`, `@t(s)`, and `@T(s)`
+* For initializing variables, e.g. `var = @t(); ## = var`
+* For re-assigning time series array variables, e.g. `var = @T(x); var = @T(y)`
+* In `@TRANSFORM(t, s, s)` and `@TRANSFORM(t, d, s)`, with the following caveats:
+  - The `t` argument must have a staircase curve type. Linear time series are not supported.
+  - The `t` argument must be the result of calling `@t`,  _not_ a variable
+    holding a time series. I.e. `@TRANSFORM(@t, ...)` is supported,
+    but not `@TRANSFORM(var, ...)`.
+  - The `s` resolution argument must be `MIN`, `MIN5`, `MIN10`, `MIN15`, `MIN30`, or `HOUR`.
+  - For the `d` overload, the resolution must be less than 24 hours and divide evently into it
+    (`d < 24 hours` and `24 hours % d == 0`).
+  - The transformation method argument must be `SUM` or `AVG`.
+
+  See also [Special considerations about `@TRANSFORM`](#special-considerations-about-transform)
+
+All other operations will currently result in an error, including re-calculations
+that hit the above operations.
+
+### Special considerations about `@TRANSFORM`
+
+When transforming from coarser to finer resolutions, the time zone-naive
+time series implementation of `@TRANSFORM` differs from the time zone-aware one
+in a few ways:
+* The time zone-naive implementation allows for arbitrary strings to be passed
+  as a transformation method; if it contains (case insensitive) `SUM`,
+  it will use `SUM`, otherwise it will use `AVG`. The time zone-aware implementation
+  strictly checks for either `SUM` or `AVG` (also case insensitive).
+* The time zone-naive implementation does not properly handle cases where the
+  number of output points between each input is variable (such as monthly and yearly
+  input time series). The time zone-aware implementation correctly handles these cases.
+
+Note that time zone-aware time series can only be reliably transformed using
+`@TRANSFORM`. APIs such as gRPC, REST, the Python SDK, or tools such as Nimbus
+may return erroneous results when trying to transform time zone-aware time series
+or change their resolution.
 
 ## Making an existing time series time zone-aware
 
