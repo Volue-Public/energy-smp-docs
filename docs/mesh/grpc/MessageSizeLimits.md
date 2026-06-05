@@ -50,7 +50,7 @@ When working with time series data, keep the following in mind:
 
 ## Time series data format
 
-In Mesh gRPC API, Apache Arrow is used to represent [time series data](../concepts/time-series.md)
+In Mesh gRPC API, Apache Arrow is used to represent [time series data](../concepts/time-series/general.md)
 with the following structure:
 
 | Column | Type | Description |

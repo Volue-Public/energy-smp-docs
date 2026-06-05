@@ -28,7 +28,7 @@ are hourly or daily resolutions. A special type of resolution is **breakpoint**.
 It means there is no time step restriction and points can be provided for any
 timestamps.
 
-![Mesh time series resolution example](./assets/images/time-series-resolution.png)
+![Mesh time series resolution example](../assets/images/time-series-resolution.png)
 
 For physical time series with a daily or coarser resolution, a time zone can be
 associated with the series so that point intervals respect local time and
@@ -48,14 +48,14 @@ meta-information like:
 * resolution
 * unit of measurement (which can be undefined)
 
-Physical time series can be connected to a Mesh [object](./modelling/general.md#object)
-via a [time series attribute](./modelling/general.md#attribute). Either
+Physical time series can be connected to a Mesh [object](../modelling/general.md#object)
+via a [time series attribute](../modelling/general.md#attribute). Either
 directly or as part of a calculation.
 
 ### Virtual time series
 
 Virtual time series do not contain actual data points but an expression that is
-used to compute data points as a result. The [calculation expressions](../calculations/general.md)
+used to compute data points as a result. The [calculation expressions](../../calculations/general.md)
 may reference other virtual or physical time series or constants. For example:
 ```
 "##= %'/TestResourceCatalog/physicalTimeSeries' + 3\n"
@@ -70,7 +70,7 @@ in a storage called *resources*.
 
 Calculation time series are similar to virtual time series, but they are
 a newer concept and are more flexible. They do not contain actual data points
-but a [calculation expressions](../calculations/general.md) that may
+but a [calculation expressions](../../calculations/general.md) that may
 reference other time series types, attribute values or constants. For example:
 ```
 "##= @d('.DoubleAttribute') + @t('.TimeSeriesAttributePhysical') + @t('...TimeSeriesAttributeCalculation')\n"
@@ -89,5 +89,5 @@ all values in a time series, find values and status for a time series at
 a given historical time, transform time series values from one resolution to
 another and many more. These functions are loosely arranged into groups
 representing a common category for those functions. See
-[Mesh calculations](../calculations/general.md) and
-[Mesh calculation functions](../calculations/functions/introduction.md) for more information.
+[Mesh calculations](../../calculations/general.md) and
+[Mesh calculation functions](../../calculations/functions/introduction.md) for more information.

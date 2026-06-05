@@ -85,8 +85,14 @@ The gRPC API allows for setting time zones through the following proto files:
 * [time_series/v1alpha/time_series.proto]
   (../grpc/proto/time_series/v1alpha/time_series.proto)
 
-See the [gRPC API specification](../grpc/APISpecification.md) for the full set
+See the [gRPC API specification](../../grpc/APISpecification.md) for the full set
 of proto files.
+
+Note that the `Timezone` enum defined in time_series.proto is _not_ related to
+the time zone-aware time series mechanism. Time zone information in gRPC is
+passed as a string with a IANA time zone database name; the `Timezone` enum
+is defined only for usage with the `ReadTransformedTimeseriesRequest` rpc.
+See also [Special considerations about @TRANSFORM](#special-considerations-about-transform).
 
 ## Python SDK
 
@@ -153,9 +159,10 @@ in a few ways:
   input time series). The time zone-aware implementation correctly handles these cases.
 
 Note that time zone-aware time series can only be reliably transformed using
-`@TRANSFORM`. APIs such as gRPC, REST, the Python SDK, or tools such as Nimbus
-may return erroneous results when trying to transform time zone-aware time series
-or change their resolution.
+`@TRANSFORM`; gRPC APIs such as `ReadTransformedTimeseries` will currently
+return an error when trying to operate on time zone-aware time series.
+On the other hand, the Mesh Python SDK and REST API will return correct results
+as they internally use ad-hoc calculations with `@TRANSFORM`.
 
 ## Making an existing time series time zone-aware
 
@@ -191,8 +198,3 @@ To fix these cases you can follow one of these approaches:
 (https://volue-public.github.io/energy-mesh-python/examples.html#<AREKS_SCRIPT>)
 shows how to prepare time series with specific alignment issues before setting
 a time zone on them.
-
-## See also
-
-* [Time series](./time-series.md)
-* [Mesh sessions](./sessions.md)

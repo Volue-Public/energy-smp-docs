@@ -280,7 +280,7 @@ A user-assigned identity exists independently of any single resource and can be 
 
 ##### Assign the Service Bus role to the managed identity
 
-Follow the same steps as in [Step 3](#step-3--assign-the-service-bus-role) above, but on the **Members** tab:
+Follow the same steps as in [Step 3](#step-3-assign-the-service-bus-role) above, but on the **Members** tab:
 - **Assign access to**: *Managed identity*
 - Click **+ Select members**, choose the subscription, select the managed identity type and name, and click **Select**.
 
