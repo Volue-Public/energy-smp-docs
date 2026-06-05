@@ -11,9 +11,8 @@ This page describes the feature, its limitations, and the relevant APIs.
 
 ## Overview
 
-* A time zone is given as an [IANA time zone database]
-  (https://www.iana.org/time-zones) name, for example `Europe/Warsaw`,
-  `America/Toronto` or `Pacific/Nauru`.
+* A time zone is given as an [IANA time zone database](https://www.iana.org/time-zones) name,
+  for example `Europe/Warsaw`, `America/Toronto` or `Pacific/Nauru`.
 * Only physical time series with a daily or coarser resolution (day, week,
   month, year) can have a time zone. Finer resolutions and breakpoint series
   cannot.
@@ -59,16 +58,16 @@ requires a fixed 24-hour spacing.
 
 * Time zones are supported only for daily or coarser resolutions.
 * Usage of time zone-aware time series on calculations is currently limited.
-  See [Time zone-aware time series in calculations]
-  (#time-zone-aware-time-series-in-calculations) for details. 
+  See [Time zone-aware time series in calculations](#time-zone-aware-time-series-in-calculations)
+  for details. 
 * Some time zones have specific points in time where midnight is ambiguous or
   non-existent. Such timestamps cannot currently be used, even in cases such as
   querying an interval covering those timestamps (regardless of whether there
   are any actual points at those timestamps).
 * Making existing time series time zone-aware can be complicated in some cases,
   and may require some preliminary adjustment of existing points.
-  See [Making an existing time series time zone-aware]
-  (#making-an-existing-time-series-time-zone-aware) for details.
+  See [Making an existing time series time zone-aware](#making-an-existing-time-series-time-zone-aware) 
+  for details.
 * It is not allowed to read/write points from/to a time series with an
   uncommitted time zone change in the same session.
 * If the actual stored value of a time series' time zone becomes invalid
@@ -80,10 +79,8 @@ requires a fixed 24-hour spacing.
 
 The gRPC API allows for setting time zones through the following proto files:
 
-* [time_series/v2alpha/timeseries_resource.proto]
-  (../grpc/proto/time_series/v2alpha/timeseries_resource.proto)
-* [time_series/v1alpha/time_series.proto]
-  (../grpc/proto/time_series/v1alpha/time_series.proto)
+* [time_series/v2alpha/timeseries_resource.proto](../../grpc/proto/time_series/v2alpha/timeseries_resource.proto)
+* [time_series/v1alpha/time_series.proto](../../grpc/proto/time_series/v1alpha/time_series.proto)
 
 See the [gRPC API specification](../../grpc/APISpecification.md) for the full set
 of proto files.
@@ -92,7 +89,7 @@ Note that the `Timezone` enum defined in time_series.proto is _not_ related to
 the time zone-aware time series mechanism. Time zone information in gRPC is
 passed as a string with a IANA time zone database name; the `Timezone` enum
 is defined only for usage with the `ReadTransformedTimeseriesRequest` rpc.
-See also [Special considerations about @TRANSFORM](#special-considerations-about-transform).
+See also [Special considerations about `@TRANSFORM`](#special-considerations-about-transform).
 
 ## Python SDK
 
@@ -114,10 +111,8 @@ session.commit()
 
 See also the following examples:
 
-* [create_physical_timeseries.py]
-  (https://github.com/Volue-Public/energy-mesh-python/blob/master/src/volue/mesh/examples/create_physical_timeseries.py)
-* [write_timeseries_points.py]
-  (https://github.com/Volue-Public/energy-mesh-python/blob/master/src/volue/mesh/examples/write_timeseries_points.py)
+* [create_physical_timeseries.py](https://github.com/Volue-Public/energy-mesh-python/blob/master/src/volue/mesh/examples/create_physical_timeseries.py)
+* [write_timeseries_points.py](https://github.com/Volue-Public/energy-mesh-python/blob/master/src/volue/mesh/examples/write_timeseries_points.py)
 
 
 ## Time zone-aware time series in calculations
@@ -131,16 +126,16 @@ The current allowed usage is as follows:
 * For initializing variables, e.g. `var = @t(); ## = var`
 * For re-assigning time series array variables, e.g. `var = @T(x); var = @T(y)`
 * In `@TRANSFORM(t, s, s)` and `@TRANSFORM(t, d, s)`, with the following caveats:
-  - The `t` argument must have a staircase curve type. Linear time series are not supported.
-  - The `t` argument must be the result of calling `@t`,  _not_ a variable
-    holding a time series. I.e. `@TRANSFORM(@t, ...)` is supported,
-    but not `@TRANSFORM(var, ...)`.
-  - The `s` resolution argument must be `MIN`, `MIN5`, `MIN10`, `MIN15`, `MIN30`, or `HOUR`.
-  - For the `d` overload, the resolution must be less than 24 hours and divide evenly into it
-    (`d < 24 hours` and `24 hours % d == 0`).
-  - The transformation method argument must be `SUM` or `AVG`.
+    * The `t` argument must have a staircase curve type. Linear time series are not supported.
+    * The `t` argument must be the result of calling `@t`,  _not_ a variable
+      holding a time series. I.e. `@TRANSFORM(@t, ...)` is supported,
+      but not `@TRANSFORM(var, ...)`.
+    * The `s` resolution argument must be `MIN`, `MIN5`, `MIN10`, `MIN15`, `MIN30`, or `HOUR`.
+    * For the `d` overload, the resolution must be less than 24 hours and divide evenly into it
+      (`d < 24 hours` and `24 hours % d == 0`).
+    * The transformation method argument must be `SUM` or `AVG`.
 
-  See also [Special considerations about `@TRANSFORM`](#special-considerations-about-transform)
+    See also [Special considerations about `@TRANSFORM`](#special-considerations-about-transform).
 
 All other operations will currently result in an error, including re-calculations
 that hit the above operations.
@@ -150,6 +145,7 @@ that hit the above operations.
 When transforming from coarser to finer resolutions, the time zone-naive
 time series implementation of `@TRANSFORM` differs from the time zone-aware one
 in a few ways:
+
 * The time zone-naive implementation allows for arbitrary strings to be passed
   as a transformation method; if it contains (case insensitive) `SUM`,
   it will use `SUM`, otherwise it will use `AVG`. The time zone-aware implementation
@@ -194,7 +190,6 @@ To fix these cases you can follow one of these approaches:
   zone for the time series. This can be convenient if most of the points are
   already properly aligned, and only a few stray cases need to be fixed.
 
-[This Mesh Python SDK example]
-(https://volue-public.github.io/energy-mesh-python/examples.html#<AREKS_SCRIPT>)
+[This Mesh Python SDK example](https://volue-public.github.io/energy-mesh-python/examples.html#<AREKS_SCRIPT>)
 shows how to prepare time series with specific alignment issues before setting
 a time zone on them.
