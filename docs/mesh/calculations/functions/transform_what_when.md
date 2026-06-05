@@ -8,7 +8,7 @@ This means transforming from a break point series to a fixed interval series, or
 
 For this type of task this is used:
 
-R1 = [@TRANSFORM(t,s,s)](../functions/transform.md#r1)
+R1 = [@TRANSFORM(t,s,s)](../functions/transform.md#transformt-s-s)
 
 ### ACCUMULATE VALUES TO SPECIFIC RESOLUTIONS
 
@@ -16,10 +16,10 @@ This means transformation from one time series to a different time series with a
 
 For this type of tasks the following are used:
 
-R2 = [@TRANSFORM(t,t,s)](../functions/transform.md#r2)
+R2 = [@TRANSFORM(t,t,s)](../functions/transform.md#transformt-t-s)
 
 
-R3 = [@TRANSFORM(t,d,s)](../functions/transform.md#r3)
+R3 = [@TRANSFORM(t,d,s)](../functions/transform.md#transformt-d-s)
 
 ### MAKE TRANSFORMATION WITH REFERENCE TO TIME ZONE
 
@@ -27,7 +27,7 @@ The calculator performs calculations with reference to normal time if nothing el
 
 For this type of task the following is used:
 
-R4 = [@TRANSFORM(t,s,s,s)](../functions/transform.md#r4)
+R4 = [@TRANSFORM(t,s,s,s)](../functions/transform.md#transformt-s-s-s)
 
 ### DISTRIBUTING VALUES WITH REFERENCE TO PROFILE
 
