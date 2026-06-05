@@ -20,7 +20,7 @@ This page describes the feature, its limitations, and the relevant APIs.
     - created with a time zone,
     - updated from time zone-naive to time zone-aware,
     - updated from one time zone to another,
-    - updated back to time zone naive (by setting an empty time zone).
+    - updated back to time zone-naive (by setting an empty time zone).
 * Internally, points are stored with their timestamps aligned to midnight in the
   database's time zone. This is done so that time zone-naive SmP applications
   with direct database access can continue working normally.
@@ -87,7 +87,7 @@ of proto files.
 
 Note that the `Timezone` enum defined in time_series.proto is _not_ related to
 the time zone-aware time series mechanism. Time zone information in gRPC is
-passed as a string with a IANA time zone database name; the `Timezone` enum
+passed as a string with an IANA time zone database name; the `Timezone` enum
 is defined only for usage with the `ReadTransformedTimeseriesRequest` rpc.
 See also [Special considerations about `@TRANSFORM`](#special-considerations-about-transform).
 
@@ -171,6 +171,6 @@ To fix these cases you can follow one of these approaches:
   zone for the time series. This can be convenient if most of the points are
   already properly aligned, and only a few stray cases need to be fixed.
 
-[This Mesh Python SDK example](https://volue-public.github.io/energy-mesh-python/examples.html#<AREKS_SCRIPT>)
-shows how to prepare time series with specific alignment issues before setting
+See [here](https://volue-public.github.io/energy-mesh-python/examples.html) for an example on how
+to use the Mesh Python SDK to prepare time series with specific alignment issues before setting
 a time zone on them.
