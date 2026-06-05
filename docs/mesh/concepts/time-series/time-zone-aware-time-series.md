@@ -93,27 +93,8 @@ See also [Special considerations about `@TRANSFORM`](#special-considerations-abo
 
 ## Python SDK
 
-The [Mesh Python SDK](https://volue-public.github.io/energy-mesh-python/)
-allows for setting time zones through its time series creation and update APIs. For example:
-
-```python
-result = session.create_physical_timeseries(
-    path="/Path/To/Test/Timeseries/",
-    name="Test_Timeseries",
-    curve_type=Timeseries.Curve.PIECEWISELINEAR,
-    resolution=Timeseries.Resolution.DAY,
-    unit_of_measurement="cm",
-    # time_zone is valid only if resolution is DAY or coarser
-    time_zone="Europe/Warsaw",
-)
-session.commit()
-```
-
-See also the following examples:
-
-* [create_physical_timeseries.py](https://github.com/Volue-Public/energy-mesh-python/blob/master/src/volue/mesh/examples/create_physical_timeseries.py)
-* [write_timeseries_points.py](https://github.com/Volue-Public/energy-mesh-python/blob/master/src/volue/mesh/examples/write_timeseries_points.py)
-
+See the [Mesh Python SDK documentation](https://volue-public.github.io/energy-mesh-python/)
+for details on how to set time zones through its time series creation and update APIs.
 
 ## Time zone-aware time series in calculations
 
