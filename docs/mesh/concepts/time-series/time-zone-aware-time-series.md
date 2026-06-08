@@ -145,10 +145,8 @@ As of this writing (2026-06-08), Mesh uses version 2025b of the IANA time zone d
 As of this version, the last dates where time zones have ambiguous or non-existent
 midnights are listed [here](./tz-with-midnight-issues.txt).
 
-**_Note!_** The dates marked as `2099` in the list will always fail for those time zones'
-DST rules as of this writing, on this version of the IANA time zone database. For example,
-if a time zone shows a value of `2099-09-06`, it means that all future instances
-of 09-06 will have issues with this version of the IANA database.
+**_Note!_** The dates marked as `2099` in the list are using DST rules which will have
+ambiguous or non-existeng midnights in the future for this version of the IANA database.
 
 ## Making an existing time series time zone-aware
 
