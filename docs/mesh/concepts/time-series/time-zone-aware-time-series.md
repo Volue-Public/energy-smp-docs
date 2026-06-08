@@ -108,7 +108,6 @@ The current allowed usage is as follows:
 
 * As a return value of `@t()`, `@t(s)`, and `@T(s)`.
 * In `@TRANSFORM(t, s, s)` and `@TRANSFORM(t, d, s)`, with the following caveats:
-    * The `t` argument must have a staircase curve type. Linear time series are not supported.
     * The `s` resolution argument must be `MIN`, `MIN5`, `MIN10`, `MIN15`, `MIN30`, or `HOUR`.
     * For the `d` overload, the resolution must be less than 24 hours and divide evenly
       into 24 hours (`d < 24 hours` and `24 hours % d == 0`).
@@ -118,6 +117,9 @@ The current allowed usage is as follows:
 
 All other operations will currently result in an error. In particular, it is not allowed
 to use time zone-aware time series in variables other than `##`.
+
+In addition, only time series with staircase curve type are allowed.
+Linear time series are not supported.
 
 ### Special considerations about `@TRANSFORM`
 
