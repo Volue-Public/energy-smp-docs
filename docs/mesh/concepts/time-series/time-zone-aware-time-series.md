@@ -104,7 +104,7 @@ calculations. This functionality will be expanded and improved over time.
 
 The current allowed usage is as follows:
 
-* As a return value of `@t(s)`, and `@T(s)`.
+* As a return value of `@t()`, `@t(s)`, and `@T(s)`.
 * For initializing variables, e.g. doing `var = @t(s)` and then `## = var`.
 * For re-assigning time series array variables, e.g. doing `var = @T(x)` and then `var = @T(y)`.
 * In `@TRANSFORM(t, s, s)` and `@TRANSFORM(t, d, s)`, with the following caveats:
