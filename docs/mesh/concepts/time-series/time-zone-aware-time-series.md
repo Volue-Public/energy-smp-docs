@@ -96,7 +96,7 @@ See also [Special considerations about `@TRANSFORM`](#special-considerations-abo
 
 ## Python SDK
 
-See the [Mesh Python SDK documentation](https://volue-public.github.io/energy-mesh-python/)
+See the [Mesh Python SDK documentation](https://volue-public.github.io/energy-mesh-python/time_zone_aware_timeseries)
 for details on how to set time zones through its time series creation and update APIs.
 
 ## Time zone-aware time series in calculations
