@@ -110,8 +110,8 @@ The current allowed usage is as follows:
 * In `@TRANSFORM(t, s, s)` and `@TRANSFORM(t, d, s)`, with the following caveats:
     * The `t` argument must have a staircase curve type. Linear time series are not supported.
     * The `s` resolution argument must be `MIN`, `MIN5`, `MIN10`, `MIN15`, `MIN30`, or `HOUR`.
-    * For the `d` overload, the resolution must be less than 24 hours and divide evenly into it
-      (`d < 24 hours` and `24 hours % d == 0`).
+    * For the `d` overload, the resolution must be less than 24 hours and divide evenly
+      into 24 hours (`d < 24 hours` and `24 hours % d == 0`).
     * The transformation method argument must be `SUM` or `AVG`.
 
     See also [Special considerations about `@TRANSFORM`](#special-considerations-about-transform).
