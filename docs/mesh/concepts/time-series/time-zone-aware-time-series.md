@@ -64,6 +64,8 @@ requires a fixed 24-hour spacing.
   non-existent. Such timestamps cannot currently be used, even in cases such as
   querying an interval covering those timestamps (regardless of whether there
   are any actual points at those timestamps).
+  See [Time zones with ambiguous or non-existent midnights](#time-zones-with-ambiguous-or-non-existent-midnights)
+  for details.
 * Making existing time series time zone-aware can be complicated in some cases,
   and may require some preliminary adjustment of existing points.
   See [Making an existing time series time zone-aware](#making-an-existing-time-series-time-zone-aware) 
@@ -87,7 +89,7 @@ of proto files.
 
 Note that the `Timezone` enum defined in time_series.proto is _not_ related to
 the time zone-aware time series mechanism. Time zone information in gRPC is
-passed as a string with an IANA time zone database name; the `Timezone` enum
+passed as a string with an IANA time zone database name. The `Timezone` enum
 is defined only for usage with the `ReadTransformedTimeseriesRequest` and
 `ReadMultiIntervalTransformedTimeseries` RPCs.
 See also [Special considerations about `@TRANSFORM`](#special-considerations-about-transform).
@@ -105,13 +107,8 @@ calculations. This functionality will be expanded and improved over time.
 The current allowed usage is as follows:
 
 * As a return value of `@t()`, `@t(s)`, and `@T(s)`.
-* For initializing variables, e.g. doing `var = @t(s)` and then `## = var`.
-* For re-assigning time series array variables, e.g. doing `var = @T(x)` and then `var = @T(y)`.
 * In `@TRANSFORM(t, s, s)` and `@TRANSFORM(t, d, s)`, with the following caveats:
     * The `t` argument must have a staircase curve type. Linear time series are not supported.
-    * The `t` argument must be the result of calling `@t`,  _not_ a variable
-      holding a time series. I.e. `@TRANSFORM(@t, ...)` is supported,
-      but not `@TRANSFORM(var, ...)`.
     * The `s` resolution argument must be `MIN`, `MIN5`, `MIN10`, `MIN15`, `MIN30`, or `HOUR`.
     * For the `d` overload, the resolution must be less than 24 hours and divide evenly into it
       (`d < 24 hours` and `24 hours % d == 0`).
@@ -119,8 +116,8 @@ The current allowed usage is as follows:
 
     See also [Special considerations about `@TRANSFORM`](#special-considerations-about-transform).
 
-All other operations will currently result in an error, including re-calculations
-that hit the above operations.
+All other operations will currently result in an error. In particular, it is not allowed
+to use time zone-aware time series in variables other than `##`.
 
 ### Special considerations about `@TRANSFORM`
 
@@ -129,18 +126,29 @@ time series implementation of `@TRANSFORM` differs from the time zone-aware one
 in a few ways:
 
 * The time zone-naive implementation allows for arbitrary strings to be passed
-  as a transformation method; if it contains (case insensitive) `SUM`,
+  as a transformation method. If it contains (case insensitive) `SUM`,
   it will use `SUM`, otherwise it will use `AVG`. The time zone-aware implementation
   strictly checks for either `SUM` or `AVG` (also case insensitive).
 * The time zone-naive implementation does not properly handle cases where the
   number of output points between each input is variable (such as monthly and yearly
   input time series). The time zone-aware implementation correctly handles these cases.
 
-Note that time zone-aware time series can only be reliably transformed using
-`@TRANSFORM`; gRPC APIs such as `ReadTransformedTimeseries` will currently
+**_Note!_** Time zone-aware time series can only be reliably transformed using
+`@TRANSFORM`. gRPC APIs such as `ReadTransformedTimeseries` will currently
 return an error when trying to operate on time zone-aware time series.
 On the other hand, the Mesh Python SDK and REST API will return correct results
 as they internally use ad-hoc calculations with `@TRANSFORM`.
+
+## Time zones with ambiguous or non-existent midnights
+
+As of this writing (2026-06-08), Mesh uses version 2025b of the IANA time zone database.
+As of this version, the last dates where time zones have ambiguous or non-existent
+midnights are listed [here](./tz-with-midnight-issues.txt).
+
+**_Note!_** The dates marked as `2099` in the list will always fail for those time zones'
+DST rules as of this writing, on this version of the IANA time zone database. For example,
+if a time zone shows a value of `2099-09-06`, it means that all future instances
+of 09-06 will have issues with this version of the IANA database.
 
 ## Making an existing time series time zone-aware
 
@@ -157,20 +165,20 @@ To fix these cases you can follow one of these approaches:
 * Remove all the existing points from the time series, then set the time zone.
   This is the simplest approach, assuming the historical data is not
   important.
-* Backup the existing points (for example into another time series, a file,
-  etc), remove them from the time series, set the time zone, commit, then
-  write the points again. They must be aligned to the time series' newly-set
-  time zone.
+* Backup the existing points (for example into another time series, a file, etc.),
+  remove them from the time series, set the time zone, commit, then write
+  the points again. They must be aligned to the time series' newly-set time zone.
 * Create a new physical time series with a time zone set, connect it to the
   relevant time series attributes to replace the old one, then write the points
   to it. The points must be aligned to the new time series' time zone. The new
-  series can be created via the gRPC API, the Python SDK or Volue UIs
+  series can be created via the gRPC API, the Python SDK or Volue applications
   (e.g. Asset Manager, with points added via Nimbus or the Time Series
-  application). Note that if any calculation expressions refer to the old
-  physical time series directly, they will have to be updated as well.
+  application).
+  **_Note!_** If any calculation expressions refer to the old physical time series
+  directly, they will have to be updated as well.
 * Align the existing points to the database's time zone first, then set a time
-  zone for the time series. This can be convenient if most of the points are
-  already properly aligned, and only a few stray cases need to be fixed.
+  zone for the time series. This can be convenient if most of the points already
+  are properly aligned, and only a few stray cases need to be fixed.
 
 See [here](https://volue-public.github.io/energy-mesh-python/examples.html#time-zone-aware-time-series-conversion)
 for an example on how to use the Mesh Python SDK to prepare time series
