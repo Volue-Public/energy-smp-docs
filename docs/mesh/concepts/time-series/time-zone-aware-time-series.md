@@ -69,7 +69,7 @@ requires a fixed 24-hour spacing.
   See [Making an existing time series time zone-aware](#making-an-existing-time-series-time-zone-aware) 
   for details.
 * It is not allowed to read/write points from/to a time series with an
-  uncommitted time zone change in the same session.
+  uncommitted time zone change in the same Mesh session.
 * If the actual stored value of a time series' time zone becomes invalid
   (for example, due to a direct database modification storing a non-existent
   IANA name), Mesh will reject writes to the time series. However, updating
@@ -88,7 +88,8 @@ of proto files.
 Note that the `Timezone` enum defined in time_series.proto is _not_ related to
 the time zone-aware time series mechanism. Time zone information in gRPC is
 passed as a string with an IANA time zone database name; the `Timezone` enum
-is defined only for usage with the `ReadTransformedTimeseriesRequest` rpc.
+is defined only for usage with the `ReadTransformedTimeseriesRequest` and
+`ReadMultiIntervalTransformedTimeseries` RPCs.
 See also [Special considerations about `@TRANSFORM`](#special-considerations-about-transform).
 
 ## Python SDK
@@ -103,9 +104,9 @@ calculations. This functionality will be expanded and improved over time.
 
 The current allowed usage is as follows:
 
-* As a return value of `@t()`, `@t(s)`, and `@T(s)`
-* For initializing variables, e.g. `var = @t(); ## = var`
-* For re-assigning time series array variables, e.g. `var = @T(x); var = @T(y)`
+* As a return value of `@t(s)`, and `@T(s)`.
+* For initializing variables, e.g. doing `var = @t(s)` and then `## = var`.
+* For re-assigning time series array variables, e.g. doing `var = @T(x)` and then `var = @T(y)`.
 * In `@TRANSFORM(t, s, s)` and `@TRANSFORM(t, d, s)`, with the following caveats:
     * The `t` argument must have a staircase curve type. Linear time series are not supported.
     * The `t` argument must be the result of calling `@t`,  _not_ a variable
@@ -171,6 +172,6 @@ To fix these cases you can follow one of these approaches:
   zone for the time series. This can be convenient if most of the points are
   already properly aligned, and only a few stray cases need to be fixed.
 
-See [here](https://volue-public.github.io/energy-mesh-python/examples.html) for an example on how
-to use the Mesh Python SDK to prepare time series with specific alignment issues before setting
-a time zone on them.
+See [here](https://volue-public.github.io/energy-mesh-python/examples.html#time-zone-aware-time-series-conversion)
+for an example on how to use the Mesh Python SDK to prepare time series
+with specific alignment issues before setting a time zone on them.
