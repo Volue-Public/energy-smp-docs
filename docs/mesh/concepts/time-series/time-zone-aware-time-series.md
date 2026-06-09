@@ -22,7 +22,7 @@ This page describes the feature, its limitations, and the relevant APIs.
     - updated from one time zone to another,
     - updated back to time zone-naive (by setting an empty time zone).
 * Internally, points are stored with their timestamps aligned to midnight in the
-  database's time zone. This is done so that time zone-naive SmP applications
+  database's time zone. This is done so that time zone-naive SmG applications
   with direct database access can continue working normally.
 
 ## Alignment
@@ -118,8 +118,8 @@ The current allowed usage is as follows:
 All other operations will currently result in an error. In particular, it is not allowed
 to use time zone-aware time series in variables other than `##`.
 
-In addition, only time series with staircase curve type are allowed.
-Linear time series are not supported.
+In addition, only time series with staircase curve type are allowed in calculations.
+Linear time series are currently not supported.
 
 ### Special considerations about `@TRANSFORM`
 
@@ -136,19 +136,20 @@ in a few ways:
   input time series). The time zone-aware implementation correctly handles these cases.
 
 **_Note!_** Time zone-aware time series can only be reliably transformed using
-`@TRANSFORM`. gRPC APIs such as `ReadTransformedTimeseries` will currently
-return an error when trying to operate on time zone-aware time series.
-On the other hand, the Mesh Python SDK and REST API will return correct results
+`@TRANSFORM`. gRPC functions such as `ReadTransformedTimeseries` and
+`ReadMultiIntervalTransformedTimeseries` will currently return an error
+when trying to operate on time zone-aware time series. On the other hand,
+the Mesh Python SDK and REST API will return correct results
 as they internally use ad-hoc calculations with `@TRANSFORM`.
 
 ## Time zones with ambiguous or non-existent midnights
 
 As of this writing (2026-06-08), Mesh uses version 2025b of the IANA time zone database.
 As of this version, the last dates where time zones have ambiguous or non-existent
-midnights are listed [here](./tz-with-midnight-issues.txt).
+midnights are listed [here](../assets/tz-with-midnight-issues.txt).
 
 **_Note!_** The dates marked as `2099` in the list are using DST rules which will have
-ambiguous or non-existeng midnights in the future for this version of the IANA database.
+ambiguous or non-existent midnights in the future for this version of the IANA database.
 
 ## Making an existing time series time zone-aware
 
