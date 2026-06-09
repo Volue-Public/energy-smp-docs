@@ -135,13 +135,6 @@ in a few ways:
   number of output points between each input is variable (such as monthly and yearly
   input time series). The time zone-aware implementation correctly handles these cases.
 
-**_Note!_** Time zone-aware time series can only be reliably transformed using
-`@TRANSFORM`. gRPC functions such as `ReadTransformedTimeseries` and
-`ReadMultiIntervalTransformedTimeseries` will currently return an error
-when trying to operate on time zone-aware time series. On the other hand,
-the Mesh Python SDK and REST API will return correct results
-as they internally use ad-hoc calculations with `@TRANSFORM`.
-
 ## Time zones with ambiguous or non-existent midnights
 
 As of this writing (2026-06-08), Mesh uses version 2025b of the IANA time zone database.
