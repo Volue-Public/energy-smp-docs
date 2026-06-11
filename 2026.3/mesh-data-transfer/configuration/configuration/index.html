@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+<title>Smart Power Documentation</title>
+
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../wave/wave.css" rel="stylesheet" />
+        <link href="../../../stylesheets/extra.css" rel="stylesheet" />
+        <link href="../../../css/version-select.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Configuration";
+        var mkdocs_page_input_path = "mesh-data-transfer/configuration/configuration.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav is-active">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search fill-neutral--contrast">
+      <a href="../../..">
+          <img src="../../../logo.png" class="logo" alt="Logo"/>
+        </a>
+
+        <!-- A trick to place the version selector where I want it to be. -->
+        <div class="icon-home" style="display: none;"></div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mesh</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mesh/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Concepts</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/concepts/availability/">Availability</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/concepts/calculations/">Calculations</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Modelling</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/modelling/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/modelling/rating-curves/">Rating curves</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/modelling/relations/">Relations</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/modelling/xy-sets/">XY-sets</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/concepts/search-language/">Search language</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/concepts/sessions/">Sessions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mesh/installation/MeshServiceInstallationGuide/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Calculations</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/calculations/general/">General</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/calculations/timepoint-macros/">Time macros</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Functions</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/calculations/functions/introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >General</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/allocate_reserves/">AllocateReserves</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/at/">AT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/color/">ColorARGB</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/compare/">Compare</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/concatenate/">Concatenate</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/copy_ts/">CopyTs</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/delta/">DELTA</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/disable_cache/">DisableCache</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/getyfx/">GET_Y_FX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/isvalid/">IsValid</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/linear/">Linear</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/max/">MAX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/meshid/">MeshID</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/min/">MIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/parameter/">Parameter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/pdlog/">PDLOG</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/reference_lookup/">Reference Lookup</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/restriction/">Restriction</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/revision/">Revision</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/set_ts_val_unit/">SET_TS_VALUNIT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/size/">Size</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/time_mask/">TIME_MASK</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/tostring/">ToString</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/trace/">Trace</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts/">TS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/unit_codes_for_set_ts_val_unit/">Unit Codes for SET_TS_VALUNIT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/valid/">Valid</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Forecast</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_best_forecast/">GetBestForecast</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_all_forecasts/">GetAllForecasts</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_forecast/">GetForecast</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_merged_forecast/">GetMergedForecast</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >History</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/history/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_ts_as_of_time/">GetTsAsOfTime</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_ts_historical_versions/">GetTsHistoricalVersions</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_ts_audit_times/">GetTsAuditTimes</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Logical</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/bool/">BOOL</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/inside/">INSIDE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/negative/">NEGATIVE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/not/">NOT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/outside/">OUTSIDE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/positive/">POSITIVE</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Math</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_gliding_average/">TS_GLIDING_AVERAGE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_gliding_gauss/">TS_GLIDING_GAUSS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_gliding_median/">TS_GLIDING_MEDIAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_gliding_median_gauss/">TS_GLIDING_MEDIAN_GAUSS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/gliding_trend_average/">GLIDING_TREND_AVERAGE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_acc_from/">TS_ACC_FROM</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/power/">POWER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/abs/">ABS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ceil/">CEIL</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/floor/">FLOOR</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/integer/">INTEGER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/log/">LOG</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ln/">LN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/round/">ROUND</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/round_integer/">ROUND_INTEGER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/acos/">ACOS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/asin/">ASIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/atan/">ATAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/cos/">COS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/sin/">SIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/tan/">TAN</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Mix</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/mix/">MIX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/mix_by_selecting_from_time_series_array/">MIX by selecting from time series array</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/mix0/">MIX0</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/tsiqfill/">TS_IQ_FILL</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Sim</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/sim/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/convert_volume/">CONVERT_VOLUME</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/rating_curve/">RatingCurve</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/time_delayed/">TimeDelayed</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/xy/">XY</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/yx/">YX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/zxy/">ZX_Y</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/zyx/">ZY_X</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Statistical</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/mean/">MEAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/normal/">Normal</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/percentile/">PERCENTILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/sum/">SUM</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Status</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/status/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/reset_status/">RESET_STATUS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/status_mask/">STATUS_MASK</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/status_count/">STATUS_COUNT</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Time</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/time_group/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/is_resolution/">IsResolution</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/is_time_valid/">IsTimeValid</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/push_ext_period/">PushExtPeriod</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/pop_ext_period/">PopExtPeriod</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/time/">Time</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/resolution/">Resolution</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/timespan/">TimeSpan</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/time_to_string/">TimeToString</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/time_examples/">Time Examples</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/time_point_information/">Time Point Information</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Transform</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/transform_what_when/">Which function can be used when</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/transform_terms/">Terms used in the functions</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/transform/">TRANSFORM</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_expand/">TS_EXPAND</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_offset/">TS_OFFSET</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/values_from_year/">ValuesFromYear</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/distribute/">DISTRIBUTE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/trans_profile/">TRANS_PROFILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/profile/">PROFILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/profile_with_explicit_frequency/">PROFILE with explicit frequency</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/accumulate/">ACCUMULATE</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >VEE</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/vee/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/validate_abs_limit/">ValidateAbsLimit</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/validate_delta_limit/">ValidateDeltaLimit</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/validate_delta_limit_extreme/">ValidateDeltaLimitExtreme</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/validate_repeat_value/">ValidateRepeatValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/correct_average_value/">CorrectAverageValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/correct_constant_value/">CorrectConstantValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/correct_copy_value/">CorrectCopyValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/correct_extrapolate/">CorrectExtrapolate</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/correct_interpolate/">CorrectInterpolate</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >gRPC</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/grpc/APISpecification/">API specification</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/grpc/Authorization/">Authorization</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/grpc/ClientCertificates/">Client certificates</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/grpc/FAQ/">Frequently Asked Questions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/grpc/MessageSizeLimits/">Message size limits</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Mesh REST API</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/rest-api/introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/rest-api/changelog/">Changelog</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/rest-api/api-documentation/">API specification</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >For developers</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/rest-api/generate-c%23-api-from-swagger-json/">Generate C# API from swagger.json</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/rest-api/how-to-use-ImportMultistepWaterValueFunctions/">How to use ImportMultistepWaterValueFunctions</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Excel AddIn for Mesh</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/excel-add-in/addin-excel-user-guide-for-mesh/">User guide</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/excel-add-in/how-to-install-addin-excel-for-mesh/">Installation guide</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Model maintenance</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/model-maintenance/ModelMaintenanceConcepts/">Model maintenance concepts</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/model-maintenance/ModelBackup/">Model backups</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mesh Data Transfer</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../general/general/">General</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Configuration</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#logging">Logging</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#brokers-configuration">Brokers Configuration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#queue-durability-configuration">Queue Durability Configuration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#azure-service-bus-authentication">Azure Service Bus Authentication</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#authentication-options-overview">Authentication options overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#option-1-shared-access-signature-sas-key">Option 1: Shared Access Signature (SAS key)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#finding-the-connection-string-in-the-azure-portal">Finding the connection string in the Azure portal</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#mdt-configuration-sas-mdt-configuration-sas">MDT configuration (SAS) {#mdt-configuration-sas}</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#option-2-entra-id-with-client-secret-app-registration">Option 2: Entra ID with client secret (app registration)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#step-1-create-an-app-registration">Step 1 — Create an app registration</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#step-2-create-a-client-secret">Step 2 — Create a client secret</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#step-3-assign-the-service-bus-role">Step 3 — Assign the Service Bus role</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#mdt-configuration-client-secret-mdt-configuration-client-secret">MDT configuration (client secret) {#mdt-configuration-client-secret}</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#option-3-entra-id-with-managed-identity">Option 3: Entra ID with managed identity</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#system-assigned-managed-identity">System-assigned managed identity</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#user-assigned-managed-identity">User-assigned managed identity</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#assign-the-service-bus-role-to-the-managed-identity">Assign the Service Bus role to the managed identity</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#mdt-configuration-managed-identity-mdt-configuration-managed-identity">MDT configuration (managed identity) {#mdt-configuration-managed-identity}</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#how-mdt-selects-the-authentication-mode">How MDT selects the authentication mode</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#required-azure-rbac-role">Required Azure RBAC role</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#azure-service-bus-troubleshooting">Azure Service Bus Troubleshooting</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#queues-configuration">Queues Configuration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#kestrel-configuration">Kestrel Configuration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mesh-connection-configuration">Mesh connection configuration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#authentication-configuration">Authentication Configuration</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#kerberos-authentication">Kerberos Authentication</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#entraid-authentication">EntraId Authentication</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mdt-rest-api-authentication">MDT REST API Authentication</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#no-authentication-default">No Authentication (default)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#kerberos-windows-integrated-authentication">Kerberos (Windows integrated authentication)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#entraid-oauth-20">EntraId (OAuth 2.0)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#other-mesh-configuration-options">Other Mesh Configuration Options</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#database-configuration">Database Configuration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#import-and-export-common-configuration">Import and export common configuration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#json-time-series-import">JSON time series import</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#amqp-message-type-annotation">AMQP message type annotation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#quality-flags">Quality flags</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#import-specific-configuration">Import specific configuration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#export-specific-configuration">Export specific configuration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#meshtimeseriesjson-export-to-azure-blob-storage">MeshTimeSeriesJson export to Azure Blob Storage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#azure-service-bus-and-blob-storage-entra-id">Azure Service Bus and Blob Storage Entra ID</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#azure-blob-storage-for-large-messages">Azure Blob Storage for Large Messages</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Use cases</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../use-cases/import-of-time-series-values-using-mdt/">Import of time series values</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../use-cases/export-of-time-series-values-using-mdt/">Export of time series values</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../use-cases/import-of-availability-events-using-mdt/">Import of availability events</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../operations/queue-usage-in-smart-power/">Queue usage in Smart Power</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../operations/monitoring/">Monitor services</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Time series reports</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/reports_intro/">General</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/macros/">Macros</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/sort_contents/">Sorted layout</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap is-active">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars is-active"></i>
+          <a href="../../..">Smart Power Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Mesh Data Transfer</li>
+      <li class="breadcrumb-item active">Configuration</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="configuration">Configuration</h2>
+<h3 id="logging">Logging</h3>
+<p>The logging functionality in Mesh Data Transfer is provided by the Serilog library.</p>
+<pre><code class="language-json"> &quot;Serilog&quot;: {
+    &quot;MinimumLevel&quot;: {
+      &quot;Default&quot;: &quot;Debug&quot;,
+      &quot;Override&quot;: {
+        &quot;Microsoft&quot;: &quot;Warning&quot;,
+        &quot;System&quot;: &quot;Warning&quot;
+      }
+</code></pre>
+<p><code>MinimumLevel</code> options sets the minimum severity level of messages that will be put in the log.
+Serilog supports 5 different logging levels: <code>Verbose</code>, <code>Debug</code>, <code>Information</code>, <code>Warning</code>, <code>Error</code> and <code>Fatal</code>. 
+This option can be changed at the runtime and will take effect immediately.</p>
+<pre><code class="language-json">    },
+    &quot;Enrich&quot;: [ &quot;WithMachineName&quot;, &quot;WithProcessName&quot;, &quot;WithThreadId&quot; ],
+</code></pre>
+<p><code>Enrich</code> specifies additional information that will be added to all log entries. For more information refer to enrichers <a href="https://github.com/serilog/serilog/wiki/Enrichment">documentation</a>.</p>
+<pre><code class="language-json">    &quot;WriteTo&quot;: [
+</code></pre>
+<p><code>WriteTo</code> section specifies list of all destination that logs will be saved to. By default the only destination is <code>File</code>. Other possible and useful option could be <code>Console</code>.</p>
+<pre><code class="language-json">      {
+        &quot;Name&quot;: &quot;File&quot;,
+        &quot;Args&quot;: {
+          &quot;path&quot;: &quot;.\\log.json&quot;,
+          &quot;formatter&quot;: &quot;Serilog.Formatting.Json.JsonFormatter, Serilog&quot;
+</code></pre>
+<p><code>path</code> defines location and name of the log file.
+<code>formatter</code> defines the way of storing log data. By default logs are stored as a json file. For more options refer to formatters <a href="https://github.com/serilog/serilog/wiki/Formatting-Output">documentation</a>.
+Other useful options in <code>Args</code> section are:
+- <code>rollOnFileSizeLimit</code> - enables log rotation when <code>fileSizeLimitBytes</code> is reached (bool, default is false),
+- <code>fileSizeLimitBytes</code> - specifies maximum size of log file in bytes (default is 1 GB),
+- <code>retainedFileCountLimit</code> - specifies how many log files will be kept (default value is 31, use <code>null</code> to disable the limit),
+- <code>rollingInterval</code> - enables log rotation when specific interval elapses (e.g. <code>Day</code>, <code>Month</code>, <code>Year</code>).</p>
+<p>More information can be found in serilog file sink <a href="https://github.com/serilog/serilog-sinks-file">documentation</a>.</p>
+<h3 id="brokers-configuration">Brokers Configuration</h3>
+<p>Mesh Data Transfer service operates on AMQP entities. AMQP broker is a piece of software capable of relaying messages from one service to another.
+<code>BrokersConfiguration</code> configuration item allows the user to specify broker connection strings - more than one connection string is allowed.
+In case of connection failure, the service will choose the next connection string from the list and will try to establish a new connection.
+If the sections or any parameters within the section is not present, they are ignored. </p>
+<p>Note! If a protocol is configured to export to a queue defined in the BrokersConfiguration section, the configuration is mandatory.</p>
+<pre><code class="language-json">  &quot;BrokersConfiguration&quot;: {
+    &quot;B1&quot;: {
+      &quot;ConnectionStrings&quot;: [
+        &quot;amqp://localhost:5672&quot;,
+        &quot;amqp://otherhost:5672&quot;
+      ]
+    },
+    &quot;B2&quot;: {
+      &quot;ConnectionStrings&quot;: [
+        &quot;amqp://localhost:5672&quot;
+      ]
+    }
+  },
+</code></pre>
+<p>Each connection string should start with:
+- <code>amqp://</code> - Non secure amqp connection will be created. Messages will be sent using AMQP protocol.
+- <code>amqps://</code> - Secure amqp connection will be created. Messages will be sent using AMQP protocol.
+- <code>Endpoint=sb://</code> - Instead of using AMQP protocol, Azure Service Bus communication library will be used for connection and messaging.</p>
+<p>We support RabbitMQ Virtual Host feature (see <a href="https://www.rabbitmq.com/docs/vhosts">RabbitMQ docs</a>). Example Virtual Host configuration:</p>
+<pre><code class="language-json">  &quot;BrokersConfiguration&quot;: {
+    &quot;B1&quot;: {
+      &quot;ConnectionStrings&quot;: [
+        &quot;amqp://localhost:5672&quot;,
+        &quot;amqp://otherhost:5672&quot;
+      ],
+      &quot;VirtualHost&quot;: &quot;Virtus&quot;
+    }
+  },
+</code></pre>
+<h4 id="queue-durability-configuration">Queue Durability Configuration</h4>
+<p>The <code>Durable</code> parameter allows you to configure queue persistence for AMQP/RabbitMQ connections. This setting determines whether queues survive broker restarts.</p>
+<p><strong>Note:</strong> This parameter applies only to AMQP/RabbitMQ connections and is ignored for Azure Service Bus.</p>
+<pre><code class="language-json">  &quot;BrokersConfiguration&quot;: {
+    &quot;B1&quot;: {
+      &quot;ConnectionStrings&quot;: [
+        &quot;amqp://localhost:5672&quot;
+      ],
+      &quot;VirtualHost&quot;: &quot;Virtus&quot;,
+      &quot;Durable&quot;: 1
+    }
+  },
+</code></pre>
+<p>Valid values for <code>Durable</code>:
+- <code>0</code> - <strong>Non-durable</strong> (default): Transient link. Does not persist across broker restarts.
+- <code>1</code> - <strong>Durable</strong>: Persistent link. Broker retains state and messages after restart.
+- <code>2</code> - <strong>Transient</strong>: Temporary link optimized for short-lived sessions. No persistence.</p>
+<p>If not specified, the default value is <code>0</code> (non-durable).</p>
+<h4 id="azure-service-bus-authentication">Azure Service Bus Authentication</h4>
+<p>This section describes how to configure authentication between MDT and Azure Service Bus. It covers Shared Access Signature (SAS key) authentication and Entra ID (passwordless) authentication.</p>
+<hr />
+<h4 id="authentication-options-overview">Authentication options overview</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>When to use</th>
+<th>Secrets in config</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SAS key</td>
+<td>Simple setups, on-premises MDT, dev/test</td>
+<td>Yes — key in connection string</td>
+</tr>
+<tr>
+<td>Entra ID — client secret</td>
+<td>MDT running outside Azure (on-prem), or when managed identity is not available</td>
+<td>Yes — client secret</td>
+</tr>
+<tr>
+<td>Entra ID — managed identity</td>
+<td>MDT running in Azure (AKS, App Service, VM)</td>
+<td>No — fully passwordless</td>
+</tr>
+</tbody>
+</table>
+<p>Entra ID authentication (options 2 and 3) is preferred for production deployments as it removes long-lived shared secrets from configuration files.</p>
+<hr />
+<h4 id="option-1-shared-access-signature-sas-key">Option 1: Shared Access Signature (SAS key)</h4>
+<h5 id="finding-the-connection-string-in-the-azure-portal">Finding the connection string in the Azure portal</h5>
+<ol>
+<li>Open the <a href="https://portal.azure.com">Azure portal</a> and navigate to your <strong>Service Bus namespace</strong>.</li>
+<li>In the left menu, select <strong>Settings → Shared access policies</strong>.</li>
+<li>Click the policy you want to use (e.g. <code>RootManageSharedAccessKey</code>), or create a new one:</li>
+<li>Click <strong>+ Add</strong> to create a dedicated policy for MDT.</li>
+<li>Give it a name (e.g. <code>MeshDataTransfer</code>).</li>
+<li>Tick <strong>Manage</strong> (required — MDT creates queues and topics automatically on startup).</li>
+<li>Click <strong>Create</strong>.</li>
+<li>Click the policy name to open it. Copy the <strong>Primary Connection String</strong> — it looks like:
+   <code>Endpoint=sb://myns.servicebus.windows.net/;SharedAccessKeyName=MeshDataTransfer;SharedAccessKey=abc123...</code></li>
+</ol>
+<h5 id="mdt-configuration-sas-mdt-configuration-sas">MDT configuration (SAS) {#mdt-configuration-sas}</h5>
+<p>Paste the connection string directly into <code>BrokersConfiguration</code>:</p>
+<pre><code class="language-json">&quot;BrokersConfiguration&quot;: {
+  &quot;ServiceBus1&quot;: {
+    &quot;ConnectionStrings&quot;: [
+      &quot;Endpoint=sb://myns.servicebus.windows.net/;SharedAccessKeyName=MeshDataTransfer;SharedAccessKey=&lt;primary-key&gt;&quot;
+    ]
+  }
+}
+</code></pre>
+<p>For failover, add the secondary connection string as a second entry:</p>
+<pre><code class="language-json">&quot;BrokersConfiguration&quot;: {
+  &quot;ServiceBus1&quot;: {
+    &quot;ConnectionStrings&quot;: [
+      &quot;Endpoint=sb://myns.servicebus.windows.net/;SharedAccessKeyName=MeshDataTransfer;SharedAccessKey=&lt;primary-key&gt;&quot;,
+      &quot;Endpoint=sb://myns.servicebus.windows.net/;SharedAccessKeyName=MeshDataTransfer;SharedAccessKey=&lt;secondary-key&gt;&quot;
+    ]
+  }
+}
+</code></pre>
+<p>MDT will automatically fall back to the next connection string in the list if the active connection fails.</p>
+<hr />
+<h4 id="option-2-entra-id-with-client-secret-app-registration">Option 2: Entra ID with client secret (app registration)</h4>
+<p>Use this option when MDT runs outside Azure (e.g. on-premises Windows server) and a managed identity is not available.</p>
+<h5 id="step-1-create-an-app-registration">Step 1 — Create an app registration</h5>
+<ol>
+<li>In the Azure portal, open <strong>Microsoft Entra ID</strong> (formerly Azure Active Directory).</li>
+<li>Select <strong>App registrations → + New registration</strong>.</li>
+<li>Fill in:</li>
+<li><strong>Name</strong>: e.g. <code>mesh-data-transfer-prod</code></li>
+<li><strong>Supported account types</strong>: <em>Accounts in this organizational directory only (Single tenant)</em></li>
+<li><strong>Redirect URI</strong>: leave blank</li>
+<li>Click <strong>Register</strong>.</li>
+<li>On the app overview page, note down:</li>
+<li><strong>Application (client) ID</strong> — this is <code>ClientId</code> in MDT config</li>
+<li><strong>Directory (tenant) ID</strong> — this is <code>TenantId</code> in MDT config</li>
+</ol>
+<h5 id="step-2-create-a-client-secret">Step 2 — Create a client secret</h5>
+<ol>
+<li>In the app registration, go to <strong>Certificates &amp; secrets → Client secrets → + New client secret</strong>.</li>
+<li>Set a description (e.g. <code>mdt-servicebus</code>) and an expiry period.</li>
+<li>Click <strong>Add</strong>.</li>
+<li><strong>Copy the secret value immediately</strong> — it is shown only once.</li>
+</ol>
+<p>Store the secret securely (Azure Key Vault, environment variable, or a secrets manager). Do not commit it to source control.</p>
+<h5 id="step-3-assign-the-service-bus-role">Step 3 — Assign the Service Bus role</h5>
+<p>MDT needs the <strong>Azure Service Bus Data Owner</strong> role on the namespace so it can create queues and topic subscriptions automatically on startup.</p>
+<ol>
+<li>Navigate to your <strong>Service Bus namespace</strong> in the Azure portal.</li>
+<li>In the left menu, select <strong>Access control (IAM)</strong>.</li>
+<li>Click <strong>+ Add → Add role assignment</strong>.</li>
+<li>On the <strong>Role</strong> tab, search for and select <strong>Azure Service Bus Data Owner</strong>.</li>
+<li>Click <strong>Next</strong>.</li>
+<li>On the <strong>Members</strong> tab:</li>
+<li><strong>Assign access to</strong>: <em>User, group, or service principal</em></li>
+<li>Click <strong>+ Select members</strong>, search for the app registration name (e.g. <code>mesh-data-transfer-prod</code>), select it, and click <strong>Select</strong>.</li>
+<li>Click <strong>Review + assign</strong> twice to confirm.</li>
+</ol>
+<p>The role assignment takes effect within a few minutes.</p>
+<h5 id="mdt-configuration-client-secret-mdt-configuration-client-secret">MDT configuration (client secret) {#mdt-configuration-client-secret}</h5>
+<p>Use just the namespace hostname (no <code>Endpoint=sb://</code> prefix, no trailing slash) as the connection string:</p>
+<pre><code class="language-json">&quot;BrokersConfiguration&quot;: {
+  &quot;ServiceBus1&quot;: {
+    &quot;ConnectionStrings&quot;: [
+      &quot;myns.servicebus.windows.net&quot;
+    ]
+  }
+},
+&quot;EntraId&quot;: {
+  &quot;TenantId&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+  &quot;ClientId&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+  &quot;ClientSecret&quot;: &quot;&lt;secret-value&gt;&quot;,
+  &quot;Scopes&quot;: [
+    { &quot;Role&quot;: &quot;Mesh&quot;, &quot;Value&quot;: &quot;api://&lt;mesh-app-id&gt;/.default&quot; }
+  ]
+}
+</code></pre>
+<p>The <code>Scopes</code> array must contain the <code>Mesh</code> scope for the gRPC connection. The <code>ServiceBus</code> scope entry is <strong>not required</strong> — the Azure Service Bus SDK acquires its own token internally using the <code>TenantId</code>/<code>ClientId</code>/<code>ClientSecret</code> credentials above.</p>
+<hr />
+<h4 id="option-3-entra-id-with-managed-identity">Option 3: Entra ID with managed identity</h4>
+<p>Use this option when MDT runs inside Azure (e.g. on an Azure Kubernetes Service pod, Azure App Service, or Azure VM). Managed identity eliminates all secrets from the configuration.</p>
+<h5 id="system-assigned-managed-identity">System-assigned managed identity</h5>
+<p>A system-assigned identity is tied to the lifecycle of the Azure resource (deleted when the resource is deleted).</p>
+<p><strong>For an Azure VM:</strong>
+1. Navigate to the VM in the Azure portal.
+2. In the left menu, select <strong>Security → Identity</strong>.
+3. On the <strong>System assigned</strong> tab, set <strong>Status</strong> to <strong>On</strong> and click <strong>Save</strong>.
+4. After saving, the <strong>Object (principal) ID</strong> is shown — note it down for the role assignment step.</p>
+<p><strong>For an AKS workload</strong> use Workload Identity Federation instead (see below).</p>
+<h5 id="user-assigned-managed-identity">User-assigned managed identity</h5>
+<p>A user-assigned identity exists independently of any single resource and can be assigned to multiple resources.</p>
+<ol>
+<li>In the Azure portal, search for <strong>Managed Identities</strong> and click <strong>+ Create</strong>.</li>
+<li>Fill in the subscription, resource group, region, and a name (e.g. <code>mdt-identity</code>).</li>
+<li>Click <strong>Review + create → Create</strong>.</li>
+<li>Open the created identity and note:</li>
+<li><strong>Client ID</strong> — needed for AKS Workload Identity config</li>
+<li><strong>Object (principal) ID</strong> — needed for role assignment</li>
+</ol>
+<p><strong>Assign the identity to your Azure resource:</strong>
+- <strong>VM</strong>: In the VM → <strong>Security → Identity → User assigned</strong> tab, click <strong>+ Add</strong> and select the identity.
+- <strong>AKS</strong>: Configure via Workload Identity Federation (annotate the Kubernetes <code>ServiceAccount</code> with the client ID and create a federated credential on the managed identity — see <a href="https://azure.github.io/azure-workload-identity/docs/">Azure Workload Identity docs</a>).</p>
+<h5 id="assign-the-service-bus-role-to-the-managed-identity">Assign the Service Bus role to the managed identity</h5>
+<p>Follow the same steps as in <a href="#step-3-assign-the-service-bus-role">Step 3</a> above, but on the <strong>Members</strong> tab:
+- <strong>Assign access to</strong>: <em>Managed identity</em>
+- Click <strong>+ Select members</strong>, choose the subscription, select the managed identity type and name, and click <strong>Select</strong>.</p>
+<h5 id="mdt-configuration-managed-identity-mdt-configuration-managed-identity">MDT configuration (managed identity) {#mdt-configuration-managed-identity}</h5>
+<p>When MDT's <code>EntraId</code> section does not contain a <code>ClientSecret</code>, MDT uses <code>DefaultAzureCredential</code>, which automatically picks up the managed identity at runtime. No secrets are needed in configuration:</p>
+<pre><code class="language-json">&quot;BrokersConfiguration&quot;: {
+  &quot;ServiceBus1&quot;: {
+    &quot;ConnectionStrings&quot;: [
+      &quot;myns.servicebus.windows.net&quot;
+    ]
+  }
+},
+&quot;EntraId&quot;: {
+  &quot;TenantId&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+  &quot;ClientId&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+  &quot;Scopes&quot;: [
+    { &quot;Role&quot;: &quot;Mesh&quot;, &quot;Value&quot;: &quot;api://&lt;mesh-app-id&gt;/.default&quot; }
+  ]
+}
+</code></pre>
+<p><code>DefaultAzureCredential</code> tries the following credential sources in order until one succeeds:</p>
+<ol>
+<li>Environment variables (<code>AZURE_CLIENT_ID</code>, <code>AZURE_CLIENT_SECRET</code>, <code>AZURE_TENANT_ID</code>)</li>
+<li>Workload Identity (AKS)</li>
+<li>Managed Identity (VM, App Service, AKS with pod identity)</li>
+<li>Azure CLI (useful for local developer machines)</li>
+<li>Azure PowerShell</li>
+<li>Azure Developer CLI</li>
+</ol>
+<p>For a <strong>user-assigned managed identity</strong>, specify <code>AZURE_CLIENT_ID</code> as an environment variable set to the managed identity's client ID, or ensure the AKS <code>ServiceAccount</code> annotation is in place — <code>DefaultAzureCredential</code> will use it automatically.</p>
+<p>For <strong>local development</strong>, run <code>az login</code> on the developer's machine. <code>DefaultAzureCredential</code> will pick up the Azure CLI session, so no secrets are needed in <code>appsettings.json</code> during development either.</p>
+<hr />
+<h4 id="how-mdt-selects-the-authentication-mode">How MDT selects the authentication mode</h4>
+<p>MDT inspects each broker connection string at startup to decide which mode to use:</p>
+<table>
+<thead>
+<tr>
+<th>Connection string format</th>
+<th>Authentication mode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Starts with <code>Endpoint=sb:</code> and contains <code>SharedAccessKey=</code></td>
+<td>SAS key — no Entra ID config needed</td>
+</tr>
+<tr>
+<td>Ends with <code>.servicebus.windows.net</code></td>
+<td>Entra ID — credential built from <code>EntraId</code> section</td>
+</tr>
+<tr>
+<td>Starts with <code>amqp://</code> or <code>amqps://</code></td>
+<td>AMQP (RabbitMQ / AMQP 1.0)</td>
+</tr>
+</tbody>
+</table>
+<p>When Entra ID mode is active, the credential is selected as follows:
+- <code>EntraId.TenantId</code> + <code>ClientId</code> + <code>ClientSecret</code> all present → <code>ClientSecretCredential</code>
+- Otherwise → <code>DefaultAzureCredential</code></p>
+<p><strong>Important:</strong> Certificate authentication (<code>CertificatePath</code> / <code>CertificateThumbprint</code>) is supported only for the Mesh gRPC connection, not for Azure Service Bus. Use a client secret or managed identity for Service Bus Entra ID auth.</p>
+<hr />
+<h4 id="required-azure-rbac-role">Required Azure RBAC role</h4>
+<p>Regardless of the Entra ID credential type, the identity must be assigned the <strong>Azure Service Bus Data Owner</strong> role on the Service Bus namespace (not just on individual queues).</p>
+<p>This role is required because MDT automatically creates queues and topic subscriptions via the Azure Service Bus Administration API on startup if they do not already exist. The lesser roles (<code>Azure Service Bus Data Sender</code>, <code>Azure Service Bus Data Receiver</code>) do not grant administration permissions and will cause MDT to fail at startup with an authorization error.</p>
+<p>To verify the role assignment is in effect:
+1. Navigate to the Service Bus namespace → <strong>Access control (IAM) → Role assignments</strong>.
+2. Confirm the app registration or managed identity appears with the <strong>Azure Service Bus Data Owner</strong> role.</p>
+<hr />
+<h4 id="azure-service-bus-troubleshooting">Azure Service Bus Troubleshooting</h4>
+<p><strong><code>AuthorizationFailedException</code> on startup</strong>
+The identity is missing the <code>Azure Service Bus Data Owner</code> role on the namespace, or the role assignment has not yet propagated (wait a few minutes after assigning).</p>
+<p><strong><code>CredentialUnavailableException</code></strong>
+<code>DefaultAzureCredential</code> could not find any usable credential. On Azure VMs, confirm that the managed identity is enabled. On AKS, verify the Workload Identity <code>ServiceAccount</code> annotation. Locally, run <code>az login</code>.</p>
+<p><strong><code>AuthenticationFailedException</code> / <code>AADSTS700016</code></strong>
+The <code>ClientId</code> in <code>EntraId</code> config does not match an app registration in the specified <code>TenantId</code>, or the app registration has been deleted.</p>
+<p><strong><code>ClientSecretCredential</code> fails after secret rotation</strong>
+Update <code>EntraId.ClientSecret</code> in <code>appsettings.json</code> (or the Key Vault reference) to the new secret value and restart MDT. Consider using managed identity to avoid this entirely.</p>
+<p><strong>Queues not created on startup</strong>
+MDT logs an error like <code>Failed to create the queue: &lt;name&gt;</code>. This means the identity has messaging permissions but lacks administration permissions — upgrade the role to <code>Azure Service Bus Data Owner</code>.</p>
+<p><strong>Wrong namespace hostname format</strong>
+Make sure the connection string is exactly <code>myns.servicebus.windows.net</code> with no leading <code>https://</code>, no <code>Endpoint=sb://</code> prefix, and no trailing <code>/</code>. Any deviation causes MDT to misidentify the connection type.</p>
+<h3 id="queues-configuration">Queues Configuration</h3>
+<p>Mesh Data Transfer allows a configuration of queues that can be later assigned to various components.
+Each json object in <code>Queues Configuration</code> describes a single queue. It can have any name that is unique within <code>Queues Configuration</code>.</p>
+<pre><code class="language-json">&quot;QueuesConfiguration&quot;: {
+    &quot;Queue1&quot;: {
+      &quot;Broker&quot;: &quot;B1&quot;,
+</code></pre>
+<p><code>Broker</code> is a reference to one of the broker names defined in the <code>BrokersConfiguration</code>, for example <code>B1</code>.</p>
+<pre><code class="language-json">      &quot;QueueName&quot;: &quot;exportQueue&quot;,
+</code></pre>
+<p><code>QueueName</code> specifies a queue to connect to on the broker. In case of Azure Service Bus, it can be both the name of the queue or the topic (see the description of <code>Subscription</code> parameter below).</p>
+<pre><code class="language-json">      &quot;Role&quot;: &quot;Sender&quot;,
+</code></pre>
+<p><code>Role</code> specifies whether this queue will be used to send to or receive from. Valid values are: <code>Sender</code>, <code>Receiver</code>, <code>Failure</code>, <code>Confirmation</code> and <code>ReimportSender</code>.</p>
+<pre><code class="language-json">      &quot;Priority&quot;: 0
+</code></pre>
+<p><code>Priority</code> is an integer used for indicating import queue priority. The lower the number, the more important given queue is. Mesh Data Transfer processes messages placed in the queues with higher priority before messages placed in the queues with lower priorities. Default <code>Priority</code> is 50.</p>
+<pre><code class="language-json">      &quot;Subscription&quot;: &quot;Sub1&quot;
+</code></pre>
+<p><code>Subscription</code> enables the use of Azure Service Bus Topics feature. When <code>Subscription</code> is provided, the <code>QueueName</code> parameters serves as the topic name. <code>Subscription</code> is only valid for queues with the <code>Receive</code> role. For the <code>Sender</code> role, <code>QueueName</code> can serve both as the queue name and the topic name.</p>
+<pre><code class="language-json">      &quot;ReplyQueueName&quot;: &quot;ReplyQueue1&quot;,
+      &quot;FailureQueueName&quot;: &quot;FailureQueue1&quot;
+</code></pre>
+<p><code>ReplyQueueName</code> and <code>FailureQueueName</code> are optional properties that specify which reply and failure queues should be used for a specific receiver queue. These properties enable source-specific message routing in import operations:</p>
+<ul>
+<li><strong><code>ReplyQueueName</code></strong>: References a queue (by its identifier in <code>QueuesConfiguration</code>) with <code>Sender</code> role that will receive import reply messages for this receiver queue</li>
+<li><strong><code>FailureQueueName</code></strong>: References a queue (by its identifier in <code>QueuesConfiguration</code>) with <code>Failure</code> role that will receive failed messages for this receiver queue</li>
+</ul>
+<p><strong>Configuration Scenarios:</strong>
+1. <strong>Explicit Configuration</strong>: Directly reference existing queues to establish dedicated reply/failure channels
+2. <strong>Auto-creation</strong>: If not specified and no suitable queues are found, MDT automatically creates queues with naming pattern: <code>{receiver-queue-name}-reply</code> and <code>{receiver-queue-name}-failure</code>
+3. <strong>Shared Queues</strong>: Multiple receiver queues can reference the same reply or failure queue for consolidated processing
+4. <strong>Fallback</strong>: Receiver queues without explicit configuration will use any available <code>Sender</code> or <code>Failure</code> role queues as fallback</p>
+<p><strong>Example Configuration:</strong></p>
+<pre><code class="language-json">&quot;QueuesConfiguration&quot;: {
+  &quot;SourceAReceiver&quot;: {
+    &quot;Broker&quot;: &quot;B1&quot;,
+    &quot;QueueName&quot;: &quot;source-a-input&quot;,
+    &quot;Role&quot;: &quot;Receiver&quot;,
+    &quot;ReplyQueueName&quot;: &quot;SourceAReply&quot;,
+    &quot;FailureQueueName&quot;: &quot;CommonFailure&quot;
+  },
+  &quot;SourceAReply&quot;: {
+    &quot;Broker&quot;: &quot;B1&quot;,
+    &quot;QueueName&quot;: &quot;source-a-replies&quot;,
+    &quot;Role&quot;: &quot;Sender&quot;
+  },
+  &quot;CommonFailure&quot;: {
+    &quot;Broker&quot;: &quot;B1&quot;,
+    &quot;QueueName&quot;: &quot;all-failures&quot;,
+    &quot;Role&quot;: &quot;Failure&quot;
+  }
+}
+</code></pre>
+<p>This feature is particularly useful in multi-tenant or multi-source scenarios where different import sources require isolated reply channels.</p>
+<h3 id="kestrel-configuration">Kestrel Configuration</h3>
+<p><code>Kestrel</code> is an HTTP server used by Mesh Data Transfer in order to expose the endpoint for receiving the orders and for the health endpoint.</p>
+<pre><code class="language-json">&quot;Kestrel&quot;: {
+    &quot;Endpoints&quot;: {
+      &quot;Http&quot;: {
+        &quot;Url&quot;: &quot;http://localhost:7000&quot;
+</code></pre>
+<p><code>Url</code> specifies address and port that should be used when accessing the service. The <code>Url</code> specification may influence the ability to listen for exports coming from external machines. For most cases it is reasonable to replace <code>localhost</code> with server <code>hostname</code>.</p>
+<h3 id="mesh-connection-configuration">Mesh connection configuration</h3>
+<pre><code class="language-json">&quot;HttpEndpoints&quot;: {
+  &quot;Mesh&quot;: {
+    &quot;Uri&quot;: &quot;https://localhost:50001/mesh&quot;,
+    &quot;AuthType&quot;: &quot;Kerberos&quot;,
+    &quot;ServerPrincipal&quot;: &quot;HOST/server.mydomain.com&quot;,
+    &quot;TokenRefreshIntervalMinutes&quot;: 30,
+    &quot;RequestTimeout&quot;: 60,
+    &quot;MaxReceiveMessageSizeInBytes&quot;: 16777216,
+    &quot;MaxRetryAttempts&quot;: 5
+  }
+},
+</code></pre>
+<h4 id="authentication-configuration">Authentication Configuration</h4>
+<p>Mesh Data Transfer supports three authentication types for the Mesh gRPC connection:
+- <code>None</code> - No authentication (default)
+- <code>Kerberos</code> - Windows/Kerberos authentication
+- <code>EntraId</code> - Entra ID/OAuth authentication</p>
+<p>Set <code>HttpEndpoints:Mesh:AuthType</code> to the desired authentication method.</p>
+<p>The same <code>AuthType</code> also controls authentication for the <strong>MDT REST API</strong> (see <a href="#mdt-rest-api-authentication">MDT REST API Authentication</a> below).</p>
+<h5 id="kerberos-authentication">Kerberos Authentication</h5>
+<p>For Kerberos authentication, set:
+- <code>AuthType</code> to <code>"Kerberos"</code>
+- <code>ServerPrincipal</code> to the Kerberos server principal of the Mesh server (e.g., <code>"HOST/server.mydomain.com"</code>)</p>
+<pre><code class="language-json">&quot;HttpEndpoints&quot;: {
+  &quot;Mesh&quot;: {
+    &quot;Uri&quot;: &quot;https://localhost:50001/mesh&quot;,
+    &quot;AuthType&quot;: &quot;Kerberos&quot;,
+    &quot;ServerPrincipal&quot;: &quot;HOST/server.mydomain.com&quot;,
+    &quot;TokenRefreshIntervalMinutes&quot;: 30
+  }
+}
+</code></pre>
+<p><strong>Note:</strong> For backward compatibility, if <code>ServerPrincipal</code> is set without <code>AuthType</code>, Kerberos authentication will be used automatically.</p>
+<h5 id="entraid-authentication">EntraId Authentication</h5>
+<p>EntraId credentials are configured in a dedicated top-level <code>EntraId</code> section (not under <code>HttpEndpoints:Mesh</code>).</p>
+<p><strong>With client secret:</strong></p>
+<pre><code class="language-json">&quot;HttpEndpoints&quot;: {
+  &quot;Mesh&quot;: {
+    &quot;Uri&quot;: &quot;https://localhost:50001/mesh&quot;,
+    &quot;AuthType&quot;: &quot;EntraId&quot;,
+    &quot;TokenRefreshIntervalMinutes&quot;: 30
+  }
+},
+&quot;EntraId&quot;: {
+  &quot;TenantId&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+  &quot;ClientId&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+  &quot;ClientSecret&quot;: &quot;your-client-secret&quot;,
+  &quot;Scopes&quot;: [
+    { &quot;Role&quot;: &quot;Mesh&quot;, &quot;Value&quot;: &quot;api://mesh/.default&quot; }
+  ]
+}
+</code></pre>
+<p><strong>With certificate file (.pfx/.pem):</strong></p>
+<pre><code class="language-json">&quot;EntraId&quot;: {
+  &quot;TenantId&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+  &quot;ClientId&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+  &quot;CertificatePath&quot;: &quot;/path/to/certificate.pfx&quot;,
+  &quot;CertificatePassword&quot;: &quot;certificate-password&quot;,
+  &quot;Scopes&quot;: [
+    { &quot;Role&quot;: &quot;Mesh&quot;, &quot;Value&quot;: &quot;api://mesh/.default&quot; }
+  ]
+}
+</code></pre>
+<p><strong>With certificate from Windows certificate store:</strong></p>
+<pre><code class="language-json">&quot;EntraId&quot;: {
+  &quot;TenantId&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+  &quot;ClientId&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+  &quot;CertificateThumbprint&quot;: &quot;1234567890ABCDEF1234567890ABCDEF12345678&quot;,
+  &quot;CertificateStoreLocation&quot;: &quot;CurrentUser&quot;,
+  &quot;CertificateStoreName&quot;: &quot;My&quot;,
+  &quot;Scopes&quot;: [
+    { &quot;Role&quot;: &quot;Mesh&quot;, &quot;Value&quot;: &quot;api://mesh/.default&quot; }
+  ]
+}
+</code></pre>
+<p>The <code>Mesh</code> scope is used for the gRPC connection to the Mesh server. Additional roles (<code>Api</code>, <code>ServiceBus</code>, <code>Storage</code>) can be added to the <code>Scopes</code> list to enable Entra ID authentication for the HTTP API, Azure Service Bus, and Azure Blob Storage respectively — see the <a href="#azure-service-bus-and-blob-storage-entra-id">Azure Service Bus and Blob Storage</a> section.</p>
+<p><strong>Security Note:</strong> Store sensitive credentials like <code>ClientSecret</code> and <code>CertificatePassword</code> securely using Azure Key Vault, environment variables, or other secure configuration providers. Do not commit secrets to source control.</p>
+<h4 id="mdt-rest-api-authentication">MDT REST API Authentication</h4>
+<p>MDT REST API endpoints can be independently secured using <code>ApiSettings:RequireAuthentication</code>. When enabled, all endpoints except <code>/health</code> require authentication. The <code>AuthType</code> set in <code>HttpEndpoints:Mesh</code> determines the scheme used.</p>
+<pre><code class="language-json">&quot;ApiSettings&quot;: {
+  &quot;EnableSwagger&quot;: true,
+  &quot;RequireAuthentication&quot;: true
+}
+</code></pre>
+<h5 id="no-authentication-default">No Authentication (default)</h5>
+<pre><code class="language-json">{
+  &quot;HttpEndpoints&quot;: { &quot;Mesh&quot;: { &quot;Uri&quot;: &quot;...&quot;, &quot;AuthType&quot;: &quot;None&quot; } },
+  &quot;ApiSettings&quot;: { &quot;RequireAuthentication&quot;: false }
+}
+</code></pre>
+<h5 id="kerberos-windows-integrated-authentication">Kerberos (Windows integrated authentication)</h5>
+<pre><code class="language-json">{
+  &quot;HttpEndpoints&quot;: {
+    &quot;Mesh&quot;: { &quot;Uri&quot;: &quot;...&quot;, &quot;AuthType&quot;: &quot;Kerberos&quot;, &quot;ServerPrincipal&quot;: &quot;HOST/server.mydomain.com&quot; }
+  },
+  &quot;ApiSettings&quot;: { &quot;RequireAuthentication&quot;: true }
+}
+</code></pre>
+<p>Swagger UI will prompt for Windows credentials using the Negotiate scheme.</p>
+<h5 id="entraid-oauth-20">EntraId (OAuth 2.0)</h5>
+<pre><code class="language-json">{
+  &quot;HttpEndpoints&quot;: { &quot;Mesh&quot;: { &quot;Uri&quot;: &quot;...&quot;, &quot;AuthType&quot;: &quot;EntraId&quot; } },
+  &quot;EntraId&quot;: {
+    &quot;TenantId&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+    &quot;ClientId&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+    &quot;ClientSecret&quot;: &quot;your-client-secret&quot;,
+    &quot;Scopes&quot;: [
+      { &quot;Role&quot;: &quot;Mesh&quot;, &quot;Value&quot;: &quot;api://mesh/.default&quot; },
+      { &quot;Role&quot;: &quot;Api&quot;,  &quot;Value&quot;: &quot;api://&lt;this-app-id&gt;/.default&quot; }
+    ]
+  },
+  &quot;ApiSettings&quot;: { &quot;RequireAuthentication&quot;: true }
+}
+</code></pre>
+<p>When <code>AuthType</code> is <code>EntraId</code>, Swagger UI is automatically configured with an OAuth 2.0 Authorization Code + PKCE flow:</p>
+<ol>
+<li>Navigate to Swagger UI (e.g., <code>http://localhost:7000/swagger</code>)</li>
+<li>Click the <strong>Authorize</strong> button</li>
+<li>Complete the Microsoft login flow and consent to requested permissions</li>
+<li>The access token is automatically included in subsequent API requests</li>
+</ol>
+<h4 id="other-mesh-configuration-options">Other Mesh Configuration Options</h4>
+<p><code>HttpEndpoints:Mesh:TokenRefreshIntervalMinutes</code> is the refresh period for authentication tokens. Defaults to 30 minutes.</p>
+<p><code>HttpEndpoints:Mesh:MaxReceiveMessageSizeInBytes</code> is an optional size limit for the messages received from Mesh (e.g. time series export response). Defaults to 4 MB (4194304 bytes) when not provided. The example extends the received message size limit to 16 MB.</p>
+<p><code>HttpEndpoints:Mesh:MaxRetryAttempts</code> is an optional retry count for messages that fail to reach Mesh due to transient errors (when Mesh is not accessible). Defaults to 5 attempts.</p>
+<p><code>HttpEndpoints:Mesh</code> can specify an optional <code>RequestTimeout</code> attribute (defaults to <code>60</code>).</p>
+<p>Additionally, <code>MeshMonitor</code> contains the address of <code>Mesh</code> server health endpoint. It is used to establish whether <code>Mesh</code> is in suitable condition to perform exports and imports.</p>
+<pre><code class="language-json">  &quot;MeshMonitor&quot;: {
+    &quot;MeshHealthEndpoint&quot;: &quot;http://localhost:20000/meshHealth/health&quot;,
+    &quot;CheckInterval&quot;: 5000
+  }
+</code></pre>
+<h3 id="database-configuration">Database Configuration</h3>
+<p>The Mesh Data Transfer service requires direct database access. Currently data required to access the database is stored in the configuration file.</p>
+<pre><code class="language-json">&quot;Database&quot;: {
+    &quot;User&quot;: &quot;dbuser&quot;,
+    &quot;Password&quot;: &quot;dbpass&quot;,
+    &quot;DataSource&quot;: &quot;dbserver&quot;,
+    &quot;OpunKeyMode&quot;: &quot;SHORNAME&quot;, // legal values: SHORNAME/BANKACC/POSTACC/ESETT_ID, SHORNAME is default if not specified
+    &quot;ReadOnly&quot;: false // optional parameter that disables database modifications when true, default value is false; NOTE: it does not impose read only mode in Mesh! 
+  }
+</code></pre>
+<h3 id="import-and-export-common-configuration">Import and export common configuration</h3>
+<p><code>FailedMessages</code> section defines how the errors are handled when import requests are processed. Internal errors are the ones that originated from the inside of Mesh Data Transfer (for example <code>XML</code>/<code>JSON</code> parsing problem). 
+External errors come from <code>Mesh</code>. If set to true the problematic message is sent to the failure queue.
+Otherwise the application tries to put the message back on the queue to process it again later.</p>
+<pre><code class="language-json">  &quot;FailedMessages&quot;: {
+    &quot;UseFailureQueueOnInternalError&quot;: true,
+    &quot;UseFailureQueueOnExternalError&quot;: false
+  },
+</code></pre>
+<p>The <code>ServiceBus</code> node is used to configure the behaviour of Service Bus communication.
+- The <code>PrefetchCount</code> parameter adjusts the number of messages prefetched and cached before the actual message is requested. Default number is 0, meaning no prefetch.
+- <code>MaxRetries</code> defines how many times the service should retry an operation on transient network issues.
+- <code>MaxRetryDelay</code> controls the maximum delay (in milliseconds) between retry attempts when transient network issues happen. Default is 10 seconds (10000 ms).</p>
+<pre><code class="language-json">&quot;ServiceBus&quot;: {
+  &quot;PrefetchCount&quot;: 3,
+  &quot;MaxRetries&quot;: 3,
+  &quot;MaxRetryDelay&quot;: 10000
+}
+
+</code></pre>
+<p>The <code>Amqp:FrameTracingEnabled</code> flag can be used to debug low level communication issues with AMQP brokers.</p>
+<pre><code class="language-json">&quot;Amqp&quot;: {
+  &quot;FrameTracingEnabled&quot;: false
+}
+</code></pre>
+<h3 id="json-time-series-import">JSON time series import</h3>
+<p>Mesh Data Transfer supports importing time series data sent as Volue time series JSON AMQP messages. The message contains a header (origin, document identification, creation date) and one or more time series, each with a <code>TSReference</code> path pointing to the target Mesh time series, a time interval, and a list of value points.</p>
+<h4 id="amqp-message-type-annotation">AMQP message type annotation</h4>
+<p>To have the message recognized and processed as a Volue time series JSON import, the AMQP message must include a message annotation with the key <code>Action</code> set to <code>MeshTimeSeriesJson</code>:</p>
+<pre><code>Message annotation key:   Action
+Message annotation value: MeshTimeSeriesJson
+</code></pre>
+<p>Messages without this annotation are treated as standard XML time series imports.</p>
+<h4 id="quality-flags">Quality flags</h4>
+<p>Each value point may include a quality string. Supported values are:</p>
+<table>
+<thead>
+<tr>
+<th>Quality</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OK</code></td>
+<td>Good quality — no quality bits set</td>
+</tr>
+<tr>
+<td><code>Temporary</code></td>
+<td>Value is provisional</td>
+</tr>
+<tr>
+<td><code>Suspect</code></td>
+<td>Value is suspect</td>
+</tr>
+<tr>
+<td><code>Missing</code></td>
+<td>Value is missing</td>
+</tr>
+</tbody>
+</table>
+<p>Quality strings are mapped to Mesh flag bits using the status mapping defined for the transfer definition in the database (<code>tsstatus</code> table). If no quality is specified, or the value is <code>OK</code>, no quality bits are set. If a quality string is not found in the database mapping, the point is flagged as <code>Suspect</code> to avoid silently treating uncertain data as good quality.</p>
+<h3 id="import-specific-configuration">Import specific configuration</h3>
+<p><code>ImportWorker</code> is used to handle import requests. </p>
+<pre><code class="language-json">  &quot;ImportWorker&quot;: {
+    &quot;Queues&quot;: [
+      &quot;Q3&quot;,
+      &quot;Q4&quot;,
+      &quot;FailureQ&quot;
+    ],
+    &quot;ICC_TRANSLOG_DIR&quot;: &quot;C:\\ICC_TRANSLOG_DIR\\&quot;,
+    &quot;CreateTransLogFile&quot;: true,
+    &quot;PartialImportSuccess&quot;: false,
+    &quot;Delay&quot;: 100,
+    &quot;DisableImportReply&quot;: false,
+    &quot;ReceiveTimeout&quot;: 1000
+  },
+</code></pre>
+<p>In order to work properly it needs <code>Queues</code> to contain a list of queues from <code>QueuesConfiguration</code>. One of the queues needs to be a <code>Receiver</code> queue which will be used to receive import orders. Another queue needs to be a <code>Sender</code> queue, used for sending import status data.
+The third, optional queue, needs to be a <code>Failure</code> queue. Its use depends on <code>FailedMessages</code> node below.</p>
+<p><strong>Reply and Failure Queue Routing:</strong>
+- If receiver queues specify <code>ReplyQueueName</code> or <code>FailureQueueName</code> properties, those specific queues will be used for reply/failure messages
+- If not specified, <code>ImportWorker</code> will:
+  1. Look for queues with <code>Sender</code> role (for replies) or <code>Failure</code> role (for failures) in the <code>Queues</code> list
+  2. Automatically create source-specific queues with naming pattern <code>{receiver-queue}-reply</code> and <code>{receiver-queue}-failure</code> if needed
+- Multiple receiver queues can share the same reply or failure queue by referencing the same queue identifier
+- This enables proper message routing in multi-tenant or multi-source scenarios</p>
+<p><code>CreateTransLogFile</code> is an optional flag which default value is set to true. If <code>CreateTransLogFile</code> flag is set to <code>true</code>, <code>ICC_TRANSLOG_DIR</code> is a directory where received import requests are kept for potential reimports. If <code>CreateTransLogFile</code> flag is set to <code>false</code>, files will not be created and <code>reimport</code> will not be available.
+<code>PartialImportSuccess</code> is an optional flag that makes Mesh Data Transfer include <code>&lt;ImportSuccess&gt;true&lt;/ImportSuccess&gt;</code> in the time series import reply when the import was partially successful. The default value is <code>false</code>, which means <code>ImportSuccess</code> is <code>true</code> only when all of the requested time series were imported correctly.
+The <code>Delay</code> parameter is used to control the timeout between the import requests.
+<code>DisableImportReply</code> is an optional flag used to disable the confirmation reply when the import request was processed successfully and an error reply when the import request had invalid syntax and could not be deserialized. It doesn't affect failure queue replies. Defaults to false.
+The ReceiveTimeout parameter controls the timeout of a message receive call. The unit is milliseconds. Default value is 100 milliseconds.</p>
+<p><code>AmqpSender</code> is used to send reimport requests and availability confirmation messages to the queues. </p>
+<pre><code class="language-json">&quot;AmqpSender&quot;: {
+  &quot;Queues&quot;: [
+    &quot;ExportQueue&quot;
+  ]
+},
+</code></pre>
+<p>The <code>Queues</code> array is expected to contain the names of the queues defined in <code>QueuesConfiguration</code> section with <code>Sender</code> role.</p>
+<h3 id="export-specific-configuration">Export specific configuration</h3>
+<pre><code class="language-json">&quot;AdditionalPvplanPrefix&quot;: {
+  &quot;Separator&quot;: &quot;;&quot;
+},
+</code></pre>
+<p><code>AdditionalPvplanPrefix:Separator</code> is a character used in the Participant application export definition. It separates the External Reference from prefix string being added to the PVPLAN data file names.</p>
+<pre><code class="language-json">&quot;ContentCode&quot;: {
+  &quot;Separator&quot;:  &quot;;&quot;
+},
+</code></pre>
+<p><code>ContentCode:Separator</code> is a character used in the Participant application export definition. It separates the Product Code from exact protocol name ('APOR' or 'APOT') in case of APOR/APOT exports.</p>
+<pre><code class="language-json">&quot;ParticipantSettings&quot;: {
+  &quot;DefaultSender&quot;: 26,
+  &quot;EDI_DEFAULT_IDORG&quot;: &quot;9::14::UNOC:3:&quot;,
+  &quot;EDI_COUNTRY_IDORG&quot;: {
+    &quot;SE&quot;: &quot;260:SVK:ZZ::UNOC:3:&quot;
+  },
+  &quot;EDI_CODELIST_RESPONSIBLE&quot;: &quot;91&quot;
+}
+</code></pre>
+<p><code>ParticipantSettings:DefaultSender</code> specifies the default sender to be used when exporting time series or availability data. The <code>DefaultSender</code> participant key is used as a fallback when the sender is not defined in the time series export definition or in the export request.</p>
+<p><code>ParticipantSettins:EDI_DEFAULT_IDORG</code>, <code>ParticipantSettings:EDI_COUNTRY_IDORG</code> and <code>ParticipantSettings:EDI_CODELIST_RESPONSIBLE</code> are relevant for EDIEL DELFOR and MSCONS time series exports. <code>EDI_DEFAULT_IDORG</code> stores the default string used to specify values in the UNB segment and the NAD segment in the EDIFACT message. <code>EDI_COUNTRY_IDORG</code> is a dictionary that maps a country key to a custom <code>IDORG</code> value. <code>EDI_CODELIST_RESPONSIBLE</code> is the value for code list responsible used when exported time series external reference is not an EAN number and the receiver has no code list responsible defined.</p>
+<p><code>MercatoMapping</code> is used only for Bidding Strategy export protocol. It associates numbers with user-defined strings.
+They are used later in the Bidding Strategy export file to map timeseries values to strings.</p>
+<pre><code class="language-json">  &quot;MercatoMapping&quot;: {
+    &quot;0&quot;: &quot;MGP&quot;,
+    &quot;1&quot;: &quot;MI1&quot;,
+    &quot;2&quot;: &quot;MI2&quot;,
+    &quot;3&quot;: &quot;MI3&quot;,
+    &quot;4&quot;: &quot;MI4&quot;,
+    &quot;5&quot;: &quot;MI5&quot;,
+    &quot;6&quot;: &quot;MI6&quot;,
+    &quot;7&quot;: &quot;MI7&quot;,
+    &quot;8&quot;: &quot;&quot;
+  },
+</code></pre>
+<p><code>UnitScheduleMapping</code> is similar to <code>MercatoMapping</code>. It is used for Bidding Strategy export protocol as well.</p>
+<pre><code class="language-json">  &quot;UnitScheduleMapping&quot;: {
+    &quot;A&quot;: &quot;dummyA&quot;,
+    &quot;B&quot;: &quot;dummyB&quot;
+  },
+</code></pre>
+<p><code>StoragePerProtocol</code> node contains storage settings for each protocol. <code>StorageKinds</code> valid values are <code>File</code> and <code>Queue</code> - it is allowed to specify the target storage: filesystem, AMQP/ServiceBus queue or both.
+Parameter called <code>StoragePath</code> specifies disk storage location in case of the <code>StorageKinds</code> array containing a <code>File</code> value. </p>
+<p><code>DestinationQueues</code> is a (protocol, receiver)-to-queue mapping. It is a dictionary consisting of keys being export receiver identfiers and values being queue aliases arrays.
+When the <code>DestinationQueues</code> contains a key equal to an export receiver value for given export protocol, the export data will be sent to the queues in the respective array.</p>
+<p>In the <code>StoragePerProtocol</code> nodes there is also an array called <code>DefaultQueues</code>.
+If the <code>DestinationQueues</code> mapping does not provide target queue information needed, <code>DefaultQueues</code> values are used as target queues.</p>
+<p>It is allowed to have one of (<code>DestinationQueues</code>, <code>DefaultQueues</code>) empty, but not both.</p>
+<p>Another parameter for <code>StoragePerProtocol</code> nodes is <code>DefaultDecimals</code>. It defines the number of decimals that is saved in the exported time series values if the decimals parameter is not defined in the time series export definition. It is optional and currently it is only supported for EDIEL DELFOR, ExcelCSV and GS2 export types.</p>
+<h4 id="meshtimeseriesjson-export-to-azure-blob-storage">MeshTimeSeriesJson export to Azure Blob Storage</h4>
+<p>The <code>MeshTimeSeriesJson</code> protocol (ID 141) exports raw JSON directly to Azure Blob Storage and sends a lightweight notification containing the blob SAS URL to the configured AMQP queue.</p>
+<p>Minimum configuration in <code>Storage:StoragePerProtocol</code>:</p>
+<pre><code class="language-json">&quot;MeshTimeSeriesJson&quot;: {
+  &quot;StorageKinds&quot;: [ &quot;Queue&quot; ],
+  &quot;DefaultQueues&quot;: [ &quot;ExportReplyQueue&quot; ],
+  &quot;BlobContainer&quot;: &quot;meshjson-exports&quot;
+}
+</code></pre>
+<p>The blob container is created automatically on first use. The queue notification carries the SAS URL in the <code>BlobPath</code> AMQP message annotation.</p>
+<p>For local development with <a href="https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite">Azurite</a>, set <code>Storage:BlobConnectionString</code> to the Azurite connection string:</p>
+<pre><code class="language-json">&quot;Storage&quot;: {
+  &quot;BlobConnectionString&quot;: &quot;DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=&lt;key&gt;;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;&quot;
+}
+</code></pre>
+<p>For production with Entra ID passwordless authentication, see the <a href="#azure-service-bus-and-blob-storage-entra-id">Azure Service Bus and Blob Storage Entra ID section</a> below.</p>
+<h4 id="azure-service-bus-and-blob-storage-entra-id">Azure Service Bus and Blob Storage Entra ID</h4>
+<p>Both Azure Service Bus (broker transport) and Azure Blob Storage (blob uploads) support passwordless Entra ID authentication using the shared <code>EntraId</code> configuration section.</p>
+<p>Add the relevant scopes to <code>EntraId:Scopes</code>:</p>
+<pre><code class="language-json">&quot;EntraId&quot;: {
+  &quot;TenantId&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+  &quot;ClientId&quot;: &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;,
+  &quot;ClientSecret&quot;: &quot;your-client-secret&quot;,
+  &quot;Scopes&quot;: [
+    { &quot;Role&quot;: &quot;Mesh&quot;,       &quot;Value&quot;: &quot;api://&lt;mesh-app-id&gt;/.default&quot; },
+    { &quot;Role&quot;: &quot;Api&quot;,        &quot;Value&quot;: &quot;api://&lt;this-app-id&gt;/.default&quot; },
+    { &quot;Role&quot;: &quot;ServiceBus&quot;, &quot;Value&quot;: &quot;https://servicebus.azure.net/.default&quot; },
+    { &quot;Role&quot;: &quot;Storage&quot;,    &quot;Value&quot;: &quot;https://storage.azure.com/.default&quot; }
+  ]
+}
+</code></pre>
+<p><strong>Azure Service Bus</strong>: Set the broker connection string to an <code>Endpoint=sb://...</code> string without <code>SharedAccessKey</code>. The application passes a <code>TokenCredential</code> into the Azure Service Bus SDK, which internally requests the appropriate scope (for example, <code>https://servicebus.azure.net/.default</code>); the <code>ServiceBus</code> scope entry in <code>EntraId:Scopes</code> is not used by the current implementation. The app registration must be assigned the <strong>Azure Service Bus Data Owner</strong> role on the namespace.</p>
+<p><strong>Azure Blob Storage</strong>: Set <code>Storage:BlobConnectionString</code> to the blob service endpoint URI (no <code>AccountKey</code>). The application passes a <code>TokenCredential</code> into the Azure Storage SDK, which internally requests the appropriate scope (for example, <code>https://storage.azure.com/.default</code>); the <code>Storage</code> scope entry in <code>EntraId:Scopes</code> is not used by the current implementation. The app registration must be assigned the <strong>Storage Blob Data Contributor</strong> role on the storage account:</p>
+<pre><code class="language-json">&quot;Storage&quot;: {
+  &quot;BlobConnectionString&quot;: &quot;https://&lt;account&gt;.blob.core.windows.net/&quot;
+}
+</code></pre>
+<p>When <code>BlobConnectionString</code> contains an <code>AccountKey</code>, key-based authentication is used automatically (Azurite / development scenarios). Entra ID is only activated when the key is absent.</p>
+<h4 id="azure-blob-storage-for-large-messages">Azure Blob Storage for Large Messages</h4>
+<p>When using Azure Service Bus, there is a message size limit that may be exceeded by large export files. To handle this, you can configure Azure Blob Storage:</p>
+<ul>
+<li><strong><code>BlobContainer</code></strong> (per protocol): When specified in a protocol configuration, export messages are uploaded to Azure Blob Storage instead of being sent directly through the queue. The queue receives only a SAS token URL pointing to the blob.</li>
+<li><strong><code>BlobConnectionString</code></strong> (global): Required when any protocol uses <code>BlobContainer</code>. This is the connection string to your Azure Storage account.</li>
+</ul>
+<p>When a message is stored in blob storage:
+1. The export content is uploaded to the specified container with optional compression
+2. A SAS token with 1-year expiry is generated
+3. The queue message contains only the blob URL in the <code>BlobPath</code> annotation
+4. On import, the content is automatically downloaded from the blob storage</p>
+<p><code>ICC_TRANSLOG_DIR</code> is a directory where export files are kept in order to look them up from MessageLog application.
+Please make sure that these directories are created.
+<code>AvailabilityExportQueue</code> is a reference to one of the queues defined in <code>QueuesConfiguration</code> item.
+If the sections or any parameters within the section is not present, they are ignored.</p>
+<pre><code class="language-json">&quot;Storage&quot;: {
+  &quot;StoragePerProtocol&quot;: {
+    &quot;PVPLAN&quot;: {
+      &quot;StorageKinds&quot;: [ &quot;Queue&quot; ],
+      &quot;DestinationQueues&quot;: {
+        &quot;1&quot;: [ &quot;exportReplyQueue&quot; ],
+        &quot;13&quot;: [ &quot;exportReplyQueue&quot;, &quot;someOtherQueue&quot; ]
+      },
+      &quot;BlobContainer&quot;: &quot;pvplan-exports&quot; // Optional: Use blob storage for large messages
+      &quot;DefaultQueues&quot;: [ &quot;exportReplyQueue&quot; ]
+    },
+    &quot;PVPLAN2023&quot;: {
+      &quot;StorageKinds&quot;: [ &quot;File&quot; ],
+      &quot;StorePath&quot;: &quot;C:\\files\\&quot;
+    },
+    &quot;StdExport&quot;: {
+      &quot;StorageKinds&quot;: [ &quot;Queue&quot; ],
+      &quot;DestinationQueues&quot;: {
+        &quot;1&quot;: [ &quot;exportReplyQueue&quot; ],
+        &quot;13&quot;: [ &quot;exportReplyQueue&quot;, &quot;someOtherQueue&quot; ]
+      },
+      &quot;DefaultQueues&quot;: [ &quot;exportReplyQueue&quot; ]
+    },
+    &quot;APORAPOTExport&quot;: {
+      &quot;StorageKinds&quot;: [ &quot;Queue&quot; ],
+      &quot;DestinationQueues&quot;: {
+        &quot;1&quot;: [ &quot;exportReplyQueue&quot; ],
+        &quot;2&quot;: [ &quot;exportReplyQueue&quot;, &quot;someOtherQueue&quot; ]
+      },
+      &quot;DefaultQueues&quot;: [ &quot;exportReplyQueue&quot; ]
+    },
+    &quot;BiddingTool&quot;: {
+      &quot;StorageKinds&quot;: [ &quot;File&quot; ],
+      &quot;StorePath&quot;: &quot;C:\\files\\&quot;
+    },
+    &quot;GS2&quot;: {
+      &quot;StorageKinds&quot;: [ &quot;File&quot; ],
+      &quot;StorePath&quot;: &quot;C:\\files\\&quot;,
+      &quot;DefaultDecimals&quot;: 3 // optional, used when the time series export definition does not define the decimals parameter; for GS2 the default value is null (number of decimals not specified)
+    },
+    &quot;EdielDelfor&quot;: {
+      &quot;StorageKinds&quot;: [ &quot;File&quot; ],
+      &quot;StorePath&quot;: &quot;C:\\files\\&quot;,
+      &quot;DefaultDecimals&quot;: 2 // optional, used when the time series export definition does not define the decimals parameter; for EDIEL DELFOR the default value is 3
+    },
+    &quot;ExcelCSV&quot;: {
+      &quot;StorageKinds&quot;: [ &quot;File&quot; ],
+      &quot;StorePath&quot;: &quot;C:\\files\\&quot;
+      &quot;DefaultDecimals&quot;: 2, // optional, used when the time series export definition does not define the decimals parameter; for Excel CSV the default value is 6
+    }
+  },
+  &quot;ICC_TRANSLOG_DIR&quot;: &quot;C:\\ICC_TRANSLOG_DIR\\&quot;,
+  &quot;AvailabilityExportQueue&quot;: &quot;Q&quot;,
+  &quot;PvPlan2023&quot;: false,
+  &quot;BlobConnectionString&quot;: &quot;DefaultEndpointsProtocol=https;AccountName=mystorageaccount;AccountKey=***;EndpointSuffix=core.windows.net&quot;,
+}
+</code></pre>
+<p>The Time Series Volumes Web Service export can be configured in the <code>TsVolumesWebServiceExport</code> section:</p>
+<pre><code class="language-json">&quot;TsVolumesWebServiceExport&quot;: {
+  &quot;DefaultAddress&quot;: &quot;http://localhost:8181/TSVolumesWS&quot;,
+  &quot;ParticipantAddresses&quot;: {
+    &quot;13&quot;: &quot;http://localhost:8182/TSVolumesWS&quot;
+  }
+}
+</code></pre>
+<p>If the export receiver is found in <code>ParticipantAddresses</code>, its corresponding address is used as the export target. Otherwise, the <code>DefaultAddress</code> is used.</p>
+<h2 id="recommended-kerberos-authorisation-settings">Recommended Kerberos authorisation settings</h2>
+<p>There are two main approaches to configure data-transfer services:
+* Install data-transfer to run as the <code>LocalSystem</code> account (when Mesh and data-transfer are on the same server)
+* Install data-transfer to run as a dedicated account (same server/separate servers configurations)</p>
+<p>Then, it is required to set the authorisation scopes in the Mesh groups file (defined in the <code>GroupsFile</code> authorisation setting of Mesh).
+When data-transfer is running as <code>LocalSystem</code>, use the group name <code>System</code>.
+Otherwise, use the dedicated group name.</p>
+<h3 id="installation-dependencies">Installation dependencies</h3>
+<ul>
+<li>Install Python proton package
+  <code>powershell
+  python -m pip install python-qpid-proton</code></li>
+<li>TestWrapper requires Pester 5.0.0+ and jq package
+  <code>powershell
+  Get-Module -ListAvailable Pester
+  Install-Module -Name Pester -Force -SkipPublisherCheck
+  choco install jq</code></li>
+<li>Use PowerShell version 7
+  <code>powershell
+  $PSVersionTable</code></li>
+</ul>
+<h3 id="required-running-services">Required running services</h3>
+<ul>
+<li>Have DB container running on the PC before starting tests, connection details:
+  <code>json
+  "User": "energy",
+  "Password": "energy",
+  "DataSource": "localhost:1600/energy"</code>
+  If running the db on a different port: 
+  <code>powershell
+  $DBPort = 11521</code></li>
+<li>Use the ENEL DB: enel:20230815</li>
+<li>If the tests have been run, recreate the existing docker container:<ul>
+<li>Stop the Mesh service</li>
+<li>Stop the database container.</li>
+<li>Delete the container, and confirm by pressing the <code>Delete forever</code> button.</li>
+<li>Install the database docker image as described in https://github.com/Volue/energy-test-framework/tree/main/docker
+  <code>powershell
+  docker run -d -p 1600:1521 --ulimit nofile=1024:65536 --ulimit nproc=2047:16384 --ulimit stack=10485760:33554432 --ulimit memlock=3221225472 --tmpfs "/dev/shm:exec,dev,suid" tdtrhatfdb01.voluead.volue.com/db/enel:20230815</code></li>
+<li>Start the Mesh service</li>
+<li>NB! Check that the Mesh service is ready with the startup process before starting a new test run:
+  <code>powershell
+  Invoke-WebRequest -Uri "http://localhost:20000/meshHealth/health" -Method Get</code></li>
+</ul>
+</li>
+<li>The following services must be configured correctly and be running:</li>
+<li>Mesh</li>
+<li>Mesh Data Transfer</li>
+<li>Optionally one can set up a message broker like RabbitMQ or Apache QPID AMQP broker.<ul>
+<li>Installing RabbitMQ with AMQP 1.0 support</li>
+</ul>
+</li>
+</ul>
+<p><code>powershell
+  choco install rabbitmq
+  C:\Program Files\RabbitMQ Server\rabbitmq_server-3.12.10\sbin&gt;rabbitmq-plugins.bat list
+  C:\Program Files\RabbitMQ Server\rabbitmq_server-3.12.10\sbin&gt;rabbitmq-plugins.bat enable rabbitmq_amqp1_0</code>
+* For export tests, make <code>export_files</code> directory in Mesh Data Transfer folder (f.ex. <code>C:\Dev\energy-mesh-data-transfer\src\MeshDataTransfer\bin\Release\net8.0\export_files</code>)</p>
+<h3 id="running-tests">Running tests</h3>
+<ul>
+<li>Starting tests from <code>C:\Dev\energy-test-framework\tests</code> folder:
+  <code>powershell
+  .\TestRunner.ps1 -ContextName mesh_datatransfer -dbg</code></li>
+</ul>
+              
+            </div>
+          </div><footer>
+      <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+          <a href="../../general/general/" class="btn btn--outline btn--success float-left" title="General"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+          <a href="../../use-cases/import-of-time-series-values-using-mdt/" class="btn btn--outline btn--success float-right" title="Import of time series values">Next <span class="icon icon-circle-arrow-right"></span></a>
+      </div>
+  
+    <hr/>
+  
+    <div role="contentinfo">
+      <!-- Copyright etc -->
+    </div>
+  
+    Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  </footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version is-active">
+      
+      
+        <span><a href="../../general/general/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      
+      
+        <span><a href="../../use-cases/import-of-time-series-values-using-mdt/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+  </div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../../../search/main.js"></script>
+      <script src="../../../js/version-select.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+syntax = "proto3";
+
+package volue.mesh.grpc.resource.v1alpha;
+
+import "type/resources.proto";
+
+
+// Mesh resource service
+// -------------------------------
+// The Mesh resource service is an API for managing Mesh resources, except time
+// series resources. Everything related to time series including time series
+// resources is handled by another, specialized Mesh time series service.
+//
+// Resources part of Mesh structure is not bound to a specific model definition
+// or model. It is organized by hierarchies of catalogs, like a file system.
+// A catalog may contain different type of resource objects.
+// The most common types are time series, binary files and text files.
+//
+service ResourceService {
+  // A text resource in Mesh can be compared with a text file located at
+  // a given catalog.
+  // The API supports reading, writing and browsing such Mesh resource objects.
+  rpc ListTextResources(ListTextResourcesRequest) returns (ListTextResourcesResponse) {}
+  rpc GetTextResource(GetTextResourceRequest) returns (GetTextResourceResponse) {}
+  rpc WriteTextResource(WriteTextResourceRequest) returns (WriteTextResourceResponse) {}
+}
+
+
+message ListTextResourcesRequest {
+  volue.mesh.grpc.type.Guid session_id = 1;
+  // The catalog in which we are looking for text resources (files).
+  // In case the option `include_subcatalogs` is true, this catalog is treated
+  // as the root of a hierarchical search.
+  volue.mesh.grpc.type.MeshId catalog = 2;
+
+  // Empty, simple "contains" pattern or a regular expression.
+  // In case it is empty, all text resources are added to reply list.
+  // Else, the system will try to look for a text resource which contains the
+  // `name_mask` value. For instance:
+  //   ".json" will match "AB.json", "A.jsonB", etc. (contains somewhere in the
+  //   name gives match).
+  // If contain operation fails, the system tries to match the name of the text
+  // resource with the `name_mask` value as a regular expression.
+  string name_mask = 3;
+
+  // Include search for matches in subcatalogs
+  bool include_subcatalogs = 4;
+}
+
+message ListTextResourcesResponse {
+  repeated volue.mesh.grpc.type.MeshId resources = 1;
+}
+
+message GetTextResourceRequest {
+  volue.mesh.grpc.type.Guid session_id = 1;
+
+  // The path must lead to an existing text resource.
+  // If MeshId contains a GUID, the system will resolve that GUID and do not
+  // try the MeshId path definition. A text path has the following format:
+  // Resource/Catalog1/CatalogX/SomeTextResourceName
+  volue.mesh.grpc.type.MeshId resource = 2;
+}
+
+message GetTextResourceResponse {
+  volue.mesh.grpc.type.Guid id = 1;
+  string path = 2;
+  // The contents of the text resource.
+  string text = 3;
+}
+
+message WriteTextResourceRequest {
+  volue.mesh.grpc.type.Guid session_id = 1;
+
+  // The path may lead to an existing text resource.
+  // Or, in case `allow_create`` is true, the resource will be created.
+  // This may create new catalogs, all or from a certain level.
+  // The first part must be resource, the last part is taken to be the text
+  // resource name.
+  // Resource/SomeTextResourceName is not accepted
+  volue.mesh.grpc.type.MeshId resource = 2;
+
+  // If set to false the target must be an existing text resource.
+  bool allow_create = 3;
+  // The contents to be written to the text resource.
+  string text = 4;
+}
+
+message WriteTextResourceResponse {
+}

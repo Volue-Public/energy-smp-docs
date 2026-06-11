@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+<title>Smart Power Documentation</title>
+
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../wave/wave.css" rel="stylesheet" />
+        <link href="../../../stylesheets/extra.css" rel="stylesheet" />
+        <link href="../../../css/version-select.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "General";
+        var mkdocs_page_input_path = "mesh-data-transfer/general/general.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav is-active">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search fill-neutral--contrast">
+      <a href="../../..">
+          <img src="../../../logo.png" class="logo" alt="Logo"/>
+        </a>
+
+        <!-- A trick to place the version selector where I want it to be. -->
+        <div class="icon-home" style="display: none;"></div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mesh</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mesh/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Concepts</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/concepts/availability/">Availability</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/concepts/calculations/">Calculations</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Modelling</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/modelling/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/modelling/rating-curves/">Rating curves</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/modelling/relations/">Relations</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/modelling/xy-sets/">XY-sets</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/concepts/search-language/">Search language</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/concepts/sessions/">Sessions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mesh/installation/MeshServiceInstallationGuide/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Calculations</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/calculations/general/">General</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/calculations/timepoint-macros/">Time macros</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Functions</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/calculations/functions/introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >General</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/allocate_reserves/">AllocateReserves</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/at/">AT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/color/">ColorARGB</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/compare/">Compare</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/concatenate/">Concatenate</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/copy_ts/">CopyTs</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/delta/">DELTA</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/disable_cache/">DisableCache</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/getyfx/">GET_Y_FX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/isvalid/">IsValid</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/linear/">Linear</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/max/">MAX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/meshid/">MeshID</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/min/">MIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/parameter/">Parameter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/pdlog/">PDLOG</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/reference_lookup/">Reference Lookup</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/restriction/">Restriction</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/revision/">Revision</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/set_ts_val_unit/">SET_TS_VALUNIT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/size/">Size</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/time_mask/">TIME_MASK</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/tostring/">ToString</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/trace/">Trace</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts/">TS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/unit_codes_for_set_ts_val_unit/">Unit Codes for SET_TS_VALUNIT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/valid/">Valid</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Forecast</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_best_forecast/">GetBestForecast</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_all_forecasts/">GetAllForecasts</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_forecast/">GetForecast</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_merged_forecast/">GetMergedForecast</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >History</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/history/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_ts_as_of_time/">GetTsAsOfTime</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_ts_historical_versions/">GetTsHistoricalVersions</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_ts_audit_times/">GetTsAuditTimes</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Logical</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/bool/">BOOL</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/inside/">INSIDE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/negative/">NEGATIVE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/not/">NOT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/outside/">OUTSIDE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/positive/">POSITIVE</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Math</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_gliding_average/">TS_GLIDING_AVERAGE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_gliding_gauss/">TS_GLIDING_GAUSS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_gliding_median/">TS_GLIDING_MEDIAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_gliding_median_gauss/">TS_GLIDING_MEDIAN_GAUSS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/gliding_trend_average/">GLIDING_TREND_AVERAGE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_acc_from/">TS_ACC_FROM</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/power/">POWER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/abs/">ABS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ceil/">CEIL</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/floor/">FLOOR</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/integer/">INTEGER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/log/">LOG</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ln/">LN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/round/">ROUND</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/round_integer/">ROUND_INTEGER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/acos/">ACOS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/asin/">ASIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/atan/">ATAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/cos/">COS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/sin/">SIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/tan/">TAN</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Mix</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/mix/">MIX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/mix_by_selecting_from_time_series_array/">MIX by selecting from time series array</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/mix0/">MIX0</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/tsiqfill/">TS_IQ_FILL</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Sim</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/sim/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/convert_volume/">CONVERT_VOLUME</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/rating_curve/">RatingCurve</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/time_delayed/">TimeDelayed</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/xy/">XY</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/yx/">YX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/zxy/">ZX_Y</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/zyx/">ZY_X</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Statistical</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/mean/">MEAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/normal/">Normal</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/percentile/">PERCENTILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/sum/">SUM</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Status</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/status/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/reset_status/">RESET_STATUS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/status_mask/">STATUS_MASK</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/status_count/">STATUS_COUNT</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Time</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/time_group/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/is_resolution/">IsResolution</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/is_time_valid/">IsTimeValid</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/push_ext_period/">PushExtPeriod</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/pop_ext_period/">PopExtPeriod</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/time/">Time</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/resolution/">Resolution</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/timespan/">TimeSpan</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/time_to_string/">TimeToString</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/time_examples/">Time Examples</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/time_point_information/">Time Point Information</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Transform</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/transform_what_when/">Which function can be used when</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/transform_terms/">Terms used in the functions</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/transform/">TRANSFORM</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_expand/">TS_EXPAND</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_offset/">TS_OFFSET</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/values_from_year/">ValuesFromYear</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/distribute/">DISTRIBUTE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/trans_profile/">TRANS_PROFILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/profile/">PROFILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/profile_with_explicit_frequency/">PROFILE with explicit frequency</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/accumulate/">ACCUMULATE</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >VEE</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/vee/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/validate_abs_limit/">ValidateAbsLimit</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/validate_delta_limit/">ValidateDeltaLimit</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/validate_delta_limit_extreme/">ValidateDeltaLimitExtreme</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/validate_repeat_value/">ValidateRepeatValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/correct_average_value/">CorrectAverageValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/correct_constant_value/">CorrectConstantValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/correct_copy_value/">CorrectCopyValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/correct_extrapolate/">CorrectExtrapolate</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/correct_interpolate/">CorrectInterpolate</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >gRPC</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/grpc/APISpecification/">API specification</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/grpc/Authorization/">Authorization</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/grpc/ClientCertificates/">Client certificates</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/grpc/FAQ/">Frequently Asked Questions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/grpc/MessageSizeLimits/">Message size limits</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Mesh REST API</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/rest-api/introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/rest-api/changelog/">Changelog</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/rest-api/api-documentation/">API specification</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >For developers</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/rest-api/generate-c%23-api-from-swagger-json/">Generate C# API from swagger.json</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/rest-api/how-to-use-ImportMultistepWaterValueFunctions/">How to use ImportMultistepWaterValueFunctions</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Excel AddIn for Mesh</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/excel-add-in/addin-excel-user-guide-for-mesh/">User guide</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/excel-add-in/how-to-install-addin-excel-for-mesh/">Installation guide</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Model maintenance</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/model-maintenance/ModelMaintenanceConcepts/">Model maintenance concepts</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/model-maintenance/ModelBackup/">Model backups</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mesh Data Transfer</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">General</a>
+    <ul class="current">
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration/configuration/">Configuration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Use cases</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../use-cases/import-of-time-series-values-using-mdt/">Import of time series values</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../use-cases/export-of-time-series-values-using-mdt/">Export of time series values</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../use-cases/import-of-availability-events-using-mdt/">Import of availability events</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../operations/queue-usage-in-smart-power/">Queue usage in Smart Power</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../operations/monitoring/">Monitor services</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Time series reports</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/reports_intro/">General</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/macros/">Macros</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/sort_contents/">Sorted layout</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap is-active">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars is-active"></i>
+          <a href="../../..">Smart Power Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Mesh Data Transfer</li>
+      <li class="breadcrumb-item active">General</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="general-info">General info</h2>
+<p>The <em>Mesh Data Transfer</em> service enables users to perform time series and availability data exports and imports from a <code>Mesh</code> server. It uses the AMQP protocol as an external communication method to guarantee high level of reliability and versatility.</p>
+<p>Mesh Data Transfer offers HTTP endpoints for creating both availability and time series export orders (used by certain Volue products, e.g. Participant, Nimbus). Imports are requested via queues (AMQP 1.0 or Azure Service Bus) and the outcomes of the import operations are sent to AMQP reply queues. The export results are stored as files or sent to an AMQP queue, depending on the configuration. Mesh Data Transfer is also responsible for saving export status to the <code>Message Log</code> (in the case of imports it is done by Mesh).</p>
+<h2 id="usage">Usage</h2>
+<h3 id="api-documentation-swagger">API Documentation (Swagger)</h3>
+<p>Mesh Data Transfer provides interactive API documentation using Swagger/OpenAPI. The Swagger UI is available at:</p>
+<pre><code>http://localhost:7000/swagger
+</code></pre>
+<p><strong>Configuration:</strong> Swagger can be enabled via appsettings.json:</p>
+<p><code>json
+   "ApiSettings": {
+     "EnableSwagger": true
+   }</code></p>
+<p>The Swagger UI provides interactive documentation for all available endpoints, allowing you to explore the API and test requests directly from your browser.</p>
+<h3 id="time-series-export">Time series export</h3>
+<p>To invoke a Mesh time series export, you post an HTTP request to one of Mesh Data Transfer's export endpoints.</p>
+<h4 id="order-endpoint"><strong>"Order"</strong> endpoint</h4>
+<p>The <code>Order</code> service handles keytab-specific export orders. Minimal working example:</p>
+<pre><code class="language-powershell">$body = '[{&quot;Date&quot;:&quot;2024-10-11T17:10:37&quot;,&quot;Receiver&quot;:&quot;DemoBase&quot;,&quot;Keytab&quot;:1,&quot;ValuesFrom&quot;:&quot;2024-05-09T00:00:00&quot;,&quot;ValuesTo&quot;:&quot;2024-05-11T00:00:00&quot;,&quot;Protocol&quot;:126}]'
+Invoke-WebRequest -Uri &quot;http://localhost:7000/Order&quot; -Method Post -ContentType &quot;application/json&quot; -Body $body
+</code></pre>
+<p>A prerequisite of a successful time series export is a pre-filled <code>keytab9</code> database table with references to the time series we want to export. The <code>keytab</code> parameter refers to the target <code>keytab9</code> row. <code>keytab9</code> is normally filled by the client application like Participant or Nimbus.</p>
+<h4 id="regularorder-endpoint"><strong>"RegularOrder"</strong> endpoint</h4>
+<p>The <code>RegularOrder</code> service handles export orders using wider time series match criteria by selecting time series to export by <code>ValuesTo</code> and <code>ValuesFrom</code> parameters and at least one of the following parameters: <code>Receiver</code>, <code>Protocol</code>, <code>ExportMethod</code>. For example:</p>
+<pre><code class="language-powershell">$body = '[{&quot;Date&quot;:&quot;2024-10-11T17:10:37&quot;,&quot;Receiver&quot;:&quot;DemoBase&quot;,&quot;ValuesFrom&quot;:&quot;2024-05-09T00:00:00&quot;,&quot;ValuesTo&quot;:&quot;2024-05-11T00:00:00&quot;,&quot;Protocol&quot;:123, &quot;ExportMethod&quot;:111}]'
+Invoke-WebRequest -Uri &quot;http://localhost:7000/RegularOrder&quot; -Method Post -ContentType &quot;application/json&quot; -Body $body
+</code></pre>
+<h4 id="export-message-body-parameters">Export message body parameters</h4>
+<p><code>ValuesFrom</code>, <code>ValuesTo</code> define the time series period.</p>
+<p><code>Receiver</code> can be either the name or the integer key (<code>opun_key</code>) of the receiver participant.</p>
+<p><code>Protocol</code> denotes the export type. Possible options are:</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Protocol</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>121</td>
+<td>PVPLAN</td>
+</tr>
+<tr>
+<td>122</td>
+<td>Bidding</td>
+</tr>
+<tr>
+<td>123</td>
+<td>Standard export</td>
+</tr>
+<tr>
+<td>125</td>
+<td>APOR/APOT</td>
+</tr>
+<tr>
+<td>134</td>
+<td>GS2</td>
+</tr>
+<tr>
+<td>135</td>
+<td>EDIEL DELFOR</td>
+</tr>
+<tr>
+<td>137</td>
+<td>Excel CSV</td>
+</tr>
+<tr>
+<td>138</td>
+<td>TS Volumes Web Service export</td>
+</tr>
+<tr>
+<td>139</td>
+<td>MSCONS</td>
+</tr>
+<tr>
+<td>141</td>
+<td>MeshTimeSeriesJson</td>
+</tr>
+</tbody>
+</table>
+<p><code>ExportMethod</code> is an integer key (<code>tstr_key</code>) of the transfer definition used by the receiver for a specific time series.</p>
+<h4 id="export-sender">Export sender</h4>
+<p>The sender defined in the time series export definition (a "sender host") is used by Mesh Data Transfer to specify the sender of the time series data (the sender is then referenced in the Message Log or directly in case of some of the export types, like Standard export or GS2; moreover all the output is grouped by the senders (see below)). If the sender is not defined in the time series export definition, a default sender is selected (which is defined by <code>ParticipantSettings/ICC_SENDER</code> parameter in the configuration file).</p>
+<p>There is also an option to specify the sender in the time series export request:</p>
+<pre><code class="language-powershell">$body = '[{&quot;Date&quot;:&quot;2024-10-11T17:10:37&quot;,&quot;Receiver&quot;:&quot;DemoBase&quot;,&quot;Sender&quot;:&quot;Mesh&quot;,&quot;Keytab&quot;:1,&quot;ValuesFrom&quot;:&quot;2024-05-09T00:00:00&quot;,&quot;ValuesTo&quot;:&quot;2024-05-11T00:00:00&quot;,&quot;Protocol&quot;:126}]'
+Invoke-WebRequest -Uri &quot;http://localhost:7000/Order&quot; -Method Post -ContentType &quot;application/json&quot; -Body $body
+</code></pre>
+<p>In this case the exported time series will be limited to those that match the input sender parameter. When the time series export definition does not specify the sender host, it will be replaced with the input sender parameter (instead of the default sender).</p>
+<p>The same rules apply to Sender request parameter as to the Receiver parameter, i.e. it can be a name or an integer.</p>
+<h5 id="grouping-of-the-output-by-sender">Grouping of the output by sender</h5>
+<p>If the time series included in a single time series export request refer to a different sender, these time series will be grouped into separate export results.</p>
+<h2 id="data-flow">Data Flow</h2>
+<p>Message flow when <em>importing</em> data to <code>Mesh</code>:</p>
+<p><img alt="Import Order Flow" src="../docs/data-import.svg" title="Import Order Flow" /></p>
+<p>Message flow when <em>exporting</em> data from <code>Mesh</code>:</p>
+<p><img alt="Export Order Flow" src="../docs/data-export.svg" title="Export Order Flow" /></p>
+<p>Mesh Data Transfer provides request tracking capability. A request ID is included in the response to the export request. It can be used to check the request status by sending <code>HTTP</code> <code>GET</code> to the <code>exportstatus/&lt;ID&gt;</code> endpoint. Example:</p>
+<pre><code class="language-powershell">Invoke-WebRequest -Uri &quot;http://localhost:7000/exportstatus/4bb1306d-5259-411a-8e28-2c41107d48c9&quot; -Method Get
+</code></pre>
+              
+            </div>
+          </div><footer>
+      <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+          <a href="../../../mesh/model-maintenance/ModelBackup/" class="btn btn--outline btn--success float-left" title="Model backups"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+          <a href="../../configuration/configuration/" class="btn btn--outline btn--success float-right" title="Configuration">Next <span class="icon icon-circle-arrow-right"></span></a>
+      </div>
+  
+    <hr/>
+  
+    <div role="contentinfo">
+      <!-- Copyright etc -->
+    </div>
+  
+    Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  </footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version is-active">
+      
+      
+        <span><a href="../../../mesh/model-maintenance/ModelBackup/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      
+      
+        <span><a href="../../configuration/configuration/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+  </div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../../../search/main.js"></script>
+      <script src="../../../js/version-select.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

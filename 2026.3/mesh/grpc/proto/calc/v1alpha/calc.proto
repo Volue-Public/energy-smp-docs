@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package volue.mesh.grpc.calc.v1alpha;
+
+import "time_series/v1alpha/time_series.proto";
+import "type/resources.proto";
+
+
+// Mesh calculation service
+// -------------------------------
+// The Mesh calculation service is an API for running Mesh calculations.
+//
+service CalculationService {
+
+  // Run ad-hoc calculation.
+  //
+  // The default max client inbound message size is 4 megabytes. If the
+  // response size is greater than this limit, a `RESOURCE_EXHAUSTED` status is
+  // returned.
+  //
+  // Each time series point occupies 20 bytes. In case of larger data volumes
+  // please send request data in chunks or increase the maximum gRPC inbound
+  // message size from the client side. The limit can be configured when
+  // creating the connection to the Mesh server.
+  rpc RunCalculation(CalculationRequest) returns (CalculationResponse) {}
+}
+
+message CalculationRequest {
+  volue.mesh.grpc.type.Guid session_id = 1;
+  string expression = 2;
+  volue.mesh.grpc.type.UtcInterval interval = 3;
+  volue.mesh.grpc.type.MeshId relative_to = 4;
+}
+
+message CalculationResponse {
+  oneof calculation_result_oneof {
+    // Not all fields in Timeseries result will be set (e.g. `path`,
+    // or `timeseries_key` in the `id` field)
+    volue.mesh.grpc.time_series.v1alpha.ReadTimeseriesResponse timeseries_results = 1;
+    NumericResults numeric_results = 2;
+    StringResults string_results = 3;
+  }
+}
+
+message NumericResults {
+  repeated double value = 1;
+}
+
+message StringResults {
+  repeated string value = 1;
+}
