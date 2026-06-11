@@ -1,6 +1,5 @@
 This file enumerates time zones which have ambiguous or non-existent midnights when using
-the IANA time zone database version 2025b. More precisely, it shows the last date with such
-issues as of this writing (2026-06-08).
+the IANA time zone database version 2025b. More precisely, it shows the last date with such issues.
 
 Time zones with dates marked '2099' are using DST rules that will cause them to have
 these issues in the future under this version of the database.

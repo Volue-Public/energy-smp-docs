@@ -87,12 +87,11 @@ The gRPC API allows for setting time zones through the following proto files:
 See the [gRPC API specification](../../grpc/APISpecification.md) for the full set
 of proto files.
 
-Note that the `Timezone` enum defined in time_series.proto is _not_ related to
+**_Note!_** The `Timezone` enum defined in time_series.proto is _not_ related to
 the time zone-aware time series mechanism. Time zone information in gRPC is
 passed as a string with an IANA time zone database name. The `Timezone` enum
 is defined only for usage with the `ReadTransformedTimeseriesRequest` and
 `ReadMultiIntervalTransformedTimeseries` RPCs.
-See also [Special considerations about `@TRANSFORM`](#special-considerations-about-transform).
 
 ## Python SDK
 
@@ -107,7 +106,9 @@ calculations. This functionality will be expanded and improved over time.
 The current allowed usage is as follows:
 
 * As a return value of `@t()`, `@t(s)`, and `@T(s)`.
-* In `@TRANSFORM(t, s, s)` and `@TRANSFORM(t, d, s)`, with the following caveats:
+* In [`@TRANSFORM(t, s, s)`](../../calculations/functions/transform.md#transformt-s-s) and
+  [`@TRANSFORM(t, d, s)`](../../calculations/functions/transform.md#transformt-d-s),
+  with the following caveats:
     * The `s` resolution argument must be `MIN`, `MIN5`, `MIN10`, `MIN15`, `MIN30`, or `HOUR`.
     * For the `d` overload, the resolution must be less than 24 hours and divide evenly
       into 24 hours (`d < 24 hours` and `24 hours % d == 0`).
@@ -137,12 +138,9 @@ in a few ways:
 
 ## Time zones with ambiguous or non-existent midnights
 
-As of this writing (2026-06-08), Mesh uses version 2025b of the IANA time zone database.
+As of SmP 2026.3, Mesh uses version 2025b of the IANA time zone database.
 As of this version, the last dates where time zones have ambiguous or non-existent
 midnights are listed [here](../assets/tz-with-midnight-issues.txt).
-
-**_Note!_** The dates marked as `2099` in the list are using DST rules which will have
-ambiguous or non-existent midnights in the future for this version of the IANA database.
 
 ## Making an existing time series time zone-aware
 
