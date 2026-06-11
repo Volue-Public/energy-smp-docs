@@ -781,6 +781,7 @@ This ensures that sensitive data, including credentials and queries, is protecte
 | **2.20 / 2026.1** | ❌ | ✔️ | ✔️ | ✔️ | ❌ | ❌ |
 | **2.20.1 / 2026.1.05** | ❌ | ✔️ | ✔️ | ✔️ | ✔️ | ❌ |
 | **2.21 / 2026.2** | ❌ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| **2.22 / 2026.3** | ❌ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 **Legend:**
 
