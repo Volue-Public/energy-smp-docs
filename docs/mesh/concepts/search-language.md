@@ -25,8 +25,8 @@ A traversal describes a set of relative paths in the Mesh object structure. It t
 | Composer | `Search1/Search2` | Use slash, /, to combine searches. | `operate_school/school_has_classes`|
 | Intersection | `&` | Combines several separate searches into a collection of objects that are part of ALL separate search results.| `[.Type=School]&[.Name=Berg]`|
 | Union | <code>&#124;</code> | Combines several separate searches into a unique collection.| <code>[.Name=Eng-1]&#124;[.Type=Pupil]</code> |
-| Repeater | `<Search>+` | Repeats a search recursively one or more times, using the search output as the new starting points. Returns the most nested matches. [See more](#predicated-child-walks-with-a-repeater).|`[.Name=Berg]+`|
-| Memoizing repeater | `<Search>{+}` | Repeats a search recursively one or more times, using the search output as the new starting points. Returns the most nested matches combined with the results of each repetition. [See more](#predicated-child-walks-with-a-repeater).| `[.Name=Berg]{+}`|
+| Repeater | `<Search>+` | Repeats a search recursively one or more times, using the search output as the new starting points. Returns the most-nested matches. [See more](#predicated-child-walks-with-a-repeater).|`[.Name=Berg]+`|
+| Memoizing repeater | `<Search>{+}` | Repeats a search recursively one or more times, using the search output as the new starting points. Returns the most-nested matches, as well as any matches found along the way. [See more](#predicated-child-walks-with-a-repeater).| `[.Name=Berg]{+}`|
 | Self step | `@` | The output is the same as the input. This is useful when composing unions.|`@`|
 | Filter | `@[<criteria expression>]` | Filters with help of example input object that matches criteria.| `@[.Name~a]`|
 | Child walk | `*` | Outputs the leaf (lowest level) objects found when descending from the provided starting point. If the start point is a leaf, it is included in the result.| `*`|
@@ -76,7 +76,7 @@ You can combine search operations with the following operators:
 
 ## Searching self-similar models
 
-It is possible to create a model where an object of a certain type has a child of the same type. For example, an object `A1` owns an object called `A2` and both objects are of type `A`.
+It is possible to create a model where an object of a certain type has a child of the same type. For example, an object `A1` owns an object called `A4` and both objects are of type `A`.
 Composing search expressions in this case requires special attention.
 
 ### Example model
@@ -91,7 +91,7 @@ Composing search expressions in this case requires special attention.
 
 ### Predicated child walks
 
-A search expression `*[.Type=A]` with a starting point set to `Model` yields `A1`, `A2` and `A3`. **_Note!_** The search will not drill down to find `A4` and `A5`.
+A search expression `*[.Type=A]` with a starting point set to `Model` yields `A1`, `A2` and `A3`. **_Note!_** The search will not proceed to find `A4` and `A5`.
 
 A search expression `*[.Type=A]` with a starting point set to `A1` yields `A1`. The expression matches the starting point and the search does not look for further matches.
 
@@ -100,10 +100,10 @@ sign excludes the start point from the search.
 
 ### Predicated child walks with a repeater
 
-A search expression `[.Type=A]+` with a starting point set to `Model` yields `A2`, `A3` and `A4`. It recursively applies the `[.Type=A]` part of the expression, using the output of the previous step as input. For example, when the search finds object `A1`, it looks for its direct children of type `A` to find object `A4` which ends up in the result set. When the search finds object `A3`, it looks for its direct children of type `A` but there are none - `A3` ends up in the result set.
+A search expression `[.Type=A]+` with a starting point set to `Model` yields `A2`, `A3` and `A4`. It recursively applies the `[.Type=A]` part of the expression, using the output of the previous step as input. For example, when the search finds object `A1`, it looks for its direct children of type `A` to find object `A4` which ends up in the result set. Note that `A3` is included in the result set instead of `A5`; this is because when the search finds object `A3`, it looks for its _direct_ children of type `A` but it finds none. The `[.Type=A]` search is therefore not applied at `B3`.
 
-A search expression `[.Type=A]{+}` with a starting point set to `Model` yields `A1`, `A2`, `A3` and `A4`. The `{+}` part in the expression recursively applies the search and outputs the intermediate matches such as `A1`.
+A search expression `[.Type=A]{+}` with a starting point set to `Model` yields `A1`, `A2`, `A3` and `A4`. This follows the same logic as in the previous expression, but the `{+}` part in the expression also outputs intermediate matches such as `A1`.
 
-A search expression `+[.Type=A]+` with a starting point set to `Model` yields `A2`, `A4` and `A5`. It recursively drills down into the model to find all leaf objects of type `A`.
+A search expression `+[.Type=A]+` with a starting point set to `Model` yields `A2`, `A4` and `A5`. It recursively traverses the model to find the last object of type `A` on each branch. Here the `+[.Type=A]` part of the expression makes the search descend unconditionally down each branch until it finds the first object of type `A`; then, the trailing `+` re-applies the `+[.Type=A]` search so that it keeps descending down the branch. The search ends up returning the last object of type `A` on each branch, even if it's not a direct child of a type `A` object.
 
-A search expression `+[.Type=A]{+}` with a starting point set to `Model` yields `A1`, `A2`, `A3`, `A4` and `A5`. It recursively drills down into the model to find all leaf objects of type `A` and adds intermediate `A` objects to the result set.
+A search expression `+[.Type=A]{+}` with a starting point set to `Model` yields `A1`, `A2`, `A3`, `A4` and `A5`. It recursively traverses the model to find the last object of type `A` on each branch as before, but also adds any intermediate `A` objects to the result set.
