@@ -15,7 +15,7 @@ Get Mesh up and running in your environment:
 
 Understand the fundamental concepts behind Mesh:
 
-- [Time series](concepts/time-series.md) - How time series data is structured and managed
+- [Time series](concepts/time-series/general.md) - How time series data is structured and managed
 - [Sessions](concepts/sessions.md) - Working with Mesh sessions
 - [Calculations](concepts/calculations.md) - Overview of the calculation engine
 - [Availability](concepts/availability.md) - Tracking asset availability and restrictions

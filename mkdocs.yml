@@ -25,7 +25,9 @@ nav:
                       - XY-sets: mesh/concepts/modelling/xy-sets.md
                 - Search language: mesh/concepts/search-language.md
                 - Sessions: mesh/concepts/sessions.md
-                - Time series: mesh/concepts/time-series.md
+                - Time series:
+                      - General: mesh/concepts/time-series/general.md
+                      - Time zone-aware time series: mesh/concepts/time-series/time-zone-aware-time-series.md
           - Installation: mesh/installation/MeshServiceInstallationGuide.md
           - Calculations:
                 - General: mesh/calculations/general.md
