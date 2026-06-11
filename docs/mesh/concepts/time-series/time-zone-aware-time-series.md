@@ -59,7 +59,7 @@ requires a fixed 24-hour spacing.
 * Time zones are supported only for daily or coarser resolutions.
 * Usage of time zone-aware time series on calculations is currently limited.
   See [Time zone-aware time series in calculations](#time-zone-aware-time-series-in-calculations)
-  for details. 
+  for details.
 * Some time zones have specific points in time where midnight is ambiguous or
   non-existent. Such timestamps cannot currently be used, even in cases such as
   querying an interval covering those timestamps (regardless of whether there
@@ -68,7 +68,7 @@ requires a fixed 24-hour spacing.
   for details.
 * Making existing time series time zone-aware can be complicated in some cases,
   and may require some preliminary adjustment of existing points.
-  See [Making an existing time series time zone-aware](#making-an-existing-time-series-time-zone-aware) 
+  See [Making an existing time series time zone-aware](#making-an-existing-time-series-time-zone-aware)
   for details.
 * It is not allowed to read/write points from/to a time series with an
   uncommitted time zone change in the same Mesh session.
