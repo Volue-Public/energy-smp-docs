@@ -176,7 +176,7 @@ If d is defined as the value 864000 this means a period of 10 days
 
 Corresponding functionality as in [`TRANSFORM(t, s, s)`](#transformt-s-s), but
 with an additional argument that decides which time zone that is the base for
-the conversion. This gives the possibilities to user periods that are different
+the conversion. This gives the possibilities to use periods that are different
 from the rest of the environment.
 
 
