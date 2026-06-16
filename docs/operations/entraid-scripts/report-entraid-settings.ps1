@@ -17,93 +17,10 @@ $Global:LogFile     = Join-Path (Get-Location) ("smartpower-report_{0}.log" -f $
 $Global:ScriptStart = Get-Date
 
 # ----------------------------
-# 1) CONFIG (must match provisioning script)
+# 1) CONFIG
 # ----------------------------
 
-$NamePrefix = "energy-"
-$EnvSuffix  = "-auto"  # set "" if you don't want environment suffix
-
-$MeshScopeValue = "Mesh.Grpc"
-
-$SmartApps = @(
-  @{
-    Key="OptimalLog"
-    DisplayName=("${NamePrefix}optimal-log${EnvSuffix}")
-    AppType="Application"
-    ScopeValue="Optimal.Log"
-  },
-  @{
-    Key="OptimalGateway"
-    DisplayName=("${NamePrefix}optimal-gateway${EnvSuffix}")
-    AppType="Application"
-    ScopeValue="Optimal.Gateway"
-    MeshPermissions=@(@{ PermissionType="Scope" },@{ PermissionType="Role" })
-    OptimalLogPermissions=@(@{ PermissionType="Scope" })
-  },
-  @{
-    Key="AssetManager"
-    DisplayName=("${NamePrefix}asset-manager${EnvSuffix}")
-    AppType="Application"
-    ScopeValue="AssetManager"
-    MeshPermissions=@(@{ PermissionType="Scope" })
-  },
-  @{
-    Key="AvailabilityPlanner"
-    DisplayName=("${NamePrefix}availability-planner${EnvSuffix}")
-    AppType="Application"
-    ScopeValue="AvailabilityPlanner"
-    MeshPermissions=@(@{ PermissionType="Scope" })
-  },
-  @{
-    Key="MeshConfigurator"
-    DisplayName=("${NamePrefix}mesh-configurator${EnvSuffix}")
-    AppType="Application"
-    ScopeValue="MeshConfigurator"
-    MeshPermissions=@(@{ PermissionType="Scope" })
-  },
-  @{
-    Key="Nimbus"
-    DisplayName=("${NamePrefix}nimbus${EnvSuffix}")
-    AppType="Application"
-    ScopeValue="Nimbus"
-    MeshPermissions=@(@{ PermissionType="Scope" })
-    OptimalGatewayPermissions=@(@{ PermissionType="Scope" })
-    OptimalLogPermissions=@(@{ PermissionType="Scope" })
-    NimbusPermissions=@(@{ PermissionType="Scope" })
-  },
-  @{
-    Key="MarginalCost"
-    DisplayName=("${NamePrefix}marginal-cost${EnvSuffix}")
-    AppType="Application"
-    ScopeValue="MarginalCost"
-    MeshPermissions=@(@{ PermissionType="Scope" })
-  },
-  @{
-    Key="MeshDataTransfer"
-    DisplayName=("${NamePrefix}mesh-data-transfer${EnvSuffix}")
-    AppType="Daemon"
-    MeshPermissions=@(@{ PermissionType="Role" })
-  },
-  @{
-    Key="AutomationFrameworkApi"
-    DisplayName=("${NamePrefix}automation-framework-api${EnvSuffix}")
-    AppType="Application"
-    ScopeValue="af-api"
-    MeshPermissions=@(@{ PermissionType="Role" })
-    AFPermissions=@(@{ PermissionType="Scope" })
-  },
-  @{
-    Key="AutomationFrameworkServices"
-    DisplayName=("${NamePrefix}automation-framework-services${EnvSuffix}")
-    AppType="Application"
-    MeshPermissions=@(@{ PermissionType="Scope" })
-    OptimalGatewayPermissions=@(@{ PermissionType="Scope" })
-    OptimalLogPermissions=@(@{ PermissionType="Scope" })
-    AFPermissions=@(@{ PermissionType="Scope" })
-  }
-)
-
-$MeshAppDisplayName = "${NamePrefix}mesh${EnvSuffix}"
+. "$PSScriptRoot\entraid-config.ps1"
 
 # ----------------------------
 # 2) LOG HELPERS
