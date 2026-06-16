@@ -1,7 +1,7 @@
-﻿## MIX0
+﻿# MIX0
 ## About the function
 Construct a new time series as follows: given two or more fixed-interval time series,
-for each time period select the first existing value different from zero. 
+for each time period select the first existing value different from zero.
 If all the input values are zero, the result value is zero. If all the input values
 are missing, the result value is also missing.
 
