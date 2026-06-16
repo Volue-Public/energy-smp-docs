@@ -14,7 +14,7 @@ The time series are fixed interval series, i.e. hour, day, week, etc.
 ## Example
 Example 1: @MIX0(t,t)
 
-Given two objects called `NO1` and `NO2` with time series attributes
+Given two objects called `NO1` and `NO2` with a time series attribute
 called `Income`, we can have the following:
 
 ```
