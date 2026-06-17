@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+<title>Smart Power Documentation</title>
+
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../wave/wave.css" rel="stylesheet" />
+        <link href="../../../stylesheets/extra.css" rel="stylesheet" />
+        <link href="../../../css/version-select.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Installation";
+        var mkdocs_page_input_path = "mesh/installation/MeshServiceInstallationGuide.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav is-active">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search fill-neutral--contrast">
+      <a href="../../..">
+          <img src="../../../logo.png" class="logo" alt="Logo"/>
+        </a>
+
+        <!-- A trick to place the version selector where I want it to be. -->
+        <div class="icon-home" style="display: none;"></div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mesh</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Concepts</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/availability/">Availability</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/calculations/">Calculations</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Modelling</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/rating-curves/">Rating curves</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/relations/">Relations</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/modelling/xy-sets/">XY-sets</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/search-language/">Search language</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../concepts/sessions/">Sessions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Installation</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#about-this-document">About this document</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#system-requirements">System requirements</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#checklist-before-you-start-the-installation">Checklist before you start the installation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#general-setup">General setup</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#hardware-requirements">Hardware requirements</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#windows-services-and-tcp-communication">Windows services and TCP communication</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#communication-between-nimbus-client-and-mesh-server">Communication between Nimbus Client and Mesh server</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-the-mesh-service">Install the Mesh Service</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#configuring-core-dump-creation">Configuring core dump creation</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#meshjson-minimum-version">mesh.json - minimum version</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#database-connection">Database connection</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#credentials">Credentials</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#oracle-external-authentication">Oracle external authentication</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mesh-ports-and-authentication-for-zmq">Mesh ports and authentication for ZMQ</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mesh-grpc-server">Mesh gRPC server</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#enable-the-server-and-configure-port-numbers">Enable the server and configure port numbers</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#use-transport-layer-security-tls">Use Transport Layer Security (TLS)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#certificates">Certificates</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#loading-certificates-from-file-system">Loading certificates from file system</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#windows-certificate-store">Windows Certificate Store</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#authentication">Authentication</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#kerberos">Kerberos</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#oauth-20-access-tokens">OAuth 2.0 access tokens</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#authorisation">Authorisation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#limit-time-series-cache-usage">Limit time series cache usage</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#monitor-and-tune-the-cache">Monitor and tune the cache</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#how-the-cache-works">How the cache works</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#verify-the-installation">Verify the installation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#update-the-mesh-object-model">Update the Mesh object model</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#error-situations">Error situations</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#general-installation-problems">General installation problems</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#problems-related-to-oracle-19">Problems related to Oracle 19</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#security-considerations">Security considerations</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#file-system">File system</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#database">Database</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-compatibility">Version compatibility</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#mesh-python-sdk-compatibility-matrix">Mesh Python SDK compatibility matrix</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#meshjson-complete">mesh.json - complete</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#contact-information">Contact information</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Calculations</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../calculations/general/">General</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../calculations/timepoint-macros/">Time macros</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Functions</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../calculations/functions/introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >General</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/allocate_reserves/">AllocateReserves</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/at/">AT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/color/">ColorARGB</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/compare/">Compare</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/concatenate/">Concatenate</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/copy_ts/">CopyTs</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/delta/">DELTA</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/disable_cache/">DisableCache</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/getyfx/">GET_Y_FX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/isvalid/">IsValid</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/linear/">Linear</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/max/">MAX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/meshid/">MeshID</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/min/">MIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/parameter/">Parameter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/pdlog/">PDLOG</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/reference_lookup/">Reference Lookup</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/restriction/">Restriction</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/revision/">Revision</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/set_ts_val_unit/">SET_TS_VALUNIT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/size/">Size</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/time_mask/">TIME_MASK</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/tostring/">ToString</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/trace/">Trace</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ts/">TS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/unit_codes_for_set_ts_val_unit/">Unit Codes for SET_TS_VALUNIT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/valid/">Valid</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Forecast</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/get_best_forecast/">GetBestForecast</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/get_all_forecasts/">GetAllForecasts</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/get_forecast/">GetForecast</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/get_merged_forecast/">GetMergedForecast</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >History</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/history/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/get_ts_as_of_time/">GetTsAsOfTime</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/get_ts_historical_versions/">GetTsHistoricalVersions</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/get_ts_audit_times/">GetTsAuditTimes</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Logical</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/bool/">BOOL</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/inside/">INSIDE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/negative/">NEGATIVE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/not/">NOT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/outside/">OUTSIDE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/positive/">POSITIVE</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Math</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ts_gliding_average/">TS_GLIDING_AVERAGE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ts_gliding_gauss/">TS_GLIDING_GAUSS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ts_gliding_median/">TS_GLIDING_MEDIAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ts_gliding_median_gauss/">TS_GLIDING_MEDIAN_GAUSS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/gliding_trend_average/">GLIDING_TREND_AVERAGE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ts_acc_from/">TS_ACC_FROM</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/power/">POWER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/abs/">ABS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ceil/">CEIL</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/floor/">FLOOR</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/integer/">INTEGER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/log/">LOG</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ln/">LN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/round/">ROUND</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/round_integer/">ROUND_INTEGER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/acos/">ACOS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/asin/">ASIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/atan/">ATAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/cos/">COS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/sin/">SIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/tan/">TAN</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Mix</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/mix/">MIX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/mix_by_selecting_from_time_series_array/">MIX by selecting from time series array</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/mix0/">MIX0</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/tsiqfill/">TS_IQ_FILL</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Sim</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/sim/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/convert_volume/">CONVERT_VOLUME</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/rating_curve/">RatingCurve</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/time_delayed/">TimeDelayed</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/xy/">XY</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/yx/">YX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/zxy/">ZX_Y</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/zyx/">ZY_X</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Statistical</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/mean/">MEAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/normal/">Normal</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/percentile/">PERCENTILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/sum/">SUM</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Status</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/status/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/reset_status/">RESET_STATUS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/status_mask/">STATUS_MASK</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/status_count/">STATUS_COUNT</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Time</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/time_group/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/is_resolution/">IsResolution</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/is_time_valid/">IsTimeValid</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/push_ext_period/">PushExtPeriod</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/pop_ext_period/">PopExtPeriod</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/time/">Time</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/resolution/">Resolution</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/timespan/">TimeSpan</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/time_to_string/">TimeToString</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/time_examples/">Time Examples</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/time_point_information/">Time Point Information</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Transform</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/transform_what_when/">Which function can be used when</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/transform_terms/">Terms used in the functions</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/transform/">TRANSFORM</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ts_expand/">TS_EXPAND</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/ts_offset/">TS_OFFSET</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/values_from_year/">ValuesFromYear</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/distribute/">DISTRIBUTE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/trans_profile/">TRANS_PROFILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/profile/">PROFILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/profile_with_explicit_frequency/">PROFILE with explicit frequency</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/accumulate/">ACCUMULATE</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >VEE</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/vee/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/validate_abs_limit/">ValidateAbsLimit</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/validate_delta_limit/">ValidateDeltaLimit</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/validate_delta_limit_extreme/">ValidateDeltaLimitExtreme</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/validate_repeat_value/">ValidateRepeatValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/correct_average_value/">CorrectAverageValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/correct_constant_value/">CorrectConstantValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/correct_copy_value/">CorrectCopyValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/correct_extrapolate/">CorrectExtrapolate</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../calculations/functions/correct_interpolate/">CorrectInterpolate</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >gRPC</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../grpc/APISpecification/">API specification</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grpc/Authorization/">Authorization</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grpc/ClientCertificates/">Client certificates</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grpc/FAQ/">Frequently Asked Questions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../grpc/MessageSizeLimits/">Message size limits</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Mesh REST API</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../rest-api/introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../rest-api/changelog/">Changelog</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../rest-api/api-documentation/">API specification</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >For developers</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../rest-api/generate-c%23-api-from-swagger-json/">Generate C# API from swagger.json</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../rest-api/how-to-use-ImportMultistepWaterValueFunctions/">How to use ImportMultistepWaterValueFunctions</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Excel AddIn for Mesh</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../excel-add-in/addin-excel-user-guide-for-mesh/">User guide</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../excel-add-in/how-to-install-addin-excel-for-mesh/">Installation guide</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Model maintenance</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../model-maintenance/ModelMaintenanceConcepts/">Model maintenance concepts</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../model-maintenance/ModelBackup/">Model backups</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mesh Data Transfer</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mesh-data-transfer/general/general/">General</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mesh-data-transfer/configuration/configuration/">Configuration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Use cases</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh-data-transfer/use-cases/import-of-time-series-values-using-mdt/">Import of time series values</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh-data-transfer/use-cases/export-of-time-series-values-using-mdt/">Export of time series values</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh-data-transfer/use-cases/import-of-availability-events-using-mdt/">Import of availability events</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../operations/queue-usage-in-smart-power/">Queue usage in Smart Power</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../operations/monitoring/">Monitor services</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Time series reports</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/reports_intro/">General</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/macros/">Macros</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/sort_contents/">Sorted layout</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap is-active">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars is-active"></i>
+          <a href="../../..">Smart Power Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Mesh</li>
+      <li class="breadcrumb-item active">Installation</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="mesh-service-installation-guide">Mesh Service Installation Guide</h1>
+<ul>
+<li><a href="#mesh-service-installation-guide">Mesh Service Installation Guide</a><ul>
+<li><a href="#about-this-document">About this document</a></li>
+<li><a href="#prerequisites">Prerequisites</a><ul>
+<li><a href="#system-requirements">System requirements</a></li>
+<li><a href="#checklist-before-you-start-the-installation">Checklist before you start the installation</a></li>
+<li><a href="#general-setup">General setup</a><ul>
+<li><a href="#hardware-requirements">Hardware requirements</a></li>
+<li><a href="#windows-services-and-tcp-communication">Windows services and TCP communication</a></li>
+<li><a href="#communication-between-nimbus-client-and-mesh-server">Communication between Nimbus Client and Mesh server</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#install-the-mesh-service">Install the Mesh Service</a><ul>
+<li><a href="#configuring-core-dump-creation">Configuring core dump creation</a></li>
+</ul>
+</li>
+<li><a href="#configuration">Configuration</a><ul>
+<li><a href="#meshjson-minimum-version">mesh.json - minimum version</a></li>
+<li><a href="#database-connection">Database connection</a><ul>
+<li><a href="#credentials">Credentials</a></li>
+<li><a href="#oracle-external-authentication">Oracle external authentication</a></li>
+</ul>
+</li>
+<li><a href="#mesh-ports-and-authentication-for-zmq">Mesh ports and authentication for ZMQ</a></li>
+<li><a href="#mesh-grpc-server">Mesh gRPC server</a><ul>
+<li><a href="#enable-the-server-and-configure-port-numbers">Enable the server and configure port numbers</a></li>
+</ul>
+</li>
+<li><a href="#use-transport-layer-security-tls">Use Transport Layer Security (TLS)</a><ul>
+<li><a href="#certificates">Certificates</a></li>
+<li><a href="#loading-certificates-from-file-system">Loading certificates from file system</a></li>
+<li><a href="#windows-certificate-store">Windows Certificate Store</a></li>
+</ul>
+</li>
+<li><a href="#authentication">Authentication</a><ul>
+<li><a href="#kerberos">Kerberos</a></li>
+<li><a href="#oauth-20-access-tokens">OAuth 2.0 access tokens</a><ul>
+<li><a href="#access-token-types">Access token types</a></li>
+<li><a href="#oauth-configuration">Configuration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#authorisation">Authorisation</a></li>
+<li><a href="#limit-time-series-cache-usage">Limit time series cache usage</a><ul>
+<li><a href="#monitor-and-tune-the-cache">Monitor and tune the cache</a></li>
+<li><a href="#how-the-cache-works">How the cache works</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#verify-the-installation">Verify the installation</a></li>
+<li><a href="#update-the-mesh-object-model">Update the Mesh object model</a></li>
+<li><a href="#error-situations">Error situations</a><ul>
+<li><a href="#general-installation-problems">General installation problems</a></li>
+<li><a href="#problems-related-to-oracle-19">Problems related to Oracle 19</a></li>
+</ul>
+</li>
+<li><a href="#security-considerations">Security considerations</a><ul>
+<li><a href="#file-system">File system</a></li>
+<li><a href="#database">Database</a></li>
+</ul>
+</li>
+<li><a href="#version-compatibility">Version compatibility</a><ul>
+<li><a href="#mesh-python-sdk-compatibility-matrix">Mesh Python SDK compatibility matrix</a></li>
+</ul>
+</li>
+<li><a href="#meshjson-complete">mesh.json - complete</a></li>
+<li><a href="#contact-information">Contact information</a></li>
+</ul>
+</li>
+</ul>
+<div style="page-break-after: always;"></div>
+
+<h2 id="about-this-document">About this document</h2>
+<p>This document describes how to install and upgrade the Mesh Service. Installation and upgrade follow the same steps. It is intended for a technical audience, to be used by system administrator/IT personnel or by Volue’s consultants.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<h3 id="system-requirements">System requirements</h3>
+<ul>
+<li>Operating system: Windows Server Standard 2019, 2022 or 2025, 64-bit</li>
+<li>SmG Database (with compatible SmG version)</li>
+<li>Microsoft Visual C++ Redistributable for Visual Studio 2017-2026, version 14.50 or newer, 64-bit</li>
+<li>.NET Framework 4.8</li>
+</ul>
+<p>Database upgrades are done via the SmG database upgrade. Ensure you have the correct version of SmG, see latest release notes.</p>
+<p><strong>Note!</strong> Running more than one instance of Mesh against a single Oracle database may cause major errors. This configuration is only supported in some special cases.</p>
+<h3 id="checklist-before-you-start-the-installation">Checklist before you start the installation</h3>
+<p>Before installing the Mesh Service, ensure you have:</p>
+<ul>
+<li>Administrator access to the target server.</li>
+<li>The required Operating system installed on target server, see System requirements.</li>
+<li>The required Microsoft Visual C++ Redistributable installed on the target server, see System requirements.</li>
+<li>The information needed to connect to the Oracle database from the Mesh server. Usually a <code>TNSNAMES.ora</code> file, a database name, a username, and a password. The name of the directory containing <code>TNSNAMES.ora</code> should be specified in the <code>TNS_ADMIN</code> environment variable.</li>
+<li>The Mesh Service installation package.</li>
+</ul>
+<h3 id="general-setup">General setup</h3>
+<h4 id="hardware-requirements">Hardware requirements</h4>
+<p><strong>Note!</strong> You should dimension servers running Mesh to handle both high CPU load, expansive memory use and high I/O throughput regarding network interconnect towards the database. The results of requested calculations are kept in memory as much as possible; for this reason, we recommend a high amount of memory to gain optimal performance.</p>
+<h4 id="windows-services-and-tcp-communication">Windows services and TCP communication</h4>
+<p>Windows Firewall with Advanced Security: For remote calls, you must set an inbound rule, allowing TCP connections in the following default ports:</p>
+<table>
+<thead>
+<tr>
+<th>Port</th>
+<th>Direction</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1521</td>
+<td>Outbound</td>
+<td>Default port to access the Oracle database</td>
+</tr>
+<tr>
+<td>9000</td>
+<td>Inbound</td>
+<td>Http communication from Nimbus</td>
+</tr>
+<tr>
+<td>9001</td>
+<td>Inbound</td>
+<td>Net.Tcp communication from Nimbus</td>
+</tr>
+<tr>
+<td>20000</td>
+<td>Inbound</td>
+<td>Access to the Mesh health endpoint, used from Nimbus when failover is configured</td>
+</tr>
+<tr>
+<td>40321</td>
+<td>Inbound</td>
+<td>ZMQ communication</td>
+</tr>
+<tr>
+<td>50051</td>
+<td>Inbound</td>
+<td>Communication from clients using gRPC</td>
+</tr>
+</tbody>
+</table>
+<h4 id="communication-between-nimbus-client-and-mesh-server">Communication between Nimbus Client and Mesh server</h4>
+<p><strong>Port 20000</strong> must be open on the server where the Mesh server is installed in order to avoid performance issues in the Nimbus Client connected to Mesh. In addition, port 20000 is needed if failover of the Nimbus Client against the Mesh server is required.</p>
+<div style="page-break-after: always;"></div>
+
+<h2 id="install-the-mesh-service">Install the Mesh Service</h2>
+<p><strong>Mesh Service</strong> is a Windows service. It can run as a user member of the local Administrator group or as a user with log on as a service rights.
+The installer is distributed as a ZIP file named like Mesh-2.12.1.21.zip.
+To install the Mesh Service:</p>
+<ol>
+<li>Extract the zip file containing the installation package to desired location.</li>
+<li>Navigate to this location and run:
+  <code>.\mesh.ps1 -Install -UrlAclUser BUILTIN\Users</code></li>
+</ol>
+<p>This script will register necessary endpoints and create a Windows service named <code>Powel Mesh Service</code>.</p>
+<h3 id="configuring-core-dump-creation">Configuring core dump creation</h3>
+<p>A core dump is an image of the process and all of its memory at a point in
+time. These dumps make it significantly easier to debug and fix errors. We
+recommend that all users enable automatic core dumps for the Mesh process,
+and that core dumps for any crashes are sent to the Volue Support together
+with the Mesh log and any information about what was happening in the system at
+the time of the crash.</p>
+<p>See <a href="https://docs.microsoft.com/en-us/windows/win32/wer/collecting-user-mode-dumps">Microsoft documentation</a>
+for more information on how to collect core dumps. Alternatively set the
+following registry values under <code>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\Windows Error Reporting\LocalDumps\Powel.Mesh.Server.exe</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>REG_EXPAND_SZ</td>
+<td>DumpFolder</td>
+<td>C:\MeshCoreDumps</td>
+</tr>
+<tr>
+<td>REG_DWORD</td>
+<td>DumpType</td>
+<td>2</td>
+</tr>
+<tr>
+<td>REG_DWORD</td>
+<td>DumpCount</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<p>The size of a Mesh core dump with the configuration above is equal to the
+memory used by Mesh at the time of the dump. If disk space is an issue you
+may reduce DumpCount, or set DumpType to 1 which makes the dumps smaller
+but less useful.</p>
+<div style="page-break-after: always;"></div>
+
+<h2 id="configuration">Configuration</h2>
+<p>After the service is installed, the following configuration is required.</p>
+<ul>
+<li>Database connection</li>
+<li>Mesh ports and authentication for ZMQ</li>
+<li>Mesh gRPC server</li>
+<li>Use Transport Layer Security (TLS)</li>
+<li>Authentication</li>
+<li>Authorisation</li>
+<li>Limit cache</li>
+</ul>
+<h3 id="meshjson-minimum-version">mesh.json - minimum version</h3>
+<p>The Mesh configuration is defined in the <code>mesh.json</code> file which normally is located in the directory above the Mesh service application (<code>Powel.Mesh.Server.exe</code>).</p>
+<p>A minimal configuration looks like this:</p>
+<pre><code class="language-json">{
+    &quot;Log&quot;: {
+        &quot;Console&quot;: true, // Log to stdout when not run as a service
+        &quot;WindowsEventLog&quot;: false, // Log to the Windows Event Log
+        &quot;Directory&quot;: &quot;C:\\Powel\\Mesh\\logs&quot;, // Log to the given directory
+        &quot;Level&quot;: &quot;info&quot; // One of &quot;trace&quot;, &quot;debug&quot;, &quot;info&quot;, &quot;warning&quot;, &quot;error&quot;, default &quot;info&quot;
+    },
+    &quot;Oracle&quot;: {
+        &quot;Server&quot;: &quot;&lt;DatabaseServer&gt;&quot;,
+        &quot;Username&quot;: &quot;&lt;DatabaseUser&gt;&quot;,
+        &quot;Password&quot;: &quot;&lt;DatabasePassword&gt;&quot;
+    },
+    &quot;Http&quot;: {
+        &quot;Port&quot;: 20000,
+        &quot;Kerberos&quot;: true,
+        &quot;Health&quot;: true // Enable the health endpoint.
+    },
+    &quot;Grpc&quot;: {
+        &quot;Address&quot;: &quot;[::]:50051&quot;,
+        &quot;Kerberos&quot;: true,
+        &quot;Tls&quot;: {
+            &quot;CertificatePath&quot;: &quot;&lt;PathToCertificateInPEMFormat&gt;&quot;,
+            &quot;CertificateKeyPath&quot;: &quot;&lt;PathToPrivateKeyInPEMFormat&gt;&quot;
+        }
+    },
+    &quot;Zmq&quot;: {
+        &quot;Port&quot;: 40321,
+        &quot;Kerberos&quot;: true
+    }
+}
+</code></pre>
+<h3 id="database-connection">Database connection</h3>
+<p>The Mesh database is part of the SmG database.
+The Mesh service has to connect and operate on the SmG database as the SmG Schema Owner.</p>
+<p>There are 2 ways of connecting to the database. Using credentials or using external authentication.
+You define the database connection string in <code>mesh.json</code>:</p>
+<h4 id="credentials">Credentials</h4>
+<pre><code class="language-json">  &quot;Oracle&quot;: {
+    &quot;Server&quot;: &quot;&lt;Database&gt;&quot;,
+    &quot;Username&quot;: &quot;&lt;DatabaseUser&gt;&quot;,
+    &quot;Password&quot;: &quot;&lt;DatabasePassword&gt;&quot;
+  },
+</code></pre>
+<p>Verify that the values in these files are correct by executing the following statement from command prompt:</p>
+<pre><code class="language-cmd">sqlplus &lt;DatabaseUser&gt;/&lt;DatabasePassword&gt;@&lt;Database&gt;
+</code></pre>
+<h4 id="oracle-external-authentication">Oracle external authentication</h4>
+<p>To use it:</p>
+<ul>
+<li>The database server must be configured to support external authentication
+  and the account running Mesh service must be granted proper privileges in
+  the database. The following privileges are required:<ul>
+<li><code>execute on sys.dbms_lock</code></li>
+<li><code>execute on sys.dbms_change_notification</code></li>
+<li><code>change notification</code></li>
+<li><code>select on sys.v_$instance</code></li>
+</ul>
+</li>
+<li>On the client side (i.e. server running Mesh service) the Oracle client
+  must be configured to use NTS authentication. See <code>sqlnet.ora</code> file:
+  <code>SQLNET.AUTHENTICATION_SERVICES= (NTS)</code></li>
+<li>On the client side, set <code>ExternalCredentials</code> parameter to <code>true</code> in the
+  <code>Oracle</code> section in <code>mesh.json</code> configuration file:
+  <code>json
+  "Oracle": {
+    "Server": "&lt;Database&gt;",
+    "ExternalCredentials": true
+  }</code></li>
+</ul>
+<h3 id="mesh-ports-and-authentication-for-zmq">Mesh ports and authentication for ZMQ</h3>
+<p>In the Mesh configuration file <code>mesh.json</code> the lines are used (with default values):</p>
+<pre><code class="language-json">  &quot;Zmq&quot;: {
+    &quot;Threads&quot;: 8, //optional
+    &quot;Kerberos&quot;: true,
+    &quot;Port&quot;: 40321
+  },
+</code></pre>
+<p>This defines which port Mesh use to listen for ZMQ requests. This port number must be the same in clients using ZMQ. The firewall must also be open on this port. Kerberization of ZMQ, is by default turned on. Clients using ZMQ are all Smart Power clients interfacing with Mesh, except Mesh Data Transfer.</p>
+<h3 id="mesh-grpc-server">Mesh gRPC server</h3>
+<p>A gRPC interface is exposed for both external and internal usage.</p>
+<p>There is also a gRPC client, <strong>Mesh Python SDK</strong>, that uses the gRPC interface and provides an easy and optimised way of working with Mesh for Python developers.</p>
+<p><strong>Note!</strong> The Mesh gRPC interface is still in alpha. The interface is changing rapidly, breaking changes are allowed and stability is not guaranteed nor expected.</p>
+<h4 id="enable-the-server-and-configure-port-numbers">Enable the server and configure port numbers</h4>
+<p>To enable Mesh gRPC server, configure the following lines in the Mesh configuration file <code>mesh.json</code>.</p>
+<pre><code class="language-json">  &quot;Grpc&quot;: {
+    &quot;Kerberos&quot;: true,
+    &quot;OAuth&quot;: false,
+    &quot;Address&quot;: &quot;[::]:50051&quot;,
+    &quot;Tls&quot;: {
+      &quot;CertificatePath&quot;: &quot;&lt;PathToCertificateInPEMFormat&gt;&quot;,
+      &quot;CertificateKeyPath&quot;: &quot;&lt;PathToPrivateKeyInPEMFormat&gt;&quot;
+    }
+  },
+</code></pre>
+<p>This defines which port Mesh uses to listen for gRPC requests. This port number must be the same in the clients using gRPC. The firewall must also be open on this port. The example shows an unencrypted and unauthenticated configuration, and we highly recommend to both encrypt and authenticate/authorize the gRPC interface (see below for how to configure it).</p>
+<h3 id="use-transport-layer-security-tls">Use Transport Layer Security (TLS)</h3>
+<p>There are two possible types of connections to the gRPC server from the clients.</p>
+<ul>
+<li>An insecure, where data is unencrypted and sent as plaintext over the network, thus it is not recommended for production environment.</li>
+<li>A secure where the server is authenticated by the clients via the Transport Layer Security (TLS protocol) certificate and data is encrypted.</li>
+</ul>
+<p>Mesh server gRPC interface can be configured to use Transport Layer Security (TLS) and if used then only TLS connections from the clients will be accepted.</p>
+<p>The TLS server authentication serves two purposes:</p>
+<ul>
+<li>It authenticates the server, a client that connects to a server can verify the server's certificate and check if it is <em>trusted</em>.</li>
+<li>It encrypts the communication, by using HTTPS as a transport protocol. For security reasons, encryption is required for client authentication and authorisation.</li>
+</ul>
+<h4 id="certificates">Certificates</h4>
+<p>TLS uses X.509 digital certificates, further on referred as TLS certificate. Such certificate contains, among others, public key and information about the issuer. Additionally for each TLS certificate there is a corresponding private key. Contrary to the public key, it is a secret and must be kept secure.</p>
+<p>The Mesh team requires/strongly advises to use certificates signed by publicly trusted Certificate Authorities (CAs). Such certificates can be obtained for free and they ensure no additional configuration is needed to be done on the client side in order to connect to a TLS secured Mesh gRPC server.</p>
+<p>On the other hand using self-signed certificates, depending on the client environment, may require configuration work in order to connect to a TLS secured Mesh gRPC server. That is why we require/strongly suggest using the former type of certificates. For more information see the document about client certificates.</p>
+<p><strong>Note!</strong> As Volue we do not suggest using specific TLS certificate vendors. We provide a set of guidelines and requirements. The final decision belongs to the customer.</p>
+<p>By default Mesh configuration (<code>mesh.json</code>) has the TLS enabled, but the certificate settings must be set manually for each environment.</p>
+<p>There are two options to load the certificates.</p>
+<h4 id="loading-certificates-from-file-system">Loading certificates from file system</h4>
+<p>Providing paths to certificate and private key in PEM format. The files mustn't be encrypted and must be accessible by the account that is running Mesh server.</p>
+<pre><code class="language-json">  &quot;Grpc&quot;: {
+    &quot;Address&quot;: &quot;[::]:50051&quot;,
+    &quot;Tls&quot;: {
+      &quot;CertificatePath&quot;: &quot;C:\\certs\\certificate.crt&quot;,
+      &quot;CertificateKeyPath&quot;: &quot;C:\\certs\\privatekey.pem&quot;
+    },
+    ...
+  },
+</code></pre>
+<p>For security reasons, access to private key MUST be restricted at the operating-system level.
+Grant permissions only to the specific users or groups that require access (principle of least privilege).</p>
+<h4 id="windows-certificate-store">Windows Certificate Store</h4>
+<p>Alternatively the certificates can be loaded from the Windows Certificate Store. To use it:</p>
+<ul>
+<li>The private key must be marked as "exportable" in the Windows Certificate Store.</li>
+<li>The certificate must have a corresponding private key defined in the Windows Certificate Store.</li>
+<li>The certificate must be accessible by the user account that is running Mesh. All current user certificate stores except the Current User/Personal store inherit the contents of the local machine certificate stores.</li>
+</ul>
+<p>Moreover, currently the support is limited to private keys based on the RSA algorithm.</p>
+<p>To enable reading certificate from the Windows Certificate Store you need to specify:</p>
+<pre><code class="language-json">  {
+    &quot;Grpc&quot;: {
+      &quot;Tls&quot;: {
+        &quot;WindowsCertStore&quot;: {
+          &quot;CertificateThumbprint&quot;: &quot;142e888b1640210e83b1c21b6fc414aefb1f8813&quot;,
+          &quot;SystemStoreName&quot;: &quot;ROOT&quot;
+        }
+      },
+      ...
+    }
+  }
+</code></pre>
+<p>Parameters:</p>
+<ul>
+<li><code>CertificateThumbprint</code> is a 160 bit SHA1 hash. Listed in the certificate details section.</li>
+<li><code>SystemStoreName</code> name of the system store. Some predefined system stores are:<ul>
+<li><code>ROOT</code> - mapping to *Trusted Root Certification Authorities"</li>
+<li><code>MY</code> - mapping to Personal</li>
+<li><code>CA</code> - mapping to *Intermediate Certification Authorities"</li>
+</ul>
+</li>
+</ul>
+<h3 id="authentication">Authentication</h3>
+<p>Mesh server could be configured to protect its gRPC API so that only authenticated users that are assigned to specific roles can access it. There are two options:</p>
+<ul>
+<li>Kerberos</li>
+<li>OAuth 2.0 access tokens</li>
+</ul>
+<p><strong>Note!</strong> If the Mesh gRPC server is configured to use authentication, only authenticated users may work with Mesh.</p>
+<h4 id="kerberos">Kerberos</h4>
+<p>Mesh authenticates users and grants access to specific APIs based on what AD groups the authenticated users belong to.</p>
+<p>Configuration:</p>
+<pre><code class="language-json">  &quot;Grpc&quot;: {
+    &quot;Address&quot;: &quot;[::]:50051&quot;,
+    &quot;Tls&quot;: {
+      &quot;CertificatePath&quot;: &quot;C:\\certs\\certificate.crt&quot;,
+      &quot;CertificateKeyPath&quot;: &quot;C:\\certs\\privatekey.pem&quot;
+    },
+    &quot;Kerberos&quot;: true,
+    &quot;Authorization&quot;: {
+      &quot;GroupsFile&quot;: &quot;roles_mapping.json&quot;
+    },
+    ...
+  }
+</code></pre>
+<p>If the gRPC client runs as "Local System" then in calls to Mesh it is represented as the machine account itself.
+If Mesh service is running on the same machine then in such cases the gRPC client belongs to "System" group.
+This is useful in cases where for example: customers do not want to create extra service accounts for Mesh Data Transfer services that are running locally.</p>
+<p>Example groups file:</p>
+<pre><code class="language-json">{
+  &quot;Kerberos&quot;: {
+    &quot;Users&quot;: [&quot;(time_series, read)&quot;, &quot;(model, read)&quot;],
+    &quot;Admins&quot;: [
+      &quot;(time_series, create)&quot;,
+      &quot;(time_series, read)&quot;,
+      &quot;(time_series, update)&quot;,
+      &quot;(time_series, delete)&quot;,
+      &quot;(model, create)&quot;,
+      &quot;(model, read)&quot;,
+      &quot;(model, update)&quot;,
+      &quot;(model, delete)&quot;
+    ],
+    // For localhost services running as &quot;Local System&quot;
+    &quot;System&quot;: [
+      &quot;(time_series, create)&quot;,
+      &quot;(time_series, read)&quot;,
+      &quot;(time_series, update)&quot;,
+      &quot;(time_series, delete)&quot;,
+      &quot;(model, create)&quot;,
+      &quot;(model, read)&quot;,
+      &quot;(model, update)&quot;,
+      &quot;(model, delete)&quot;
+    ]
+  }
+}
+</code></pre>
+<p>Mesh clients need to provide a service principal name (SPN) when connecting to Mesh with Kerberos enabled.</p>
+<p><strong>If Mesh is running as AD User:</strong></p>
+<p>Start Windows Server PowerShell and enter:</p>
+<pre><code class="language-powershell">Get-ADUser -Filter {UserPrincipalName -eq &quot;user.name@domain.com&quot;} | Select-Object SamAccountName
+</code></pre>
+<p>Then check if SPN exists:</p>
+<pre><code class="language-powershell">setspn -L SamAccountName
+setspn -L domain\SamAccountName
+</code></pre>
+<p>Depending on the SPN found, use it as the service principal name in clients like Mesh Data Transfer.</p>
+<p><strong>If Mesh is running as a machine user (like Local System):</strong> </p>
+<p>Then the service principal name will usually be <code>HOST/full.qualified.domain.name</code>
+or <code>HOST/f.q.d.n@DOMAIN.COM</code> but it might be different in your environment.</p>
+<h4 id="oauth-20-access-tokens">OAuth 2.0 access tokens</h4>
+<p>The users authenticate and request access to Mesh from external authorisation servers, and Mesh validates the access token that is obtained from the authorisation server.</p>
+<p>OAuth 2.0 is an industry-standard protocol for authorisation. Depending on the Identity Provider implementing the OAuth 2.0 protocol, there might be some differences in the access token structure, flows, etc. Implementation of Mesh server OAuth authorisation was tested against Microsoft Entra ID (previously known as Azure Active Directory) Identity Provider and supports:</p>
+<ul>
+<li>user access tokens acquired by using authorisation code flow (token version 1 and 2)</li>
+<li>application-only access tokens acquired by using client credentials flow (token version 1 and 2)</li>
+</ul>
+<p>We do not guarantee that authorisation based on other Identity Providers will work.</p>
+<h5 id="access-token-types">Access token types</h5>
+<p>We distinguish between user and application-only access tokens:</p>
+<ul>
+<li><code>User access token</code> - User tokens are used for flows like authorisation code flow where a user is authenticated and gives consent to the requested permissions. User access tokens must include scope (<code>scp</code> or <code>scope</code>) and <code>name</code> claims.</li>
+<li><code>Application-only access tokens</code> - Application-only access tokens are acquired using client credentials flow. They are used in server-to-server interactions, where the client applications are referred to as <em>daemons</em> or <em>service accounts</em>. In this flow the client application is called confidential client. Contrary to user access tokens the application-only access tokens in Microsoft Entra do not contain scope (<code>scp</code> or <code>scope</code>) and <code>name</code> claims.</li>
+</ul>
+<p>Application-only access tokens have the same values of <code>sub</code> and <code>oid</code> claims. The client application must use authorisation based on <em>application permissions (app roles)</em>. With this approach the <code>roles</code> claim will be part of the access token.</p>
+<h5 id="oauth-configuration">OAuth configuration</h5>
+<p>To use it:</p>
+<ul>
+<li>An OAuth 2.0 JWT compatible access token must be signed using RSA algorithm.</li>
+<li>Authorisation is done using roles claim that must be part of the access token.</li>
+<li>Additionally, all access tokens must contain the following claims: oid, aud, iss and sub. All those claims must have string data types (not an array).</li>
+<li>Additionally, user access tokens must contain scope (scp or scope) and name claims. All those claims must have string data types (not an array).</li>
+<li>TLS connection must be enabled.</li>
+</ul>
+<p>To enable OAuth support you need to specify (change the values according to customer's environment):</p>
+<pre><code class="language-json">  &quot;Grpc&quot;: {
+    &quot;Address&quot;: &quot;[::]:50051&quot;,
+    &quot;Tls&quot;: {
+      &quot;CertificatePath&quot;: &quot;C:\\certs\\certificate.crt&quot;,
+      &quot;CertificateKeyPath&quot;: &quot;C:\\certs\\privatekey.pem&quot;
+    },
+    &quot;OAuth&quot;: true,
+    &quot;Authorization&quot;: {
+      &quot;Audience&quot;: &quot;api://CLIENT_ID&quot;,
+      &quot;JwksEndpoint&quot;: &quot;https://login.microsoftonline.com/TENANT_ID/discovery/v2.0/keys&quot;,
+      &quot;Issuer&quot;: &quot;https://sts.windows.net/TENANT_ID/&quot;,
+      &quot;Scope&quot;: &quot;mesh.grpc&quot;, // this is required for user access tokens, not used for application-only access tokens
+      &quot;GroupsFile&quot;: &quot;roles_mapping.json&quot;
+    },
+    ...
+  }
+</code></pre>
+<p>Note that Kerberos is enabled by default.</p>
+<p>Parameters:</p>
+<ul>
+<li><code>JwksEndpoint</code> - JSON Web Key Set (JWKS) endpoint URI. JWKS contains all public keys needed to validate (check signature) generated access token by the authorisation server.</li>
+<li><code>Audience</code> - audience token claim. Must match aud token claim.
+               Depending on the access token version, the expected format may be different.
+               For v1.0 tokens it may have the “api://” prefix.
+               For v2.0 tokens it is always just a client ID.
+               It is best to check decode access token in e.g. jwt.io website and check the actual <code>aud</code> claim value.</li>
+<li><code>Issuer</code> - issuer token claim. Must match iss token claim.</li>
+<li><code>Scope</code> - scope token claim. Must match scp or scope token claim. The check is done only for user access tokens.</li>
+<li><code>GroupsFile</code> - JSON file that maps roles to specific permissions in our API.
+  Example groups file:</li>
+</ul>
+<pre><code class="language-json">{
+  &quot;OAuth&quot;: {
+    &quot;Users&quot;: [&quot;(time_series, read)&quot;, &quot;(model, read)&quot;],
+    &quot;Admins&quot;: [
+      &quot;(time_series, create)&quot;,
+      &quot;(time_series, read)&quot;,
+      &quot;(time_series, update)&quot;,
+      &quot;(time_series, delete)&quot;,
+      &quot;(model, create)&quot;,
+      &quot;(model, read)&quot;,
+      &quot;(model, update)&quot;,
+      &quot;(model, delete)&quot;
+    ],
+    &quot;Daemons&quot;: [
+      &quot;(time_series, create)&quot;,
+      &quot;(time_series, read)&quot;,
+      &quot;(time_series, update)&quot;,
+      &quot;(time_series, delete)&quot;,
+      &quot;(model, create)&quot;,
+      &quot;(model, read)&quot;,
+      &quot;(model, update)&quot;,
+      &quot;(model, delete)&quot;
+    ]
+  }
+}
+</code></pre>
+<h3 id="authorisation">Authorisation</h3>
+<p>We can limit access to Mesh functionality through the gRPC interface to the following groups:</p>
+<ul>
+<li><code>time_series</code> - functionality accessing time series values.</li>
+<li><code>model</code> - functionality accessing the model and model definition instances.</li>
+</ul>
+<p>For each of these groups it is possible to limit access to the normal <code>CRUD</code> operations:</p>
+<ul>
+<li><code>create</code> - functionality that will create new information.</li>
+<li><code>read</code> - functionality that will read information without changing anything.</li>
+<li><code>update</code> - functionality that will update existing information.</li>
+<li><code>delete</code> - functionality that will delete existing information.</li>
+</ul>
+<p>The <code>GroupsFile</code> defines the access to the different functionality for any user dependent on which <code>groups</code> or <code>roles</code> this user is assigned to in the company's user store. An example of such a definition is shown below giving all users in the <code>Users</code> group/role only read access to time series and model, while users in the <code>Admins</code> or <code>Daemons</code> group/role has full access to time series and model.</p>
+<p>When a user is a member of multiple groups or assigned multiple roles, their effective access rights are the union of the rights granted by each group and role.</p>
+<p>For security reasons, access to <code>GroupsFile</code> MUST be restricted at the operating-system level.
+Grant permissions only to the specific users or groups that require access (principle of least privilege).</p>
+<p>The Kerberos group names and OAuth roles mappings are defined separately.</p>
+<pre><code class="language-json">{
+  &quot;Kerberos&quot;: {
+    &quot;Users&quot;: [&quot;(time_series, read)&quot;, &quot;(model, read)&quot;],
+    &quot;Admins&quot;: [
+      &quot;(time_series, create)&quot;,
+      &quot;(time_series, read)&quot;,
+      &quot;(time_series, update)&quot;,
+      &quot;(time_series, delete)&quot;,
+      &quot;(model, create)&quot;,
+      &quot;(model, read)&quot;,
+      &quot;(model, update)&quot;,
+      &quot;(model, delete)&quot;
+    ],
+    &quot;Daemons&quot;: [
+      &quot;(time_series, create)&quot;,
+      &quot;(time_series, read)&quot;,
+      &quot;(time_series, update)&quot;,
+      &quot;(time_series, delete)&quot;,
+      &quot;(model, create)&quot;,
+      &quot;(model, read)&quot;,
+      &quot;(model, update)&quot;,
+      &quot;(model, delete)&quot;
+    ],
+    // For localhost services running as &quot;Local System&quot;
+    &quot;System&quot;: [
+      &quot;(time_series, create)&quot;,
+      &quot;(time_series, read)&quot;,
+      &quot;(time_series, update)&quot;,
+      &quot;(time_series, delete)&quot;,
+      &quot;(model, create)&quot;,
+      &quot;(model, read)&quot;,
+      &quot;(model, update)&quot;,
+      &quot;(model, delete)&quot;
+    ]
+  },
+  // if both OAuth and Kerberos are enabled:
+  &quot;OAuth&quot;: {
+    &quot;OAuthUsers&quot;: [&quot;(time_series, read)&quot;, &quot;(model, read)&quot;],
+    &quot;Admins&quot;: [
+      &quot;(time_series, create)&quot;,
+      &quot;(time_series, read)&quot;,
+      &quot;(time_series, update)&quot;,
+      &quot;(time_series, delete)&quot;,
+      &quot;(model, create)&quot;,
+      &quot;(model, read)&quot;,
+      &quot;(model, update)&quot;,
+      &quot;(model, delete)&quot;
+    ]
+  }
+}
+</code></pre>
+<h3 id="limit-time-series-cache-usage">Limit time series cache usage</h3>
+<p>By default, Mesh will read into memory all time series values found in the database for the requested time series and these values will stay in memory as long as the service is running.</p>
+<p>It is possible to limit/control the memory usage by the cache by adding the following configuration:</p>
+<pre><code class="language-json">  &quot;SharedPointCache&quot;: {
+    &quot;LimitMb&quot;: 1000, // null means no limit, valid range is [0, 1048576]
+    &quot;DefaultIntervalDays&quot;: 20, // null means no limit, valid range is [1, 20000]
+    &quot;PreloadAllTimeSeries&quot;: false,
+    &quot;PreloadPreviousState&quot;: false,
+    &quot;CacheStateFileDirectory&quot;: &quot;&lt;path&gt;&quot;
+  },
+</code></pre>
+<p><strong>Note!</strong> This is just an example. Specific values must be fine-tuned depending on
+your workloads and hardware parameters.</p>
+<p>Parameters:</p>
+<ul>
+<li><code>LimitMb</code> - the maximum number of megabytes allowed in the shared point cache. The default value is <code>null</code> (no limit). Valid range is <code>null</code> or <code>[0, 1048576]</code>.</li>
+<li><code>DefaultIntervalDays</code> - when the preloading is enabled Mesh will not preload points before now minus the configured number of days. The default value is <code>null</code> (no limit). Valid range is <code>null</code> or <code>[1, 20000]</code>.</li>
+<li><code>PreloadAllTimeSeries</code> - if set to <code>true</code>, Mesh will preload all physical time series points on startup.</li>
+<li><code>PreloadPreviousState</code> - if set to <code>true</code>, Mesh will preload previous cache state on startup. If both PreloadAllTimeSeries and PreloadPreviousState is set to true at the same time, Mesh will first preload the previous cache state and then the other time series values.</li>
+<li><code>CacheStateFileDirectory</code> - path to the directory where Mesh persists the cache state.</li>
+</ul>
+<p><strong>Note!</strong> Most installations should not have to change the default configuration, except the CacheStateFileDirectory field, as it is related to the memory/performance tuning.</p>
+<p>For security reasons, access to <code>CacheStateFileDirectory</code> should be restricted at the operating-system level.
+Grant permissions only to the specific users or groups that require access (principle of least privilege).</p>
+<h4 id="monitor-and-tune-the-cache">Monitor and tune the cache</h4>
+<p>When <code>LimitMb</code> is set, you may monitor the state of the cache via the following
+fields in the Mesh health endpoint, in the group <code>metrics/pointCache/</code>.</p>
+<ul>
+<li><code>hits</code> is the number of times Mesh successfully retrieved points from the cache.</li>
+<li><code>misses</code> is the number of times Mesh failed to retrieve points from the cache
+  and had to access the database.</li>
+<li><code>series</code> is the number of time series in the cache.</li>
+<li><code>points</code> is the number of time series points in the cache.</li>
+<li><code>evictedSeries</code> is the number of times a time series has been evicted from the
+  cache because the cache was full.</li>
+<li><code>evictedPoints</code> is the number of time series points that have been evicted
+  from the cache.</li>
+<li><code>inserts</code> is the number of times a time series has been inserted into the
+  cache.</li>
+<li><code>updates</code> is the number of updates to individual time series that have been
+  performed. This only counts updates that hit the cache, updates to time
+  series not in the cache are not counted.</li>
+<li><code>stalls</code> is the number of times cache retrieval has stalled because of high
+  cache pressure.</li>
+<li><code>pointLimit</code> is the approximate maximum number of points in the cache based
+  on the <code>LimitMb</code> configuration.</li>
+<li><code>expansions</code> is the number of times Mesh had to fetch additional points for a
+  time series that already had some points cached. Useful for tuning <code>DefaultIntervalDays</code>.</li>
+<li><code>estimatedMemoryKb</code> is approximately how many KB the cache is using.</li>
+</ul>
+<p>When monitoring these values and tuning cache performance you should watch for
+a few problematic scenarios.</p>
+<ol>
+<li>
+<p>A continuous "rapid" increase in <code>evictedSeries</code> and <code>misses</code> may indicate
+   that the cache is too small for the existing workload. The ratio of increase
+   of hits to increase of misses is a good indication of how bad the issue is.</p>
+</li>
+<li>
+<p><code>stalls</code> should not happen in normal usage. A two digit increase in stalls
+   every now and then is fine, but if <code>stalls</code> are happening often, they should
+   be reported to Volue support as they may indicate a current or future
+   performance issue.</p>
+</li>
+</ol>
+<h4 id="how-the-cache-works">How the cache works</h4>
+<p>The cache is implemented as a least recently used (LRU) cache. This means that
+when the cache is over-full, the time series that are evicted are those that
+were least recently accessed. While this pattern is simple to implement and
+understand it is one that struggles when the cache is too small. For example
+if the cache has space for 100 entries but there is a repeating workload
+accessing 101 entries in a sequence, the cache will always evict the next
+item to be accessed.</p>
+<p>This is why it is important to monitor <code>evictedSeries</code> and <code>misses</code> and to
+increase the cache size if these indicate that the cache is too small.
+Additionally, it is worth to monitor <code>expansions</code>, as it is useful for
+tuning <code>DefaultIntervalDays</code>.</p>
+<div style="page-break-after: always;"></div>
+
+<h2 id="verify-the-installation">Verify the installation</h2>
+<p>To verify the installation:</p>
+<ol>
+<li>Check that the service is running.</li>
+<li>Run tests using the service, e.g. the Mesh Configurator or Nimbus.</li>
+</ol>
+<p><strong>Note!</strong> You must be member of the correct security group to start Mesh Configurator.</p>
+<div style="page-break-after: always;"></div>
+
+<h2 id="update-the-mesh-object-model">Update the Mesh object model</h2>
+<p>There will be a new version of the Mesh object model (EnergySystem) delivered with each release. The installed object model must be updated to the latest version for the applications using Mesh to work correctly.</p>
+<p>As part of a Smart Power release there exists a separate package named <code>ModelUpdate.zip</code> that contains the new model together with scripts and descriptions of how to update the Mesh model.</p>
+<div style="page-break-after: always;"></div>
+
+<h2 id="error-situations">Error situations</h2>
+<h3 id="general-installation-problems">General installation problems</h3>
+<p>If errors occur during installation, you should:</p>
+<ol>
+<li>Verify that you have followed the prerequisite steps, see Prerequisites. </li>
+<li>Verify that the installation is complete, see What the installer does.</li>
+<li>Verify the configurations, see Server manager configuration and Application configuration.</li>
+<li>Verify that the user executing the Mesh service is administrator or has been granted appropriate privileges (Logon as a Service, Logon as a Batch Job, URL ACLs).</li>
+</ol>
+<p>The Mesh Service logs service calls and errors to the Windows Event Log. The relevant source names for log entries are <code>Powel Mesh</code> and <code>Powel.Object.Structure.Service</code>.</p>
+<h3 id="problems-related-to-oracle-19">Problems related to Oracle 19</h3>
+<p>If you get the error message <strong>ORA-22922: nonexistent LOB value</strong>, that may be caused by an incorrect value (<code>true</code>) for the Oracle init parameter <code>optimizer_capture_sql_plan_baselines</code>.</p>
+<p>Verify this by executing the following SQL statement from SQL Plus:</p>
+<pre><code class="language-sql">show parameter optimizer_capture_sql_plan_baselines;
+</code></pre>
+<p>If the parameter is set to <code>true</code>, this must be changed to false with the following SQL statement:</p>
+<pre><code class="language-sql">alter system set optimizer_capture_sql_plan_baselines = false;
+</code></pre>
+<p><strong>Note!</strong> This must be run by a user with system administrator privileges.</p>
+<div style="page-break-after: always;"></div>
+
+<h2 id="security-considerations">Security considerations</h2>
+<h3 id="file-system">File system</h3>
+<p>For security reasons, access to configuration files like: mesh.json, authorisation groups file, private key (if stored in file system), etc. MUST be restricted at the operating-system level.
+Grant permissions only to the specific users or groups that require access (principle of least privilege).
+Account running Mesh service MUST have access to those files.</p>
+<h3 id="database">Database</h3>
+<p>It is strongly recommended to configure the database connection to use encryption.
+This ensures that sensitive data, including credentials and queries, is protected from interception during transmission.</p>
+<h2 id="version-compatibility">Version compatibility</h2>
+<h3 id="mesh-python-sdk-compatibility-matrix">Mesh Python SDK compatibility matrix</h3>
+<table>
+<thead>
+<tr>
+<th>Mesh server / client</th>
+<th>v1.11.0</th>
+<th>v1.12.0</th>
+<th>v1.13.0</th>
+<th>v1.14.0</th>
+<th>v1.15.0</th>
+<th>v1.16.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>2.17 / 2025.1</strong></td>
+<td>❌</td>
+<td>✔️</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td><strong>2.18 / 2025.2</strong></td>
+<td>❌</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td><strong>2.19 / 2025.3</strong></td>
+<td>❌</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td><strong>2.20 / 2026.1</strong></td>
+<td>❌</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td><strong>2.20.1 / 2026.1.05</strong></td>
+<td>❌</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>❌</td>
+</tr>
+<tr>
+<td><strong>2.21 / 2026.2</strong></td>
+<td>❌</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+</tr>
+<tr>
+<td><strong>2.22 / 2026.3</strong></td>
+<td>❌</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Legend:</strong></p>
+<ul>
+<li>✔️ Supported - compatible</li>
+<li>❌ Not supported - incompatible, using these combinations may lead to runtime errors</li>
+</ul>
+<p>Please also refer to Mesh Python SDK <a href="https://volue-public.github.io/energy-mesh-python/versions.html">versions page</a>.</p>
+<h2 id="meshjson-complete">mesh.json - complete</h2>
+<p>Below is the complete <code>mesh.json</code> listed with all options with default values.</p>
+<pre><code class="language-json">{
+  &quot;FailOnSynchErrors&quot;: false,  // Specifies whether Mesh should shut down after 3 consecutive synchronisation errors
+  &quot;SerializationVersion&quot;: 25,
+  &quot;MaxSessions&quot;: 250, // Maximum number of existing sessions at any given time, -1 to set to unlimited
+  &quot;ComputerName&quot;: &quot;localhost&quot;,
+  &quot;Log&quot;: {
+    &quot;Console&quot;: true, // Log to stdout
+    &quot;WindowsEventLog&quot;: false, // Log to the Windows Event Log
+    &quot;Directory&quot;: &quot;C:\\Powel\\Mesh\\logs&quot;, // Log to the given directory
+    &quot;Level&quot;: &quot;info&quot;, // One of &quot;trace&quot;, &quot;debug&quot;, &quot;info&quot;, &quot;warning&quot;, &quot;error&quot;, default &quot;info&quot;
+    &quot;RequestLogging&quot;: true,
+    &quot;MaxLogFiles&quot;: 10,           // Maximum number of log files, valid range is [1, 1000]
+    &quot;MaxLogSizeMb&quot;: 10,          // Maximum size of each log file in MB, valid range is [10, 1000]
+    &quot;MaxRequestLogFiles&quot;: 10,    // Maximum number of request log files, valid range is [1, 1000]
+    &quot;MaxRequestLogSizeMb&quot;: 10    // Maximum size of each request log file in MB, valid range is [10, 1000]
+  },
+  &quot;SynchronizationIntervalSeconds&quot;: 30, // How often Mesh synchronises with the database
+  &quot;Audit&quot;: {
+    &quot;Directory&quot;: &quot;&quot;,
+    &quot;CircularLog&quot;: true
+  },
+  &quot;Oracle&quot;: {
+    &quot;ExternalCredentials&quot;: false,
+    &quot;ReadOnly&quot;: false,
+    &quot;Cleanup&quot;: true,
+    &quot;SerializableCleanup&quot;: true,
+    &quot;Server&quot;: &quot;&quot;,
+    &quot;Username&quot;: &quot;&quot;,
+    &quot;Password&quot;: &quot;&quot;,
+    &quot;SynchronizationTimeoutMs&quot;: 600000,
+    &quot;TimeSeriesPointsSplit&quot;: 8000000 // Maximum number of time series points per database write batch. Splits large commits to avoid Oracle buffer limits.
+  },
+  &quot;HighAvailability&quot;: {
+    &quot;KillProcessOnSwitchingToInactiveMode&quot;: true,
+    &quot;UsePingPongProtection&quot;: false,
+    &quot;UseServersInActiveZoneInfo&quot;: false,
+    &quot;HeartbeatIntervalSeconds&quot;: 10,
+    &quot;HeartbeatValiditySeconds&quot;: 20,
+    &quot;AllTransactionsDeadlineSeconds&quot;: 30,
+    &quot;PingPongIntervalSeconds&quot;: 600,
+    &quot;PingPongMaxStartAttemptsWithinInterval&quot;: 2,
+    &quot;ServiceName&quot;: &quot;Mesh&quot;
+  },
+  &quot;Http&quot;: {
+    &quot;Port&quot;: 20000,
+    &quot;Kerberos&quot;: true,
+    &quot;Health&quot;: true
+  },
+  &quot;Grpc&quot;: {
+    &quot;Kerberos&quot;: true,
+    &quot;OAuth&quot;: false,
+    &quot;Address&quot;: &quot;[::]:50051&quot;,
+    &quot;Tls&quot;: {
+      &quot;CertificatePath&quot;: &quot;&quot;,
+      &quot;CertificateKeyPath&quot;: &quot;&quot;,
+      &quot;WindowsCertStore&quot;: {
+        &quot;CertificateThumbprint&quot;: &quot;&quot;,
+        &quot;SystemStoreName&quot;: &quot;&quot;
+      }
+    },
+    &quot;Authorization&quot;: {
+      &quot;Audience&quot;: &quot;&quot;,
+      &quot;JwksEndpoint&quot;: &quot;&quot;,
+      &quot;Issuer&quot;: &quot;&quot;,
+      &quot;Scope&quot;: &quot;&quot;,
+      &quot;GroupsFile&quot;: &quot;&quot;,
+    }
+  },
+  &quot;Zmq&quot;: {
+    &quot;Threads&quot;: 8,
+    &quot;Kerberos&quot;: true,
+    &quot;Port&quot;: 40321
+  },
+  &quot;SharedPointCache&quot;: {
+    &quot;LimitMb&quot;: null,              // null means no limit, valid range is [0, 1048576]
+    &quot;DefaultIntervalDays&quot;: null,  // null means no limit, valid range is [1, 20000]
+    &quot;PreloadAllTimeSeries&quot;: false,
+    &quot;PreloadPreviousState&quot;: false,
+    &quot;CacheStateFileDirectory&quot;: &quot;&lt;path&gt;&quot;
+  }
+}
+</code></pre>
+<div style="page-break-after: always;"></div>
+
+<h2 id="contact-information">Contact information</h2>
+<p>To purchase Volue software and additional licenses, please contact our sales staff or departmental managers.</p>
+<p>Software patches are normally placed on the support website, unless the patches are particularly large. To upgrade your Volue software with new releases or patches, please contact the support department by telephone or e-mail. Support will also answer your questions on software, patches or upgrades in general.</p>
+<p>Telephone: +47 73 80 45 10</p>
+<p>E-mail: support@volue.com</p>
+<p>Web: www.volue.com</p>
+              
+            </div>
+          </div><footer>
+      <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+          <a href="../../concepts/time-series/time-zone-aware-time-series/" class="btn btn--outline btn--success float-left" title="Time zone-aware time series"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+          <a href="../../calculations/general/" class="btn btn--outline btn--success float-right" title="General">Next <span class="icon icon-circle-arrow-right"></span></a>
+      </div>
+  
+    <hr/>
+  
+    <div role="contentinfo">
+      <!-- Copyright etc -->
+    </div>
+  
+    Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  </footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version is-active">
+      
+      
+        <span><a href="../../concepts/time-series/time-zone-aware-time-series/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      
+      
+        <span><a href="../../calculations/general/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+  </div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../../../search/main.js"></script>
+      <script src="../../../js/version-select.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

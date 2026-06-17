@@ -20,5 +20,10 @@
     "version": "2025.3",
     "title": "2025.3",
     "aliases": []
+  },
+  {
+    "version": "20XX.Y",
+    "title": "20XX.Y",
+    "aliases": []
   }
 ]
