@@ -488,11 +488,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="mix0">MIX0</h2>
+                <h1 id="mix0">MIX0</h1>
 <h2 id="about-the-function">About the function</h2>
-<p>Returns values from the first series of the argument (time series or an array of
-time series) different from 0. If both/all series return the value 0, 0 is
-returned. If both/all series have a missing value, missing value is returned.</p>
+<p>Construct a new time series as follows: given two or more fixed-interval time series,
+for each time period select the first existing value different from zero.
+If all the input values are zero, the result value is zero. If all the input values
+are missing, the result value is also missing.</p>
 <h2 id="syntax">Syntax</h2>
 <ul>
 <li>MIX0(t,t)</li>
@@ -501,19 +502,21 @@ returned. If both/all series have a missing value, missing value is returned.</p
 <p>The time series are fixed interval series, i.e. hour, day, week, etc.</p>
 <h2 id="example">Example</h2>
 <p>Example 1: @MIX0(t,t)</p>
-<p><code>Temperature_hour_operative = @MIX0(@t('TempManualCorrection'),@t('Temperature_hour_raw'))</code></p>
-<p>For each time step the MIX0 function returns values from the first time series
-if the value is different from 0, otherwise it uses values from the second time.
-If both series have value 0, 0 is returned. If both series have missing value,
-missing value is returned. Result is shown in the last column of the table.</p>
-<p><img alt="" src="../assets/images/ex_MIXbe-Nimbustable.png" /></p>
+<p>Given two objects called <code>NO1</code> and <code>NO2</code> with a time series attribute
+called <code>Income</code>, we can have the following:</p>
+<pre><code>income1 = @t('../*[.Name=NO1].Income')
+income2 = @t('../*[.Name=NO2].Income')
+
+## = @MIX0(income1, income2)
+</code></pre>
+<p><img alt="" src="../assets/images/ex_MIX0-Nimbustable1.png" /></p>
 <p>Example 2: @MIX0(T)</p>
-<p><code>Temperature_hour_operative = @MIX0(@T('Temperature_hour'))</code></p>
-<p>For each time step the MIX0 function returns values from the first series in the
-array different from 0. If all series have 0, 0 is returned. If all series have
-missing values, missing value is returned. Result is shown in the last column of
-the table.</p>
-<p><img alt="" src="../assets/images/ex_MIXbe-Nimbustable2.png" /></p>
+<p>Here we have an array holding three <code>Income</code> time series:</p>
+<pre><code>array = {@t('../*[.Name=NO1].Income'), @t('../*[.Name=NO2].Income'), @t('../*[.Name=NO3].Income')}
+
+## = @MIX0(array)
+</code></pre>
+<p><img alt="" src="../assets/images/ex_MIX0-Nimbustable2.png" /></p>
               
             </div>
           </div><footer>

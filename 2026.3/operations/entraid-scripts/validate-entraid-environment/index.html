@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+<title>Smart Power Documentation</title>
+
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../wave/wave.css" rel="stylesheet" />
+        <link href="../../../stylesheets/extra.css" rel="stylesheet" />
+        <link href="../../../css/version-select.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "validate-entraid-environment.ps1";
+        var mkdocs_page_input_path = "operations/entraid-scripts/validate-entraid-environment.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav is-active">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search fill-neutral--contrast">
+      <a href="../../..">
+          <img src="../../../logo.png" class="logo" alt="Logo"/>
+        </a>
+
+        <!-- A trick to place the version selector where I want it to be. -->
+        <div class="icon-home" style="display: none;"></div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mesh</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mesh/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Concepts</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/concepts/availability/">Availability</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/concepts/calculations/">Calculations</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Modelling</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/modelling/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/modelling/rating-curves/">Rating curves</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/modelling/relations/">Relations</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/modelling/xy-sets/">XY-sets</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/concepts/search-language/">Search language</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/concepts/sessions/">Sessions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mesh/installation/MeshServiceInstallationGuide/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Calculations</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/calculations/general/">General</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/calculations/timepoint-macros/">Time macros</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Functions</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/calculations/functions/introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >General</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/allocate_reserves/">AllocateReserves</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/at/">AT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/color/">ColorARGB</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/compare/">Compare</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/concatenate/">Concatenate</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/copy_ts/">CopyTs</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/delta/">DELTA</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/disable_cache/">DisableCache</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/getyfx/">GET_Y_FX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/isvalid/">IsValid</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/linear/">Linear</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/max/">MAX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/meshid/">MeshID</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/min/">MIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/parameter/">Parameter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/pdlog/">PDLOG</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/reference_lookup/">Reference Lookup</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/restriction/">Restriction</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/revision/">Revision</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/set_ts_val_unit/">SET_TS_VALUNIT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/size/">Size</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/time_mask/">TIME_MASK</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/tostring/">ToString</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/trace/">Trace</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts/">TS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/unit_codes_for_set_ts_val_unit/">Unit Codes for SET_TS_VALUNIT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/valid/">Valid</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Forecast</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_best_forecast/">GetBestForecast</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_all_forecasts/">GetAllForecasts</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_forecast/">GetForecast</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_merged_forecast/">GetMergedForecast</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >History</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/history/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_ts_as_of_time/">GetTsAsOfTime</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_ts_historical_versions/">GetTsHistoricalVersions</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/get_ts_audit_times/">GetTsAuditTimes</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Logical</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/bool/">BOOL</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/inside/">INSIDE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/negative/">NEGATIVE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/not/">NOT</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/outside/">OUTSIDE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/positive/">POSITIVE</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Math</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_gliding_average/">TS_GLIDING_AVERAGE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_gliding_gauss/">TS_GLIDING_GAUSS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_gliding_median/">TS_GLIDING_MEDIAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_gliding_median_gauss/">TS_GLIDING_MEDIAN_GAUSS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/gliding_trend_average/">GLIDING_TREND_AVERAGE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_acc_from/">TS_ACC_FROM</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/power/">POWER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/abs/">ABS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ceil/">CEIL</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/floor/">FLOOR</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/integer/">INTEGER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/log/">LOG</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ln/">LN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/round/">ROUND</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/round_integer/">ROUND_INTEGER</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/acos/">ACOS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/asin/">ASIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/atan/">ATAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/cos/">COS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/sin/">SIN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/tan/">TAN</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Mix</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/mix/">MIX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/mix_by_selecting_from_time_series_array/">MIX by selecting from time series array</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/mix0/">MIX0</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/tsiqfill/">TS_IQ_FILL</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Sim</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/sim/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/convert_volume/">CONVERT_VOLUME</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/rating_curve/">RatingCurve</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/time_delayed/">TimeDelayed</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/xy/">XY</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/yx/">YX</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/zxy/">ZX_Y</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/zyx/">ZY_X</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Statistical</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/mean/">MEAN</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/normal/">Normal</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/percentile/">PERCENTILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/sum/">SUM</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Status</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/status/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/reset_status/">RESET_STATUS</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/status_mask/">STATUS_MASK</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/status_count/">STATUS_COUNT</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Time</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/time_group/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/is_resolution/">IsResolution</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/is_time_valid/">IsTimeValid</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/push_ext_period/">PushExtPeriod</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/pop_ext_period/">PopExtPeriod</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/time/">Time</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/resolution/">Resolution</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/timespan/">TimeSpan</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/time_to_string/">TimeToString</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/time_examples/">Time Examples</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/time_point_information/">Time Point Information</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Transform</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/transform_what_when/">Which function can be used when</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/transform_terms/">Terms used in the functions</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/transform/">TRANSFORM</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_expand/">TS_EXPAND</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/ts_offset/">TS_OFFSET</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/values_from_year/">ValuesFromYear</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/distribute/">DISTRIBUTE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/trans_profile/">TRANS_PROFILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/profile/">PROFILE</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/profile_with_explicit_frequency/">PROFILE with explicit frequency</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/accumulate/">ACCUMULATE</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >VEE</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/vee/">About</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/validate_abs_limit/">ValidateAbsLimit</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/validate_delta_limit/">ValidateDeltaLimit</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/validate_delta_limit_extreme/">ValidateDeltaLimitExtreme</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/validate_repeat_value/">ValidateRepeatValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/correct_average_value/">CorrectAverageValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/correct_constant_value/">CorrectConstantValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/correct_copy_value/">CorrectCopyValue</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/correct_extrapolate/">CorrectExtrapolate</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../mesh/calculations/functions/correct_interpolate/">CorrectInterpolate</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >gRPC</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/grpc/APISpecification/">API specification</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/grpc/Authorization/">Authorization</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/grpc/ClientCertificates/">Client certificates</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/grpc/FAQ/">Frequently Asked Questions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/grpc/MessageSizeLimits/">Message size limits</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Mesh REST API</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/rest-api/introduction/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/rest-api/changelog/">Changelog</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/rest-api/api-documentation/">API specification</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >For developers</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/rest-api/generate-c%23-api-from-swagger-json/">Generate C# API from swagger.json</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/rest-api/how-to-use-ImportMultistepWaterValueFunctions/">How to use ImportMultistepWaterValueFunctions</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Excel AddIn for Mesh</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/excel-add-in/addin-excel-user-guide-for-mesh/">User guide</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/excel-add-in/how-to-install-addin-excel-for-mesh/">Installation guide</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Model maintenance</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/model-maintenance/ModelMaintenanceConcepts/">Model maintenance concepts</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/model-maintenance/ModelBackup/">Model backups</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mesh Data Transfer</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mesh-data-transfer/general/general/">General</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mesh-data-transfer/configuration/configuration/">Configuration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Use cases</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh-data-transfer/use-cases/import-of-time-series-values-using-mdt/">Import of time series values</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh-data-transfer/use-cases/export-of-time-series-values-using-mdt/">Export of time series values</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mesh-data-transfer/use-cases/import-of-availability-events-using-mdt/">Import of availability events</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../queue-usage-in-smart-power/">Queue usage in Smart Power</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../monitoring/">Monitor services</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Time series reports</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/reports_intro/">General</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/macros/">Macros</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../timeseries-reports/sort_contents/">Sorted layout</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap is-active">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars is-active"></i>
+          <a href="../../..">Smart Power Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">validate-entraid-environment.ps1</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="validate-entraid-environmentps1">validate-entraid-environment.ps1</h1>
+<p>Idempotent provisioning script for Entra ID (Azure AD) app registrations used by the Smart Power suite. Uses Microsoft Graph REST API. Safe to re-run — it only patches what has changed.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>PowerShell 7+ (or Windows PowerShell 5.1)</li>
+<li><code>Microsoft.Graph</code> module (installed automatically if missing)</li>
+<li><code>Az.KeyVault</code> module (optional — only required if Key Vault secret storage is enabled)</li>
+<li>Graph permissions: <code>Application.ReadWrite.All</code> (delegated, via interactive login)</li>
+<li>The user running the script must have the Entra ID role <strong>Application Administrator</strong> or <strong>Global Administrator</strong></li>
+</ul>
+<h2 id="what-the-script-does">What the script does</h2>
+<p>The script provisions a fixed set of Entra ID app registrations for the Smart Power suite. It runs sequentially through these sections:</p>
+<h3 id="section-0-logging-config">Section 0 — Logging config</h3>
+<p>Initialises a run-scoped GUID, log level, and optional log file. Every Graph operation is logged with timestamp, level, and run ID.</p>
+<h3 id="section-1-config">Section 1 — Config</h3>
+<p>Dot-sources <code>entraid-config.ps1</code> from the same directory. All environment-specific settings (<code>$SmartApps</code>, <code>$MeshRolesDesired</code>, <code>$OwnerEmails</code>, naming prefixes, etc.) live there. <strong><code>entraid-config.ps1</code> is the only file that normally needs editing.</strong> It is also shared with <code>report-entraid-settings.ps1</code>.</p>
+<h3 id="section-2-logging-helpers">Section 2 — Logging helpers</h3>
+<p>Defines <code>Write-Log</code>, <code>Start-Step</code>, <code>End-Step</code>, and <code>Fail-Fast</code>. Provides colour-coded console output and structured file logging. <code>Fail-Fast</code> rethrows on unrecoverable errors.</p>
+<h3 id="section-3-connect-to-graph">Section 3 — Connect to Graph</h3>
+<p>Installs <code>Microsoft.Graph</code> if absent and calls <code>Connect-MgGraph</code> with scope <code>Application.ReadWrite.All</code>. Captures <code>TenantId</code> from the session context.</p>
+<h3 id="section-4-idempotent-helper-functions">Section 4 — Idempotent helper functions</h3>
+<p>Defines all reusable Graph operations:</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Get-ApplicationByDisplayName</code></td>
+<td>Look up an app registration by display name (returns <code>$null</code> if not found)</td>
+</tr>
+<tr>
+<td><code>Get-ServicePrincipalByDisplayName</code></td>
+<td>Look up a service principal by display name (returns <code>$null</code> if not found)</td>
+</tr>
+<tr>
+<td><code>Ensure-Application</code></td>
+<td>Create or look up app registration by display name</td>
+</tr>
+<tr>
+<td><code>Ensure-ServicePrincipalForApp</code></td>
+<td>Create or look up enterprise app (SP); sets the <code>WindowsAzureActiveDirectoryIntegratedApp</code> tag so the SP appears under "Enterprise Applications" in the Azure portal</td>
+</tr>
+<tr>
+<td><code>Patch-ApplicationIfChanged</code></td>
+<td>PATCH app registration only when JSON diff shows a change</td>
+</tr>
+<tr>
+<td><code>Ensure-ApiScopeByValue</code></td>
+<td>Create or reuse an <code>oauth2PermissionScope</code> (API scope)</td>
+</tr>
+<tr>
+<td><code>Ensure-AppRolesByValue</code></td>
+<td>Merge desired <code>appRoles</code> without removing unmanaged ones</td>
+</tr>
+<tr>
+<td><code>Ensure-RequiredResourceAccess</code></td>
+<td>Add a delegated (<code>Scope</code>) or application (<code>Role</code>) permission to the app manifest</td>
+</tr>
+<tr>
+<td><code>Ensure-PreAuthorizedApplication</code></td>
+<td>Add a client app to <code>preAuthorizedApplications</code> on a resource API</td>
+</tr>
+<tr>
+<td><code>Ensure-RedirectUri</code></td>
+<td>Add a redirect URI (SPA or Desktop/public-client) if not already present</td>
+</tr>
+<tr>
+<td><code>Ensure-OAuth2PermissionGrant</code></td>
+<td>Grant admin consent for a delegated permission (<code>AllPrincipals</code>)</td>
+</tr>
+<tr>
+<td><code>Ensure-GroupAppRoleAssignment</code></td>
+<td>Assign a security group to an app role on a service principal</td>
+</tr>
+<tr>
+<td><code>Ensure-ServicePrincipalAppRoleAssignment</code></td>
+<td>Assign an application (daemon SP) to an app role on a service principal</td>
+</tr>
+<tr>
+<td><code>Ensure-ClientSecret</code></td>
+<td>Create a password credential if one with the given display name does not exist</td>
+</tr>
+<tr>
+<td><code>Store-SecretInKeyVault</code></td>
+<td>Store a secret value in Azure Key Vault (optional)</td>
+</tr>
+<tr>
+<td><code>Ensure-OptionalClaims</code></td>
+<td>Set <code>optionalClaims</code> on an app registration (Mesh: empty; others: <code>aud</code> with <code>use_guid</code> in <code>accessToken</code>)</td>
+</tr>
+<tr>
+<td><code>Ensure-ApiRequestedAccessTokenVersion</code></td>
+<td>Set <code>api.requestedAccessTokenVersion</code> on an app registration (defaults to <code>null</code>)</td>
+</tr>
+<tr>
+<td><code>Ensure-Owners</code></td>
+<td>Idempotently add users from <code>$OwnerEmails</code> as owners on both the app registration and the enterprise app</td>
+</tr>
+</tbody>
+</table>
+<h3 id="section-5-provision-the-mesh-app">Section 5 — Provision the Mesh app</h3>
+<p>Creates or updates the <code>energy-mesh-&lt;env&gt;</code> app registration:</p>
+<ul>
+<li>Sets <code>identifierUris</code> to <code>api://&lt;appId&gt;</code></li>
+<li>Creates the <code>Mesh.Grpc</code> API scope (or reuses the existing one)</li>
+<li>Sets optional claims (empty for Mesh)</li>
+<li>Sets <code>api.requestedAccessTokenVersion</code> to <code>null</code></li>
+<li>Creates all Mesh app roles (<code>ModelReader</code>, <code>ModelWriter</code>, <code>TimeSeriesReader</code>, <code>TimeSeriesWriter</code>, <code>Daemon</code>)</li>
+<li>Adds Microsoft Graph <code>User.Read</code> delegated permission</li>
+<li>Assigns owners from <code>$OwnerEmails</code> to the app registration and enterprise app</li>
+<li>Ensures security groups for each Mesh role exist and are assigned to the Mesh enterprise app</li>
+</ul>
+<h3 id="section-6-provision-each-smart-power-app">Section 6 — Provision each Smart Power app</h3>
+<p>Iterates <code>$SmartApps</code>. For each app:</p>
+<ol>
+<li>Creates or looks up the app registration and its service principal</li>
+<li><strong>Application apps only:</strong></li>
+<li>Sets <code>identifierUris</code></li>
+<li>Creates any redirect URIs defined in <code>Authentication</code> (SPA or Desktop). Addresses may use the <code>{clientId}</code> placeholder, which is expanded to the app's Client ID at run time</li>
+<li>Creates or reuses the app's API scope (<code>ScopeValue</code>)</li>
+<li>Creates or merges app roles (<code>Roles</code>)</li>
+<li>Sets optional claims (<code>aud</code> with <code>use_guid</code> in <code>accessToken</code>)</li>
+<li>Sets <code>api.requestedAccessTokenVersion</code> to <code>null</code></li>
+<li>Assigns owners from <code>$OwnerEmails</code> to the app registration and enterprise app</li>
+<li>Creates security groups and assigns them to app roles (<code>Groups</code>)</li>
+<li>Adds <code>requiredResourceAccess</code> entries for Mesh, OptimalGateway, and/or OptimalLog as configured</li>
+<li>Adds Microsoft Graph <code>User.Read</code> delegated permission</li>
+<li>Grants admin consent (<code>oauth2PermissionGrant</code>, <code>AllPrincipals</code>) for each API dependency</li>
+<li>Creates a client secret if one does not already exist (optionally stores it in Key Vault)</li>
+<li>Collects results (ClientId, ExposedScope, SecretName, etc.) for the output summary</li>
+</ol>
+<h3 id="section-7-pre-authorize-apps-in-mesh">Section 7 — Pre-authorize apps in Mesh</h3>
+<p>Adds every Smart Power app as a pre-authorized client in the Mesh API (<code>preAuthorizedApplications</code>). This means users of those apps are not prompted for consent when acquiring a Mesh token.</p>
+<h3 id="section-8-pre-authorize-apps-in-optimalgateway-and-optimallog">Section 8 — Pre-authorize apps in OptimalGateway and OptimalLog</h3>
+<p>For every app that declares <code>OptimalGatewayPermissions</code> or <code>OptimalLogPermissions</code>, adds it as a pre-authorized client in the respective API. Skips apps that do not declare the attribute.</p>
+<h3 id="section-9-output-summary">Section 9 — Output summary</h3>
+<p>Prints a summary table of all provisioned apps with their Client IDs, exposed scopes, secret names, and Key Vault IDs. Secrets are never printed unless <code>$Global:EmitSecretsToConsole</code> is explicitly enabled.</p>
+<hr />
+<h2 id="configuration-reference">Configuration reference</h2>
+<p>All variables in this section live in <strong><code>entraid-config.ps1</code></strong>, except the global logging/secret settings which remain in <code>validate-entraid-environment.ps1</code>.</p>
+<h3 id="global-settings">Global settings</h3>
+<pre><code class="language-powershell">$Global:LogLevel              = &quot;DEBUG&quot;     # TRACE | DEBUG | INFO | WARN | ERROR
+$Global:WriteToFile           = $true       # Write log to file alongside script
+$Global:EmitSecretsToConsole  = $true       # Return secret text from Ensure-ClientSecret
+$Global:StoreSecretsInKeyVault = $false     # Store new secrets in Azure Key Vault
+$Global:KeyVaultName          = &quot;kv-smartpower-auto&quot;
+$Global:KeyVaultSecretPrefix  = &quot;smartpower&quot;
+</code></pre>
+<h3 id="naming-conventions">Naming conventions</h3>
+<pre><code class="language-powershell">$NamePrefix = &quot;energy-&quot;                # Prepended to every app display name
+$EnvSuffix  = &quot;-auto&quot;                  # Appended to every app display name. Set &quot;&quot; for no suffix.
+$Fqdn       = &quot;*.voluead.volue.com&quot;    # Used when building redirect URIs
+</code></pre>
+<p>An app with <code>Key="AssetManager"</code> and <code>DisplayName=("${NamePrefix}asset-manager${EnvSuffix}")</code> resolves to <code>energy-asset-manager-auto</code>.</p>
+<h3 id="microsoft-graph-constants">Microsoft Graph constants</h3>
+<p>These are well-known, tenant-independent IDs defined in section 1:</p>
+<pre><code class="language-powershell">$MicrosoftGraphAppId  = &quot;00000003-0000-0000-c000-000000000000&quot;
+$GraphUserReadScopeId = [guid]&quot;e1fe6dd8-ba31-4d61-89e7-88639da4683d&quot;  # User.Read delegated
+</code></pre>
+<p>Every app registration (Mesh and all SmartApps) receives a <code>requiredResourceAccess</code> entry for <code>User.Read</code> against Microsoft Graph.</p>
+<h3 id="owners">Owners</h3>
+<pre><code class="language-powershell">$OwnerEmails = @(
+  &quot;user1@contoso.com&quot;,
+  &quot;user2@contoso.com&quot;
+)
+</code></pre>
+<p>Every user in this list is added as an owner of every app registration and its corresponding enterprise application. Users not found in the directory are logged as a warning and skipped. The operation is idempotent — existing owner assignments are not duplicated.</p>
+<h3 id="smartapps-the-main-config-array"><code>$SmartApps</code> — the main config array</h3>
+<p>Each element defines one app registration. The attributes control what the script provisions for that app.</p>
+<h4 id="required-attributes">Required attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Key</code></td>
+<td>string</td>
+<td>Internal identifier used by the script to capture variables for OptimalGateway (<code>Key="OptimalGateway"</code>), OptimalLog (<code>Key="OptimalLog"</code>), and Nimbus (<code>Key="Nimbus"</code>)</td>
+</tr>
+<tr>
+<td><code>DisplayName</code></td>
+<td>string</td>
+<td>Entra ID display name of the app registration</td>
+</tr>
+<tr>
+<td><code>AppType</code></td>
+<td><code>"Application"</code> | <code>"Daemon"</code></td>
+<td>Controls which provisioning branch is used (see below)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="optional-attributes">Optional attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ScopeValue</code></td>
+<td>string</td>
+<td>Value of the <code>oauth2PermissionScope</code> to expose on this app's API (e.g. <code>"Optimal.Log"</code>). Required for <code>Application</code> apps that other apps call.</td>
+</tr>
+<tr>
+<td><code>Roles</code></td>
+<td>array of role objects</td>
+<td>App roles to create on this app registration.</td>
+</tr>
+<tr>
+<td><code>Groups</code></td>
+<td>array of group objects</td>
+<td>Security groups to create and assign to roles.</td>
+</tr>
+<tr>
+<td><code>Authentication</code></td>
+<td>array of auth objects</td>
+<td>Redirect URIs (SPA or Desktop) to register. Addresses may use the <code>{clientId}</code> placeholder.</td>
+</tr>
+<tr>
+<td><code>MeshPermissions</code></td>
+<td>array of permission objects</td>
+<td>Grants this app access to the Mesh API.</td>
+</tr>
+<tr>
+<td><code>OptimalGatewayPermissions</code></td>
+<td>array of permission objects</td>
+<td>Grants this app access to the OptimalGateway API. Also causes the app to be pre-authorized in OptimalGateway.</td>
+</tr>
+<tr>
+<td><code>OptimalLogPermissions</code></td>
+<td>array of permission objects</td>
+<td>Grants this app access to the OptimalLog API. Also causes the app to be pre-authorized in OptimalLog.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="apptype-application-vs-daemon"><code>AppType</code> — Application vs Daemon</h3>
+<h4 id="apptype-application-interactive-user-facing"><code>AppType = "Application"</code> (interactive, user-facing)</h4>
+<p>Provisions the full set:</p>
+<ul>
+<li><code>identifierUris</code>, redirect URIs, API scope, app roles, security group assignments</li>
+<li><code>optionalClaims</code> — <code>aud</code> with <code>use_guid</code> in <code>accessToken</code>; <code>idToken</code> and <code>saml2Token</code> empty</li>
+<li><code>api.requestedAccessTokenVersion = null</code></li>
+<li><code>requiredResourceAccess</code> entries for Microsoft Graph <code>User.Read</code> and each API permission attribute</li>
+<li><code>oauth2PermissionGrant</code> (delegated, <code>AllPrincipals</code>) for admin consent</li>
+</ul>
+<h4 id="apptype-daemon-background-service-no-user-sign-in"><code>AppType = "Daemon"</code> (background service, no user sign-in)</h4>
+<p>Skips <code>identifierUris</code>, redirect URIs, API scope, and user-facing app roles.</p>
+<ul>
+<li>Assigns the <code>Daemon</code> app role on resource service principals via <code>appRoleAssignment</code> (application permission, not delegated)</li>
+</ul>
+<p>Both types receive owner assignments from <code>$OwnerEmails</code>.</p>
+<hr />
+<h3 id="role-objects-roles">Role objects (<code>Roles</code>)</h3>
+<pre><code class="language-powershell">@{ DisplayName=&quot;OptimalLogAdmin&quot;; Value=&quot;OptimalLogAdmin&quot;; MemberType=&quot;User&quot;; Description=&quot;...&quot; }
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Legal values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DisplayName</code></td>
+<td>string</td>
+<td>Human-readable label in Entra ID</td>
+</tr>
+<tr>
+<td><code>Value</code></td>
+<td>string</td>
+<td>Claim value returned in tokens</td>
+</tr>
+<tr>
+<td><code>MemberType</code></td>
+<td><code>"User"</code> | <code>"Application"</code></td>
+<td><code>User</code> for human sign-in roles; <code>Application</code> for daemon/service roles</td>
+</tr>
+<tr>
+<td><code>Description</code></td>
+<td>string</td>
+<td>Shown in admin consent UI</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="group-objects-groups">Group objects (<code>Groups</code>)</h3>
+<pre><code class="language-powershell">@{ DisplayName=&quot;HteWrite&quot;;                      ObjectType=&quot;Group&quot;;            RoleAssigned=&quot;OptimalLogEditor&quot; }
+@{ DisplayName=&quot;automation-framework-services&quot;; ObjectType=&quot;ServicePrincipal&quot;; RoleAssigned=&quot;ServiceAccount&quot;  }
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Legal values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DisplayName</code></td>
+<td>string</td>
+<td>Display name of the principal to assign</td>
+</tr>
+<tr>
+<td><code>ObjectType</code></td>
+<td><code>"Group"</code> | <code>"ServicePrincipal"</code></td>
+<td><code>Group</code> — security group is created if missing, then assigned. <code>ServicePrincipal</code> — an existing SP is looked up by display name and assigned; it is never created automatically. A warning is logged and the entry is skipped if the SP is not found.</td>
+</tr>
+<tr>
+<td><code>RoleAssigned</code></td>
+<td>string</td>
+<td>Must match a <code>Value</code> in the app's <code>Roles</code> array</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="authentication-objects-authentication">Authentication objects (<code>Authentication</code>)</h3>
+<pre><code class="language-powershell">@{ Type=&quot;Single-page&quot;; Address=&quot;https://$Fqdn:1234/callback&quot; }
+@{ Type=&quot;Desktop&quot;;     Address=&quot;ms-appx-web://Microsoft.AAD.BrokerPlugin/{clientId}&quot; }
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Legal values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Type</code></td>
+<td><code>"Single-page"</code> | <code>"Desktop"</code></td>
+<td><code>Single-page</code> → stored in <code>spa.redirectUris</code>; <code>Desktop</code> → stored in <code>publicClient.redirectUris</code></td>
+</tr>
+<tr>
+<td><code>Address</code></td>
+<td>URI string</td>
+<td>The redirect URI to register. Use <code>{clientId}</code> as a placeholder for the app's Client ID — it is expanded at run time.</td>
+</tr>
+</tbody>
+</table>
+<p>Multiple entries are supported, each with its own <code>Type</code>.</p>
+<hr />
+<h3 id="permission-objects-meshpermissions-optimalgatewaypermissions-optimallogpermissions">Permission objects (<code>MeshPermissions</code>, <code>OptimalGatewayPermissions</code>, <code>OptimalLogPermissions</code>)</h3>
+<pre><code class="language-powershell">@{ PermissionType=&quot;Scope&quot; }
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Legal values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PermissionType</code></td>
+<td><code>"Scope"</code> | <code>"Role"</code></td>
+<td><code>Scope</code> = delegated permission (API scope); <code>Role</code> = application permission (app role)</td>
+</tr>
+</tbody>
+</table>
+<p>Multiple entries can be listed to request both a <code>Scope</code> and a <code>Role</code> in the same API.</p>
+<hr />
+<h2 id="adding-a-new-app">Adding a new app</h2>
+<ol>
+<li>Add an entry to <code>$SmartApps</code> in <strong><code>entraid-config.ps1</code></strong>.</li>
+<li>Set <code>Key</code>, <code>DisplayName</code>, and <code>AppType</code>.</li>
+<li>Add <code>ScopeValue</code> if the app exposes its own API.</li>
+<li>Add <code>Roles</code> and <code>Groups</code> for RBAC.</li>
+<li>Add <code>Authentication</code> if users sign in (SPA or Desktop redirect URIs).</li>
+<li>Add any of <code>MeshPermissions</code>, <code>OptimalGatewayPermissions</code>, <code>OptimalLogPermissions</code> to wire up API access.</li>
+</ol>
+<p>Re-run <code>validate-entraid-environment.ps1</code>. It will create only what is missing and skip everything that already exists.</p>
+<h2 id="adding-a-new-api-dependency">Adding a new API dependency</h2>
+<p>If a new shared API is introduced (similar to OptimalGateway or OptimalLog):</p>
+<ol>
+<li>Add a new permissions attribute on the apps that need access (e.g. <code>NewApiPermissions</code>).</li>
+<li>In Section 6, add a block similar to the <code>OptimalLogPermissions</code> block to call <code>Ensure-RequiredResourceAccess</code> and <code>Ensure-OAuth2PermissionGrant</code>.</li>
+<li>In Section 8, extend the filter and add a call to <code>Ensure-PreAuthorizedApplication</code> on the new API app.</li>
+<li>Ensure the new API app is defined in <code>$SmartApps</code> with <code>Key</code> set so its scope ID and app object can be captured in the Section 6 loop.</li>
+</ol>
+<h2 id="idempotency">Idempotency</h2>
+<p>Every helper function follows a read → compare → patch-only-if-changed pattern:</p>
+<ul>
+<li>App registrations, service principals, and security groups are created only if not found by display name. Existing service principals missing the <code>WindowsAzureActiveDirectoryIntegratedApp</code> tag have it patched in without recreating the SP.</li>
+<li>API scopes and app roles are merged: existing items are reused (IDs are preserved), new items are appended.</li>
+<li><code>requiredResourceAccess</code> and <code>preAuthorizedApplications</code> entries are appended only when not already present.</li>
+<li><code>oauth2PermissionGrant</code> scope strings are extended (not replaced) when a grant already exists.</li>
+<li><code>optionalClaims</code> and <code>requestedAccessTokenVersion</code> are patched only when the current value differs.</li>
+<li>Client secrets are skipped when a credential with the same display name already exists (Graph does not return existing secret values).</li>
+<li>Owner assignments are checked against the current owner list before each <code>POST</code> — no duplicates are created.</li>
+</ul>
+<p>Re-running the script against an already-provisioned environment produces only <code>DEBUG</code>-level skip messages and no Graph PATCH calls.</p>
+              
+            </div>
+          </div><footer>
+  
+    <hr/>
+  
+    <div role="contentinfo">
+      <!-- Copyright etc -->
+    </div>
+  
+    Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  </footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version is-active">
+      
+      
+      
+    </span>
+  </div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../../../search/main.js"></script>
+      <script src="../../../js/version-select.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
