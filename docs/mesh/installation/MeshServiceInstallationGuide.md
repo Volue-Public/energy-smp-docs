@@ -797,7 +797,7 @@ Below is the complete `mesh.json` listed with all options with default values.
 
 ```json
 {
-  "FailOnSynchErrors": true,  // Specifies whether Mesh should shut down after 3 consecutive synchronisation errors
+  "FailOnSynchErrors": false,  // Specifies whether Mesh should shut down after 3 consecutive synchronisation errors
   "SerializationVersion": 25,
   "MaxSessions": 250, // Maximum number of existing sessions at any given time, -1 to set to unlimited
   "ComputerName": "localhost",
