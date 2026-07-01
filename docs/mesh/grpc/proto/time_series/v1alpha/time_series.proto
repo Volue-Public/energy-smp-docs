@@ -162,6 +162,11 @@ message ReadTransformedTimeseriesSingleRequest {
   // Target transformation resolution. Must not be set to break point.
   volue.mesh.grpc.type.Resolution resolution = 3;
   TransformationMethod transformation_method = 4;
+
+  // The timezone parameter is not used when transforming time series to sub-day resolutions.
+  // When set to other value than `TIMEZONE_UNSPECIFIED` for sub-day target resolution:
+  // - time zone-aware time series will return an error.
+  // - time zone-naive time series will ignore it.
   Timezone transformation_timezone = 5;
 }
 
