@@ -80,7 +80,7 @@ message SimulationLog {
 // A HydSim dataset is a representation of data used in a hydro simulation or
 // inflow calculation. The HydSim team may use a dataset to diagnose issues.
 // When Volue requests a dataset we recommend storing datasets with filename
-// `name` and contents from `data` and then sending those files to Volue
+// `name` and contents from `data` and then sending those files to Volue.
 message HydSimDataset {
   string name = 1;
   bytes data = 2;
