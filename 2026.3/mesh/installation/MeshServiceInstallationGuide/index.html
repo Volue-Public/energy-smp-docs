@@ -901,7 +901,11 @@ You define the database connection string in <code>mesh.json</code>:</p>
     }
   },
 </code></pre>
-<p>This defines which port Mesh uses to listen for gRPC requests. This port number must be the same in the clients using gRPC. The firewall must also be open on this port. The example shows an unencrypted and unauthenticated configuration, and we highly recommend to both encrypt and authenticate/authorize the gRPC interface (see below for how to configure it).</p>
+<p>This defines which port Mesh uses to listen for gRPC requests. This port number must be the same in the clients using gRPC. The firewall must also be open on this port.</p>
+<p>Note that port 50051 in the example above belongs to the default <a href="https://en.wikipedia.org/wiki/Ephemeral_port">dynamic port range</a>. This means it can be occupied by another service when Mesh is starting up. If this happens, Mesh displays an error message and terminates.</p>
+<p>Configuring the gRPC server to use a port outside of the dynamic port range can minimize the risk of conflicts.
+In this case, you should check that the chosen port number does not conflict with another service running on the system.</p>
+<p>The example shows an unencrypted and unauthenticated configuration, and we highly recommend to both encrypt and authenticate/authorize the gRPC interface (see below for how to configure it).</p>
 <h3 id="use-transport-layer-security-tls">Use Transport Layer Security (TLS)</h3>
 <p>There are two possible types of connections to the gRPC server from the clients.</p>
 <ul>

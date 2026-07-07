@@ -91,7 +91,7 @@ service TimeseriesService {
   // the transformation is applied separately for each of the defined intervals.
   // This allows to get transformed time series with different resolutions
   // and/or transformation methods for different intervals.
-  
+
   // Result is an aggregated time series with transformed points for each defined interval.
 
   // Mesh IDs of the returned time series match the requested Mesh IDs.
@@ -124,8 +124,10 @@ service TimeseriesService {
   // the subscribed time series attribute values using the subscribed interval.
   // Otherwise, the notifications won't be sent.
   //
-  // When a time series attribute values are modified,
-  // a notification is sent through the response stream.
+  // When a time series attribute values are modified, a notification is sent
+  // to the client through the response stream. This can result from changes
+  // committed in another session or local uncommitted changes in the same
+  // session as the subscription.
   //
   // After the first notification to the client connection is delivered,
   // the future notifications on that subscription are blocked.
@@ -136,7 +138,7 @@ service TimeseriesService {
   // using the subscribed interval.
   //
   // The client can update the subscription settings by sending another
-  // message to the existing request stream. 
+  // message to the existing request stream.
   // Updating the subscription settings unblocks the notifications.
   //
   // Connecting/disconnecting the time series resource to/from subscribed
@@ -150,6 +152,8 @@ service TimeseriesService {
   // This RPC can sometimes deliver false-positive notifications,
   // i.e. the notification can be sent when the change interval
   // does not overlap with the subscription interval.
+  //
+  // Session will not expire while there is an active subscription.
   rpc SubscribeToTimeseriesChangeNotifications(
     stream SubscribeToTimeseriesChangeNotificationsRequest)
    returns (stream SubscribeToTimeseriesChangeNotificationsResponse) {}
@@ -165,9 +169,9 @@ message ReadTimeseriesRequest {
 }
 
 message Log {
-	google.protobuf.Timestamp timestamp = 1;
-	volue.mesh.grpc.type.LogLevel level = 2;
-	string message = 3;
+  google.protobuf.Timestamp timestamp = 1;
+  volue.mesh.grpc.type.LogLevel level = 2;
+  string message = 3;
 }
 
 message ReadTimeseriesResponse {
@@ -202,6 +206,10 @@ message ReadTransformedTimeseriesSingleRequest {
   // Target transformation resolution. Must not be set to break point.
   volue.mesh.grpc.type.Resolution resolution = 3;
   TransformationMethod transformation_method = 4;
+  // The timezone parameter is not used when transforming time series to sub-day resolutions.
+  // When set to other value than `TIMEZONE_UNSPECIFIED` for sub-day target resolution:
+  // - time zone-aware time series will return an error.
+  // - time zone-naive time series will ignore it.
   Timezone transformation_timezone = 5;
 }
 
@@ -215,6 +223,10 @@ message ReadMultiIntervalTransformedTimeseriesRequest {
 message ReadMultiIntervalTransformedTimeseriesSingleRequest {
   volue.mesh.grpc.type.MeshId timeseries_id = 1;
   TransformationMethod transformation_method = 2;
+  // The timezone parameter is not used when transforming time series to sub-day resolutions.
+  // When set to other value than `TIMEZONE_UNSPECIFIED` for sub-day target resolution:
+  // - time zone-aware time series will return an error.
+  // - time zone-naive time series will ignore it.
   Timezone transformation_timezone = 3;
   // Each interval must start not earlier than the end of the previous interval.
   repeated TransformedIntervalDefinition transformed_intervals = 4;

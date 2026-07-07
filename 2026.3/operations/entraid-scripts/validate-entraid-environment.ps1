@@ -489,8 +489,8 @@ function Ensure-RequiredResourceAccess{
   return (Patch-ApplicationIfChanged $appObjectId @{ requiredResourceAccess = $rra } "Ensure requiredResourceAccess ($permissionType)")
 }
 
-function Ensure-OptionalClaims([string]$appObjectId, [switch]$IsMesh) {
-  $desired = if ($IsMesh) {
+function Ensure-OptionalClaims([string]$appObjectId, [Boolean]$isMesh) {
+  $desired = if ($isMesh) {
     @{
       accessToken = @(
         @{
@@ -511,7 +511,7 @@ function Ensure-OptionalClaims([string]$appObjectId, [switch]$IsMesh) {
     }
   }
 
-  Patch-ApplicationIfChanged $appObjectId @{ optionalClaims = $desired } "Ensure optionalClaims (IsMesh=$IsMesh)" | Out-Null
+  Patch-ApplicationIfChanged $appObjectId @{ optionalClaims = $desired } "Ensure optionalClaims (isMesh=$isMesh)" | Out-Null
 }
 
 function Ensure-PreAuthorizedApplication([string]$appName, [string]$appObjectId, [string]$clientAppId, [guid]$delegatedPermissionId) {
@@ -699,7 +699,7 @@ try {
   $meshScopeValueEffective = $meshScope.Value
 
   # Ensure correct audience
-  Ensure-OptionalClaims -appObjectId $meshApp.Id -IsMesh $true
+  Ensure-OptionalClaims -appObjectId $meshApp.Id -isMesh $true
   Ensure-ApiRequestedAccessTokenVersion -appObjectId $meshApp.Id
 
   # Ensure Mesh app roles by value
@@ -815,7 +815,7 @@ foreach ($appDef in $SmartApps) {
       }
     }
     # Ensure correct audience
-    Ensure-OptionalClaims -appObjectId $app.Id -IsMesh $false
+    Ensure-OptionalClaims -appObjectId $app.Id -isMesh $false
     Ensure-ApiRequestedAccessTokenVersion -appObjectId $app.Id
 
     # Ensure owners on app registration + enterprise app
