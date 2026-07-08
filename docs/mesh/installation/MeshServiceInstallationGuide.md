@@ -275,7 +275,14 @@ To enable Mesh gRPC server, configure the following lines in the Mesh configurat
   },
 ```
 
-This defines which port Mesh uses to listen for gRPC requests. This port number must be the same in the clients using gRPC. The firewall must also be open on this port. The example shows an unencrypted and unauthenticated configuration, and we highly recommend to both encrypt and authenticate/authorize the gRPC interface (see below for how to configure it).
+This defines which port Mesh uses to listen for gRPC requests. This port number must be the same in the clients using gRPC. The firewall must also be open on this port.
+
+Note that port 50051 in the example above belongs to the default [dynamic port range](https://en.wikipedia.org/wiki/Ephemeral_port). This means it can be occupied by another service when Mesh is starting up. If this happens, Mesh displays an error message and terminates.
+
+Configuring the gRPC server to use a port outside of the dynamic port range can minimize the risk of conflicts.
+In this case, you should check that the chosen port number does not conflict with another service running on the system.
+
+The example shows an unencrypted and unauthenticated configuration, and we highly recommend to both encrypt and authenticate/authorize the gRPC interface (see below for how to configure it).
 
 ### Use Transport Layer Security (TLS)
 
