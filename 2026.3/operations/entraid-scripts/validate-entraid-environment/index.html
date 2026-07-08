@@ -16,7 +16,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "validate-entraid-environment.ps1";
+        var mkdocs_page_name = "Documentation";
         var mkdocs_page_input_path = "operations/entraid-scripts/validate-entraid-environment.md";
         var mkdocs_page_url = null;
       </script>
@@ -446,10 +446,84 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Operations</span></p>
-              <ul>
+              <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../../queue-usage-in-smart-power/">Queue usage in Smart Power</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../monitoring/">Monitor services</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >EntraId validation script</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Documentation</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#what-the-script-does">What the script does</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#section-0-logging-config">Section 0 — Logging config</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#section-1-config">Section 1 — Config</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#section-2-logging-helpers">Section 2 — Logging helpers</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#section-3-connect-to-graph">Section 3 — Connect to Graph</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#section-4-idempotent-helper-functions">Section 4 — Idempotent helper functions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#section-5-provision-the-mesh-app">Section 5 — Provision the Mesh app</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#section-6-provision-each-smart-power-app">Section 6 — Provision each Smart Power app</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#section-7-pre-authorize-apps-in-mesh">Section 7 — Pre-authorize apps in Mesh</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#section-8-pre-authorize-apps-in-optimalgateway-and-optimallog">Section 8 — Pre-authorize apps in OptimalGateway and OptimalLog</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#section-9-pre-authorize-apps-in-automationframeworkapi">Section 9 — Pre-authorize apps in AutomationFrameworkApi</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#section-10-output-summary">Section 10 — Output summary</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration-reference">Configuration reference</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#global-settings">Global settings</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#naming-conventions">Naming conventions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#microsoft-graph-constants">Microsoft Graph constants</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#owners">Owners</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#smartapps-the-main-config-array">$SmartApps — the main config array</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#apptype-application-vs-daemon">AppType — Application vs Daemon</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#role-objects-roles">Role objects (Roles)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#group-objects-groups">Group objects (Groups)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#authentication-objects-authentication">Authentication objects (Authentication)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#permission-objects-meshpermissions-optimalgatewaypermissions-optimallogpermissions-nimbuspermissions-afpermissions">Permission objects (MeshPermissions, OptimalGatewayPermissions, OptimalLogPermissions, NimbusPermissions, AFPermissions)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#currently-configured-apps">Currently configured apps</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#known-issues">Known issues</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#adding-a-new-app">Adding a new app</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#adding-a-new-api-dependency">Adding a new API dependency</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#idempotency">Idempotency</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+    </ul>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
@@ -475,7 +549,9 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">validate-entraid-environment.ps1</li>
+          <li class="breadcrumb-item">Operations</li>
+          <li class="breadcrumb-item">EntraId validation script</li>
+      <li class="breadcrumb-item active">Documentation</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -567,12 +643,16 @@
 <td>Assign an application (daemon SP) to an app role on a service principal</td>
 </tr>
 <tr>
+<td><code>Ensure-Group</code></td>
+<td>Create or look up a security group by display name (mail-disabled, security-enabled; nickname derived from the display name)</td>
+</tr>
+<tr>
 <td><code>Ensure-ClientSecret</code></td>
 <td>Create a password credential if one with the given display name does not exist</td>
 </tr>
 <tr>
 <td><code>Store-SecretInKeyVault</code></td>
-<td>Store a secret value in Azure Key Vault (optional)</td>
+<td>Store a secret value in Azure Key Vault (optional). Backed by <code>Ensure-AzKeyVaultModule</code>, which no-ops with a warning if <code>Az.KeyVault</code> isn't installed</td>
 </tr>
 <tr>
 <td><code>Ensure-OptionalClaims</code></td>
@@ -613,7 +693,7 @@
 <li>Sets <code>api.requestedAccessTokenVersion</code> to <code>null</code></li>
 <li>Assigns owners from <code>$OwnerEmails</code> to the app registration and enterprise app</li>
 <li>Creates security groups and assigns them to app roles (<code>Groups</code>)</li>
-<li>Adds <code>requiredResourceAccess</code> entries for Mesh, OptimalGateway, and/or OptimalLog as configured</li>
+<li>Adds <code>requiredResourceAccess</code> entries for Mesh, OptimalGateway, OptimalLog, Nimbus, and/or AutomationFrameworkApi as configured</li>
 <li>Adds Microsoft Graph <code>User.Read</code> delegated permission</li>
 <li>Grants admin consent (<code>oauth2PermissionGrant</code>, <code>AllPrincipals</code>) for each API dependency</li>
 <li>Creates a client secret if one does not already exist (optionally stores it in Key Vault)</li>
@@ -623,19 +703,22 @@
 <p>Adds every Smart Power app as a pre-authorized client in the Mesh API (<code>preAuthorizedApplications</code>). This means users of those apps are not prompted for consent when acquiring a Mesh token.</p>
 <h3 id="section-8-pre-authorize-apps-in-optimalgateway-and-optimallog">Section 8 — Pre-authorize apps in OptimalGateway and OptimalLog</h3>
 <p>For every app that declares <code>OptimalGatewayPermissions</code> or <code>OptimalLogPermissions</code>, adds it as a pre-authorized client in the respective API. Skips apps that do not declare the attribute.</p>
-<h3 id="section-9-output-summary">Section 9 — Output summary</h3>
+<h3 id="section-9-pre-authorize-apps-in-automationframeworkapi">Section 9 — Pre-authorize apps in AutomationFrameworkApi</h3>
+<p>For every app that declares <code>AFPermissions</code>, adds it as a pre-authorized client in the AutomationFrameworkApi API (<code>$afApp</code> / <code>$afScopeIdEffective</code>, captured when the <code>AutomationFrameworkApi</code> entry is processed in Section 6). Skips apps that do not declare the attribute.</p>
+<h3 id="section-10-output-summary">Section 10 — Output summary</h3>
 <p>Prints a summary table of all provisioned apps with their Client IDs, exposed scopes, secret names, and Key Vault IDs. Secrets are never printed unless <code>$Global:EmitSecretsToConsole</code> is explicitly enabled.</p>
 <hr />
 <h2 id="configuration-reference">Configuration reference</h2>
 <p>All variables in this section live in <strong><code>entraid-config.ps1</code></strong>, except the global logging/secret settings which remain in <code>validate-entraid-environment.ps1</code>.</p>
 <h3 id="global-settings">Global settings</h3>
-<pre><code class="language-powershell">$Global:LogLevel              = &quot;DEBUG&quot;     # TRACE | DEBUG | INFO | WARN | ERROR
+<pre><code class="language-powershell">$Global:LogLevel              = &quot;INFO&quot;      # TRACE | DEBUG | INFO | WARN | ERROR
 $Global:WriteToFile           = $true       # Write log to file alongside script
 $Global:EmitSecretsToConsole  = $true       # Return secret text from Ensure-ClientSecret
 $Global:StoreSecretsInKeyVault = $false     # Store new secrets in Azure Key Vault
 $Global:KeyVaultName          = &quot;kv-smartpower-auto&quot;
 $Global:KeyVaultSecretPrefix  = &quot;smartpower&quot;
 </code></pre>
+<p>The log file itself is not configured by name — it's derived as <code>smartpower-provisioning_&lt;RunId&gt;.log</code> in the current working directory, where <code>&lt;RunId&gt;</code> is a fresh GUID generated per run (<code>$Global:RunId</code>).</p>
 <h3 id="naming-conventions">Naming conventions</h3>
 <pre><code class="language-powershell">$NamePrefix = &quot;energy-&quot;                # Prepended to every app display name
 $EnvSuffix  = &quot;-auto&quot;                  # Appended to every app display name. Set &quot;&quot; for no suffix.
@@ -670,7 +753,7 @@ $GraphUserReadScopeId = [guid]&quot;e1fe6dd8-ba31-4d61-89e7-88639da4683d&quot;  
 <tr>
 <td><code>Key</code></td>
 <td>string</td>
-<td>Internal identifier used by the script to capture variables for OptimalGateway (<code>Key="OptimalGateway"</code>), OptimalLog (<code>Key="OptimalLog"</code>), and Nimbus (<code>Key="Nimbus"</code>)</td>
+<td>Internal identifier used by the script to capture variables for OptimalGateway (<code>Key="OptimalGateway"</code>), OptimalLog (<code>Key="OptimalLog"</code>), Nimbus (<code>Key="Nimbus"</code>), and AutomationFrameworkApi (<code>Key="AutomationFrameworkApi"</code>)</td>
 </tr>
 <tr>
 <td><code>DisplayName</code></td>
@@ -728,6 +811,16 @@ $GraphUserReadScopeId = [guid]&quot;e1fe6dd8-ba31-4d61-89e7-88639da4683d&quot;  
 <td><code>OptimalLogPermissions</code></td>
 <td>array of permission objects</td>
 <td>Grants this app access to the OptimalLog API. Also causes the app to be pre-authorized in OptimalLog.</td>
+</tr>
+<tr>
+<td><code>NimbusPermissions</code></td>
+<td>array of permission objects</td>
+<td>Grants this app access to the Nimbus API. Currently only declared on the Nimbus app entry itself — see <a href="#known-issues">Known issues</a>. Does not cause pre-authorization.</td>
+</tr>
+<tr>
+<td><code>AFPermissions</code></td>
+<td>array of permission objects</td>
+<td>Grants this app access to the AutomationFrameworkApi API. Also causes the app to be pre-authorized in AutomationFrameworkApi (Section 9).</td>
 </tr>
 </tbody>
 </table>
@@ -842,7 +935,7 @@ $GraphUserReadScopeId = [guid]&quot;e1fe6dd8-ba31-4d61-89e7-88639da4683d&quot;  
 </table>
 <p>Multiple entries are supported, each with its own <code>Type</code>.</p>
 <hr />
-<h3 id="permission-objects-meshpermissions-optimalgatewaypermissions-optimallogpermissions">Permission objects (<code>MeshPermissions</code>, <code>OptimalGatewayPermissions</code>, <code>OptimalLogPermissions</code>)</h3>
+<h3 id="permission-objects-meshpermissions-optimalgatewaypermissions-optimallogpermissions-nimbuspermissions-afpermissions">Permission objects (<code>MeshPermissions</code>, <code>OptimalGatewayPermissions</code>, <code>OptimalLogPermissions</code>, <code>NimbusPermissions</code>, <code>AFPermissions</code>)</h3>
 <pre><code class="language-powershell">@{ PermissionType=&quot;Scope&quot; }
 </code></pre>
 <table>
@@ -863,6 +956,90 @@ $GraphUserReadScopeId = [guid]&quot;e1fe6dd8-ba31-4d61-89e7-88639da4683d&quot;  
 </table>
 <p>Multiple entries can be listed to request both a <code>Scope</code> and a <code>Role</code> in the same API.</p>
 <hr />
+<h3 id="currently-configured-apps">Currently configured apps</h3>
+<p>Reflects the entries in <code>$SmartApps</code> (plus the Mesh app) as of this writing:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>AppType</th>
+<th>ScopeValue</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>(Mesh)</em></td>
+<td>—</td>
+<td><code>Mesh.Grpc</code></td>
+<td>Roles: ModelReader, ModelWriter, TimeSeriesReader, TimeSeriesWriter, Daemon</td>
+</tr>
+<tr>
+<td><code>OptimalLog</code></td>
+<td>Application</td>
+<td><code>Optimal.Log</code></td>
+<td>Roles: OptimalLogAdmin/Editor/Viewer, Daemon</td>
+</tr>
+<tr>
+<td><code>OptimalGateway</code></td>
+<td>Application</td>
+<td><code>Optimal.Gateway</code></td>
+<td>Requires Mesh (<code>Scope</code>+<code>Role</code>) and OptimalLog (<code>Scope</code>)</td>
+</tr>
+<tr>
+<td><code>AssetManager</code></td>
+<td>Application</td>
+<td><code>AssetManager</code></td>
+<td>SPA redirect on <code>:18051</code>; requires Mesh <code>Scope</code></td>
+</tr>
+<tr>
+<td><code>AvailabilityPlanner</code></td>
+<td>Application</td>
+<td><code>AvailabilityPlanner</code></td>
+<td>SPA redirect on <code>:18053</code>; requires Mesh <code>Scope</code></td>
+</tr>
+<tr>
+<td><code>MeshConfigurator</code></td>
+<td>Application</td>
+<td><code>MeshConfigurator</code></td>
+<td>SPA redirect on <code>:18055</code>; requires Mesh <code>Scope</code></td>
+</tr>
+<tr>
+<td><code>Nimbus</code></td>
+<td>Application</td>
+<td><code>Nimbus</code></td>
+<td>Desktop redirects (<code>localhost</code>, broker plugin); requires Mesh, OptimalGateway, OptimalLog <code>Scope</code>. Also declares <code>NimbusPermissions</code>, but that's a no-op today — no other app requests access to Nimbus, and the self-referential grant to itself is explicitly skipped</td>
+</tr>
+<tr>
+<td><code>MarginalCost</code></td>
+<td>Application</td>
+<td><code>MarginalCost</code></td>
+<td>Requires Mesh <code>Scope</code></td>
+</tr>
+<tr>
+<td><code>MeshDataTransfer</code></td>
+<td>Daemon</td>
+<td>—</td>
+<td>Requires Mesh <code>Role</code> (Daemon)</td>
+</tr>
+<tr>
+<td><code>AutomationFrameworkApi</code></td>
+<td>Application</td>
+<td><code>af-api</code></td>
+<td>Roles: ServiceAccount, Viewer, Modeler, Admin, Operator; requires Mesh <code>Role</code>; declares <code>AFPermissions</code> (<code>Scope</code>) — the <code>requiredResourceAccess</code>, admin-consent, and pre-authorization self-entries are all correctly skipped for its own entry</td>
+</tr>
+<tr>
+<td><code>AutomationFrameworkServices</code></td>
+<td>Application</td>
+<td>—</td>
+<td>Requires Mesh, OptimalGateway, OptimalLog, and AutomationFrameworkApi (all <code>Scope</code>) via <code>AFPermissions</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="known-issues">Known issues</h2>
+<p>None currently known. This section documents quirks in the script/config as they're found — check back here before relying on undocumented behavior or copying a pattern for a new app.</p>
+<hr />
 <h2 id="adding-a-new-app">Adding a new app</h2>
 <ol>
 <li>Add an entry to <code>$SmartApps</code> in <strong><code>entraid-config.ps1</code></strong>.</li>
@@ -870,15 +1047,15 @@ $GraphUserReadScopeId = [guid]&quot;e1fe6dd8-ba31-4d61-89e7-88639da4683d&quot;  
 <li>Add <code>ScopeValue</code> if the app exposes its own API.</li>
 <li>Add <code>Roles</code> and <code>Groups</code> for RBAC.</li>
 <li>Add <code>Authentication</code> if users sign in (SPA or Desktop redirect URIs).</li>
-<li>Add any of <code>MeshPermissions</code>, <code>OptimalGatewayPermissions</code>, <code>OptimalLogPermissions</code> to wire up API access.</li>
+<li>Add any of <code>MeshPermissions</code>, <code>OptimalGatewayPermissions</code>, <code>OptimalLogPermissions</code> to wire up API access (see <a href="#known-issues">Known issues</a> if you're tempted to model this on <code>NimbusPermissions</code> or <code>AFPermissions</code> — both have bugs today).</li>
 </ol>
 <p>Re-run <code>validate-entraid-environment.ps1</code>. It will create only what is missing and skip everything that already exists.</p>
 <h2 id="adding-a-new-api-dependency">Adding a new API dependency</h2>
 <p>If a new shared API is introduced (similar to OptimalGateway or OptimalLog):</p>
 <ol>
 <li>Add a new permissions attribute on the apps that need access (e.g. <code>NewApiPermissions</code>).</li>
-<li>In Section 6, add a block similar to the <code>OptimalLogPermissions</code> block to call <code>Ensure-RequiredResourceAccess</code> and <code>Ensure-OAuth2PermissionGrant</code>.</li>
-<li>In Section 8, extend the filter and add a call to <code>Ensure-PreAuthorizedApplication</code> on the new API app.</li>
+<li>In Section 6, add a block similar to the <code>AFPermissions</code> block to call <code>Ensure-RequiredResourceAccess</code> and <code>Ensure-OAuth2PermissionGrant</code> — double-check every reference uses <em>your new API's</em> captured <code>$xxxApp</code> / <code>$xxxScopeIdEffective</code> variables, not a copy-pasted one (this is a common source of bugs when following the existing blocks as a template).</li>
+<li>Add pre-authorization either by extending Section 8's filter, or by adding a new dedicated section like Section 9 (<code>AFPermissions</code> → AutomationFrameworkApi) if you'd rather keep it separate.</li>
 <li>Ensure the new API app is defined in <code>$SmartApps</code> with <code>Key</code> set so its scope ID and app object can be captured in the Section 6 loop.</li>
 </ol>
 <h2 id="idempotency">Idempotency</h2>
@@ -896,6 +1073,10 @@ $GraphUserReadScopeId = [guid]&quot;e1fe6dd8-ba31-4d61-89e7-88639da4683d&quot;  
               
             </div>
           </div><footer>
+      <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+          <a href="../../monitoring/" class="btn btn--outline btn--success float-left" title="Monitor services"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+          <a href="../validate-entraid-environment.ps1" class="btn btn--outline btn--success float-right" title="validate-entraid-environment.ps1">Next <span class="icon icon-circle-arrow-right"></span></a>
+      </div>
   
     <hr/>
   
@@ -917,6 +1098,10 @@ $GraphUserReadScopeId = [guid]&quot;e1fe6dd8-ba31-4d61-89e7-88639da4683d&quot;  
     <span class="rst-current-version" data-toggle="rst-current-version is-active">
       
       
+        <span><a href="../../monitoring/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      
+      
+        <span><a href="../validate-entraid-environment.ps1" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
   </div>

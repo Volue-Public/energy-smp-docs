@@ -754,51 +754,56 @@ foreach ($appDef in $SmartApps) {
 
   $step = Start-Step "Provision Smart app: $($appDef.DisplayName) (idempotent)"
   try {
+    # Ensure global definitions
     $app = Ensure-Application $appDef.DisplayName
     $sp  = Ensure-ServicePrincipalForApp -appId $app.AppId -displayName $appDef.DisplayName
+    $redirectUris = @()
 
     if ($appDef.AppType -eq "Application") {
       # Ensure identifierUri
       Patch-ApplicationIfChanged $app.Id @{ identifierUris = @("api://$($app.AppId)") } "Ensure identifierUris for $($appDef.DisplayName)" | Out-Null
+
+      $scope = $null
+      if (-not ([string]::IsNullOrWhiteSpace($appDef.ScopeValue))) {
+        # Ensure app scope by value
+        $scope = Ensure-ApiScopeByValue -appObjectId $app.Id -scopeValue $appDef.ScopeValue -displayNameForConsent $appDef.DisplayName
+      }
+
+      # Ensure scopes by value
+      if ($appDef.Key -eq "OptimalGateway") {
+        $optGwScopeIdEffective    = [guid]$scope.Id
+        $optGwScopeValueEffective = $scope.Value
+        $optGwApp                 = $app
+        $OptGwAppDisplayName      = $appDef.DisplayName
+        Write-Log "optGwScopeIdEffective=$optGwScopeIdEffective, optGwAppId=$($optGwApp.Id)" DEBUG
+      }
+      if ($appDef.Key -eq "OptimalLog") {
+        $optLogScopeIdEffective    = [guid]$scope.Id
+        $optLogScopeValueEffective = $scope.Value
+        $optLogApp                 = $app
+        $OptLogAppDisplayName      = $appDef.DisplayName
+        Write-Log "optLogScopeIdEffective=$optLogScopeIdEffective" DEBUG
+      }
+      if ($appDef.Key -eq "Nimbus") {
+        $nimbusScopeIdEffective    = [guid]$scope.Id
+        $nimbusScopeValueEffective = $scope.Value
+        $nimbusApp                 = $app
+        Write-Log "nimbusScopeIdEffective=$nimbusScopeIdEffective" DEBUG
+      }
+      if ($appDef.Key -eq "AutomationFrameworkApi") {
+        $afScopeIdEffective    = [guid]$scope.Id
+        $afScopeValueEffective = $scope.Value
+        $afApp                 = $app
+        $afAppDisplayName      = $appDef.DisplayName
+        Write-Log "afScopeIdEffective=$afScopeIdEffective" DEBUG
+      }
 
       # Ensure redirect uri
       if ($appDef.Authentication) {
         foreach ($a in $appDef.Authentication) {
           $resolvedAddress = $a.Address -replace '\{clientId\}', $app.AppId
           Ensure-RedirectUri -appObjectId $app.Id -redirect $resolvedAddress -appType $a.Type | Out-Null
-        }
-      }
-
-      if (-not ([string]::IsNullOrWhiteSpace($appDef.ScopeValue))) {
-        # Ensure app scope by value
-        $scope = Ensure-ApiScopeByValue -appObjectId $app.Id -scopeValue $appDef.ScopeValue -displayNameForConsent $appDef.DisplayName
-        # Ensure OptimalGateway scope by value
-        if ($appDef.Key -eq "OptimalGateway") {
-          $optGwScopeIdEffective    = [guid]$scope.Id
-          $optGwScopeValueEffective = $scope.Value
-          $optGwApp                 = $app
-          $OptGwAppDisplayName      = $appDef.DisplayName
-          Write-Log "optGwScopeIdEffective=$optGwScopeIdEffective, optGwAppId=$($optGwApp.Id)" DEBUG
-        }
-        if ($appDef.Key -eq "OptimalLog") {
-          $optLogScopeIdEffective    = [guid]$scope.Id
-          $optLogScopeValueEffective = $scope.Value
-          $optLogApp                 = $app
-          $OptLogAppDisplayName      = $appDef.DisplayName
-          Write-Log "optLogScopeIdEffective=$optLogScopeIdEffective" DEBUG
-        }
-        if ($appDef.Key -eq "Nimbus") {
-          $nimbusScopeIdEffective    = [guid]$scope.Id
-          $nimbusScopeValueEffective = $scope.Value
-          $nimbusApp                 = $app
-          Write-Log "nimbusScopeIdEffective=$nimbusScopeIdEffective" DEBUG
-        }
-        if ($appDef.Key -eq "AutomationFrameworkApi") {
-          $afScopeIdEffective    = [guid]$scope.Id
-          $afScopeValueEffective = $scope.Value
-          $afApp                 = $app
-          $afAppDisplayName      = $appDef.DisplayName
-          Write-Log "afScopeIdEffective=$afScopeIdEffective" DEBUG
+          $redirectUris += $resolvedAddress
         }
       }
 
@@ -812,6 +817,22 @@ foreach ($appDef in $SmartApps) {
         $optGwDaemonRole = $optGwRolesEffective | Where-Object { $_.DisplayName -eq "Daemon" } | Select-Object -First 1
         $optGwDaemonRoleId = [guid]$optGwDaemonRole.Id
         Write-Log "optGwDaemonRoleId=$optGwDaemonRoleId" DEBUG
+      }
+    }
+    elseif ($appDef.AppType -eq "Daemon") {
+      $scope = $null
+      if (-not ([string]::IsNullOrWhiteSpace($appDef.ScopeValue))) {
+        # Ensure app scope by value
+        $scope = Ensure-ApiScopeByValue -appObjectId $app.Id -scopeValue $appDef.ScopeValue -displayNameForConsent $appDef.DisplayName
+      }
+      if ($appDef.Key -eq "MeshDataTransfer") {
+        if ($scope -ne $null) {
+          $mdtScopeIdEffective    = [guid]$scope.Id
+          $mdtScopeValueEffective = $scope.Value
+        }
+        $mdtApp                 = $app
+        $mdtAppDisplayName      = $appDef.DisplayName
+        Write-Log "mdtScopeIdEffective=$mdtScopeIdEffective" DEBUG
       }
     }
     # Ensure correct audience
@@ -878,7 +899,7 @@ foreach ($appDef in $SmartApps) {
       End-Step $logPermStep $true
     }
 
-    if ($appDef.NimbusPermissions) {
+    if ($appDef.NimbusPermissions -and $app -ne $nimbusApp) {
       # Ensure delegated permission to Nimbus (requiredResourceAccess) - idempotent merge
       $logPermStep = Start-Step "Ensure Nimbus delegated permission on $($appDef.DisplayName)"
       foreach ($p in $appDef.NimbusPermissions) {
@@ -888,12 +909,12 @@ foreach ($appDef in $SmartApps) {
       End-Step $logPermStep $true
     }
 
-    if ($appDef.AFPermissions) {
+    if ($appDef.AFPermissions -and $app -ne $afApp) {
       # Ensure delegated permission to AutomationFrameworkApi (requiredResourceAccess) - idempotent merge
       $logPermStep = Start-Step "Ensure AutomationFrameworkApi delegated permission on $($appDef.DisplayName)"
       foreach ($p in $appDef.AFPermissions) {
-        $permissionId = if ($p.PermissionType -eq "Scope") { $optLogScopeIdEffective } else { $null }
-        Ensure-RequiredResourceAccess -appObjectId $app.Id -resourceAppId $optLogApp.AppId -permissionId $permissionId -permissionType $p.PermissionType | Out-Null
+        $permissionId = if ($p.PermissionType -eq "Scope") { $afScopeIdEffective } else { $null }
+        Ensure-RequiredResourceAccess -appObjectId $app.Id -resourceAppId $afApp.AppId -permissionId $permissionId -permissionType $p.PermissionType | Out-Null
       }
       End-Step $logPermStep $true
     }
@@ -936,7 +957,7 @@ foreach ($appDef in $SmartApps) {
           Write-Log "Admin consent step failed or blocked by policy for $($appDef.DisplayName)." WARN
         }
       }
-      if ($appDef.AFPermissions) {
+      if ($appDef.AFPermissions -and $app -ne $afApp) {
         $afConsentStep = Start-Step "Ensure admin consent (oauth2PermissionGrant) for AutomationFramework on $($appDef.DisplayName)"
         try {
           $clientSp   = Ensure-ServicePrincipalForApp $app.AppId $appDef.DisplayName
@@ -950,13 +971,15 @@ foreach ($appDef in $SmartApps) {
       }
     } else {
       # Grant the role on the resource service principal (this is the important part)
-      $consentStep = Start-Step "Grant the role for Mesh on $($appDef.DisplayName)"
-      try {
-        Ensure-ServicePrincipalAppRoleAssignment -principalSpId $mdtSp.Id -resourceSpId $meshSp.Id -appRoleId $meshDaemonRoleId -RoleValue "Daemon"
-        End-Step $consentStep $true
-      } catch {
-        End-Step $consentStep $false
-        Write-Log "Grant role step failed or blocked by policy for $($appDef.DisplayName)." WARN
+      if ($appDef.Key -eq "MeshDataTransfer") {
+        $consentStep = Start-Step "Grant the role for Mesh on $($appDef.DisplayName)"
+        try {
+          Ensure-ServicePrincipalAppRoleAssignment -principalSpId $mdtApp.Id -resourceSpId $meshSp.Id -appRoleId $meshDaemonRoleId -RoleValue "Daemon"
+          End-Step $consentStep $true
+        } catch {
+          End-Step $consentStep $false
+          Write-Log "Grant role step failed or blocked by policy for $($appDef.DisplayName)." WARN
+        }
       }
       if (-not ([string]::IsNullOrWhiteSpace($appDef.OptimalGatewayPermissions))) {
         $optGwConsentStep = Start-Step "Grant the role for OptimalGateway on $($appDef.DisplayName)"
@@ -1003,7 +1026,7 @@ foreach ($appDef in $SmartApps) {
       App          = $appDef.DisplayName
       TenantId     = $tenantId
       ClientId     = $app.AppId
-      RedirectUri  = $redirect
+      RedirectUri  = ($redirectUris -join ", ")
       ExposedScope = if ($appDef.ScopeValue) { "api://$($app.AppId)/$($appDef.ScopeValue)" } else { "" }
       SecretName   = $secretName
       KeyVaultId   = if ($Global:StoreSecretsInKeyVault) { $secretResult.KeyVaultId } else { $secretResult.SecretText }
@@ -1064,7 +1087,30 @@ try {
 }
 
 # ----------------------------
-# 9) OUTPUT SUMMARY (save secrets now!)
+# 9) PRE-AUTHORIZE APPS IN AUTOMATION FRAMEWORK (IDEMPOTENT)
+# ----------------------------
+
+$step = Start-Step "Ensure Automation Framework preAuthorizedApplications (idempotent)"
+$defs = $($SmartApps | Where-Object { $_.AFPermissions })
+try {    
+  foreach ($appDef in $defs) {
+    $a = Get-ApplicationByDisplayName $appDef.DisplayName
+    if ($a) {
+      if ($appDef.AFPermissions -and $a.AppId -ne $afApp.AppId) {
+        Ensure-PreAuthorizedApplication -appName $afApp.DisplayName -appObjectId $afApp.Id -clientAppId $a.AppId -delegatedPermissionId $afScopeIdEffective | Out-Null
+      }
+    } else {
+      Write-Log "Could not resolve app for Automation Framework pre-authorization: $($appDef.DisplayName)" WARN
+    }
+  }
+  End-Step $step $true
+} catch {
+  End-Step $step $false
+  Fail-Fast "Pre-authorization in Automation Framework failed" $_
+}
+
+# ----------------------------
+# 10) OUTPUT SUMMARY (save secrets now!)
 # ----------------------------
 
 Write-Progress -Activity "Smart Power Provisioning" -Status "Completed" -Completed
