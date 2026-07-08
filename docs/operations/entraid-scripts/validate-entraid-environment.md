@@ -49,8 +49,9 @@ Defines all reusable Graph operations:
 | `Ensure-OAuth2PermissionGrant` | Grant admin consent for a delegated permission (`AllPrincipals`) |
 | `Ensure-GroupAppRoleAssignment` | Assign a security group to an app role on a service principal |
 | `Ensure-ServicePrincipalAppRoleAssignment` | Assign an application (daemon SP) to an app role on a service principal |
+| `Ensure-Group` | Create or look up a security group by display name (mail-disabled, security-enabled; nickname derived from the display name) |
 | `Ensure-ClientSecret` | Create a password credential if one with the given display name does not exist |
-| `Store-SecretInKeyVault` | Store a secret value in Azure Key Vault (optional) |
+| `Store-SecretInKeyVault` | Store a secret value in Azure Key Vault (optional). Backed by `Ensure-AzKeyVaultModule`, which no-ops with a warning if `Az.KeyVault` isn't installed |
 | `Ensure-OptionalClaims` | Set `optionalClaims` on an app registration (Mesh: empty; others: `aud` with `use_guid` in `accessToken`) |
 | `Ensure-ApiRequestedAccessTokenVersion` | Set `api.requestedAccessTokenVersion` on an app registration (defaults to `null`) |
 | `Ensure-Owners` | Idempotently add users from `$OwnerEmails` as owners on both the app registration and the enterprise app |
@@ -82,7 +83,7 @@ Iterates `$SmartApps`. For each app:
    - Sets `api.requestedAccessTokenVersion` to `null`
 3. Assigns owners from `$OwnerEmails` to the app registration and enterprise app
 4. Creates security groups and assigns them to app roles (`Groups`)
-5. Adds `requiredResourceAccess` entries for Mesh, OptimalGateway, and/or OptimalLog as configured
+5. Adds `requiredResourceAccess` entries for Mesh, OptimalGateway, OptimalLog, Nimbus, and/or AutomationFrameworkApi as configured
 6. Adds Microsoft Graph `User.Read` delegated permission
 7. Grants admin consent (`oauth2PermissionGrant`, `AllPrincipals`) for each API dependency
 8. Creates a client secret if one does not already exist (optionally stores it in Key Vault)
@@ -96,7 +97,11 @@ Adds every Smart Power app as a pre-authorized client in the Mesh API (`preAutho
 
 For every app that declares `OptimalGatewayPermissions` or `OptimalLogPermissions`, adds it as a pre-authorized client in the respective API. Skips apps that do not declare the attribute.
 
-### Section 9 — Output summary
+### Section 9 — Pre-authorize apps in AutomationFrameworkApi
+
+For every app that declares `AFPermissions`, adds it as a pre-authorized client in the AutomationFrameworkApi API (`$afApp` / `$afScopeIdEffective`, captured when the `AutomationFrameworkApi` entry is processed in Section 6). Skips apps that do not declare the attribute.
+
+### Section 10 — Output summary
 
 Prints a summary table of all provisioned apps with their Client IDs, exposed scopes, secret names, and Key Vault IDs. Secrets are never printed unless `$Global:EmitSecretsToConsole` is explicitly enabled.
 
@@ -109,13 +114,15 @@ All variables in this section live in **`entraid-config.ps1`**, except the globa
 ### Global settings
 
 ```powershell
-$Global:LogLevel              = "DEBUG"     # TRACE | DEBUG | INFO | WARN | ERROR
+$Global:LogLevel              = "INFO"      # TRACE | DEBUG | INFO | WARN | ERROR
 $Global:WriteToFile           = $true       # Write log to file alongside script
 $Global:EmitSecretsToConsole  = $true       # Return secret text from Ensure-ClientSecret
 $Global:StoreSecretsInKeyVault = $false     # Store new secrets in Azure Key Vault
 $Global:KeyVaultName          = "kv-smartpower-auto"
 $Global:KeyVaultSecretPrefix  = "smartpower"
 ```
+
+The log file itself is not configured by name — it's derived as `smartpower-provisioning_<RunId>.log` in the current working directory, where `<RunId>` is a fresh GUID generated per run (`$Global:RunId`).
 
 ### Naming conventions
 
@@ -157,7 +164,7 @@ Each element defines one app registration. The attributes control what the scrip
 
 | Attribute | Type | Description |
 | --- | --- | --- |
-| `Key` | string | Internal identifier used by the script to capture variables for OptimalGateway (`Key="OptimalGateway"`), OptimalLog (`Key="OptimalLog"`), and Nimbus (`Key="Nimbus"`) |
+| `Key` | string | Internal identifier used by the script to capture variables for OptimalGateway (`Key="OptimalGateway"`), OptimalLog (`Key="OptimalLog"`), Nimbus (`Key="Nimbus"`), and AutomationFrameworkApi (`Key="AutomationFrameworkApi"`) |
 | `DisplayName` | string | Entra ID display name of the app registration |
 | `AppType` | `"Application"` \| `"Daemon"` | Controls which provisioning branch is used (see below) |
 
@@ -172,6 +179,8 @@ Each element defines one app registration. The attributes control what the scrip
 | `MeshPermissions` | array of permission objects | Grants this app access to the Mesh API. |
 | `OptimalGatewayPermissions` | array of permission objects | Grants this app access to the OptimalGateway API. Also causes the app to be pre-authorized in OptimalGateway. |
 | `OptimalLogPermissions` | array of permission objects | Grants this app access to the OptimalLog API. Also causes the app to be pre-authorized in OptimalLog. |
+| `NimbusPermissions` | array of permission objects | Grants this app access to the Nimbus API. Currently only declared on the Nimbus app entry itself — see [Known issues](#known-issues). Does not cause pre-authorization. |
+| `AFPermissions` | array of permission objects | Grants this app access to the AutomationFrameworkApi API. Also causes the app to be pre-authorized in AutomationFrameworkApi (Section 9). |
 
 ---
 
@@ -243,7 +252,7 @@ Multiple entries are supported, each with its own `Type`.
 
 ---
 
-### Permission objects (`MeshPermissions`, `OptimalGatewayPermissions`, `OptimalLogPermissions`)
+### Permission objects (`MeshPermissions`, `OptimalGatewayPermissions`, `OptimalLogPermissions`, `NimbusPermissions`, `AFPermissions`)
 
 ```powershell
 @{ PermissionType="Scope" }
@@ -257,6 +266,32 @@ Multiple entries can be listed to request both a `Scope` and a `Role` in the sam
 
 ---
 
+### Currently configured apps
+
+Reflects the entries in `$SmartApps` (plus the Mesh app) as of this writing:
+
+| Key | AppType | ScopeValue | Notes |
+| --- | --- | --- | --- |
+| *(Mesh)* | — | `Mesh.Grpc` | Roles: ModelReader, ModelWriter, TimeSeriesReader, TimeSeriesWriter, Daemon |
+| `OptimalLog` | Application | `Optimal.Log` | Roles: OptimalLogAdmin/Editor/Viewer, Daemon |
+| `OptimalGateway` | Application | `Optimal.Gateway` | Requires Mesh (`Scope`+`Role`) and OptimalLog (`Scope`) |
+| `AssetManager` | Application | `AssetManager` | SPA redirect on `:18051`; requires Mesh `Scope` |
+| `AvailabilityPlanner` | Application | `AvailabilityPlanner` | SPA redirect on `:18053`; requires Mesh `Scope` |
+| `MeshConfigurator` | Application | `MeshConfigurator` | SPA redirect on `:18055`; requires Mesh `Scope` |
+| `Nimbus` | Application | `Nimbus` | Desktop redirects (`localhost`, broker plugin); requires Mesh, OptimalGateway, OptimalLog `Scope`. Also declares `NimbusPermissions`, but that's a no-op today — no other app requests access to Nimbus, and the self-referential grant to itself is explicitly skipped |
+| `MarginalCost` | Application | `MarginalCost` | Requires Mesh `Scope` |
+| `MeshDataTransfer` | Daemon | — | Requires Mesh `Role` (Daemon) |
+| `AutomationFrameworkApi` | Application | `af-api` | Roles: ServiceAccount, Viewer, Modeler, Admin, Operator; requires Mesh `Role`; declares `AFPermissions` (`Scope`) — the `requiredResourceAccess`, admin-consent, and pre-authorization self-entries are all correctly skipped for its own entry |
+| `AutomationFrameworkServices` | Application | — | Requires Mesh, OptimalGateway, OptimalLog, and AutomationFrameworkApi (all `Scope`) via `AFPermissions` |
+
+---
+
+## Known issues
+
+None currently known. This section documents quirks in the script/config as they're found — check back here before relying on undocumented behavior or copying a pattern for a new app.
+
+---
+
 ## Adding a new app
 
 1. Add an entry to `$SmartApps` in **`entraid-config.ps1`**.
@@ -264,7 +299,7 @@ Multiple entries can be listed to request both a `Scope` and a `Role` in the sam
 3. Add `ScopeValue` if the app exposes its own API.
 4. Add `Roles` and `Groups` for RBAC.
 5. Add `Authentication` if users sign in (SPA or Desktop redirect URIs).
-6. Add any of `MeshPermissions`, `OptimalGatewayPermissions`, `OptimalLogPermissions` to wire up API access.
+6. Add any of `MeshPermissions`, `OptimalGatewayPermissions`, `OptimalLogPermissions` to wire up API access (see [Known issues](#known-issues) if you're tempted to model this on `NimbusPermissions` or `AFPermissions` — both have bugs today).
 
 Re-run `validate-entraid-environment.ps1`. It will create only what is missing and skip everything that already exists.
 
@@ -273,8 +308,8 @@ Re-run `validate-entraid-environment.ps1`. It will create only what is missing a
 If a new shared API is introduced (similar to OptimalGateway or OptimalLog):
 
 1. Add a new permissions attribute on the apps that need access (e.g. `NewApiPermissions`).
-2. In Section 6, add a block similar to the `OptimalLogPermissions` block to call `Ensure-RequiredResourceAccess` and `Ensure-OAuth2PermissionGrant`.
-3. In Section 8, extend the filter and add a call to `Ensure-PreAuthorizedApplication` on the new API app.
+2. In Section 6, add a block similar to the `AFPermissions` block to call `Ensure-RequiredResourceAccess` and `Ensure-OAuth2PermissionGrant` — double-check every reference uses *your new API's* captured `$xxxApp` / `$xxxScopeIdEffective` variables, not a copy-pasted one (this is a common source of bugs when following the existing blocks as a template).
+3. Add pre-authorization either by extending Section 8's filter, or by adding a new dedicated section like Section 9 (`AFPermissions` → AutomationFrameworkApi) if you'd rather keep it separate.
 4. Ensure the new API app is defined in `$SmartApps` with `Key` set so its scope ID and app object can be captured in the Section 6 loop.
 
 ## Idempotency

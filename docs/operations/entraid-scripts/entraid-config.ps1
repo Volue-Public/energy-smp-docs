@@ -53,7 +53,7 @@ $MeshGroupsDesired = @(
   @{ DisplayName="HteWrite";  ObjectType="Group"; RoleAssigned="ModelWriter"      },
   @{ DisplayName="HteWrite";  ObjectType="Group"; RoleAssigned="TimeSeriesWriter" },
   @{ DisplayName="HteRead";   ObjectType="Group"; RoleAssigned="ModelReader"      },
-  @{ DisplayName="HteRead";   ObjectType="Group"; RoleAssigned="ModelReader"      }
+  @{ DisplayName="HteRead";   ObjectType="Group"; RoleAssigned="TimeSeriesReader" }
 )
 
 # ----------------------------
@@ -237,7 +237,7 @@ $SmartApps = @(
       @{ DisplayName="Viewer";         Value="Viewer";         MemberType="User";        Description="AF Viewer role"     },
       @{ DisplayName="Modeler";        Value="Modeler";        MemberType="User";        Description="AF Modeler"         },
       @{ DisplayName="Admin";          Value="Admin";          MemberType="User";        Description="Admin"              },
-      @{ DisplayName="Operator";       Value="Operatory";      MemberType="User";        Description="AF Operator"        }
+      @{ DisplayName="Operator";       Value="Operator";      MemberType="User";        Description="AF Operator"        }
     )
     Groups=@(
       @{ DisplayName="ENERGY-AF-DEV-ADM";             ObjectType="Group";            RoleAssigned="Admin"          },
