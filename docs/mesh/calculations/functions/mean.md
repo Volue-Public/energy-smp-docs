@@ -17,9 +17,11 @@
 ### Description
 
 
-| # | TYPE | DESCRIPTION |
+| # | Type | Description |
 |---|---|---|
-| 1 | t or T or D | Time series Array of time series Array of numbers |
+| 1 | t | Time series. |
+| 1 | T | Array of time series. |
+| 1 | D | Array of numbers. |
 
 ## Examples
 

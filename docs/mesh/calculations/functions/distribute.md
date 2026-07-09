@@ -19,7 +19,7 @@ method as base for the distribution.
 
 ## Description
 
-| TYPE | Description |
+| Type | Description |
 |---|---|
 | t | Input time series to be distributed. |
 | t | Mask series representing the distributed time interval. |

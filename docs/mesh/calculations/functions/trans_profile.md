@@ -17,7 +17,7 @@ as a basis for the distribution.
 
 ## Description
 
-| TYPE | Description |
+| Type | Description |
 |---|---|
 | t | Input time series to be converted. |
 | t | Profile series stating how the values are distributed on each period connected to a value on the input data series. Gives the resolution of the result. |
@@ -102,7 +102,7 @@ method.
 
 ## Description
 
-| # | TYPE | Description |
+| # | Type | Description |
 |---|---|---|
 | 1 | t | Input time series to be converted. |
 | 2 | t | Profile series stating how the values are distributed on each period connected to a value on the input data series. Gives the resolution on the result. |
@@ -155,7 +155,7 @@ Same as [R8](#r8) but uses a mask series in argument 3.
 
 ## Description
 
-| # | TYPE | Description |
+| # | Type | Description |
 |---|---|---|
 | 1 | t | Input time series to be converted. |
 | 2 | t | Profile series stating how the values are distributed on each period connected to a value on the input data series. |
