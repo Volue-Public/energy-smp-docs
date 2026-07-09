@@ -198,9 +198,6 @@ $SmartApps = @(
     OptimalLogPermissions=@(
       @{ PermissionType="Scope" }
     )
-    NimbusPermissions=@(
-      @{ PermissionType="Scope" }
-    )
   },
   @{
     Key="MarginalCost"
@@ -237,7 +234,7 @@ $SmartApps = @(
       @{ DisplayName="Viewer";         Value="Viewer";         MemberType="User";        Description="AF Viewer role"     },
       @{ DisplayName="Modeler";        Value="Modeler";        MemberType="User";        Description="AF Modeler"         },
       @{ DisplayName="Admin";          Value="Admin";          MemberType="User";        Description="Admin"              },
-      @{ DisplayName="Operator";       Value="Operator";      MemberType="User";        Description="AF Operator"        }
+      @{ DisplayName="Operator";       Value="Operator";       MemberType="User";        Description="AF Operator"        }
     )
     Groups=@(
       @{ DisplayName="ENERGY-AF-DEV-ADM";             ObjectType="Group";            RoleAssigned="Admin"          },
@@ -246,25 +243,27 @@ $SmartApps = @(
     MeshPermissions=@(
       @{ PermissionType="Role" }
     )
-    AFPermissions=@(
-      @{ PermissionType="Scope" }
-    )
   },
   @{
     Key="AutomationFrameworkServices"
     DisplayName=("${NamePrefix}automation-framework-services${EnvSuffix}")
     AppType="Application"
-    MeshPermissions=@(
-      @{ PermissionType="Scope" }
-    )
     OptimalGatewayPermissions=@(
-      @{ PermissionType="Scope" }
+      @{ PermissionType="Role" }
     )
     OptimalLogPermissions=@(
-      @{ PermissionType="Scope" }
+      @{ PermissionType="Role" }
     )
     AFPermissions=@(
-      @{ PermissionType="Scope" }
+      @{ PermissionType="Role" }
+    )
+  },
+  @{
+    Key="AutomationFrameworkUI"
+    DisplayName=("${NamePrefix}automation-framework-ui${EnvSuffix}")
+    AppType="Application"
+    AFPermissions=@(
+      @{ PermissionType="Role" }
     )
   }
 )

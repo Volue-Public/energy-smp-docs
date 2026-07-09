@@ -179,7 +179,7 @@ Each element defines one app registration. The attributes control what the scrip
 | `MeshPermissions` | array of permission objects | Grants this app access to the Mesh API. |
 | `OptimalGatewayPermissions` | array of permission objects | Grants this app access to the OptimalGateway API. Also causes the app to be pre-authorized in OptimalGateway. |
 | `OptimalLogPermissions` | array of permission objects | Grants this app access to the OptimalLog API. Also causes the app to be pre-authorized in OptimalLog. |
-| `NimbusPermissions` | array of permission objects | Grants this app access to the Nimbus API. Currently only declared on the Nimbus app entry itself — see [Known issues](#known-issues). Does not cause pre-authorization. |
+| `NimbusPermissions` | array of permission objects | Grants this app access to the Nimbus API. Not currently declared by any app in `entraid-config.ps1` — the capture/consume logic exists in the script but is dead code until something declares it. Does not cause pre-authorization. |
 | `AFPermissions` | array of permission objects | Grants this app access to the AutomationFrameworkApi API. Also causes the app to be pre-authorized in AutomationFrameworkApi (Section 9). |
 
 ---
@@ -278,11 +278,12 @@ Reflects the entries in `$SmartApps` (plus the Mesh app) as of this writing:
 | `AssetManager` | Application | `AssetManager` | SPA redirect on `:18051`; requires Mesh `Scope` |
 | `AvailabilityPlanner` | Application | `AvailabilityPlanner` | SPA redirect on `:18053`; requires Mesh `Scope` |
 | `MeshConfigurator` | Application | `MeshConfigurator` | SPA redirect on `:18055`; requires Mesh `Scope` |
-| `Nimbus` | Application | `Nimbus` | Desktop redirects (`localhost`, broker plugin); requires Mesh, OptimalGateway, OptimalLog `Scope`. Also declares `NimbusPermissions`, but that's a no-op today — no other app requests access to Nimbus, and the self-referential grant to itself is explicitly skipped |
+| `Nimbus` | Application | `Nimbus` | Desktop redirects (`localhost`, broker plugin); requires Mesh, OptimalGateway, OptimalLog `Scope` |
 | `MarginalCost` | Application | `MarginalCost` | Requires Mesh `Scope` |
 | `MeshDataTransfer` | Daemon | — | Requires Mesh `Role` (Daemon) |
-| `AutomationFrameworkApi` | Application | `af-api` | Roles: ServiceAccount, Viewer, Modeler, Admin, Operator; requires Mesh `Role`; declares `AFPermissions` (`Scope`) — the `requiredResourceAccess`, admin-consent, and pre-authorization self-entries are all correctly skipped for its own entry |
-| `AutomationFrameworkServices` | Application | — | Requires Mesh, OptimalGateway, OptimalLog, and AutomationFrameworkApi (all `Scope`) via `AFPermissions` |
+| `AutomationFrameworkApi` | Application | `af-api` | Roles: ServiceAccount, Viewer, Modeler, Admin, Operator; requires Mesh `Role` |
+| `AutomationFrameworkServices` | Application | — | Requires OptimalGateway, OptimalLog, and AutomationFrameworkApi (all `Role`, via `AFPermissions`/etc.) — no delegated consent or pre-authorization is created since none of its entries are `Scope` |
+| `AutomationFrameworkUI` | Application | — | Requires AutomationFrameworkApi `Role` via `AFPermissions` — no `Roles`, `Groups`, `ScopeValue`, or `Authentication` of its own |
 
 ---
 
@@ -299,7 +300,7 @@ None currently known. This section documents quirks in the script/config as they
 3. Add `ScopeValue` if the app exposes its own API.
 4. Add `Roles` and `Groups` for RBAC.
 5. Add `Authentication` if users sign in (SPA or Desktop redirect URIs).
-6. Add any of `MeshPermissions`, `OptimalGatewayPermissions`, `OptimalLogPermissions` to wire up API access (see [Known issues](#known-issues) if you're tempted to model this on `NimbusPermissions` or `AFPermissions` — both have bugs today).
+6. Add any of `MeshPermissions`, `OptimalGatewayPermissions`, `OptimalLogPermissions`, `AFPermissions` to wire up API access. A `Role`-only declaration (no `Scope` entries) correctly gets only the app-role `requiredResourceAccess` entry — no delegated consent grant or pre-authorization is created for it.
 
 Re-run `validate-entraid-environment.ps1`. It will create only what is missing and skip everything that already exists.
 

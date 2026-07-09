@@ -189,10 +189,12 @@ nav:
     - Operations:
           - Queue usage in Smart Power: operations/queue-usage-in-smart-power.md
           - Monitor services: operations/monitoring.md
-          - EntraId validation script:
-                - Documentation: operations/entraid-scripts/validate-entraid-environment.md
+          - EntraId validation script: 
+                - Introduction: operations/entraid-scripts.md
+                - Documentation of validate-entraid-environment.ps1 script: operations/entraid-scripts/validate-entraid-environment.md
                 - validate-entraid-environment.ps1: operations/entraid-scripts/validate-entraid-environment.ps1
                 - entraid-config.ps1: operations/entraid-scripts/entraid-config.ps1
+                - report-entraid-settings.ps1: operations/entraid-scripts/report-entraid-settings.ps1
     - Time series reports:
           - General: timeseries-reports/reports_intro.md
           - Macros: timeseries-reports/macros.md
