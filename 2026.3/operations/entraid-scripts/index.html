@@ -16,8 +16,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Monitor services";
-        var mkdocs_page_input_path = "operations/monitoring.md";
+        var mkdocs_page_name = "Introduction";
+        var mkdocs_page_input_path = "operations/entraid-scripts.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -449,57 +449,21 @@
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../queue-usage-in-smart-power/">Queue usage in Smart Power</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Monitor services</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#about-this-document">About this document</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#systems-monitoring">Systems monitoring</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#service-list">Service list</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#powel-alarm-service">Powel Alarm service</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#powel-filerequester-service">Powel FileRequester service</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#powel-fileresponder-service">Powel FileResponder service</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#powel-mesh-service">Powel Mesh service</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#powel-meshdatatransfer-service">Powel MeshDataTransfer service</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#powel-meshcollector-service">Powel MeshCollector service</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#powel-meshfileimportconverter-service">Powel MeshFileImportConverter service</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#powel-meshsoapimportserver-service">Powel MeshSoapImportServer service</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#powel-nimbus-service">Powel Nimbus service</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#powel-optimalgateway-service">Powel OptimalGateway service</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#powel-optimallog-service">Powel OptimalLog service</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#powel-optimalmultiasset-poma-service">Powel OptimalMultiAsset (POMA) service</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#powel-scadagateway-service">Powel ScadaGateway service</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#volue-transferamqpfile-service">Volue TransferAMQPFile service</a>
-    </li>
-        </ul>
-    </li>
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitor services</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
-    <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../entraid-scripts/">Introduction</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" >EntraId validation script</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Introduction</a>
+    <ul class="current">
+    </ul>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                <li class="toctree-l2"><a class="reference internal" href="validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                <li class="toctree-l2"><a class="reference internal" href="validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                <li class="toctree-l2"><a class="reference internal" href="entraid-config.ps1">entraid-config.ps1</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                <li class="toctree-l2"><a class="reference internal" href="report-entraid-settings.ps1">report-entraid-settings.ps1</a>
                 </li>
     </ul>
                   </li>
@@ -528,7 +492,8 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">Operations</li>
-      <li class="breadcrumb-item active">Monitor services</li>
+          <li class="breadcrumb-item">EntraId validation script</li>
+      <li class="breadcrumb-item active">Introduction</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -537,511 +502,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="monitor-smart-power-solutions">Monitor Smart Power solutions</h1>
+                <h1 id="introduction-to-the-entraid-scripts">Introduction to the EntraID scripts</h1>
+<p>These scripts are intended to be used to create new EntraID environments in Azure owned/administrated by either Volue or the customer, and it can also be used to verify/update existing environments. In order to run the scripts the user needs to have necessary access to the EntraID environment.</p>
 <ul>
-<li><a href="#monitor-smart-power-solutions">Monitor Smart Power solutions</a></li>
-<li><a href="#about-this-document">About this document</a></li>
-<li><a href="#systems-monitoring">Systems monitoring</a></li>
-<li><a href="#service-list">Service list</a><ul>
-<li><a href="#powel-alarm-service">Powel Alarm service</a></li>
-<li><a href="#powel-filerequester-service">Powel FileRequester service</a></li>
-<li><a href="#powel-fileresponder-service">Powel FileResponder service</a></li>
-<li><a href="#powel-mesh-service">Powel Mesh service</a></li>
-<li><a href="#powel-meshdatatransfer-service">Powel MeshDataTransfer service</a></li>
-<li><a href="#powel-meshcollector-service">Powel MeshCollector service</a></li>
-<li><a href="#powel-meshfileimportconverter-service">Powel MeshFileImportConverter service</a></li>
-<li><a href="#powel-meshsoapimportserver-service">Powel MeshSoapImportServer service</a></li>
-<li><a href="#powel-nimbus-service">Powel Nimbus service</a></li>
-<li><a href="#powel-optimalgateway-service">Powel OptimalGateway service</a></li>
-<li><a href="#powel-optimallog-service">Powel OptimalLog service</a></li>
-<li><a href="#powel-optimalmultiasset-poma-service">Powel OptimalMultiAsset (POMA) service</a></li>
-<li><a href="#powel-scadagateway-service">Powel ScadaGateway service</a></li>
-<li><a href="#volue-transferamqpfile-service">Volue TransferAMQPFile service</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="about-this-document">About this document</h2>
-<p>This document serves as a guide to monitor Volue‘s Smart Power (SmP) software suite.</p>
-<p>Background:</p>
-<ul>
-<li>The SmP software is provided as on-premises solutions (incl. private cloud environments).</li>
-<li>Therefore, operation of the software is usually in the hands of Volue’s customers.</li>
-</ul>
-<p>To enable the organisation's IT personnel to operate the solution, this document summarises the required knowledge about monitoring and alerting.</p>
-<p>For all software components, it contains information about:</p>
-<ul>
-<li>Which measurements can be taken to monitor the applications, and how.</li>
-<li>What events should be alerted as impairing proper operation.</li>
-</ul>
-<p>The basics of operation (e.g. hardware-related monitoring) are described briefly, but this completely depends on the individual environment, and Volue is not able to give advise about how they should be operated.</p>
-<h2 id="systems-monitoring">Systems monitoring</h2>
-<p>As mentioned above, Volue can hardly advise on how to specifically monitor hardware/systems.</p>
-<p>We recommend that the IT operations should make sure that warnings are given for usual indicators of insufficient hardware sizing, such as:</p>
-<ul>
-<li>High average CPU utilisation over a certain time period (e.g. 85% for more than 20 minutes).</li>
-<li>High disk usage/little disk space left (e.g. less than 15% free disk space).</li>
-</ul>
-<p>Obviously, the mere availability of resources should be ensured as well, with alarms for unavailable servers or broken network connections.</p>
-<p>Other (non-Volue) software should also be monitored for availability, like the database and message queues.</p>
-<h2 id="service-list">Service list</h2>
-<p>There are 14 services described in this document:</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Service</th>
-<th>Health endpoint</th>
-<th>Active zone Normal</th>
-<th>Active zone Alert</th>
-<th>Passive zone Normal</th>
-<th>Passive zone Alert</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Powel Alarm service</td>
-<td>n\a</td>
-<td>Running</td>
-<td>Stopped/Disabled</td>
-<td>Running</td>
-<td>Stopped/Disabled</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Powel FileRequester service</td>
-<td>http://server:7431/FileRequester/health</td>
-<td>Running</td>
-<td>Stopped/Disabled</td>
-<td>Stopped/Disabled</td>
-<td>n/a</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Powel FileResponder service</td>
-<td>http://server:5200/FileResponder/health</td>
-<td>Running</td>
-<td>Stopped/Disabled</td>
-<td>Running</td>
-<td>Stopped/Disabled</td>
-</tr>
-<tr>
-<td>4</td>
-<td>Powel Mesh service</td>
-<td>http://server:20000/meshHealth/health</td>
-<td>Running</td>
-<td>Stopped/Disabled</td>
-<td>Running</td>
-<td>Stopped/Disabled</td>
-</tr>
-<tr>
-<td>5</td>
-<td>Powel Mesh Data Transfer service</td>
-<td>http://server:7000/health</td>
-<td>Running</td>
-<td>Stopped/Disabled</td>
-<td>Stopped/Disabled</td>
-<td>n/a</td>
-</tr>
-<tr>
-<td>6</td>
-<td>Powel MeshCollector service</td>
-<td>http://server:7341/MeshCollectorService/health</td>
-<td>Running</td>
-<td>Stopped/Disabled</td>
-<td>Runnning</td>
-<td>Stopped/Disabled</td>
-</tr>
-<tr>
-<td>7</td>
-<td>Powel MeshFileConverter service</td>
-<td>http://server:7432/MeshFileConverterService/health</td>
-<td>Running</td>
-<td>Stopped/Disabled</td>
-<td>Stopped/Disabled</td>
-<td>n/a</td>
-</tr>
-<tr>
-<td>8</td>
-<td>Powel MeshSoapImportServer service</td>
-<td>http://server:7000/MeshSoapImportServer/health</td>
-<td>Running</td>
-<td>Stopped/Disabled</td>
-<td>Running/Stopped/Disabled</td>
-<td></td>
-</tr>
-<tr>
-<td>9</td>
-<td>Powel Nimbus service</td>
-<td>http://server:23142/hc/</td>
-<td>Running</td>
-<td>Stopped/Disabled</td>
-<td>Running</td>
-<td>Stopped/Disabled</td>
-</tr>
-<tr>
-<td>10</td>
-<td>Powel Optimal Gateway service</td>
-<td>http://server:18261/Gateway/Health</td>
-<td>Running</td>
-<td>Stopped/Disabled</td>
-<td>Running</td>
-<td>Stopped/Disabled</td>
-</tr>
-<tr>
-<td>11</td>
-<td>Powel Optimal Log service</td>
-<td>http://server:18260/OptimalLog/Health</td>
-<td>Running</td>
-<td>Stopped/Disabled</td>
-<td>Running</td>
-<td>Stopped/Disabled</td>
-</tr>
-<tr>
-<td>12</td>
-<td>Powel Optimal MultiAsset (POMA) service</td>
-<td>http://server:18262/MultiAsset/Health</td>
-<td>Running</td>
-<td>Stopped/Disabled</td>
-<td>Running</td>
-<td>Stopped/Disabled</td>
-</tr>
-<tr>
-<td>13</td>
-<td>Powel ScadaGateway service</td>
-<td>http://server:port/ScadaGateway/health</td>
-<td>Running</td>
-<td>Stopped/Disabled</td>
-<td>Stopped/Disabled</td>
-<td>n/a</td>
-</tr>
-<tr>
-<td>14</td>
-<td>Volue TransferAMQPFiles service</td>
-<td>n/a</td>
-<td>Running</td>
-<td>Stopped/Disabled</td>
-<td>Running</td>
-<td>Stopped/Disabled</td>
-</tr>
-</tbody>
-</table>
-<p>The above table contains information about the health endpoint of each service, the normal operation mode when running in either active or passive zone, and alert situation when running in either active or passive zone.</p>
-<h3 id="powel-alarm-service">Powel Alarm service</h3>
-<p>Summary/description:</p>
-<ul>
-<li>Manages SmG alarm events and is the backend for the Powel Alarm system.</li>
-</ul>
-<p>Output:</p>
-<ul>
-<li>Logs default at <code>&lt;poweldrive&gt;:\Powel\Icc\bin\log\NotificationService.log</code></li>
-<li>Location and log level is configurable in AlarmService.exe.config</li>
-</ul>
-<p>Endpoints/API:</p>
-<ul>
-<li>N/A</li>
-</ul>
-<p>Things to alert:</p>
-<ul>
-<li>The service is not running.</li>
-</ul>
-<h3 id="powel-filerequester-service">Powel FileRequester service</h3>
-<p>Summary/description:</p>
-<ul>
-<li>This service requests new files (i.e., messages) from one or more FileResponders running in DMZ. The received information is placed in an AMQP queue to be imported by the Mesh AMQP Relay. A confirmation signal is sent back upon completion.</li>
-</ul>
-<p>Output:</p>
-<ul>
-<li>AMQP messages.</li>
-<li>Logs at <code>&lt;poweldrive&gt;:\PowelSmartLogs\FileRequester</code></li>
-<li>Health message contains counters of different operations, when last call was executed, when last information received, ...</li>
-</ul>
-<p>Endpoints/API:</p>
-<ul>
-<li>Health endpoint: <code>http://&lt;server&gt;:7431/FileRequester/health</code></li>
-</ul>
-<p>Things to alert:</p>
-<ul>
-<li>The service is not running.</li>
-<li>The health endpoint is not responding.</li>
-<li>Imports via Mesh AMQP Relay of messages from this service is not created within a certain time frame.</li>
-<li>Observations based on health data – too long time since last call was executed or too long time since last information was received or …</li>
-</ul>
-<h3 id="powel-fileresponder-service">Powel FileResponder service</h3>
-<p>Summary/description:</p>
-<ul>
-<li>This service is running in DMZ and returns information from non-transferred files on request from the FileRequester service. The transfer is «committed» when a positive ack is received from the FileRequester, otherwise the file will be resent on a later request.</li>
-</ul>
-<p>Output:</p>
-<ul>
-<li>Messages transferred to the FileRequester.</li>
-<li>Logs at <code>&lt;poweldrive&gt;:\PowelSmartLogs\FileResponder</code></li>
-<li>Health message contains counters of different operations, when last call was received, when last transfer was performed, ...</li>
-</ul>
-<p>Endpoints/API:</p>
-<ul>
-<li>Endpoint used by FileRequester: <code>http://&lt;server&gt;:5200</code></li>
-<li>Health endpoint: <code>http://&lt;server&gt;:5200/FileResponder/health</code></li>
-</ul>
-<p>Things to alert:</p>
-<ul>
-<li>The service is not running.</li>
-<li>The health endpoint is not responding.</li>
-<li>Observations based on health data – number of failures when receiving calls is increasing or too long time since last call was successfully received or …</li>
-<li>File in New-folder that is created more than 2 minutes ago.</li>
-</ul>
-<h3 id="powel-mesh-service">Powel Mesh service</h3>
-<p>Summary/description:</p>
-<ul>
-<li>Main service responsible for the data model and timeseries data.</li>
-<li>Serves all processes, optimisation, simulation, import, export etc.</li>
-</ul>
-<p>Output:</p>
-<ul>
-<li>Logs at <code>&lt;poweldrive&gt;:\PowelSmartLogs\Mesh</code></li>
-</ul>
-<p>Endpoints/API:</p>
-<ul>
-<li>Health endpoint at: <code>http://&lt;server&gt;:2000/meshHealth/health</code></li>
-</ul>
-<p>Things to alert:</p>
-<ul>
-<li>The "Powel Mesh" service is not running.</li>
-<li>The health endpoint is not responding.</li>
-<li>If ORA-xxx error found in log, report to 1st line support / DB admins.</li>
-</ul>
-<h3 id="powel-meshdatatransfer-service">Powel MeshDataTransfer service</h3>
-<p>Summary/description:</p>
-<ul>
-<li>Receives import messages from queues, and export requests from on an endpoint.</li>
-<li>Translates the imports and sends them to Mesh.</li>
-<li>Translates export requests and puts messages to queues and/or files.</li>
-</ul>
-<p>Output:</p>
-<ul>
-<li>Logs at <code>&lt;poweldrive&gt;:\PowelSmartLogs\MeshDataTransfer</code></li>
-<li>Might save import requests to the file system if enabled in the configuration.</li>
-</ul>
-<p>Endpoints/API:</p>
-<ul>
-<li>Mesh Data Transfer uses queues to receive import requests.</li>
-<li>It also sends import responses to the queue.</li>
-<li>It communicates with Mesh using gRPC.</li>
-<li>It communicates with the database.</li>
-<li>It receives export requests on an endpoint and puts the export message on a queue and/or a file.</li>
-<li>HTTP endpoints (core URL defined in the configuration file):</li>
-<li>Order – time series export trigger.</li>
-<li>AvailabilityExport – availability export trigger.</li>
-<li>Reimport – retry of certain import request.</li>
-<li>Health endpoint: <code>http://&lt;server&gt;:7000/health</code></li>
-</ul>
-<p>Things to alert:</p>
-<ul>
-<li>The service is not running.</li>
-<li>Health endpoint is not responding with Healthy status.</li>
-<li>Mesh Data Transfer is responsible for fetching requests from the queues and processing them. If the number of messages on the queues is not decreasing (or number of messages in the Dead Letter Queue is increasing) the situation should be investigated.</li>
-<li>Messages are not removed from the order queue within a few seconds.</li>
-<li>Mesh Data Transfer periodically checks if the Mesh service is responsive. In case of problems, an error message should be logged.</li>
-</ul>
-<h3 id="powel-meshcollector-service">Powel MeshCollector service</h3>
-<p>Summary/description:</p>
-<ul>
-<li>This service collects data from external services (for instance meteorological data from Radarmeteo) and converts the information to xml messages that are stored on files when running in DMZ. Otherwise they are sent as AMQP messages that are imported by Mesh AMQP Relay.</li>
-</ul>
-<p>Output:</p>
-<ul>
-<li>AMQP messages.</li>
-<li>Logs at <code>&lt;poweldrive&gt;:\PowelSmartLogs\MeshCollectorService</code></li>
-<li>Health message contains counters of different operations, when last call was executed, when last forecast was received, ...</li>
-</ul>
-<p>Endpoints/API:</p>
-<ul>
-<li>Health endpoint: <code>http://&lt;server&gt;:7341/MeshCollectorService/health</code></li>
-</ul>
-<p>Things to alert:</p>
-<ul>
-<li>The service is not running.</li>
-<li>The health endpoint is not responding.</li>
-<li>Observations based on health data – too long time since last call was executed or when last forecast was received or …</li>
-</ul>
-<h3 id="powel-meshfileimportconverter-service">Powel MeshFileImportConverter service</h3>
-<p>Summary/description:</p>
-<ul>
-<li>This service converts information in files to AMQP messages that are imported by Mesh AMQP Relay.</li>
-<li>PVPLAN files are read from the D:\Powel\IccData\PVPLAN\New directory and successful transformation to the AMQP queue moves the files to the ..\Success directory. If something fails in the transformation, the files are moved to the ..\Error directory.</li>
-</ul>
-<p>Output:</p>
-<ul>
-<li>AMQP messages.</li>
-<li>Logs at <code>&lt;poweldrive&gt;:\PowelSmartLogs\MeshFileImportConverterService</code></li>
-<li>Health message contains counters of different operations, when last call was executed, number of converted files and number of conversion errors.</li>
-</ul>
-<p>Endpoints/API:</p>
-<ul>
-<li>Health endpoint: <code>http://&lt;server&gt;:7433/MeshFileImportConverterService/health</code></li>
-</ul>
-<p>Things to alert:</p>
-<ul>
-<li>The service is not running.</li>
-<li>The health endpoint is not responding.</li>
-<li>Imports via Mesh AMQP Relay of  messages from this service is not created within a certain time frame.</li>
-<li>Observations based on health data – too long time since last call was executed or number of conversion failures.</li>
-<li>If files stay in the &lt;&gt;\PVPLAN\New directory for more than a minute.</li>
-<li>If files stay in the &lt;&gt;\PVPLAN\Error directory for more than a minute (the file is moved here in the start of the transformation process but is moved to the &lt;&gt;\PVPLAN\Success directory when the transformation is competed successfully).</li>
-</ul>
-<h3 id="powel-meshsoapimportserver-service">Powel MeshSoapImportServer service</h3>
-<p>Summary/description:</p>
-<ul>
-<li>This service receives SOAP calls from other systems with data that is to be transferred to Mesh (e.g. Availability events from InGen). When the service runs in DMZ, the result is xml messages that are stored as files. Otherwise the result is sent as AMQP messages that are imported by Mesh AMQP Relay.</li>
-</ul>
-<p>Output:</p>
-<ul>
-<li>AMQP messages.</li>
-<li>Logs at <code>&lt;poweldrive&gt;:\PowelSmartLogs\MeshSoapImportServer</code></li>
-<li>Health message contains counters of different operations, when last call was received, ...</li>
-</ul>
-<p>Endpoints/API:</p>
-<ul>
-<li>Health endpoint: <code>http://&lt;server&gt;:22/MeshSoapImportServer/health</code></li>
-</ul>
-<p>Things to alert:</p>
-<ul>
-<li>The service is not running.</li>
-<li>The health endpoint is not responding.</li>
-<li>Observations based on health data – number of failures when receiving calls is increasing or too long time since last call was successfully received or …</li>
-</ul>
-<h3 id="powel-nimbus-service">Powel Nimbus service</h3>
-<p>Summary/description:</p>
-<ul>
-<li>This is the service providing the Nimbus user interface (application running on the user‘s client/RDP session). The service provides settings from the configuration service for user and roles, handles tasks, and, for none-Mesh tasks, gives report content.</li>
-</ul>
-<p>Output:</p>
-<ul>
-<li>This service writes a log file to disk. Default to <code>&lt;poweldrive&gt;:\PowelSmartLogs\ServiceHosts.WindowsServiceHost\Powel.Icc.ServiceHosts.WindowsServiceHost.log</code>.</li>
-<li>Location and log level is configurable in Powel.Icc.ServiceHosts.WindowsServiceHost.exe.config.</li>
-</ul>
-<p>Endpoints/API:</p>
-<ul>
-<li>Default endpoints (configurable in Powel.Icc.ServiceHosts.WindowsServiceHost.exe.config): <code>http://&lt;server&gt;:23124/hc</code></li>
-</ul>
-<p>Things to alert:</p>
-<ul>
-<li>The Health endpoint for the service could be used to give status for each endpoint in the service. While if health endpoint is not answering at all it could be used as an indication of the service being down and an alert.</li>
-<li>For each endpoint the status tag could bused to alert if it is not "Healthy"</li>
-</ul>
-<pre><code class="language-json">  {&quot;status&quot;:&quot;Healthy&quot;,&quot;address&quot;:&quot;http://localhost:23124/hc/&quot;,&quot;dependencies&quot;:{&quot;ServiceBroker&quot;:{&quot;status&quot;:&quot;Healthy&quot;,&quot;counters&quot;:{&quot;numberOfUserProcesses&quot;:0},&quot;dependencies&quot;:{}},&quot;ConfigurationReaderService&quot;:{&quot;status&quot;:&quot;Healthy&quot;,&quot;address&quot;:&quot;http://localhost:23124/hc/configurationreaderservice/&quot;},&quot;EventMonitorService&quot;:{&quot;status&quot;:&quot;Healthy&quot;,&quot;address&quot;:&quot;http://localhost:23124/hc/eventmonitorservice/&quot;},&quot;OptimizationService&quot;:{&quot;status&quot;:&quot;Healthy&quot;,&quot;address&quot;:&quot;http://localhost:23124/hc/optimizationservice/&quot;}}}
-</code></pre>
-<ul>
-<li>Alert if the service is not running in the active zone.</li>
-<li>Alert if there is a “Fatal” message in the log file Powel.Icc.ServiceHosts.WindowsServiceHost.log</li>
-</ul>
-<h3 id="powel-optimalgateway-service">Powel OptimalGateway service</h3>
-<p>Summary/description:</p>
-<ul>
-<li>Optimal Gateway collects and preprocesses data from Mesh for the optimisation services Optimal Multi-Asset, SHOP and ProdRisk. </li>
-</ul>
-<p>Output:</p>
-<ul>
-<li>If activated, the Optimal Gateway generates JSON files to analyse optimisation issues.</li>
-<li>Logs at <code>&lt;poweldrive&gt;:\PowelSmartLogs\Powel Gateway Service</code></li>
-</ul>
-<p>Endpoints/API:</p>
-<ul>
-<li>The Optimal Gateway has an API for starting/stopping optimisations. See Swagger documentation at <code>http://&lt;server&gt;:18261/Gateway/#api</code></li>
-<li>Health endpoint: <code>http://&lt;server&gt;:18261/Gateway/Health</code></li>
-</ul>
-<p>Things to alert:</p>
-<ul>
-<li>The "Powel Optimal Gateway Service" is not running.</li>
-<li>The health endpoint is not responding.</li>
-</ul>
-<h3 id="powel-optimallog-service">Powel OptimalLog service</h3>
-<p>Summary/description:</p>
-<ul>
-<li>Optimal Log is the centralised log for optimisation algorithms. Services that use it are Optimal Gateway, SHOP, Optimal Multi-Asset and ProdRisk. Its purpose is to supply log entries from these components to end users in Nimbus/Optimal Log user interface.</li>
-<li>However, for monitoring &amp; alerting purposes, the actual service’s logging should be used.</li>
-</ul>
-<p>Output:</p>
-<ul>
-<li>Logs at <code>&lt;poweldrive&gt;:\PowelSmartLogs\Powel Optimal Log</code></li>
-</ul>
-<p>Endpoints/API:</p>
-<ul>
-<li>API available to read headers and lines for logs. Refer to Swagger documentation at <code>http://&lt;server&gt;:18260/OptimalLog/#apip</code></li>
-<li>Health endpoint: <code>http://&lt;server&gt;:18260/OptimalLog/Health</code></li>
-</ul>
-<p>Things to alert:</p>
-<ul>
-<li>The "Powel Optimal Log Service" is not running.</li>
-<li>The health endpoint is not responding.</li>
-</ul>
-<h3 id="powel-optimalmultiasset-poma-service">Powel OptimalMultiAsset (POMA) service</h3>
-<p>Summary/description:</p>
-<ul>
-<li>Optimal Multi-Asset includes the code to execute optimisations based on the data collected by Optimal Gateway.</li>
-</ul>
-<p>Output:</p>
-<ul>
-<li>Logs at <code>&lt;poweldrive&gt;:\PowelSmartLogs\Powel Optimal MultiAsset</code></li>
-</ul>
-<p>Endpoints/API:</p>
-<ul>
-<li>Health endpoint: <code>http://&lt;server&gt;:18262/MultiAsset/Health</code></li>
-</ul>
-<p>Things to alert:</p>
-<ul>
-<li>The "Powel Optimal MultiAsset Service" is not running.</li>
-<li>The health endpoint is not responding.</li>
-</ul>
-<h3 id="powel-scadagateway-service">Powel ScadaGateway service</h3>
-<p>Summary/description:</p>
-<ul>
-<li>This service is connecting to a SCADA server using OPC UA, sets up a subscription of interest, receives updates from the SCADA server for this subscription, and creates messages with updates in an AMQP queue for Mesh AMQP Relay to import.</li>
-</ul>
-<p>Output:</p>
-<ul>
-<li>AMQP messages.</li>
-<li>Logs at <code>&lt;poweldrive&gt;:\PowelSmartLogs\ScadaGateway</code></li>
-<li>Health message contains counters for different operations, when last connected, when last data changed, when last export created, ...</li>
-</ul>
-<p>Endpoints/API:</p>
-<ul>
-<li>Health endpoint: <code>http://&lt;server&gt;:\&lt;port\&gt;/ScadaGateway/health</code></li>
-<li>Port used is defined in the appsettings.json as HttpPort.</li>
-</ul>
-<p>Things to alert:</p>
-<ul>
-<li>The service is not running.</li>
-<li>The health endpoint is not responding.</li>
-<li>Imports via Mesh AMQP Relay of messages from this service are not created within a certain time frame.</li>
-<li>Observations based on health data – too long time since last data change was received or too long time since an export was created or ...</li>
-</ul>
-<h3 id="volue-transferamqpfile-service">Volue TransferAMQPFile service</h3>
-<p>Summary/description:</p>
-<ul>
-<li>This service is running in the SCADA environment and downloads messages from a defined queue and stores the content as files in a specified directory.</li>
-</ul>
-<p>Output:</p>
-<ul>
-<li>Messages created in one or more directories.</li>
-<li>Logs at <code>&lt;poweldrive&gt;:\PowelSmartLogs\TransferAmqpFiles</code></li>
-</ul>
-<p>Endpoints/API:</p>
-<ul>
-<li>None.</li>
-</ul>
-<p>Things to alert:</p>
-<ul>
-<li>Service is not running.</li>
-<li>The health endpoint is not responding.</li>
-<li>Messages are not removed from the AMQP queue – should be done immediately.</li>
+<li>The <code>validate-entraid-environment.ps1</code> script is the main script to use and is run without any input parameters.</li>
+<li>The <code>entraid-config.ps1</code> script is the place where you make changes to local definitions and requirements.</li>
+<li>The <code>report-entraid-settings.ps1</code> script is just reporting important information for the different applications needed in order to update the installed configuration.</li>
 </ul>
               
             </div>
           </div><footer>
       <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-          <a href="../queue-usage-in-smart-power/" class="btn btn--outline btn--success float-left" title="Queue usage in Smart Power"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-          <a href="../entraid-scripts/" class="btn btn--outline btn--success float-right" title="Introduction">Next <span class="icon icon-circle-arrow-right"></span></a>
+          <a href="../monitoring/" class="btn btn--outline btn--success float-left" title="Monitor services"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+          <a href="validate-entraid-environment/" class="btn btn--outline btn--success float-right" title="Documentation of validate-entraid-environment.ps1 script">Next <span class="icon icon-circle-arrow-right"></span></a>
       </div>
   
     <hr/>
@@ -1064,10 +537,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version is-active">
       
       
-        <span><a href="../queue-usage-in-smart-power/" style="color: #fcfcfc">&laquo; Previous</a></span>
+        <span><a href="../monitoring/" style="color: #fcfcfc">&laquo; Previous</a></span>
       
       
-        <span><a href="../entraid-scripts/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span><a href="validate-entraid-environment/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
   </div>

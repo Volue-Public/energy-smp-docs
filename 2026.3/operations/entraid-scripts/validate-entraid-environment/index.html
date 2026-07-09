@@ -16,7 +16,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Documentation";
+        var mkdocs_page_name = "Documentation of validate-entraid-environment.ps1 script";
         var mkdocs_page_input_path = "operations/entraid-scripts/validate-entraid-environment.md";
         var mkdocs_page_url = null;
       </script>
@@ -453,7 +453,9 @@
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" >EntraId validation script</a>
     <ul class="current">
-                <li class="toctree-l2 current"><a class="reference internal current" href="#">Documentation</a>
+                <li class="toctree-l2"><a class="reference internal" href="../">Introduction</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Documentation of validate-entraid-environment.ps1 script</a>
     <ul class="current">
     <li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a>
     </li>
@@ -523,6 +525,8 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../entraid-config.ps1">entraid-config.ps1</a>
                 </li>
+                <li class="toctree-l2"><a class="reference internal" href="../report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
     </ul>
                   </li>
               </ul>
@@ -551,7 +555,7 @@
     <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">Operations</li>
           <li class="breadcrumb-item">EntraId validation script</li>
-      <li class="breadcrumb-item active">Documentation</li>
+      <li class="breadcrumb-item active">Documentation of validate-entraid-environment.ps1 script</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -815,7 +819,7 @@ $GraphUserReadScopeId = [guid]&quot;e1fe6dd8-ba31-4d61-89e7-88639da4683d&quot;  
 <tr>
 <td><code>NimbusPermissions</code></td>
 <td>array of permission objects</td>
-<td>Grants this app access to the Nimbus API. Currently only declared on the Nimbus app entry itself — see <a href="#known-issues">Known issues</a>. Does not cause pre-authorization.</td>
+<td>Grants this app access to the Nimbus API. Not currently declared by any app in <code>entraid-config.ps1</code> — the capture/consume logic exists in the script but is dead code until something declares it. Does not cause pre-authorization.</td>
 </tr>
 <tr>
 <td><code>AFPermissions</code></td>
@@ -1008,7 +1012,7 @@ $GraphUserReadScopeId = [guid]&quot;e1fe6dd8-ba31-4d61-89e7-88639da4683d&quot;  
 <td><code>Nimbus</code></td>
 <td>Application</td>
 <td><code>Nimbus</code></td>
-<td>Desktop redirects (<code>localhost</code>, broker plugin); requires Mesh, OptimalGateway, OptimalLog <code>Scope</code>. Also declares <code>NimbusPermissions</code>, but that's a no-op today — no other app requests access to Nimbus, and the self-referential grant to itself is explicitly skipped</td>
+<td>Desktop redirects (<code>localhost</code>, broker plugin); requires Mesh, OptimalGateway, OptimalLog <code>Scope</code></td>
 </tr>
 <tr>
 <td><code>MarginalCost</code></td>
@@ -1026,13 +1030,19 @@ $GraphUserReadScopeId = [guid]&quot;e1fe6dd8-ba31-4d61-89e7-88639da4683d&quot;  
 <td><code>AutomationFrameworkApi</code></td>
 <td>Application</td>
 <td><code>af-api</code></td>
-<td>Roles: ServiceAccount, Viewer, Modeler, Admin, Operator; requires Mesh <code>Role</code>; declares <code>AFPermissions</code> (<code>Scope</code>) — the <code>requiredResourceAccess</code>, admin-consent, and pre-authorization self-entries are all correctly skipped for its own entry</td>
+<td>Roles: ServiceAccount, Viewer, Modeler, Admin, Operator; requires Mesh <code>Role</code></td>
 </tr>
 <tr>
 <td><code>AutomationFrameworkServices</code></td>
 <td>Application</td>
 <td>—</td>
-<td>Requires Mesh, OptimalGateway, OptimalLog, and AutomationFrameworkApi (all <code>Scope</code>) via <code>AFPermissions</code></td>
+<td>Requires OptimalGateway, OptimalLog, and AutomationFrameworkApi (all <code>Role</code>, via <code>AFPermissions</code>/etc.) — no delegated consent or pre-authorization is created since none of its entries are <code>Scope</code></td>
+</tr>
+<tr>
+<td><code>AutomationFrameworkUI</code></td>
+<td>Application</td>
+<td>—</td>
+<td>Requires AutomationFrameworkApi <code>Role</code> via <code>AFPermissions</code> — no <code>Roles</code>, <code>Groups</code>, <code>ScopeValue</code>, or <code>Authentication</code> of its own</td>
 </tr>
 </tbody>
 </table>
@@ -1047,7 +1057,7 @@ $GraphUserReadScopeId = [guid]&quot;e1fe6dd8-ba31-4d61-89e7-88639da4683d&quot;  
 <li>Add <code>ScopeValue</code> if the app exposes its own API.</li>
 <li>Add <code>Roles</code> and <code>Groups</code> for RBAC.</li>
 <li>Add <code>Authentication</code> if users sign in (SPA or Desktop redirect URIs).</li>
-<li>Add any of <code>MeshPermissions</code>, <code>OptimalGatewayPermissions</code>, <code>OptimalLogPermissions</code> to wire up API access (see <a href="#known-issues">Known issues</a> if you're tempted to model this on <code>NimbusPermissions</code> or <code>AFPermissions</code> — both have bugs today).</li>
+<li>Add any of <code>MeshPermissions</code>, <code>OptimalGatewayPermissions</code>, <code>OptimalLogPermissions</code>, <code>AFPermissions</code> to wire up API access. A <code>Role</code>-only declaration (no <code>Scope</code> entries) correctly gets only the app-role <code>requiredResourceAccess</code> entry — no delegated consent grant or pre-authorization is created for it.</li>
 </ol>
 <p>Re-run <code>validate-entraid-environment.ps1</code>. It will create only what is missing and skip everything that already exists.</p>
 <h2 id="adding-a-new-api-dependency">Adding a new API dependency</h2>
@@ -1074,7 +1084,7 @@ $GraphUserReadScopeId = [guid]&quot;e1fe6dd8-ba31-4d61-89e7-88639da4683d&quot;  
             </div>
           </div><footer>
       <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-          <a href="../../monitoring/" class="btn btn--outline btn--success float-left" title="Monitor services"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+          <a href="../" class="btn btn--outline btn--success float-left" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
           <a href="../validate-entraid-environment.ps1" class="btn btn--outline btn--success float-right" title="validate-entraid-environment.ps1">Next <span class="icon icon-circle-arrow-right"></span></a>
       </div>
   
@@ -1098,7 +1108,7 @@ $GraphUserReadScopeId = [guid]&quot;e1fe6dd8-ba31-4d61-89e7-88639da4683d&quot;  
     <span class="rst-current-version" data-toggle="rst-current-version is-active">
       
       
-        <span><a href="../../monitoring/" style="color: #fcfcfc">&laquo; Previous</a></span>
+        <span><a href="../" style="color: #fcfcfc">&laquo; Previous</a></span>
       
       
         <span><a href="../validate-entraid-environment.ps1" style="color: #fcfcfc">Next &raquo;</a></span>

@@ -37,8 +37,9 @@ $Global:KeyVaultSecretPrefix = "smartpower"  # name prefix for secrets in KV
 
 . "$PSScriptRoot\entraid-config.ps1"
 
+$nPermExtras = ($SmartApps | Where-Object { $_.ContainsKey("OptimalGatewayPermissions") }).Count + ($SmartApps | Where-Object { $_.ContainsKey("OptimalLogPermissions") }).Count + ($SmartApps | Where-Object { $_.ContainsKey("AFPermissions") }).Count
 
-$Global:StepsTotalHint = 12 + ($SmartApps.Count * 10) + ($MeshRolesDesired.Count * 3)
+$Global:StepsTotalHint = 6 + ($SmartApps.Count * 5) + 3 + ($nPermExtras * 2)
 
 # ----------------------------
 # 2) Log HELPERS
@@ -732,11 +733,11 @@ try {
 
   foreach ($r in $MeshGroupsDesired) {
     $g = Ensure-Group $r.DisplayName
-    $role = $meshSpRef.AppRoles | Where-Object { $_.Value -eq $r.Value } | Select-Object -First 1
+    $role = $meshSpRef.AppRoles | Where-Object { $_.Value -eq $r.RoleAssigned } | Select-Object -First 1
     if ($role) {
-      Ensure-GroupAppRoleAssignment -groupId $g.Id -resourceSpId $meshSp.Id -appRoleId ([guid]$role.Id) -RoleValue $r.Value
+      Ensure-GroupAppRoleAssignment -groupId $g.Id -resourceSpId $meshSp.Id -appRoleId ([guid]$role.Id) -RoleValue $r.RoleAssigned
     } else {
-      Write-Log "Mesh role '$($r.Value)' not found on SP (unexpected)" WARN
+      Write-Log "Mesh role '$($r.RoleAssigned)' not found on SP (unexpected)" WARN
     }
   }
 
@@ -818,6 +819,24 @@ foreach ($appDef in $SmartApps) {
         $optGwDaemonRoleId = [guid]$optGwDaemonRole.Id
         Write-Log "optGwDaemonRoleId=$optGwDaemonRoleId" DEBUG
       }
+      if ($appDef.Key -eq "OptimalLog") {
+        # Ensure OptimalLog app roles by value
+        $optLogRolesEffective = $rolesEffective
+        $optLogRolesEffectiveJson = $optLogRolesEffective | ConvertTo-Json -Depth 10
+        Write-Log "optLogRolesEffective=$optLogRolesEffectiveJson" TRACE
+        $optLogDaemonRole = $optLogRolesEffective | Where-Object { $_.DisplayName -eq "Daemon" } | Select-Object -First 1
+        $optLogDaemonRoleId = [guid]$optLogDaemonRole.Id
+        Write-Log "optLogDaemonRoleId=$optLogDaemonRoleId" DEBUG
+      }
+      if ($appDef.Key -eq "AutomationFrameworkApi") {
+        # Ensure AutomationFrameworkApi app roles by value
+        $afRolesEffective = $rolesEffective
+        $afRolesEffectiveJson = $afRolesEffective | ConvertTo-Json -Depth 10
+        Write-Log "afRolesEffective=$afRolesEffectiveJson" TRACE
+        $afDaemonRole = $afRolesEffective | Where-Object { $_.DisplayName -eq "ServiceAccount" } | Select-Object -First 1
+        $afDaemonRoleId = [guid]$afDaemonRole.Id
+        Write-Log "afDaemonRoleId=$afDaemonRoleId" DEBUG
+      }
     }
     elseif ($appDef.AppType -eq "Daemon") {
       $scope = $null
@@ -893,7 +912,7 @@ foreach ($appDef in $SmartApps) {
       # Ensure delegated permission to Optimal.Log (requiredResourceAccess) - idempotent merge
       $logPermStep = Start-Step "Ensure Optimal.Log delegated permission on $($appDef.DisplayName)"
       foreach ($p in $appDef.OptimalLogPermissions) {
-        $permissionId = if ($p.PermissionType -eq "Scope") { $optLogScopeIdEffective } else { $null }
+        $permissionId = if ($p.PermissionType -eq "Scope") { $optLogScopeIdEffective } else { $optLogDaemonRoleId }
         Ensure-RequiredResourceAccess -appObjectId $app.Id -resourceAppId $optLogApp.AppId -permissionId $permissionId -permissionType $p.PermissionType | Out-Null
       }
       End-Step $logPermStep $true
@@ -913,7 +932,7 @@ foreach ($appDef in $SmartApps) {
       # Ensure delegated permission to AutomationFrameworkApi (requiredResourceAccess) - idempotent merge
       $logPermStep = Start-Step "Ensure AutomationFrameworkApi delegated permission on $($appDef.DisplayName)"
       foreach ($p in $appDef.AFPermissions) {
-        $permissionId = if ($p.PermissionType -eq "Scope") { $afScopeIdEffective } else { $null }
+        $permissionId = if ($p.PermissionType -eq "Scope") { $afScopeIdEffective } else { $afDaemonRoleId }
         Ensure-RequiredResourceAccess -appObjectId $app.Id -resourceAppId $afApp.AppId -permissionId $permissionId -permissionType $p.PermissionType | Out-Null
       }
       End-Step $logPermStep $true
@@ -923,7 +942,7 @@ foreach ($appDef in $SmartApps) {
       # Ensure admin consent grant (may be blocked by policy)
       $consentStep = Start-Step "Ensure admin consent (oauth2PermissionGrant) for Mesh on $($appDef.DisplayName)"
       try {
-        if ($appDef.MeshPermissions) {
+        if ($appDef.MeshPermissions | Where-Object { $_.PermissionType -eq "Scope" }) {
           $clientSp   = Ensure-ServicePrincipalForApp $app.AppId $appDef.DisplayName
           $resourceSp = Ensure-ServicePrincipalForApp $meshApp.AppId $MeshAppDisplayName
           Ensure-OAuth2PermissionGrant -clientSpId $clientSp.Id -resourceSpId $resourceSp.Id -scopeValue $meshScopeValueEffective
@@ -933,7 +952,7 @@ foreach ($appDef in $SmartApps) {
         End-Step $consentStep $false "May require privileged role/policy. Continuing."
         Write-Log "Admin consent step failed or blocked by policy for $($appDef.DisplayName)." WARN
       }
-      if (-not ([string]::IsNullOrWhiteSpace($appDef.OptimalGatewayPermissions))) {
+      if ($appDef.OptimalGatewayPermissions | Where-Object { $_.PermissionType -eq "Scope" }) {
         $optGwConsentStep = Start-Step "Ensure admin consent (oauth2PermissionGrant) for OptimalGateway on $($appDef.DisplayName)"
         try {
           $clientSp   = Ensure-ServicePrincipalForApp $app.AppId $appDef.DisplayName
@@ -945,7 +964,7 @@ foreach ($appDef in $SmartApps) {
           Write-Log "Admin consent step failed or blocked by policy for $($appDef.DisplayName)." WARN
         }
       }
-      if ($appDef.OptimalLogPermissions) {
+      if ($appDef.OptimalLogPermissions | Where-Object { $_.PermissionType -eq "Scope" }) {
         $optLogConsentStep = Start-Step "Ensure admin consent (oauth2PermissionGrant) for OptimalLog on $($appDef.DisplayName)"
         try {
           $clientSp   = Ensure-ServicePrincipalForApp $app.AppId $appDef.DisplayName
@@ -957,7 +976,7 @@ foreach ($appDef in $SmartApps) {
           Write-Log "Admin consent step failed or blocked by policy for $($appDef.DisplayName)." WARN
         }
       }
-      if ($appDef.AFPermissions -and $app -ne $afApp) {
+      if (($appDef.AFPermissions | Where-Object { $_.PermissionType -eq "Scope" }) -and $app -ne $afApp) {
         $afConsentStep = Start-Step "Ensure admin consent (oauth2PermissionGrant) for AutomationFramework on $($appDef.DisplayName)"
         try {
           $clientSp   = Ensure-ServicePrincipalForApp $app.AppId $appDef.DisplayName
@@ -998,7 +1017,7 @@ foreach ($appDef in $SmartApps) {
         try {
           $clientSp   = Ensure-ServicePrincipalForApp $app.AppId $appDef.DisplayName
           $resourceSp = Ensure-ServicePrincipalForApp $optLogApp.AppId $optLogAppDisplayName
-          Ensure-OAuth2PermissionGrant -clientSpId $clientSp.Id -resourceSpId $resourceSp.Id -scopeValue $optLogScopeValueEffective
+          Ensure-OAuth2PermissionGrant -clientSpId $clientSp.Id -resourceSpId $resourceSp.Id -appRoleId $optLogDaemonRoleId -RoleValue "Daemon"
           End-Step $optLogConsentStep $true
         } catch {
           End-Step $optLogConsentStep $false "May require privileged role/policy. Continuing."
@@ -1066,14 +1085,14 @@ try {
 
 $step = Start-Step "Ensure OptimalGateway and OptimalLog preAuthorizedApplications (idempotent)"
 $defs = $($SmartApps | Where-Object { $_.OptimalGatewayPermissions -or $_.OptimalLogPermissions })
-try {    
+try {
   foreach ($appDef in $defs) {
     $a = Get-ApplicationByDisplayName $appDef.DisplayName
     if ($a) {
-      if ($appDef.OptimalGatewayPermissions) {
+      if ($appDef.OptimalGatewayPermissions | Where-Object { $_.PermissionType -eq "Scope" }) {
         Ensure-PreAuthorizedApplication -appName $optGwApp.DisplayName -appObjectId $optGwApp.Id -clientAppId $a.AppId -delegatedPermissionId $optGwScopeIdEffective | Out-Null
       }
-      if ($appDef.OptimalLogPermissions) {
+      if ($appDef.OptimalLogPermissions | Where-Object { $_.PermissionType -eq "Scope" }) {
         Ensure-PreAuthorizedApplication -appName $optLogApp.DisplayName -appObjectId $optLogApp.Id -clientAppId $a.AppId -delegatedPermissionId $optLogScopeIdEffective | Out-Null
       }
     } else {
@@ -1096,7 +1115,7 @@ try {
   foreach ($appDef in $defs) {
     $a = Get-ApplicationByDisplayName $appDef.DisplayName
     if ($a) {
-      if ($appDef.AFPermissions -and $a.AppId -ne $afApp.AppId) {
+      if (($appDef.AFPermissions | Where-Object { $_.PermissionType -eq "Scope" }) -and $a.AppId -ne $afApp.AppId) {
         Ensure-PreAuthorizedApplication -appName $afApp.DisplayName -appObjectId $afApp.Id -clientAppId $a.AppId -delegatedPermissionId $afScopeIdEffective | Out-Null
       }
     } else {
