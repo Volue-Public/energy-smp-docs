@@ -22,7 +22,6 @@ This will return a time series where each time series point is the number of
 points in Timeseries1/2/3 which are flagged as not OK at that time.
 
 ### Syntax
-- STATUS_COUNT(g,s)
 - STATUS_COUNT(T,s)
 - STATUS_COUNT(t,s)
 
@@ -35,7 +34,7 @@ The second argument uses the same syntax as the logical argument in
 
 | # | Type | ## Description |
 |---|---|---|
-| 1 | g | Reference to a time series group. |
+| 1 | T | Array of time series. |
 | 2 | s | Symbol. |
 
 

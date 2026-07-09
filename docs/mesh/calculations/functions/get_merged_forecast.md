@@ -9,7 +9,7 @@ a value segment [+6h->+12h] from each forecast.
 
 ### Syntax
 
-- GetMergedForcast(t,s)
+- GetMergedForecast(t,s)
 
 ### Description
 
