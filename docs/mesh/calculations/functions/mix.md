@@ -31,7 +31,7 @@ Description MIX(t,t) and MIX(t,t,s)
 | MERGE_POINTS | As the MERGE version, but checks whether there is a point value for the point of time on the first time series. If no, the value from the second time series is used on this point of time. Will only have the intended effect if you have a breakpoint series. |
 
 ## Example
-@MIX(tt)
+@MIX(t,t)
 
 ```
 Temperature_hour_operative = @MIX(@t('TempManualCorrection'),@t('Temperature_hour_raw'))
