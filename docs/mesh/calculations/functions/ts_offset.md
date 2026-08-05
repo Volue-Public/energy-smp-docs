@@ -34,7 +34,7 @@ The table below shows the valid offset unit codes.
 | MONTH | 30 days |
 | YEAR | 365 days |
 
-Note that `MONTH` and `YEAR` are always 30 and 365 days respectively; i.e. they are not
+**_Note!_** `MONTH` and `YEAR` are always 30 and 365 days respectively; i.e. they are not
 calendar-aware.
 
 ## Examples
