@@ -21,8 +21,8 @@ function returns an empty value.
 | 1 | t | Time series |
 | 1 | d | Number |
 
-## Example
-Example 1: LN(t)
+## Examples
+### Example 1: LN(t)
 
 ```
 Temperature_hour_VV = @LN(@t('Temperature_hour_raw'))
@@ -30,7 +30,7 @@ Temperature_hour_VV = @LN(@t('Temperature_hour_raw'))
 
 ![](assets/images/ex_LN-nimbusexample1.png)
 
-Example 2: LN(d)
+### Example 2: LN(d)
 
 ```
 ResultTs = @LN(1)

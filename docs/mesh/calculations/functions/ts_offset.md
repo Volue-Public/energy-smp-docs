@@ -1,4 +1,4 @@
-## TS_OFFSET
+# TS_OFFSET
 ## About the function
 This function time-shifts a time series, i.e. uses values from a period which is
 different from the current calculation period.
@@ -36,9 +36,9 @@ The table below shows the valid offset unit codes.
 | YEAR |
 
 
-  **Example**
+## Examples
 
-  Example 1: @TS_OFFSET(t,d)
+### Example 1: @TS_OFFSET(t,d)
 
   `CompareTemp = @TS_OFFSET(@t('AreaTemperature'),-2)`
 
@@ -48,7 +48,7 @@ moves backwards in time for negative numbers.
 
   ![](assets/images/ex_TS_OFFSET-nimbustable.png)
 
-  Example 2: @TS_OFFSET(t,d)
+### Example 2: @TS_OFFSET(t,d)
 
   `CompareTemp = @TS_OFFSET(@t('AreaTemperature'),3)`
 

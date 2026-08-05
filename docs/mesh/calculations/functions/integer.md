@@ -1,4 +1,4 @@
-## INTEGER
+# INTEGER
 ## About the function
 Converts a number in a time series to an integer by cutting all decimals.
 
@@ -11,7 +11,7 @@ The function can also be applied to a single number.
 - INTEGER(t)
 - INTEGER(d)
 
-**Description**
+## Description
 
 | # | Type | Description |
 |---|---|---|

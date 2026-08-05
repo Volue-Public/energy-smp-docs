@@ -25,7 +25,9 @@ variant is recommended:
 |---|---|---|
 | 1 | S | An array of texts to concatenate into the resulting text |
 
-## Example 1
+## Examples
+
+### Example 1
 
   `## = @t(@Concatenate(‘../...’, @s(‘.TargetTimeseries’))`
 
@@ -35,7 +37,7 @@ The argument to @t is calculated based on the local text attribute
 this, `../...MyTs`. This means go to the parent of the parent and get the time
 series on the *MyTs* attribute.
 
-## Example 2
+### Example 2
 
 `## = @t( @Concatenate( {'*[.Type=HydroPlant&&.Name=', @MeshID('NAME'),'].Production' })`
 

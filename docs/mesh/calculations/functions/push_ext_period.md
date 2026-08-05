@@ -35,7 +35,7 @@ in calculations are handled implicitly when using Mesh as a foundation.
 - PushExtPeriod(s,d,d)
 
 
-## **Description**
+## Description
 
 
 | # | Type | Description |

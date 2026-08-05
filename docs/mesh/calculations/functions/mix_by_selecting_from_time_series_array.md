@@ -1,5 +1,5 @@
 ﻿# MIX by selecting from time series array
-About this function
+## About the function
 
 MIX is a function that calculates result series by mixing contribution from a
 set of input time series. A typical usage is to handle multiple 'if-elseif-else’
@@ -24,8 +24,8 @@ the result series is defined like this:
 - Default series not defined: The result series has the same resolution as the highest resolution found. The result values are copied from first series in array for periods when contribution index found in argument 1 series is 1, from second series when contribution index is 2 etc.
 - Default series defined: If contribution index is out of range, the corresponding result values are retrieved from default series.
 
-## Example
-Example 1: @MIX(t,T)
+## Examples
+### Example 1: @MIX(t,T)
 
 `Temperature_hour_operative = @MIX(@t('TempManualCorrection'),@T('Temperature_hour'))`
 
@@ -36,7 +36,7 @@ table.
 
 ![](assets/images/ex_MIXbe-Nimbustable.png)
 
-Example 2: @MIX(t,T,t)
+### Example 2: @MIX(t,T,t)
 
 `Temperature_hour_operative = @MIX(@t('TempManualCorrection'),@T('Temperature_hour'),@t('TempPercentiles'))`
 
@@ -46,7 +46,7 @@ of the table.
 
 ![](assets/images/ex_MIXbe-Nimbustable2.png)
 
-Example 3: @MIX(t,T,t)
+### Example 3: @MIX(t,T,t)
 
 `## = @MIX(@t('TsSelector'),{@t('Ts1'),@t('Ts2'),@t('Ts1')*2.3,@t('Ts1')+@t('Ts2')},@t('TsDefault'))`
 

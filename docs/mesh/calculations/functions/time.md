@@ -26,7 +26,7 @@ also be used as argument to functions accepting a time point as number.
 You can convert a time point back to a time specification string by using the
 [TimeToString](../functions/time_to_string.md) function.
 
-Example using both Time and TimeSpan functions
+## Example using both Time and TimeSpan functions
 
 ``` 
 TimeWindow = @TimeSpan('HOUR') * @d('GlidingInterval')

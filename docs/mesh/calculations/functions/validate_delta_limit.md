@@ -1,12 +1,12 @@
-﻿## ValidateDeltaLimit
-**About the function**
+﻿# ValidateDeltaLimit
+## About the function
 
 Validates time series using delta change limits. Values outside the specified
 limits, will be marked as ! (Not OK). Values with control towards delta limit
 are set to validated with remark V02, meaning validation method 2. You can see
 this code if you turn on value information in Nimbus.
 
-**Syntax**
+## Syntax
 
 - ValidateDeltaLimit(t,t,t,d,s)
 
@@ -20,7 +20,7 @@ this code if you turn on value information in Nimbus.
 | 4 | d | Value describing maximum number of errors. When maximum number of errors has been reached, subsequent values will not be validated. |
 | 5 | s | Symbol describing whether or not limitation time series are to be interpreted as percentage values. This is specified as either 'TRUE' or 'FALSE'. |
 
-**Example**
+## Example
 ```
 Waterlevel_hour_VEE = @ValidateDeltaLimit(@RESET_STATUS(@t('Waterlevel_hour_raw')),@TS('VARINT',@d('RsvDeltaLimitLower')),@TS('VARINT',@d('RsvDeltaLimitUpper')),
 @d('ValidateMaxErrors'), @s('ValuesInPercent'))

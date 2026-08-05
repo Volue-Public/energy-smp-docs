@@ -1,4 +1,4 @@
-﻿## TS_GLIDING_AVERAGE
+﻿# TS_GLIDING_AVERAGE
 ## About the function
 Smooths out major fluctuations by taking average values from surrounding values.
 The amount by which the new values are smoothed out depends on the value of "d".

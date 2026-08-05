@@ -30,7 +30,7 @@ resolution as the input time series.
   ![](assets/images/ex_BOOL-nimbustable1.png)
 
 ## Examples
-### Example 1: 
+### Example 1: @BOOL(d)
 ```
 @BOOL(d)
 @BOOL(NaN) Returns 0.

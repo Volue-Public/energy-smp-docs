@@ -2,7 +2,7 @@
 
 Here is a list of common calculations where transformation of values from one resolution to another is included
 
-### ACCUMULATE VALUES STANDARD BEHAVIOR
+## ACCUMULATE VALUES STANDARD BEHAVIOR
 
 This means transforming from a break point series to a fixed interval series, or from a fixed interval series to a different fixed interval series with coarser resolution, for example from hour to day series.
 
@@ -10,7 +10,7 @@ For this type of task this is used:
 
 R1 = [@TRANSFORM(t,s,s)](../functions/transform.md#transformt-s-s)
 
-### ACCUMULATE VALUES TO SPECIFIC RESOLUTIONS
+## ACCUMULATE VALUES TO SPECIFIC RESOLUTIONS
 
 This means transformation from one time series to a different time series with a resolution that is not the same as calendar units, e.g. quarter, hour, day, week, month or year. You can choose a fixed period given from the start of the calculation or more general as points of time on a break point series.
 
@@ -21,7 +21,7 @@ R2 = [@TRANSFORM(t,t,s)](../functions/transform.md#transformt-t-s)
 
 R3 = [@TRANSFORM(t,d,s)](../functions/transform.md#transformt-d-s)
 
-### MAKE TRANSFORMATION WITH REFERENCE TO TIME ZONE
+## MAKE TRANSFORMATION WITH REFERENCE TO TIME ZONE
 
 The calculator performs calculations with reference to normal time if nothing else is given. A normal example is to accumulate hour values to day values or week values using local time (summer time) or a different time zone.
 
@@ -29,7 +29,7 @@ For this type of task the following is used:
 
 R4 = [@TRANSFORM(t,s,s,s)](../functions/transform.md#transformt-s-s-s)
 
-### DISTRIBUTING VALUES WITH REFERENCE TO PROFILE
+## DISTRIBUTING VALUES WITH REFERENCE TO PROFILE
 
 If you transform from fixed interval resolution to a finer resolution, e.g. from day to hour and want the calculated value to be distributed with reference to a profile, you cannot use standard transformation given from R1.
 

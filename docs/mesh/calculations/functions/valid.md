@@ -1,6 +1,6 @@
-﻿## Valid
+﻿# Valid
 
-### About the function
+## About the function
 
 A time series reference specified by **@t(‘TheReference’)** may give no result.
 The reason for this may be one of the following:
@@ -13,11 +13,11 @@ tells the user it did not manage to resolve **TheReference** for a given object.
 
 See also function [IsValid](../functions/isvalid.md).
 
-### Syntax
+## Syntax
 
 - Valid(T)
 
-### Description
+## Description
 
 | Type | Description |
 |---|---|
@@ -25,7 +25,7 @@ See also function [IsValid](../functions/isvalid.md).
 
 The function returns an array of valid time series.
 
-## Examples
+## Example
 
 Precondition:
 

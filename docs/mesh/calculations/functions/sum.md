@@ -13,7 +13,7 @@ of the series in an array of time series.
 |---|---|---|
 | 1 | t or T | Source time series to create sum from. Array of time series to create sum from. |
 
-## Example
+## Examples
 ### Example 1: @SUM(t)
 
 Result = @SUM(@t(’Ts1’))

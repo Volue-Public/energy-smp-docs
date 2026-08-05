@@ -1,12 +1,12 @@
-﻿## CorrectExtrapolate
-**About the function**
+﻿# CorrectExtrapolate
+## About the function
 
 Corrects errors on a previously validated time series using extrapolation.
 Values with correction using extrapolation are set to corrected with remark C04,
 meaning correction method 4. You can see this code if you turn on value
 information in Nimbus.
 
-**Syntax**
+## Syntax
 
 - CorrectExtrapolate(t,d,s)
 

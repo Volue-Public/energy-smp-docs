@@ -1,5 +1,5 @@
 ﻿# RatingCurve
-**About the function**
+## About the function
 
 The function is used to lookup values from a complex rating curve description to
 convert water level measurements in rivers to discharge unit. The function
@@ -15,7 +15,7 @@ Q = ai (h+bi)^ci hi ≤ h i+1 hi+1 ≤ h n+2
 The description gives factors a, b and for different value segments i for
 elevation h. Each definition may be valid for a given time interval.
 
-**S**yntax
+## Syntax
 
 - RatingCurve(t)
 

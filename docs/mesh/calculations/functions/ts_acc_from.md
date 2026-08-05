@@ -20,7 +20,7 @@ point values to accumulated values.
 
 
 
-| # | Type | ## Description |
+| # | Type | Description |
 |---|---|---|
 | 1 | t | Result series y. The starting value of this series remains unchanged. |
 | 2 | t | Input series x. Contains values which are added to the previous value of the result series. |
@@ -38,8 +38,8 @@ assignment to the left side, as follows:
 @TS_ACC_FROM(##,%Ts,0,1,1)
 ```
 
-## Example
-### Example 1: @TS_ACC_FROM(t,t,d,d,d) 
+## Examples
+### Example 1: @TS_ACC_FROM(t,t,d,d,d)
 ```
 @TS_ACC_FROM(%'abo_t3',%'abo_t1',1,0,0)
 ```

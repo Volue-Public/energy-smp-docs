@@ -1,12 +1,12 @@
-## CorrectInterpolate
-  **About the function**
+# CorrectInterpolate
+## About the function
 
 Corrects errors on a previously validated time series using interpolation.
 Values with correction using interpolation are set to corrected and marked with
 **C03**, meaning correction method 3. You can see this code if you turn on value
 information in Nimbus.
 
-  **Syntax**
+## Syntax
 
 - CorrectInterpolate(t,d,s)
 

@@ -1,11 +1,11 @@
-﻿## Linear
+﻿# Linear
 
-### About the function
+## About the function
 
 Sets the curve type of argument series to piecewise linear or staircase start of
 step.
 
-### Syntax
+## Syntax
 
 - Linear(t,s)
 

@@ -1,4 +1,6 @@
-## GetForecast
+# GetForecast
+
+## About the function
 
 A forecast is typically received with a frequency and contains data for a duration, for instance 2 times a day with hourly data for 10 days forward.
 
@@ -10,7 +12,7 @@ called forecast set.
 
 There might be multiple versions that cover the same value time period.
 
-### Syntax
+## Syntax
 
 - GetForecast(t)
 - GetForecast(t,d|s,d|s)
@@ -20,7 +22,7 @@ The second, third and fourth argument is a time point definition, either given a
 
 The first value in a forecast write operation is associated with time point t0.
 
-### Description
+## Description
 
 | # | Type | Description |
 |---|---|---|
@@ -45,11 +47,11 @@ within the given interval, the function returns a time series with NaN.
 
 ![](assets/images/GetForecast2.png)
 
-### Examples
+## Examples
 
 The data used in these examples are described [here](./history.md#hourly-example-data).
 
-#### Get forecast based on requested time period
+### Get forecast based on requested time period
 
 `## = @GetForecast(@t('.Temperature_forecast'))`
 
@@ -91,7 +93,7 @@ The same expression, but now with a *tstart* one hour later: `UTC2025110603`.
 | 2025-11-06T15:00:00Z |       4.00 |       2.00 |
 | 2025-11-06T16:00:00Z |       4.10 |       2.00 |
 
-#### Get forecast with forecast start arguments
+### Get forecast with forecast start arguments
 
 The first forecast write (value 1) has a first value at  `UTC2025110523`.
 The second forecast write (value 2) has a first value at `UTC2025110603`, i.e. 4 hours later.

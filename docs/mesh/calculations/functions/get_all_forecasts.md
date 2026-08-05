@@ -1,14 +1,16 @@
-## GetAllForecasts
+# GetAllForecasts
+
+## About the function
 
 Returns all time series versions that have values within the requested time period.
 
 ![](assets/images/GetAllForecasts.png)
 
-### Syntax
+## Syntax
 
 - GetAllForecasts(t) - returns an array of time series
 
-### Example
+## Example
 
 Example data is described [here](./history.md#hourly-example-data).
 

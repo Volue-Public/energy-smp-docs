@@ -1,6 +1,6 @@
-﻿## MIN
+﻿# MIN
 
-### About the function
+## About the function
 
 Finds the lowest values in time series, numbers, arrays or combinations of
 these.
@@ -23,7 +23,7 @@ The result series has the same resolution as the input time series. This also ap
 - MIN(d,d)  -> returns a number
 - MIN(T,T)
 
-### Description
+## Description
 
 | # | Type | Description |
 |---|---|---|
@@ -32,9 +32,9 @@ The result series has the same resolution as the input time series. This also ap
 
 There are similar functions to find highest values, see [function MAX](max.md)
 
-### Examples
+## Examples
 
-#### Example 1: @MIN(T)
+### Example 1: @MIN(T)
 
 `Temperature_hour_operative = @MIN(@T('.Temperature_hour'))`
 
@@ -45,7 +45,7 @@ e.g.:
 
 ![](assets/images/ex_MIN-nimbustable.png)
 
-#### Example 2: @MIN(D)
+### Example 2: @MIN(D)
 
 Result = @MIN({1, 5, 8, 2.5, 11})
 
@@ -53,7 +53,7 @@ Result = 1
 
 Result returns the lowest value from the array of numbers.
 
-#### Example 3: @MIN(t)
+### Example 3: @MIN(t)
 
 Returns the lowest values from the time series for the requested period.
 
@@ -71,7 +71,7 @@ calculation the result values are divided on -5.
 From the requested period, we can see that the minimum value is -5. Used in
 calculation the result values are added by -5.
 
-#### Example 4: @MIN(t,t)
+### Example 4: @MIN(t,t)
 
 `Temperature_hour_operative = @MIN(@t('.Temperature_hour_raw'),@t('.TempManualCorrection'))`
 
@@ -80,7 +80,7 @@ series 2.
 
 ![](assets/images/ex_MIN-nimbustable4.png)
 
-#### Example 5: @MIN(T,t)
+### Example 5: @MIN(T,t)
 
 `Temperature_hour_operative = @MIN(@T('.Temperature_hour'),@t('.TempManualCorrection'))`
 
@@ -92,7 +92,7 @@ series for each time step, e.g.:
 
 ![](assets/images/ex_MIN-nimbustable5.png)
 
-#### Example 6: @MIN(t,d)
+### Example 6: @MIN(t,d)
 
 `Result = @MIN(@t('Temperature_hour_raw'),-0.5)`
 
@@ -101,7 +101,7 @@ step, e.g.:
 
 ![](assets/images/ex_MIN-nimbustable6.png)
 
-#### Example 7: @MIN(d,d)
+### Example 7: @MIN(d,d)
 
 `Result = @MIN(8,2.5)`
 
