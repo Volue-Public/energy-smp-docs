@@ -59,7 +59,7 @@ from 3 hours later.
 ![](assets/images/ex_TS_OFFSET-nimbustable2.png)
 
 Example 3:
-`CustomCalcTs = @TS_OFFSET(@t('CustomBpTs'), 2)`
+`CustomCalcTs = @TS_OFFSET(@t('CustomBpTs'),2)`
 
 `CustomBpTs` is a staircase breakpoint time series with two points:
 10 at 00:00 and 20 at 10:00. Even though we specify a 2-hour offset,
