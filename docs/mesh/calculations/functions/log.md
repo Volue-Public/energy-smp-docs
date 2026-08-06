@@ -1,5 +1,5 @@
 ﻿# LOG
-## About the function
+
 This function is used to find the logarithm of values in a time series or a
 number.
 

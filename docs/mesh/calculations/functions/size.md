@@ -1,6 +1,6 @@
 ﻿# Size
 
-## About the function
+
 
 This function returns the number of elements in the array given as argument.
 

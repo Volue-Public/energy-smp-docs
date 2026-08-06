@@ -1,5 +1,4 @@
 ﻿# ValidateDeltaLimit
-## About the function
 
 Validates time series using delta change limits. Values outside the specified
 limits, will be marked as ! (Not OK). Values with control towards delta limit

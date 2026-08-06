@@ -1,5 +1,4 @@
 ﻿# ASIN
-## About the function
 
 Arc sine to values on given time series.
 

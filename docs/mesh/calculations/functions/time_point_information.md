@@ -1,5 +1,5 @@
 ﻿# Time point information
-## About the function
+
 This is a family of functions to get information from time points. The standard
 calendar is used, i.e. UTC+1 with no DST for normal Nordic setup.
 

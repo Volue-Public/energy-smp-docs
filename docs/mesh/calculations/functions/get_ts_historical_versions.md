@@ -1,7 +1,5 @@
 # GetTsHistoricalVersions
 
-## About the function
-
 Returns an array of time series versions of a time series for the requested time period. The number of versions returned can be limited to a given number.
 
 ## Syntax

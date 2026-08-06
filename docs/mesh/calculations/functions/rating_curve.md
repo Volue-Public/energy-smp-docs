@@ -1,5 +1,4 @@
 ﻿# RatingCurve
-## About the function
 
 The function is used to lookup values from a complex rating curve description to
 convert water level measurements in rivers to discharge unit. The function

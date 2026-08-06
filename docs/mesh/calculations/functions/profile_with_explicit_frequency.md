@@ -7,7 +7,7 @@ To get an overview of all the variants of the function, see:
 [Which functions can be used when?](../functions/transform_what_when.md)
 
 ## R13
-### About the function
+
 This is a function that calculates a time series by doing repeating an input
 series segment to cover requested time period. Values found on input series are
 moved into requested calculation period on a calendar based manner, i.e. values

@@ -1,5 +1,5 @@
 ﻿# ValidateRepeatValue
-## About the function
+
 
 This function validates time series based on repetition frequency. Values
 repeated too often, are marked with **!** (Not OK). Values with control towards

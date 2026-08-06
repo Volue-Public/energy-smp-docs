@@ -1,5 +1,5 @@
 # ROUND_INTEGER
-## About the function
+
 This function rounds values in a time series to the nearest whole number.
 
 The result series has the same resolution as the time series/argument series.

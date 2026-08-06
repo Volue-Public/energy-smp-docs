@@ -1,7 +1,5 @@
 # Resolution
 
-## About the function
-
 Test the resolution of a time series.
 
 ## Syntax

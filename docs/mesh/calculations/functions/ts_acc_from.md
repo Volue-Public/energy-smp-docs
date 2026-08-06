@@ -2,7 +2,7 @@
 ***Note!*** Although Mesh supports this function, we recommend using
 [ACCUMULATE](../functions/accumulate.md) for this purpose where possible.
 
-## About the function
+
 Returns a new, calculated time series. The function calculates the next value
 based on the previous value (running accumulation) and is used for converting
 point values to accumulated values.

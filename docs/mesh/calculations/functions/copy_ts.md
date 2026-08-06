@@ -1,7 +1,5 @@
 ﻿# CopyTs
 
-## About the function
-
 This function copies values from a source location to a destination location
 within the Mesh model. This is a function where the "side effects" of the
 operation is the important part rather than the returned values.

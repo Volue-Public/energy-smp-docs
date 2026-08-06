@@ -1,5 +1,4 @@
 ﻿# ValidateAbsLimit
-## About the function
 
 Validates time series using absolute limits. Values outside the specified
 limits, are marked with **!** (Not Ok). Values with control towards upper or

@@ -1,7 +1,5 @@
 # ACCUMULATE
 
-## About the function
-
 Accumulates values for some periods for a time series. When entering a new sub
 period, the accumulation buffer is reset.
 

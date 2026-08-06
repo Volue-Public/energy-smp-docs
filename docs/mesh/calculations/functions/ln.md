@@ -1,5 +1,5 @@
 ﻿# LN
-## About the function
+
 Finds the ln value of the values in a time series or of a number.
 
 Logarithms with base numbers that equal euler's number (e= 2,718281828…) is

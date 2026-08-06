@@ -1,6 +1,5 @@
 ﻿# SET_TS_VALUNIT
 
-## About the function
 This function is used to change the unit of a time series. Especially calculated
 series may contain several multiplied time series and result in different unit
 than the input time series.

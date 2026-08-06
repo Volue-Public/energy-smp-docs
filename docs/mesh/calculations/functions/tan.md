@@ -1,5 +1,5 @@
 ﻿# TAN
-## About the function
+
 This function is used to calculate the tangent of a time series. **Note!** The
 values of the input are in radians.
 

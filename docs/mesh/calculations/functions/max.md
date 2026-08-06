@@ -1,7 +1,5 @@
 ﻿# MAX
 
-## About the function
-
 Finds the highest values in time series, numbers, arrays or combinations of
 these.
 

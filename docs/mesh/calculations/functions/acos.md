@@ -1,5 +1,4 @@
 ﻿# ACOS
-## About the function
 
 Arc cosinus to values on given time series.
 

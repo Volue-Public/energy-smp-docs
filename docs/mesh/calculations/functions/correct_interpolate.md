@@ -1,5 +1,4 @@
 # CorrectInterpolate
-## About the function
 
 Corrects errors on a previously validated time series using interpolation.
 Values with correction using interpolation are set to corrected and marked with

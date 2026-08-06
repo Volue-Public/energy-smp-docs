@@ -72,8 +72,6 @@ If the input time series is time zone aware, we only allow `SUM` or `AVG`.
 
 ## TRANSFORM(t, s, s)
 
-### About the function
-
 This is the most common conversion function. You can use it to convert both
 ways, i.e. both from finer to coarser resolution, and the other way. The most
 common use is accumulation, i.e. transformation to coarser resolution. Most
@@ -133,8 +131,6 @@ transformation methods are available for this latter use.
 
 ## TRANSFORM(t, t, s)
 
-### About the function
-
 Conversion to periods given by points of time on the series given as argument 2.
 The result is a break point series. This function enables periods that are not
 standard calendar units, e.g. 3 hours, 10 days, etc.
@@ -162,8 +158,6 @@ this:
 
 ## TRANSFORM(t, d, s)
 
-### About the function
-
 Conversions given by the number given as argument 2. The number represents
 number of seconds in the period.
 
@@ -179,8 +173,6 @@ If d is defined as the value 864000 this means a period of 10 days
 (60*60*24*10). The result is a break point series.
 
 ## TRANSFORM(t, s, s, s)
-
-### About the function
 
 Corresponding functionality as in [`TRANSFORM(t, s, s)`](#transformt-s-s), but
 with an additional argument that decides which time zone that is the base for

@@ -1,5 +1,5 @@
 # BOOL
-## About the function
+
 This function converts expressions to purely logical values, i.e. `1` for true
 and `0` for false.
 
@@ -16,8 +16,7 @@ resolution as the input time series.
 - BOOL(d)
 - BOOL(t,d[,s])
 
-
-
+## Description
 
 | # | Type | Description |
 |---|---|---|

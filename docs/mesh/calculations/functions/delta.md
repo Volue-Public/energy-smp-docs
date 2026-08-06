@@ -1,7 +1,5 @@
 ﻿# DELTA
 
-## About the function
-
 Finds the difference between values in a time
 series. A typical usage is to calculate the change between value at a time point and the previous time point, but there are other options that are controlled by the arguments to the function.
 

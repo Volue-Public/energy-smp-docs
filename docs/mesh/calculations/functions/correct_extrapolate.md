@@ -1,5 +1,4 @@
 ﻿# CorrectExtrapolate
-## About the function
 
 Corrects errors on a previously validated time series using extrapolation.
 Values with correction using extrapolation are set to corrected with remark C04,

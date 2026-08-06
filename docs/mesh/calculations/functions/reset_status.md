@@ -1,5 +1,5 @@
 # RESET_STATUS
-## About the function
+
 This function is used to make changes on the [status of time
 series](../functions/status.md). The result series has the same resolution as the input
 time series.

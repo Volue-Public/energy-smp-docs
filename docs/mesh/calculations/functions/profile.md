@@ -7,7 +7,7 @@ To get an overview of all the variants of the function, see:
 [Which functions can be used when?](../functions/transform_what_when.md)
 
 ## R12
-### About the function
+
 PROFILE lets you create values on a series in periods where values do not exist
 based on the length of the input time series.
 

@@ -1,7 +1,5 @@
 # GET_Y_FX
 
-## About the function
-
 The function looks up in an xy-relation, defined as argument to the function,
 with values from a time series that also is an argument to the function. The
 result is the y-value from the xy-relation, possibly interpolated. See also

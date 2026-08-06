@@ -1,7 +1,5 @@
 ﻿# AT
 
-## About the function
-
 Retrieves an element from an object. Relevant object types are array of time
 series, numbers or time series.
 

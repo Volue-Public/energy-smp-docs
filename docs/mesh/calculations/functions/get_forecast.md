@@ -1,7 +1,5 @@
 # GetForecast
 
-## About the function
-
 A forecast is typically received with a frequency and contains data for a duration, for instance 2 times a day with hourly data for 10 days forward.
 
 The figure below is illustrating write events for a forecast series.

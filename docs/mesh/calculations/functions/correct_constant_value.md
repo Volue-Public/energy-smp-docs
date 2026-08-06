@@ -1,5 +1,4 @@
 ﻿# CorrectConstantValue
-## About the function
 
 Corrects errors on a previously validated time series with a specified constant
 value. Values with correction using constant value are set to corrected and

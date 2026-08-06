@@ -1,5 +1,5 @@
 ﻿# POWER
-## About the function
+
 Returns the result of a time series or number raised to a power. The function
 uses the equation `y=xn. x` and `n` can be a time series or a number.
 

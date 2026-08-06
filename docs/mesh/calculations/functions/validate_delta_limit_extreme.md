@@ -1,5 +1,4 @@
 ﻿# ValidateDeltaLimitExtreme
-## About the function
 
 ValidateDeltaLimitExtreme is similar to
 [ValidateDeltaLimit](../functions/validate_delta_limit.md), but also validates using

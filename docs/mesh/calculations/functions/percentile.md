@@ -1,5 +1,4 @@
 ﻿# PERCENTILE
-## About the function
 
 Calculates percentiles based on one time series or an array of time series.
 

@@ -7,7 +7,7 @@ To get an overview of all the transformation function variants, see:
 [Which functions can be used when?](../functions/transform_what_when.md)
 
 ## R6
-### About the function
+
 Converts a time series to a finer resolution. The resolution for the result is
 given by the resolution of the mask series defined in argument 2. The value from
 the series in argument 1 is distributed to the points of time in the mask series
@@ -49,7 +49,7 @@ The result will be a break point time series.
 ![](assets/images/ex_DISTRIBUTE-nimbustable3.png)
 
 ## R7
-### About the function
+
 As function [R6](#r6), but with a third argument which is a profile series. This
 decides how the distribution of the values is done.
 
@@ -95,7 +95,7 @@ like this:
 FirstValue = 2 / 4 * 1 / 2 = 0,25
 
 ## Ra7
-### About the function
+
 As function [R7](#r7), but with a scaling factor in argument 1. This DISTRIBUTE
 variant gives values on the result series also for the value 0 on the input data
 series (given that the profile series has different values in the period).
