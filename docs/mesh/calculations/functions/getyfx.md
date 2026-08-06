@@ -74,7 +74,3 @@ returned (3 in the example below).
 | 30 | 2.5 |
 | NaN | NaN |
 | 50 | 3 |
-
-
-
-  ****

@@ -21,7 +21,7 @@ In this table you can find unit codes for time series that are set using the
 | 112 | km2 | Square-kilometer |
 | 113 | Degrees | Degrees 0-360 |
 | 114 | Degrees C. | Degrees Celsius |
-| 115 | Kilogram | Veight in kilogram |
+| 115 | Kilogram | Weight in kilogram |
 | 116 | Pascal | Pascal |
 | 117 | Volt | Volt |
 | 118 | Ampere | Ampere |
@@ -29,7 +29,7 @@ In this table you can find unit codes for time series that are set using the
 | 120 | m/sec | Meter / second |
 | 121 | S/M | Conductivity (s/m) |
 | 122 | mg/l | Milligram / liter |
-| 123 | kg/s | Kilogram / sekund |
+| 123 | kg/s | Kilogram / second |
 | 124 | Millimeter | Millimeter |
 | 125 | kW/meter | Kilo watt / meter |
 | 126 | Nor crowns | Norwegian crowns |

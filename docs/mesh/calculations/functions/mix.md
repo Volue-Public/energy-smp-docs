@@ -27,7 +27,7 @@ array](../functions/mix_by_selecting_from_time_series_array.md).
 | Value of symbol | Description |
 |---|---|
 | END | The values on the result are retrieved from the first time series until defined end point of time for this time series. |
-| Time macro | General syntax for stating point of time, normally relative to a start of hour, day, week, etc. The result retrieves values from the first time series until the point of time given by the time macro. Examples of valid time macros: HOUR Star of current hour HOUR-1h Start of last hour DAY Start of current 24-hour period DAY+1d Start of next 24-hour period WEEK+2d Start of Wednesday in current week |
+| Time macro | General syntax for stating point of time, normally relative to a start of hour, day, week, etc. The result retrieves values from the first time series until the point of time given by the time macro. Examples of valid time macros: HOUR Start of current hour HOUR-1h Start of last hour DAY Start of current 24-hour period DAY+1d Start of next 24-hour period WEEK+2d Start of Wednesday in current week |
 | MERGE | Retrieves values to result series from the second time series if functional value on time series 1 at this point of time is NaN. That is values from the second time series are visible on result where time series 1 has gaps. |
 | MERGE_ADD | Retrieves value from the second time series if this is a real value (not NaN). |
 | MERGE_POINTS | As the MERGE version, but checks whether there is a point value for the point of time on the first time series. If no, the value from the second time series is used on this point of time. Will only have the intended effect if you have a breakpoint series. |

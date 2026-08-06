@@ -1,4 +1,4 @@
-﻿# TS_IQ-FILL
+﻿## TS_IQ_FILL
 
 Places logical values in any empty fields in a time series by taking the average
 of the previous and following values in the time series.
@@ -17,10 +17,10 @@ argument.
 Type Step: the previous value is filled in the empty cells on to the next value.
 
 Type Linear: the value between the points in time follows linear development
-from value at time [t] til time [t+1].
+from value at time [t] to time [t+1].
 
 If the first cell(s) is empty, the next value is copied. If the last cell(s) is
-empty, the previous values is copied.
+empty, the previous value is copied.
 
 ## Examples
 ### Example 1: @TS_IQ_FILL(t) step

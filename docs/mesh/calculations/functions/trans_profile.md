@@ -30,7 +30,7 @@ Vi = Value calculated for the time point i in the result time series
 
 AI = Value from the input time series for the distributed period
 
-NI = Number of valid time point to distributed the input value into
+NI = Number of valid time points to distribute the input value into
 
 Pi = Profile value for the time point i in the result time series
 
@@ -169,7 +169,7 @@ Vi = Value calculated for the time point i in the result time series
 
 AI = Value from the input time series for the distributed period
 
-NI = Number of valid time point to distributed the input value into
+NI = Number of valid time points to distribute the input value into
 
 Pi = Profile value for the time point i in the result time series
 

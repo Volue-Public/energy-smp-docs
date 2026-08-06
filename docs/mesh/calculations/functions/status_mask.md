@@ -81,7 +81,7 @@ information in Nimbus. Available validation methods are as follows:
 
 | ARGUMENT | Definition |
 |---|---|
-| BOOL | The result is a logical time series which returns values 0 for the status mask specified in argument 2, other statues are set to 1. |
+| BOOL | The result is a logical time series which returns values 0 for the status mask specified in argument 2, other statuses are set to 1. |
 | BOOLINV | The result is a logical time series which returns value 1 for the status mask specified in argument 2, other statuses are set to 0. |
 | REMOVE | Removes all values on the time series for the status mask specified in argument 2. The result time series is always a break point series. |
 | BLANK | Sets all the values, which matches the status mask specified in argument 2, to NaN. |

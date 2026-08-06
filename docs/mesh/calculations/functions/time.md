@@ -14,7 +14,7 @@ as defined in Microsoft .Net.
 
 | # | Type | Description |
 |---|---|---|
-| 1 | s | Time specification. Accepted values: <ul><li>Start of the requested period/StartOfPeriod: SOP</li><li>End of the requested period/EndOfPeriod: EOP</li><li>Specific time: 20120326000000000</li></li>Time macro: YEAR+1d, +1h , UTC20150222 . </li></ul> |
+| 1 | s | Time specification. Accepted values: <ul><li>Start of the requested period/StartOfPeriod: SOP</li><li>End of the requested period/EndOfPeriod: EOP</li><li>Specific time: 20120326000000000</li><li>Time macro: YEAR+1d, +1h , UTC20150222 . </li></ul> |
 | 2 | d | A reference time used when parsing the first argument, if this is appropriate. Typically used if the first argument is not fully specified like the third definition example above. |
 
 

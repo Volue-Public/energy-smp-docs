@@ -20,8 +20,8 @@ a value segment [+6h->+12h] from each forecast.
 
 A segment is defined by an offset and duration specification, for 
 example '1d:1d' means offset is one day and length of segment is also one day.
-To analyse the quality of the the third day in a forecast you can use a segment
-specification '2d:1d`.
+To analyse the quality of the third day in a forecast you can use a segment
+specification '2d:1d'.
 
 
 ## Example

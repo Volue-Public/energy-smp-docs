@@ -31,7 +31,7 @@ attribute values on the specific object.
 
 The maximum number of errors, @d('ValidateMaxErrors'), also refers to an
 attribute value on the specific object. When the number of errors reaches the
-actual value, no more validation are done.
+actual value, no more validation is done.
 
 Values are not interpreted as percentage values if the attribute on the specific
 object @s('ValuesInPercent') is set to FALSE.
@@ -40,7 +40,7 @@ In the screen example, all existing statuses on the input data series are
 removed before the function adds its status values. This is done using the
 [RESET_STATUS](../functions/reset_status.md) function on the input data series. The
 `RsvDeltaLimitLower` attribute is set to -0.05 and `RsvDeltaLimitUpper` is set
-to 0.05. The values are not in percent. All values outside exceeding the delta
+to 0.05. The values are not in percent. All values exceeding the delta
 limits, are marked with **!** (Not OK) and the validation method **V02**.
 
 ![](assets/images/ex_ValidateDeltaLimit-nimbustable.png)

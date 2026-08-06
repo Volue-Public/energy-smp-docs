@@ -6,7 +6,7 @@ The function is often used together with [GetTsAsOfTime](./get_ts_as_of_time.md)
 
 A time point is defined as a number which represents a `tick` value.
 Each tick is 100 nanoseconds, i.e. there are 10,000 ticks in a millisecond.
-Tick value 0 is refers to UTC `January 1, 0001 00:00:00`.
+Tick value 0 refers to UTC `January 1, 0001 00:00:00`.
 
 You can convert the tick value, for instance in a PowerShell like this:
 

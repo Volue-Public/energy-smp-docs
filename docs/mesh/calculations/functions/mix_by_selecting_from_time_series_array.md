@@ -4,7 +4,7 @@
 MIX is a function that calculates result series by mixing contribution from a
 set of input time series. A typical usage is to handle multiple 'if-elseif-else’
 constructions defined by index criteria. The main purpose of this function is to
-effectively set up and calculate multiple choice logic, typical defined by if –
+effectively set up and calculate multiple choice logic, typically defined by if –
 elseif – elseif – else constructs.
 
 ## Syntax
@@ -41,7 +41,7 @@ table.
 `Temperature_hour_operative = @MIX(@t('TempManualCorrection'),@T('Temperature_hour'),@t('TempPercentiles'))`
 
 In the case of an empty index or values outside of 1,2,3 values from the time
-series in the 3.rd argument are used. The result is shown in the second column
+series in the 3rd argument are used. The result is shown in the second column
 of the table.
 
 ![](assets/images/ex_MIXbe-Nimbustable2.png)

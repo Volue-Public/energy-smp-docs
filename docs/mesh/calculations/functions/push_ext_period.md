@@ -19,7 +19,7 @@ The ground rules for applying the Push/Pop mechanism are:
 - The time series that need to be extended has no direct database connection, i.e. it cannot be extended by reading more data from the database.
 
 
-The current period may effect calculations and the purpose of the function is to
+The current period may affect calculations and the purpose of the function is to
 control this in order to achieve the correct result.
 
 PushExtPeriod must always be accompanied by [PopExtPeriod](../functions/pop_ext_period.md)

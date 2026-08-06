@@ -15,7 +15,7 @@ gate capacity table.
 |---|---|---|
 | 1 | t | Source time series for the Z values. |
 | 2 | t | Source time series for the X values. |
-| 3 | s | Search string for the XYZ attribute to use in the conversion.<br/> If this attribute is located on the:<br/><ul><li>Same object as the expression, the argument should be ‘.TheXYZAttribute’ (assuming the name of this attribute is TheXYZAttribute). The dot (.) limits the search operation to local attributes on the current object.</li><li>Parent object, the argument should be ‘…TheXYZAttribute’. The two first dots means go to the parent and the third dot is the current object attribute prefix.</li></ul> If the search string is prefixed with NOLOG, for example NOLOG.TheXYAttribute, the function will not produce log messages.<br/> Tip! The prefix is removed before using the search string. |
+| 3 | s | Search string for the XYZ attribute to use in the conversion.<br/> If this attribute is located on the:<br/><ul><li>Same object as the expression, the argument should be ‘.TheXYZAttribute’ (assuming the name of this attribute is TheXYZAttribute). The dot (.) limits the search operation to local attributes on the current object.</li><li>Parent object, the argument should be ‘...TheXYZAttribute’. The two first dots mean go to the parent and the third dot is the current object attribute prefix.</li></ul> If the search string is prefixed with NOLOG, for example NOLOG.TheXYAttribute, the function will not produce log messages.<br/> Tip! The prefix is removed before using the search string. |
 
 
 

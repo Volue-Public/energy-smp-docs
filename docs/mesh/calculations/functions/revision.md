@@ -7,7 +7,7 @@ is an event, and 0 otherwise.
 For more information about generating time series from restrictions/revisions,
 see the help for the **Smart Power Apps** module **Availability Planner**.
 
-*Note!*** The generated time series will per default be a breakpoint time
+**Note!** The generated time series will per default be a breakpoint time
 series, unless an explicit transformation to a fixed interval is specified in
 the time series calculation.
 

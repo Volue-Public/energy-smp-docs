@@ -7,9 +7,9 @@ When there are no events, the value will be a default value provided by the
 user.
 
 For more information about generating time series from restrictions/revisions,
-see the help for the **Smart Power Apps** module **Availability Planner**.**
+see the help for the **Smart Power Apps** module **Availability Planner**.
 
-*Note!*** The generated time series will per default be a breakpoint time
+**Note!** The generated time series will per default be a breakpoint time
 series, unless an explicit transformation to a fixed interval is specified in
 the time series calculation.
 
@@ -41,7 +41,7 @@ the time series calculation.
 | Average | Finds the average value of all the active events. |
 
 ## Examples
-```@Restriction('DischargeMin[m3/s]', 'Licensed', @d('.DischargeDefault'),'Maximum')`
+`@Restriction('DischargeMin[m3/s]', 'Licensed', @d('.DischargeDefault'),'Maximum')`
 
 Finds events with Category = 'DischargeMin[m3/s]', and Status = 'Licensed'. Uses
 these events to generate a time series. If there are more than one event at a

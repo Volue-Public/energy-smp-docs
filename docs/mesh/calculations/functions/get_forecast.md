@@ -16,7 +16,7 @@ There might be multiple versions that cover the same value time period.
 - GetForecast(t,d|s,d|s)
 - GetForecast(t,d|s,d|s,d|s)
 
-The second, third and fourth argument is a time point definition, either given as a number (tick value) or a definition having a syntax described [here](../timepoint-macros.md).
+The second, third and fourth arguments are time point definitions, either given as a number (tick value) or a definition having a syntax described [here](../timepoint-macros.md).
 
 The first value in a forecast write operation is associated with time point t0.
 

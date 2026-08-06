@@ -27,7 +27,7 @@ variant is recommended:
 
 ### Example 1
 
-  `## = @t(@Concatenate(‘../...’, @s(‘.TargetTimeseries’))`
+  `## = @t(@Concatenate(‘../...’, @s(‘.TargetTimeseries’)))`
 
 The argument to @t is calculated based on the local text attribute
 *TargetTimeseries* and a static movement `../...` . If the value of
@@ -37,9 +37,9 @@ series on the *MyTs* attribute.
 
 ### Example 2
 
-`## = @t( @Concatenate( {'*[.Type=HydroPlant&&.Name=', @MeshID('NAME'),'].Production' })`
+`## = @t( @Concatenate( {'*[.Type=HydroPlant&&.Name=', @MeshID('NAME'),'].Production' }))`
 
 If the name of current object is 'PlantX' then the Concatenate function will
 return this string:
 
-  `''*[.Type=HydroPlant&&.Name=PlantX].Production'`
+  `'*[.Type=HydroPlant&&.Name=PlantX].Production'`
