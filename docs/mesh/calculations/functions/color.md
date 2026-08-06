@@ -1,7 +1,5 @@
 # ColorARGB
 
-## About the function
-
 The ColorARGB function converts a colour name into an ARGB value. It can be used
 to produce time series values referenced by the COLOR_VALUE attribute in Mesh
 template reports.
@@ -10,7 +8,7 @@ template reports.
 
 - ColorARGB(s)
 
-### Description
+## Description
 
 | # | Type | Description |
 |---|---|---|
@@ -44,7 +42,7 @@ steelblue3
 steelblue4
 ```
 
-### Example
+## Example
 
   `## = @t('.Income') > 1000 ? @ColorARGB('orange') : @ColorARGB('magenta')`
 

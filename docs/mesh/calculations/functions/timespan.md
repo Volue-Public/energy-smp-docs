@@ -1,5 +1,5 @@
 ﻿# TimeSpan
-## About the function
+
 The function transform its argument to a time span represented as a number.
 
 ## Syntax

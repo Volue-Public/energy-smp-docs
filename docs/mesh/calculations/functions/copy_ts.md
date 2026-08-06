@@ -1,15 +1,15 @@
-﻿## CopyTs
+﻿# CopyTs
 
 This function copies values from a source location to a destination location
 within the Mesh model. This is a function where the "side effects" of the
 operation is the important part rather than the returned values.
 
-### Syntax
+## Syntax
 
 - CopyTs(s,s,s)
 - CopyTs(s,s,s,s)
 
-**Description**
+## Description
 
 | Type | Description |
 |---|---|
@@ -18,7 +18,7 @@ operation is the important part rather than the returned values.
 | s | Search expression for getting target time series. By default relative to the object where the @CopyTs() calculation is found. Prefix with "Model:" to make the search relative to model root. This part is removed before applying the search. |
 | s | (optional) Execution mode: `Strict`, `Pragmatic`, `AllSources`, or `AllTargets`. Defaults to `Pragmatic` when omitted (3-argument form). |
 
-**Execution modes**
+### Execution modes
 
 | Mode | Description |
 |---|---|
@@ -27,7 +27,7 @@ operation is the important part rather than the returned values.
 | AllSources | All source series must find at least one matching target. |
 | AllTargets | All target series must receive values from a source. |
 
-**Return value**
+### Return value
 
 The function returns a non-negative value representing the number of target time
 series that were successfully copied to. A negative value indicates an error.
@@ -35,7 +35,7 @@ series that were successfully copied to. A negative value indicates an error.
 A target time series can only receive values from one source. If multiple
 sources match the same target, the function returns an error.
 
-### Example
+## Example
 
 `## = @CopyTs('Ident', '*[.Type=TypeB].Ts1','Model:*[.Name=A1_3_New]/[.Type=TypeB].Ts1')`
 

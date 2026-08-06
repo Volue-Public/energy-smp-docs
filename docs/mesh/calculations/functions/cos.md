@@ -1,5 +1,5 @@
-﻿## COS
-## About the function
+﻿# COS
+
 This function is used to calculate the cosine of a time series. **Note!** The
 values of the input are in radians.
 

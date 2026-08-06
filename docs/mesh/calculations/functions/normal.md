@@ -1,5 +1,4 @@
 ﻿# Normal
-**About the function**
 
 Calculates various normal series for input series with respect to a defined
 history period given as from and until year.
@@ -18,6 +17,6 @@ history period given as from and until year.
 | 5 | s | The smoothing method to apply prior to calculating the normal.<br/> Available types are:<br/> NONE, AVERAGE, MEDIAN, GAUSS, MEDIAN_GAUSS<br/>Implicitly applies the corresponding TS_GLIDING_* function. | AVERAGE |
 | 6 | d | Size of the smoothing value window.<br/>Zero means no smoothing. Must be an odd number. If input is an even number greater than 0, it is incremented by one. |   |
 
-**Example syntax**
+## Example
 
 `Normal_temperature = @Normal(@t('Temperature_hour_operative'),2000,2013,'Max','MEDIAN_GAUSS',3)`

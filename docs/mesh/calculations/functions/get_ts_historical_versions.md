@@ -1,14 +1,12 @@
-## GetTsHistoricalVersions
-
-### About the function
+# GetTsHistoricalVersions
 
 Returns an array of time series versions of a time series for the requested time period. The number of versions returned can be limited to a given number.
 
-### Syntax
+## Syntax
 
 - GetTsHistoricalVersions(t,d)
 
-### Description
+## Description
 
 | # | Type | Description |
 |---|---|---|
@@ -19,7 +17,7 @@ Note! If you ask for more versions than there exists, the system returns only
 the versions which exist. That is, potentially fewer than the number given as
 input to the function.
 
-### Examples
+## Examples
 
 GetTsHistoricalVersions(ts,1) returns the last change made, i.e. the latest
 historical version that is different from the current time series.

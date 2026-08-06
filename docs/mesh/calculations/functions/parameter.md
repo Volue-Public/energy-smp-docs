@@ -1,5 +1,3 @@
-﻿## Parameter
-
-### About the function
+﻿# Parameter
 
 This function is no longer available in Mesh.

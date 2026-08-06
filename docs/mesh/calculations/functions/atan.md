@@ -1,5 +1,4 @@
-﻿## ATAN
-**About the function**
+﻿# ATAN
 
 Arc tangent to values on given time series.
 
@@ -7,7 +6,7 @@ The function takes a time series as argument and returns the result as a time
 series with the same properties as the argument. **Note!** The values of the
 result are in radians.
 
-**Syntax**
+## Syntax
 
 - ATAN(t)
 

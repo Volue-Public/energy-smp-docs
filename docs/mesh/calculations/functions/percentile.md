@@ -1,16 +1,17 @@
-﻿## PERCENTILE
-**About the function**
+﻿# PERCENTILE
 
 Calculates percentiles based on one time series or an array of time series.
 
-Syntax1
+## PERCENTILE(t,d,d,d[,s,[,s]])
+
+### Syntax
 
 - PERCENTILE(t,d,d,d[,s,[,s]])
 
 It takes one series as argument and history from year and to year as second and
 third argument.
 
-## Description
+### Description
 
 | # | Type | Description | Example |
 |---|---|---|---|
@@ -21,7 +22,7 @@ third argument.
 | 5 | s | Optional parameter.<br/> Method specification.<br/>Possible values are BY_SUM or SCALED_MEAN_BY_SUM.<br/>[See description below](#methods). |   |
 | 6 | s | Period definition for the function.<br/> Note! Remember + before the first element, comma as separator and period length without +. | '+3d' Three days after the end time. <br/>'-3d' Three days before the starting time. <br/>'+3d,5d' Three days after the starting time with a period length of five days. |
 
-Example 1
+### Example 1
 
 `## = @PERCENTILE (@t('Temperature_hour_operative'),2000,2010,100)`
 
@@ -43,11 +44,15 @@ P100. The result takes the P50 values for each time step from year 2000 to year
 If we ask for the 75% percentile, the function interpolates between the values
 for P70 and P80.
 
-Syntax2
+## PERCENTILE(T,d[,s[,s]])
+
+### Syntax
 
 PERCENTILE(T,d[,s[,s]])
 
 It takes an array of time series as an argument.
+
+### Description
 
 | Type | Description | Example |
 |---|---|---|
@@ -56,7 +61,7 @@ It takes an array of time series as an argument.
 | s | Optional parameter. Method specification. Possible values are BY_SUM, SCALED_MEAN_BY_SUM or SCALED_BY_SUM. [See description below](#methods). |   |
 | s | Period definition for the function. Note! Remember + before the first element, comma as separator and period length without +. | '+3d' Three days after the end time. '-3d' Three days before the starting time. '+3d,5d' Three days after the starting time with a period length of five days. |
 
-Example 2
+### Example 2
 
 `## = @PERCENTILE(@T('AreaTemperature'),100,'BY_SUM')`
 
@@ -65,7 +70,7 @@ requested period, i.e. Ensemble03 (P100).
 
 ![](assets/images/ex_percentile2.png)
 
-Example 3
+### Example 3
 
 `## = @PERCENTILE(@T('AreaTemperature'),100,'SCALED_MEAN_BY_SUM')`
 
@@ -75,7 +80,7 @@ SumMean/IndexTimeSeriesMean.
 
 ![](assets/images/ex_percentile3.png)
 
-Example 4
+### Example 4
 
 `## = @PERCENTILE(@T('AreaTemperature'),100,'SCALED_BY_SUM')`
 
@@ -85,7 +90,7 @@ percentile index P100, divided by the sum for the max value time series.
 
 ![](assets/images/ex_percentile4.png)
 
-### Methods
+## Methods
 
 Method BY_SUM:
 

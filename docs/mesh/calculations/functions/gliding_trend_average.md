@@ -1,5 +1,5 @@
-﻿## GLIDING_TREND_AVERAGE
-## About the function
+﻿# GLIDING_TREND_AVERAGE
+
 Reduces major fluctuations in a time series by calculating the future value on
 the basis of previous values.
 
@@ -8,7 +8,7 @@ The result series has the same resolution as the input time series.
 ## Syntax
 - GLIDING_TREND_AVERAGE(t,d[,d|D])
 
-**Description**
+## Description
 
 | # | Type | Description |
 |---|---|---|
@@ -17,8 +17,8 @@ The result series has the same resolution as the input time series.
 | 3 | d | Optional. Numerical value. If the value is different from 0, there will not be calculated any trend values outside the end period of the time series. |
 | 3 | D | Optional. D is a weighted array where the user can define which value is the most important. |
 
-## Example
-Example 1: GLIDING_TREND_AVERAGE(t,d)
+## Examples
+### Example 1: GLIDING_TREND_AVERAGE(t,d)
 
 `Waterlevel_hour_operative = @GLIDING_TREND_AVERAGE(@t('Waterlevel_hour_raw'),3)`
 
@@ -30,7 +30,7 @@ instance, in the table the average of the three closest previous values to Time
 
 ![](assets/images/ex_GLIDING_TREND_AVERAGE-nimbustable.png)
 
-Example 2: GLIDING_TREND_AVERAGE(t,d,D)
+### Example 2: GLIDING_TREND_AVERAGE(t,d,D)
 
 `Waterlevel_hour_operative = @GLIDING_TREND_AVERAGE(@t('Waterlevel_hour_raw'),3,{3,2,1})`
 

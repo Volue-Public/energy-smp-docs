@@ -1,5 +1,5 @@
-## FLOOR
-## About the function
+# FLOOR
+
 Converts the number in a time series to an integer by cutting all decimals.
 
 The result series has the same resolution as the time series/argument series.
@@ -11,7 +11,7 @@ The function can also be applied to a single number.
 - FLOOR(t)
 - FLOOR(d)
 
-**Description**
+## Description
 
 | # | Type | Description |
 |---|---|---|

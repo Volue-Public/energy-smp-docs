@@ -1,6 +1,4 @@
-## IsValid
-
-### About the function
+# IsValid
 
 A time series reference specified by **@t(‘TheReference’)** may give no result.
 The reason for this may be one of the following:
@@ -14,13 +12,15 @@ for a given object.
 
 You may use either IsValid or [Valid](../functions/valid.md) to handle these cases.
 
-### Syntax
+## Syntax
 
 - IsValid(t)
 - IsValid(s,s)
 - IsValid(T)
 
-**Description**
+## IsValid(t)
+
+### Description
 
 | Type | Description |
 |---|---|
@@ -28,7 +28,9 @@ You may use either IsValid or [Valid](../functions/valid.md) to handle these cas
 
 The function returns 1 or 0 representing true or false.
 
-**Description**
+## IsValid(s,s)
+
+### Description
 
 | Type | Description |
 |---|---|
@@ -40,7 +42,9 @@ calculation context. If the target of the expected type is found, then the
 function returns 1 (representing true), otherwise the function returns 0. The
 function does not produce any log events when lookup fails.
 
-**Description**
+## IsValid(T)
+
+### Description
 
 | Type | Description |
 |---|---|
@@ -56,7 +60,7 @@ type have a time series attributes `Income` and `Production`. The `Income` attri
 
 The `HydroPlant` objects below Lyse do not have any physical time series attached to the `Production` attribute, but those below Sauda have.
 
-**Case 1**
+#### Example 1
 - The expression on a `Watercourse` attribute is like this
 - `## = @IsValid(@T('has_HydroPlant.Income'))`
 
@@ -66,7 +70,7 @@ The `HydroPlant` objects below Lyse do not have any physical time series attache
 
 The result shows that the calculation returns 1 (true) for both Lyse and Sauda.
 
-**Case 2**
+#### Example 2
 - The expression on a `Watercourse` attribute is like this
 - `## = @IsValid(@T('has_HydroPlant.Production'))`
 

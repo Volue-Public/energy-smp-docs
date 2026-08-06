@@ -1,6 +1,4 @@
-﻿## MAX
-
-### About the functions
+﻿# MAX
 
 Finds the highest values in time series, numbers, arrays or combinations of
 these.
@@ -10,7 +8,7 @@ but most of them returns a time series.
 
 The result series has the same resolution as the input time series. This also applies to cases where there are multiple time series involved and they all have the same resolution. If there are series with different resolutions, the result is a breakpoint series.
 
-### Syntax
+## Syntax
 
 - MAX(T)
 - MAX(D) -> returns a number
@@ -22,7 +20,7 @@ The result series has the same resolution as the input time series. This also ap
 - MAX(d,d) -> returns a number
 - MAX(T,T)
 
-### Description
+## Description
 
 | # | Type | Description |
 |---|---|---|

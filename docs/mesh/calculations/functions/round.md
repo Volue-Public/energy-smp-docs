@@ -1,5 +1,5 @@
-## ROUND
-## About the function
+# ROUND
+
 Rounds the numbers of a time series. To make rounding to for instance two
 decimals, you must multiply with 100, do ROUND operation and then divide by 100.
 
@@ -15,7 +15,7 @@ The function can also be applied to a single number.
 - ROUND(d)
 
 
-**Description**
+## Description
 
 | # | Type | Description |
 |---|---|---|

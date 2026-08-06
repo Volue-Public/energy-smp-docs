@@ -1,5 +1,4 @@
-## CONVERT_VOLUME
-  About the functions
+# CONVERT_VOLUME
 
 Converts a time series unit into a new unit. The result series has the same
 resolution as the input time series.

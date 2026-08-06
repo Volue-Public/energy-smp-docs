@@ -1,6 +1,4 @@
-## GetTsAsOfTime
-
-### About the function
+# GetTsAsOfTime
 
 Used to retrieve a physical time series as it was at a given historical time.
 
@@ -10,14 +8,14 @@ parameter number two.
 Note! If the historical time is earlier than the first write to the series (in
 the relevant period) then the function returns NaN values.
 
-### Syntax
+## Syntax
 
 - GetTsAsOfTime(t,s[,s])
 - GetTsAsOfTime(t,d[,s])
 - GetTsAsOfTime(t,S[,s]) - returns an array of time series
 - GetTsAsOfTime(t,D[,s]) - returns an array of time series
 
-### Description
+## Description
 
 | # | Type | Description |
 |---|---|---|
@@ -32,7 +30,7 @@ A tick is 100 nanoseconds, i.e. there are 10,000 ticks in a millisecond. Referen
 If a reference to a time series calculation is passed in the first argument, as
 in `@GetTsAsOfTime(@t('.Calc'), t)`, the calculation will fail with an error.
 
-### Examples
+## Examples
 
 Example time series have these historical values at given times:
 
@@ -43,32 +41,32 @@ Example time series have these historical values at given times:
 | October 12th 2012 00:00:00 | Ts_2 | 1 | 3 | 7 |   |
 | September 12th 2012 00:00:00 | Ts_3 | 1 | 3 | 8 |   |
 
-Example 1: GetTsAsOfTime(t,s)
+### Example 1: GetTsAsOfTime(t,s)
 
 `Res = GetTsAsOfTime(t0,'20121201000000000')`
 
 Returns time series Ts_1 which was valid December 1st 2012.
 
-Example 2: GetTsAsOfTime(t,s,s)
+### Example 2: GetTsAsOfTime(t,s,s)
 
 `Res = GetTsAsOfTime(t0,'20121201000000000','Delta')`
 
 Returns the difference between the values in Ts_0 and Ts_1: -1 2 5 8
 
-Example 3: GetTsAsOfTime(t,S)
+### Example 3: GetTsAsOfTime(t,S)
 
 `Res = GetTsAsOfTime(t0,{'20121201000000000','20121101000000000','20121001000000000'})`
 
 Returns an array of time series for the given times.
 
-Example 4: GetTsAsOfTime(t,S,s)
+### Example 4: GetTsAsOfTime(t,S,s)
 
 `Res = GetTsAsOfTime(t0,{'20121201000000000','20121101000000000','20121001000000000'},'DELTA')`
 
 Returns an array of the difference between the current time series and the time
 series at the given times.
 
-#### Example using GetTsAuditTimes
+### Example using GetTsAuditTimes
 
 The example data used is described [here](./history.md#hourly-example-data).
 

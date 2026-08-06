@@ -1,4 +1,4 @@
-﻿## TRANS_PROFILE
+﻿# TRANS_PROFILE
 This topic describes TRANS_PROFILE variants ([R8](#r8), [Ra8](#ra8), [R9](#r9),
 [Ra9](#ra9), [R10](#r10), [Ra10](#ra10), [R11](#r11), [Ra11](#ra11)) for
 transforming from one time resolution to another.
@@ -7,15 +7,15 @@ To get an overview of all the transformation function variants, see:
 
 [Transform group functions](../functions/transform.md)
 
-### R8
-## About the function
+## R8
+
 Converts a time series into a finer resolution. The function uses the SUM method
 as a basis for the distribution.
 
-## Syntax
+### Syntax
 - TRANS_PROFILE(t,t)
 
-## Description
+### Description
 
 | Type | Description |
 |---|---|
@@ -36,7 +36,7 @@ Pi = Profile value for the time point i in the result time series
 
 MI = Calculated mean value for the profile series for the distributed period
 
-## Example
+### Example
 `Profile = @TIME_MASK('HOUR',{'HOUR','HOUR+15x','HOUR+30x','HOUR+45x'},{1,2,3,2},'MIN15')`
 
 `Result time series = @TRANS_PROFILE(@t('Ts5'),Profile)`
@@ -47,15 +47,15 @@ for all the time points.
 
 ![](assets/images/ex_DISTRIBUTE-nimbustable6.png)
 
-### Ra8
-## About the function
+## Ra8
+
 Same as [R8](#r8), but with absolute handling of the profile. The profile can be
 scaled using a scaling factor, defined as first argument.
 
-## Syntax
+### Syntax
 - TRANS_PROFILE(d,t,t)
 
-## Description
+### Description
 
 | # | Type | Description |
 |---|---|---|
@@ -70,7 +70,7 @@ The distribution of the values is done like this:
 K is a scaling factor coming from argument 1 in the function. The other symbols
 used in the formula are the same as described in [R8](#r8).
 
-Example 1
+### Example 1
 
 `Profile = @TIME_MASK('HOUR',{'HOUR','HOUR+15x','HOUR+30x','HOUR+45x'},{1,2,3,2},'MIN15')`
 
@@ -82,7 +82,7 @@ true for all the time points.
 
 ![](assets/images/ex_TRANS_PROFILE-nimbustable.png)
 
-Example 2
+### Example 2
 
 `Profile = @TIME_MASK('HOUR',{'HOUR','HOUR+15x','HOUR+30x','HOUR+45x'},{1,2,3,2},'MIN15')`
 
@@ -92,15 +92,15 @@ Example 2
 @DISTRIBUTE(10,@t('Ts5'),MaskSeries,Profile) where the mask series argument is
 true for all the time points.
 
-### R9
-## About the function
+## R9
+
 Same as the function [R8](#r8), but with an extra argument deciding distribution
 method.
 
-## Syntax
+### Syntax
 - TRANS_PROFILE(t,t,s)
 
-## Description
+### Description
 
 | # | Type | Description |
 |---|---|---|
@@ -122,15 +122,15 @@ If the value on the input data series is 0, the value is calculated like this:
 
 Vi = Pi - MI
 
-### Ra9
-## About the function
+## Ra9
+
 Same as [R9](#r9), but with absolute handling of the profile. The profile can be
 scaled using a scaling factor, defined in argument 1.
 
-## Syntax
+### Syntax
 - TRANS_PROFILE(d,t,t,s)
 
-## Description
+### Description
 
 | # | Type | Description |
 |---|---|---|
@@ -146,14 +146,14 @@ The distribution of the values is done like this:
 K is a scaling factor coming from argument 1 in the function. The other symbols
 used in the formula are the same as described in [R9](#r9).
 
-### R10
-## About the function
+## R10
+
 Same as [R8](#r8) but uses a mask series in argument 3.
 
-## Syntax
+### Syntax
 - TRANS_PROFILE(t,t,t)
 
-## Description
+### Description
 
 | # | Type | Description |
 |---|---|---|
@@ -181,15 +181,15 @@ Vi= Pi- MI
 
 See also [R7](../functions/distribute.md#r7) that offers the same functionality.
 
-### Ra10
-## About the function
+## Ra10
+
 Same as [R10](#r10), but with absolute handling of profile. The profile can be
 scaled using a scaling factor defined in argument 1.
 
-## Syntax
+### Syntax
 - TRANS_PROFILE(d,t,t,t)
 
-## Description
+### Description
 
 | # | Type | Description |
 |---|---|---|
@@ -205,16 +205,16 @@ The distribution of the values is done like this:
 K is a scaling factor coming from argument 1 in the function. The other symbols
 used in the formula are the same as described in [R10](#r10).
 
-### R11
-## About the function
+## R11
+
 Same function as [R10](#r10), but with an extra argument deciding distribution
 method. Valid values are 'MEAN', 'AVERAGE' or 'SUM'. The last value gives the
 exact same result as [R10](#r10).
 
-## Syntax
+### Syntax
 - TRANS_PROFILE(t,t,t,s)
 
-## Description
+### Description
 
 | # | Type | Description |
 |---|---|---|
@@ -240,15 +240,15 @@ If the value on the input data series is 0, the value is calculated like this:
 
 Vi = Pi - MI
 
-### Ra11
-## About the function
+## Ra11
+
 Same as [R11](#r11), but with absolute handling of profile. The profile can be
 scaled using a scaling factor, defined in argument 1.
 
-## Syntax
+### Syntax
 - TRANS_PROFILE(d,t,t,t,s)
 
-## Description
+### Description
 
 | # | Type | Description |
 |---|---|---|

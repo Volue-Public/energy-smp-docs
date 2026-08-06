@@ -86,17 +86,17 @@ transformation methods are available for this latter use.
 | 3 | s | Conversion method, see [accepted values](#transformation-methods). |
 
 
-### Example
+### Examples
 
-  Example 1: @TRANSFORM(t,s,s) Create week sums from a time series
+#### Example 1: @TRANSFORM(t,s,s) Create week sums from a time series
 
   Res1 = @TRANSFORM(@t('HourTs'), 'WEEK', 'SUM')
 
-  Example 2: @TRANSFORM(t,s,s) Create day average from a break point series
+#### Example 2: @TRANSFORM(t,s,s) Create day average from a break point series
 
   Res2 = @TRANSFORM(@t('BrpTs'), 'DAY', 'AVGI')
 
-  Example 3: Shows variants and their resulting time series
+#### Example 3: Shows variants and their resulting time series
 
   Input series:
 

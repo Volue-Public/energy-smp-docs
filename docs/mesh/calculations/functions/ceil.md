@@ -1,17 +1,16 @@
-## CEIL
-## About the function
+# CEIL
+
 This function rounds off values in a time series up to the nearest whole number.
 
 The result series has the same resolution as the time series/argument series.
 
 The function can also be applied to a single number.
 
-
 ## Syntax
 - CEIL(t)
 - CEIL(d)
 
-**Description**
+## Description
 
 | # | Type | Description |
 |---|---|---|

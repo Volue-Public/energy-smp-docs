@@ -1,4 +1,4 @@
-## GetBestForecast
+# GetBestForecast
 
 **_Note!_** This function is now obsolete.
 It returns the latest written value at all time points part of requested time period.
@@ -7,7 +7,7 @@ The figure below illustrates this. The returned series is a merge of the red seg
 
 ![](assets/images/GetBestForecast.png)
 
-### Example
+## Example
 
 The following expressions give the same result.
 

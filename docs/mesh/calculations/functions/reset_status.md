@@ -1,10 +1,10 @@
-## RESET_STATUS
-## About the function
+# RESET_STATUS
+
 This function is used to make changes on the [status of time
 series](../functions/status.md). The result series has the same resolution as the input
 time series.
 
-  **Syntax**
+## Syntax
 
 - RESET_STATUS(t[,d|s])
 
@@ -73,14 +73,14 @@ information in Nimbus. Available correction methods are as follows:
 
 
 
-## Example
-  Example 1: @RESET_STATUS(t)
+## Examples
+### Example 1: @RESET_STATUS(t)
 
   ResultTs = @RESET_STATUS(@t(‘Ts1’))
 
   Zeroes out all status information for the time series.
 
-  Example 2: @RESET_STATUS(t,s)
+### Example 2: @RESET_STATUS(t,s)
 
   Temperature_hour_VEE = @RESET_STATUS(@t('Temperature_hour_VV'),'notok')
 

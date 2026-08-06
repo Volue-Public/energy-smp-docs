@@ -1,9 +1,9 @@
-## STATUS_MASK
-## About the function
+# STATUS_MASK
+
 Makes it possible to execute operations on time series based on the [status
 code](../functions/status.md) associated with the values.
 
-  **Syntax**
+## Syntax
 
 - STATUS_MASK(t,s,s)
 

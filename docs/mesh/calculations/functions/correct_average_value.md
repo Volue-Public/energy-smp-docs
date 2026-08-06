@@ -1,16 +1,17 @@
-## CorrectAverageValue
-**About the function**
+# CorrectAverageValue
 
 The method replaces values marked as errors with the average value of other
 series for the same time. Values with correction using average value are set to
 corrected and marked with **C05**, meaning correction method 5. You can see this
 code if you turn on value information in Nimbus.
 
-**Syntax**
+## Syntax
 
 - CorrectAverageValue(t,d,s,s,d,T,D,S)
 
-Description CorrectAverageValue(t,d,s,s,d,T,D,D,D,S)
+## Description
+
+CorrectAverageValue(t,d,s,s,d,T,D,D,D,S)
 
 | # | Type | Description |
 |---|---|---|
@@ -33,7 +34,8 @@ correction must not include the same function. E.g you might refer to a time
 series using only validation functions or other correction function that is not
 depending on other time series. This is caused by the virtual calculation in
 Mesh.
-**Example**
+
+## Example
 
 ```
 Temperature_hour_VEE = @CorrectAverageValue(@t('ValidatedTimeSeries'),0.95,'TRUE','FALSE',1,@T('../NeighbourMetStations/Temperature_hour_avg'),@D('../NeighbourMetStations/Weight'),@S('../NeighbourMetStations/AcceptCorrected'))

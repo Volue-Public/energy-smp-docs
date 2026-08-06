@@ -1,5 +1,5 @@
-## TS_OFFSET
-## About the function
+# TS_OFFSET
+
 This function time-shifts a time series, i.e. uses values from a period which is
 different from the current calculation period. More precisely, TS_OFFSET will
 produce points at the same timestamps as those of the input time series,

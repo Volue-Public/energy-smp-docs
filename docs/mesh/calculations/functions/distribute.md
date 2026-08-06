@@ -1,4 +1,4 @@
-﻿## DISTRIBUTE
+﻿# DISTRIBUTE
 This topic describes DISTRIBUTE variants ([R6](#r6), [R7](#r7), [Ra7](#ra7)) for
 transforming from one time resolution to another.
 
@@ -6,25 +6,25 @@ To get an overview of all the transformation function variants, see:
 
 [Which functions can be used when?](../functions/transform_what_when.md)
 
-### R6
-## About the function
+## R6
+
 Converts a time series to a finer resolution. The resolution for the result is
 given by the resolution of the mask series defined in argument 2. The value from
 the series in argument 1 is distributed to the points of time in the mask series
 having logical true value (different from 0 and NaN). The function uses the SUM
 method as base for the distribution.
 
-## Syntax
+### Syntax
 - DISTRIBUTE(t,t)
 
-## Description
+### Description
 
 | Type | Description |
 |---|---|
 | t | Input time series to be distributed. |
 | t | Mask series representing the distributed time interval. |
 
-## Example
+### Example
 `MaskSeries = @TIME_MASK('HOUR',{'HOUR','HOUR+15x','HOUR+30x','HOUR+45x'},{1,2,3,2},'MIN15)`
 
 `ResultTimeSeries = @DISTRIBUTE(@t('Ts5'),MaskSeries)`
@@ -48,15 +48,15 @@ The result will be a break point time series.
 
 ![](assets/images/ex_DISTRIBUTE-nimbustable3.png)
 
-### R7
-## About the function
+## R7
+
 As function [R6](#r6), but with a third argument which is a profile series. This
 decides how the distribution of the values is done.
 
-## Syntax
+### Syntax
 - DISTRIBUTE(t,t,t)
 
-## Description
+### Description
 
 | Type | Description |
 |---|---|
@@ -78,7 +78,7 @@ Pi = Profile value for the time point i in the result time series
 
 MI = Calculated mean value for the profile series for the distributed period
 
-## Example
+### Example
 `MaskSeries/Profile = @TIME_MASK('HOUR',{'HOUR','HOUR+15x','HOUR+30x','HOUR+45x'},{1,2,3,2},'MIN15')`
 
 Argument 2 is a mask series (all time points contributes)
@@ -94,16 +94,16 @@ like this:
 
 FirstValue = 2 / 4 * 1 / 2 = 0,25
 
-### Ra7
-## About the function
+## Ra7
+
 As function [R7](#r7), but with a scaling factor in argument 1. This DISTRIBUTE
 variant gives values on the result series also for the value 0 on the input data
 series (given that the profile series has different values in the period).
 
-## Syntax
+### Syntax
 - DISTRIBUTE(d,t,t,t)
 
-## Description
+### Description
 
 | Type | Description |
 |---|---|
@@ -119,7 +119,7 @@ The distribution of the values is done like this:
 K is a scaling factor coming from argument 1 in the function. The other symbols
 used in the formula are the same as described in [R7](#r7).
 
-Example 1
+### Example 1
 
 `MaskSeries/Profile = @TIME_MASK('HOUR',{'HOUR','HOUR+15x','HOUR+30x','HOUR+45x'},{1,2,3,2},'MIN15')`
 
@@ -136,7 +136,7 @@ like this:
 
 FirstValue = 2 / 4 + 1 ∙ (1 - 2) = -0,5
 
-Example 2
+### Example 2
 
 `MaskSeries/Profile = @TIME_MASK('HOUR',{'HOUR','HOUR+15x','HOUR+30x','HOUR+45x'},{1,2,3,2},'MIN15')`
 

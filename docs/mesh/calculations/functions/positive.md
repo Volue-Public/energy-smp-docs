@@ -1,5 +1,5 @@
-﻿## POSITIVE
-## About the function
+﻿# POSITIVE
+
 Picks the positive values from a time series. Zero is considered to be a
 positive number.
 

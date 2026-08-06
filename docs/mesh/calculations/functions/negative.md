@@ -1,5 +1,5 @@
-﻿## NEGATIVE
-## About the function
+﻿# NEGATIVE
+
 Picks the negative values from a time series. Zero is considered to be a
 positive number.
 

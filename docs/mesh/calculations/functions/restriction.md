@@ -1,5 +1,5 @@
 # Restriction
-### About the function
+
 This function generates a time series from the Restriction events associated
 with this element, filtered on Category and Status. The value at a given time
 will be chosen from the relevant event(s), using a strategy decided by the user.
@@ -13,11 +13,11 @@ see the help for the **Smart Power Apps** module **Availability Planner**.**
 series, unless an explicit transformation to a fixed interval is specified in
 the time series calculation.
 
-### Syntax
+## Syntax
 - Restriction(s, s, [d/t], s, (s))
 
 
-### Description
+## Description
 
 
 | # | Type | Description |
@@ -29,7 +29,7 @@ the time series calculation.
 | 5 | s | (Optional) Search string to an object in ' '. Must return exactly one object. The time series will be generated based on the Restriction events related to this object. |
 
 
-Merge functions
+### Merge functions
 
 | Function | Description |
 |---|---|
@@ -40,7 +40,7 @@ Merge functions
 | Sum | Sums the values of all the active events. |
 | Average | Finds the average value of all the active events. |
 
-### Examples
+## Examples
 ```@Restriction('DischargeMin[m3/s]', 'Licensed', @d('.DischargeDefault'),'Maximum')`
 
 Finds events with Category = 'DischargeMin[m3/s]', and Status = 'Licensed'. Uses
@@ -65,14 +65,14 @@ events, the value found in the attribute '.DischargeDefault' is used.
 ***Note!*** The events are found on the object using the link relations
 to_HydroPlant.
 
-### Possible statuses
+## Possible statuses
   This is a list of the possible statuses that can be used:
 
 - Licensed (used as the main restriction)
 - SelfImposed (used as the exception of the main restriction)
 
 
-### Possible categories
+## Possible categories
   This is a list of the possible categories:
 
 - DischargeMin[m3/s]

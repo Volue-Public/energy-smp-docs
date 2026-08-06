@@ -1,5 +1,5 @@
-﻿## TS_GLIDING_GAUSS
-## About the function
+﻿# TS_GLIDING_GAUSS
+
 The values of the time series are normally distributed, `d` determines the size
 of the time window.
 

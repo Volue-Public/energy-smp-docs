@@ -9,7 +9,9 @@ period, the accumulation buffer is reset.
 - ACCUMULATE(t,[s],s)
 - ACCUMULATE(t,s,d)
 
-**Description** - syntax 1
+## ACCUMULATE(d,s,t[,d,d]) - syntax 1
+
+### Description
 
 | # | Type | Description |
 |---|---|---|
@@ -19,7 +21,9 @@ period, the accumulation buffer is reset.
 | 4 | d | Multiplication factor A. If omitted, value is 1.0. |
 | 5 | d | Offset factor B. If omitted, value is 0. |
 
-**Description** - syntax 2
+## ACCUMULATE(t,[s],s) - syntax 2
+
+### Description
 
 | # | Type | Description |
 |---|---|---|
@@ -27,7 +31,9 @@ period, the accumulation buffer is reset.
 | 2 | s | Optional. Accumulation from start or end of the interval given in the next argument. <br>’>’ means from the start of the interval and forward. |
 | 3 | s | Accumulation interval. Eg. ‘DAY’, ‘WEEK’, ‘MONTH, ‘YEAR’. <br>You can set accumulation period to HYDYEAR, i.e. from 1. September <br>until next 1. September (standard calendar). <br>You can also use a prefix to overrule the standard time (utc+1 in Norwegian setup). <br>Eg. ‘UTCWEEK’. |
 
-**Description** - syntax 3
+## ACCUMULATE(t,s,d) - syntax 3
+
+### Description
 
 | Type | Description |
 |---|---|
@@ -35,7 +41,9 @@ period, the accumulation buffer is reset.
 | s | Must be ’>’. |
 | d | Accumulation period given as number of points. |
 
-## Example 1
+## Examples
+
+### Example 1
 
 Accumulation syntax 1 with five arguments
 
@@ -56,7 +64,7 @@ Result[t] = Result[t-1] + factor A * TsAccInput[t] + factor B
 
 for the next values.
 
-## Example 2
+### Example 2
 
 Accumulation syntax 1 with three arguments (uses default values for factor A and B (argument four and five))
 
@@ -65,7 +73,7 @@ Accumulation syntax 1 with three arguments (uses default values for factor A and
 The example starts accumulation 10th of January (UTC calendar) with initial
 value 0.0. No multiplication or offset factors are used.
 
-## Example 3
+### Example 3
 
 Accumulation syntax 2
 
@@ -75,7 +83,7 @@ Accumulates the precipitation for each hydrological year.
 
 ![](assets/images/ex_accumulate.png)
 
-## Example 4
+### Example 4
 
 Accumulation syntax 2 with second argument omitted.
 
@@ -85,7 +93,7 @@ Accumulates the precipitation for each week.
 
 ![](assets/images/ex_accumulate2.png)
 
-## Example 5
+### Example 5
 
 Accumulation of bucket precipitation using explicit extended periods
 

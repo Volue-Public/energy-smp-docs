@@ -1,16 +1,14 @@
-## PDLOG
-
-### About this function
+# PDLOG
 
 The PDLOG function is used to give messages to SmG Event Log based on events
 occurring in SmG Calculator.
 
-### Syntax
+## Syntax
 
 - PDLOG(d,s[,t])
 - PDLOG(d,s,t,d)
-  
-**Description**
+
+## Description
 
 | # | Type | Description |
 |---|---|---|
@@ -20,6 +18,8 @@ occurring in SmG Calculator.
 | 4 | d | Number of values to be written to Event Log from the time series. |
 
 
+
+## Examples
 
 ### Example 1
 ```

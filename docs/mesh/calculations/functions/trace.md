@@ -1,5 +1,5 @@
 # Trace
-## About the function
+
 This function enables log messages from calculation expressions. It is primarily
 intended for test purposes.
 

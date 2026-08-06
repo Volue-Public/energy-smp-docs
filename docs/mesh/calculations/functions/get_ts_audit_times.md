@@ -1,6 +1,4 @@
-## GetTsAuditTimes
-
-### About the function
+# GetTsAuditTimes
 
 Returns an array of time points related to change events that have impact on values within the requested time period for the given time series. It is possible to restrict the number of time points returned.
 
@@ -18,14 +16,14 @@ get-date 638980320190000000
 November 6, 2025 13:20:19
 ```
 
-### Syntax
+## Syntax
 
 - GetTsAuditTimes(t,d) - returns array of numbers
 
 
-### Description
+## Description
 
-| # | Type | ## Description |
+| # | Type | Description |
 |---|---|---|
 | 1 | t | Time series. |
 | 2 | d | Desired maximum number of audit times for the time series. |

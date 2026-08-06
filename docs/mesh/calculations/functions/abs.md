@@ -1,5 +1,5 @@
-﻿## ABS
-## About the function
+﻿# ABS
+
 This function is used to determine the absolute value(s) for a time series.
 
 ## Syntax

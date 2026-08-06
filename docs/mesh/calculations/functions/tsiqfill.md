@@ -1,5 +1,5 @@
-﻿## TS_IQ-FILL
-## About the function
+﻿# TS_IQ-FILL
+
 Places logical values in any empty fields in a time series by taking the average
 of the previous and following values in the time series.
 
@@ -22,15 +22,15 @@ from value at time [t] til time [t+1].
 If the first cell(s) is empty, the next value is copied. If the last cell(s) is
 empty, the previous values is copied.
 
-## Example
-Example 1: @TS_IQ_FILL(t) step
+## Examples
+### Example 1: @TS_IQ_FILL(t) step
 
 Result = @TS_IQ_FILL(%'TS10S')
 
 Finds the first value in the first row. The value 5,00 is filled into the empty
 space preceding the next value, 10,00. See table.
 
-Example 2: @TS_IQ_FILL(t) linear
+### Example 2: @TS_IQ_FILL(t) linear
 
 Result = @TS_IQ_FILL(%'TS10L')
 

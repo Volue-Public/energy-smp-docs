@@ -1,5 +1,5 @@
 # XY
-## About the function
+
 Combines an XY definition and an X series to produce the corresponding Y result.
 
 ## Syntax

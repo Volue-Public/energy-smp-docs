@@ -6,8 +6,8 @@ To get an overview of all the variants of the function, see:
 
 [Which functions can be used when?](../functions/transform_what_when.md)
 
-###### R13
-## About the function
+## R13
+
 This is a function that calculates a time series by doing repeating an input
 series segment to cover requested time period. Values found on input series are
 moved into requested calculation period on a calendar based manner, i.e. values
@@ -21,10 +21,10 @@ This function is closely related to [R12](../functions/profile.md#r12), which on
 one argument; the input time series. In this case the function derives a
 repetition frequency from physical value period found on source series.
 
-## Syntax
+### Syntax
 - PROFILE(t,s)
 
-**Description**
+### Description
 
 | # | Type | Definition |
 |---|---|---|
@@ -45,7 +45,7 @@ input series. If frequency indicates a span that is narrower than time span on
 input series, then values from first segment are repeated into requested time
 span.
 
-## Example
+### Example
 Some examples are cited below:
 
 Result1 = @PROFILE(@t(‘TsInputBrP’),'WEEK')

@@ -1,6 +1,4 @@
-## MEAN
-
-### About the function
+# MEAN
 
   Takes the average value of time series, arrays and number series.
 
@@ -8,13 +6,13 @@
   the result series will have this resolution. If there are different resolutions involved, 
   the result time series will be a breakpoint series.
 
-### Syntax
+## Syntax
 
 - MEAN(t)  -> returns a number
 - MEAN(T)
 - MEAN(D)  -> returns a number
 
-### Description
+## Description
 
 
 | # | Type | Description |
@@ -25,7 +23,7 @@
 
 ## Examples
 
-  Example 1: @MEAN(t)
+### Example 1: @MEAN(t)
 
   `TempPercentiles = @MEAN(@t('Temperature_hour_raw'))`
 
@@ -40,7 +38,7 @@ requested time period, you can use the
 [PushExtPeriod](../functions/push_ext_period.md)/[PopExtPeriod](../functions/pop_ext_period.md) function
 to explicitly define the input period to the function.
 
-  Example 2: @MEAN(T)
+### Example 2: @MEAN(T)
 
   `Temperature_hour_operative = @MEAN(@T('Temperature_hour'))`
 
@@ -51,7 +49,7 @@ time series in the array for every time step.
 
   ![](assets/images/ex_MEAN-nimbustable2.png)
 
-  Example 3: @MEAN(D)
+### Example 3: @MEAN(D)
 
   Res = @MEAN(1,5,8,2.5,11)
 

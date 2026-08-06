@@ -1,6 +1,4 @@
-## TimeDelayed
-
-### About this function
+# TimeDelayed
 
 This function uses an [XY set](../../concepts/modelling/xy-sets.md) to calculate a time-delayed output based on an input time series. A typical use case is simulating how water discharge at one point arrives downstream over time: a sudden increase in flow does not appear instantly at the output; instead, it spreads out over several time steps, with some fractions arriving early and the rest arriving progressively later.
 
@@ -8,7 +6,7 @@ The function takes each value in the input time series and distributes it forwar
 
 **_Note!_** The distribution preserves the total volume; i.e. volume in equals volume out. When several input values contribute to the same output time step, their delayed contributions are summed, which can produce transient peaks or dips in the output (e.g., when a fast-flow "front" catches up with the tail of an earlier slow-flow period).
 
-#### The XY set
+### The XY set
 
 | Axis | Meaning | Example (water flow) |
 |------|---------|----------------------|
@@ -16,7 +14,7 @@ The function takes each value in the input time series and distributes it forwar
 | **Y** | The percentage of the input value that is contributed at the corresponding delay offset. | 50 means 50% of the input value arrives at that offset. |
 | **Z** | The input value threshold at which this XY curve applies (i.e. a "valid-from" level). | A flow rate of 20 m3/s. |
 
-#### How the calculation works
+### How the calculation works
 
 For each time step `i` in the input series:
 
@@ -27,22 +25,22 @@ For each time step `i` in the input series:
 
 `NaN` values in the input are treated as 0 (they produce no delayed contribution).
 
-### Syntax
+## Syntax
 
 - TimeDelayed(t,s)
 
-### Description
+## Description
 
-| # | Type | ## Description |
+| # | Type | Description |
 |---|---|---|
 | 1 | t | Reference to a fixed-interval time series. Breakpoint series are not supported. |
 | 2 | s | Search specification targeting the XY set to use. |
 
-#### Example table
+### Example table
 
   ![](assets/images/TimeDelayed_Example.png)
 
-#### Example
+## Example
 
 Given an input value of exactly 20 at time `t` and an XY curve for the Z = 20 segment, the value is distributed as follows:
 
@@ -54,13 +52,13 @@ Given an input value of exactly 20 at time `t` and an XY curve for the Z = 20 se
 
 (The percentages sum to 100%, preserving total volume)
 
-#### Usage
+## Usage
 
 ```
 DelayedFlow = @TimeDelayed(@t('.FlowTimeSeries'), '.FlowDelayXySetAttributeName')
 ```
 
-#### Worked example with constant and changing flow
+## Worked example with constant and changing flow
 
 The table below shows the function applied to an hourly time series that has values of 20 for some time, then steps up to 30, and finally steps back down to 20.
 

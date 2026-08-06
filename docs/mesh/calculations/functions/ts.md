@@ -1,23 +1,25 @@
-﻿## TS
-
-### About the function
+﻿# TS
 
 Creates a time series for further use in expressions.
 This function serves as a way to declare and initialise a time series.
 
-### Syntax
+## Syntax
 
 - TS(s[,d])
 - TS(s,s[,d])
 
-Description TS(s[,d])
+## TS(s[,d])
+
+### Description
 
 | # | Type | Description | Example |
 |---|---|---|---|
 | 1 | s | Unit. | 'VARINT', 'MIN15', 'HOUR' etc. |
 | 2 | d | Optional. Value. |   |
 
-Description TS(s,s[,d])
+## TS(s,s[,d])
+
+### Description
 
 | # | Type | Description | Example |
 |---|---|---|---|
@@ -27,7 +29,7 @@ Description TS(s,s[,d])
 
 The value is assigned to all points in time.
 
-## Example
+## Examples
 @TS(s)
 
 ` TS1 = @TS('VARINT')`
