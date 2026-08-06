@@ -14,7 +14,9 @@ The different variations of this function are described below. For MIX(t,T) and
 MIX(t,T,t), see [MIX by selecting from time series
 array](../functions/mix_by_selecting_from_time_series_array.md).
 
-Description MIX(t,t) and MIX(t,t,s)
+## MIX(t,t) and MIX(t,t,s)
+
+### Description
 
 | # | Type | Description |
 |---|---|---|
@@ -30,7 +32,7 @@ Description MIX(t,t) and MIX(t,t,s)
 | MERGE_ADD | Retrieves value from the second time series if this is a real value (not NaN). |
 | MERGE_POINTS | As the MERGE version, but checks whether there is a point value for the point of time on the first time series. If no, the value from the second time series is used on this point of time. Will only have the intended effect if you have a breakpoint series. |
 
-## Example
+### Example
 @MIX(t,t)
 
 ```
@@ -43,7 +45,9 @@ shown in the table.
 
 ![](assets/images/ex_MIX-nimbustable.png)
 
-Description MIX(t,t,t)
+## MIX(t,t,t)
+
+### Description
 
 | # | Type | Description |
 |---|---|---|
@@ -51,7 +55,7 @@ Description MIX(t,t,t)
 | 2 | t | The function gets its values from this time series if the first argument returns TRUE. |
 | 3 | t | Optional. The function gets its values from this time series if the first argument returns FALSE. |
 
-## Example
+### Example
 @MIX(t,t,t)
 
 ```

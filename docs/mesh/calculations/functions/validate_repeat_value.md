@@ -1,12 +1,12 @@
-﻿## ValidateRepeatValue
-**About the function**
+﻿# ValidateRepeatValue
+## About the function
 
 This function validates time series based on repetition frequency. Values
 repeated too often, are marked with **!** (Not OK). Values with control towards
 repeated values are set to validated and marked with **V04**, meaning validation
 method 4. You can see this code if you turn on value information in Nimbus.
 
-**Syntax**
+## Syntax
 
 - ValidateRepeatValue(t,t,d,d)
 

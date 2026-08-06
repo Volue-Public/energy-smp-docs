@@ -1,4 +1,4 @@
-﻿## TS_GLIDING_MEDIAN
+﻿# TS_GLIDING_MEDIAN
 ## About the function
 Returns a smoothed time series based on calculations of medians.
 

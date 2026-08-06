@@ -1,12 +1,12 @@
-﻿## CorrectConstantValue
-**About the function**
+﻿# CorrectConstantValue
+## About the function
 
 Corrects errors on a previously validated time series with a specified constant
 value. Values with correction using constant value are set to corrected and
 marked with **C01**, meaning correction method 1. You can see this code if you
 turn on value information in Nimbus.
 
-**Syntax**
+## Syntax
 
 - CorrectConstantValue(t,d)
 
@@ -17,7 +17,7 @@ turn on value information in Nimbus.
 | 1 | t | Time series to be corrected. |
 | 2 | d | Constant value to use when correcting. |
 
-**Example**
+## Example
 
 `Waterlevel_hour_VEE = @CorrectConstantValue(@ValidateAbsLimit(@t('Waterlevel_hour_raw'),207,210),208)`
 

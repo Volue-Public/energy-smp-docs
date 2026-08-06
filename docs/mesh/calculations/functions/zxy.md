@@ -1,5 +1,5 @@
 # ZX_Y
-  **About the function**
+## About the function
 
 Gets the result Y from an XYZ-attribute with input series Z and X. An
 XYZ-attribute is a table in three dimensions defined on a Mesh object, e.g. a

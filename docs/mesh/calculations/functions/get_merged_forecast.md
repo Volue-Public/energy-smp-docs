@@ -1,4 +1,6 @@
-## GetMergedForecast
+# GetMergedForecast
+
+## About the function
 
 Returns a time series based on a specified segment for available forecast versions.
 
@@ -7,11 +9,11 @@ Returns a time series based on a specified segment for available forecast versio
 The returned series contains the red segments, in this example based on 
 a value segment [+6h->+12h] from each forecast.
 
-### Syntax
+## Syntax
 
 - GetMergedForecast(t,s)
 
-### Description
+## Description
 
 | # | Type | Description |
 |---|---|---|
@@ -24,7 +26,7 @@ To analyse the quality of the the third day in a forecast you can use a segment
 specification '2d:1d`.
 
 
-### Examples
+## Example
 
 Uses the example data described [here](./history.md#hourly-example-data).
 

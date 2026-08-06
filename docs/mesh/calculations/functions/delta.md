@@ -1,17 +1,17 @@
-﻿## DELTA
+﻿# DELTA
 
-### About the function
+## About the function
 
 Finds the difference between values in a time
 series. A typical usage is to calculate the change between value at a time point and the previous time point, but there are other options that are controlled by the arguments to the function.
 
 The result series has the same resolution as the input time series.
 
-### Syntax
+## Syntax
 
 - DELTA(t[,d|s])
 
-### Description
+## Description
 
 | # | Type | Description |
 |---|---|---|
@@ -31,9 +31,9 @@ DELTA(t,’-2h’): res(t) = y(t) – y(t -2h) Second argument has value ‘-2h�
 The input time series might be a fixed interval series or a variable interval
 series.
 
-### Examples
+## Examples
 
-#### Example 1
+### Example 1
 
 H_Ts1 is an hourly time series with some empty values.
 
@@ -55,7 +55,7 @@ H_Ts1 is an hourly time series with some empty values.
 
 As the result series shows, an empty value is treated as 0 in these delta calculations.
 
-#### Example 2
+### Example 2
 
 `Result = @DELTA(@t('.H_Ts1'),'+2h')`
 
@@ -75,7 +75,7 @@ As the result series shows, an empty value is treated as 0 in these delta calcul
 
 In this case, a value at time t is based on the difference between the value 2 hours ahead and the value at t.
 
-#### Example 3
+### Example 3
 
 BP_Ts1 is a time series with breakpoint resolution.
 
@@ -91,7 +91,7 @@ There is no value before the value at 2021-12-31T23:00:00Z on BP_Ts1 series.
 When the input series has breakpoint resolution, empty value is treated differently compared to fixed interval.
 We see this in the first value (nan) on the result series. 
 
-#### Example 4
+### Example 4
 
 BP_Ts1 is a time series with break point resolution and _linear_ curve type.
 
@@ -106,7 +106,7 @@ BP_Ts1 is a time series with break point resolution and _linear_ curve type.
 
 **_Note_!** Due to the linear curve type of the input series, the result value is based on the functional value at offset hours.
 
-#### Example 5
+### Example 5
 
 `TemperatureForecast_delta = @DELTA(@t('AreaTemperature'))`
 

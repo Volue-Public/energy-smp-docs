@@ -1,4 +1,4 @@
-## FLOOR
+# FLOOR
 ## About the function
 Converts the number in a time series to an integer by cutting all decimals.
 
@@ -11,7 +11,7 @@ The function can also be applied to a single number.
 - FLOOR(t)
 - FLOOR(d)
 
-**Description**
+## Description
 
 | # | Type | Description |
 |---|---|---|

@@ -1,6 +1,6 @@
-## GET_Y_FX
+# GET_Y_FX
 
-### About the function
+## About the function
 
 The function looks up in an xy-relation, defined as argument to the function,
 with values from a time series that also is an argument to the function. The
@@ -15,7 +15,7 @@ range](#handle-input-values-outside-the-provided-range).
 
 ## Description
 
-| # | Type | ## Description |
+| # | Type | Description |
 |---|---|---|
 | 1 | t | Series containing x-values used to lookup in the xy-relation to find <br>the result value for current point of time. |
 | 2 | D | X-values, sorted increasingly. |
@@ -24,7 +24,9 @@ range](#handle-input-values-outside-the-provided-range).
 
   GET_Y_FX (t,D,D,[s]) corresponds to y=f(x)
 
-## Example 1
+## Examples
+
+### Example 1
 
 ```
 R1 = @GET_Y_FX(%'/X series',{-1,20,40}, {1,2,3} )
@@ -57,7 +59,7 @@ When an input is higher than the last value from the x range provided in the
 function call (40 in the example below) the last value from the y range will be
 returned (3 in the example below).
 
-## Example 2
+### Example 2
 
 ```
 ##=@GET_Y_FX(@t('t'), {-1,20,40}, {1,2,3}, 'INTERPOL,NOHOLD')

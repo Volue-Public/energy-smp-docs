@@ -10,7 +10,7 @@ template reports.
 
 - ColorARGB(s)
 
-### Description
+## Description
 
 | # | Type | Description |
 |---|---|---|
@@ -44,7 +44,7 @@ steelblue3
 steelblue4
 ```
 
-### Example
+## Example
 
   `## = @t('.Income') > 1000 ? @ColorARGB('orange') : @ColorARGB('magenta')`
 

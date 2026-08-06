@@ -1,6 +1,6 @@
-## Revision
+# Revision
 
-### About the function
+## About the function
 
 This function generates a time series from the Revision events associated with
 this element, filtered on Status. The value will be 1 at the times where there
@@ -14,12 +14,12 @@ series, unless an explicit transformation to a fixed interval is specified in
 the time series calculation.
 
 
-### Syntax
+## Syntax
 
 - Revision(s)
 - Revision(ss)
 
-### Description
+## Description
 
 | # | Type | Description |
 |---|---|---|
@@ -28,7 +28,7 @@ the time series calculation.
 
 
 
-### Examples
+## Examples
 
 `@Revision('Proposed')` generates a timeseries based on the Revision events with
 status 'Proposed'.
@@ -43,7 +43,7 @@ associated with this element.
 the Revision events on the parent object, which has Status 'Proposed' or
 'Recommended'.
 
-### Possible statuses
+## Possible statuses
   This is a list of the possible statuses that can be used:
 
 - Proposed

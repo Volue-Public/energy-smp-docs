@@ -1,11 +1,11 @@
-## TIME_MASK
+# TIME_MASK
 
-### About the function
+## About the function
 
 This function creates time series from its arguments, normally used as time
 masks (a series with 1 or 0 as value), but not limited to only this type.
 
-### Syntax
+## Syntax
 
 There are two main categories of this function. The recommended variants:
 

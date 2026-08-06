@@ -11,7 +11,7 @@ exponent c, which the base number must be raised with to get the number x.
 The input value must be a positive number larger than 0. If not, the function
 returns an empty value.
 
-**S****yntax**
+## Syntax
 
 - LOG(t|d)
 
@@ -20,12 +20,12 @@ returns an empty value.
 | 1 | t | Time series |
 | 1 | d | Number |
 
-## Example
-Example 1: @LOG(t)
+## Examples
+### Example 1: @LOG(t)
 
 `Temperature_hour_VV = @LOG(@t('Temperature_hour_raw'))`
 
-Example 2: @LOG(d)
+### Example 2: @LOG(d)
 
 `ResultTs = @LOG(1)`
 

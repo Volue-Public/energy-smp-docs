@@ -1,4 +1,4 @@
-﻿## ABS
+﻿# ABS
 ## About the function
 This function is used to determine the absolute value(s) for a time series.
 
