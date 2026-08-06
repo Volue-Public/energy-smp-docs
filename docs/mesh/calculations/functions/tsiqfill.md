@@ -1,5 +1,5 @@
 ﻿# TS_IQ-FILL
-## About the function
+
 Places logical values in any empty fields in a time series by taking the average
 of the previous and following values in the time series.
 

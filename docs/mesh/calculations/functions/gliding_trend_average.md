@@ -1,5 +1,5 @@
 ﻿# GLIDING_TREND_AVERAGE
-## About the function
+
 Reduces major fluctuations in a time series by calculating the future value on
 the basis of previous values.
 

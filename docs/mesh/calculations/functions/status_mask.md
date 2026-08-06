@@ -1,5 +1,5 @@
 # STATUS_MASK
-## About the function
+
 Makes it possible to execute operations on time series based on the [status
 code](../functions/status.md) associated with the values.
 

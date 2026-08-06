@@ -1,5 +1,5 @@
 ﻿# SUM
-## About the function
+
 This function calculates the sum of all of the values of a time series, or all
 of the series in an array of time series.
 

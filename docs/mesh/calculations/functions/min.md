@@ -1,7 +1,5 @@
 ﻿# MIN
 
-## About the function
-
 Finds the lowest values in time series, numbers, arrays or combinations of
 these.
 

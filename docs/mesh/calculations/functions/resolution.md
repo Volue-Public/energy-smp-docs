@@ -1,7 +1,5 @@
 ﻿# Resolution
 
-## About the function
-
 Get the resolution of a time series as a text symbol.
 
 ## Syntax

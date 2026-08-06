@@ -1,5 +1,5 @@
 ﻿# AllocateReserves
-## About the function
+
 This function can be used to distribute values on a reserves time series onto a
 set of target time series based on capacity and priority information. For
 example, distribute a total requested production onto production units.

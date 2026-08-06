@@ -1,7 +1,5 @@
 # PDLOG
 
-## About the function
-
 The PDLOG function is used to give messages to SmG Event Log based on events
 occurring in SmG Calculator.
 

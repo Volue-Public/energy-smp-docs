@@ -1,5 +1,5 @@
 ﻿# TS_GLIDING_MEDIAN_GAUSS
-## About the function
+
 This function first calculates the median and then normally distributes the
 median values. `d` determines the size of the time window.
 

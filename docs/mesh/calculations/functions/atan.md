@@ -1,5 +1,4 @@
 ﻿# ATAN
-## About the function
 
 Arc tangent to values on given time series.
 

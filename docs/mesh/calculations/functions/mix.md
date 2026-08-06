@@ -1,5 +1,5 @@
 ﻿# MIX
-## About the function
+
 The variations of this function combine two series to form a new one by
 retrieving values from one or the other series according to specific rules. This
 function is a compact form of if-then-else operation.

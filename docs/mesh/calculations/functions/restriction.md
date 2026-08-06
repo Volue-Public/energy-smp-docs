@@ -1,5 +1,5 @@
 # Restriction
-## About the function
+
 This function generates a time series from the Restriction events associated
 with this element, filtered on Category and Status. The value at a given time
 will be chosen from the relevant event(s), using a strategy decided by the user.

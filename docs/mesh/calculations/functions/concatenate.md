@@ -1,7 +1,5 @@
 # Concatenate
 
-## About the function
-
 Merge text arguments into a concatenated text. This is very useful when there is
 a need to create a reference from multiple parts, for example from other object
 attributes.

@@ -18,7 +18,7 @@ The ground rules for applying the Push/Pop mechanism are:
 - The expression uses data outside the requested period to produce correct results.
 - The time series that need to be extended has no direct database connection, i.e. it cannot be extended by reading more data from the database.
 
-## About the function
+
 This function removes the extended calculation period created by PushExtPeriod.
 The function must always be used after [PushExtPeriod](../functions/push_ext_period.md).
 

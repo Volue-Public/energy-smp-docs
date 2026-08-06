@@ -1,7 +1,5 @@
 ﻿# Valid
 
-## About the function
-
 A time series reference specified by **@t(‘TheReference’)** may give no result.
 The reason for this may be one of the following:
 

@@ -1,5 +1,4 @@
 ﻿# Normal
-## About the function
 
 Calculates various normal series for input series with respect to a defined
 history period given as from and until year.

@@ -1,7 +1,5 @@
 # MEAN
 
-## About the function
-
   Takes the average value of time series, arrays and number series.
 
   If the input is an array of time series and all the time series have the same resolution,

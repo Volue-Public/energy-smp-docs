@@ -1,7 +1,5 @@
 # GetAllForecasts
 
-## About the function
-
 Returns all time series versions that have values within the requested time period.
 
 ![](assets/images/GetAllForecasts.png)

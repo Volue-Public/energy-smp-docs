@@ -1,5 +1,5 @@
 ﻿# TS_EXPAND
-## About the function
+
 Replaces empty values in a fixed interval series. If the series has the linear
 curve type, the function interpolates between real values. Otherwise, the
 previous real value is used.

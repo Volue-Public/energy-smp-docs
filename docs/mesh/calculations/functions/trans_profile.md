@@ -8,7 +8,7 @@ To get an overview of all the transformation function variants, see:
 [Transform group functions](../functions/transform.md)
 
 ## R8
-### About the function
+
 Converts a time series into a finer resolution. The function uses the SUM method
 as a basis for the distribution.
 
@@ -48,7 +48,7 @@ for all the time points.
 ![](assets/images/ex_DISTRIBUTE-nimbustable6.png)
 
 ## Ra8
-### About the function
+
 Same as [R8](#r8), but with absolute handling of the profile. The profile can be
 scaled using a scaling factor, defined as first argument.
 
@@ -93,7 +93,7 @@ true for all the time points.
 true for all the time points.
 
 ## R9
-### About the function
+
 Same as the function [R8](#r8), but with an extra argument deciding distribution
 method.
 
@@ -123,7 +123,7 @@ If the value on the input data series is 0, the value is calculated like this:
 Vi = Pi - MI
 
 ## Ra9
-### About the function
+
 Same as [R9](#r9), but with absolute handling of the profile. The profile can be
 scaled using a scaling factor, defined in argument 1.
 
@@ -147,7 +147,7 @@ K is a scaling factor coming from argument 1 in the function. The other symbols
 used in the formula are the same as described in [R9](#r9).
 
 ## R10
-### About the function
+
 Same as [R8](#r8) but uses a mask series in argument 3.
 
 ### Syntax
@@ -182,7 +182,7 @@ Vi= Pi- MI
 See also [R7](../functions/distribute.md#r7) that offers the same functionality.
 
 ## Ra10
-### About the function
+
 Same as [R10](#r10), but with absolute handling of profile. The profile can be
 scaled using a scaling factor defined in argument 1.
 
@@ -206,7 +206,7 @@ K is a scaling factor coming from argument 1 in the function. The other symbols
 used in the formula are the same as described in [R10](#r10).
 
 ## R11
-### About the function
+
 Same function as [R10](#r10), but with an extra argument deciding distribution
 method. Valid values are 'MEAN', 'AVERAGE' or 'SUM'. The last value gives the
 exact same result as [R10](#r10).
@@ -241,7 +241,7 @@ If the value on the input data series is 0, the value is calculated like this:
 Vi = Pi - MI
 
 ## Ra11
-### About the function
+
 Same as [R11](#r11), but with absolute handling of profile. The profile can be
 scaled using a scaling factor, defined in argument 1.
 

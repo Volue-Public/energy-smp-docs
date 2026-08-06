@@ -1,5 +1,5 @@
 ﻿# MIX by selecting from time series array
-## About the function
+
 
 MIX is a function that calculates result series by mixing contribution from a
 set of input time series. A typical usage is to handle multiple 'if-elseif-else’

@@ -1,7 +1,5 @@
 # Revision
 
-## About the function
-
 This function generates a time series from the Revision events associated with
 this element, filtered on Status. The value will be 1 at the times where there
 is an event, and 0 otherwise.

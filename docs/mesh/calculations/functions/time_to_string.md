@@ -1,5 +1,5 @@
 ﻿# TimeToString
-## About the function
+
 The function converts a time point to text specification on the YYYYMMDDhhmmss
 format prefixed with UTC as the calendar reference.
 

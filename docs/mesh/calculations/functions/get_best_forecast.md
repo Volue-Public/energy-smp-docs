@@ -1,7 +1,5 @@
 # GetBestForecast
 
-## About the function
-
 **_Note!_** This function is now obsolete.
 It returns the latest written value at all time points part of requested time period.
 

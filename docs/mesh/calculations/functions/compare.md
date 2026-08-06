@@ -1,5 +1,5 @@
 ﻿# Compare
-## About the function
+
 This function compares two strings. It returns 0 if they are identical, 1
 otherwise. The function is case sensitive.
 

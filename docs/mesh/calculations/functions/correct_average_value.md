@@ -1,5 +1,4 @@
 # CorrectAverageValue
-## About the function
 
 The method replaces values marked as errors with the average value of other
 series for the same time. Values with correction using average value are set to

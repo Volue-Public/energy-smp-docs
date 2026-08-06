@@ -1,5 +1,5 @@
 ﻿# ValuesFromYear
-## About the function
+
 Gets values from a specified year on input series and places them into the
 requested period.
 

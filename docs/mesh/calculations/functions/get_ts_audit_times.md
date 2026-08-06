@@ -1,7 +1,5 @@
 # GetTsAuditTimes
 
-## About the function
-
 Returns an array of time points related to change events that have impact on values within the requested time period for the given time series. It is possible to restrict the number of time points returned.
 
 The function is often used together with [GetTsAsOfTime](./get_ts_as_of_time.md) in 'ExactTime' mode to extract explicitly what parts of the series that were changed at these times.

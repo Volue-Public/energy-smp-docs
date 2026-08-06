@@ -1,7 +1,5 @@
 # GetMergedForecast
 
-## About the function
-
 Returns a time series based on a specified segment for available forecast versions.
 
 ![](assets/images/Get%20MergedForecast.png)

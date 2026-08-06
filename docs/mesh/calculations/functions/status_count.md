@@ -1,5 +1,5 @@
 # STATUS_COUNT
-## About the function
+
 The STATUS_COUNT function takes one or more time series and returns a count of
 the number of points which match a given criterion ([status](../functions/status.md)).
 E.g. it can be used to count the number of 'missing' or 'notok' values. If one

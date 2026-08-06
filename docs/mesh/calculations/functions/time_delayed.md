@@ -1,7 +1,5 @@
 # TimeDelayed
 
-## About the function
-
 This function uses an [XY set](../../concepts/modelling/xy-sets.md) to calculate a time-delayed output based on an input time series. A typical use case is simulating how water discharge at one point arrives downstream over time: a sudden increase in flow does not appear instantly at the output; instead, it spreads out over several time steps, with some fractions arriving early and the rest arriving progressively later.
 
 The function takes each value in the input time series and distributes it forward in time according to a delay distribution curve stored in the XY set.

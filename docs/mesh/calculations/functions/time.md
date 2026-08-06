@@ -1,5 +1,5 @@
 # Time
-## About the function
+
 Interprets a time specification given as a symbol (a character string) and
 returns a time point. The time point is defined as a number. The number is ticks
 as defined in Microsoft .Net.

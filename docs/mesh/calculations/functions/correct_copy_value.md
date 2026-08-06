@@ -1,5 +1,4 @@
 ﻿# CorrectCopyValue
-## About the function
 
 Corrects errors on a previously validated time series using a copy of the
 previous value. Values with correction using copy value are set to corrected and

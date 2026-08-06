@@ -1,5 +1,5 @@
 # FLOOR
-## About the function
+
 Converts the number in a time series to an integer by cutting all decimals.
 
 The result series has the same resolution as the time series/argument series.

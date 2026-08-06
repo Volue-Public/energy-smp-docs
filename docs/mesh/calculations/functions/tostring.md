@@ -1,7 +1,5 @@
 ﻿# ToString
 
-## About the function
-
 This function translates a number to a string. It will not round the value, only
 truncate it. Optional argument describes number of decimals to include in the
 string.

@@ -1,7 +1,5 @@
 # GetTsAsOfTime
 
-## About the function
-
 Used to retrieve a physical time series as it was at a given historical time.
 
 Returns a time series or an array of time series, depending on the value of

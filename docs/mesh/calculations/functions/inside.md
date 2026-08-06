@@ -1,5 +1,5 @@
 ﻿# INSIDE
-## About the function
+
 Returns a logical time series by testing an expression towards an upper and a
 lower limit.
 

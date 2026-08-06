@@ -1,7 +1,5 @@
 # DisableCache
 
-## About the function
-
 The `@DisableCache()` function disables caching of calculation results for
 the calculation expression it is used in and all calculations referencing that
 calculation. `@DisableCache()` may be used for debugging purposes or to work
