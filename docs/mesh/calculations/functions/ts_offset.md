@@ -1,10 +1,13 @@
 ## TS_OFFSET
 ## About the function
 This function time-shifts a time series, i.e. uses values from a period which is
-different from the current calculation period.
+different from the current calculation period. More precisely, TS_OFFSET will
+produce points at the same timestamps as those of the input time series,
+but use the offset to determine their functional values and flags. This may have
+unexpected results when the input is a breakpoint time series; see the examples
+below for more details.
 
-The input time series must have a fixed resolution; passing a breakpoint time series will
-yield incorrect results. The result time series has the same resolution as the input.
+The result time series has the same resolution as the input.
 
 ## Syntax
 - TS_OFFSET(t,d[,s])
@@ -15,7 +18,7 @@ point at time T takes the source value from `T + d * unit`.
 
 | # | Type | Description | Example |
 |---|---|---|---|
-| 1 | t | Series to read values from.  | @t('AreaTemperature') |
+| 1 | t | Series to read values from. | @t('AreaTemperature') |
 | 2 | d | Offset amount in the unit specified in argument 3. | -2 |
 | 3 | s | Offset unit code (default: `'HOUR'`) | 'DAY' |
 
@@ -39,8 +42,7 @@ calendar-aware.
 
 ## Examples
 
-Example 1: @TS_OFFSET(t,d)
-
+Example 1:
 `CompareTemp = @TS_OFFSET(@t('AreaTemperature'),-2)`
 
 With d = -2, each `CompareTemp` point shows the `AreaTemperature` value
@@ -48,11 +50,20 @@ from 2 hours earlier.
 
 ![](assets/images/ex_TS_OFFSET-nimbustable.png)
 
-Example 2: @TS_OFFSET(t,d)
-
+Example 2:
 `CompareTemp = @TS_OFFSET(@t('AreaTemperature'),3)`
 
 With d = 3, each `CompareTemp` point shows the `AreaTemperature` value
 from 3 hours later.
 
 ![](assets/images/ex_TS_OFFSET-nimbustable2.png)
+
+Example 3:
+`CustomCalcTs = @TS_OFFSET(@t('CustomBpTs'), 2)`
+
+`CustomBpTs` is a staircase breakpoint time series with two points:
+10 at 00:00 and 20 at 10:00. Even though we specify a 2-hour offset,
+the resulting `CustomCalcTs` time series is the same as the input `CustomBpTs`
+because the input has no points at 08:00 where the value 20 could be placed.
+
+![](assets/images/ex_TS_OFFSET-nimbustable3.png)
