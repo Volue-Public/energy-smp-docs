@@ -37,8 +37,7 @@ The table below shows the valid offset unit codes.
 | MONTH | 30 days |
 | YEAR | 365 days |
 
-**_Note!_** `MONTH` and `YEAR` are always 30 and 365 days respectively; i.e. they are not
-calendar-aware.
+**_Note!_** All these units represent fixed durations which do not account for DST.
 
 ## Examples
 
