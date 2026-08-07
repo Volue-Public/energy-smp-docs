@@ -32,7 +32,7 @@ The table below shows the valid offset unit codes.
 | MIN15 | 15 minutes |
 | MIN30 | 30 minutes |
 | HOUR | 1 hour |
-| DAY | 1 day |
+| DAY | 24 hours |
 | WEEK | 7 days |
 | MONTH | 30 days |
 | YEAR | 365 days |
