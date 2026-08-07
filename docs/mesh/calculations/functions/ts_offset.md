@@ -24,7 +24,7 @@ point at time T takes the source value from `T + d * unit`.
 
 The table below shows the valid offset unit codes.
 
-| UNIT code | Time span |
+| UNIT code | Duration |
 |---|---|
 | MIN | 1 minute |
 | MIN5 | 5 minutes |
