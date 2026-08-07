@@ -502,17 +502,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="set_ts_valunit">SET_TS_VALUNIT</h2>
-<h3 id="about-the-function">About the function</h3>
+                <h1 id="set_ts_valunit">SET_TS_VALUNIT</h1>
 <p>This function is used to change the unit of a time series. Especially calculated
 series may contain several multiplied time series and result in different unit
 than the input time series.</p>
-<h3 id="syntax">Syntax</h3>
+<h2 id="syntax">Syntax</h2>
 <ul>
 <li>SET_TS_VALUNIT(t,d)</li>
 <li>SET_TS_VALUNIT(t,s)</li>
 </ul>
-<h3 id="description">Description</h3>
+<h2 id="description">Description</h2>
 <table>
 <thead>
 <tr>
@@ -540,11 +539,11 @@ Time series application search window. Look in the <strong>Unit</strong> drop do
 check if you are using the correct language for the code.</p>
 <p><strong>Note!</strong> The value unit may affect the default transformation method that is used 
 when the series is requested in another resolution.</p>
-<h3 id="examples">Examples</h3>
-<p>Example 1: @SET_TS_VALUNIT(t,d)</p>
+<h2 id="examples">Examples</h2>
+<h3 id="example-1-set_ts_valunittd">Example 1: @SET_TS_VALUNIT(t,d)</h3>
 <p>To change the unit of a result series to meters/second, the unit code is 120:</p>
 <p>@SET_TS_VALUNIT(timeseries1,120)</p>
-<p>Example 2: @SET_TS_VALUNIT(t,s)</p>
+<h3 id="example-2-set_ts_valunitts">Example 2: @SET_TS_VALUNIT(t,s)</h3>
 <p>To change the unit of a result series to meters/second using text:</p>
 <p>@SET_TS_VALUNIT(timeseries1,'m/sec')</p>
 <p>This gives the same result as example 1.</p>

@@ -502,29 +502,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="gettsaudittimes">GetTsAuditTimes</h2>
-<h3 id="about-the-function">About the function</h3>
+                <h1 id="gettsaudittimes">GetTsAuditTimes</h1>
 <p>Returns an array of time points related to change events that have impact on values within the requested time period for the given time series. It is possible to restrict the number of time points returned.</p>
 <p>The function is often used together with <a href="../get_ts_as_of_time/">GetTsAsOfTime</a> in 'ExactTime' mode to extract explicitly what parts of the series that were changed at these times.</p>
 <p>A time point is defined as a number which represents a <code>tick</code> value.
 Each tick is 100 nanoseconds, i.e. there are 10,000 ticks in a millisecond.
-Tick value 0 is refers to UTC <code>January 1, 0001 00:00:00</code>.</p>
+Tick value 0 refers to UTC <code>January 1, 0001 00:00:00</code>.</p>
 <p>You can convert the tick value, for instance in a PowerShell like this:</p>
 <pre><code>get-date 638980320190000000 
 
 November 6, 2025 13:20:19
 </code></pre>
-<h3 id="syntax">Syntax</h3>
+<h2 id="syntax">Syntax</h2>
 <ul>
 <li>GetTsAuditTimes(t,d) - returns array of numbers</li>
 </ul>
-<h3 id="description">Description</h3>
+<h2 id="description">Description</h2>
 <table>
 <thead>
 <tr>
 <th>#</th>
 <th>Type</th>
-<th>## Description</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>

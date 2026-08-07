@@ -502,8 +502,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="gliding_trend_average">GLIDING_TREND_AVERAGE</h2>
-<h2 id="about-the-function">About the function</h2>
+                <h1 id="gliding_trend_average">GLIDING_TREND_AVERAGE</h1>
 <p>Reduces major fluctuations in a time series by calculating the future value on
 the basis of previous values.</p>
 <p>The result series has the same resolution as the input time series.</p>
@@ -511,7 +510,7 @@ the basis of previous values.</p>
 <ul>
 <li>GLIDING_TREND_AVERAGE(t,d[,d|D])</li>
 </ul>
-<p><strong>Description</strong></p>
+<h2 id="description">Description</h2>
 <table>
 <thead>
 <tr>
@@ -543,8 +542,8 @@ the basis of previous values.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="example">Example</h2>
-<p>Example 1: GLIDING_TREND_AVERAGE(t,d)</p>
+<h2 id="examples">Examples</h2>
+<h3 id="example-1-gliding_trend_averagetd">Example 1: GLIDING_TREND_AVERAGE(t,d)</h3>
 <p><code>Waterlevel_hour_operative = @GLIDING_TREND_AVERAGE(@t('Waterlevel_hour_raw'),3)</code></p>
 <p>This example takes the average values of a selected number of previous values,
 and gives the anticipated values on the basis of these. <code>d</code> represents the
@@ -552,7 +551,7 @@ number of previous values from which average values are calculated. For
 instance, in the table the average of the three closest previous values to Time
 3 (including the value in Time 3) (8+20+19)/3 = 15,67.</p>
 <p><img alt="" src="../assets/images/ex_GLIDING_TREND_AVERAGE-nimbustable.png" /></p>
-<p>Example 2: GLIDING_TREND_AVERAGE(t,d,D)</p>
+<h3 id="example-2-gliding_trend_averagetdd">Example 2: GLIDING_TREND_AVERAGE(t,d,D)</h3>
 <p><code>Waterlevel_hour_operative = @GLIDING_TREND_AVERAGE(@t('Waterlevel_hour_raw'),3,{3,2,1})</code></p>
 <p>This example gives a trend where the closest value counts three times as much,
 and the second closest values counts twice as much as the third closest value

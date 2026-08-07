@@ -503,7 +503,6 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="concatenate">Concatenate</h1>
-<h2 id="about-the-function">About the function</h2>
 <p>Merge text arguments into a concatenated text. This is very useful when there is
 a need to create a reference from multiple parts, for example from other object
 attributes.</p>
@@ -552,18 +551,19 @@ variant is recommended:</p>
 </tr>
 </tbody>
 </table>
-<h2 id="example-1">Example 1</h2>
-<p><code>## = @t(@Concatenate(‘../...’, @s(‘.TargetTimeseries’))</code></p>
+<h2 id="examples">Examples</h2>
+<h3 id="example-1">Example 1</h3>
+<p><code>## = @t(@Concatenate(‘../...’, @s(‘.TargetTimeseries’)))</code></p>
 <p>The argument to @t is calculated based on the local text attribute
 <em>TargetTimeseries</em> and a static movement <code>../...</code> . If the value of
 <em>TargetTimeseries</em> is <code>MyTs</code>, the result is the time series addressed like
 this, <code>../...MyTs</code>. This means go to the parent of the parent and get the time
 series on the <em>MyTs</em> attribute.</p>
-<h2 id="example-2">Example 2</h2>
-<p><code>## = @t( @Concatenate( {'*[.Type=HydroPlant&amp;&amp;.Name=', @MeshID('NAME'),'].Production' })</code></p>
+<h3 id="example-2">Example 2</h3>
+<p><code>## = @t( @Concatenate( {'*[.Type=HydroPlant&amp;&amp;.Name=', @MeshID('NAME'),'].Production' }))</code></p>
 <p>If the name of current object is 'PlantX' then the Concatenate function will
 return this string:</p>
-<p><code>''*[.Type=HydroPlant&amp;&amp;.Name=PlantX].Production'</code></p>
+<p><code>'*[.Type=HydroPlant&amp;&amp;.Name=PlantX].Production'</code></p>
               
             </div>
           </div><footer>

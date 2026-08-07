@@ -502,14 +502,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="gettshistoricalversions">GetTsHistoricalVersions</h2>
-<h3 id="about-the-function">About the function</h3>
+                <h1 id="gettshistoricalversions">GetTsHistoricalVersions</h1>
 <p>Returns an array of time series versions of a time series for the requested time period. The number of versions returned can be limited to a given number.</p>
-<h3 id="syntax">Syntax</h3>
+<h2 id="syntax">Syntax</h2>
 <ul>
 <li>GetTsHistoricalVersions(t,d)</li>
 </ul>
-<h3 id="description">Description</h3>
+<h2 id="description">Description</h2>
 <table>
 <thead>
 <tr>
@@ -534,7 +533,7 @@
 <p>Note! If you ask for more versions than there exists, the system returns only
 the versions which exist. That is, potentially fewer than the number given as
 input to the function.</p>
-<h3 id="examples">Examples</h3>
+<h2 id="examples">Examples</h2>
 <p>GetTsHistoricalVersions(ts,1) returns the last change made, i.e. the latest
 historical version that is different from the current time series.
 Observe that the function also in this case returns an array of series that in this case contains one series.</p>

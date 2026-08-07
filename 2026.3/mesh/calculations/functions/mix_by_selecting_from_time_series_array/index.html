@@ -503,11 +503,10 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="mix-by-selecting-from-time-series-array">MIX by selecting from time series array</h1>
-<p>About this function</p>
 <p>MIX is a function that calculates result series by mixing contribution from a
 set of input time series. A typical usage is to handle multiple 'if-elseif-else’
 constructions defined by index criteria. The main purpose of this function is to
-effectively set up and calculate multiple choice logic, typical defined by if –
+effectively set up and calculate multiple choice logic, typically defined by if –
 elseif – elseif – else constructs.</p>
 <h2 id="syntax">Syntax</h2>
 <ul>
@@ -546,21 +545,21 @@ the result series is defined like this:</p>
 <li>Default series not defined: The result series has the same resolution as the highest resolution found. The result values are copied from first series in array for periods when contribution index found in argument 1 series is 1, from second series when contribution index is 2 etc.</li>
 <li>Default series defined: If contribution index is out of range, the corresponding result values are retrieved from default series.</li>
 </ul>
-<h2 id="example">Example</h2>
-<p>Example 1: @MIX(t,T)</p>
+<h2 id="examples">Examples</h2>
+<h3 id="example-1-mixtt">Example 1: @MIX(t,T)</h3>
 <p><code>Temperature_hour_operative = @MIX(@t('TempManualCorrection'),@T('Temperature_hour'))</code></p>
 <p>TempManualCorrection contains index values. Temperature_hour 1,2 and 3 are time
 series in the array. In the case of an empty index or values outside of 1,2,3 an
 undefined value is returned. The result is shown in the second column of the
 table.</p>
 <p><img alt="" src="../assets/images/ex_MIXbe-Nimbustable.png" /></p>
-<p>Example 2: @MIX(t,T,t)</p>
+<h3 id="example-2-mixttt">Example 2: @MIX(t,T,t)</h3>
 <p><code>Temperature_hour_operative = @MIX(@t('TempManualCorrection'),@T('Temperature_hour'),@t('TempPercentiles'))</code></p>
 <p>In the case of an empty index or values outside of 1,2,3 values from the time
-series in the 3.rd argument are used. The result is shown in the second column
+series in the 3rd argument are used. The result is shown in the second column
 of the table.</p>
 <p><img alt="" src="../assets/images/ex_MIXbe-Nimbustable2.png" /></p>
-<p>Example 3: @MIX(t,T,t)</p>
+<h3 id="example-3-mixttt">Example 3: @MIX(t,T,t)</h3>
 <p><code>## = @MIX(@t('TsSelector'),{@t('Ts1'),@t('Ts2'),@t('Ts1')*2.3,@t('Ts1')+@t('Ts2')},@t('TsDefault'))</code></p>
 <p>Array-members can be defined as an expression. These expressions can be more or
 less complicated as long as they return a single series.</p>

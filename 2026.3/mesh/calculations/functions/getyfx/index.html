@@ -502,8 +502,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="get_y_fx">GET_Y_FX</h2>
-<h3 id="about-the-function">About the function</h3>
+                <h1 id="get_y_fx">GET_Y_FX</h1>
 <p>The function looks up in an xy-relation, defined as argument to the function,
 with values from a time series that also is an argument to the function. The
 result is the y-value from the xy-relation, possibly interpolated. See also
@@ -519,7 +518,7 @@ range</a>.</p>
 <tr>
 <th>#</th>
 <th>Type</th>
-<th>## Description</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -546,7 +545,8 @@ range</a>.</p>
 </tbody>
 </table>
 <p>GET_Y_FX (t,D,D,[s]) corresponds to y=f(x)</p>
-<h2 id="example-1">Example 1</h2>
+<h2 id="examples">Examples</h2>
+<h3 id="example-1">Example 1</h3>
 <pre><code>R1 = @GET_Y_FX(%'/X series',{-1,20,40}, {1,2,3} )
 R2 = @GET_Y_FX(%'/X series',{-1,20,40}, {1,2,3}, 'INTERPOL')
 R3 = @GET_Y_FX(%'/X series',{-1,20,40}, {1,2,3}, 'INTERPOL,NOHOLD' )
@@ -568,7 +568,7 @@ returned (1 in the example below).</p>
 <p>When an input is higher than the last value from the x range provided in the
 function call (40 in the example below) the last value from the y range will be
 returned (3 in the example below).</p>
-<h2 id="example-2">Example 2</h2>
+<h3 id="example-2">Example 2</h3>
 <pre><code>##=@GET_Y_FX(@t('t'), {-1,20,40}, {1,2,3}, 'INTERPOL,NOHOLD')
 </code></pre>
 <table>
@@ -609,7 +609,6 @@ returned (3 in the example below).</p>
 </tr>
 </tbody>
 </table>
-<hr />
               
             </div>
           </div><footer>

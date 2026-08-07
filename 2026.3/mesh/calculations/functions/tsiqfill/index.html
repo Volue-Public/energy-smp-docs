@@ -502,8 +502,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="ts_iq-fill">TS_IQ-FILL</h2>
-<h2 id="about-the-function">About the function</h2>
+                <h2 id="ts_iq_fill">TS_IQ_FILL</h2>
 <p>Places logical values in any empty fields in a time series by taking the average
 of the previous and following values in the time series.</p>
 <p>The result series has the same resolution as the time series/argument series.</p>
@@ -517,15 +516,15 @@ of the previous and following values in the time series.</p>
 argument.</p>
 <p>Type Step: the previous value is filled in the empty cells on to the next value.</p>
 <p>Type Linear: the value between the points in time follows linear development
-from value at time [t] til time [t+1].</p>
+from value at time [t] to time [t+1].</p>
 <p>If the first cell(s) is empty, the next value is copied. If the last cell(s) is
-empty, the previous values is copied.</p>
-<h2 id="example">Example</h2>
-<p>Example 1: @TS_IQ_FILL(t) step</p>
+empty, the previous value is copied.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="example-1-ts_iq_fillt-step">Example 1: @TS_IQ_FILL(t) step</h3>
 <p>Result = @TS_IQ_FILL(%'TS10S')</p>
 <p>Finds the first value in the first row. The value 5,00 is filled into the empty
 space preceding the next value, 10,00. See table.</p>
-<p>Example 2: @TS_IQ_FILL(t) linear</p>
+<h3 id="example-2-ts_iq_fillt-linear">Example 2: @TS_IQ_FILL(t) linear</h3>
 <p>Result = @TS_IQ_FILL(%'TS10L')</p>
 <p>The values are filled in accordance with linear development. For instance in row
 2 for TS10L:</p>

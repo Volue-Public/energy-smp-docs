@@ -502,8 +502,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="ts_gliding_average">TS_GLIDING_AVERAGE</h2>
-<h2 id="about-the-function">About the function</h2>
+                <h1 id="ts_gliding_average">TS_GLIDING_AVERAGE</h1>
 <p>Smooths out major fluctuations by taking average values from surrounding values.
 The amount by which the new values are smoothed out depends on the value of "d".
 "d" indicates how many surrounding values should be used to produce the average
@@ -539,7 +538,7 @@ value, which means the size of the time window. If a smooth curve is required,
 <p><code>Waterlevel_hour_operative = @TS_GLIDING_AVERAGE (@t('Waterlevel_hour_raw'),3)</code></p>
 <p>The value for each time step using the gliding interval 3, is calculated by
 summarizing the previous value, the current value and the next value, divided by
-3. Se example:). Selects the time step 01.07.14 05:00:</p>
+3. See the example, selecting the time step 01.07.14 05:00:</p>
 <p>04:00 = 18.00</p>
 <p>05:00 = 17.00</p>
 <p>06:00 = 13.00</p>

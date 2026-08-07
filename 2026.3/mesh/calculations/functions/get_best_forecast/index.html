@@ -502,12 +502,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="getbestforecast">GetBestForecast</h2>
+                <h1 id="getbestforecast">GetBestForecast</h1>
 <p><strong><em>Note!</em></strong> This function is now obsolete.
 It returns the latest written value at all time points part of requested time period.</p>
 <p>The figure below illustrates this. The returned series is a merge of the red segments.</p>
 <p><img alt="" src="../assets/images/GetBestForecast.png" /></p>
-<h3 id="example">Example</h3>
+<h2 id="example">Example</h2>
 <p>The following expressions give the same result.</p>
 <p><code>## = @t('.Temperature_forecast')</code></p>
 <p><code>## = @GetBestForecast(@t('.Temperature_forecast'))</code></p>

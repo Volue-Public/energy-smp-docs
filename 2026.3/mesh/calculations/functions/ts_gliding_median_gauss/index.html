@@ -502,13 +502,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="ts_gliding_median_gauss">TS_GLIDING_MEDIAN_GAUSS</h2>
-<h2 id="about-the-function">About the function</h2>
+                <h1 id="ts_gliding_median_gauss">TS_GLIDING_MEDIAN_GAUSS</h1>
 <p>This function first calculates the median and then normally distributes the
 median values. <code>d</code> determines the size of the time window.</p>
 <h2 id="syntax">Syntax</h2>
 <ul>
-<li><strong>@</strong>TS_GLIDING_MEDIAN_GAUSS(t,d)</li>
+<li>@TS_GLIDING_MEDIAN_GAUSS(t,d)</li>
 </ul>
 <table>
 <thead>
@@ -532,7 +531,7 @@ median values. <code>d</code> determines the size of the time window.</p>
 </tbody>
 </table>
 <h2 id="example">Example</h2>
-<p><code>Waterlevel_hour_operative = @TS_GLIDING_MEDIAN (@t('Waterlevel_hour_raw'),3)</code></p>
+<p><code>Waterlevel_hour_operative = @TS_GLIDING_MEDIAN_GAUSS(@t('Waterlevel_hour_raw'),3)</code></p>
 <p>With d = 3, the median is calculated with the previous value, current value and
 next value and then normally distributed.</p>
 <p><img alt="" src="../assets/images/ex_TS_GLIDING_MEDIAN_GAUSS-nimbustable.png" /></p>

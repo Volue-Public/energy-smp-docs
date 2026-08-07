@@ -502,13 +502,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="validatedeltalimit">ValidateDeltaLimit</h2>
-<p><strong>About the function</strong></p>
+                <h1 id="validatedeltalimit">ValidateDeltaLimit</h1>
 <p>Validates time series using delta change limits. Values outside the specified
 limits, will be marked as ! (Not OK). Values with control towards delta limit
 are set to validated with remark V02, meaning validation method 2. You can see
 this code if you turn on value information in Nimbus.</p>
-<p><strong>Syntax</strong></p>
+<h2 id="syntax">Syntax</h2>
 <ul>
 <li>ValidateDeltaLimit(t,t,t,d,s)</li>
 </ul>
@@ -549,7 +548,7 @@ this code if you turn on value information in Nimbus.</p>
 </tr>
 </tbody>
 </table>
-<p><strong>Example</strong></p>
+<h2 id="example">Example</h2>
 <pre><code>Waterlevel_hour_VEE = @ValidateDeltaLimit(@RESET_STATUS(@t('Waterlevel_hour_raw')),@TS('VARINT',@d('RsvDeltaLimitLower')),@TS('VARINT',@d('RsvDeltaLimitUpper')),
 @d('ValidateMaxErrors'), @s('ValuesInPercent'))
 </code></pre>
@@ -559,14 +558,14 @@ this code if you turn on value information in Nimbus.</p>
 attribute values on the specific object.</p>
 <p>The maximum number of errors, @d('ValidateMaxErrors'), also refers to an
 attribute value on the specific object. When the number of errors reaches the
-actual value, no more validation are done.</p>
+actual value, no more validation is done.</p>
 <p>Values are not interpreted as percentage values if the attribute on the specific
 object @s('ValuesInPercent') is set to FALSE.</p>
 <p>In the screen example, all existing statuses on the input data series are
 removed before the function adds its status values. This is done using the
 <a href="../reset_status/">RESET_STATUS</a> function on the input data series. The
 <code>RsvDeltaLimitLower</code> attribute is set to -0.05 and <code>RsvDeltaLimitUpper</code> is set
-to 0.05. The values are not in percent. All values outside exceeding the delta
+to 0.05. The values are not in percent. All values exceeding the delta
 limits, are marked with <strong>!</strong> (Not OK) and the validation method <strong>V02</strong>.</p>
 <p><img alt="" src="../assets/images/ex_ValidateDeltaLimit-nimbustable.png" /></p>
               

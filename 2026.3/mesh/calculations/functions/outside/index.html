@@ -502,8 +502,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="outside">OUTSIDE</h2>
-<h2 id="about-the-function">About the function</h2>
+                <h1 id="outside">OUTSIDE</h1>
 <p>Returns a logical time series by testing an expression towards an upper and a
 lower limit.</p>
 <p>The result series has the same resolution as the input time series.</p>
@@ -544,14 +543,14 @@ lower limit.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="example">Example</h2>
-<p>Example 1: @OUTSIDE(d,t,d)</p>
+<h2 id="examples">Examples</h2>
+<h3 id="example-1-outsidedtd">Example 1: @OUTSIDE(d,t,d)</h3>
 <pre><code>Temperature_hour_VV = @OUTSIDE(0, @t('Temperature_hour_raw'), 12)
 </code></pre>
 <p>Values in @t('Temperature_hour_raw') 12 are evaluated to true (1). Other values
 and NaN are evaluated to false (0). Here values on both the lower limit 0 and
 upper limit 12 are evaluated to false.</p>
-<p>Example 2: @OUTSIDE(d,t,d,s)</p>
+<h3 id="example-2-outsidedtds">Example 2: @OUTSIDE(d,t,d,s)</h3>
 <pre><code>Temperature_hour_VV = @OUTSIDE(0, @t('Temperature_hour_raw'), 12, 'LOHI')
 </code></pre>
 <p>Values in @t('Temperature_hour_raw') ≤0 and ≥12 are evaluated to true (1), other

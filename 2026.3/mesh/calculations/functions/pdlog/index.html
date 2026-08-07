@@ -502,16 +502,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="pdlog">PDLOG</h2>
-<h3 id="about-this-function">About this function</h3>
+                <h1 id="pdlog">PDLOG</h1>
 <p>The PDLOG function is used to give messages to SmG Event Log based on events
 occurring in SmG Calculator.</p>
-<h3 id="syntax">Syntax</h3>
+<h2 id="syntax">Syntax</h2>
 <ul>
 <li>PDLOG(d,s[,t])</li>
 <li>PDLOG(d,s,t,d)</li>
 </ul>
-<p><strong>Description</strong></p>
+<h2 id="description">Description</h2>
 <table>
 <thead>
 <tr>
@@ -543,6 +542,7 @@ occurring in SmG Calculator.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="examples">Examples</h2>
 <h3 id="example-1">Example 1</h3>
 <pre><code>Difference =@MEAN(@T('To_MetSensor.Temperature_operative'))-
 @MEAN(@T('To_NeighbourMetStation.Temperature_used'))
@@ -569,7 +569,7 @@ time series. If the accumulated end value change exceeds 10% absolute value a
 message is created in SmG Event Log:</p>
 <pre><code>InflowSource = @t('.Inflow')
 TransformHour = @TRANSFORM(InflowSource,'HOUR','AVG')
-InflowAccumulated = @ACCUMULATE(0, '+0h'),TransformHour)* (3600/1000000)
+InflowAccumulated = @ACCUMULATE(0, '+0h', TransformHour) * (3600/1000000)
 AccumulatedDeviation= (@MAX(InflowAccumulated)-@MAX(@t('.Inflow_accumulated_version')))/@MAX(InflowAccumulated)
 IF @ABS(AccumulatedDeviation) &gt; 0.1 THEN
   @PDLOG(1010,'Inflow forecast deviates on time series,$path, period start $start, period end $end ', InflowSource)

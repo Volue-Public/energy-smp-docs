@@ -502,16 +502,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="delta">DELTA</h2>
-<h3 id="about-the-function">About the function</h3>
+                <h1 id="delta">DELTA</h1>
 <p>Finds the difference between values in a time
 series. A typical usage is to calculate the change between value at a time point and the previous time point, but there are other options that are controlled by the arguments to the function.</p>
 <p>The result series has the same resolution as the input time series.</p>
-<h3 id="syntax">Syntax</h3>
+<h2 id="syntax">Syntax</h2>
 <ul>
 <li>DELTA(t[,d|s])</li>
 </ul>
-<h3 id="description">Description</h3>
+<h2 id="description">Description</h2>
 <table>
 <thead>
 <tr>
@@ -540,8 +539,8 @@ series. A typical usage is to calculate the change between value at a time point
 <p>DELTA(t,’-2h’): res(t) = y(t) – y(t -2h) Second argument has value ‘-2h’</p>
 <p>The input time series might be a fixed interval series or a variable interval
 series.</p>
-<h3 id="examples">Examples</h3>
-<h4 id="example-1">Example 1</h4>
+<h2 id="examples">Examples</h2>
+<h3 id="example-1">Example 1</h3>
 <p>H_Ts1 is an hourly time series with some empty values.</p>
 <p><code>Result = @DELTA(@t('.H_Ts1'))</code></p>
 <table>
@@ -611,7 +610,7 @@ series.</p>
 </tbody>
 </table>
 <p>As the result series shows, an empty value is treated as 0 in these delta calculations.</p>
-<h4 id="example-2">Example 2</h4>
+<h3 id="example-2">Example 2</h3>
 <p><code>Result = @DELTA(@t('.H_Ts1'),'+2h')</code></p>
 <table>
 <thead>
@@ -680,7 +679,7 @@ series.</p>
 </tbody>
 </table>
 <p>In this case, a value at time t is based on the difference between the value 2 hours ahead and the value at t.</p>
-<h4 id="example-3">Example 3</h4>
+<h3 id="example-3">Example 3</h3>
 <p>BP_Ts1 is a time series with breakpoint resolution.</p>
 <p><code>Result = @DELTA(@t('.BP_Ts1'))</code></p>
 <table>
@@ -712,7 +711,7 @@ series.</p>
 <p>There is no value before the value at 2021-12-31T23:00:00Z on BP_Ts1 series.
 When the input series has breakpoint resolution, empty value is treated differently compared to fixed interval.
 We see this in the first value (nan) on the result series. </p>
-<h4 id="example-4">Example 4</h4>
+<h3 id="example-4">Example 4</h3>
 <p>BP_Ts1 is a time series with break point resolution and <em>linear</em> curve type.</p>
 <p><code>Result = @DELTA(@t('.BP_Ts1'),'+2h')</code></p>
 <table>
@@ -746,7 +745,7 @@ We see this in the first value (nan) on the result series. </p>
 </tbody>
 </table>
 <p><strong><em>Note</em>!</strong> Due to the linear curve type of the input series, the result value is based on the functional value at offset hours.</p>
-<h4 id="example-5">Example 5</h4>
+<h3 id="example-5">Example 5</h3>
 <p><code>TemperatureForecast_delta = @DELTA(@t('AreaTemperature'))</code></p>
 <p>Values in the result time series are equal to the difference between the current
 value and the previous value in the input time series. An example of this is

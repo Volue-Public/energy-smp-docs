@@ -502,16 +502,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="copyts">CopyTs</h2>
+                <h1 id="copyts">CopyTs</h1>
 <p>This function copies values from a source location to a destination location
 within the Mesh model. This is a function where the "side effects" of the
 operation is the important part rather than the returned values.</p>
-<h3 id="syntax">Syntax</h3>
+<h2 id="syntax">Syntax</h2>
 <ul>
 <li>CopyTs(s,s,s)</li>
 <li>CopyTs(s,s,s,s)</li>
 </ul>
-<p><strong>Description</strong></p>
+<h2 id="description">Description</h2>
 <table>
 <thead>
 <tr>
@@ -538,7 +538,7 @@ operation is the important part rather than the returned values.</p>
 </tr>
 </tbody>
 </table>
-<p><strong>Execution modes</strong></p>
+<h3 id="execution-modes">Execution modes</h3>
 <table>
 <thead>
 <tr>
@@ -565,12 +565,12 @@ operation is the important part rather than the returned values.</p>
 </tr>
 </tbody>
 </table>
-<p><strong>Return value</strong></p>
+<h3 id="return-value">Return value</h3>
 <p>The function returns a non-negative value representing the number of target time
 series that were successfully copied to. A negative value indicates an error.</p>
 <p>A target time series can only receive values from one source. If multiple
 sources match the same target, the function returns an error.</p>
-<h3 id="example">Example</h3>
+<h2 id="example">Example</h2>
 <p><code>## = @CopyTs('Ident', '*[.Type=TypeB].Ts1','Model:*[.Name=A1_3_New]/[.Type=TypeB].Ts1')</code></p>
 <p>The function uses the value on the attribute <code>Ident</code> as criterion for making
 source - target pairs. The second argument is defining a relative search

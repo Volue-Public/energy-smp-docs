@@ -504,20 +504,20 @@
               
                 <h1 id="which-functions-can-be-used-when">Which functions can be used when?</h1>
 <p>Here is a list of common calculations where transformation of values from one resolution to another is included</p>
-<h3 id="accumulate-values-standard-behavior">ACCUMULATE VALUES STANDARD BEHAVIOR</h3>
+<h2 id="accumulate-values-standard-behavior">ACCUMULATE VALUES STANDARD BEHAVIOR</h2>
 <p>This means transforming from a break point series to a fixed interval series, or from a fixed interval series to a different fixed interval series with coarser resolution, for example from hour to day series.</p>
 <p>For this type of task this is used:</p>
 <p>R1 = <a href="../transform/#transformt-s-s">@TRANSFORM(t,s,s)</a></p>
-<h3 id="accumulate-values-to-specific-resolutions">ACCUMULATE VALUES TO SPECIFIC RESOLUTIONS</h3>
+<h2 id="accumulate-values-to-specific-resolutions">ACCUMULATE VALUES TO SPECIFIC RESOLUTIONS</h2>
 <p>This means transformation from one time series to a different time series with a resolution that is not the same as calendar units, e.g. quarter, hour, day, week, month or year. You can choose a fixed period given from the start of the calculation or more general as points of time on a break point series.</p>
 <p>For this type of tasks the following are used:</p>
 <p>R2 = <a href="../transform/#transformt-t-s">@TRANSFORM(t,t,s)</a></p>
 <p>R3 = <a href="../transform/#transformt-d-s">@TRANSFORM(t,d,s)</a></p>
-<h3 id="make-transformation-with-reference-to-time-zone">MAKE TRANSFORMATION WITH REFERENCE TO TIME ZONE</h3>
+<h2 id="make-transformation-with-reference-to-time-zone">MAKE TRANSFORMATION WITH REFERENCE TO TIME ZONE</h2>
 <p>The calculator performs calculations with reference to normal time if nothing else is given. A normal example is to accumulate hour values to day values or week values using local time (summer time) or a different time zone.</p>
 <p>For this type of task the following is used:</p>
 <p>R4 = <a href="../transform/#transformt-s-s-s">@TRANSFORM(t,s,s,s)</a></p>
-<h3 id="distributing-values-with-reference-to-profile">DISTRIBUTING VALUES WITH REFERENCE TO PROFILE</h3>
+<h2 id="distributing-values-with-reference-to-profile">DISTRIBUTING VALUES WITH REFERENCE TO PROFILE</h2>
 <p>If you transform from fixed interval resolution to a finer resolution, e.g. from day to hour and want the calculated value to be distributed with reference to a profile, you cannot use standard transformation given from R1.</p>
 <p>For this type of task the following is used:</p>
 <p>R6 = <a href="../distribute/#r6">@DISTRIBUTE(t,t)</a></p>

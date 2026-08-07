@@ -671,12 +671,12 @@ transformation methods are available for this latter use.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="example">Example</h3>
-<p>Example 1: @TRANSFORM(t,s,s) Create week sums from a time series</p>
+<h3 id="examples">Examples</h3>
+<h4 id="example-1-transformtss-create-week-sums-from-a-time-series">Example 1: @TRANSFORM(t,s,s) Create week sums from a time series</h4>
 <p>Res1 = @TRANSFORM(@t('HourTs'), 'WEEK', 'SUM')</p>
-<p>Example 2: @TRANSFORM(t,s,s) Create day average from a break point series</p>
+<h4 id="example-2-transformtss-create-day-average-from-a-break-point-series">Example 2: @TRANSFORM(t,s,s) Create day average from a break point series</h4>
 <p>Res2 = @TRANSFORM(@t('BrpTs'), 'DAY', 'AVGI')</p>
-<p>Example 3: Shows variants and their resulting time series</p>
+<h4 id="example-3-shows-variants-and-their-resulting-time-series">Example 3: Shows variants and their resulting time series</h4>
 <p>Input series:</p>
 <p><img alt="" src="../assets/images/ex_TRANSFORM-nimbustable.png" /></p>
 <p>Uses conversion from quarter to hour resolution:</p>
@@ -723,7 +723,7 @@ standard calendar units, e.g. 3 hours, 10 days, etc.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="example_1">Example</h3>
+<h3 id="example">Example</h3>
 <p>If you want to create an 8 hour accumulation for a time series you may do like
 this:</p>
 <p>Create time mask series defining accumulation points of time:</p>
@@ -760,7 +760,7 @@ number of seconds in the period.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="example_2">Example</h3>
+<h3 id="example_1">Example</h3>
 <p>If d is defined as the value 864000 this means a period of 10 days
 (60<em>60</em>24*10). The result is a break point series.</p>
 <h2 id="transformt-s-s-s">TRANSFORM(t, s, s, s)</h2>
@@ -800,7 +800,7 @@ from the rest of the environment.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="example_3">Example</h3>
+<h3 id="example_2">Example</h3>
 <p>If you wish to calculate the DAY average on every hour of the day with Daylight
 Saving Time (DST), you can make an expression like this:</p>
 <pre><code>@TRANSFORM(@TRANSFORM(@t(‘HourSeries’), 'DAY', 'AVG', 'LT'), 'HOUR', 'AVG')

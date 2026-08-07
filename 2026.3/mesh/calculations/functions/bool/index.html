@@ -503,7 +503,6 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="bool">BOOL</h1>
-<h2 id="about-the-function">About the function</h2>
 <p>This function converts expressions to purely logical values, i.e. <code>1</code> for true
 and <code>0</code> for false.</p>
 <p>In general, all the values in the input are converted to true (even zeroes), and
@@ -518,6 +517,7 @@ resolution as the input time series.</p>
 <li>BOOL(d)</li>
 <li>BOOL(t,d[,s])</li>
 </ul>
+<h2 id="description">Description</h2>
 <table>
 <thead>
 <tr>
@@ -546,7 +546,7 @@ resolution as the input time series.</p>
 </table>
 <p><img alt="" src="../assets/images/ex_BOOL-nimbustable1.png" /></p>
 <h2 id="examples">Examples</h2>
-<h3 id="example-1">Example 1:</h3>
+<h3 id="example-1-boold">Example 1: @BOOL(d)</h3>
 <pre><code>@BOOL(d)
 @BOOL(NaN) Returns 0.
 @BOOL(0) Returns 1.

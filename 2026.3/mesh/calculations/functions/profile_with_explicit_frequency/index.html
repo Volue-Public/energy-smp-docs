@@ -507,9 +507,8 @@
 time resolution to another.</p>
 <p>To get an overview of all the variants of the function, see:</p>
 <p><a href="../transform_what_when/">Which functions can be used when?</a></p>
-<h6 id="r13">R13</h6>
-<h2 id="about-the-function">About the function</h2>
-<p>This is a function that calculates a time series by doing repeating an input
+<h2 id="r13">R13</h2>
+<p>This is a function that calculates a time series by repeating an input
 series segment to cover requested time period. Values found on input series are
 moved into requested calculation period on a calendar based manner, i.e. values
 from a Tuesday in a weekly repetition are found on Tuesdays in requested time
@@ -519,11 +518,11 @@ indicates.</p>
 <p>This function is closely related to <a href="../profile/#r12">R12</a>, which only takes
 one argument; the input time series. In this case the function derives a
 repetition frequency from physical value period found on source series.</p>
-<h2 id="syntax">Syntax</h2>
+<h3 id="syntax">Syntax</h3>
 <ul>
 <li>PROFILE(t,s)</li>
 </ul>
-<p><strong>Description</strong></p>
+<h3 id="description">Description</h3>
 <table>
 <thead>
 <tr>
@@ -555,7 +554,7 @@ this series.</p>
 input series. If frequency indicates a span that is narrower than time span on
 input series, then values from first segment are repeated into requested time
 span.</p>
-<h2 id="example">Example</h2>
+<h3 id="example">Example</h3>
 <p>Some examples are cited below:</p>
 <p>Result1 = @PROFILE(@t(‘TsInputBrP’),'WEEK')</p>
 <p>Result2 = @PROFILE(@t(‘TsInput2’),'DAY')</p>
@@ -571,7 +570,6 @@ values located in first week of 2007. A calculation request for period
 that cover the year 2007. A calculation request for period 19-02-2004 to
 22-02-2004 will get three values from source series starting with value from
 19-02-2007.</p>
-<p>This generates a pseudorandom number.</p>
               
             </div>
           </div><footer>

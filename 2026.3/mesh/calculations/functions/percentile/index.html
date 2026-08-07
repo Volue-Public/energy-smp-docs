@@ -502,16 +502,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="percentile">PERCENTILE</h2>
-<p><strong>About the function</strong></p>
+                <h1 id="percentile">PERCENTILE</h1>
 <p>Calculates percentiles based on one time series or an array of time series.</p>
-<p>Syntax1</p>
+<h2 id="percentiletdddss">PERCENTILE(t,d,d,d[,s,[,s]])</h2>
+<h3 id="syntax">Syntax</h3>
 <ul>
 <li>PERCENTILE(t,d,d,d[,s,[,s]])</li>
 </ul>
 <p>It takes one series as argument and history from year and to year as second and
 third argument.</p>
-<h2 id="description">Description</h2>
+<h3 id="description">Description</h3>
 <table>
 <thead>
 <tr>
@@ -560,7 +560,7 @@ third argument.</p>
 </tr>
 </tbody>
 </table>
-<p>Example 1</p>
+<h3 id="example-1">Example 1</h3>
 <p><code>## = @PERCENTILE (@t('Temperature_hour_operative'),2000,2010,100)</code></p>
 <p>If the number of observations (time series) do not correspond to the required
 percentile, the percentile is calculated by linearization between previous and
@@ -575,9 +575,11 @@ P100. The result takes the P50 values for each time step from year 2000 to year
 2010.</p>
 <p>If we ask for the 75% percentile, the function interpolates between the values
 for P70 and P80.</p>
-<p>Syntax2</p>
+<h2 id="percentiletdss">PERCENTILE(T,d[,s[,s]])</h2>
+<h3 id="syntax_1">Syntax</h3>
 <p>PERCENTILE(T,d[,s[,s]])</p>
 <p>It takes an array of time series as an argument.</p>
+<h3 id="description_1">Description</h3>
 <table>
 <thead>
 <tr>
@@ -609,24 +611,24 @@ for P70 and P80.</p>
 </tr>
 </tbody>
 </table>
-<p>Example 2</p>
+<h3 id="example-2">Example 2</h3>
 <p><code>## = @PERCENTILE(@T('AreaTemperature'),100,'BY_SUM')</code></p>
 <p>The result will be equal to the time series with the highest sum for the
 requested period, i.e. Ensemble03 (P100).</p>
 <p><img alt="" src="../assets/images/ex_percentile2.png" /></p>
-<p>Example 3</p>
+<h3 id="example-3">Example 3</h3>
 <p><code>## = @PERCENTILE(@T('AreaTemperature'),100,'SCALED_MEAN_BY_SUM')</code></p>
 <p>The result will be equal to the time series with the highest sum for the
 requested period, i.e. Ensemble03 (P100). This is scaled by the factor
 SumMean/IndexTimeSeriesMean.</p>
 <p><img alt="" src="../assets/images/ex_percentile3.png" /></p>
-<p>Example 4</p>
+<h3 id="example-4">Example 4</h3>
 <p><code>## = @PERCENTILE(@T('AreaTemperature'),100,'SCALED_BY_SUM')</code></p>
 <p>The result will be equal to the max value for each time step scaled with a
 factor. The factor is found by taking the sum for the time series with
 percentile index P100, divided by the sum for the max value time series.</p>
 <p><img alt="" src="../assets/images/ex_percentile4.png" /></p>
-<h3 id="methods">Methods</h3>
+<h2 id="methods">Methods</h2>
 <p>Method BY_SUM:</p>
 <ul>
 <li>Sums each single time series included in the function and finds the percentile index based on the established sums. As a consequence, this method always returns a result equal to one of the series defined in the input data with percentile index ≤ the required percentile in the function.</li>

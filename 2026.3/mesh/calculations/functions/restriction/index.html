@@ -503,22 +503,21 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="restriction">Restriction</h1>
-<h3 id="about-the-function">About the function</h3>
 <p>This function generates a time series from the Restriction events associated
 with this element, filtered on Category and Status. The value at a given time
 will be chosen from the relevant event(s), using a strategy decided by the user.
 When there are no events, the value will be a default value provided by the
 user.</p>
 <p>For more information about generating time series from restrictions/revisions,
-see the help for the <strong>Smart Power Apps</strong> module <strong>Availability Planner</strong>.**</p>
-<p><em>Note!</em>** The generated time series will per default be a breakpoint time
+see the help for the <strong>Smart Power Apps</strong> module <strong>Availability Planner</strong>.</p>
+<p><strong>Note!</strong> The generated time series will per default be a breakpoint time
 series, unless an explicit transformation to a fixed interval is specified in
 the time series calculation.</p>
-<h3 id="syntax">Syntax</h3>
+<h2 id="syntax">Syntax</h2>
 <ul>
 <li>Restriction(s, s, [d/t], s, (s))</li>
 </ul>
-<h3 id="description">Description</h3>
+<h2 id="description">Description</h2>
 <table>
 <thead>
 <tr>
@@ -555,7 +554,7 @@ the time series calculation.</p>
 </tr>
 </tbody>
 </table>
-<p>Merge functions</p>
+<h3 id="merge-functions">Merge functions</h3>
 <table>
 <thead>
 <tr>
@@ -590,8 +589,8 @@ the time series calculation.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="examples">Examples</h3>
-<p><code>``@Restriction('DischargeMin[m3/s]', 'Licensed', @d('.DischargeDefault'),'Maximum')</code></p>
+<h2 id="examples">Examples</h2>
+<p><code>@Restriction('DischargeMin[m3/s]', 'Licensed', @d('.DischargeDefault'),'Maximum')</code></p>
 <p>Finds events with Category = 'DischargeMin[m3/s]', and Status = 'Licensed'. Uses
 these events to generate a time series. If there are more than one event at a
 time with the same status, the maximum value will be used. If there are no
@@ -608,13 +607,13 @@ such exist, otherwise it uses events from the licensed status. If there are no
 events, the value found in the attribute '.DischargeDefault' is used.</p>
 <p><strong><em>Note!</em></strong> The events are found on the object using the link relations
 to_HydroPlant.</p>
-<h3 id="possible-statuses">Possible statuses</h3>
+<h2 id="possible-statuses">Possible statuses</h2>
 <p>This is a list of the possible statuses that can be used:</p>
 <ul>
 <li>Licensed (used as the main restriction)</li>
 <li>SelfImposed (used as the exception of the main restriction)</li>
 </ul>
-<h3 id="possible-categories">Possible categories</h3>
+<h2 id="possible-categories">Possible categories</h2>
 <p>This is a list of the possible categories:</p>
 <ul>
 <li>DischargeMin[m3/s]</li>

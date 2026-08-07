@@ -502,21 +502,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="trans_profile">TRANS_PROFILE</h2>
+                <h1 id="trans_profile">TRANS_PROFILE</h1>
 <p>This topic describes TRANS_PROFILE variants (<a href="#r8">R8</a>, <a href="#ra8">Ra8</a>, <a href="#r9">R9</a>,
 <a href="#ra9">Ra9</a>, <a href="#r10">R10</a>, <a href="#ra10">Ra10</a>, <a href="#r11">R11</a>, <a href="#ra11">Ra11</a>) for
 transforming from one time resolution to another.</p>
 <p>To get an overview of all the transformation function variants, see:</p>
 <p><a href="../transform/">Transform group functions</a></p>
-<h3 id="r8">R8</h3>
-<h2 id="about-the-function">About the function</h2>
+<h2 id="r8">R8</h2>
 <p>Converts a time series into a finer resolution. The function uses the SUM method
 as a basis for the distribution.</p>
-<h2 id="syntax">Syntax</h2>
+<h3 id="syntax">Syntax</h3>
 <ul>
 <li>TRANS_PROFILE(t,t)</li>
 </ul>
-<h2 id="description">Description</h2>
+<h3 id="description">Description</h3>
 <table>
 <thead>
 <tr>
@@ -539,25 +538,24 @@ as a basis for the distribution.</p>
 <p><img alt="" src="../assets/images/clip_image002.png" /></p>
 <p>Vi = Value calculated for the time point i in the result time series</p>
 <p>AI = Value from the input time series for the distributed period</p>
-<p>NI = Number of valid time point to distributed the input value into</p>
+<p>NI = Number of valid time points to distribute the input value into</p>
 <p>Pi = Profile value for the time point i in the result time series</p>
 <p>MI = Calculated mean value for the profile series for the distributed period</p>
-<h2 id="example">Example</h2>
+<h3 id="example">Example</h3>
 <p><code>Profile = @TIME_MASK('HOUR',{'HOUR','HOUR+15x','HOUR+30x','HOUR+45x'},{1,2,3,2},'MIN15')</code></p>
 <p><code>Result time series = @TRANS_PROFILE(@t('Ts5'),Profile)</code></p>
 <p><strong>Note!</strong> This set up gives the same result as
 @DISTRIBUTE(@t('Ts5'),MaskSeries,Profile) where the mask series argument is true
 for all the time points.</p>
 <p><img alt="" src="../assets/images/ex_DISTRIBUTE-nimbustable6.png" /></p>
-<h3 id="ra8">Ra8</h3>
-<h2 id="about-the-function_1">About the function</h2>
+<h2 id="ra8">Ra8</h2>
 <p>Same as <a href="#r8">R8</a>, but with absolute handling of the profile. The profile can be
 scaled using a scaling factor, defined as first argument.</p>
-<h2 id="syntax_1">Syntax</h2>
+<h3 id="syntax_1">Syntax</h3>
 <ul>
 <li>TRANS_PROFILE(d,t,t)</li>
 </ul>
-<h2 id="description_1">Description</h2>
+<h3 id="description_1">Description</h3>
 <table>
 <thead>
 <tr>
@@ -588,28 +586,27 @@ scaled using a scaling factor, defined as first argument.</p>
 <p><img alt="" src="../assets/images/image25.gif" /></p>
 <p>K is a scaling factor coming from argument 1 in the function. The other symbols
 used in the formula are the same as described in <a href="#r8">R8</a>.</p>
-<p>Example 1</p>
+<h3 id="example-1">Example 1</h3>
 <p><code>Profile = @TIME_MASK('HOUR',{'HOUR','HOUR+15x','HOUR+30x','HOUR+45x'},{1,2,3,2},'MIN15')</code></p>
 <p><code>Result time series = @TRANS_PROFILE(1,@t('Ts5'),Profile)</code></p>
 <p><strong>Note!</strong> This set up gives the same result as
 @DISTRIBUTE(1,@t('Ts5'),MaskSeries,Profile) where the mask series argument is
 true for all the time points.</p>
 <p><img alt="" src="../assets/images/ex_TRANS_PROFILE-nimbustable.png" /></p>
-<p>Example 2</p>
+<h3 id="example-2">Example 2</h3>
 <p><code>Profile = @TIME_MASK('HOUR',{'HOUR','HOUR+15x','HOUR+30x','HOUR+45x'},{1,2,3,2},'MIN15')</code></p>
 <p><code>Result time series = @TRANS_PROFILE(10,@t('Ts5'),Profile)</code></p>
 <p><strong>Note!</strong> This set up gives the same result as
 @DISTRIBUTE(10,@t('Ts5'),MaskSeries,Profile) where the mask series argument is
 true for all the time points.</p>
-<h3 id="r9">R9</h3>
-<h2 id="about-the-function_2">About the function</h2>
+<h2 id="r9">R9</h2>
 <p>Same as the function <a href="#r8">R8</a>, but with an extra argument deciding distribution
 method.</p>
-<h2 id="syntax_2">Syntax</h2>
+<h3 id="syntax_2">Syntax</h3>
 <ul>
 <li>TRANS_PROFILE(t,t,s)</li>
 </ul>
-<h2 id="description_2">Description</h2>
+<h3 id="description_2">Description</h3>
 <table>
 <thead>
 <tr>
@@ -643,15 +640,14 @@ method.</p>
 <p>MI = Calculated mean value for the profile series for the distributed period</p>
 <p>If the value on the input data series is 0, the value is calculated like this:</p>
 <p>Vi = Pi - MI</p>
-<h3 id="ra9">Ra9</h3>
-<h2 id="about-the-function_3">About the function</h2>
+<h2 id="ra9">Ra9</h2>
 <p>Same as <a href="#r9">R9</a>, but with absolute handling of the profile. The profile can be
 scaled using a scaling factor, defined in argument 1.</p>
-<h2 id="syntax_3">Syntax</h2>
+<h3 id="syntax_3">Syntax</h3>
 <ul>
 <li>TRANS_PROFILE(d,t,t,s)</li>
 </ul>
-<h2 id="description_3">Description</h2>
+<h3 id="description_3">Description</h3>
 <table>
 <thead>
 <tr>
@@ -687,14 +683,13 @@ scaled using a scaling factor, defined in argument 1.</p>
 <p><img alt="" src="../assets/images/image27.gif" /></p>
 <p>K is a scaling factor coming from argument 1 in the function. The other symbols
 used in the formula are the same as described in <a href="#r9">R9</a>.</p>
-<h3 id="r10">R10</h3>
-<h2 id="about-the-function_4">About the function</h2>
+<h2 id="r10">R10</h2>
 <p>Same as <a href="#r8">R8</a> but uses a mask series in argument 3.</p>
-<h2 id="syntax_4">Syntax</h2>
+<h3 id="syntax_4">Syntax</h3>
 <ul>
 <li>TRANS_PROFILE(t,t,t)</li>
 </ul>
-<h2 id="description_4">Description</h2>
+<h3 id="description_4">Description</h3>
 <table>
 <thead>
 <tr>
@@ -725,21 +720,20 @@ used in the formula are the same as described in <a href="#r9">R9</a>.</p>
 <p><img alt="" src="../assets/images/image28.gif" /></p>
 <p>Vi = Value calculated for the time point i in the result time series</p>
 <p>AI = Value from the input time series for the distributed period</p>
-<p>NI = Number of valid time point to distributed the input value into</p>
+<p>NI = Number of valid time points to distribute the input value into</p>
 <p>Pi = Profile value for the time point i in the result time series</p>
 <p>MI = Calculated mean value for the profile series for the distributed period</p>
 <p>If the value on the input data series is 0, the value is calculated like this:</p>
 <p>Vi= Pi- MI</p>
 <p>See also <a href="../distribute/#r7">R7</a> that offers the same functionality.</p>
-<h3 id="ra10">Ra10</h3>
-<h2 id="about-the-function_5">About the function</h2>
+<h2 id="ra10">Ra10</h2>
 <p>Same as <a href="#r10">R10</a>, but with absolute handling of profile. The profile can be
 scaled using a scaling factor defined in argument 1.</p>
-<h2 id="syntax_5">Syntax</h2>
+<h3 id="syntax_5">Syntax</h3>
 <ul>
 <li>TRANS_PROFILE(d,t,t,t)</li>
 </ul>
-<h2 id="description_5">Description</h2>
+<h3 id="description_5">Description</h3>
 <table>
 <thead>
 <tr>
@@ -775,16 +769,15 @@ scaled using a scaling factor defined in argument 1.</p>
 <p><img alt="" src="../assets/images/image29.gif" /></p>
 <p>K is a scaling factor coming from argument 1 in the function. The other symbols
 used in the formula are the same as described in <a href="#r10">R10</a>.</p>
-<h3 id="r11">R11</h3>
-<h2 id="about-the-function_6">About the function</h2>
+<h2 id="r11">R11</h2>
 <p>Same function as <a href="#r10">R10</a>, but with an extra argument deciding distribution
 method. Valid values are 'MEAN', 'AVERAGE' or 'SUM'. The last value gives the
 exact same result as <a href="#r10">R10</a>.</p>
-<h2 id="syntax_6">Syntax</h2>
+<h3 id="syntax_6">Syntax</h3>
 <ul>
 <li>TRANS_PROFILE(t,t,t,s)</li>
 </ul>
-<h2 id="description_6">Description</h2>
+<h3 id="description_6">Description</h3>
 <table>
 <thead>
 <tr>
@@ -825,15 +818,14 @@ this:</p>
 <p>MI = Calculated mean value for the profile series for the distributed period</p>
 <p>If the value on the input data series is 0, the value is calculated like this:</p>
 <p>Vi = Pi - MI</p>
-<h3 id="ra11">Ra11</h3>
-<h2 id="about-the-function_7">About the function</h2>
+<h2 id="ra11">Ra11</h2>
 <p>Same as <a href="#r11">R11</a>, but with absolute handling of profile. The profile can be
 scaled using a scaling factor, defined in argument 1.</p>
-<h2 id="syntax_7">Syntax</h2>
+<h3 id="syntax_7">Syntax</h3>
 <ul>
 <li>TRANS_PROFILE(d,t,t,t,s)</li>
 </ul>
-<h2 id="description_7">Description</h2>
+<h3 id="description_7">Description</h3>
 <table>
 <thead>
 <tr>

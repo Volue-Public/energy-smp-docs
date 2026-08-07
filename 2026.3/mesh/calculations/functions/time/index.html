@@ -503,7 +503,6 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="time">Time</h1>
-<h2 id="about-the-function">About the function</h2>
 <p>Interprets a time specification given as a symbol (a character string) and
 returns a time point. The time point is defined as a number. The number is ticks
 as defined in Microsoft .Net.</p>
@@ -525,7 +524,7 @@ as defined in Microsoft .Net.</p>
 <tr>
 <td>1</td>
 <td>s</td>
-<td>Time specification. Accepted values: <ul><li>Start of the requested period/StartOfPeriod: SOP</li><li>End of the requested period/EndOfPeriod: EOP</li><li>Specific time: 20120326000000000</li></li>Time macro: YEAR+1d, +1h , UTC20150222 . </li></ul></td>
+<td>Time specification. Accepted values: <ul><li>Start of the requested period/StartOfPeriod: SOP</li><li>End of the requested period/EndOfPeriod: EOP</li><li>Specific time: 20120326000000000</li><li>Time macro: YEAR+1d, +1h , UTC20150222 . </li></ul></td>
 </tr>
 <tr>
 <td>2</td>
@@ -539,7 +538,7 @@ point combined with the result of the <a href="../timespan/">TimeSpan</a> functi
 also be used as argument to functions accepting a time point as number.</p>
 <p>You can convert a time point back to a time specification string by using the
 <a href="../time_to_string/">TimeToString</a> function.</p>
-<p>Example using both Time and TimeSpan functions</p>
+<h2 id="example-using-both-time-and-timespan-functions">Example using both Time and TimeSpan functions</h2>
 <pre><code>TimeWindow = @TimeSpan('HOUR') * @d('GlidingInterval')
 @PushExtPeriod('X', @Time('SOP')-TimeWindow, @Time('EOP')+ TimeWindow)
 Source = @t('Waterlevel_hour_ManualCorrection')

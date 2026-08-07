@@ -503,7 +503,6 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="mix0">MIX0</h1>
-<h2 id="about-the-function">About the function</h2>
 <p>Construct a new time series as follows: given two or more fixed-interval time series,
 for each time period select the first existing value different from zero.
 If all the input values are zero, the result value is zero. If all the input values
@@ -514,8 +513,8 @@ are missing, the result value is also missing.</p>
 <li>MIX0(T)</li>
 </ul>
 <p>The time series are fixed interval series, i.e. hour, day, week, etc.</p>
-<h2 id="example">Example</h2>
-<p>Example 1: @MIX0(t,t)</p>
+<h2 id="examples">Examples</h2>
+<h3 id="example-1-mix0tt">Example 1: @MIX0(t,t)</h3>
 <p>Given two objects called <code>NO1</code> and <code>NO2</code> with a time series attribute
 called <code>Income</code>, we can have the following:</p>
 <pre><code>income1 = @t('../*[.Name=NO1].Income')
@@ -524,7 +523,7 @@ income2 = @t('../*[.Name=NO2].Income')
 ## = @MIX0(income1, income2)
 </code></pre>
 <p><img alt="" src="../assets/images/ex_MIX0-Nimbustable1.png" /></p>
-<p>Example 2: @MIX0(T)</p>
+<h3 id="example-2-mix0t">Example 2: @MIX0(T)</h3>
 <p>Here we have an array holding three <code>Income</code> time series:</p>
 <pre><code>array = {@t('../*[.Name=NO1].Income'), @t('../*[.Name=NO2].Income'), @t('../*[.Name=NO3].Income')}
 

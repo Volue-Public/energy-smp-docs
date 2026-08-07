@@ -502,13 +502,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="correctconstantvalue">CorrectConstantValue</h2>
-<p><strong>About the function</strong></p>
+                <h1 id="correctconstantvalue">CorrectConstantValue</h1>
 <p>Corrects errors on a previously validated time series with a specified constant
 value. Values with correction using constant value are set to corrected and
 marked with <strong>C01</strong>, meaning correction method 1. You can see this code if you
 turn on value information in Nimbus.</p>
-<p><strong>Syntax</strong></p>
+<h2 id="syntax">Syntax</h2>
 <ul>
 <li>CorrectConstantValue(t,d)</li>
 </ul>
@@ -534,7 +533,7 @@ turn on value information in Nimbus.</p>
 </tr>
 </tbody>
 </table>
-<p><strong>Example</strong></p>
+<h2 id="example">Example</h2>
 <p><code>Waterlevel_hour_VEE = @CorrectConstantValue(@ValidateAbsLimit(@t('Waterlevel_hour_raw'),207,210),208)</code></p>
 <p>This example validates the time series using absolute limits. Any errors found
 are replaced by 208.</p>

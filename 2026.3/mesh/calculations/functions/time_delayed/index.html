@@ -502,12 +502,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="timedelayed">TimeDelayed</h2>
-<h3 id="about-this-function">About this function</h3>
+                <h1 id="timedelayed">TimeDelayed</h1>
 <p>This function uses an <a href="../../../concepts/modelling/xy-sets/">XY set</a> to calculate a time-delayed output based on an input time series. A typical use case is simulating how water discharge at one point arrives downstream over time: a sudden increase in flow does not appear instantly at the output; instead, it spreads out over several time steps, with some fractions arriving early and the rest arriving progressively later.</p>
 <p>The function takes each value in the input time series and distributes it forward in time according to a delay distribution curve stored in the XY set.</p>
 <p><strong><em>Note!</em></strong> The distribution preserves the total volume; i.e. volume in equals volume out. When several input values contribute to the same output time step, their delayed contributions are summed, which can produce transient peaks or dips in the output (e.g., when a fast-flow "front" catches up with the tail of an earlier slow-flow period).</p>
-<h4 id="the-xy-set">The XY set</h4>
+<h3 id="the-xy-set">The XY set</h3>
 <table>
 <thead>
 <tr>
@@ -534,7 +533,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="how-the-calculation-works">How the calculation works</h4>
+<h3 id="how-the-calculation-works">How the calculation works</h3>
 <p>For each time step <code>i</code> in the input series:</p>
 <ol>
 <li>Read the input value <code>v</code> at time step <code>i</code>.</li>
@@ -543,17 +542,17 @@
 <li>For each pair, add <code>v * fraction</code> to the output at time step <code>i + offset</code>.</li>
 </ol>
 <p><code>NaN</code> values in the input are treated as 0 (they produce no delayed contribution).</p>
-<h3 id="syntax">Syntax</h3>
+<h2 id="syntax">Syntax</h2>
 <ul>
 <li>TimeDelayed(t,s)</li>
 </ul>
-<h3 id="description">Description</h3>
+<h2 id="description">Description</h2>
 <table>
 <thead>
 <tr>
 <th>#</th>
 <th>Type</th>
-<th>## Description</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -569,9 +568,9 @@
 </tr>
 </tbody>
 </table>
-<h4 id="example-table">Example table</h4>
+<h3 id="example-table">Example table</h3>
 <p><img alt="" src="../assets/images/TimeDelayed_Example.png" /></p>
-<h4 id="example">Example</h4>
+<h2 id="example">Example</h2>
 <p>Given an input value of exactly 20 at time <code>t</code> and an XY curve for the Z = 20 segment, the value is distributed as follows:</p>
 <ul>
 <li>At <code>t</code> + 4h: 20 * 0.02 = 0.40</li>
@@ -581,10 +580,10 @@
 <li>At <code>t</code> + 8h: 20 * 0.01 = 0.20</li>
 </ul>
 <p>(The percentages sum to 100%, preserving total volume)</p>
-<h4 id="usage">Usage</h4>
+<h2 id="usage">Usage</h2>
 <pre><code>DelayedFlow = @TimeDelayed(@t('.FlowTimeSeries'), '.FlowDelayXySetAttributeName')
 </code></pre>
-<h4 id="worked-example-with-constant-and-changing-flow">Worked example with constant and changing flow</h4>
+<h2 id="worked-example-with-constant-and-changing-flow">Worked example with constant and changing flow</h2>
 <p>The table below shows the function applied to an hourly time series that has values of 20 for some time, then steps up to 30, and finally steps back down to 20.</p>
 <table>
 <thead>
