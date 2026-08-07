@@ -60,7 +60,7 @@ message is created in SmG Event Log:
 ```
 InflowSource = @t('.Inflow')
 TransformHour = @TRANSFORM(InflowSource,'HOUR','AVG')
-InflowAccumulated = @ACCUMULATE(0, '+0h'),TransformHour)* (3600/1000000)
+InflowAccumulated = @ACCUMULATE(0, '+0h', TransformHour) * (3600/1000000)
 AccumulatedDeviation= (@MAX(InflowAccumulated)-@MAX(@t('.Inflow_accumulated_version')))/@MAX(InflowAccumulated)
 IF @ABS(AccumulatedDeviation) > 0.1 THEN
   @PDLOG(1010,'Inflow forecast deviates on time series,$path, period start $start, period end $end ', InflowSource)

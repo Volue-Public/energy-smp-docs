@@ -21,7 +21,7 @@ value, which means the size of the time window. If a smooth curve is required,
 
 The value for each time step using the gliding interval 3, is calculated by
 summarizing the previous value, the current value and the next value, divided by
-3. Se example:). Selects the time step 01.07.14 05:00:
+3. See the example, selecting the time step 01.07.14 05:00:
 
 04:00 = 18.00
 

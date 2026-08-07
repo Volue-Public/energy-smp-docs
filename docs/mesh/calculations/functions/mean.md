@@ -51,6 +51,6 @@ time series in the array for every time step.
 
 ### Example 3: @MEAN(D)
 
-  Res = @MEAN(1,5,8,2.5,11)
+  Res = @MEAN({1,5,8,2.5,11})
 
   Res = 5.5

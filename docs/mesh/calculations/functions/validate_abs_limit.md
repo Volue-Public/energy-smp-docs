@@ -15,7 +15,7 @@ method 1. You can see this code if you turn on value information in Nimbus.
 |---|---|---|
 | 1 | t | Time series to validate. |
 | 2 | t d | Time series for lower limit. Numerical value for lower limit. |
-| 3 | t d | Time series for upper limit. Numerical value for lower limit. |
+| 3 | t d | Time series for upper limit. Numerical value for upper limit. |
 
 ## Examples
 

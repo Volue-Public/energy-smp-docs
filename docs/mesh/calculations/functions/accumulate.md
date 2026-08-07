@@ -131,7 +131,7 @@ displayed in the blue curve:
   ![](assets/images/ex_accumulate3.png)
 
 In the following example from Nimbus, the presentation starts later in the year
-than in the previous example. The start value (tsstar) is displayed in the blue
+than in the previous example. The start value (tstart) is displayed in the blue
 chart:
 
   ![](assets/images/ex_accumulate4.png)

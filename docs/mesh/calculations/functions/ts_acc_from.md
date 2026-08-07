@@ -48,11 +48,11 @@ Calculated with the following values: yi-1(t)=abo_t3, xi-+d-1(t) =abo_t1, A=1,
 B=0. Values from the x-series is taken from the previous time step.
 
 Result is shown in column 3 of the table. For instance, the result in row 5 is
-calculated from values 234+6 i column 1 and 2, row 4.
+calculated from values 234+6 in column 1 and 2, row 4.
 
 ### Example 2: @TS_ACC_FROM(t,t,d,d,d)
 ```
-@TS_ACC_FROM>(%'abo_t2',%'abo_t1',1,0,1)
+@TS_ACC_FROM(%'abo_t2',%'abo_t1',1,0,1)
 ```
 
 Calculated with the following values: yi(t)=abo_t2, xi+d-1(t) =abo_t1, A=1, B=0.

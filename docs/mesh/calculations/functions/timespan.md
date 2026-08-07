@@ -1,6 +1,6 @@
 ﻿# TimeSpan
 
-The function transform its argument to a time span represented as a number.
+The function transforms its argument to a time span represented as a number.
 
 ## Syntax
 - TimeSpan(s)

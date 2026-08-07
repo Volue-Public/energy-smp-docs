@@ -36,7 +36,7 @@ Unless the repeat frequency is 'NONE', the time points specified are moved and r
 
 See [time macro specification](../timepoint-macros.md).
 
-This figure illustrate the implemented algorithm to convert arguments into a time series.
+This figure illustrates the implemented algorithm to convert arguments into a time series.
 
 ![Time mask concept figure](assets/images/time-mask-concept.png)
 
@@ -140,7 +140,7 @@ Daylight Saving Time (DST) definition applied.
 
 We can observe that the values provided are repeated daily.
 
-Switching to a request inside inside a DST period, still gives the same result.
+Switching to a request inside a DST period, still gives the same result.
 
 `##=@TIME_MASK('DAY', {'DAY+07h', 'DAY+10h', 'DAY+14h','DAY+18h'}, {1,2,3,4},'VARINT')`
 
@@ -171,7 +171,7 @@ Switching to a request inside inside a DST period, still gives the same result.
 The time points are now interpreted as UTC time points and 'DAY+07h' with associated value 1.0 is
 found in the result series at '2022-01-01T07:00:00Z' and '2022-01-02T07:00:00Z'.
 
-Switching to a request inside inside a DST period and using zone `LT` - local zone with DST enabled.
+Switching to a request inside a DST period and using zone `LT` - local zone with DST enabled.
 
 `Result = @TIME_MASK('DAY<LT>', {'DAY+07h', 'DAY+10h', 'DAY+14h','DAY+18h'}, {1,2,3,4},'VARINT')`
 

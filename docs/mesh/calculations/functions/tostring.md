@@ -19,8 +19,8 @@ string.
 
 Double attribute named 'Factor' has a numerical value 2.756.
 
-`@ToString(@d('.Factor')`  returns "2"
+`@ToString(@d('.Factor'))`  returns "2"
 
-`@ToString(@d('.Factor',1)` returns "2.7"
+`@ToString(@d('.Factor'),1)` returns "2.7"
 
-`@ToString(@d('.Factor',2)` returns "2.75"
+`@ToString(@d('.Factor'),2)` returns "2.75"

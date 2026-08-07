@@ -27,7 +27,7 @@ time series.
 |---|---|
 | novalue | No value |
 | notok | Not ok |
-| suspect | Value with status supect |
+| suspect | Value with status suspect |
 | manual | Includes both manually changed and estimated values |
 | MANUAL | Only manually changed |
 | estimated | Only manually estimated |

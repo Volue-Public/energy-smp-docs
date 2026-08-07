@@ -1,4 +1,4 @@
-﻿# LOG
+# LOG
 
 This function is used to find the logarithm of values in a time series or a
 number.
@@ -6,7 +6,9 @@ number.
 Briggs logarithms use the base number 10. The logarithm to a number x, is the
 exponent c, which the base number must be raised with to get the number x.
 
-10c = x -> log x10 = c
+$$
+10^c = x \leftrightarrow \log x = c
+$$
 
 The input value must be a positive number larger than 0. If not, the function
 returns an empty value.
@@ -14,6 +16,8 @@ returns an empty value.
 ## Syntax
 
 - LOG(t|d)
+
+## Description
 
 | # | Type | Description |
 |---|---|---|

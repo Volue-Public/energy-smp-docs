@@ -8,7 +8,7 @@ To get an overview of all the variants of the function, see:
 
 ## R13
 
-This is a function that calculates a time series by doing repeating an input
+This is a function that calculates a time series by repeating an input
 series segment to cover requested time period. Values found on input series are
 moved into requested calculation period on a calendar based manner, i.e. values
 from a Tuesday in a weekly repetition are found on Tuesdays in requested time
@@ -67,5 +67,3 @@ In example 3 the input series could be a day resolution series that have values
 that cover the year 2007. A calculation request for period 19-02-2004 to
 22-02-2004 will get three values from source series starting with value from
 19-02-2007.
-
-This generates a pseudorandom number.
