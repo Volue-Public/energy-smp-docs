@@ -1,0 +1,41 @@
+@startuml AutoPilot-overview
+title Overview of ScadaGateway - AutoPilot installation
+cloud TSO #Pink
+rectangle Scada #LightGray {
+  component "Scada\nSystem" as ScadaSystem #LightGreen
+}
+rectangle "Volue solution" as Volue #LightGrey {
+  component "ScadaGateway\n     AutoPilot" as AutoPilot
+  database "\n  Mesh /\nSmG DB\n" as Mesh
+  component Export
+  component "    Ack\nReceiver" as AckReceiver
+  component Optimisation
+  queue "ProdPlan\n   input" as PPinput #LightBlue 
+  queue "ProdPlan\nresponse" as PPresponse #LightBlue
+  queue "ActPlan\n  input" as ARinput #LightBlue
+  queue "ActPlan\nresponse" as ARresponse #LightBlue
+}
+rectangle "Generis solution" as Generis #Pink {
+  component "Activation\n Request" as ActivationRequest
+}
+Optimisation -r-> Mesh : Production\nplan ts
+Mesh -r-> Export 
+Export --> PPinput #Blue : Production\nplan msg
+TSO -l-> ActivationRequest : Activation\nrequest msg
+ActivationRequest --> ARinput #Blue : Activation\nplan msg
+ActivationRequest --> Mesh #Green : Activation plan ts
+ARinput --> AutoPilot #Blue
+PPinput --> AutoPilot #Blue
+AutoPilot .u.> PPresponse #Blue
+AutoPilot .u.> ARresponse #Blue
+ARresponse ..> ActivationRequest #Blue
+ActivationRequest .r.> TSO : Activation\nresponse msg
+PPresponse .u.> AckReceiver #Blue : Production\nplan ack
+AckReceiver .l.> Mesh : \n\nUpdate export state
+AutoPilot -r-> ScadaSystem : Set-points\nusing ICCP
+Export -[hidden]r-> AckReceiver
+AckReceiver -[hidden]r-> ActivationRequest
+PPinput -[hidden]r-> PPresponse
+PPresponse -[hidden]r-> ARinput
+ARinput -[hidden]r-> ARresponse
+@enduml

@@ -181,6 +181,10 @@ nav:
           - Macros: timeseries-reports/macros.md
           - Sorted layout: timeseries-reports/sort_contents.md
     - Scada integrations:
+      - Scada Gateway:
+        - Changelog: scada-integration/scadagw/releases.md
+        - Installation and configuration guide: scada-integration/scadagw/scadagw-installation-and-configuration-guide.md
+        - Message examples: scada-integration/scadagw/scadagw-message-examples.md
       - ScadaEx:
         - Changelog: scada-integration/scadaex/releases.md
         - User guide: scada-integration/scadaex/scadaex-user-guide.md
