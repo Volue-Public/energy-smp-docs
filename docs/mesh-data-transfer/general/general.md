@@ -4,6 +4,35 @@ The _Mesh Data Transfer_ service enables users to perform time series and availa
 
 Mesh Data Transfer offers HTTP endpoints for creating both availability and time series export orders (used by certain Volue products, e.g. Participant, Nimbus). Imports are requested via queues (AMQP 1.0 or Azure Service Bus) and the outcomes of the import operations are sent to AMQP reply queues. The export results are stored as files or sent to an AMQP queue, depending on the configuration. Mesh Data Transfer is also responsible for saving export status to the `Message Log` (in the case of imports it is done by Mesh).
 
+## XML schema and namespaces
+
+The XML message formats used by Mesh Data Transfer are defined by [`AMQPmessageTypes.xsd`](../use-cases/xsd/AMQPmessageTypes.xsd). The schema version is part of the XML namespace, which is why the namespace URI ends in a version number. The current schema version is **v1.2**:
+
+```
+http://www.powel.com/SmE/AMQPmessageTypes/v1.2
+```
+
+### Namespaces accepted on import
+
+Mesh Data Transfer accepts all of the following namespaces on incoming import messages and treats them as equivalent:
+
+| Namespace | Status |
+| --- | --- |
+| `http://www.powel.com/SmE/AMQPmessageTypes` | Legacy, unversioned. Still accepted. |
+| `http://www.powel.com/SmE/AMQPmessageTypes/v1.0` | Still accepted. |
+| `http://www.powel.com/SmE/AMQPmessageTypes/v1.1` | Still accepted. |
+| `http://www.powel.com/SmE/AMQPmessageTypes/v1.2` | Current. Use this for new integrations. |
+
+Existing integrations do not need to change their namespace. However, only the v1.2 schema describes the most recently added fields — for example the `CreatedBy`, `LastChangedBy` and `CreatedTime` attributes on availability events — so validate against v1.2 if you want to use them.
+
+The reply message uses the same namespace as the request it answers. If you send a request in the unversioned namespace, the reply is returned in the unversioned namespace.
+
+### Namespace used on export
+
+For the Standard export protocol, the namespace of the exported message is controlled by the `Storage:StoragePerProtocol:StdExport:SchemaVersion` configuration setting. The accepted values are `1.0` (the default) and `1.1`, so exported messages carry `.../v1.0` or `.../v1.1` — not `.../v1.2`. This is why the examples in [Export of time series values](../use-cases/export-of-time-series-values-using-mdt.md) show a `v1.0` namespace while the import examples show `v1.2`.
+
+Apart from the version in the namespace URI, and the optional fields added in later versions, the message structure is unchanged across these versions.
+
 ## Usage
 
 ### API Documentation (Swagger)

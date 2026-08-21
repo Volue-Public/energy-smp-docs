@@ -3,7 +3,9 @@
 This document describes how time series values can be imported into Mesh using Mesh Data Transfer and AMQP messages in the
 Mesh standard XML format.
 
-The definition of the XML format is found in the [`AMQPmessageTypes.xsd`](./xsd/AMQPmessageTypes.xsd).
+The definition of the XML format is found in the [`AMQPmessageTypes.xsd`](./xsd/AMQPmessageTypes.xsd). The examples below use the
+current schema namespace, `http://www.powel.com/SmE/AMQPmessageTypes/v1.2`. Older namespaces are still accepted — see
+[XML schema and namespaces](../general/general.md#xml-schema-and-namespaces).
 
 - [Import of time series values using Mesh Data Transfer](#import-of-time-series-values-using-mesh-data-transfer)
   - [XML input message structure](#xml-input-message-structure)
@@ -24,7 +26,7 @@ This is an example of the structure of the XML message:
 <?xml version="1.0" encoding="utf-8"?>
 <Request xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-xmlns="http://www.powel.com/SmE/AMQPmessageTypes">
+xmlns="http://www.powel.com/SmE/AMQPmessageTypes/v1.2">
   <MessageId>12345678-1234-1234-1234-123456789012</MessageId>
   <MessageVersion>1.0.0.0</MessageVersion>
   <Sender>SenderName</Sender>
@@ -96,7 +98,7 @@ Other conventions:
 <?xml version="1.0" encoding="utf-8"?>
 <Reply xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-xmlns="http://www.powel.com/SmE/AMQPmessageTypes">
+xmlns="http://www.powel.com/SmE/AMQPmessageTypes/v1.2">
   <RequestMessageId>12345678-1234-1234-1234-123456789012</RequestMessageId>
   <MessageVersion>1.0.0.0</MessageVersion>
   <ImportSuccess>false</ImportSuccess>
@@ -123,7 +125,7 @@ When a message is successfully received and translated by Mesh Data Transfer, it
 
 ````xml
 <?xml version="1.0" encoding="utf-8"?>
-<Request xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.powel.com/SmE/AMQPmessageTypes">
+<Request xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.powel.com/SmE/AMQPmessageTypes/v1.2">
   <MessageId>12345678-1234-1234-1234-123456789012</MessageId>
   <MessageVersion>1.0.0.0</MessageVersion>
   <Sender>SenderName</Sender>
@@ -448,7 +450,7 @@ When a message is successfully received and translated by Mesh Data Transfer, it
 <?xml version="1.0" encoding="utf-8"?>
 <Reply xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-xmlns="http://www.powel.com/SmE/AMQPmessageTypes">
+xmlns="http://www.powel.com/SmE/AMQPmessageTypes/v1.2">
   <RequestMessageId>12345678-1234-1234-1234-123456789012</RequestMessageId>
   <MessageVersion>1.0.0.0</MessageVersion>
   <ImportSuccess>true</ImportSuccess>
@@ -461,7 +463,7 @@ xmlns="http://www.powel.com/SmE/AMQPmessageTypes">
 <?xml version="1.0" encoding="utf-8"?>
 <Reply xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-xmlns="http://www.powel.com/SmE/AMQPmessageTypes">
+xmlns="http://www.powel.com/SmE/AMQPmessageTypes/v1.2">
   <RequestMessageId>12345678-1234-1234-1234-123456789012</RequestMessageId>
   <MessageVersion>1.0.0.0</MessageVersion>
   <ImportSuccess>false</ImportSuccess>
