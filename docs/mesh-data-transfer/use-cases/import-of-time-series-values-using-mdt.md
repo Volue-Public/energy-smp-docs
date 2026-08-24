@@ -4,7 +4,7 @@ This document describes how time series values can be imported into Mesh using M
 Mesh standard XML format.
 
 The definition of the XML format is found in the [`AMQPmessageTypes.xsd`](./xsd/AMQPmessageTypes.xsd). The examples below use the
-current schema namespace, `http://www.powel.com/SmE/AMQPmessageTypes/v1.2`. Older namespaces are still accepted — see
+current schema namespace, `http://www.powel.com/SmE/AMQPmessageTypes/v1.2`. Older namespaces are still accepted, see
 [XML schema and namespaces](../general/general.md#xml-schema-and-namespaces).
 
 - [Import of time series values using Mesh Data Transfer](#import-of-time-series-values-using-mesh-data-transfer)
