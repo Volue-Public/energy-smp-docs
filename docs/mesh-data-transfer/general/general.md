@@ -29,7 +29,7 @@ The reply message uses the same namespace as the request it answers. If you send
 
 ### Namespace used on export
 
-For the Standard export protocol, the namespace of the exported message is controlled by the `Storage:StoragePerProtocol:StdExport:SchemaVersion` configuration setting. The accepted values are `1.0` (the default) and `1.1`, so exported messages carry `.../v1.0` or `.../v1.1` — not `.../v1.2`. This is why the examples in [Export of time series values](../use-cases/export-of-time-series-values-using-mdt.md) show a `v1.0` namespace while the import examples show `v1.2`.
+For the **Standard** export protocol, the namespace of the exported message is controlled by the `Storage:StoragePerProtocol:StdExport:SchemaVersion` configuration setting. The accepted values are `1.0` (the default) and `1.1`, so exported messages carry `.../v1.0` or `.../v1.1`, not `.../v1.2`. This is why the examples in [Export of time series values](../use-cases/export-of-time-series-values-using-mdt.md) show a `v1.0` namespace while the import examples show `v1.2`.
 
 Apart from the version in the namespace URI, and the optional fields added in later versions, the message structure is unchanged across these versions.
 
