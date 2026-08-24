@@ -4,7 +4,7 @@ This document describes how availability events can be imported into Mesh using 
 Mesh standard XML format.
 
 The definition of the XML format is found in the [`AMQPmessageTypes.xsd`](./xsd/AMQPmessageTypes.xsd). The examples below use the
-current schema namespace, `http://www.powel.com/SmE/AMQPmessageTypes/v1.2`. Older namespaces are still accepted — see
+current schema namespace, `http://www.powel.com/SmE/AMQPmessageTypes/v1.2`. Older namespaces are still accepted, see
 [XML schema and namespaces](../general/general.md#xml-schema-and-namespaces).
 
 - [Import of availability events using Mesh Data Transfer](#import-of-availability-events-using-mesh-data-transfer)
