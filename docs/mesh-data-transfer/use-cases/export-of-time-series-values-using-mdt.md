@@ -2,7 +2,10 @@
 
 This document describes how time series values can be exported from Mesh using Mesh Data Transfer and AMQP messages in the Mesh standard XML format.
 
-The definition of the XML format is found in the [`AMQPmessageTypes.xsd`](./xsd/AMQPmessageTypes.xsd).
+The definition of the XML format is found in the [`AMQPmessageTypes.xsd`](./xsd/AMQPmessageTypes.xsd), which describes the current
+schema version, v1.2. The examples below show a `v1.0` namespace because the namespace of an exported message is set by the
+`Storage:StoragePerProtocol:StdExport:SchemaVersion` configuration setting, which accepts `1.0` (the default) or `1.1`. See
+[XML schema and namespaces](../general/general.md#xml-schema-and-namespaces).
 
 Currently, when doing exports, it it necessary to define export definitions in the SmG Participant application using transfer definitions defined using the SmG Import/Export application.
 
