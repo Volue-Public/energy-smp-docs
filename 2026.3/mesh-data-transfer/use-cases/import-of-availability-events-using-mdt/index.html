@@ -541,6 +541,9 @@
                 <h1 id="import-of-availability-events-using-mesh-data-transfer">Import of availability events using Mesh Data Transfer</h1>
 <p>This document describes how availability events can be imported into Mesh using Mesh Data Transfer and AMQP messages in the
 Mesh standard XML format.</p>
+<p>The definition of the XML format is found in the <a href="../xsd/AMQPmessageTypes.xsd"><code>AMQPmessageTypes.xsd</code></a>. The examples below use the
+current schema namespace, <code>http://www.powel.com/SmE/AMQPmessageTypes/v1.2</code>. Older namespaces are still accepted, see
+<a href="../../general/general/#xml-schema-and-namespaces">XML schema and namespaces</a>.</p>
 <ul>
 <li><a href="#import-of-availability-events-using-mesh-data-transfer">Import of availability events using Mesh Data Transfer</a></li>
 <li><a href="#different-event-types-handled">Different event types handled</a></li>
@@ -588,7 +591,7 @@ reduced max production due to reduced capacity in some parts of the system.</li>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;Request xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
 xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
-xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes&quot;&gt;
+xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes/v1.2&quot;&gt;
   &lt;MessageId&gt;12345678-1234-1234-1234-123456789012&lt;/MessageId&gt;
   &lt;MessageVersion&gt;1.0.0.0&lt;/MessageVersion&gt;
   &lt;ForceAvailabilityEventCreation&gt;true&lt;/ForceAvailabilityEventCreation&gt;
@@ -631,6 +634,10 @@ successful. The found object is the object where the events are created below.</
 <li><code>EventId</code> - this is a text string that identifies the created event. This id is normally created within the
 external system that "owns" the event. When updating and delete an event, object and event id must
 match.</li>
+<li><code>CreatedBy</code> - (optional) text string that identifies the user or system that created the event. This field is stored in
+Mesh and can be used for auditing purposes.</li>
+<li><code>LastChangedBy</code> - (optional) text string that identifies the user or system that last changed the event.</li>
+<li><code>CreatedTime</code> - (optional) timestamp when the event was originally created.</li>
 <li><code>SubEvent/Status</code> - text string that identifies the status of the event. Legal values for revision events
 are:</li>
 <li><code>Proposed</code> - suggestion from Maintenance Planner.</li>
@@ -689,6 +696,10 @@ values are:</li>
 <li><code>Priority</code></li>
 <li><code>ReservoirTacticalLevelMax [m]</code></li>
 <li><code>ReservoirTacticalLevelMin [m]</code></li>
+<li><code>CreatedBy</code> - (optional) text string that identifies the user or system that created the event. This field is stored in
+Mesh and can be used for auditing purposes.</li>
+<li><code>LastChangedBy</code> - (optional) text string that identifies the user or system that last changed the event.</li>
+<li><code>CreatedTime</code> - (optional) timestamp when the event was originally created.</li>
 <li><code>SubEvent/Status</code> - text string that identifies the status of the event. Legal values for restriction events
 are:</li>
 <li><code>SelfImposed</code> - restriction is due to internal needs.</li>
@@ -716,7 +727,7 @@ match.</li>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;Reply xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
 xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
-xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes&quot;&gt;
+xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes/v1.2&quot;&gt;
   &lt;RequestMessageId&gt;12345678-1234-1234-1234-123456789012&lt;/RequestMessageId&gt;
   &lt;MessageVersion&gt;1.0.0.0&lt;/MessageVersion&gt;
   &lt;ImportSuccess&gt;false&lt;/ImportSuccess&gt;
@@ -735,7 +746,7 @@ xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes&quot;&gt;
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;Request xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
 xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
-xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes&quot;&gt;
+xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes/v1.2&quot;&gt;
   &lt;MessageId&gt;12345678-1234-1234-1234-123456789012&lt;/MessageId&gt;
   &lt;MessageVersion&gt;1.0.0.0&lt;/MessageVersion&gt;
   &lt;ForceAvailabilityEventCreation&gt;true&lt;/ForceAvailabilityEventCreation&gt;
@@ -745,7 +756,8 @@ xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes&quot;&gt;
   &lt;Inputs&gt;
     &lt;AvailabilityEvents&gt;
       &lt;RevisionEvent Path=&quot;Mode/Company/Mesh&quot; Search=&quot;*
-[.Type=Generator&amp;amp;&amp;amp;.Name=ADKOL.856]&quot; EventId=&quot;1234&quot;&gt;
+[.Type=Generator&amp;amp;&amp;amp;.Name=ADKOL.856]&quot; EventId=&quot;1234&quot;
+CreatedBy=&quot;Mesh Data Transfer&quot; CreatedTime=&quot;2021-01-01T00:00:00Z&quot;&gt;
         &lt;SubEvent Status=&quot;Planned&quot; Description=&quot;&quot; Value=&quot;1&quot;&gt;
           &lt;Frequency Start=&quot;2022-04-06T06:00:00Z&quot; End=&quot;2022-04-06T10:00:00Z&quot; /&gt;
         &lt;/SubEvent&gt;
@@ -758,7 +770,7 @@ xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes&quot;&gt;
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;Request xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
 xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
-xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes&quot;&gt;
+xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes/v1.2&quot;&gt;
   &lt;MessageId&gt;12345678-1234-1234-1234-123456789013&lt;/MessageId&gt;
   &lt;MessageVersion&gt;1.0.0.0&lt;/MessageVersion&gt;
   &lt;ForceAvailabilityEventCreation&gt;true&lt;/ForceAvailabilityEventCreation&gt;
@@ -782,7 +794,7 @@ Value=&quot;1&quot;&gt;
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;Request xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
 xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
-xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes&quot;&gt;
+xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes/v1.2&quot;&gt;
   &lt;MessageId&gt;12345678-1234-1234-1234-123456789014&lt;/MessageId&gt;
   &lt;MessageVersion&gt;1.0.0.0&lt;/MessageVersion&gt;
   &lt;ForceAvailabilityEventCreation&gt;true&lt;/ForceAvailabilityEventCreation&gt;
@@ -801,7 +813,7 @@ xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes&quot;&gt;
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;Request xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
 xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
-xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes&quot;&gt;
+xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes/v1.2&quot;&gt;
   &lt;MessageId&gt;12345678-1234-1234-1234-123456789015&lt;/MessageId&gt;
   &lt;MessageVersion&gt;1.0.0.0&lt;/MessageVersion&gt;
   &lt;ForceAvailabilityEventCreation&gt;true&lt;/ForceAvailabilityEventCreation&gt;
@@ -812,7 +824,8 @@ xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes&quot;&gt;
     &lt;AvailabilityEvents&gt;
       &lt;RestrictionEvent Path=&quot;Mode/Company/Mesh&quot; Search=&quot;*
 [.Type=Generator&amp;amp;&amp;amp;.Name=ADKOL.856]&quot; EventId=&quot;2345&quot;
-Category=&quot;PowerUnavailable[MW]&quot;&gt;
+Category=&quot;PowerUnavailable[MW]&quot; CreatedBy=&quot;Mesh Data Transfer&quot;
+CreatedTime=&quot;2021-02-01T00:00:00Z&quot;&gt;
         &lt;SubEvent Status=&quot;SelfImposed&quot; Description=&quot;&quot; Value=&quot;-1&quot;&gt;
           &lt;Frequency Start=&quot;2022-04-06T06:00:00Z&quot; End=&quot;2022-04-06T10:00:00Z&quot; /&gt;
         &lt;/SubEvent&gt;
@@ -825,7 +838,7 @@ Category=&quot;PowerUnavailable[MW]&quot;&gt;
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;Request xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
 xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
-xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes&quot;&gt;
+xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes/v1.2&quot;&gt;
   &lt;MessageId&gt;12345678-1234-1234-1234-123456789016&lt;/MessageId&gt;
   &lt;MessageVersion&gt;1.0.0.0&lt;/MessageVersion&gt;
   &lt;ForceAvailabilityEventCreation&gt;true&lt;/ForceAvailabilityEventCreation&gt;
@@ -849,7 +862,7 @@ Category=&quot;PowerUnavailable[MW]&quot;&gt;
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;Request xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
 xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
-xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes&quot;&gt;
+xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes/v1.2&quot;&gt;
   &lt;MessageId&gt;12345678-1234-1234-1234-123456789017&lt;/MessageId&gt;
   &lt;MessageVersion&gt;1.0.0.0&lt;/MessageVersion&gt;
   &lt;ForceAvailabilityEventCreation&gt;true&lt;/ForceAvailabilityEventCreation&gt;
@@ -868,7 +881,7 @@ xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes&quot;&gt;
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;Reply xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
 xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
-xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes&quot;&gt;
+xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes/v1.2&quot;&gt;
   &lt;RequestMessageId&gt;12345678-1234-1234-1234-123456789012&lt;/RequestMessageId&gt;
   &lt;MessageVersion&gt;1.0.0.0&lt;/MessageVersion&gt;
   &lt;ImportSuccess&gt;true&lt;/ImportSuccess&gt;
@@ -878,7 +891,7 @@ xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes&quot;&gt;
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;Reply xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
 xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
-xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes&quot;&gt;
+xmlns=&quot;http://www.powel.com/SmE/AMQPmessageTypes/v1.2&quot;&gt;
   &lt;RequestMessageId&gt;12345678-1234-1234-1234-123456789012&lt;/RequestMessageId&gt;
   &lt;MessageVersion&gt;1.0.0.0&lt;/MessageVersion&gt;
   &lt;ImportSuccess&gt;false&lt;/ImportSuccess&gt;
