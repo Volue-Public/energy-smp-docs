@@ -77,7 +77,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../../concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../../concepts/time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -445,6 +451,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -483,13 +503,16 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="ln">LN</h1>
-<h2 id="about-the-function">About the function</h2>
 <p>Finds the ln value of the values in a time series or of a number.</p>
 <p>Logarithms with base numbers that equal euler's number (e= 2,718281828…) is
 called natural logarithms. The logarithm to a number x, is the exponent c, which
 the base number must be raised with to get the number x.</p>
-<p>ec = x -&gt; ln xe = c</p>
-<p>The input value must be a positive, real number lager than 0, if not, the
+<p>
+<script type="math/tex; mode=display">
+e^c = x \leftrightarrow \ln x = c
+</script>
+</p>
+<p>The input value must be a positive, real number larger than 0, if not, the
 function returns an empty value.</p>
 <h2 id="syntax">Syntax</h2>
 <ul>
@@ -517,12 +540,12 @@ function returns an empty value.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="example">Example</h2>
-<p>Example 1: LN(t)</p>
+<h2 id="examples">Examples</h2>
+<h3 id="example-1-lnt">Example 1: LN(t)</h3>
 <pre><code>Temperature_hour_VV = @LN(@t('Temperature_hour_raw'))
 </code></pre>
 <p><img alt="" src="../assets/images/ex_LN-nimbusexample1.png" /></p>
-<p>Example 2: LN(d)</p>
+<h3 id="example-2-lnd">Example 2: LN(d)</h3>
 <pre><code>ResultTs = @LN(1)
 </code></pre>
 <p>Example 2 returns the number 0 for all rows.</p>

@@ -77,7 +77,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../../mesh/concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/concepts/time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -457,6 +463,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -494,7 +514,10 @@
               
                 <h1 id="export-of-time-series-values-using-mesh-data-transfer">Export of time series values using Mesh Data Transfer</h1>
 <p>This document describes how time series values can be exported from Mesh using Mesh Data Transfer and AMQP messages in the Mesh standard XML format.</p>
-<p>The definition of the XML format is found in the <a href="../xsd/AMQPmessageTypes.xsd"><code>AMQPmessageTypes.xsd</code></a>.</p>
+<p>The definition of the XML format is found in the <a href="../xsd/AMQPmessageTypes.xsd"><code>AMQPmessageTypes.xsd</code></a>, which describes the current
+schema version, v1.2. The examples below show a <code>v1.0</code> namespace because the namespace of an exported message is set by the
+<code>Storage:StoragePerProtocol:StdExport:SchemaVersion</code> configuration setting, which accepts <code>1.0</code> (the default) or <code>1.1</code>. See
+<a href="../../general/general/#xml-schema-and-namespaces">XML schema and namespaces</a>.</p>
 <p>Currently, when doing exports, it it necessary to define export definitions in the SmG Participant application using transfer definitions defined using the SmG Import/Export application.</p>
 <ul>
 <li><a href="#export-of-time-series-values-using-mesh-data-transfer">Export of time series values using Mesh Data Transfer</a></li>

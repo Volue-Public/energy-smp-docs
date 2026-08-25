@@ -77,7 +77,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../../concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../../concepts/time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -445,6 +451,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -482,14 +502,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="max">MAX</h2>
-<h3 id="about-the-functions">About the functions</h3>
+                <h1 id="max">MAX</h1>
 <p>Finds the highest values in time series, numbers, arrays or combinations of
 these.</p>
 <p>There are many variants of this function, some returns a single number as result
 but most of them returns a time series.</p>
 <p>The result series has the same resolution as the input time series. This also applies to cases where there are multiple time series involved and they all have the same resolution. If there are series with different resolutions, the result is a breakpoint series.</p>
-<h3 id="syntax">Syntax</h3>
+<h2 id="syntax">Syntax</h2>
 <ul>
 <li>MAX(T)</li>
 <li>MAX(D) -&gt; returns a number</li>
@@ -501,7 +520,7 @@ but most of them returns a time series.</p>
 <li>MAX(d,d) -&gt; returns a number</li>
 <li>MAX(T,T)</li>
 </ul>
-<h3 id="description">Description</h3>
+<h2 id="description">Description</h2>
 <table>
 <thead>
 <tr>

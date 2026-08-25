@@ -77,7 +77,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../../concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../../concepts/time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -445,6 +451,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -499,8 +519,7 @@ periods. To do this you can use the <a href="./">PushExtPeriod</a> and
 <li>The expression uses data outside the requested period to produce correct results.</li>
 <li>The time series that need to be extended has no direct database connection, i.e. it cannot be extended by reading more data from the database.</li>
 </ul>
-<h2 id="about-the-function">About the function</h2>
-<p>The current period may effect calculations and the purpose of the function is to
+<p>The current period may affect calculations and the purpose of the function is to
 control this in order to achieve the correct result.</p>
 <p>PushExtPeriod must always be accompanied by <a href="../pop_ext_period/">PopExtPeriod</a>
 after completing the part of the calculation which requires a specific period.</p>
@@ -513,7 +532,7 @@ in calculations are handled implicitly when using Mesh as a foundation.</p>
 <li>PushExtPeriod(s,s,s)</li>
 <li>PushExtPeriod(s,d,d)</li>
 </ul>
-<h2 id="description"><strong>Description</strong></h2>
+<h2 id="description">Description</h2>
 <table>
 <thead>
 <tr>

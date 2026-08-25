@@ -77,7 +77,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../../concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../../concepts/time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -445,6 +451,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -482,21 +502,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="gettsasoftime">GetTsAsOfTime</h2>
-<h3 id="about-the-function">About the function</h3>
+                <h1 id="gettsasoftime">GetTsAsOfTime</h1>
 <p>Used to retrieve a physical time series as it was at a given historical time.</p>
 <p>Returns a time series or an array of time series, depending on the value of
 parameter number two.</p>
 <p>Note! If the historical time is earlier than the first write to the series (in
 the relevant period) then the function returns NaN values.</p>
-<h3 id="syntax">Syntax</h3>
+<h2 id="syntax">Syntax</h2>
 <ul>
 <li>GetTsAsOfTime(t,s[,s])</li>
 <li>GetTsAsOfTime(t,d[,s])</li>
 <li>GetTsAsOfTime(t,S[,s]) - returns an array of time series</li>
 <li>GetTsAsOfTime(t,D[,s]) - returns an array of time series</li>
 </ul>
-<h3 id="description">Description</h3>
+<h2 id="description">Description</h2>
 <table>
 <thead>
 <tr>
@@ -527,7 +546,7 @@ the relevant period) then the function returns NaN values.</p>
 <p>A tick is 100 nanoseconds, i.e. there are 10,000 ticks in a millisecond. Reference value is UTC <code>January 1, 0001 00:00:00</code>.</p>
 <p>If a reference to a time series calculation is passed in the first argument, as
 in <code>@GetTsAsOfTime(@t('.Calc'), t)</code>, the calculation will fail with an error.</p>
-<h3 id="examples">Examples</h3>
+<h2 id="examples">Examples</h2>
 <p>Example time series have these historical values at given times:</p>
 <table>
 <thead>
@@ -575,20 +594,20 @@ in <code>@GetTsAsOfTime(@t('.Calc'), t)</code>, the calculation will fail with a
 </tr>
 </tbody>
 </table>
-<p>Example 1: GetTsAsOfTime(t,s)</p>
+<h3 id="example-1-gettsasoftimets">Example 1: GetTsAsOfTime(t,s)</h3>
 <p><code>Res = GetTsAsOfTime(t0,'20121201000000000')</code></p>
 <p>Returns time series Ts_1 which was valid December 1st 2012.</p>
-<p>Example 2: GetTsAsOfTime(t,s,s)</p>
+<h3 id="example-2-gettsasoftimetss">Example 2: GetTsAsOfTime(t,s,s)</h3>
 <p><code>Res = GetTsAsOfTime(t0,'20121201000000000','Delta')</code></p>
 <p>Returns the difference between the values in Ts_0 and Ts_1: -1 2 5 8</p>
-<p>Example 3: GetTsAsOfTime(t,S)</p>
+<h3 id="example-3-gettsasoftimets">Example 3: GetTsAsOfTime(t,S)</h3>
 <p><code>Res = GetTsAsOfTime(t0,{'20121201000000000','20121101000000000','20121001000000000'})</code></p>
 <p>Returns an array of time series for the given times.</p>
-<p>Example 4: GetTsAsOfTime(t,S,s)</p>
+<h3 id="example-4-gettsasoftimetss">Example 4: GetTsAsOfTime(t,S,s)</h3>
 <p><code>Res = GetTsAsOfTime(t0,{'20121201000000000','20121101000000000','20121001000000000'},'DELTA')</code></p>
 <p>Returns an array of the difference between the current time series and the time
 series at the given times.</p>
-<h4 id="example-using-gettsaudittimes">Example using GetTsAuditTimes</h4>
+<h3 id="example-using-gettsaudittimes">Example using GetTsAuditTimes</h3>
 <p>The example data used is described <a href="../history/#hourly-example-data">here</a>.</p>
 <p>There is a function that can retrieve the time points when there were changes to the values
 within requested time period. See <a href="../get_ts_audit_times/">GetTsAuditTimes</a>.</p>

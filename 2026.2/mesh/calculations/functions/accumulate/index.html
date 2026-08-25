@@ -77,7 +77,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../../concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../../concepts/time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -445,6 +451,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -491,7 +511,8 @@ period, the accumulation buffer is reset.</p>
 <li>ACCUMULATE(t,[s],s)</li>
 <li>ACCUMULATE(t,s,d)</li>
 </ul>
-<p><strong>Description</strong> - syntax 1</p>
+<h2 id="accumulatedstdd-syntax-1">ACCUMULATE(d,s,t[,d,d]) - syntax 1</h2>
+<h3 id="description">Description</h3>
 <table>
 <thead>
 <tr>
@@ -528,7 +549,8 @@ period, the accumulation buffer is reset.</p>
 </tr>
 </tbody>
 </table>
-<p><strong>Description</strong> - syntax 2</p>
+<h2 id="accumulatetss-syntax-2">ACCUMULATE(t,[s],s) - syntax 2</h2>
+<h3 id="description_1">Description</h3>
 <table>
 <thead>
 <tr>
@@ -555,7 +577,8 @@ period, the accumulation buffer is reset.</p>
 </tr>
 </tbody>
 </table>
-<p><strong>Description</strong> - syntax 3</p>
+<h2 id="accumulatetsd-syntax-3">ACCUMULATE(t,s,d) - syntax 3</h2>
+<h3 id="description_2">Description</h3>
 <table>
 <thead>
 <tr>
@@ -578,7 +601,8 @@ period, the accumulation buffer is reset.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="example-1">Example 1</h2>
+<h2 id="examples">Examples</h2>
+<h3 id="example-1">Example 1</h3>
 <p>Accumulation syntax 1 with five arguments</p>
 <p><code>@ACCUMULATE(0.0, 'UTC20140101', @t('TsAccInput'), 10.0, 0.0)</code></p>
 <p>The example starts accumulation at 1. January (UTC calendar) with initial value
@@ -589,22 +613,22 @@ period, the accumulation buffer is reset.</p>
 <p>for the first value and</p>
 <p>Result[t] = Result[t-1] + factor A * TsAccInput[t] + factor B</p>
 <p>for the next values.</p>
-<h2 id="example-2">Example 2</h2>
+<h3 id="example-2">Example 2</h3>
 <p>Accumulation syntax 1 with three arguments (uses default values for factor A and B (argument four and five))</p>
 <p><code>@ACCUMULATE(0.0, 'YEAR+10d', @t('TsAccInput'))</code></p>
 <p>The example starts accumulation 10th of January (UTC calendar) with initial
 value 0.0. No multiplication or offset factors are used.</p>
-<h2 id="example-3">Example 3</h2>
+<h3 id="example-3">Example 3</h3>
 <p>Accumulation syntax 2</p>
 <p><code>## = @ACCUMULATE(@t('Precipitation_hour_operative'),'&gt;', 'HYDYEAR')</code></p>
 <p>Accumulates the precipitation for each hydrological year.</p>
 <p><img alt="" src="../assets/images/ex_accumulate.png" /></p>
-<h2 id="example-4">Example 4</h2>
+<h3 id="example-4">Example 4</h3>
 <p>Accumulation syntax 2 with second argument omitted.</p>
 <p><code>## = @ACCUMULATE(@t('Precipitation_hour_operative'),'WEEK')</code></p>
 <p>Accumulates the precipitation for each week.</p>
 <p><img alt="" src="../assets/images/ex_accumulate2.png" /></p>
-<h2 id="example-5">Example 5</h2>
+<h3 id="example-5">Example 5</h3>
 <p>Accumulation of bucket precipitation using explicit extended periods</p>
 <p>The following example is a general expression for a year's accumulation of
 precipitation combined with the <a href="../time/">Time</a> function and extended
@@ -635,7 +659,7 @@ precipitation from the turn of the year. The start value (tstart), &gt;0, is
 displayed in the blue curve:</p>
 <p><img alt="" src="../assets/images/ex_accumulate3.png" /></p>
 <p>In the following example from Nimbus, the presentation starts later in the year
-than in the previous example. The start value (tsstar) is displayed in the blue
+than in the previous example. The start value (tstart) is displayed in the blue
 chart:</p>
 <p><img alt="" src="../assets/images/ex_accumulate4.png" /></p>
               

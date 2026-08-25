@@ -77,7 +77,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../../concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../../concepts/time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -445,6 +451,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -482,22 +502,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="getforecast">GetForecast</h2>
+                <h1 id="getforecast">GetForecast</h1>
 <p>A forecast is typically received with a frequency and contains data for a duration, for instance 2 times a day with hourly data for 10 days forward.</p>
 <p>The figure below is illustrating write events for a forecast series.
 The time series versions associated having these characteristics is
 called forecast set.</p>
 <p><img alt="" src="../assets/images/GetForecast1.png" /></p>
 <p>There might be multiple versions that cover the same value time period.</p>
-<h3 id="syntax">Syntax</h3>
+<h2 id="syntax">Syntax</h2>
 <ul>
 <li>GetForecast(t)</li>
 <li>GetForecast(t,d|s,d|s)</li>
 <li>GetForecast(t,d|s,d|s,d|s)</li>
 </ul>
-<p>The second, third and fourth argument is a time point definition, either given as a number (tick value) or a definition having a syntax described <a href="../../timepoint-macros/">here</a>.</p>
+<p>The second, third and fourth arguments are time point definitions, either given as a number (tick value) or a definition having a syntax described <a href="../../timepoint-macros/">here</a>.</p>
 <p>The first value in a forecast write operation is associated with time point t0.</p>
-<h3 id="description">Description</h3>
+<h2 id="description">Description</h2>
 <table>
 <thead>
 <tr>
@@ -554,9 +574,9 @@ condition that the write time for the forecast series is less than or equal to
 the time the argument represents. If no forecast series has its start time
 within the given interval, the function returns a time series with NaN.</p>
 <p><img alt="" src="../assets/images/GetForecast2.png" /></p>
-<h3 id="examples">Examples</h3>
+<h2 id="examples">Examples</h2>
 <p>The data used in these examples are described <a href="../history/#hourly-example-data">here</a>.</p>
-<h4 id="get-forecast-based-on-requested-time-period">Get forecast based on requested time period</h4>
+<h3 id="get-forecast-based-on-requested-time-period">Get forecast based on requested time period</h3>
 <p><code>## = @GetForecast(@t('.Temperature_forecast'))</code></p>
 <p>Requested start time (<em>tstart</em>) is <code>UTC2025110602</code>, a time point just before the second version of the example series was written. In the first store operation the value 1 was written to the series, in the second store operation the value 2 was written.</p>
 <table>
@@ -722,7 +742,7 @@ within the given interval, the function returns a time series with NaN.</p>
 </tr>
 </tbody>
 </table>
-<h4 id="get-forecast-with-forecast-start-arguments">Get forecast with forecast start arguments</h4>
+<h3 id="get-forecast-with-forecast-start-arguments">Get forecast with forecast start arguments</h3>
 <p>The first forecast write (value 1) has a first value at  <code>UTC2025110523</code>.
 The second forecast write (value 2) has a first value at <code>UTC2025110603</code>, i.e. 4 hours later.</p>
 <p><code>## = @GetForecast(@t('.Temperature_forecast'),'UTC2025110602','UTC2025110605')</code></p>

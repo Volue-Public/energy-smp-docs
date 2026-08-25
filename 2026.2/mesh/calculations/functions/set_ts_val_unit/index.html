@@ -77,7 +77,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../../concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../../concepts/time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -445,6 +451,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -482,17 +502,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="set_ts_valunit">SET_TS_VALUNIT</h2>
-<h3 id="about-the-function">About the function</h3>
+                <h1 id="set_ts_valunit">SET_TS_VALUNIT</h1>
 <p>This function is used to change the unit of a time series. Especially calculated
 series may contain several multiplied time series and result in different unit
 than the input time series.</p>
-<h3 id="syntax">Syntax</h3>
+<h2 id="syntax">Syntax</h2>
 <ul>
 <li>SET_TS_VALUNIT(t,d)</li>
 <li>SET_TS_VALUNIT(t,s)</li>
 </ul>
-<h3 id="description">Description</h3>
+<h2 id="description">Description</h2>
 <table>
 <thead>
 <tr>
@@ -520,11 +539,11 @@ Time series application search window. Look in the <strong>Unit</strong> drop do
 check if you are using the correct language for the code.</p>
 <p><strong>Note!</strong> The value unit may affect the default transformation method that is used 
 when the series is requested in another resolution.</p>
-<h3 id="examples">Examples</h3>
-<p>Example 1: @SET_TS_VALUNIT(t,d)</p>
+<h2 id="examples">Examples</h2>
+<h3 id="example-1-set_ts_valunittd">Example 1: @SET_TS_VALUNIT(t,d)</h3>
 <p>To change the unit of a result series to meters/second, the unit code is 120:</p>
 <p>@SET_TS_VALUNIT(timeseries1,120)</p>
-<p>Example 2: @SET_TS_VALUNIT(t,s)</p>
+<h3 id="example-2-set_ts_valunitts">Example 2: @SET_TS_VALUNIT(t,s)</h3>
 <p>To change the unit of a result series to meters/second using text:</p>
 <p>@SET_TS_VALUNIT(timeseries1,'m/sec')</p>
 <p>This gives the same result as example 1.</p>

@@ -77,7 +77,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../../concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../../concepts/time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -445,6 +451,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -482,11 +502,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="time_mask">TIME_MASK</h2>
-<h3 id="about-the-function">About the function</h3>
+                <h1 id="time_mask">TIME_MASK</h1>
 <p>This function creates time series from its arguments, normally used as time
 masks (a series with 1 or 0 as value), but not limited to only this type.</p>
-<h3 id="syntax">Syntax</h3>
+<h2 id="syntax">Syntax</h2>
 <p>There are two main categories of this function. The recommended variants:</p>
 <ul>
 <li>TIME_MASK(s,S,D,s)</li>
@@ -537,7 +556,7 @@ you to specify the resolution for the result series.</p>
 Default repeat frequency is 'NONE' and default result series resolution is 'HOUR'.</p>
 <p>Unless the repeat frequency is 'NONE', the time points specified are moved and repeated so that they establish a functional value for the whole requested time period. That means when frequency is 'DAY' it has no meaning to use macros that add days to a time point, like 'DAY+3d+2h'. In this example the time point specification 'DAY+2h' would give the same result. </p>
 <p>See <a href="../../timepoint-macros/">time macro specification</a>.</p>
-<p>This figure illustrate the implemented algorithm to convert arguments into a time series.</p>
+<p>This figure illustrates the implemented algorithm to convert arguments into a time series.</p>
 <p><img alt="Time mask concept figure" src="../assets/images/time-mask-concept.png" /></p>
 <ul>
 <li>Every time point specification is parsed and added to a timeline.</li>
@@ -765,7 +784,7 @@ values in the next argument.</p>
 <p>Default calendar for time points is standard time zone, i.e. UTC+1:00 with <strong>no</strong> 
 Daylight Saving Time (DST) definition applied.</p>
 <p>We can observe that the values provided are repeated daily.</p>
-<p>Switching to a request inside inside a DST period, still gives the same result.</p>
+<p>Switching to a request inside a DST period, still gives the same result.</p>
 <p><code>##=@TIME_MASK('DAY', {'DAY+07h', 'DAY+10h', 'DAY+14h','DAY+18h'}, {1,2,3,4},'VARINT')</code></p>
 <table>
 <thead>
@@ -855,7 +874,7 @@ Daylight Saving Time (DST) definition applied.</p>
 </table>
 <p>The time points are now interpreted as UTC time points and 'DAY+07h' with associated value 1.0 is
 found in the result series at '2022-01-01T07:00:00Z' and '2022-01-02T07:00:00Z'.</p>
-<p>Switching to a request inside inside a DST period and using zone <code>LT</code> - local zone with DST enabled.</p>
+<p>Switching to a request inside a DST period and using zone <code>LT</code> - local zone with DST enabled.</p>
 <p><code>Result = @TIME_MASK('DAY&lt;LT&gt;', {'DAY+07h', 'DAY+10h', 'DAY+14h','DAY+18h'}, {1,2,3,4},'VARINT')</code></p>
 <table>
 <thead>

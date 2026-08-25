@@ -77,7 +77,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../../concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../../concepts/time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -445,6 +451,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -482,37 +502,46 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="mean">MEAN</h2>
-<h3 id="about-the-function">About the function</h3>
+                <h1 id="mean">MEAN</h1>
 <p>Takes the average value of time series, arrays and number series.</p>
 <p>If the input is an array of time series and all the time series have the same resolution,
   the result series will have this resolution. If there are different resolutions involved, 
   the result time series will be a breakpoint series.</p>
-<h3 id="syntax">Syntax</h3>
+<h2 id="syntax">Syntax</h2>
 <ul>
 <li>MEAN(t)  -&gt; returns a number</li>
 <li>MEAN(T)</li>
 <li>MEAN(D)  -&gt; returns a number</li>
 </ul>
-<h3 id="description">Description</h3>
+<h2 id="description">Description</h2>
 <table>
 <thead>
 <tr>
 <th>#</th>
-<th>TYPE</th>
-<th>DESCRIPTION</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1</td>
-<td>t or T or D</td>
-<td>Time series Array of time series Array of numbers</td>
+<td>t</td>
+<td>Time series.</td>
+</tr>
+<tr>
+<td>1</td>
+<td>T</td>
+<td>Array of time series.</td>
+</tr>
+<tr>
+<td>1</td>
+<td>D</td>
+<td>Array of numbers.</td>
 </tr>
 </tbody>
 </table>
 <h2 id="examples">Examples</h2>
-<p>Example 1: @MEAN(t)</p>
+<h3 id="example-1-meant">Example 1: @MEAN(t)</h3>
 <p><code>TempPercentiles = @MEAN(@t('Temperature_hour_raw'))</code></p>
 <p>The result values are the average value of the values in
 @t('Temperature_hour_raw') for the requested time period, repeated throughout
@@ -522,14 +551,14 @@ the entire result series as a break point series.</p>
 requested time period, you can use the
 <a href="../push_ext_period/">PushExtPeriod</a>/<a href="../pop_ext_period/">PopExtPeriod</a> function
 to explicitly define the input period to the function.</p>
-<p>Example 2: @MEAN(T)</p>
+<h3 id="example-2-meant">Example 2: @MEAN(T)</h3>
 <p><code>Temperature_hour_operative = @MEAN(@T('Temperature_hour'))</code></p>
 <p>The <strong>Temperature_hour_operative</strong> column gives the average value of all the
 time series in the array for every time step.</p>
 <p>For instance at 01:00: (-1,26+3,09+8,87)/3 = 3,57</p>
 <p><img alt="" src="../assets/images/ex_MEAN-nimbustable2.png" /></p>
-<p>Example 3: @MEAN(D)</p>
-<p>Res = @MEAN(1,5,8,2.5,11)</p>
+<h3 id="example-3-meand">Example 3: @MEAN(D)</h3>
+<p>Res = @MEAN({1,5,8,2.5,11})</p>
 <p>Res = 5.5</p>
               
             </div>

@@ -77,7 +77,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../../concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../../concepts/time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -445,6 +451,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -482,22 +502,21 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="revision">Revision</h2>
-<h3 id="about-the-function">About the function</h3>
+                <h1 id="revision">Revision</h1>
 <p>This function generates a time series from the Revision events associated with
 this element, filtered on Status. The value will be 1 at the times where there
 is an event, and 0 otherwise.</p>
 <p>For more information about generating time series from restrictions/revisions,
 see the help for the <strong>Smart Power Apps</strong> module <strong>Availability Planner</strong>.</p>
-<p><em>Note!</em>** The generated time series will per default be a breakpoint time
+<p><strong>Note!</strong> The generated time series will per default be a breakpoint time
 series, unless an explicit transformation to a fixed interval is specified in
 the time series calculation.</p>
-<h3 id="syntax">Syntax</h3>
+<h2 id="syntax">Syntax</h2>
 <ul>
 <li>Revision(s)</li>
 <li>Revision(ss)</li>
 </ul>
-<h3 id="description">Description</h3>
+<h2 id="description">Description</h2>
 <table>
 <thead>
 <tr>
@@ -519,7 +538,7 @@ the time series calculation.</p>
 </tr>
 </tbody>
 </table>
-<h3 id="examples">Examples</h3>
+<h2 id="examples">Examples</h2>
 <p><code>@Revision('Proposed')</code> generates a timeseries based on the Revision events with
 status 'Proposed'.</p>
 <p><code>@Revision('Proposed|Recommended')</code> returns a timeseries generated from the
@@ -529,7 +548,7 @@ associated with this element.</p>
 <p><code>@Revision('Proposed|Recommended', '..')</code> returns a timeseries generated from
 the Revision events on the parent object, which has Status 'Proposed' or
 'Recommended'.</p>
-<h3 id="possible-statuses">Possible statuses</h3>
+<h2 id="possible-statuses">Possible statuses</h2>
 <p>This is a list of the possible statuses that can be used:</p>
 <ul>
 <li>Proposed</li>

@@ -77,7 +77,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../../concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../../concepts/time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -445,6 +451,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -483,7 +503,6 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="not">NOT</h1>
-<h2 id="about-the-function">About the function</h2>
 <p>Checks the content of a time series for values 0 or NaN. The result series has
 Boolean values and has the same resolution as the input time series.</p>
 <h2 id="syntax">Syntax</h2>
@@ -494,7 +513,7 @@ Boolean values and has the same resolution as the input time series.</p>
 <p>The resulting value is 1 if the value found is 0 or NaN. Otherwise, the result
 is 0.</p>
 <h2 id="example">Example</h2>
-<p><code>Temperature_hour_VV =@NOT(@t('Temperature_hour_raw')</code></p>
+<p><code>Temperature_hour_VV = @NOT(@t('Temperature_hour_raw'))</code></p>
 <p>In row 2 the result is 1, as the value of Temperature_hour_raw is 0 or NaN.</p>
 <p><img alt="" src="../assets/images/ex_NOT-nimbuschart_red.png" /></p>
               

@@ -77,7 +77,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../../mesh/concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../../mesh/concepts/time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../mesh/concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -447,6 +453,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -484,6 +504,43 @@
                 <h2 id="general-info">General info</h2>
 <p>The <em>Mesh Data Transfer</em> service enables users to perform time series and availability data exports and imports from a <code>Mesh</code> server. It uses the AMQP protocol as an external communication method to guarantee high level of reliability and versatility.</p>
 <p>Mesh Data Transfer offers HTTP endpoints for creating both availability and time series export orders (used by certain Volue products, e.g. Participant, Nimbus). Imports are requested via queues (AMQP 1.0 or Azure Service Bus) and the outcomes of the import operations are sent to AMQP reply queues. The export results are stored as files or sent to an AMQP queue, depending on the configuration. Mesh Data Transfer is also responsible for saving export status to the <code>Message Log</code> (in the case of imports it is done by Mesh).</p>
+<h2 id="xml-schema-and-namespaces">XML schema and namespaces</h2>
+<p>The XML message formats used by Mesh Data Transfer are defined by <a href="../../use-cases/xsd/AMQPmessageTypes.xsd"><code>AMQPmessageTypes.xsd</code></a>. The schema version is part of the XML namespace, which is why the namespace URI ends in a version number. The current schema version is <strong>v1.2</strong>:</p>
+<pre><code>http://www.powel.com/SmE/AMQPmessageTypes/v1.2
+</code></pre>
+<h3 id="namespaces-accepted-on-import">Namespaces accepted on import</h3>
+<p>Mesh Data Transfer accepts all of the following namespaces on incoming import messages and treats them as equivalent:</p>
+<table>
+<thead>
+<tr>
+<th>Namespace</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>http://www.powel.com/SmE/AMQPmessageTypes</code></td>
+<td>Legacy, unversioned. Still accepted.</td>
+</tr>
+<tr>
+<td><code>http://www.powel.com/SmE/AMQPmessageTypes/v1.0</code></td>
+<td>Still accepted.</td>
+</tr>
+<tr>
+<td><code>http://www.powel.com/SmE/AMQPmessageTypes/v1.1</code></td>
+<td>Still accepted.</td>
+</tr>
+<tr>
+<td><code>http://www.powel.com/SmE/AMQPmessageTypes/v1.2</code></td>
+<td>Current. Use this for new integrations.</td>
+</tr>
+</tbody>
+</table>
+<p>Existing integrations do not need to change their namespace. However, only the v1.2 schema describes the most recently added fields — for example the <code>CreatedBy</code>, <code>LastChangedBy</code> and <code>CreatedTime</code> attributes on availability events — so validate against v1.2 if you want to use them.</p>
+<p>The reply message uses the same namespace as the request it answers. If you send a request in the unversioned namespace, the reply is returned in the unversioned namespace.</p>
+<h3 id="namespace-used-on-export">Namespace used on export</h3>
+<p>For the <strong>Standard</strong> export protocol, the namespace of the exported message is controlled by the <code>Storage:StoragePerProtocol:StdExport:SchemaVersion</code> configuration setting. The accepted values are <code>1.0</code> (the default) and <code>1.1</code>, so exported messages carry <code>.../v1.0</code> or <code>.../v1.1</code>, not <code>.../v1.2</code>. This is why the examples in <a href="../../use-cases/export-of-time-series-values-using-mdt/">Export of time series values</a> show a <code>v1.0</code> namespace while the import examples show <code>v1.2</code>.</p>
+<p>Apart from the version in the namespace URI, and the optional fields added in later versions, the message structure is unchanged across these versions.</p>
 <h2 id="usage">Usage</h2>
 <h3 id="api-documentation-swagger">API Documentation (Swagger)</h3>
 <p>Mesh Data Transfer provides interactive API documentation using Swagger/OpenAPI. The Swagger UI is available at:</p>

@@ -77,7 +77,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../concepts/time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -553,6 +559,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -895,7 +915,11 @@ You define the database connection string in <code>mesh.json</code>:</p>
     }
   },
 </code></pre>
-<p>This defines which port Mesh uses to listen for gRPC requests. This port number must be the same in the clients using gRPC. The firewall must also be open on this port. The example shows an unencrypted and unauthenticated configuration, and we highly recommend to both encrypt and authenticate/authorize the gRPC interface (see below for how to configure it).</p>
+<p>This defines which port Mesh uses to listen for gRPC requests. This port number must be the same in the clients using gRPC. The firewall must also be open on this port.</p>
+<p>Note that port 50051 in the example above belongs to the default <a href="https://en.wikipedia.org/wiki/Ephemeral_port">dynamic port range</a>. This means it can be occupied by another service when Mesh is starting up. If this happens, Mesh displays an error message and terminates.</p>
+<p>Configuring the gRPC server to use a port outside of the dynamic port range can minimize the risk of conflicts.
+In this case, you should check that the chosen port number does not conflict with another service running on the system.</p>
+<p>The example shows an unencrypted and unauthenticated configuration, and we highly recommend to both encrypt and authenticate/authorize the gRPC interface (see below for how to configure it).</p>
 <h3 id="use-transport-layer-security-tls">Use Transport Layer Security (TLS)</h3>
 <p>There are two possible types of connections to the gRPC server from the clients.</p>
 <ul>
@@ -1368,6 +1392,15 @@ This ensures that sensitive data, including credentials and queries, is protecte
 <td>✔️</td>
 <td>✔️</td>
 </tr>
+<tr>
+<td><strong>2.22 / 2026.3</strong></td>
+<td>❌</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+</tr>
 </tbody>
 </table>
 <p><strong>Legend:</strong></p>
@@ -1381,6 +1414,7 @@ This ensures that sensitive data, including credentials and queries, is protecte
 <pre><code class="language-json">{
   &quot;FailOnSynchErrors&quot;: false,  // Specifies whether Mesh should shut down after 3 consecutive synchronisation errors
   &quot;SerializationVersion&quot;: 25,
+  &quot;MaxSessions&quot;: 250, // Maximum number of existing sessions at any given time, -1 to set to unlimited
   &quot;ComputerName&quot;: &quot;localhost&quot;,
   &quot;Log&quot;: {
     &quot;Console&quot;: true, // Log to stdout
@@ -1471,7 +1505,7 @@ This ensures that sensitive data, including credentials and queries, is protecte
             </div>
           </div><footer>
       <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-          <a href="../../concepts/time-series/" class="btn btn--outline btn--success float-left" title="Time series"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+          <a href="../../concepts/time-series/time-zone-aware-time-series/" class="btn btn--outline btn--success float-left" title="Time zone-aware time series"><span class="icon icon-circle-arrow-left"></span> Previous</a>
           <a href="../../calculations/general/" class="btn btn--outline btn--success float-right" title="General">Next <span class="icon icon-circle-arrow-right"></span></a>
       </div>
   
@@ -1495,7 +1529,7 @@ This ensures that sensitive data, including credentials and queries, is protecte
     <span class="rst-current-version" data-toggle="rst-current-version is-active">
       
       
-        <span><a href="../../concepts/time-series/" style="color: #fcfcfc">&laquo; Previous</a></span>
+        <span><a href="../../concepts/time-series/time-zone-aware-time-series/" style="color: #fcfcfc">&laquo; Previous</a></span>
       
       
         <span><a href="../../calculations/general/" style="color: #fcfcfc">Next &raquo;</a></span>

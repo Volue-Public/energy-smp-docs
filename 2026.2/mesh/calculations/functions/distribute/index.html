@@ -77,7 +77,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../../concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../../concepts/time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -445,6 +451,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -482,27 +502,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="distribute">DISTRIBUTE</h2>
+                <h1 id="distribute">DISTRIBUTE</h1>
 <p>This topic describes DISTRIBUTE variants (<a href="#r6">R6</a>, <a href="#r7">R7</a>, <a href="#ra7">Ra7</a>) for
 transforming from one time resolution to another.</p>
 <p>To get an overview of all the transformation function variants, see:</p>
 <p><a href="../transform_what_when/">Which functions can be used when?</a></p>
-<h3 id="r6">R6</h3>
-<h2 id="about-the-function">About the function</h2>
+<h2 id="r6">R6</h2>
 <p>Converts a time series to a finer resolution. The resolution for the result is
 given by the resolution of the mask series defined in argument 2. The value from
 the series in argument 1 is distributed to the points of time in the mask series
 having logical true value (different from 0 and NaN). The function uses the SUM
 method as base for the distribution.</p>
-<h2 id="syntax">Syntax</h2>
+<h3 id="syntax">Syntax</h3>
 <ul>
 <li>DISTRIBUTE(t,t)</li>
 </ul>
-<h2 id="description">Description</h2>
+<h3 id="description">Description</h3>
 <table>
 <thead>
 <tr>
-<th>TYPE</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
@@ -517,7 +536,7 @@ method as base for the distribution.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="example">Example</h2>
+<h3 id="example">Example</h3>
 <p><code>MaskSeries = @TIME_MASK('HOUR',{'HOUR','HOUR+15x','HOUR+30x','HOUR+45x'},{1,2,3,2},'MIN15)</code></p>
 <p><code>ResultTimeSeries = @DISTRIBUTE(@t('Ts5'),MaskSeries)</code></p>
 <p><img alt="" src="../assets/images/ex_DISTRIBUTE-nimbustable1.png" /></p>
@@ -532,15 +551,14 @@ The result will be a break point time series.</p>
 <p><code>MaskSeries = @TIME_MASK('HOUR',{'HOUR','HOUR+15x','HOUR+30x','HOUR+45x'},{1,2,NaN,2},'MIN15')</code></p>
 <p><code>Result time series = @DISTRIBUTE(@t('Ts5'),MaskSeries)</code></p>
 <p><img alt="" src="../assets/images/ex_DISTRIBUTE-nimbustable3.png" /></p>
-<h3 id="r7">R7</h3>
-<h2 id="about-the-function_1">About the function</h2>
+<h2 id="r7">R7</h2>
 <p>As function <a href="#r6">R6</a>, but with a third argument which is a profile series. This
 decides how the distribution of the values is done.</p>
-<h2 id="syntax_1">Syntax</h2>
+<h3 id="syntax_1">Syntax</h3>
 <ul>
 <li>DISTRIBUTE(t,t,t)</li>
 </ul>
-<h2 id="description_1">Description</h2>
+<h3 id="description_1">Description</h3>
 <table>
 <thead>
 <tr>
@@ -567,10 +585,10 @@ decides how the distribution of the values is done.</p>
 <p><img alt="" src="../assets/images/image23.gif" /></p>
 <p>Vi = Value calculated for the time point i in the result time series</p>
 <p>AI = Value from the input time series for the distributed period</p>
-<p>NI = Number of valid time point to distributed the input value into</p>
+<p>NI = Number of valid time points to distribute the input value into</p>
 <p>Pi = Profile value for the time point i in the result time series</p>
 <p>MI = Calculated mean value for the profile series for the distributed period</p>
-<h2 id="example_1">Example</h2>
+<h3 id="example_1">Example</h3>
 <p><code>MaskSeries/Profile = @TIME_MASK('HOUR',{'HOUR','HOUR+15x','HOUR+30x','HOUR+45x'},{1,2,3,2},'MIN15')</code></p>
 <p>Argument 2 is a mask series (all time points contributes)</p>
 <p>Argument 3 gives the profile values (same as the mask series)</p>
@@ -579,16 +597,15 @@ decides how the distribution of the values is done.</p>
 <p>Based on the equation, the first value of the distributed period is calculated
 like this:</p>
 <p>FirstValue = 2 / 4 * 1 / 2 = 0,25</p>
-<h3 id="ra7">Ra7</h3>
-<h2 id="about-the-function_2">About the function</h2>
+<h2 id="ra7">Ra7</h2>
 <p>As function <a href="#r7">R7</a>, but with a scaling factor in argument 1. This DISTRIBUTE
 variant gives values on the result series also for the value 0 on the input data
 series (given that the profile series has different values in the period).</p>
-<h2 id="syntax_2">Syntax</h2>
+<h3 id="syntax_2">Syntax</h3>
 <ul>
 <li>DISTRIBUTE(d,t,t,t)</li>
 </ul>
-<h2 id="description_2">Description</h2>
+<h3 id="description_2">Description</h3>
 <table>
 <thead>
 <tr>
@@ -619,7 +636,7 @@ series (given that the profile series has different values in the period).</p>
 <p><img alt="" src="../assets/images/image24.gif" /></p>
 <p>K is a scaling factor coming from argument 1 in the function. The other symbols
 used in the formula are the same as described in <a href="#r7">R7</a>.</p>
-<p>Example 1</p>
+<h3 id="example-1">Example 1</h3>
 <p><code>MaskSeries/Profile = @TIME_MASK('HOUR',{'HOUR','HOUR+15x','HOUR+30x','HOUR+45x'},{1,2,3,2},'MIN15')</code></p>
 <p>Argument 2 is a mask series (all time points contributes)</p>
 <p>Argument 3 gives the profile values (same as the mask series)</p>
@@ -628,7 +645,7 @@ used in the formula are the same as described in <a href="#r7">R7</a>.</p>
 <p>Based on the equation, the first value of the distributed period is calculated
 like this:</p>
 <p>FirstValue = 2 / 4 + 1 ∙ (1 - 2) = -0,5</p>
-<p>Example 2</p>
+<h3 id="example-2">Example 2</h3>
 <p><code>MaskSeries/Profile = @TIME_MASK('HOUR',{'HOUR','HOUR+15x','HOUR+30x','HOUR+45x'},{1,2,3,2},'MIN15')</code></p>
 <p>Argument 2 is a mask series (all time points contributes)</p>
 <p>Argument 3 gives the profile values (same as the mask series)</p>

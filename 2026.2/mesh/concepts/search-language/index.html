@@ -99,7 +99,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -467,6 +473,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -558,13 +578,13 @@ search), otherwise they are all objects (object search).</p>
 <tr>
 <td>Repeater</td>
 <td><code>&lt;Search&gt;+</code></td>
-<td>Repeats a search recursively one or more times, using the search output as the new starting points. Returns the most nested matches. <a href="#predicated-child-walks-with-a-repeater">See more</a>.</td>
+<td>Repeats a search recursively one or more times, using the search output as the new starting points. Returns the most-nested matches. <a href="#predicated-child-walks-with-a-repeater">See more</a>.</td>
 <td><code>[.Name=Berg]+</code></td>
 </tr>
 <tr>
 <td>Memoizing repeater</td>
 <td><code>&lt;Search&gt;{+}</code></td>
-<td>Repeats a search recursively one or more times, using the search output as the new starting points. Returns the most nested matches combined with the results of each repetition. <a href="#predicated-child-walks-with-a-repeater">See more</a>.</td>
+<td>Repeats a search recursively one or more times, using the search output as the new starting points. Returns the most-nested matches, as well as any matches found along the way. <a href="#predicated-child-walks-with-a-repeater">See more</a>.</td>
 <td><code>[.Name=Berg]{+}</code></td>
 </tr>
 <tr>
@@ -722,7 +742,7 @@ search), otherwise they are all objects (object search).</p>
 </li>
 </ul>
 <h2 id="searching-self-similar-models">Searching self-similar models</h2>
-<p>It is possible to create a model where an object of a certain type has a child of the same type. For example, an object <code>A1</code> owns an object called <code>A2</code> and both objects are of type <code>A</code>.
+<p>It is possible to create a model where an object of a certain type has a child of the same type. For example, an object <code>A1</code> owns an object called <code>A4</code> and both objects are of type <code>A</code>.
 Composing search expressions in this case requires special attention.</p>
 <h3 id="example-model">Example model</h3>
 <pre><code>     Model
@@ -732,15 +752,15 @@ Composing search expressions in this case requires special attention.</p>
          |-- B3 -- A5
 </code></pre>
 <h3 id="predicated-child-walks">Predicated child walks</h3>
-<p>A search expression <code>*[.Type=A]</code> with a starting point set to <code>Model</code> yields <code>A1</code>, <code>A2</code> and <code>A3</code>. <strong><em>Note!</em></strong> The search will not drill down to find <code>A4</code> and <code>A5</code>.</p>
+<p>A search expression <code>*[.Type=A]</code> with a starting point set to <code>Model</code> yields <code>A1</code>, <code>A2</code> and <code>A3</code>. <strong><em>Note!</em></strong> The search will not proceed to find <code>A4</code> and <code>A5</code>.</p>
 <p>A search expression <code>*[.Type=A]</code> with a starting point set to <code>A1</code> yields <code>A1</code>. The expression matches the starting point and the search does not look for further matches.</p>
 <p>A search expression <code>+[.Type=A]</code> with a starting point set to <code>A1</code> yields <code>A4</code>. The <code>+</code>
 sign excludes the start point from the search.</p>
 <h3 id="predicated-child-walks-with-a-repeater">Predicated child walks with a repeater</h3>
-<p>A search expression <code>[.Type=A]+</code> with a starting point set to <code>Model</code> yields <code>A2</code>, <code>A3</code> and <code>A4</code>. It recursively applies the <code>[.Type=A]</code> part of the expression, using the output of the previous step as input. For example, when the search finds object <code>A1</code>, it looks for its direct children of type <code>A</code> to find object <code>A4</code> which ends up in the result set. When the search finds object <code>A3</code>, it looks for its direct children of type <code>A</code> but there are none - <code>A3</code> ends up in the result set.</p>
-<p>A search expression <code>[.Type=A]{+}</code> with a starting point set to <code>Model</code> yields <code>A1</code>, <code>A2</code>, <code>A3</code> and <code>A4</code>. The <code>{+}</code> part in the expression recursively applies the search and outputs the intermediate matches such as <code>A1</code>.</p>
-<p>A search expression <code>+[.Type=A]+</code> with a starting point set to <code>Model</code> yields <code>A2</code>, <code>A4</code> and <code>A5</code>. It recursively drills down into the model to find all leaf objects of type <code>A</code>.</p>
-<p>A search expression <code>+[.Type=A]{+}</code> with a starting point set to <code>Model</code> yields <code>A1</code>, <code>A2</code>, <code>A3</code>, <code>A4</code> and <code>A5</code>. It recursively drills down into the model to find all leaf objects of type <code>A</code> and adds intermediate <code>A</code> objects to the result set.</p>
+<p>A search expression <code>[.Type=A]+</code> with a starting point set to <code>Model</code> yields <code>A2</code>, <code>A3</code> and <code>A4</code>. It recursively applies the <code>[.Type=A]</code> part of the expression, using the output of the previous step as input. For example, when the search finds object <code>A1</code>, it looks for its direct children of type <code>A</code> to find object <code>A4</code> which ends up in the result set. Note that <code>A3</code> is included in the result set instead of <code>A5</code>. This is because when the search finds object <code>A3</code>, it looks for its <em>direct</em> children of type <code>A</code> but it finds none. The <code>[.Type=A]</code> search is therefore not applied at <code>B3</code>.</p>
+<p>A search expression <code>[.Type=A]{+}</code> with a starting point set to <code>Model</code> yields <code>A1</code>, <code>A2</code>, <code>A3</code> and <code>A4</code>. This follows the same logic as in the previous expression, but the <code>{+}</code> part in the expression also outputs intermediate matches such as <code>A1</code>.</p>
+<p>A search expression <code>+[.Type=A]+</code> with a starting point set to <code>Model</code> yields <code>A2</code>, <code>A4</code> and <code>A5</code>. It recursively traverses the model to find the last object of type <code>A</code> on each branch. Here the <code>+[.Type=A]</code> part of the expression makes the search descend unconditionally down each branch until it finds the first object of type <code>A</code>; then, the trailing <code>+</code> re-applies the <code>+[.Type=A]</code> search so that it keeps descending down the branch. The search ends up returning the last object of type <code>A</code> on each branch, even if it is not a direct child of a type <code>A</code> object.</p>
+<p>A search expression <code>+[.Type=A]{+}</code> with a starting point set to <code>Model</code> yields <code>A1</code>, <code>A2</code>, <code>A3</code>, <code>A4</code> and <code>A5</code>. It recursively traverses the model to find the last object of type <code>A</code> on each branch as before, but also adds any intermediate <code>A</code> objects to the result set.</p>
               
             </div>
           </div><footer>

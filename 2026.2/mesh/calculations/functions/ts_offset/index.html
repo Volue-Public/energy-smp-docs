@@ -77,7 +77,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../../concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../../concepts/time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -445,6 +451,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -482,17 +502,21 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="ts_offset">TS_OFFSET</h2>
-<h2 id="about-the-function">About the function</h2>
+                <h1 id="ts_offset">TS_OFFSET</h1>
 <p>This function time-shifts a time series, i.e. uses values from a period which is
-different from the current calculation period.</p>
-<p>The result series has the same resolution as the input time series.</p>
+different from the current calculation period. More precisely, TS_OFFSET will
+produce points at the same timestamps as those of the input time series,
+but use the offset to determine their functional values and flags. This may have
+unexpected results when the input is a breakpoint time series; see the examples
+below for more details.</p>
+<p>The result time series has the same resolution as the input.</p>
 <h2 id="syntax">Syntax</h2>
 <ul>
 <li>TS_OFFSET(t,d[,s])</li>
 </ul>
 <h2 id="description">Description</h2>
-<p>TS_OFFSET(t,d[,s]) is used relative to current period.</p>
+<p>TS_OFFSET(t,d[,s]) reads values relative to the current period. Each result
+point at time T takes the source value from <code>T + d * unit</code>.</p>
 <table>
 <thead>
 <tr>
@@ -506,19 +530,19 @@ different from the current calculation period.</p>
 <tr>
 <td>1</td>
 <td>t</td>
-<td>Series from which you have to retrieve values.</td>
-<td></td>
+<td>Series to read values from.</td>
+<td>@t('AreaTemperature')</td>
 </tr>
 <tr>
 <td>2</td>
 <td>d</td>
-<td>Offset in hours or the unit as specified in argument 3.</td>
-<td></td>
+<td>Offset amount in the unit specified in argument 3.</td>
+<td>-2</td>
 </tr>
 <tr>
 <td>3</td>
 <td>s</td>
-<td>Offset unit code. Default value hours.</td>
+<td>Offset unit code (default: <code>'HOUR'</code>)</td>
 <td>'DAY'</td>
 </tr>
 </tbody>
@@ -528,45 +552,71 @@ different from the current calculation period.</p>
 <thead>
 <tr>
 <th>UNIT code</th>
+<th>Duration</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td>MIN</td>
+<td>1 minute</td>
+</tr>
+<tr>
+<td>MIN5</td>
+<td>5 minutes</td>
+</tr>
+<tr>
+<td>MIN10</td>
+<td>10 minutes</td>
+</tr>
+<tr>
 <td>MIN15</td>
+<td>15 minutes</td>
 </tr>
 <tr>
 <td>MIN30</td>
+<td>30 minutes</td>
 </tr>
 <tr>
 <td>HOUR</td>
+<td>1 hour</td>
 </tr>
 <tr>
 <td>DAY</td>
+<td>24 hours</td>
 </tr>
 <tr>
 <td>WEEK</td>
+<td>7 days</td>
 </tr>
 <tr>
 <td>MONTH</td>
+<td>30 days</td>
 </tr>
 <tr>
 <td>YEAR</td>
+<td>365 days</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Example</strong></p>
-<p>Example 1: @TS_OFFSET(t,d)</p>
-<p><code>CompareTemp = @TS_OFFSET(@t('AreaTemperature'),-2)</code></p>
-<p>The values of AreaTemp are time-shifted. "d" determines the number of time
-intervals by which the time series is to be shifted. We can see that the result
-moves backwards in time for negative numbers.</p>
+<p><strong><em>Note!</em></strong> All these units represent fixed durations which do not account for DST.</p>
+<h2 id="examples">Examples</h2>
+<p>Example 1:
+<code>CompareTemp = @TS_OFFSET(@t('AreaTemperature'),-2)</code></p>
+<p>With d = -2, each <code>CompareTemp</code> point shows the <code>AreaTemperature</code> value
+from 2 hours earlier.</p>
 <p><img alt="" src="../assets/images/ex_TS_OFFSET-nimbustable.png" /></p>
-<p>Example 2: @TS_OFFSET(t,d)</p>
-<p><code>CompareTemp = @TS_OFFSET(@t('AreaTemperature'),3)</code></p>
-<p>The values of AreaTemp are time-shifted. "d" determines the number of time
-intervals by which the time series is to be shifted. We can see that the result
-moves forward in time for positive numbers.</p>
+<p>Example 2:
+<code>CompareTemp = @TS_OFFSET(@t('AreaTemperature'),3)</code></p>
+<p>With d = 3, each <code>CompareTemp</code> point shows the <code>AreaTemperature</code> value
+from 3 hours later.</p>
 <p><img alt="" src="../assets/images/ex_TS_OFFSET-nimbustable2.png" /></p>
+<p>Example 3:
+<code>CustomCalcTs = @TS_OFFSET(@t('CustomBpTs'),2)</code></p>
+<p><code>CustomBpTs</code> is a staircase breakpoint time series with two points:
+10 at 00:00 and 20 at 10:00. Even though we specify a 2-hour offset,
+the resulting <code>CustomCalcTs</code> time series is the same as the input <code>CustomBpTs</code>
+because the input has no points at 08:00 where the value 20 could be placed.</p>
+<p><img alt="" src="../assets/images/ex_TS_OFFSET-nimbustable3.png" /></p>
               
             </div>
           </div><footer>

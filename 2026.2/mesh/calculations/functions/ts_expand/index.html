@@ -77,7 +77,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../../concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../../concepts/time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -445,6 +451,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -483,7 +503,6 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="ts_expand">TS_EXPAND</h1>
-<h2 id="about-the-function">About the function</h2>
 <p>Replaces empty values in a fixed interval series. If the series has the linear
 curve type, the function interpolates between real values. Otherwise, the
 previous real value is used.</p>
@@ -492,7 +511,8 @@ previous real value is used.</p>
 <li>TS_EXPAND(t[,s])</li>
 <li>TS_EXPAND(t,s[,s])</li>
 </ul>
-<h2 id="description">Description</h2>
+<h2 id="ts_expandts">TS_EXPAND(t[,s])</h2>
+<h3 id="description">Description</h3>
 <table>
 <thead>
 <tr>
@@ -514,14 +534,16 @@ previous real value is used.</p>
 </tr>
 </tbody>
 </table>
-<p>Example 1: @TS_EXPAND(t)</p>
+<h3 id="examples">Examples</h3>
+<h4 id="example-1-ts_expandt">Example 1: @TS_EXPAND(t)</h4>
 <p><code>Temperature_hour_operative = @TS_EXPAND(@t('Temperature_hour_raw'))</code></p>
 <p><img alt="" src="../assets/images/ex_TS_EXPAND-nimbustable.png" /></p>
-<p>Example 2: @TS_EXPAND(t,s)</p>
+<h4 id="example-2-ts_expandts">Example 2: @TS_EXPAND(t,s)</h4>
 <p><code>Temperature_hour_operative = @TS_EXPAND(@t('Temperature_hour_raw'),’step’)</code></p>
 <p>The original time series has a linear curve type.</p>
 <p><img alt="" src="../assets/images/ex_TS_EXPAND-nimbustable2.png" /></p>
-<p>Description TS_EXPAND(t,s,s)</p>
+<h2 id="ts_expandtss">TS_EXPAND(t,s,s)</h2>
+<h3 id="description_1">Description</h3>
 <table>
 <thead>
 <tr>

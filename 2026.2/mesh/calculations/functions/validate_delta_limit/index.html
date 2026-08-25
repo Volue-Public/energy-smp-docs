@@ -77,7 +77,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../../concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../../concepts/time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -445,6 +451,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -482,13 +502,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="validatedeltalimit">ValidateDeltaLimit</h2>
-<p><strong>About the function</strong></p>
+                <h1 id="validatedeltalimit">ValidateDeltaLimit</h1>
 <p>Validates time series using delta change limits. Values outside the specified
 limits, will be marked as ! (Not OK). Values with control towards delta limit
 are set to validated with remark V02, meaning validation method 2. You can see
 this code if you turn on value information in Nimbus.</p>
-<p><strong>Syntax</strong></p>
+<h2 id="syntax">Syntax</h2>
 <ul>
 <li>ValidateDeltaLimit(t,t,t,d,s)</li>
 </ul>
@@ -529,7 +548,7 @@ this code if you turn on value information in Nimbus.</p>
 </tr>
 </tbody>
 </table>
-<p><strong>Example</strong></p>
+<h2 id="example">Example</h2>
 <pre><code>Waterlevel_hour_VEE = @ValidateDeltaLimit(@RESET_STATUS(@t('Waterlevel_hour_raw')),@TS('VARINT',@d('RsvDeltaLimitLower')),@TS('VARINT',@d('RsvDeltaLimitUpper')),
 @d('ValidateMaxErrors'), @s('ValuesInPercent'))
 </code></pre>
@@ -539,14 +558,14 @@ this code if you turn on value information in Nimbus.</p>
 attribute values on the specific object.</p>
 <p>The maximum number of errors, @d('ValidateMaxErrors'), also refers to an
 attribute value on the specific object. When the number of errors reaches the
-actual value, no more validation are done.</p>
+actual value, no more validation is done.</p>
 <p>Values are not interpreted as percentage values if the attribute on the specific
 object @s('ValuesInPercent') is set to FALSE.</p>
 <p>In the screen example, all existing statuses on the input data series are
 removed before the function adds its status values. This is done using the
 <a href="../reset_status/">RESET_STATUS</a> function on the input data series. The
 <code>RsvDeltaLimitLower</code> attribute is set to -0.05 and <code>RsvDeltaLimitUpper</code> is set
-to 0.05. The values are not in percent. All values outside exceeding the delta
+to 0.05. The values are not in percent. All values exceeding the delta
 limits, are marked with <strong>!</strong> (Not OK) and the validation method <strong>V02</strong>.</p>
 <p><img alt="" src="../assets/images/ex_ValidateDeltaLimit-nimbustable.png" /></p>
               

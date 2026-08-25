@@ -77,7 +77,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../../concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../../concepts/time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -445,6 +451,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -482,13 +502,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="validateabslimit">ValidateAbsLimit</h2>
-<p><strong>About the function</strong></p>
+                <h1 id="validateabslimit">ValidateAbsLimit</h1>
 <p>Validates time series using absolute limits. Values outside the specified
 limits, are marked with <strong>!</strong> (Not Ok). Values with control towards upper or
 lower limit are set to validated and marked with <strong>V01</strong>, meaning validation
 method 1. You can see this code if you turn on value information in Nimbus.</p>
-<p><strong>Syntax</strong></p>
+<h2 id="syntax">Syntax</h2>
 <ul>
 <li>ValidateAbsLimit(t,t|d,t|d)</li>
 </ul>
@@ -515,28 +534,29 @@ method 1. You can see this code if you turn on value information in Nimbus.</p>
 <tr>
 <td>3</td>
 <td>t d</td>
-<td>Time series for upper limit. Numerical value for lower limit.</td>
+<td>Time series for upper limit. Numerical value for upper limit.</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Example 1</strong></p>
+<h2 id="examples">Examples</h2>
+<h3 id="example-1">Example 1</h3>
 <pre><code>Waterlevel_hour_VEE = @ValidateAbsLimit(@t('Waterlevel_hour_raw'),@t('RsvLowerLimitProfile'),@t('RsvUpperLimitProfile'))
 </code></pre>
 <p>This example validates the input time series against lower and upper limit time
 series. If the limit time series have a repetitive frequency, you can use the
 <a href="../profile/">PROFILE</a> function to repeat values from a given period and
 resolution.</p>
-<p><strong>Example 2</strong></p>
+<h3 id="example-2">Example 2</h3>
 <p><code>RsvLowerLimitProfile = @PROFILE(@t('RsvLowerLimit'),'YEAR')</code></p>
 <p><code>@t('RsvLowerLimit')</code> is a breakpoint time series with monthly values.</p>
 <p>You can also use a vector of numbers and use the <a href="../time_mask/">TIME_MASK</a>
 function to place the values right in time.</p>
-<p>Example 3</p>
+<h3 id="example-3">Example 3</h3>
 <pre><code>LowerLimit = @TIME_MASK('YEAR',{'YEAR','YEAR+1m','YEAR+2m','YEAR+3m','YEAR+4m','YEAR+5m','YEAR+6m','YEAR+7m','YEAR+8m','YEAR+9m','YEAR+10m','YEAR+11m'},@D('RsvLowerLimitMonthly'),'VARINT')
 </code></pre>
 <p>If the lower and upper limits are constant, you can use the function syntax
 @ValidateAbsLimit(t,d,d).</p>
-<p>Example 4</p>
+<h3 id="example-4">Example 4</h3>
 <p><code>Waterlevel_hour_VEE = @ValidateAbsLimit(@RESET_STATUS(@t('Waterlevel_hour_raw')),207,210)</code></p>
 <p>In this example, all existing statuses on the input data series are removed
 before the function adds its status values. This is done using the

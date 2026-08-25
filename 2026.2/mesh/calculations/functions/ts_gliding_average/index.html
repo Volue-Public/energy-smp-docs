@@ -77,7 +77,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../../concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../../concepts/time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -445,6 +451,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -482,8 +502,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="ts_gliding_average">TS_GLIDING_AVERAGE</h2>
-<h2 id="about-the-function">About the function</h2>
+                <h1 id="ts_gliding_average">TS_GLIDING_AVERAGE</h1>
 <p>Smooths out major fluctuations by taking average values from surrounding values.
 The amount by which the new values are smoothed out depends on the value of "d".
 "d" indicates how many surrounding values should be used to produce the average
@@ -519,7 +538,7 @@ value, which means the size of the time window. If a smooth curve is required,
 <p><code>Waterlevel_hour_operative = @TS_GLIDING_AVERAGE (@t('Waterlevel_hour_raw'),3)</code></p>
 <p>The value for each time step using the gliding interval 3, is calculated by
 summarizing the previous value, the current value and the next value, divided by
-3. Se example:). Selects the time step 01.07.14 05:00:</p>
+3. See the example, selecting the time step 01.07.14 05:00:</p>
 <p>04:00 = 18.00</p>
 <p>05:00 = 17.00</p>
 <p>06:00 = 13.00</p>

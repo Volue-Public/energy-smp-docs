@@ -33,15 +33,15 @@ message AllocateReservesRequest {
   // with the requested total value to distribute.
   string total_time_series_search_expression = 5;
 
-  // The name of the time series attribute on the participating 
+  // The name of the time series attribute on the participating
   // Mesh object that contains a time series with priority values.
   string priority_time_series_attribute_name = 6;
 
-  // The name of the time series attribute on the participating 
+  // The name of the time series attribute on the participating
   // Mesh object that contains a time series with capacity values.
   string capacity_time_series_attribute_name = 7;
 
-  // The name of the time series attribute on the participating 
+  // The name of the time series attribute on the participating
   // Mesh object that contains a time series to receive the result values.
   // This attribute has to be connected to the time series entry
   // of the same resolution as the total request time series attribute.

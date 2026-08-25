@@ -77,7 +77,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../../concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../../concepts/time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -445,6 +451,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -482,22 +502,21 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="profile">PROFILE</h2>
+                <h1 id="profile">PROFILE</h1>
 <p>This topic describes a PROFILE variant (<a href="#r12">R12</a>) for transforming from one
 time resolution to another.</p>
 <p>To get an overview of all the variants of the function, see:</p>
 <p><a href="../transform_what_when/">Which functions can be used when?</a></p>
-<h6 id="r12">R12</h6>
-<h2 id="about-the-function">About the function</h2>
+<h2 id="r12">R12</h2>
 <p>PROFILE lets you create values on a series in periods where values do not exist
 based on the length of the input time series.</p>
 <p>The length of the profile series must be equal to a calendar unit, for example
 year.</p>
-<h2 id="syntax">Syntax</h2>
+<h3 id="syntax">Syntax</h3>
 <ul>
 <li>PROFILE(t)</li>
 </ul>
-<h2 id="description">Description</h2>
+<h3 id="description">Description</h3>
 <table>
 <thead>
 <tr>
@@ -520,7 +539,7 @@ perceived as a profile and placed in the requested period and repeated if
 necessary.</p>
 <p>The function returns a time series with the same resolution as the input series
 with values created by repetition of the values found on the input series.</p>
-<h2 id="example">Example</h2>
+<h3 id="example">Example</h3>
 <p><code>@PROFILE(t)</code></p>
 <p><code>Result time series = @PROFILE(@t('TSPH'))</code></p>
 <p><img alt="" src="../assets/images/ex_PROFILE-nimbustable1.png" /></p>

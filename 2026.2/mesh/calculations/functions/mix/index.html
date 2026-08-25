@@ -77,7 +77,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../../concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../../concepts/time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -445,6 +451,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -483,7 +503,6 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="mix">MIX</h1>
-<h2 id="about-the-function">About the function</h2>
 <p>The variations of this function combine two series to form a new one by
 retrieving values from one or the other series according to specific rules. This
 function is a compact form of if-then-else operation.</p>
@@ -496,7 +515,8 @@ series has the same time resolution as the input time series.</p>
 <p>The different variations of this function are described below. For MIX(t,T) and
 MIX(t,T,t), see <a href="../mix_by_selecting_from_time_series_array/">MIX by selecting from time series
 array</a>.</p>
-<p>Description MIX(t,t) and MIX(t,t,s)</p>
+<h2 id="mixtt-and-mixtts">MIX(t,t) and MIX(t,t,s)</h2>
+<h3 id="description">Description</h3>
 <table>
 <thead>
 <tr>
@@ -537,7 +557,7 @@ array</a>.</p>
 </tr>
 <tr>
 <td>Time macro</td>
-<td>General syntax for stating point of time, normally relative to a start of hour, day, week, etc. The result retrieves values from the first time series until the point of time given by the time macro. Examples of valid time macros: HOUR Star of current hour HOUR-1h Start of last hour DAY Start of current 24-hour period DAY+1d Start of next 24-hour period WEEK+2d Start of Wednesday in current week</td>
+<td>General syntax for stating point of time, normally relative to a start of hour, day, week, etc. The result retrieves values from the first time series until the point of time given by the time macro. Examples of valid time macros: HOUR Start of current hour HOUR-1h Start of last hour DAY Start of current 24-hour period DAY+1d Start of next 24-hour period WEEK+2d Start of Wednesday in current week</td>
 </tr>
 <tr>
 <td>MERGE</td>
@@ -553,15 +573,16 @@ array</a>.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="example">Example</h2>
-<p>@MIX(tt)</p>
+<h3 id="example">Example</h3>
+<p>@MIX(t,t)</p>
 <pre><code>Temperature_hour_operative = @MIX(@t('TempManualCorrection'),@t('Temperature_hour_raw'))
 </code></pre>
 <p>Values in the result time series return a value from the first time series if
 this exists, otherwise the value from the second time series is retrieved, as
 shown in the table.</p>
 <p><img alt="" src="../assets/images/ex_MIX-nimbustable.png" /></p>
-<p>Description MIX(t,t,t)</p>
+<h2 id="mixttt">MIX(t,t,t)</h2>
+<h3 id="description_1">Description</h3>
 <table>
 <thead>
 <tr>
@@ -588,7 +609,7 @@ shown in the table.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="example_1">Example</h2>
+<h3 id="example_1">Example</h3>
 <p>@MIX(t,t,t)</p>
 <pre><code>Temperature_hour_operative = @MIX(@t('Temperature_hour_raw'),@t('TempPercentiles'),@t('TempManualCorrection'))
 </code></pre>

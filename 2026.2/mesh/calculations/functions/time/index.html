@@ -77,7 +77,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../../concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../../concepts/time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -445,6 +451,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -483,7 +503,6 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="time">Time</h1>
-<h2 id="about-the-function">About the function</h2>
 <p>Interprets a time specification given as a symbol (a character string) and
 returns a time point. The time point is defined as a number. The number is ticks
 as defined in Microsoft .Net.</p>
@@ -505,7 +524,7 @@ as defined in Microsoft .Net.</p>
 <tr>
 <td>1</td>
 <td>s</td>
-<td>Time specification. Accepted values: <ul><li>Start of the requested period/StartOfPeriod: SOP</li><li>End of the requested period/EndOfPeriod: EOP</li><li>Specific time: 20120326000000000</li></li>Time macro: YEAR+1d, +1h , UTC20150222 . </li></ul></td>
+<td>Time specification. Accepted values: <ul><li>Start of the requested period/StartOfPeriod: SOP</li><li>End of the requested period/EndOfPeriod: EOP</li><li>Specific time: 20120326000000000</li><li>Time macro: YEAR+1d, +1h , UTC20150222 . </li></ul></td>
 </tr>
 <tr>
 <td>2</td>
@@ -519,7 +538,7 @@ point combined with the result of the <a href="../timespan/">TimeSpan</a> functi
 also be used as argument to functions accepting a time point as number.</p>
 <p>You can convert a time point back to a time specification string by using the
 <a href="../time_to_string/">TimeToString</a> function.</p>
-<p>Example using both Time and TimeSpan functions</p>
+<h2 id="example-using-both-time-and-timespan-functions">Example using both Time and TimeSpan functions</h2>
 <pre><code>TimeWindow = @TimeSpan('HOUR') * @d('GlidingInterval')
 @PushExtPeriod('X', @Time('SOP')-TimeWindow, @Time('EOP')+ TimeWindow)
 Source = @t('Waterlevel_hour_ManualCorrection')

@@ -77,7 +77,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../../concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../../concepts/time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -445,6 +451,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -482,8 +502,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="get_y_fx">GET_Y_FX</h2>
-<h3 id="about-the-function">About the function</h3>
+                <h1 id="get_y_fx">GET_Y_FX</h1>
 <p>The function looks up in an xy-relation, defined as argument to the function,
 with values from a time series that also is an argument to the function. The
 result is the y-value from the xy-relation, possibly interpolated. See also
@@ -499,7 +518,7 @@ range</a>.</p>
 <tr>
 <th>#</th>
 <th>Type</th>
-<th>## Description</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -526,7 +545,8 @@ range</a>.</p>
 </tbody>
 </table>
 <p>GET_Y_FX (t,D,D,[s]) corresponds to y=f(x)</p>
-<h2 id="example-1">Example 1</h2>
+<h2 id="examples">Examples</h2>
+<h3 id="example-1">Example 1</h3>
 <pre><code>R1 = @GET_Y_FX(%'/X series',{-1,20,40}, {1,2,3} )
 R2 = @GET_Y_FX(%'/X series',{-1,20,40}, {1,2,3}, 'INTERPOL')
 R3 = @GET_Y_FX(%'/X series',{-1,20,40}, {1,2,3}, 'INTERPOL,NOHOLD' )
@@ -548,7 +568,7 @@ returned (1 in the example below).</p>
 <p>When an input is higher than the last value from the x range provided in the
 function call (40 in the example below) the last value from the y range will be
 returned (3 in the example below).</p>
-<h2 id="example-2">Example 2</h2>
+<h3 id="example-2">Example 2</h3>
 <pre><code>##=@GET_Y_FX(@t('t'), {-1,20,40}, {1,2,3}, 'INTERPOL,NOHOLD')
 </code></pre>
 <table>
@@ -589,7 +609,6 @@ returned (3 in the example below).</p>
 </tr>
 </tbody>
 </table>
-<hr />
               
             </div>
           </div><footer>

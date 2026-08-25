@@ -77,7 +77,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../../concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../../concepts/time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -445,6 +451,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -483,18 +503,22 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="log">LOG</h1>
-<h2 id="about-the-function">About the function</h2>
 <p>This function is used to find the logarithm of values in a time series or a
 number.</p>
 <p>Briggs logarithms use the base number 10. The logarithm to a number x, is the
 exponent c, which the base number must be raised with to get the number x.</p>
-<p>10c = x -&gt; log x10 = c</p>
+<p>
+<script type="math/tex; mode=display">
+10^c = x \leftrightarrow \log x = c
+</script>
+</p>
 <p>The input value must be a positive number larger than 0. If not, the function
 returns an empty value.</p>
-<p><strong>S</strong><strong>yntax</strong></p>
+<h2 id="syntax">Syntax</h2>
 <ul>
 <li>LOG(t|d)</li>
 </ul>
+<h2 id="description">Description</h2>
 <table>
 <thead>
 <tr>
@@ -516,10 +540,10 @@ returns an empty value.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="example">Example</h2>
-<p>Example 1: @LOG(t)</p>
+<h2 id="examples">Examples</h2>
+<h3 id="example-1-logt">Example 1: @LOG(t)</h3>
 <p><code>Temperature_hour_VV = @LOG(@t('Temperature_hour_raw'))</code></p>
-<p>Example 2: @LOG(d)</p>
+<h3 id="example-2-logd">Example 2: @LOG(d)</h3>
 <p><code>ResultTs = @LOG(1)</code></p>
 <p>Example 2 returns the number 0 for all rows.</p>
 <p><img alt="" src="../assets/images/ex_LOG-nimbustable1.png" /></p>

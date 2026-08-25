@@ -77,7 +77,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../../concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../../concepts/time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -445,6 +451,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -482,8 +502,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="min">MIN</h2>
-<h3 id="about-the-function">About the function</h3>
+                <h1 id="min">MIN</h1>
 <p>Finds the lowest values in time series, numbers, arrays or combinations of
 these.</p>
 <p>There are many variants of this function, some returns a single number as result
@@ -502,7 +521,7 @@ but most of them returns a time series.</p>
 <li>MIN(d,d)  -&gt; returns a number</li>
 <li>MIN(T,T)</li>
 </ul>
-<h3 id="description">Description</h3>
+<h2 id="description">Description</h2>
 <table>
 <thead>
 <tr>
@@ -525,18 +544,18 @@ but most of them returns a time series.</p>
 </tbody>
 </table>
 <p>There are similar functions to find highest values, see <a href="../max/">function MAX</a></p>
-<h3 id="examples">Examples</h3>
-<h4 id="example-1-mint">Example 1: @MIN(T)</h4>
+<h2 id="examples">Examples</h2>
+<h3 id="example-1-mint">Example 1: @MIN(T)</h3>
 <p><code>Temperature_hour_operative = @MIN(@T('.Temperature_hour'))</code></p>
 <p>@T('.Temperature_hour') returns an array of time series.</p>
 <p>Returns the lowest value of all the time series in the array for each time step,
 e.g.:</p>
 <p><img alt="" src="../assets/images/ex_MIN-nimbustable.png" /></p>
-<h4 id="example-2-mind">Example 2: @MIN(D)</h4>
+<h3 id="example-2-mind">Example 2: @MIN(D)</h3>
 <p>Result = @MIN({1, 5, 8, 2.5, 11})</p>
 <p>Result = 1</p>
 <p>Result returns the lowest value from the array of numbers.</p>
-<h4 id="example-3-mint">Example 3: @MIN(t)</h4>
+<h3 id="example-3-mint">Example 3: @MIN(t)</h3>
 <p>Returns the lowest values from the time series for the requested period.</p>
 <p><code>Temperature_hour_operative = @t('.Temperature_hour_raw')/@MIN(@t('.Temperature_hour_raw'))</code></p>
 <p><img alt="" src="../assets/images/ex_MIN-nimbustable2.png" /></p>
@@ -546,24 +565,24 @@ calculation the result values are divided on -5.</p>
 <p><img alt="" src="../assets/images/ex_MIN-nimbustable3.png" /></p>
 <p>From the requested period, we can see that the minimum value is -5. Used in
 calculation the result values are added by -5.</p>
-<h4 id="example-4-mintt">Example 4: @MIN(t,t)</h4>
+<h3 id="example-4-mintt">Example 4: @MIN(t,t)</h3>
 <p><code>Temperature_hour_operative = @MIN(@t('.Temperature_hour_raw'),@t('.TempManualCorrection'))</code></p>
 <p>It returns the lowest of the values for each time step in time series 1 and time
 series 2.</p>
 <p><img alt="" src="../assets/images/ex_MIN-nimbustable4.png" /></p>
-<h4 id="example-5-mintt">Example 5: @MIN(T,t)</h4>
+<h3 id="example-5-mintt">Example 5: @MIN(T,t)</h3>
 <p><code>Temperature_hour_operative = @MIN(@T('.Temperature_hour'),@t('.TempManualCorrection'))</code></p>
 <p>@T('.Temperature_hour') is an array of three time series.
 @t('.TempManualCorrection') is a single time series.</p>
 <p>Returns the lowest value of the time series in the array and the single time
 series for each time step, e.g.:</p>
 <p><img alt="" src="../assets/images/ex_MIN-nimbustable5.png" /></p>
-<h4 id="example-6-mintd">Example 6: @MIN(t,d)</h4>
+<h3 id="example-6-mintd">Example 6: @MIN(t,d)</h3>
 <p><code>Result = @MIN(@t('Temperature_hour_raw'),-0.5)</code></p>
 <p>Returns the lowest value of the time series and a selected number for each time
 step, e.g.:</p>
 <p><img alt="" src="../assets/images/ex_MIN-nimbustable6.png" /></p>
-<h4 id="example-7-mindd">Example 7: @MIN(d,d)</h4>
+<h3 id="example-7-mindd">Example 7: @MIN(d,d)</h3>
 <p><code>Result = @MIN(8,2.5)</code></p>
 <p>Result = 2.5</p>
 <p>Returns the lowest value of the two numbers.</p>

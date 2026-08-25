@@ -77,7 +77,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../../concepts/sessions/">Sessions</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../../concepts/time-series/">Time series</a>
+                <li class="toctree-l2"><a class="reference internal" >Time series</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/general/">General</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../concepts/time-series/time-zone-aware-time-series/">Time zone-aware time series</a>
+                </li>
+    </ul>
                 </li>
     </ul>
                   </li>
@@ -445,6 +451,20 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../operations/monitoring/">Monitor services</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" >EntraId validation script</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment/">Documentation of validate-entraid-environment.ps1 script</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/validate-entraid-environment.ps1">validate-entraid-environment.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/entraid-config.ps1">entraid-config.ps1</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../operations/entraid-scripts/report-entraid-settings.ps1">report-entraid-settings.ps1</a>
+                </li>
+    </ul>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Time series reports</span></p>
               <ul>
@@ -482,8 +502,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="power">POWER</h2>
-<h2 id="about-the-function">About the function</h2>
+                <h1 id="power">POWER</h1>
 <p>Returns the result of a time series or number raised to a power. The function
 uses the equation <code>y=xn. x</code> and <code>n</code> can be a time series or a number.</p>
 <p>The result series has the same resolution as the input time series.</p>
@@ -523,20 +542,20 @@ uses the equation <code>y=xn. x</code> and <code>n</code> can be a time series o
 </tr>
 </tbody>
 </table>
-<h2 id="example">Example</h2>
-<p>Example 1: @POWER(t,d)</p>
+<h2 id="examples">Examples</h2>
+<h3 id="example-1-powertd">Example 1: @POWER(t,d)</h3>
 <pre><code>Waterlevel_hour_operative = @POWER(@t('Waterlevel_hour_raw'),2)
 </code></pre>
 <p><img alt="" src="../assets/images/ex_POWER-nimbustable1.png" /></p>
-<p>Example 2: @POWER(d,t)</p>
+<h3 id="example-2-powerdt">Example 2: @POWER(d,t)</h3>
 <pre><code>Waterlevel_hour_operative = @POWER(2,@t('Waterlevel_hour_raw'))
 </code></pre>
 <p><img alt="" src="../assets/images/ex_POWER-nimbustable2.png" /></p>
-<p>Example 3: @POWER(t,t)</p>
+<h3 id="example-3-powertt">Example 3: @POWER(t,t)</h3>
 <pre><code>Waterlevel_hour_operative = @POWER(@t('Waterlevel_hour_raw'),@t('Waterlevel_hour_raw'),)
 </code></pre>
 <p><img alt="" src="../assets/images/ex_POWER-nimbustable3.png" /></p>
-<p>Example 4: @POWER(d,d)</p>
+<h3 id="example-4-powerdd">Example 4: @POWER(d,d)</h3>
 <pre><code>RS4 = @POWER(4,2)
 </code></pre>
 <p>Example 4 returns the number 16 (4 to the power of 2).</p>
