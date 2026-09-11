@@ -147,6 +147,7 @@ After the service is installed, the following configuration is required.
 - Use Transport Layer Security (TLS)
 - Authentication
 - Authorisation
+- Hydro Simulation
 - Limit cache
 
 ### mesh.json - minimum version
@@ -623,6 +624,49 @@ The Kerberos group names and OAuth roles mappings are defined separately.
 }
 ```
 
+### Hydro Simulation
+
+Hydro simulations, inflow calculations and Marginal Cost file generation are
+executed by **Hydro Simulation**, which runs as a separate server process
+outside of Mesh. Mesh forwards these requests to the Hydro Simulation server
+over gRPC, and Hydro Simulation connects back to the Mesh gRPC interface to
+read the model data it needs.
+
+To enable Hydro Simulation in Mesh, add the following section to `mesh.json`:
+
+```json
+  "HydSim": {
+    "Address": "localhost:47052"
+  },
+```
+
+Parameters:
+
+- `Address` - `host:port` of the Hydro Simulation server. The default value
+  is `localhost:47052`. The value must not be empty.
+
+**Note!** The default value only applies when the `HydSim` section is present
+in `mesh.json`. If the section is omitted, Hydro Simulation is disabled: Mesh
+logs a warning on startup and all hydro simulation requests fail. To use the
+defaults, add an empty section:
+
+```json
+  "HydSim": {},
+```
+
+Requirements:
+
+- The Mesh gRPC interface must be enabled (see
+  [Mesh gRPC server](#mesh-grpc-server)). Hydro Simulation calls back into
+  Mesh over gRPC, so Mesh refuses to start if `HydSim` is configured while
+  `Grpc` is not.
+- The connection from Mesh to the Hydro Simulation server is not encrypted.
+  Run the Hydro Simulation server on the same host as Mesh, or on a trusted
+  network, and make sure the firewall allows Mesh to reach the configured
+  port.
+- The Hydro Simulation server has its own configuration, including the
+  address it uses to reach the Mesh gRPC interface.
+
 ### Limit time series cache usage
 
 By default, Mesh will read into memory all time series values found in the database for the requested time series and these values will stay in memory as long as the service is running.
@@ -845,6 +889,9 @@ Below is the complete `mesh.json` listed with all options with default values.
     "Kerberos": true,
     "Health": true,
     "Port": 20000
+  },
+  "HydSim": { // Optional. Omitting the section disables Hydro Simulation
+    "Address": "localhost:47052" // Hydro Simulation server, requires Grpc
   },
   "Log": {
     "Console": true, // Log to stdout
