@@ -804,36 +804,31 @@ Below is the complete `mesh.json` listed with all options with default values.
 
 ```json
 {
-  "FailOnSynchErrors": false,  // Specifies whether Mesh should shut down after 3 consecutive synchronisation errors
-  "SerializationVersion": 25,
-  "MaxSessions": 250, // Maximum number of existing sessions at any given time, -1 to set to unlimited
-  "ComputerName": "localhost",
-  "Log": {
-    "Console": true, // Log to stdout
-    "WindowsEventLog": false, // Log to the Windows Event Log
-    "Directory": "C:\\Powel\\Mesh\\logs", // Log to the given directory
-    "Level": "info", // One of "trace", "debug", "info", "warning", "error", default "info"
-    "RequestLogging": true,
-    "MaxLogFiles": 10,           // Maximum number of log files, valid range is [1, 1000]
-    "MaxLogSizeMb": 10,          // Maximum size of each log file in MB, valid range is [10, 1000]
-    "MaxRequestLogFiles": 10,    // Maximum number of request log files, valid range is [1, 1000]
-    "MaxRequestLogSizeMb": 10    // Maximum size of each request log file in MB, valid range is [10, 1000]
-  },
-  "SynchronizationIntervalSeconds": 30, // How often Mesh synchronises with the database
   "Audit": {
-    "Directory": "",
-    "CircularLog": true
+    "CircularLog": true,
+    "Directory": ""
   },
-  "Oracle": {
-    "ExternalCredentials": false,
-    "ReadOnly": false,
-    "Cleanup": true,
-    "SerializableCleanup": true,
-    "Server": "",
-    "Username": "",
-    "Password": "",
-    "SynchronizationTimeoutMs": 600000,
-    "TimeSeriesPointsSplit": 8000000 // Maximum number of time series points per database write batch. Splits large commits to avoid Oracle buffer limits.
+  "ComputerName": "localhost",
+  "FailOnSynchErrors": false,  // Specifies whether Mesh should shut down after 3 consecutive synchronisation errors
+  "Grpc": {
+    "Address": "[::]:50051",
+    "Authorization": {
+      "Audience": "",
+      "JwksEndpoint": "",
+      "Issuer": "",
+      "Scope": "",
+      "GroupsFile": "",
+    },
+    "Kerberos": true,
+    "OAuth": false,
+    "Tls": {
+      "CertificatePath": "",
+      "CertificateKeyPath": "",
+      "WindowsCertStore": {
+        "CertificateThumbprint": "",
+        "SystemStoreName": ""
+      }
+    }
   },
   "HighAvailability": {
     "KillProcessOnSwitchingToInactiveMode": true,
@@ -847,41 +842,46 @@ Below is the complete `mesh.json` listed with all options with default values.
     "ServiceName": "Mesh"
   },
   "Http": {
-    "Port": 20000,
     "Kerberos": true,
-    "Health": true
+    "Health": true,
+    "Port": 20000
   },
-  "Grpc": {
-    "Kerberos": true,
-    "OAuth": false,
-    "Address": "[::]:50051",
-    "Tls": {
-      "CertificatePath": "",
-      "CertificateKeyPath": "",
-      "WindowsCertStore": {
-        "CertificateThumbprint": "",
-        "SystemStoreName": ""
-      }
-    },
-    "Authorization": {
-      "Audience": "",
-      "JwksEndpoint": "",
-      "Issuer": "",
-      "Scope": "",
-      "GroupsFile": "",
-    }
+  "Log": {
+    "Console": true, // Log to stdout
+    "WindowsEventLog": false, // Log to the Windows Event Log
+    "Directory": "C:\\Powel\\Mesh\\logs", // Log to the given directory
+    "Level": "info", // One of "trace", "debug", "info", "warning", "error", default "info"
+    "RequestLogging": true,
+    "MaxLogFiles": 10,           // Maximum number of log files, valid range is [1, 1000]
+    "MaxLogSizeMb": 10,          // Maximum size of each log file in MB, valid range is [10, 1000]
+    "MaxRequestLogFiles": 10,    // Maximum number of request log files, valid range is [1, 1000]
+    "MaxRequestLogSizeMb": 10    // Maximum size of each request log file in MB, valid range is [10, 1000]
   },
+  "MaxSessions": 250, // Maximum number of existing sessions at any given time, -1 to set to unlimited
+  "Oracle": {
+    "ExternalCredentials": false,
+    "ReadOnly": false,
+    "Cleanup": true,
+    "SerializableCleanup": true,
+    "Server": "",
+    "Username": "",
+    "Password": "",
+    "SynchronizationTimeoutMs": 600000,
+    "TimeSeriesPointsSplit": 8000000 // Maximum number of time series points per database write batch. Splits large commits to avoid Oracle buffer limits.
+  },
+  "SerializationVersion": 25,
+  "SharedPointCache": {
+    "CacheStateFileDirectory": "<path>",
+    "DefaultIntervalDays": null,  // null means no limit, valid range is [1, 20000]
+    "LimitMb": null,              // null means no limit, valid range is [0, 1048576]
+    "PreloadAllTimeSeries": false,
+    "PreloadPreviousState": false
+  },
+  "SynchronizationIntervalSeconds": 30, // How often Mesh synchronises with the database
   "Zmq": {
     "Threads": 8,
     "Kerberos": true,
     "Port": 40321
-  },
-  "SharedPointCache": {
-    "LimitMb": null,              // null means no limit, valid range is [0, 1048576]
-    "DefaultIntervalDays": null,  // null means no limit, valid range is [1, 20000]
-    "PreloadAllTimeSeries": false,
-    "PreloadPreviousState": false,
-    "CacheStateFileDirectory": "<path>"
   }
 }
 ```
