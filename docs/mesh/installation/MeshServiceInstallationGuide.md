@@ -869,7 +869,7 @@ Below is the complete `mesh.json` listed with all options with default values.
     "SynchronizationTimeoutMs": 600000,
     "TimeSeriesPointsSplit": 8000000 // Maximum number of time series points per database write batch. Splits large commits to avoid Oracle buffer limits.
   },
-  "SerializationVersion": 25,
+  "SerializationVersion": 28,
   "SharedPointCache": {
     "CacheStateFileDirectory": "<path>",
     "DefaultIntervalDays": null,  // null means no limit, valid range is [1, 20000]
