@@ -19,7 +19,11 @@ series, numbers or time series.
 
 Returns a time series found at given index. If index is out of range, an empty breakpoint series is returned.
 Be aware that the array of time series attached to a time series collection attribute is not stable and cannot be 
-used as first argument to this function. 
+used as first argument to this function.
+
+Negative indexing is not supported.
+Fractional indices are truncated toward zero (e.g. 0.5 -> 0).
+The function returns an error if the index value is `NaN` of `Inf`.
 
 | # | Type | Description |
 |---|---|---|
@@ -27,6 +31,9 @@ used as first argument to this function.
 | 2 | d | Lookup index, the first value has index 0. |
 
 Returns the number found at given index. If index is out of range, then the returned value is NaN.
+Negative indexing is not supported.
+Fractional indices are truncated toward zero (e.g. 0.5 -> 0).
+The function returns an error if the index value is `NaN` of `Inf`.
 
 ```
 DArray = {10,11,12,13,14}
@@ -80,8 +87,8 @@ There are exception to this rule though:
    `val` should be equal to the value of `TsAttribute` at `2020-01-01 03:00Z`.
 
 Negative indexing is not supported.
-
 Fractional indices are truncated toward zero (e.g. 0.5 -> 0).
+The function returns an error if the index value is `NaN` of `Inf`.
 
 
 
