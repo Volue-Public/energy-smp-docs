@@ -809,7 +809,7 @@ Below is the complete `mesh.json` listed with all options with default values.
     "Directory": ""
   },
   "ComputerName": "localhost",
-  "FailOnSynchErrors": false,  // Specifies whether Mesh should shut down after 3 consecutive synchronisation errors
+  "FailOnSynchErrors": true,  // Specifies whether Mesh should shut down after 3 consecutive synchronisation errors
   "Grpc": {
     "Address": "[::]:50051",
     "Authorization": {
