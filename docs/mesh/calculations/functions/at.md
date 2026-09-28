@@ -31,12 +31,12 @@ The function returns an error if the index value is `NaN` or `Inf`.
 
 ## AT(D,d)
 
-### Description
-
 | # | Type | Description |
 |---|---|---|
 | 1 | D | Array of floating-point numbers. |
 | 2 | d | Lookup index, the first value has index 0. |
+
+### Description
 
 Returns the number found at given index. If index is out of range, then the returned value is NaN.
 
@@ -59,23 +59,25 @@ Result: Res1=10 and Res2=12, that is 0-based index lookup.
 
 ## AT(t,s)
 
-### Description
 
 | # | Type | Description |
 |---|---|---|
 | 1 | t | Time series. |
 | 2 | s | Time argument. May be a [macro](../timepoint-macros.md) expanded to time point. Examples: DAY+10h, UTC20141124 |
 
+### Description
+
 Returns a value found on the time series at given time point. If time argument is not valid, then the returned value is NaN.
 
 ## AT(t,d)
 
-### Description
 
 | # | Type | Description |
 |---|---|---|
 | 1 | t | Time series. |
 | 2 | d | Lookup index, the first value has index 0. |
+
+### Description
 
 Returns a single value from the time series, based on the lookup index in argument 2.
 
