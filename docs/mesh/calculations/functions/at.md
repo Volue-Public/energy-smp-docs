@@ -49,14 +49,12 @@ Fractional indices are truncated (e.g. 0.8 -> 0).
 The function returns `NaN` if the index value is `NaN` or `Inf`.
 
 ### Example
-
+```
 DArray = {10,11,12,13,14}
-
 Res1 = @AT(DArray,0)
-
 Res2 = @AT(DArray,2)
-
 Result: Res1=10 and Res2=12, that is 0-based index lookup.
+```
 
 ## AT(t,s)
 
