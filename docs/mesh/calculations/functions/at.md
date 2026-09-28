@@ -21,53 +21,56 @@ series, numbers or time series.
 
 Returns a time series found at given index. If index is out of range, an empty breakpoint series is returned.
 Be aware that the array of time series attached to a time series collection attribute is not stable and cannot be 
-used as first argument to this function. 
+used as first argument to this function.
 
 Negative indices are treated as out of range.
-Exception: index values such as `-1 < index < 0` return the value associated with index 0.
 
 Fractional indices are truncated (e.g. 0.8 -> 0).
 
-The function returns empty breakpoint time series if the index value is `NaN` or `Inf`.
+The function returns an error if the index value is `NaN` or `Inf`.
 
 ## AT(D,d)
-
-### Description
 
 | # | Type | Description |
 |---|---|---|
 | 1 | D | Array of floating-point numbers. |
 | 2 | d | Lookup index, the first value has index 0. |
 
+### Description
+
 Returns the number found at given index. If index is out of range, then the returned value is NaN.
 
 Negative indices are treated as out of range.
-Exception: index values such as `-1 < index < 0` return the value associated with index 0.
 
 Fractional indices are truncated (e.g. 0.8 -> 0).
 
-The function returns `NaN` if the index value is `NaN` or `Inf`.
+The function returns an error if the index value is `NaN` or `Inf`.
 
 ### Example
+
 ```
 DArray = {10,11,12,13,14}
 Res1 = @AT(DArray,0)
 Res2 = @AT(DArray,2)
-Result: Res1=10 and Res2=12, that is 0-based index lookup.
+[...]
 ```
+
+Result: Res1=10 and Res2=12, that is 0-based index lookup.
 
 ## AT(t,s)
 
-### Description
 
 | # | Type | Description |
 |---|---|---|
 | 1 | t | Time series. |
 | 2 | s | Time argument. May be a [macro](../timepoint-macros.md) expanded to time point. Examples: DAY+10h, UTC20141124 |
 
+### Description
+
 Returns a value found on the time series at given time point. If time argument is not valid, then the returned value is NaN.
 
 ## AT(t,d)
+
 
 | # | Type | Description |
 |---|---|---|
@@ -93,11 +96,10 @@ may result in extending the valid index range.
 See [Using extended periods](push_ext_period.md#using-extended-periods).
 
 Negative indices are treated as out of range.
-Exception: index values such as `-1 < index < 0` return the value associated with index 0.
 
 Fractional indices are truncated (e.g. 0.8 -> 0).
 
-The function returns `NaN` if the index value is `NaN` or `Inf`.
+The function returns an error if the index value is `NaN` or `Inf`.
 
 ### Example
 
