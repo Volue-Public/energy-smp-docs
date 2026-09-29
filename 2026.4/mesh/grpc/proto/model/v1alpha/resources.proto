@@ -1,0 +1,255 @@
+syntax = "proto3";
+
+package volue.mesh.grpc.model.v1alpha;
+
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+
+import "model_definition/v1alpha/resources.proto";
+import "time_series/v1alpha/time_series.proto";
+import "type/resources.proto";
+
+
+message Object {
+  volue.mesh.grpc.type.Guid id = 1;
+  string path = 2;
+  string name = 3;
+  string type_name = 4;
+
+  // Relation attribute owning given object, e.g.:
+  //   For `SomePowerPlant1` object with path:
+  //   - Model/SimpleThermalTestModel/ThermalComponent.ThermalPowerToPlantRef/SomePowerPlant1
+  //   Owner will be the `ThermalPowerToPlantRef` attribute.
+  //
+  // Mesh models are also represented as objects. They are top level objects
+  // without owners, so `owner_id` field for models is not set.
+  volue.mesh.grpc.type.MeshId owner_id = 5;
+  repeated Attribute attributes = 6;
+
+  // For models (top level objects without owners) the namespace is set,
+  // for other objects the object definition is set.
+  oneof definition_oneof {
+    volue.mesh.grpc.type.MeshId object_definition_id = 7;
+    volue.mesh.grpc.type.MeshId name_space_id = 8;
+  }
+}
+
+message Attribute {
+  // ID of the attribute in the model.
+  volue.mesh.grpc.type.Guid id = 1;
+
+  string path = 2;
+  string name = 3;
+  volue.mesh.grpc.model_definition.v1alpha.AttributeDefinition definition = 4;
+
+  // Some attribute types, such as XY-sets, do not include their values in the
+  // `Attribute` message. This is because those attributes have potentially
+  // large values, and specialized methods exist to handle those values.
+
+  repeated AttributeValue values = 5;
+
+  // For nullable or empty collection types no values will be returned. In such
+  // case this `value_type` could be used to check attributes value type.
+  volue.mesh.grpc.model_definition.v1alpha.AttributeValueType value_type = 6;
+  // If the `value_type` is a collection then this flag is set to `True`.
+  bool value_type_collection = 7;
+
+  volue.mesh.grpc.type.MeshId owner_id = 8;
+}
+
+message AttributeValue {
+  oneof value_oneof {
+    int64 int_value = 1;
+    double double_value = 2;
+    bool boolean_value = 3;
+    string string_value = 4;
+    google.protobuf.Timestamp utc_time_value = 5;
+
+    TimeseriesAttributeValue timeseries_value = 6;
+    OwnershipRelationAttributeValue ownership_relation_value = 7;
+    LinkRelationAttributeValue link_relation_value = 8;
+    VersionedLinkRelationAttributeValue versioned_link_relation_value = 9;
+
+    // There are separate RPCs for handling XY set and rating curve attribute
+    // values, see:
+    // - GetXySets
+    // - GetRatingCurveVersions
+  }
+}
+
+message TimeseriesAttributeValue {
+  // Physical or virtual time series from resources if the attribute
+  // refers to one.
+  // To disconnect time series attribute from already connected time
+  // series resource set `new_timeseries_resource_key` to 0 in the
+  // `UpdateTimeseriesAttribute` RPC.
+  // To update curve type or resolution use time series service
+  // `UpdateTimeseriesResource` RPC.
+  volue.mesh.grpc.time_series.v1alpha.TimeseriesResource time_series_resource = 1;
+
+  // Expression that is actually used by the time series attribute.
+  // It uses local expression if set, otherwise template expression
+  // (defined in TimeseriesAttributeDefinition) will be used.
+  // When updating expression the new value will always be assigned
+  // to local expression.
+  // Note: Local expression is set on the object level in the model.
+  string expression = 2;
+
+  // Flag indicating expression that is actually used is a local expression.
+  // [OUTPUT_ONLY]
+  bool is_local_expression = 3;
+}
+
+message OwnershipRelationAttributeValue {
+  volue.mesh.grpc.type.Guid target_object_id = 1;
+}
+
+message LinkRelationAttributeValue {
+  volue.mesh.grpc.type.Guid target_object_id = 1;
+}
+
+message VersionedLinkRelationAttributeValue {
+  repeated LinkRelationVersion versions = 1;
+}
+
+message LinkRelationVersion {
+  // If `target_object_id` is not set then it will serve as end of activity of
+  // previous target object. E.g.:
+  //   ver1: 01.01.2000 -> object A
+  //   ver2: 02.01.2000 -> _empty_
+  //   ver3: 04.01.2000 -> object B
+  // In the period [02.01.2000, 04.01.2000) no target object was active/linked.
+  optional volue.mesh.grpc.type.Guid target_object_id = 1;
+  google.protobuf.Timestamp valid_from_time = 2;
+}
+
+// Defines what attributes need to be returned in response message.
+message AttributesMasks {
+  // Attribute name uniquely identifies attribute within given object.
+  // If set then only attributes set in the field mask are read.
+  // If tag, namespace mask or `types` field is also set then an error will be
+  // returned.
+  // The attribute name provided in the mask must be equal to
+  // the actual attribute name in the model.
+  // Note: Regular expressions are not supported.
+  // See examples below for more details.
+  google.protobuf.FieldMask name_mask = 1;
+
+  // Each attribute can have zero, one or more tags.
+  // If the tag mask is set then only attributes with
+  // at least one tag set in the field mask are read.
+  // If multiple tags are provided then all attributes having
+  // at least one of them are returned (logical OR).
+  // If name mask or `types` field is also set then an error will be returned.
+  // It is allowed to have both: tag mask and namespace mask set.
+  // Note: Regular expressions are not supported.
+  // See examples below for more details.
+  google.protobuf.FieldMask tag_mask = 2;
+
+  // Each attribute can have zero, one or more namespaces.
+  // If the namespace mask is set then only attributes with
+  // at least one namespace set in the field mask are read.
+  // If multiple namespaces are provided in the mask then all
+  // attributes having at least one of them are returned (logical OR).
+  // Namespace mask does not accept entries with namespaces
+  // concatenated with dots '.'. Each namespace mask entry must
+  // be a separate namespace.
+  // If name mask or `types` field is also set then an error will be returned.
+  // It is allowed to have both: tag mask and namespace mask set.
+  // Note: Regular expressions are not supported.
+  // See examples below for more details.
+  google.protobuf.FieldMask namespace_mask = 3;
+
+  // Each attribute has single AttributeValueType.
+  // If the `types` field is set then only attributes with
+  // matching AttributeValueTypes will be returned.
+  // If any other mask: name, tag or namespace is also set then an error will
+  // be returned.
+  // ATTRIBUTE_VALUE_TYPE_UNSPECIFIED cannot be used for specifying type.
+  // See examples below for more details.
+  repeated volue.mesh.grpc.model_definition.v1alpha.AttributeValueType types = 4;
+
+  // Multiple attributes may have the same tag or namespace.
+  // If both: tag_mask and namespace_masks are provided then only attributes
+  // that meet both criteria are returned (intersection/logical AND).
+  //
+  // Example 1:
+  //    Arg:      `name_mask` is set to "Price,Volume,Production"
+  //    Response: All attributes with names "Price", "Volume" or "Production"
+  //              will be returned.
+  //
+  // Example 2:
+  //    Arg:      `tag_mask` is set to "ProductionAttributes,LocationAttributes"
+  //    Response: All attributes with tag name "ProductionAttributes" or
+  //              "LocationAttributes" will be returned.
+  //    Note:     If attributes A1, A2 have tag "ProductionAttributes" and A3
+  //              has "LocationAttributes" then all three attributes
+  //              (A1, A2 and A3) will be returned.
+  //              Exactly the same rules apply to `namespace_mask`.
+  //
+  // Example 3:
+  //    Arg:      `namespace_mask` is set to "Hydro,Wind".
+  //    Response: All attributes with namespace "Hydro" or "Wind" will be returned.
+  //    Note:     Suppose there are the following attributes:
+  //              - A1 (namespace "EnergySystem.Hydro")
+  //              - A2 (namespace "EnergySystem.Wind")
+  //              - A3 (namespace "EnergySystem.Carbon")
+  //              - A4 (namespace "EnergySystem.Hydro.Small")
+  //              - A5 (namespace "Hydro.Normal")
+  //              In this case attributes A1, A2, A4 and A5 will be returned.
+  //
+  // Example 4:
+  //    Arg:      `tag_mask` is set to "ProductionAttributes",
+  //              `namespace_mask` is set to "Hydro,Wind".
+  //    Response: All attributes with tag name "ProductionAttributes" and
+  //              namespace "Hydro" or "Wind" will be returned.
+  //    Note:     Suppose there are the following attributes:
+  //              - A1 (tag "ProductionAttributes", namespace "EnergySystem.Hydro")
+  //              - A2 (tag "ProductionAttributes", namespace "EnergySystem.Wind")
+  //              - A3 (tag "ProductionAttributes", namespace "EnergySystem.Carbon")
+  //              - A4 (tag "LocationAttributes", namespace "EnergySystem.Hydro")
+  //              - A5 (tag "LocationAttributes", namespace "EnergySystem.Wind")
+  //              In this case attributes A1 and A2 will be returned.
+  //
+  // Example 5:
+  //    Arg:      `types` is set to ATTRIBUTE_VALUE_TYPE_INT, ATTRIBUTE_VALUE_TYPE_STRING
+  //    Response: All attributes with AttributeValueType equal to ATTRIBUTE_VALUE_TYPE_INT
+  //              or ATTRIBUTE_VALUE_TYPE_STRING will be returned.
+  //
+  //  Note: If no masks are provided then all attributes will be returned.
+}
+
+// An `XyCurve` is a set of (x, y) pairs.
+message XyCurve {
+  // The reference value of this curve. Also known as the z value.
+  double reference_value = 1;
+
+  // Always equal length.
+  repeated double x_values = 2;
+  repeated double y_values = 3;
+}
+
+// An `XySet` is a set of `XyCurve`s indexed by reference values, also known as
+// z values.
+message XySet {
+  // If this `XySet` is a part of a versioned XY set attribute in Mesh
+  // `valid_from_time` will contain the start of the active period for
+  // this `XySet`. Otherwise `valid_from_time` will be null.
+  google.protobuf.Timestamp valid_from_time = 1;
+
+  // A list of `XyCurve`s in this `XySet`. Always sorted by `reference_value`.
+  repeated XyCurve xy_curves = 3;
+}
+
+message RatingCurveSegment {
+  double x_range_until = 1;
+  double factor_a = 2;
+  double factor_b = 3;
+  double factor_c = 4;
+}
+
+message RatingCurveVersion {
+  google.protobuf.Timestamp from = 1;
+  double x_range_from = 2;
+  repeated RatingCurveSegment x_value_segments = 3;
+}
