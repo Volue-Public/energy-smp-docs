@@ -1,3 +1,10 @@
+> [!IMPORTANT]
+> **This repository is no longer maintained.**
+> The Smart Power documentation has moved to
+> [Volue/energy-docs-smart-power](https://github.com/Volue/energy-docs-smart-power).
+> Make all new contributions there. The instructions below are kept only for
+> reference, in case the archived content ever needs to be rebuilt.
+
 # Publish using GitHub action
 
 You can publish latest changes from the `main` branch to be visible in the GitHub
