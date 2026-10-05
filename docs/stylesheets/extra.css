@@ -2,3 +2,20 @@
 .wy-table-responsive table th {
     white-space: normal !important;
 }
+
+.docs-moved-banner {
+    margin-bottom: 24px;
+    background: #fdecea;
+    border-left: 6px solid #c62828;
+}
+
+.docs-moved-banner .admonition-title {
+    background: #c62828;
+    color: #ffffff;
+}
+
+.docs-moved-banner a {
+    color: #b71c1c;
+    font-weight: bold;
+    text-decoration: underline;
+}
