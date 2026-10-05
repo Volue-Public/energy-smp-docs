@@ -502,7 +502,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="transform">TRANSFORM</h1>
+<div class="admonition danger docs-moved-banner">
+  <p class="admonition-title">This documentation has moved</p>
+  <p>
+    This site is no longer maintained and will not receive further updates.
+    The current Smart Power documentation is available on the Volue Documentation Portal:
+    <a href="https://docs.volue.com/">https://docs.volue.com/</a>.
+  </p>
+</div>
+<h1 id="transform">TRANSFORM</h1>
 <p>This topic describes the <a href="#transformt-s-s"><code>TRANSFORM(t, s, s)</code></a>,
 <a href="#transformt-t-s"><code>TRANSFORM(t, t, s)</code></a>, <a href="#transformt-d-s"><code>TRANSFORM(t, d, s)</code></a>
 and <a href="#transformt-s-s-s"><code>TRANSFORM(t, s, s, s)</code></a> functions for transforming
@@ -805,7 +813,7 @@ from the rest of the environment.</p>
 Saving Time (DST), you can make an expression like this:</p>
 <pre><code>@TRANSFORM(@TRANSFORM(@t(‘HourSeries’), 'DAY', 'AVG', 'LT'), 'HOUR', 'AVG')
 </code></pre>
-              
+
             </div>
           </div><footer>
       <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">

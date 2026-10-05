@@ -502,7 +502,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="allocatereserves">AllocateReserves</h1>
+<div class="admonition danger docs-moved-banner">
+  <p class="admonition-title">This documentation has moved</p>
+  <p>
+    This site is no longer maintained and will not receive further updates.
+    The current Smart Power documentation is available on the Volue Documentation Portal:
+    <a href="https://docs.volue.com/">https://docs.volue.com/</a>.
+  </p>
+</div>
+<h1 id="allocatereserves">AllocateReserves</h1>
 <p>This function can be used to distribute values on a reserves time series onto a
 set of target time series based on capacity and priority information. For
 example, distribute a total requested production onto production units.</p>
@@ -581,7 +589,7 @@ TriggerAttribute is having a connection to an expression like this:</p>
 <li>The second argument is a simple search expression that find all instances of type <strong>Unit</strong> that are hierarchically related to the position where the calculation is defined. In this example it will be 6 Unit objects</li>
 <li>The next three arguments refer to time series attribute <strong>names</strong> on the Unit object type. This means that the definition of Mesh object type Unit must have these attribute names and they must be time series. The Priority series contains information that is used order the allocation sequence. The Capacity series contains information on how much this unit can contribute to absorb the total requested volume found on time series in first argument. The Allocated series will get the results from the AllocateReserves calculation.</li>
 </ul>
-              
+
             </div>
           </div><footer>
       <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">

@@ -502,7 +502,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="status-group-functions">Status group functions</h1>
+<div class="admonition danger docs-moved-banner">
+  <p class="admonition-title">This documentation has moved</p>
+  <p>
+    This site is no longer maintained and will not receive further updates.
+    The current Smart Power documentation is available on the Volue Documentation Portal:
+    <a href="https://docs.volue.com/">https://docs.volue.com/</a>.
+  </p>
+</div>
+<h1 id="status-group-functions">Status group functions</h1>
 <p>Functions in the status group are used to make changes on the status of time series. This is done in the following way:</p>
 <p>When performing time series calculations the operation is divided into a sequence of binary operations.</p>
 <p>For example, evaluating "TS1 + TS2"  for a time period of 24 hours is divided into 24 operations in case the time series has hourly resolution.</p>
@@ -516,7 +524,7 @@
 <p>10 / NaN = NaN with status notok and missing set</p>
 <p>An example where you may see a suspect value from a higher level calculation is when there is a SUM calculation applied for a group of time series.</p>
 <p>If some of the series are missing a value at a given time point, the result will be marked as suspect for this time point.</p>
-              
+
             </div>
           </div><footer>
       <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">

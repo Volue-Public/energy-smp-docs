@@ -564,7 +564,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="validate-entraid-environmentps1">validate-entraid-environment.ps1</h1>
+<div class="admonition danger docs-moved-banner">
+  <p class="admonition-title">This documentation has moved</p>
+  <p>
+    This site is no longer maintained and will not receive further updates.
+    The current Smart Power documentation is available on the Volue Documentation Portal:
+    <a href="https://docs.volue.com/">https://docs.volue.com/</a>.
+  </p>
+</div>
+<h1 id="validate-entraid-environmentps1">validate-entraid-environment.ps1</h1>
 <p>Idempotent provisioning script for Entra ID (Azure AD) app registrations used by the Smart Power suite. Uses Microsoft Graph REST API. Safe to re-run — it only patches what has changed.</p>
 <h2 id="prerequisites">Prerequisites</h2>
 <ul>
@@ -1080,7 +1088,7 @@ $GraphUserReadScopeId = [guid]&quot;e1fe6dd8-ba31-4d61-89e7-88639da4683d&quot;  
 <li>Owner assignments are checked against the current owner list before each <code>POST</code> — no duplicates are created.</li>
 </ul>
 <p>Re-running the script against an already-provisioned environment produces only <code>DEBUG</code>-level skip messages and no Graph PATCH calls.</p>
-              
+
             </div>
           </div><footer>
       <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">

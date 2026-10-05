@@ -503,7 +503,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="rating-curves">Rating curves</h1>
+<div class="admonition danger docs-moved-banner">
+  <p class="admonition-title">This documentation has moved</p>
+  <p>
+    This site is no longer maintained and will not receive further updates.
+    The current Smart Power documentation is available on the Volue Documentation Portal:
+    <a href="https://docs.volue.com/">https://docs.volue.com/</a>.
+  </p>
+</div>
+<h1 id="rating-curves">Rating curves</h1>
 <p>A <strong>rating curve</strong> is used to convert water level in river measurements <script type="math/tex">x</script> in
 a watercourse to discharge. In Mesh we use the <script type="math/tex">f(x) = a * (x + b)^c</script> formula
 to approximate discharge, and we store rating curves as a set of segments where
@@ -639,7 +647,7 @@ the version is active until the next version, if any, becomes active.</p>
 <p>In addition each version has an <code>x_range_from</code> field, with the minimal $x$ value
 for the curve. For <code>x &lt; x_range_from</code> for the given version the <code>f(x) = nan</code>.</p>
 <p>In Mesh <strong>rating curve attributes</strong> contain a set of rating curve versions.</p>
-              
+
             </div>
           </div><footer>
       <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">

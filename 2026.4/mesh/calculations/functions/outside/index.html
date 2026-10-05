@@ -502,7 +502,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="outside">OUTSIDE</h1>
+<div class="admonition danger docs-moved-banner">
+  <p class="admonition-title">This documentation has moved</p>
+  <p>
+    This site is no longer maintained and will not receive further updates.
+    The current Smart Power documentation is available on the Volue Documentation Portal:
+    <a href="https://docs.volue.com/">https://docs.volue.com/</a>.
+  </p>
+</div>
+<h1 id="outside">OUTSIDE</h1>
 <p>Returns a logical time series by testing an expression towards an upper and a
 lower limit.</p>
 <p>The result series has the same resolution as the input time series.</p>
@@ -564,7 +572,7 @@ other values and NaN are evaluated to false (0). Here values on the lower limit
 <pre><code>Temperature_hour_VV = @OUTSIDE(0, @t('Temperature_hour_raw'), 12, 'HIGH')
 </code></pre>
 <p>Values in @t('Temperature_hour_raw') &lt; 0 and ≥ 12 are evaluate to true (1), other values and NaN are evaluated to false (0). Here values on the lower limit 0 are evaluated to false and values on the upper limit 12 are evaluated to true.</p>
-              
+
             </div>
           </div><footer>
       <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">

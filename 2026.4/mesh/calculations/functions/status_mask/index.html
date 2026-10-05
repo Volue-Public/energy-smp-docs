@@ -502,7 +502,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="status_mask">STATUS_MASK</h1>
+<div class="admonition danger docs-moved-banner">
+  <p class="admonition-title">This documentation has moved</p>
+  <p>
+    This site is no longer maintained and will not receive further updates.
+    The current Smart Power documentation is available on the Volue Documentation Portal:
+    <a href="https://docs.volue.com/">https://docs.volue.com/</a>.
+  </p>
+</div>
+<h1 id="status_mask">STATUS_MASK</h1>
 <p>Makes it possible to execute operations on time series based on the <a href="../status/">status
 code</a> associated with the values.</p>
 <h2 id="syntax">Syntax</h2>
@@ -695,7 +703,7 @@ information in Nimbus. Available validation methods are as follows:</p>
 <p><code>Temperature_hour_operative = @STATUS_MASK(@t('Temperature_hour_raw'),'MANUAL','BLANK')</code></p>
 <p>The result sets all the manually changed values to NaN.</p>
 <p><img alt="" src="../assets/images/ex_STATUS_MASK-nimbustable3.png" /></p>
-              
+
             </div>
           </div><footer>
       <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
